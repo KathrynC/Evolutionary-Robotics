@@ -4,6 +4,10 @@ class GEOMETRY_SDF:
 
     def __init__(self,type,size):
 
+        type = type.lower()
+        if type == "cube":
+            type = "box"
+
         self.depth   = 4
 
         self.string1 = '<geometry>'
