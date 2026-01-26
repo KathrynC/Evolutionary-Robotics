@@ -2,3 +2,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
+
+# generated outputs
+body.urdf
+world.sdf

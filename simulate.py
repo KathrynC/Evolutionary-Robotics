@@ -19,7 +19,7 @@ p.resetDebugVisualizerCamera(
     cameraTargetPosition=[0, 0, 0.7],
 )
 
-for _ in range(2000):
+for _ in range(4000):
     p.stepSimulation()
     time.sleep(1/240)
 
