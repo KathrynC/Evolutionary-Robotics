@@ -15,3 +15,8 @@ data/
 crash.log
 gui_*.py
 *.log
+
+# debug artifacts
+crash.log
+gui_*.py
+*.log
