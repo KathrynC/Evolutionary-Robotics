@@ -20,3 +20,8 @@ gui_*.py
 crash.log
 gui_*.py
 *.log
+
+.DS_Store
+
+.DS_Store
+*.png
