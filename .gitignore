@@ -6,3 +6,12 @@ __pycache__/
 # generated outputs
 body.urdf
 world.sdf
+
+# sensors data
+data/
+*.npy
+
+# debug artifacts
+crash.log
+gui_*.py
+*.log
