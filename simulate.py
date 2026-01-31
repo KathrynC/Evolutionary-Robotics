@@ -46,7 +46,14 @@ def main():
 
         backLegSensorValues[i] = pyrosim.Get_Touch_Sensor_Value_For_Link("BackLeg")
         frontLegSensorValues[i] = pyrosim.Get_Touch_Sensor_Value_For_Link("FrontLeg")
-
+ 
+        pyrosim.Set_Motor_For_Joint(
+            bodyIndex=robotId,
+            jointName=b"Torso_BackLeg",
+            controlMode=p.POSITION_CONTROL,
+            targetPosition=0.0,
+            maxForce=500
+        )
         # Print occasionally (keeps output readable and avoids slowing the sim)
         if i % 10 == 0:
             print(i, backLegSensorValues[i], frontLegSensorValues[i], flush=True)
