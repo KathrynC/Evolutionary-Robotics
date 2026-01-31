@@ -23,6 +23,11 @@ def main():
     # Prepare pyrosim's link/joint dictionaries and remember robotId
     pyrosim.Prepare_To_Simulate(robotId)
 
+    # Motor joint index (pyrosim may key joint names as bytes or str)
+    back_key = b"Torso_BackLeg" if b"Torso_BackLeg" in pyrosim.jointNamesToIndices else "Torso_BackLeg"
+    back_j = pyrosim.jointNamesToIndices[back_key]
+
+
     backLegSensorValues = numpy.zeros(SIM_STEPS)
     frontLegSensorValues = numpy.zeros(SIM_STEPS)
 
@@ -31,6 +36,10 @@ def main():
     KICK_START = 200
     KICK_END = 350
     KICK_FORCE = [250, 0, 0]  # adjust magnitude if needed
+
+    # Motor experiment parameters (edit these)
+    TARGET = -numpy.pi/4
+    MAX_FORCE = 500
 
     for i in range(SIM_STEPS):
         if KICK_START <= i <= KICK_END:
@@ -51,12 +60,13 @@ def main():
             bodyIndex=robotId,
             jointName=b"Torso_BackLeg",
             controlMode=p.POSITION_CONTROL,
-            targetPosition=0.0,
-            maxForce=500
+            targetPosition=TARGET,
+            maxForce=MAX_FORCE
         )
         # Print occasionally (keeps output readable and avoids slowing the sim)
         if i % 10 == 0:
-            print(i, backLegSensorValues[i], frontLegSensorValues[i], flush=True)
+            angle = p.getJointState(robotId, back_j)[0]
+            print(i, backLegSensorValues[i], frontLegSensorValues[i], "angle", angle, flush=True)
 
     os.makedirs("data", exist_ok=True)
     numpy.save("data/backLegSensorValues.npy", backLegSensorValues)
