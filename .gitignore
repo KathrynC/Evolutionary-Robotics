@@ -26,3 +26,6 @@ gui_*.py
 .DS_Store
 *.png
 *.mp4
+*.mp4
+motor_*.txt
+motor_vectors.png
