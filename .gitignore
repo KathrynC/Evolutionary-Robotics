@@ -25,3 +25,4 @@ gui_*.py
 
 .DS_Store
 *.png
+*.mp4
