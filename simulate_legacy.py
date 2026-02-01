@@ -69,6 +69,8 @@ def main(do_setup=True, existing_robotId=None):
         front_angle = 0.0
         back_angle = 0.0
         front_angle = 0.0
+        back_angle = 0.0
+        front_angle = 0.0
         current_target = targetAngles[i]
         if KICK_START <= i <= KICK_END:
             p.applyExternalForce(
