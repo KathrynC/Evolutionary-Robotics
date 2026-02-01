@@ -33,3 +33,6 @@ motor_vectors.png
 *.csv
 motor_*.txt
 motor_vectors.png
+
+# local patch helpers
+patch_simulate_constants*.py
