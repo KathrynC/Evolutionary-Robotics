@@ -1,4 +1,8 @@
+import pybullet as p
+import pyrosim.pyrosim as pyrosim
+
 class ROBOT:
     def __init__(self):
-        # Filled in later: load body.urdf, Prepare_To_Simulate, Prepare_To_Sense, Prepare_To_Act
-        pass
+        # Robot load + pyrosim prep belong here (Gate D)
+        self.robotId = p.loadURDF("body.urdf")
+        pyrosim.Prepare_To_Simulate(self.robotId)

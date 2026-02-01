@@ -1,12 +1,27 @@
+import pybullet as p
+import pybullet_data
+import constants as c
+
+from world import WORLD
+from robot import ROBOT
+
 class SIMULATION:
-    """
-    Transitional SIMULATION class:
-    - For now, delegates to simulate_legacy.main() so behavior stays identical.
-    - Next gates will move logic into WORLD/ROBOT/SENSOR/MOTOR and remove this bridge.
-    """
     def __init__(self):
-        pass
+        p.connect(p.DIRECT)
+        p.setAdditionalSearchPath(pybullet_data.getDataPath())
+        p.setGravity(0, 0, c.GRAVITY_Z)
+        p.setTimeStep(c.DT)
+
+        self.world = WORLD()
+        self.robot = ROBOT()
 
     def Run(self):
+        # Transitional bridge: reuse existing run logic but skip setup.
         import simulate_legacy as legacy
-        legacy.main()
+        legacy.main(do_setup=False, existing_robotId=self.robot.robotId)
+
+    def __del__(self):
+        try:
+            p.disconnect()
+        except Exception:
+            pass

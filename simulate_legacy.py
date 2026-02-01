@@ -9,12 +9,12 @@ SIM_STEPS = c.SIM_STEPS
 DT = c.DT# physics timestep
 
 
-def main():
+def main(do_setup=True, existing_robotId=None):
     # Headless physics (no GUI). This avoids the macOS GUI segfaults.
     p.connect(p.DIRECT)
 
     p.setAdditionalSearchPath(pybullet_data.getDataPath())
-    p.setGravity(0, 0, -9.8)
+    p.setGravity(0, 0, c.GRAVITY_Z)
     p.setTimeStep(DT)
 
     p.loadURDF("plane.urdf")
