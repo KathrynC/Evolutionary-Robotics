@@ -37,6 +37,11 @@ class SIMULATION:
         robotId = self.robot.robotId
         robot = self.robot
 
+
+        if os.getenv("PRINT_MOTOR_FREQS","1") == "1":
+            for m in getattr(robot, "motors", {}).values():
+                if ("BackLeg" in m.jointNameStr) or ("FrontLeg" in m.jointNameStr):
+                    print("[MOTOR]", m.jointNameStr, "freq_hz", getattr(m, "freq_hz", None))
         # Locomotion metrics
         start_x = p.getBasePositionAndOrientation(robotId)[0][0]
         max_x = start_x
