@@ -29,3 +29,7 @@ gui_*.py
 *.mp4
 motor_*.txt
 motor_vectors.png
+*.mp4
+*.csv
+motor_*.txt
+motor_vectors.png
