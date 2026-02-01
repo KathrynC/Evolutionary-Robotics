@@ -17,6 +17,7 @@ class SIMULATION:
     def Run(self):
         import os
         import numpy
+        import time
         import pybullet as p
         import pyrosim.pyrosim as pyrosim
         import constants as c
@@ -83,6 +84,7 @@ class SIMULATION:
             p.stepSimulation()
         
         
+            time.sleep(c.SLEEP_TIME)
             z = p.getBasePositionAndOrientation(robotId)[0][2]
             max_z = max(max_z, z)
             robot.Sense(i)
