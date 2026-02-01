@@ -73,7 +73,7 @@ class SIMULATION:
                     flags=p.LINK_FRAME,
                 )
         
-            robot.Act(i, back_angle=back_angle, front_angle=front_angle, max_force=MAX_FORCE)
+            robot.Act(i, back_angle=float(current_target), front_angle=float(-current_target), max_force=MAX_FORCE)
             p.stepSimulation()
         
         
