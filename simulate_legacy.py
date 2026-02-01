@@ -4,6 +4,7 @@ import pybullet as p
 import pybullet_data
 import pyrosim.pyrosim as pyrosim
 import constants as c
+from robot import ROBOT
 
 SIM_STEPS = c.SIM_STEPS
 DT = c.DT# physics timestep
@@ -25,7 +26,7 @@ def main(do_setup=True, existing_robotId=None):
     max_z = -1e9
     # Prepare pyrosim's link/joint dictionaries and remember robotId
     pyrosim.Prepare_To_Simulate(robotId)
-
+    robot = ROBOT(robotId=robotId, already_prepared=True)
     # Motor joint index (pyrosim may key joint names as bytes or str)
     back_key = b"Torso_BackLeg" if b"Torso_BackLeg" in pyrosim.jointNamesToIndices else "Torso_BackLeg"
     back_j = pyrosim.jointNamesToIndices[back_key]
@@ -33,10 +34,7 @@ def main(do_setup=True, existing_robotId=None):
 
     front_key = b"Torso_FrontLeg" if b"Torso_FrontLeg" in pyrosim.jointNamesToIndices else "Torso_FrontLeg"
     front_j = pyrosim.jointNamesToIndices[front_key]
-    backLegSensorValues = numpy.zeros(SIM_STEPS)
-    frontLegSensorValues = numpy.zeros(SIM_STEPS)
-
-
+    # Sensor vectors live in robot.sensors[...].values
     RANDOM_TARGETS = c.RANDOM_TARGETS
     RNG_SEED = c.RNG_SEED
     TARGET_RANGE = c.TARGET_RANGE
@@ -65,6 +63,8 @@ def main(do_setup=True, existing_robotId=None):
     TARGET = -numpy.pi/4
     MAX_FORCE = float(os.getenv("MAX_FORCE", str(c.MAX_FORCE)))
     for i in range(SIM_STEPS):
+        back_angle = 0.0
+        front_angle = 0.0
         current_target = targetAngles[i]
         if KICK_START <= i <= KICK_END:
             p.applyExternalForce(
@@ -75,40 +75,21 @@ def main(do_setup=True, existing_robotId=None):
                 flags=p.LINK_FRAME,
             )
 
+        robot.Act(i, back_angle=back_angle, front_angle=front_angle, max_force=MAX_FORCE)
         p.stepSimulation()
 
 
         z = p.getBasePositionAndOrientation(robotId)[0][2]
         max_z = max(max_z, z)
-        backLegSensorValues[i] = pyrosim.Get_Touch_Sensor_Value_For_Link("BackLeg")
-        frontLegSensorValues[i] = pyrosim.Get_Touch_Sensor_Value_For_Link("FrontLeg")
- 
-        pyrosim.Set_Motor_For_Joint(
-            bodyIndex=robotId,
-            jointName=back_key,
-            controlMode=p.POSITION_CONTROL,
-            targetPosition=current_target,
-            maxForce=MAX_FORCE
-        )
-        
-        pyrosim.Set_Motor_For_Joint(
-            bodyIndex=robotId,
-            jointName=front_key,
-            controlMode=p.POSITION_CONTROL,
-            targetPosition=-current_target,
-            maxForce=MAX_FORCE
-        )
+        robot.Sense(i)
 # Print occasionally (keeps output readable and avoids slowing the sim)
         if i % 10 == 0:
             back_angle = p.getJointState(robotId, back_j)[0]
             front_angle = p.getJointState(robotId, front_j)[0]
-            print(i, backLegSensorValues[i], frontLegSensorValues[i], "back", back_angle, "front", front_angle, flush=True)
-
+            print(i, robot.sensors["BackLeg"].values[i], robot.sensors["FrontLeg"].values[i], "back", back_angle, "front", front_angle, flush=True)
     os.makedirs("data", exist_ok=True)
-    numpy.save("data/backLegSensorValues.npy", backLegSensorValues)
-    numpy.save("data/frontLegSensorValues.npy", frontLegSensorValues)
-
-
+    numpy.save("data/backLegSensorValues.npy", robot.sensors["BackLeg"].values)
+    numpy.save("data/frontLegSensorValues.npy", robot.sensors["FrontLeg"].values)
     numpy.save("data/targetAngles.npy", targetAngles)
     print("MAX_Z", max_z, "MAX_FORCE", MAX_FORCE, "RANDOM_TARGETS", RANDOM_TARGETS, flush=True)
     p.disconnect()
