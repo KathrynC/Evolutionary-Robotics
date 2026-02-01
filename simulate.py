@@ -3,8 +3,9 @@ import numpy
 import pybullet as p
 import pybullet_data
 import pyrosim.pyrosim as pyrosim
+import constants as c
 
-SIM_STEPS = 4000
+SIM_STEPS = c.SIM_STEPS
 DT = 1 / 240  # physics timestep
 
 
@@ -36,7 +37,7 @@ def main():
     frontLegSensorValues = numpy.zeros(SIM_STEPS)
 
 
-    RANDOM_TARGETS = False
+    RANDOM_TARGETS = c.RANDOM_TARGETS
     RNG_SEED = 0
     TARGET_RANGE = numpy.pi/2
     SINE_CYCLES = 3

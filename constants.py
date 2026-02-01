@@ -1,0 +1,7 @@
+SIM_STEPS = 4000
+PRINT_EVERY = 10
+
+MAX_FORCE = 500.0
+RANDOM_TARGETS = False
+
+SLEEP_TIME = 1/60  # tweak later for filming
