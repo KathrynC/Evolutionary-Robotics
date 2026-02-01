@@ -61,9 +61,9 @@ class SIMULATION:
         MAX_FORCE = float(os.getenv("MAX_FORCE", str(c.MAX_FORCE)))
         max_z = float('-inf')
         for i in range(SIM_STEPS):
-            back_angle = 0.0
-            front_angle = 0.0
             current_target = targetAngles[i]
+            back_angle = float(current_target)
+            front_angle = float(-current_target)
             if KICK_START <= i <= KICK_END:
                 p.applyExternalForce(
                     objectUniqueId=robotId,
