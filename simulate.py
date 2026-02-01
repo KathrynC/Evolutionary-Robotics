@@ -6,7 +6,7 @@ import pyrosim.pyrosim as pyrosim
 import constants as c
 
 SIM_STEPS = c.SIM_STEPS
-DT = 1 / 240  # physics timestep
+DT = c.DT# physics timestep
 
 
 def main():
@@ -38,9 +38,9 @@ def main():
 
 
     RANDOM_TARGETS = c.RANDOM_TARGETS
-    RNG_SEED = 0
-    TARGET_RANGE = numpy.pi/2
-    SINE_CYCLES = 3
+    RNG_SEED = c.RNG_SEED
+    TARGET_RANGE = c.TARGET_RANGE
+    SINE_CYCLES = c.SINE_CYCLES
     SINE_SCALE = numpy.pi/4  # 1.0 gives range [-1,+1]; later set to numpy.pi/4
 
     if RANDOM_TARGETS:
@@ -57,13 +57,13 @@ def main():
 
     # Optional: give the robot a little "kick" so contacts change even without a GUI.
     # We apply a short sideways force to the torso (link index -1) early in the run.
-    KICK_START = 200
-    KICK_END = 350
+    KICK_START = c.KICK_START
+    KICK_END = c.KICK_END
     KICK_FORCE = [250, 0, 0]  # adjust magnitude if needed
 
     # Motor experiment parameters (edit these)
     TARGET = -numpy.pi/4
-    MAX_FORCE = float(os.getenv("MAX_FORCE", "500"))
+    MAX_FORCE = float(os.getenv("MAX_FORCE", str(c.MAX_FORCE)))
     for i in range(SIM_STEPS):
         current_target = targetAngles[i]
         if KICK_START <= i <= KICK_END:
