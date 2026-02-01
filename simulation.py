@@ -65,6 +65,7 @@ class SIMULATION:
             current_target = targetAngles[i]
             current_target = targetAngles[i]
             current_target = targetAngles[i]
+            current_target = targetAngles[i]
             back_angle = float(current_target)
             front_angle = float(-current_target)
             if KICK_START <= i <= KICK_END:
