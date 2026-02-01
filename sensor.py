@@ -1,8 +1,15 @@
-class SENSOR:
-    def __init__(self, linkName):
-        self.linkName = linkName
-        # Filled in later: allocate self.values
+import numpy as np
+import pyrosim.pyrosim as pyrosim
+import constants as c
 
-    def Get_Value(self, t):
-        # Filled in later: read sensor into self.values[t]
-        pass
+class SENSOR:
+    def __init__(self, linkName: str):
+        self.linkName = linkName
+        self.values = np.zeros(c.SIM_STEPS)
+
+    def Get_Value(self, t: int):
+        try:
+            v = pyrosim.Get_Touch_Sensor_Value_For_Link(self.linkName)
+        except Exception:
+            v = 0.0
+        self.values[t] = float(v)
