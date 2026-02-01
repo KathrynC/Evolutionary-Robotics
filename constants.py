@@ -17,3 +17,9 @@ KICK_END = 350
 # Added during refactor
 GRAVITY_Z = -9.8
 MOTOR_FREQ_HZ = 1.0     # base frequency; other motor will be half
+GAIT_AMPLITUDE = 0.55
+GAIT_FREQ_HZ = 1.3
+BACK_OFFSET = -0.20
+FRONT_OFFSET = 0.15
+ROBOT_FRICTION = 2.5
+PLANE_FRICTION = 1.5

@@ -42,7 +42,8 @@ class MOTOR:
         if half_demo and "FrontLeg" in self.jointNameStr:
             freq *= 0.5
 
-        self.freq_hz = freq  # for debugging
+        self.freq_hz = freq * (0.5 if "back" in str(self.jointName).lower() else 1.0)  # for debugging
+
 
         dt = float(getattr(c, "DT", 1/240))
         t = np.arange(c.SIM_STEPS) * dt
