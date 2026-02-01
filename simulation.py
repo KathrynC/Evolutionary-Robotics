@@ -7,7 +7,8 @@ from robot import ROBOT
 
 class SIMULATION:
     def __init__(self):
-        p.connect(p.DIRECT)
+        p.connect(p.GUI)
+        p.configureDebugVisualizer(p.COV_ENABLE_GUI, 0)
         p.setAdditionalSearchPath(pybullet_data.getDataPath())
         p.setGravity(0, 0, c.GRAVITY_Z)
         p.setTimeStep(c.DT)
@@ -86,6 +87,14 @@ class SIMULATION:
         
             time.sleep(c.SLEEP_TIME)
             z = p.getBasePositionAndOrientation(robotId)[0][2]
+            # Camera follows robot
+            pos, _ = p.getBasePositionAndOrientation(robotId)
+            p.resetDebugVisualizerCamera(
+                cameraDistance=2.0,
+                cameraYaw=45,
+                cameraPitch=-30,
+                cameraTargetPosition=pos,
+            )
             max_z = max(max_z, z)
             robot.Sense(i)
         # Print occasionally (keeps output readable and avoids slowing the sim)

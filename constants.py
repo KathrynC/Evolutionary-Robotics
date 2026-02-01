@@ -16,3 +16,4 @@ KICK_END = 350
 
 # Added during refactor
 GRAVITY_Z = -9.8
+MOTOR_FREQ_HZ = 1.0     # base frequency; other motor will be half
