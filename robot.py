@@ -50,5 +50,16 @@ class ROBOT:
     def Act(self, t: int, max_force: float=None, back_angle=None, front_angle=None, **kwargs):
         if max_force is None:
             max_force = float(kwargs.get("MAX_FORCE", 500.0))
+        if hasattr(self, "nn"):
+            used_nn = False
+            for neuronName in self.nn.neurons:
+                n = self.nn.neurons[neuronName]
+                if n.Is_Motor_Neuron():
+                    jointName = n.Get_Joint_Name()
+                    desiredAngle = n.Get_Value()
+                    pyrosim.Set_Motor_For_Joint(bodyIndex=self.robotId, jointName=jointName, desiredAngle=desiredAngle, maxForce=max_force)
+                    used_nn = True
+            if used_nn:
+                return
         for m in self.motors.values():
             m.Set_Value(self, t, max_force)
