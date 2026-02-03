@@ -20,6 +20,21 @@ def Create_Robot():
 
     pyrosim.End()
 
-if __name__ == "__main__":
+def Generate_Body():
+    """Generate the physical artifacts (world + robot)."""
     Create_World()
     Create_Robot()
+
+
+def Generate_Brain():
+    """Generate brain.nndf (start with sensor neurons)."""
+    pyrosim.Start_NeuralNetwork("brain.nndf")
+    pyrosim.Send_Sensor_Neuron(name=0, linkName="Torso")
+    pyrosim.Send_Sensor_Neuron(name=1, linkName="BackLeg")
+    pyrosim.Send_Sensor_Neuron(name=2, linkName="FrontLeg")
+    pyrosim.End()
+
+
+if __name__ == "__main__":
+    Generate_Body()
+    Generate_Brain()
