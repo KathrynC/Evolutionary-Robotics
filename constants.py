@@ -1,7 +1,7 @@
 SIM_STEPS = 4000
 PRINT_EVERY = 10
 
-MAX_FORCE = 500.0
+MAX_FORCE = 2000.0     # more authority to reach targets
 RANDOM_TARGETS = False
 
 SLEEP_TIME = 1/60  # tweak later for filming
@@ -23,3 +23,8 @@ BACK_OFFSET = -0.20
 FRONT_OFFSET = 0.15
 ROBOT_FRICTION = 2.5
 PLANE_FRICTION = 1.5
+
+# --- Demo/recording visibility knobs (safe to tweak) ---
+DEMO_SLEEP_TIME = 1/15  # slower for human eyes
+DEMO_STRETCH = 6       # sample motor targets slower (bigger=slower)
+DEMO_AMP_MULT = 3.0    # BIG swings for visibility (try 2.0 if too wild)

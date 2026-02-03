@@ -45,8 +45,8 @@ class ROBOT:
 
     # Accept both old-style and new-style calls; angles are ignored when motors have trajectories.
     def Think(self):
+        self.nn.Update()
         self.nn.Print()
-
     def Act(self, t: int, max_force: float=None, back_angle=None, front_angle=None, **kwargs):
         if max_force is None:
             max_force = float(kwargs.get("MAX_FORCE", 500.0))

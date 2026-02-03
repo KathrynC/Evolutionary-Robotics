@@ -1,0 +1,528 @@
+pybullet build time: Oct 21 2025 16:30:45
+[WORLD] Skipping world.sdf: no <world> element (prevents stray cube). Set FORCE_LOAD_WORLD_SDF=1 to force-load.
+[MOTOR] Torso_BackLeg freq_hz 0.65
+[MOTOR] Torso_FrontLeg freq_hz 1.3
+sensor neuron values: -1.0  1.0  1.0  
+hidden neuron values: 
+motor neuron values: 
+
+0 back 1.0 front 1.0
+sensor neuron values: -1.0  1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  1.0  1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+10 back -1.0 front -1.0
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+20 back -1.0 front -1.0
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+30 back -1.0 front -1.0
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+40 back -1.0 front -1.0
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+50 back -1.0 front -1.0
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+60 back -1.0 front -1.0
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+70 back -1.0 front -1.0
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+80 back -1.0 front -1.0
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+90 back -1.0 front -1.0
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+100 back -1.0 front -1.0
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+110 back -1.0 front -1.0
+sensor neuron values: -1.0  -1.0  -1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  1.0  
+hidden neuron values: 
+motor neuron values: 
+
+sensor neuron values: -1.0  -1.0  1.0  
+hidden neuron values: 
+motor neuron values: 
+
+Version = 4.1 Metal - 90.5
+Vendor = Apple
+Renderer = Apple M4 Max
+b3Printf: Selected demo: Physics Server
+startThreads creating 1 threads.
+starting thread 0
+started thread 0 
+MotionThreadFunc thread started
+Traceback (most recent call last):
+  File "/Users/gardenofcomputation/pybullet_test/Evolutionary-Robotics/simulate.py", line 5, in <module>
+    simulation.Run()
+  File "/Users/gardenofcomputation/pybullet_test/Evolutionary-Robotics/simulation.py", line 114, in Run
+    robot.Think()
+  File "/Users/gardenofcomputation/pybullet_test/Evolutionary-Robotics/robot.py", line 48, in Think
+    self.nn.Update()
+  File "/Users/gardenofcomputation/pybullet_test/Evolutionary-Robotics/pyrosim/neuralNetwork.py", line 36, in Update
+    self.neurons[neuronName].Update_Sensor_Neuron()
+  File "/Users/gardenofcomputation/pybullet_test/Evolutionary-Robotics/pyrosim/neuron.py", line 40, in Update_Sensor_Neuron
+    value = pyrosim.Get_Touch_Sensor_Value_For_Link(self.Get_Link_Name())
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/gardenofcomputation/pybullet_test/Evolutionary-Robotics/pyrosim/pyrosim.py", line 53, in Get_Touch_Sensor_Value_For_Link
+    for pt in pts:
+              ^^^
+TypeError: 'NoneType' object is not iterable
+numActiveThreads = 0
+stopping threads
+Thread with taskId 0 exiting
+Thread TERMINATED
+destroy semaphore
+semaphore destroyed
+destroy main semaphore
+main semaphore destroyed
