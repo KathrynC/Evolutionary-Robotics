@@ -104,17 +104,20 @@ class SIMULATION:
             max_x = max(max_x, x)
             max_z = max(max_z, z)
 
-            if follow_cam:
+            if bool(getattr(c, 'CAMERA_FOLLOW', False)) and (i % int(getattr(c, 'CAMERA_EVERY_N', 1)) == 0):
                 try:
-                    p.resetDebugVisualizerCamera(
-                        cameraDistance=2.0,
-                        cameraYaw=45,
-                        cameraPitch=-30,
-                        cameraTargetPosition=pos,
-                    )
+                    rid = getattr(robot, 'robotId', None)
+                    if rid is not None:
+                        pos, _ = p.getBasePositionAndOrientation(rid)
+                        target = [pos[0], pos[1], pos[2] + float(getattr(c, 'CAMERA_TARGET_Z', 0.5))]
+                        p.resetDebugVisualizerCamera(
+                            cameraDistance=float(getattr(c, 'CAMERA_DISTANCE', 3.0)),
+                            cameraYaw=float(getattr(c, 'CAMERA_YAW', 60.0)),
+                            cameraPitch=float(getattr(c, 'CAMERA_PITCH', -25.0)),
+                            cameraTargetPosition=target,
+                        )
                 except Exception:
                     pass
-
             robot.Sense(i)
 
 
