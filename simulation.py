@@ -90,7 +90,7 @@ class SIMULATION:
 
             p.stepSimulation()
             if sleep_time:
-                time.sleep(sleep_time)
+                time.sleep(getattr(c, "DEMO_SLEEP_TIME", sleep_time))
 
             pos, _ = p.getBasePositionAndOrientation(robotId)
             x, z = pos[0], pos[2]
@@ -110,6 +110,8 @@ class SIMULATION:
 
             robot.Sense(i)
 
+
+            robot.Think()
             if i % 10 == 0:
                 # keep your familiar debug print, but avoid joint-index assumptions
                 bl = robot.sensors.get("BackLeg")

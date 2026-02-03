@@ -1,5 +1,6 @@
 import pybullet as p
 import pyrosim.pyrosim as pyrosim
+from pyrosim.neuralNetwork import NEURAL_NETWORK
 import constants as c
 
 from sensor import SENSOR
@@ -9,6 +10,7 @@ class ROBOT:
     def __init__(self, robotId=None, already_prepared=False):
         if robotId is None:
             self.robotId = p.loadURDF("body.urdf")
+            self.nn = NEURAL_NETWORK("brain.nndf")
             pyrosim.Prepare_To_Simulate(self.robotId)
         else:
             self.robotId = robotId
@@ -42,6 +44,9 @@ class ROBOT:
             self.motors[jointName] = MOTOR(jointName)
 
     # Accept both old-style and new-style calls; angles are ignored when motors have trajectories.
+    def Think(self):
+        self.nn.Print()
+
     def Act(self, t: int, max_force: float=None, back_angle=None, front_angle=None, **kwargs):
         if max_force is None:
             max_force = float(kwargs.get("MAX_FORCE", 500.0))
