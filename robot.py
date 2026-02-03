@@ -56,8 +56,13 @@ class ROBOT:
                 n = self.nn.neurons[neuronName]
                 if n.Is_Motor_Neuron():
                     jointName = n.Get_Joint_Name()
+
+                    jointName = jointName.encode("ASCII") if isinstance(jointName, str) else jointName
                     desiredAngle = n.Get_Value()
-                    pyrosim.Set_Motor_For_Joint(bodyIndex=self.robotId, jointName=jointName, desiredAngle=desiredAngle, maxForce=max_force)
+                    try:
+                        pyrosim.Set_Motor_For_Joint(self.robotId, jointName, desiredAngle, max_force)
+                    except TypeError:
+                        pyrosim.Set_Motor_For_Joint(self.robotId, jointName, p.POSITION_CONTROL, desiredAngle, max_force)
                     used_nn = True
             if used_nn:
                 return

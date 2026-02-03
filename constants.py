@@ -1,7 +1,7 @@
 SIM_STEPS = 4000
 PRINT_EVERY = 10
 
-MAX_FORCE = 2000.0     # more authority to reach targets
+MAX_FORCE = 150.0     # more authority to reach targets
 RANDOM_TARGETS = False
 
 SLEEP_TIME = 1/60  # tweak later for filming
@@ -28,3 +28,9 @@ PLANE_FRICTION = 1.5
 DEMO_SLEEP_TIME = 1/15  # slower for human eyes
 DEMO_STRETCH = 6       # sample motor targets slower (bigger=slower)
 DEMO_AMP_MULT = 3.0    # BIG swings for visibility (try 2.0 if too wild)
+
+# Camera follow (PyBullet GUI)
+CAMERA_FOLLOW = True
+CAMERA_DISTANCE = 3.0
+CAMERA_YAW = 60.0
+CAMERA_PITCH = -25.0
