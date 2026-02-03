@@ -43,13 +43,7 @@ class SIMULATION:
                 if ("BackLeg" in m.jointNameStr) or ("FrontLeg" in m.jointNameStr):
                     print("[MOTOR]", m.jointNameStr, "freq_hz", getattr(m, "freq_hz", None))
         # Locomotion metrics
-        try:
-        try:
-        start_x = p.getBasePositionAndOrientation(robot.robotId)
-        except Exception:
-            pos = (0.0, 0.0, 0.0)
-        except Exception:
-            pos = (0.0, 0.0, 0.0)
+        start_x = p.getBasePositionAndOrientation(robotId)[0][0]
         max_x = start_x
         max_z = float("-inf")
 
@@ -98,13 +92,7 @@ class SIMULATION:
             if sleep_time:
                 time.sleep(getattr(c, "DEMO_SLEEP_TIME", sleep_time))
 
-            try:
-            try:
-            pos, _ = p.getBasePositionAndOrientation(robot.robotId)
-            except Exception:
-                pos = (0.0, 0.0, 0.0)
-            except Exception:
-                pos = (0.0, 0.0, 0.0)
+            pos, _ = p.getBasePositionAndOrientation(robotId)
             x, z = pos[0], pos[2]
             max_x = max(max_x, x)
             max_z = max(max_z, z)
@@ -132,13 +120,7 @@ class SIMULATION:
                 flv = fl.values[i] if fl else None
                 print(i, "back", blv, "front", flv, flush=True)
 
-        try:
-        try:
-        end_x = p.getBasePositionAndOrientation(robot.robotId)
-        except Exception:
-            pos = (0.0, 0.0, 0.0)
-        except Exception:
-            pos = (0.0, 0.0, 0.0)
+        end_x = p.getBasePositionAndOrientation(robotId)[0][0]
         os.makedirs("data", exist_ok=True)
         np.save("data/targetAngles.npy", targetAngles)
 
