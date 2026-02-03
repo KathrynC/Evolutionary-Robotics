@@ -9,7 +9,7 @@ from motor import MOTOR
 class ROBOT:
     def __init__(self, robotId=None, already_prepared=False):
         if robotId is None:
-            self.robotId = p.loadURDF("body.urdf")
+            self.robotId = p.loadURDF("body.urdf", flags=(getattr(p,"URDF_USE_SELF_COLLISION",0) | getattr(p,"URDF_USE_SELF_COLLISION_EXCLUDE_PARENT",0)))
             self.nn = NEURAL_NETWORK("brain.nndf")
             pyrosim.Prepare_To_Simulate(self.robotId)
         else:
