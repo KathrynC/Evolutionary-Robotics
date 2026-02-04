@@ -36,3 +36,8 @@ motor_vectors.png
 
 # local patch helpers
 patch_simulate_constants*.py
+
+# local artifacts
+artifacts/
+*.txt
+deepseek_python_*.py
