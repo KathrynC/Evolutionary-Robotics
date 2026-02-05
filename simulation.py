@@ -112,7 +112,23 @@ class SIMULATION:
             robot.Act(i, max_force=MAX_FORCE)
 
             if trace is not None and safe_snapshot is not None:
-                trace.write({'type':'step','i':i,'target':float(current_target),'nn': safe_snapshot(robot)})
+                # Open-loop A-mode: mirror actuator commands into motor neurons (IDs 3,4)
+                try:
+                    mt = getattr(robot, '_last_motor_targets', None) or {}
+                    back = mt.get('Torso_BackLeg')
+                    front = mt.get('Torso_FrontLeg')
+                    nn = getattr(robot, 'nn', None)
+                    neurons = getattr(nn, 'neurons', None) if nn is not None else None
+                    if isinstance(neurons, dict):
+                        for nid, val in ((3, back), (4, front)):
+                            if val is None:
+                                continue
+                            n = neurons.get(nid) or neurons.get(str(nid))
+                            if n is not None and hasattr(n, 'value'):
+                                n.value = float(val)
+                except Exception:
+                    pass
+                trace.write({'type':'step','i':i,'target':float(current_target),'motor_targets': getattr(robot, '_last_motor_targets', None),'nn': safe_snapshot(robot)})
             p.stepSimulation()
             if sleep_time:
                 time.sleep(getattr(c, "DEMO_SLEEP_TIME", sleep_time))
