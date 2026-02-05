@@ -10,7 +10,7 @@ SLEEP_TIME = 1/60  # tweak later for filming
 DT = 1/240  # physics timestep
 RNG_SEED = 0
 TARGET_RANGE = 1.5707963267948966  # pi/2
-SINE_CYCLES = 3
+SINE_CYCLES = 1.0
 KICK_START = 200
 KICK_END = 350
 
