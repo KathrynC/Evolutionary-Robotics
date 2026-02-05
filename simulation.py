@@ -8,6 +8,10 @@ import pyrosim.pyrosim as pyrosim
 import constants as c
 from world import WORLD
 from robot import ROBOT
+from pathlib import Path
+from datetime import datetime
+from telemetry.trace import TraceWriter
+
 
 
 class SIMULATION:
@@ -72,6 +76,25 @@ class SIMULATION:
         follow_cam = getattr(self, 'use_gui', False) and (os.getenv('FOLLOW_CAMERA','1') == '1')
         sleep_time = float(os.getenv('SLEEP_TIME', str(getattr(c, 'SLEEP_TIME', 0.0))))
 
+
+        # Telemetry: JSONL trace for neuron dynamics (neurons-reimagined)
+        trace = None
+        safe_snapshot = None
+        try:
+            from pathlib import Path
+            from datetime import datetime
+            import atexit
+            from telemetry.trace import TraceWriter
+            from telemetry.nn_snapshot import safe_snapshot_nn as _safe_snapshot_nn
+            safe_snapshot = _safe_snapshot_nn
+            stamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            trace_path = Path("artifacts/traces") / f"run_{stamp}.jsonl"
+            trace = TraceWriter(trace_path, run_meta={'type':'meta','script':'simulation.py'})
+            atexit.register(trace.close)
+        except Exception as e:
+            trace = None
+            safe_snapshot = None
+            print(f"[telemetry] disabled: {e}")
         # Run loop
         for i in range(SIM_STEPS):
             current_target = targetAngles[i]
@@ -88,6 +111,8 @@ class SIMULATION:
             # Motors drive themselves (motor.py builds trajectories; HALF_FREQ_DEMO env var can be used there)
             robot.Act(i, max_force=MAX_FORCE)
 
+            if trace is not None and safe_snapshot is not None:
+                trace.write({'type':'step','i':i,'target':float(current_target),'nn': safe_snapshot(robot)})
             p.stepSimulation()
             if sleep_time:
                 time.sleep(getattr(c, "DEMO_SLEEP_TIME", sleep_time))
@@ -134,3 +159,7 @@ def __del__(self):
             p.disconnect()
         except Exception:
             pass
+
+if __name__ == "__main__":
+    # Run the simulation when executing: python3 simulation.py
+    SIMULATION().Run()
