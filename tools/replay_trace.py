@@ -13,6 +13,21 @@ from typing import Any, Dict, Iterable, List, Optional, Tuple
 TRACE_DIR_DEFAULT = Path("artifacts/traces")
 
 
+
+TYPE_INT_MAP = {0: "sensor", 1: "motor", 2: "hidden"}
+
+def norm_type(t: object) -> str:
+    if t is None:
+        return ""
+    # pyrosim often stores neuron types as ints
+    if isinstance(t, (int, float)) and not isinstance(t, bool):
+        try:
+            ti = int(t)
+            if float(t) == ti:
+                return TYPE_INT_MAP.get(ti, str(ti))
+        except Exception:
+            pass
+    return str(t).lower()
 def eprint(*args, **kwargs):
     print(*args, file=sys.stderr, **kwargs)
 
@@ -86,7 +101,7 @@ def summarize_step(ev: Dict[str, Any], topk: int = 3, motor_eps: float = 0.05) -
     for nid, nd in neurons.items():
         if not isinstance(nd, dict):
             continue
-        ntype = str(nd.get("type") or "").lower()
+        ntype = norm_type(nd.get("type"))
         v = nd.get("value", None)
         if v is None:
             continue
@@ -118,7 +133,7 @@ def summarize_step(ev: Dict[str, Any], topk: int = 3, motor_eps: float = 0.05) -
             vf = float(v)
         except Exception:
             continue
-        ntype = str(nd.get("type") or "").lower()
+        ntype = norm_type(nd.get("type"))
         scored.append((str(nid), vf, ntype))
     scored.sort(key=lambda t: abs(t[1]), reverse=True)
     top = [(nid, vf, ntype) for (nid, vf, ntype) in scored[:topk]]
@@ -220,7 +235,7 @@ def cmd_summary(path: Path, motor_eps: float):
                 continue
 
             nid = str(nid)
-            n_type[nid] = str(nd.get("type") or "").lower()
+            n_type[nid] = norm_type(nd.get("type"))
             n_count[nid] = n_count.get(nid, 0) + 1
             n_sum[nid] = n_sum.get(nid, 0.0) + vf
             n_abs_sum[nid] = n_abs_sum.get(nid, 0.0) + abs(vf)
