@@ -54,6 +54,21 @@ class MOTOR:
 
     def Set_Value(self, robot, t: int, max_force: float):
         target = float(self.motorValues[t])
+        # Telemetry hook: remember the last commanded target for this joint
+        try:
+            d = getattr(robot, '_last_motor_targets', None)
+            if not isinstance(d, dict):
+                d = {}
+                setattr(robot, '_last_motor_targets', d)
+            k = self.jointName
+            if isinstance(k, (bytes, bytearray)):
+                k = k.decode('utf-8', 'replace')
+            else:
+                k = str(k)
+            d[k] = float(target)
+
+        except Exception:
+            pass
         try:
             pyrosim.Set_Motor_For_Joint(
                 bodyIndex=robot.robotId,
@@ -64,3 +79,19 @@ class MOTOR:
             )
         except TypeError:
             pyrosim.Set_Motor_For_Joint(robot.robotId, self.jointName, p.POSITION_CONTROL, target, float(max_force))
+
+            # Telemetry hook: remember the last commanded target for this joint
+            try:
+                d = getattr(robot, "_last_motor_targets", None)
+                if not isinstance(d, dict):
+                    d = {}
+                    setattr(robot, "_last_motor_targets", d)
+                k = self.jointName
+                if isinstance(k, (bytes, bytearray)):
+                    k = k.decode('utf-8', 'replace')
+                else:
+                    k = str(k)
+                d[k] = float(target)
+
+            except Exception:
+                pass
