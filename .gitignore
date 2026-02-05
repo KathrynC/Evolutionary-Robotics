@@ -41,3 +41,6 @@ patch_simulate_constants*.py
 artifacts/
 *.txt
 deepseek_python_*.py
+
+# telemetry artifacts
+artifacts/traces/
