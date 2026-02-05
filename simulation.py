@@ -128,7 +128,7 @@ class SIMULATION:
                                 n.value = float(val)
                 except Exception:
                     pass
-                trace.write({'type':'step','i':i,'target':float(current_target),'motor_targets': getattr(robot, '_last_motor_targets', None),'nn': safe_snapshot(robot)})
+                trace.write({'type':'step','i':i,'t_norm': float(i)/max(1.0,float(SIM_STEPS-1)),'phase': (2.0*np.pi*float(SINE_CYCLES))*float(i)/max(1.0,float(SIM_STEPS-1)),'target':float(current_target),'motor_targets': getattr(robot, '_last_motor_targets', None),'nn': safe_snapshot(robot)})
             p.stepSimulation()
             if sleep_time:
                 time.sleep(getattr(c, "DEMO_SLEEP_TIME", sleep_time))
