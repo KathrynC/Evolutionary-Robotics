@@ -205,6 +205,15 @@ def cmd_replay(path: Path, every: int, start: int, end: Optional[int], topk: int
                 v = nd.get("value") if isinstance(nd, dict) else None
                 watch_vals.append(f"{wid}={v}")
             print(" " * 2 + "watch: " + "  ".join(watch_vals))
+            cmds = ev.get('motor_targets')
+            if isinstance(cmds, dict) and cmds:
+                parts = []
+                for k, v in cmds.items():
+                    try:
+                        parts.append(f"{k}={float(v):+.3f}")
+                    except Exception:
+                        parts.append(f"{k}={v}")
+                print(" " * 2 + "cmd: " + "  ".join(parts))
 
 
 def cmd_summary(path: Path, motor_eps: float):

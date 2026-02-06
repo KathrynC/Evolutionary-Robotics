@@ -56,6 +56,17 @@ class SIMULATION:
         RNG_SEED = getattr(c, "RNG_SEED", 0)
         TARGET_RANGE = getattr(c, "TARGET_RANGE", np.pi/2)
         SINE_CYCLES = getattr(c, "SINE_CYCLES", 3)
+        RULEBOOK_PATH = os.getenv("RULEBOOK", "").strip()
+        rulebook = None
+        RB_BINS = None
+        RB_RULES = None
+        if RULEBOOK_PATH:
+            import json
+            with open(RULEBOOK_PATH, "r", encoding="utf-8") as f:
+                rulebook = json.load(f)
+            RB_BINS = int(rulebook.get("bins", 64))
+            RB_RULES = rulebook.get("rules", {})
+            print("RULEBOOK", RULEBOOK_PATH, "bins", RB_BINS)
         SINE_SCALE = np.pi/4
 
         if RANDOM_TARGETS:
@@ -112,6 +123,30 @@ class SIMULATION:
             robot.Act(i, max_force=MAX_FORCE)
 
             if trace is not None and safe_snapshot is not None:
+                # B-mode (RULEBOOK): overwrite motor commands based on phase bin + contact bits
+                if rulebook is not None:
+                    phase = (2.0*3.141592653589793*float(SINE_CYCLES))*float(i)/max(1.0,float(SIM_STEPS-1))
+                    frac = (phase % (2.0*3.141592653589793)) / (2.0*3.141592653589793)
+                    b = int(frac * float(RB_BINS)) % int(RB_BINS)
+                    bits = ""
+                    for sid in (0,1,2):
+                        try:
+                            v = float(robot.nn.neurons[sid].value)
+                        except Exception:
+                            v = 0.0
+                        bits += "1" if v > 0.0 else "0"
+                    mp = RB_RULES.get(str(b), {}) or {}
+                    r = mp.get(bits) or mp.get("000") or (next(iter(mp.values()), None) if mp else None)
+                    if r is not None:
+                        back = float(r.get("Torso_BackLeg", 0.0))
+                        front = float(r.get("Torso_FrontLeg", 0.0))
+                        pyrosim.Set_Motor_For_Joint(robot.robotId, b"Torso_BackLeg", p.POSITION_CONTROL, back, float(MAX_FORCE))
+                        pyrosim.Set_Motor_For_Joint(robot.robotId, b"Torso_FrontLeg", p.POSITION_CONTROL, front, float(MAX_FORCE))
+                        d = getattr(robot, "_last_motor_targets", None) or {}
+                        d["Torso_BackLeg"] = back
+                        d["Torso_FrontLeg"] = front
+                        setattr(robot, "_last_motor_targets", d)
+                
                 # Open-loop A-mode: mirror actuator commands into motor neurons (IDs 3,4)
                 try:
                     mt = getattr(robot, '_last_motor_targets', None) or {}
@@ -128,7 +163,7 @@ class SIMULATION:
                                 n.value = float(val)
                 except Exception:
                     pass
-                trace.write({'type':'step','i':i,'t_norm': float(i)/max(1.0,float(SIM_STEPS-1)),'phase': (2.0*np.pi*float(SINE_CYCLES))*float(i)/max(1.0,float(SIM_STEPS-1)),'target':float(current_target),'motor_targets': getattr(robot, '_last_motor_targets', None),'nn': safe_snapshot(robot)})
+                trace.write({'type':'step','i':i,'t_norm': float(i)/max(1.0,float(SIM_STEPS-1)),'phase': (2.0*np.pi*float(SINE_CYCLES))*float(i)/max(1.0,float(SIM_STEPS-1)),'target':float(current_target),'motor_targets': getattr(robot, '_last_motor_targets', None),'base_pos': list(p.getBasePositionAndOrientation(robot.robotId)[0]), 'base_orn': list(p.getBasePositionAndOrientation(robot.robotId)[1]), 'nn': safe_snapshot(robot)})
             p.stepSimulation()
             if sleep_time:
                 time.sleep(getattr(c, "DEMO_SLEEP_TIME", sleep_time))
