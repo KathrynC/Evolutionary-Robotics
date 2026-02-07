@@ -108,14 +108,24 @@ def main():
                 if sim_cmd and isinstance(sim_cmd[0], str) and sim_cmd[0].endswith('.py') and sim_cmd[0] != sys.executable:
                     sim_cmd = [sys.executable] + sim_cmd
                 # Per-run env so the sim loads the correct variant
+                # Robust: variant path variable name differs across branches; grab whichever exists
                 import os as _os, re as _re
-                env["GAIT_VARIANT_PATH"] = str(variant_path)
-                _m = _re.search(r"variant_(\d+)\.json$", _os.path.basename(str(variant_path)))
-                _vid = _m.group(1) if _m else "unknown"
+                _vp = (locals().get("variant_path")
+                       or locals().get("variant")
+                       or locals().get("vpath")
+                       or locals().get("variant_json")
+                       or locals().get("variant_file"))
+                if _vp is not None:
+                    env["GAIT_VARIANT_PATH"] = str(_vp)
+                    _m = _re.search(r"variant_(\d+)\.json$", _os.path.basename(str(_vp)))
+                    _vid = _m.group(1) if _m else str(locals().get("variant_id","unknown"))
+                else:
+                    _vid = str(locals().get("variant_id","unknown"))
                 env.setdefault("VARIANT_ID", _vid)
                 env.setdefault("TELEMETRY_VARIANT_ID", _vid)
                 env.setdefault("RUN_ID", str(run_id))
                 env.setdefault("TELEMETRY_RUN_ID", str(run_id))
+
                 p = subprocess.run(sim_cmd, env=env, stdout=f, stderr=subprocess.STDOUT)
             status = {
                 "variant_id": variant_id,
