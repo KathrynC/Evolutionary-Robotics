@@ -136,7 +136,7 @@ def main():
                         _d = _json.load(open(_vp, 'r'))
                         for _k in ('SIM_STEPS','MAX_FORCE','ROBOT_FRICTION','PLANE_FRICTION'):
                             if _k in _d:
-                                env[_k] = str(_d[_k])
+                                env.setdefault(_k, str(_d[_k]))
                     except Exception:
                         pass
                 # helpful ids for downstream telemetry
