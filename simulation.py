@@ -1,5 +1,7 @@
-print("[SIMFILE]", __file__, flush=True)
 import os
+if os.getenv("SIM_DEBUG","0") == "1":
+    print("[SIMFILE]", __file__, flush=True)
+    print("[ENV] GAIT_VARIANT_PATH", os.getenv("GAIT_VARIANT_PATH","<none>"), flush=True)
 
 # Silence pyrosim neuralNetwork debug prints unless PYROSIM_NN_VERBOSE=1
 if os.getenv("PYROSIM_NN_VERBOSE","0") != "1":
