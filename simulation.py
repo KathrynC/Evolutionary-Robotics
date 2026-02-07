@@ -148,7 +148,7 @@ class SIMULATION:
 
 
             robot.Think()
-            if i % 10 == 0:
+            if os.getenv("DEBUG_PRINT","0")=="1" and i % 10 == 0:
                 # keep your familiar debug print, but avoid joint-index assumptions
                 bl = robot.sensors.get("BackLeg")
                 fl = robot.sensors.get("FrontLeg")
