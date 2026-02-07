@@ -1,5 +1,14 @@
 print("[SIMFILE]", __file__, flush=True)
 import os
+
+# Silence pyrosim neuralNetwork debug prints unless PYROSIM_NN_VERBOSE=1
+if os.getenv("PYROSIM_NN_VERBOSE","0") != "1":
+    try:
+        import pyrosim.neuralNetwork as _nn
+        _nn.print = (lambda *a, **k: None)
+    except Exception:
+        pass
+
 import time
 import numpy as np
 import pybullet as p
