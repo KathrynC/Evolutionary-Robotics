@@ -69,7 +69,9 @@ class SIMULATION:
                 if ("BackLeg" in m.jointNameStr) or ("FrontLeg" in m.jointNameStr):
                     print("[MOTOR]", m.jointNameStr, "freq_hz", getattr(m, "freq_hz", None))
         # Locomotion metrics
-        start_x = safe_get_base_pose(robotId)[0][0]
+        _start_pos = safe_get_base_pose(robotId)[0]
+        start_x = float(_start_pos[0])
+        start_y = float(_start_pos[1])
         max_x = start_x
         max_z = float("-inf")
 
@@ -157,6 +159,36 @@ class SIMULATION:
 
         print("DX", end_x - start_x, "MAX_DX", max_x - start_x, flush=True)
         print("MAX_Z", max_z, "MAX_FORCE", MAX_FORCE, "RANDOM_TARGETS", RANDOM_TARGETS, flush=True)
+        # Write per-run summary.json for zoo scoring
+        try:
+            import json
+            _end_pos = safe_get_base_pose(robotId)[0]
+            end_x = float(_end_pos[0])
+            end_y = float(_end_pos[1])
+
+            dx = float(end_x - start_x)
+            dy = float(end_y - start_y)
+            dxy = float((dx*dx + dy*dy) ** 0.5)
+
+            _out_dir.mkdir(parents=True, exist_ok=True)
+            summary = {
+                "variant_id": str(_variant_id),
+                "run_id": str(_run_id),
+                "dx": dx,
+                "dy": dy,
+                "dxy_net": dxy,
+                "max_dx": float(max_x - start_x),
+                "max_z": float(max_z),
+                "max_force": float(MAX_FORCE),
+                "random_targets": bool(RANDOM_TARGETS),
+                "sim_steps": int(SIM_STEPS),
+                "telemetry_enabled": bool(_telemetry_on),
+                "telemetry_every": int(_telemetry_every),
+            }
+            (_out_dir / "summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
+        except Exception as e:
+            print("WARN: summary.json write failed:", e, flush=True)
+
 
         if getattr(self, 'use_gui', False):
             input('Done. Press Enter to close the GUI...')
