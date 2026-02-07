@@ -126,6 +126,22 @@ def main():
                 env.setdefault("RUN_ID", str(run_id))
                 env.setdefault("TELEMETRY_RUN_ID", str(run_id))
 
+                # GAIT_VARIANT_PATH export (zoo)
+                _vp = (locals().get('variant_path') or locals().get('vpath') or locals().get('variant') or locals().get('vp') or locals().get('path'))
+                if _vp is not None:
+                    env['GAIT_VARIANT_PATH'] = str(_vp)
+                    # also propagate a few useful knobs if present in the variant json
+                    try:
+                        import json as _json
+                        _d = _json.load(open(_vp, 'r'))
+                        for _k in ('SIM_STEPS','MAX_FORCE','ROBOT_FRICTION','PLANE_FRICTION'):
+                            if _k in _d:
+                                env[_k] = str(_d[_k])
+                    except Exception:
+                        pass
+                # helpful ids for downstream telemetry
+                env.setdefault('TELEMETRY_VARIANT_ID', str(locals().get('variant_id','')))
+                env.setdefault('TELEMETRY_RUN_ID', str(locals().get('run_id','')))
                 p = subprocess.run(sim_cmd, env=env, stdout=f, stderr=subprocess.STDOUT)
             status = {
                 "variant_id": variant_id,
