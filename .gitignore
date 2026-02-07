@@ -44,3 +44,5 @@ deepseek_python_*.py
 
 # telemetry artifacts
 artifacts/traces/
+brain.nndf
+brain.nndf

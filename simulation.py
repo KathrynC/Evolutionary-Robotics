@@ -14,9 +14,16 @@ from telemetry.trace import TraceWriter
 
 
 
+from tools.telemetry.logger import TelemetryLogger
+
+import signal
+
+signal.signal(signal.SIGINT, signal.default_int_handler)
+
 class SIMULATION:
     def __init__(self):
-        use_gui = os.getenv("PYBULLET_GUI", "1") == "1"
+        use_gui = os.getenv('HEADLESS','').lower() not in ('1','true','yes','on')
+
         mode = p.GUI if use_gui else p.DIRECT
         p.connect(mode)
 
@@ -40,8 +47,20 @@ class SIMULATION:
         SIM_STEPS = c.SIM_STEPS
         robotId = self.robot.robotId
         robot = self.robot
+        # telemetry (optional)
+        _telemetry_on = os.getenv('TELEMETRY','').lower() in ('1','true','yes','on')
+        _telemetry_every = int(os.getenv('TELEMETRY_EVERY','10'))
+        _variant_id = os.getenv('TELEMETRY_VARIANT_ID','manual')
+        _run_id = os.getenv('TELEMETRY_RUN_ID','run0')
+        _out_dir = __import__('pathlib').Path(os.getenv('TELEMETRY_OUT','artifacts/telemetry')) / _variant_id / _run_id
+        telemetry = TelemetryLogger(robot.robotId, _out_dir, every=_telemetry_every, variant_id=_variant_id, run_id=_run_id, enabled=_telemetry_on)
 
 
+
+        # ensure summary.json even if GUI closes / Ctrl-C
+        __import__('atexit').register(telemetry.finalize)
+
+        _telemetry_step = 0
         if os.getenv("PRINT_MOTOR_FREQS","1") == "1":
             for m in getattr(robot, "motors", {}).values():
                 if ("BackLeg" in m.jointNameStr) or ("FrontLeg" in m.jointNameStr):
@@ -165,6 +184,8 @@ class SIMULATION:
                     pass
                 trace.write({'type':'step','i':i,'t_norm': float(i)/max(1.0,float(SIM_STEPS-1)),'phase': (2.0*np.pi*float(SINE_CYCLES))*float(i)/max(1.0,float(SIM_STEPS-1)),'target':float(current_target),'motor_targets': getattr(robot, '_last_motor_targets', None),'base_pos': list(p.getBasePositionAndOrientation(robot.robotId)[0]), 'base_orn': list(p.getBasePositionAndOrientation(robot.robotId)[1]), 'nn': safe_snapshot(robot)})
             p.stepSimulation()
+            telemetry.log_step(_telemetry_step)
+            _telemetry_step += 1
             if sleep_time:
                 time.sleep(getattr(c, "DEMO_SLEEP_TIME", sleep_time))
 
@@ -207,6 +228,7 @@ class SIMULATION:
             input('Done. Press Enter to close the GUI...')
 def __del__(self):
         try:
+            telemetry.finalize()
             p.disconnect()
         except Exception:
             pass

@@ -21,7 +21,13 @@ class ROBOT:
         try:
             mu = float(getattr(c, "ROBOT_FRICTION", 2.0))
             for link in range(-1, p.getNumJoints(self.robotId)):
-                p.changeDynamics(self.robotId, link, lateralFriction=mu, restitution=0.0)
+                p.changeDynamics(
+                    self.robotId, link,
+                    lateralFriction=mu,
+                    restitution=0.0,
+                    linearDamping=0.04,
+                    angularDamping=0.04,
+                )
         except Exception:
             pass
 
@@ -49,6 +55,6 @@ class ROBOT:
         self.nn.Print()
     def Act(self, t: int, max_force: float=None, back_angle=None, front_angle=None, **kwargs):
         if max_force is None:
-            max_force = float(kwargs.get("MAX_FORCE", 500.0))
+            max_force = float(kwargs.get("MAX_FORCE", getattr(c, "MAX_FORCE", 500.0)))
         for m in self.motors.values():
             m.Set_Value(self, t, max_force)
