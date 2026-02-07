@@ -60,6 +60,9 @@ class SIMULATION:
 
 
 
+        if os.getenv("PRINT_VARIANT","0") == "1":
+            print("[VARIANT] GAIT_VARIANT_PATH", os.getenv("GAIT_VARIANT_PATH",""), flush=True)
+
         # ensure summary.json even if GUI closes / Ctrl-C
         __import__('atexit').register(telemetry.finalize)
 
