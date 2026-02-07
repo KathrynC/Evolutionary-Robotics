@@ -1,3 +1,4 @@
+print("[SIMFILE]", __file__, flush=True)
 import os
 import time
 import numpy as np
