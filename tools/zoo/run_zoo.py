@@ -3,6 +3,7 @@ import argparse
 import json
 import os
 import subprocess
+import sys
 import time
 from pathlib import Path
 
@@ -103,6 +104,9 @@ def main():
                 env["HEADLESS"] = "1"
             log_path = run_dir / "stdout_stderr.log"
             with open(log_path, "w", encoding="utf-8") as f:
+                # If sim_cmd starts with a .py script, run it via this Python interpreter
+                if sim_cmd and isinstance(sim_cmd[0], str) and sim_cmd[0].endswith('.py') and sim_cmd[0] != sys.executable:
+                    sim_cmd = [sys.executable] + sim_cmd
                 p = subprocess.run(sim_cmd, env=env, stdout=f, stderr=subprocess.STDOUT)
             status = {
                 "variant_id": variant_id,
