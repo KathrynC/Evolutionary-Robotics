@@ -47,7 +47,7 @@ class SIMULATION:
         self.robot = ROBOT()
 
     def Run(self):
-        SIM_STEPS = c.SIM_STEPS
+        SIM_STEPS = int(os.getenv('SIM_STEPS', str(getattr(c, 'SIM_STEPS', 2000))))
         robotId = self.robot.robotId
         robot = self.robot
         # telemetry (optional)
