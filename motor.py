@@ -63,7 +63,11 @@ class MOTOR:
         if half_demo and "FrontLeg" in self.jointNameStr:
             freq *= 0.5
 
-        self.freq_hz = freq * (0.5 if "back" in str(self.jointName).lower() else 1.0)  # for debugging
+        # Demo: optional half-frequency back leg (only when HALF_FREQ_DEMO=1)
+        if os.getenv('HALF_FREQ_DEMO','0') == '1':
+            self.freq_hz = freq * (0.5 if 'back' in str(self.jointName).lower() else 1.0)
+        else:
+            self.freq_hz = freq
 
 
         dt = float(getattr(c, "DT", 1/240))
