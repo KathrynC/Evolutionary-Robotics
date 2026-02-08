@@ -55,7 +55,8 @@ class WORLD:
         if "<world" in sdf_text or os.getenv("FORCE_LOAD_WORLD_SDF", "0") == "1":
             self.worldIds = p.loadSDF(world_file)
         else:
-            print(
+            if os.getenv('SIM_DEBUG','0') == '1':
+                print(
                 f"[WORLD] Skipping {world_file}: no <world> element (prevents stray cube). "
                 f"Set FORCE_LOAD_WORLD_SDF=1 to force-load."
-            )
+                )
