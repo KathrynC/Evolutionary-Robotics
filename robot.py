@@ -142,7 +142,17 @@ Args:
                     jointName = n.Get_Joint_Name()
 
                     jointName = jointName.encode("ASCII") if isinstance(jointName, str) else jointName
-                    desiredAngle = n.Get_Value()
+                    motor = float(n.Get_Value())
+                    scale = float(getattr(c, "TARGET_RANGE", 0.8))
+                    # Use joint name to pick a small stance bias (break symmetry, improve stability)
+                    jn = jointName.decode("ascii") if isinstance(jointName, (bytes, bytearray)) else str(jointName)
+                    offset = 0.0
+                    if "back" in jn.lower():
+                        offset = float(getattr(c, "BACK_OFFSET", 0.0))
+                    elif "front" in jn.lower():
+                        offset = float(getattr(c, "FRONT_OFFSET", 0.0))
+                    desiredAngle = offset + scale * motor
+
                     try:
                         pyrosim.Set_Motor_For_Joint(self.robotId, jointName, desiredAngle, max_force)
                     except TypeError:
