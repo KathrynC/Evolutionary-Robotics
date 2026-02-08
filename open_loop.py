@@ -99,8 +99,9 @@ def main():
     if os.path.exists("world.sdf"):
         try:
             p.loadSDF("world.sdf")
-        except Exception:
-            pass
+        except Exception as e:
+            if os.getenv('SIM_DEBUG','0') == '1':
+                print('[WARN]', __name__, 'suppressed exception:', repr(e), flush=True)
 
     robotId = p.loadURDF("body.urdf")
     pyrosim.Prepare_To_Simulate(robotId)

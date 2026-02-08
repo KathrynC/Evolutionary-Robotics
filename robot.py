@@ -70,8 +70,9 @@ Side effects:
             mu = float(getattr(c, "ROBOT_FRICTION", 2.0))
             for link in range(-1, p.getNumJoints(self.robotId)):
                 p.changeDynamics(self.robotId, link, lateralFriction=mu, restitution=0.0)
-        except Exception:
-            pass
+        except Exception as e:
+            if os.getenv('SIM_DEBUG','0') == '1':
+                print('[WARN]', __name__, 'suppressed exception:', repr(e), flush=True)
 
         self.Prepare_To_Sense()
         self.Prepare_To_Act()

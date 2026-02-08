@@ -79,8 +79,9 @@ Side effects:
         if _GAIT is not None:
             try:
                 self.freq_hz = float(_gget('GAIT_FREQ_HZ', _gget('GAIT_FREQ', _gget('f', _gget('Frequency', getattr(self,'freq_hz', None) or 0.0)))))
-            except Exception:
-                pass
+            except Exception as e:
+                if os.getenv('SIM_DEBUG','0') == '1':
+                    print('[WARN]', __name__, 'suppressed exception:', repr(e), flush=True)
         # Keep original key type for pyrosim dict lookups (bytes or str)
         self.jointName = jointName
         self.jointNameStr = jointName.decode() if isinstance(jointName, (bytes, bytearray)) else str(jointName)
@@ -173,8 +174,9 @@ Behavior:
             angle = O + A * math.sin(2.0 * math.pi * f_hz * (t * dt) + phi)
             try:
                 self.freq_hz = f_hz
-            except Exception:
-                pass
+            except Exception as e:
+                if os.getenv('SIM_DEBUG','0') == '1':
+                    print('[WARN]', __name__, 'suppressed exception:', repr(e), flush=True)
             # max force: prefer passed in, else variant, else constants default
             mf = max_force if 'max_force' in locals() else None
             if mf is None:
