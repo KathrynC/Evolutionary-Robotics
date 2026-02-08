@@ -149,7 +149,8 @@ Behavior:
 
             jn = getattr(self,'jointNameStr', getattr(self,'jointName',''))
 
-            print('[SETVAL]', jn, 'GAIT?', (_GAIT is not None), flush=True)
+            if os.getenv('SIM_DEBUG','0') == '1':
+                print('[SETVAL]', jn, 'GAIT?', (_GAIT is not None), flush=True)
 
         # If a gait variant is provided, drive this joint directly from sine params
         if _GAIT is not None:
