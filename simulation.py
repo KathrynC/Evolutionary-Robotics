@@ -52,6 +52,7 @@ Run:
 """
 
 import os
+import pybullet as p
 
 # [GAIT_MODE] direct drive override
 import json, math
@@ -87,7 +88,6 @@ if os.getenv("PYROSIM_NN_VERBOSE","0") != "1":
 
 import time
 import numpy as np
-import pybullet as p
 import pybullet_data
 import pyrosim.pyrosim as pyrosim
 
@@ -225,144 +225,149 @@ class SIMULATION:
         sleep_time = float(os.getenv('SLEEP_TIME', str(getattr(c, 'SLEEP_TIME', 0.0))))
 
         # Run loop
-        for i in range(SIM_STEPS):
-            current_target = targetAngles[i]
+        try:
+            for i in range(SIM_STEPS):
+                current_target = targetAngles[i]
 
-            if enable_kick and KICK_START <= i <= KICK_END:
-                p.applyExternalForce(
-                    objectUniqueId=robotId,
-                    linkIndex=-1,
-                    forceObj=KICK_FORCE,
-                    posObj=[0, 0, 0],
-                    flags=p.LINK_FRAME,
-                )
+                if enable_kick and KICK_START <= i <= KICK_END:
+                    p.applyExternalForce(
+                        objectUniqueId=robotId,
+                        linkIndex=-1,
+                        forceObj=KICK_FORCE,
+                        posObj=[0, 0, 0],
+                        flags=p.LINK_FRAME,
+                    )
 
-            # Motors drive themselves (motor.py builds trajectories; HALF_FREQ_DEMO env var can be used there)
-            # [GAIT_MODE] if enabled, bypass motor/neural plumbing and drive joints directly
-            if _GAIT_MODE and _GAIT is not None:
-                # timestep (seconds)
-                try:
-                    dt = float(os.getenv('PHYSICS_DT', os.getenv('BULLET_DT', str(getattr(c, 'DT', getattr(c, 'TIME_STEP', 1/240.0))))))
-                except Exception:
-                    dt = float(os.getenv('PHYSICS_DT', '0.0041666667'))
-                tsec = float(i) * dt
-                A = float(_gget('GAIT_AMPLITUDE', _gget('GAIT_AMP', 0.5)))
-                base_f = float(_gget('GAIT_FREQ_HZ', _gget('GAIT_FREQ', 1.0)))
-                back_f = base_f * (0.5 if _GAIT_HALF_BACK else 1.0)
-                front_f = base_f
-                back_O = float(_gget('BACK_OFFSET', 0.0))
-                back_phi = float(_gget('BACK_PHASE', 0.0))
-                front_O = float(_gget('FRONT_OFFSET', 0.0))
-                front_phi = float(_gget('FRONT_PHASE', 0.0))
-                back_angle = back_O + A * math.sin(2.0 * math.pi * back_f * tsec + back_phi)
-                front_angle = front_O + A * math.sin(2.0 * math.pi * front_f * tsec + front_phi)
-                mf = float(os.getenv('MAX_FORCE', str(_gget('MAX_FORCE', getattr(c, 'MAX_FORCE', 500.0)))))
-                try:
-                    import pyrosim.pyrosim as pyrosim
+                # Motors drive themselves (motor.py builds trajectories; HALF_FREQ_DEMO env var can be used there)
+                # [GAIT_MODE] if enabled, bypass motor/neural plumbing and drive joints directly
+                if _GAIT_MODE and _GAIT is not None:
+                    # timestep (seconds)
                     try:
-                        pyrosim.Set_Motor_For_Joint(bodyIndex=robot.robotId, jointName=_GAIT_BACK_JOINT, controlMode=p.POSITION_CONTROL, targetPosition=float(back_angle), maxForce=float(mf))
-                        pyrosim.Set_Motor_For_Joint(bodyIndex=robot.robotId, jointName=_GAIT_FRONT_JOINT, controlMode=p.POSITION_CONTROL, targetPosition=float(front_angle), maxForce=float(mf))
-                    except TypeError:
-                        pyrosim.Set_Motor_For_Joint(robot.robotId, _GAIT_BACK_JOINT, p.POSITION_CONTROL, float(back_angle), float(mf))
-                        pyrosim.Set_Motor_For_Joint(robot.robotId, _GAIT_FRONT_JOINT, p.POSITION_CONTROL, float(front_angle), float(mf))
-                except Exception:
-                    pass
-                if os.getenv('SIM_DEBUG','0') == '1' and i == 0:
-                    print('[GAITMODE]', 'A', A, 'base_f', base_f, 'back_f', back_f, 'front_f', front_f, 'mf', mf, flush=True)
-                    print('[GAITMODE]', 'back', _GAIT_BACK_JOINT, 'O', back_O, 'phi', back_phi, flush=True)
-                    print('[GAITMODE]', 'front', _GAIT_FRONT_JOINT, 'O', front_O, 'phi', front_phi, flush=True)
-                # Intentionally do NOT call robot.Act() in this mode (it may overwrite our targets).
-            else:
-                # Sense -> Think -> Act (course architecture)
-                try:
-                    robot.Sense(i)
-                except Exception:
-                    pass
-                try:
-                    if hasattr(robot, 'nn'):
-                        robot.Think()
-                except Exception:
-                    pass
-                robot.Act(i, max_force=MAX_FORCE)
+                        dt = float(os.getenv('PHYSICS_DT', os.getenv('BULLET_DT', str(getattr(c, 'DT', getattr(c, 'TIME_STEP', 1/240.0))))))
+                    except Exception:
+                        dt = float(os.getenv('PHYSICS_DT', '0.0041666667'))
+                    tsec = float(i) * dt
+                    A = float(_gget('GAIT_AMPLITUDE', _gget('GAIT_AMP', 0.5)))
+                    base_f = float(_gget('GAIT_FREQ_HZ', _gget('GAIT_FREQ', 1.0)))
+                    back_f = base_f * (0.5 if _GAIT_HALF_BACK else 1.0)
+                    front_f = base_f
+                    back_O = float(_gget('BACK_OFFSET', 0.0))
+                    back_phi = float(_gget('BACK_PHASE', 0.0))
+                    front_O = float(_gget('FRONT_OFFSET', 0.0))
+                    front_phi = float(_gget('FRONT_PHASE', 0.0))
+                    back_angle = back_O + A * math.sin(2.0 * math.pi * back_f * tsec + back_phi)
+                    front_angle = front_O + A * math.sin(2.0 * math.pi * front_f * tsec + front_phi)
+                    mf = float(os.getenv('MAX_FORCE', str(_gget('MAX_FORCE', getattr(c, 'MAX_FORCE', 500.0)))))
+                    try:
+                        import pyrosim.pyrosim as pyrosim
+                        try:
+                            pyrosim.Set_Motor_For_Joint(bodyIndex=robot.robotId, jointName=_GAIT_BACK_JOINT, controlMode=p.POSITION_CONTROL, targetPosition=float(back_angle), maxForce=float(mf))
+                            pyrosim.Set_Motor_For_Joint(bodyIndex=robot.robotId, jointName=_GAIT_FRONT_JOINT, controlMode=p.POSITION_CONTROL, targetPosition=float(front_angle), maxForce=float(mf))
+                        except TypeError:
+                            pyrosim.Set_Motor_For_Joint(robot.robotId, _GAIT_BACK_JOINT, p.POSITION_CONTROL, float(back_angle), float(mf))
+                            pyrosim.Set_Motor_For_Joint(robot.robotId, _GAIT_FRONT_JOINT, p.POSITION_CONTROL, float(front_angle), float(mf))
+                    except Exception:
+                        pass
+                    if os.getenv('SIM_DEBUG','0') == '1' and i == 0:
+                        print('[GAITMODE]', 'A', A, 'base_f', base_f, 'back_f', back_f, 'front_f', front_f, 'mf', mf, flush=True)
+                        print('[GAITMODE]', 'back', _GAIT_BACK_JOINT, 'O', back_O, 'phi', back_phi, flush=True)
+                        print('[GAITMODE]', 'front', _GAIT_FRONT_JOINT, 'O', front_O, 'phi', front_phi, flush=True)
+                    # Intentionally do NOT call robot.Act() in this mode (it may overwrite our targets).
+                else:
+                    # Sense -> Think -> Act (course architecture)
+                    try:
+                        robot.Sense(i)
+                    except Exception:
+                        pass
+                    try:
+                        if hasattr(robot, 'nn'):
+                            robot.Think()
+                    except Exception:
+                        pass
+                    robot.Act(i, max_force=MAX_FORCE)
 
-            p.stepSimulation()
-            if _telemetry_on:
+                p.stepSimulation()
                 if _telemetry_on:
                     if _telemetry_on:
-                        telemetry.log_step(_telemetry_step)
-            _telemetry_step += 1
-            if sleep_time:
-                time.sleep(float(os.getenv("DEMO_SLEEP_TIME", str(getattr(c, "DEMO_SLEEP_TIME", sleep_time)))))
+                        if _telemetry_on:
+                            telemetry.log_step(_telemetry_step)
+                _telemetry_step += 1
+                if sleep_time:
+                    time.sleep(float(os.getenv("DEMO_SLEEP_TIME", str(getattr(c, "DEMO_SLEEP_TIME", sleep_time)))))
 
-            pos, _ = safe_get_base_pose(robotId)
-            x, z = pos[0], pos[2]
-            max_x = max(max_x, x)
-            max_z = max(max_z, z)
+                pos, _ = safe_get_base_pose(robotId)
+                x, z = pos[0], pos[2]
+                max_x = max(max_x, x)
+                max_z = max(max_z, z)
 
-            if bool(getattr(c, 'CAMERA_FOLLOW', False)) and (i % int(getattr(c, 'CAMERA_EVERY_N', 1)) == 0):
-                try:
-                    rid = getattr(robot, 'robotId', None)
-                    if rid is not None:
-                        pos, _ = p.getBasePositionAndOrientation(rid)
-                        target = [pos[0], pos[1], pos[2] + float(getattr(c, 'CAMERA_TARGET_Z', 0.5))]
-                        p.resetDebugVisualizerCamera(
-                            cameraDistance=float(getattr(c, 'CAMERA_DISTANCE', 3.0)),
-                            cameraYaw=float(getattr(c, 'CAMERA_YAW', 60.0)),
-                            cameraPitch=float(getattr(c, 'CAMERA_PITCH', -25.0)),
-                            cameraTargetPosition=target,
-                        )
-                except Exception:
-                    pass
-            if os.getenv("DEBUG_PRINT","0")=="1" and i % 10 == 0:
-                # keep your familiar debug print, but avoid joint-index assumptions
-                bl = robot.sensors.get("BackLeg")
-                fl = robot.sensors.get("FrontLeg")
-                blv = bl.values[i] if bl else None
-                flv = fl.values[i] if fl else None
-                print(i, "back", blv, "front", flv, flush=True)
+                if bool(getattr(c, 'CAMERA_FOLLOW', False)) and (i % int(getattr(c, 'CAMERA_EVERY_N', 1)) == 0):
+                    try:
+                        rid = getattr(robot, 'robotId', None)
+                        if rid is not None:
+                            pos, _ = p.getBasePositionAndOrientation(rid)
+                            target = [pos[0], pos[1], pos[2] + float(getattr(c, 'CAMERA_TARGET_Z', 0.5))]
+                            p.resetDebugVisualizerCamera(
+                                cameraDistance=float(getattr(c, 'CAMERA_DISTANCE', 3.0)),
+                                cameraYaw=float(getattr(c, 'CAMERA_YAW', 60.0)),
+                                cameraPitch=float(getattr(c, 'CAMERA_PITCH', -25.0)),
+                                cameraTargetPosition=target,
+                            )
+                    except Exception:
+                        pass
+                if os.getenv("DEBUG_PRINT","0")=="1" and i % 10 == 0:
+                    # keep your familiar debug print, but avoid joint-index assumptions
+                    bl = robot.sensors.get("BackLeg")
+                    fl = robot.sensors.get("FrontLeg")
+                    blv = bl.values[i] if bl else None
+                    flv = fl.values[i] if fl else None
+                    print(i, "back", blv, "front", flv, flush=True)
 
-        end_x = safe_get_base_pose(robotId)[0][0]
-        os.makedirs("data", exist_ok=True)
-        np.save("data/targetAngles.npy", targetAngles)
+            end_x = safe_get_base_pose(robotId)[0][0]
+            os.makedirs("data", exist_ok=True)
+            np.save("data/targetAngles.npy", targetAngles)
 
-        print("DX", end_x - start_x, "MAX_DX", max_x - start_x, flush=True)
-        print("MAX_Z", max_z, "MAX_FORCE", MAX_FORCE, "RANDOM_TARGETS", RANDOM_TARGETS, flush=True)
-        # Write per-run summary.json for zoo scoring
-        try:
-            import json
-            _end_pos = safe_get_base_pose(robotId)[0]
-            end_x = float(_end_pos[0])
-            end_y = float(_end_pos[1])
+            print("DX", end_x - start_x, "MAX_DX", max_x - start_x, flush=True)
+            print("MAX_Z", max_z, "MAX_FORCE", MAX_FORCE, "RANDOM_TARGETS", RANDOM_TARGETS, flush=True)
+            # Write per-run summary.json for zoo scoring
+            try:
+                import json
+                _end_pos = safe_get_base_pose(robotId)[0]
+                end_x = float(_end_pos[0])
+                end_y = float(_end_pos[1])
 
-            dx = float(end_x - start_x)
-            dy = float(end_y - start_y)
-            dxy = float((dx*dx + dy*dy) ** 0.5)
+                dx = float(end_x - start_x)
+                dy = float(end_y - start_y)
+                dxy = float((dx*dx + dy*dy) ** 0.5)
 
-            _out_dir.mkdir(parents=True, exist_ok=True)
-            summary = {
-                "variant_id": str(_variant_id),
-                "run_id": str(_run_id),
-                "dx": dx,
-                "dy": dy,
-                "dxy_net": dxy,
-                "max_dx": float(max_x - start_x),
-                "max_z": float(max_z),
-                "max_force": float(MAX_FORCE),
-                "random_targets": bool(RANDOM_TARGETS),
-                "sim_steps": int(SIM_STEPS),
-                "telemetry_enabled": bool(_telemetry_on),
-                "telemetry_every": int(_telemetry_every),
-            }
-            (_out_dir / "summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
-        except Exception as e:
-            print("WARN: summary.json write failed:", e, flush=True)
+                _out_dir.mkdir(parents=True, exist_ok=True)
+                summary = {
+                    "variant_id": str(_variant_id),
+                    "run_id": str(_run_id),
+                    "dx": dx,
+                    "dy": dy,
+                    "dxy_net": dxy,
+                    "max_dx": float(max_x - start_x),
+                    "max_z": float(max_z),
+                    "max_force": float(MAX_FORCE),
+                    "random_targets": bool(RANDOM_TARGETS),
+                    "sim_steps": int(SIM_STEPS),
+                    "telemetry_enabled": bool(_telemetry_on),
+                    "telemetry_every": int(_telemetry_every),
+                }
+                (_out_dir / "summary.json").write_text(json.dumps(summary, indent=2), encoding="utf-8")
+            except Exception as e:
+                print("WARN: summary.json write failed:", e, flush=True)
 
 
-        if getattr(self, 'use_gui', False):
-            input('Done. Press Enter to close the GUI...')
-def __del__(self):
-        try:
-            telemetry.finalize()
-            p.disconnect()
-        except Exception:
-            pass
+            if getattr(self, 'use_gui', False):
+                input('Done. Press Enter to close the GUI...')
+        finally:
+            try:
+                if getattr(self, 'telemetry', None) is not None:
+                    self.telemetry.finalize()
+            except Exception:
+                pass
+            try:
+                p.disconnect()
+            except Exception:
+                pass
