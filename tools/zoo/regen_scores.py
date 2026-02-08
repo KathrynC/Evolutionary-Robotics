@@ -1,4 +1,13 @@
 #!/usr/bin/env python3
+"""
+tools/zoo/regen_scores.py
+
+Repo extension:
+
+Extracts (score/fitness/reward) fields from variant_*.json files and writes artifacts/rules/zoo_scores.tsv.
+Useful when variant files contain evaluation metadata.
+"""
+
 from __future__ import annotations
 
 import argparse

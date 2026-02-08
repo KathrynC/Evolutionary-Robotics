@@ -1,3 +1,14 @@
+"""
+plot_targetAngles.py
+
+Ludobots role:
+  - Debugging utility: visualizes motor target angles over time.
+  - Helps confirm gait generation in G. Motors and beyond.
+
+Beyond Ludobots (this repo):
+  - (Document variant-driven targetAngle sources and multi-joint plotting.)
+"""
+
 import os
 import numpy as np
 import matplotlib

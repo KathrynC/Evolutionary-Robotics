@@ -1,4 +1,5 @@
-"""optimize_gait.py
+"""
+optimize_gait.py
 
 Random-search optimizer for a simple 2-joint sine gait in PyBullet.
 
@@ -21,6 +22,13 @@ Requirements:
 
 Usage:
     python3 optimize_gait.py --trials 800 --seconds 10 --dt 0.0041666667 --seed 2
+
+Ludobots role:
+  - Tooling aligned with later search modules (random search / hill climber),
+    used here to tune open-loop gait parameters.
+
+Beyond Ludobots (this repo):
+  - Variant + telemetry integration to archive best gaits (verify).
 """
 
 import argparse

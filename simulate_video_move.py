@@ -1,4 +1,5 @@
-"""simulate_video_move.py
+"""
+simulate_video_move.py
 
 GUI video recorder that drives all revolute joints with a simple sinusoidal pattern.
 
@@ -26,6 +27,12 @@ Notes:
     - This script intentionally uses PyBullet GUI mode and sleeps at dt for stable video.
     - If the robot does not move, the usual culprits are friction, motor force, or joint
       axis/limits in the URDF.
+
+Ludobots role:
+  - Video capture emphasizing visible movement for demos.
+
+Beyond Ludobots (this repo):
+  - (Document any camera/pose adjustments made to amplify motion visibility.)
 """
 
 import math

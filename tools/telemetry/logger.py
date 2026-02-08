@@ -1,4 +1,5 @@
-"""tools.telemetry.logger
+"""
+tools.telemetry.logger
 
 Lightweight telemetry recorder for PyBullet-based robot runs.
 
@@ -17,6 +18,21 @@ Recorded signals (per sampled step):
     - base orientation (roll, pitch, yaw)
     - contact count
     - joint states: position, velocity, and applied torque estimate (tau)
+
+tools/telemetry/logger.py
+
+Repo extension (not part of baseline Ludobots):
+
+Provides structured telemetry logging to disk (JSONL) during simulation.
+
+Typical env controls:
+  - TELEMETRY=1
+  - TELEMETRY_EVERY=<N>
+  - TELEMETRY_OUT=<dir>
+  - TELEMETRY_VARIANT_ID / TELEMETRY_RUN_ID
+
+Downstream:
+  - tools/zoo/run_zoo.py builds per-run summaries from telemetry.jsonl
 """
 
 from __future__ import annotations

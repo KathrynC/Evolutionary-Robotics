@@ -1,4 +1,5 @@
-"""world.py
+"""
+world.py
 
 Role:
     Set up the simulation environment in PyBullet.
@@ -14,6 +15,13 @@ Safety behavior:
 
 Overrides:
     FORCE_LOAD_WORLD_SDF=1  -> load world.sdf regardless of whether it contains <world>.
+
+Ludobots role:
+  - Provides the World class used by the simulator to load world assets (plane.urdf + world.sdf).
+  - Part of the 'world + robot' split introduced around E. Joints.
+
+Beyond Ludobots (this repo):
+  - (Document any additional world features: friction knobs, obstacles, cameras, etc.)
 """
 
 import os

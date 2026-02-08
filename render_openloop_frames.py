@@ -1,4 +1,5 @@
-"""render_openloop_frames.py
+"""
+render_openloop_frames.py
 
 Render PNG frames from a precomputed open-loop gait.
 
@@ -23,6 +24,12 @@ Notes:
     - Uses PyBullet DIRECT mode and ER_TINY_RENDERER for fast, dependency-light rendering.
     - Camera is positioned relative to the robot base each frame.
     - Joint-name keys may be bytes or str depending on pyrosim; handled here.
+
+Ludobots role:
+  - Visualization helper: render/export frames from an open-loop run.
+
+Beyond Ludobots (this repo):
+  - (Document batch rendering or variant directory support if present.)
 """
 
 import os

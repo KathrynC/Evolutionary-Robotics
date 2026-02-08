@@ -1,4 +1,5 @@
-"""simulate_video.py
+"""
+simulate_video.py
 
 GUI-only helper for recording a PyBullet run while printing touch sensor values.
 
@@ -21,6 +22,12 @@ Notes:
 
 Typical usage:
     python3 simulate_video.py
+
+Ludobots role:
+  - Utility for producing submission/demo videos of the robot in simulation.
+
+Beyond Ludobots (this repo):
+  - (Document camera presets, frame capture method, headless options.)
 """
 
 import time

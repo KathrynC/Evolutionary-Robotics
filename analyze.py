@@ -1,4 +1,5 @@
-"""analyze.py
+"""
+analyze.py
 
 Quick plotting helper for touch sensor traces saved as .npy arrays.
 
@@ -11,6 +12,13 @@ sensor value per timestep (length ~ constants.SIM_STEPS).
 
 Usage:
     python3 analyze.py
+
+Ludobots role:
+  - Post-run analysis: plot sensor time series produced during simulation.
+  - Useful during F. Sensors and later when debugging learning/control.
+
+Beyond Ludobots (this repo):
+  - (Document any additional plots, automatic file discovery, or reporting.)
 """
 
 import numpy as np

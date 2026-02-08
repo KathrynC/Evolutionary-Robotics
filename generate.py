@@ -1,4 +1,5 @@
-"""generate.py
+"""
+generate.py
 
 Artifact generator for the Evolutionary Robotics toy robot.
 
@@ -20,6 +21,17 @@ Outputs (in the current directory):
 Notes:
     - The robot is intentionally minimal: a torso and two legs connected by revolute joints.
     - The NN here is a starter scaffold; later assignments typically evolve this structure.
+
+Ludobots role:
+  - Module: E. Joints (world + robot description files)
+  - Produces: world.sdf (environment), body.urdf (robot body)
+  - Consumed by: simulation.py / simulate.py via PyBullet
+
+Run:
+  python3 generate.py
+
+Beyond Ludobots (this repo):
+  - (Fill in any variant-parameterized morphology/world generation you added.)
 """
 
 import pyrosim.pyrosim as pyrosim

@@ -1,3 +1,19 @@
+"""
+tools/zoo/run_zoo.py
+
+Repo extension (not part of baseline Ludobots):
+
+Batch-runner for gait variants:
+  - Iterates over variant_*.json files
+  - Sets GAIT_VARIANT_PATH and telemetry env vars
+  - Captures stdout/stderr logs, status.json, and summary.json per run
+
+Summary metrics include:
+  - max_abs_roll / max_abs_pitch
+  - upright_fraction
+  - displacement delta (dx, dy, dz)
+"""
+
 from __future__ import annotations
 import argparse
 import json

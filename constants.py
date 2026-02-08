@@ -1,4 +1,5 @@
-"""constants.py
+"""
+constants.py
 
 Central configuration for the Evolutionary-Robotics simulation.
 
@@ -25,6 +26,13 @@ How these constants are used:
 Precedence:
     Many scripts also allow environment variable overrides (e.g., MAX_FORCE, SLEEP_TIME,
     GAIT_FREQ_HZ, GAIT_AMPLITUDE). Treat these constants as sensible defaults.
+
+Ludobots role:
+  - Shared configuration used across generate/simulate/robot/sensor/motor code.
+  - Typically includes SIM_STEPS, SLEEP_TIME, MAX_FORCE, etc.
+
+Beyond Ludobots (this repo):
+  - (Document environment overrides, variant-driven knobs, and any experimental flags.)
 """
 
 # --- Simulation length / logging cadence ---

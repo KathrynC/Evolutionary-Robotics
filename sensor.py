@@ -1,4 +1,5 @@
-"""sensor.py
+"""
+sensor.py
 
 Role:
     Records touch sensor readings for a single link over the course of a simulation run.
@@ -10,6 +11,13 @@ Data model:
 Notes:
     - The array length is `constants.SIM_STEPS`. If SIM_STEPS changes, sensors should be rebuilt.
     - Touch reads may fail (e.g., link name mismatch or pyrosim state not prepared); failures record 0.0.
+
+Ludobots role:
+  - Defines sensor objects that read from PyBullet/pyrosim.
+  - In F. Sensors, sensor values are recorded; in I. Neurons, they become neural inputs.
+
+Beyond Ludobots (this repo):
+  - (Document any added sensors, logging formats, or telemetry integration.)
 """
 
 import numpy as np

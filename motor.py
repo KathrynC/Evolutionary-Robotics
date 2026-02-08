@@ -1,4 +1,5 @@
-"""motor.py
+"""
+motor.py
 
 Role:
     Motor controller for a single joint. Generates target joint angles over time and sends
@@ -26,6 +27,14 @@ Key env vars:
 Notes for maintainers:
     - This file previously contained an "auto-wrap" gait override block.
       It was removed to keep control flow explicit and easier to reason about.
+
+Ludobots role:
+  - Implements joint motors and applies control each simulation step.
+  - In G. Motors, motors set joint targets and apply forces.
+
+Beyond Ludobots (this repo):
+  - Trajectory-capable motors (time-indexed target angles) and MAX_FORCE overrides (verify).
+  - (Document any gait parameterization / variant JSON integration.)
 """
 
 import os

@@ -1,3 +1,13 @@
+"""
+simulate_legacy.py
+
+Ludobots role:
+  - Legacy simulation runner preserved for comparison with the current runner.
+
+Note:
+  - Prefer simulation.py (or your declared canonical runner) for normal work.
+"""
+
 import os
 import numpy
 import pybullet as p

@@ -1,4 +1,12 @@
 #!/usr/bin/env python3
+"""
+tools/zoo/collect_summaries.py
+
+Repo extension:
+
+Aggregates summary.json files produced by tools/zoo/run_zoo.py into TSV/CSV for analysis.
+"""
+
 from __future__ import annotations
 
 import argparse

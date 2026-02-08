@@ -1,4 +1,5 @@
-"""simulation.py
+"""
+simulation.py
 
 Role:
     Runs a single PyBullet simulation episode.
@@ -36,6 +37,18 @@ Notes:
     - Units: angles=radians, time=seconds, frequency=Hz, force=Newtons.
     - If you want the neural network to influence motion, the typical architecture is
       Sense(t) -> Think() -> Act(t). (Some code paths may call Act directly.)
+
+Ludobots role:
+  - Simulation runner: sets up PyBullet, loads world/robot, steps SIM_STEPS, and calls Robot.Act(t).
+
+This repo’s extensions:
+  - HEADLESS / GUI toggle via env var
+  - SLEEP_TIME override for demo pacing
+  - GAIT_VARIANT_PATH support for experiment variants
+  - Telemetry output (jsonl + summaries) when enabled
+
+Run:
+  python3 simulation.py
 """
 
 import os

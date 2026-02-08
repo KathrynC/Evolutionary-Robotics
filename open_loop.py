@@ -1,4 +1,5 @@
-"""open_loop.py
+"""
+open_loop.py
 
 Open-loop gait playback + angle-vector export.
 
@@ -29,6 +30,12 @@ Notes:
     - This script uses PyBullet DIRECT (no GUI).
     - It drives joints via pyrosim.Set_Motor_For_Joint().
     - Joint keys may be bytes or str depending on pyrosim; this file handles both.
+
+Ludobots role:
+  - Open-loop motor control utilities (e.g., sine-wave gaits).
+
+Beyond Ludobots (this repo):
+  - Gait libraries / 'zoo' variants and parameter export (verify).
 """
 
 import os
