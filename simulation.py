@@ -210,9 +210,9 @@ class SIMULATION:
                     print('[GAITMODE]', 'A', A, 'base_f', base_f, 'back_f', back_f, 'front_f', front_f, 'mf', mf, flush=True)
                     print('[GAITMODE]', 'back', _GAIT_BACK_JOINT, 'O', back_O, 'phi', back_phi, flush=True)
                     print('[GAITMODE]', 'front', _GAIT_FRONT_JOINT, 'O', front_O, 'phi', front_phi, flush=True)
-                # do NOT call robot.Act() in this mode (it may overwrite our targets)
-                pass  # do NOT call robot.Act()
-            robot.Act(i, max_force=MAX_FORCE)
+                # Intentionally do NOT call robot.Act() in this mode (it may overwrite our targets).
+            else:
+                robot.Act(i, max_force=MAX_FORCE)
 
             p.stepSimulation()
             telemetry.log_step(_telemetry_step)
