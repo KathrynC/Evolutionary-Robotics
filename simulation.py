@@ -190,7 +190,7 @@ class SIMULATION:
         __import__('atexit').register(telemetry.finalize)
 
         _telemetry_step = 0
-        if os.getenv("PRINT_MOTOR_FREQS","1") == "1":
+        if os.getenv("PRINT_MOTOR_FREQS", "0") == "1":
             for m in getattr(robot, "motors", {}).values():
                 if ("BackLeg" in m.jointNameStr) or ("FrontLeg" in m.jointNameStr):
                     print("[MOTOR]", m.jointNameStr, "freq_hz", getattr(m, "freq_hz", None))
