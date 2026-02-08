@@ -8,14 +8,11 @@ Usage:
 Notes:
     - This file intentionally does very little: it constructs SIMULATION and calls Run().
     - Most configuration is controlled via constants.py and environment variables
-      (e.g., HEADLESS, SIM_STEPS, MAX_FORCE, SLEEP_TIME, GAIT_MODE, GAIT_VARIANT_PATH).
+      that are read inside simulation.py (e.g., HEADLESS, SIM_STEPS, MAX_FORCE,
+      SLEEP_TIME, GAIT_MODE, GAIT_VARIANT_PATH, TELEMETRY*).
 """
 
-from pathlib import Path
-import os
-
 from simulation import SIMULATION
-from tools.telemetry.logger import TelemetryLogger
 
 
 if __name__ == "__main__":
