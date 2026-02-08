@@ -1,3 +1,25 @@
+"""simulation.py
+
+Role:
+    Runs a single PyBullet simulation episode: connects, configures physics, builds WORLD/ROBOT,
+    steps SIM_STEPS, and optionally logs telemetry.
+
+Main entrypoint:
+    SIMULATION().Run()
+
+Config precedence:
+    environment variables > constants.py > hardcoded defaults
+
+Key env vars (common):
+    HEADLESS, SIM_STEPS, SLEEP_TIME, MAX_FORCE
+    TELEMETRY, TELEMETRY_EVERY, TELEMETRY_OUT, TELEMETRY_VARIANT_ID, TELEMETRY_RUN_ID
+    GAIT_MODE, GAIT_VARIANT_PATH (debug/override)
+
+Notes:
+    - Units: angles=radians, time=seconds, frequency=Hz, force=Newtons.
+    - GAIT_MODE is intended as a debugging escape hatch (direct joint drive).
+"""
+
 import os
 
 # [GAIT_MODE] direct drive override
@@ -43,6 +65,7 @@ from world import WORLD
 from robot import ROBOT
 
 def safe_get_base_pose(body_id):
+    """Return (pos, orn) for a body; fall back to safe defaults on PyBullet errors."""
     try:
         return p.getBasePositionAndOrientation(body_id)
     except Exception:
@@ -57,7 +80,9 @@ import signal
 signal.signal(signal.SIGINT, signal.default_int_handler)
 
 class SIMULATION:
+    """Owns one PyBullet connection, one WORLD, and one ROBOT; runs a single episode."""
     def __init__(self):
+        """Connect to PyBullet (GUI or DIRECT), configure physics, then build WORLD and ROBOT."""
         use_gui = os.getenv('HEADLESS','').lower() not in ('1','true','yes','on')
 
         mode = p.GUI if use_gui else p.DIRECT
@@ -80,6 +105,7 @@ class SIMULATION:
         self.robot = ROBOT()
 
     def Run(self):
+        """Step the simulation for SIM_STEPS; drive motors, step physics, and log telemetry (optional)."""
         SIM_STEPS = int(os.getenv("SIM_STEPS", str(getattr(c, "SIM_STEPS", 2000))))
         robotId = self.robot.robotId
         robot = self.robot
