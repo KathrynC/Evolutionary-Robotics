@@ -128,6 +128,7 @@ class TelemetryLogger:
         if not self.enabled:
             return
         self.out_dir.mkdir(parents=True, exist_ok=True)
+        self._finalized = False
         self._fp = open(self.out_dir / "telemetry.jsonl", "w", encoding="utf-8")
 
     def log_step(self, t):
@@ -203,6 +204,12 @@ class TelemetryLogger:
         self._fp.write(json.dumps(rec) + "\n")
 
     def finalize(self):
+
+        # Idempotent finalize: safe if called more than once
+
+        if getattr(self, '_finalized', False):
+
+            return
         """Write summary.json and close the JSONL file.
 
         This method is designed to be safe to call even if PyBullet disconnects:
@@ -252,6 +259,12 @@ class TelemetryLogger:
 
         try:
             if self._fp:
-                self._fp.close()
+                # Mark finalized before closing to avoid double-finalize
+                self._finalized = True
+                try:
+                    self._fp.close()
+                except Exception:
+                    pass
+
         except Exception:
             pass
