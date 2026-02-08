@@ -24,10 +24,8 @@ Key env vars:
     SIM_DEBUG: extra prints at t==0
 
 Notes for maintainers:
-    - This file currently contains an additional "auto-wrap" gait override block at the bottom.
-      It monkeypatches methods at import time and duplicates GAIT_VARIANT loading helpers.
-      It works as an escape hatch, but it is harder to reason about and is best treated as
-      generated/experimental code.
+    - This file previously contained an "auto-wrap" gait override block.
+      It was removed to keep control flow explicit and easier to reason about.
 """
 
 import os
@@ -38,7 +36,7 @@ import constants as c
 
 
 # GAIT_VARIANT sine controller (loaded from GAIT_VARIANT_PATH)
-import os, json, math
+import json, math
 from pathlib import Path
 _GAIT = None
 _GAIT_PATH = os.getenv('GAIT_VARIANT_PATH','')
@@ -173,12 +171,10 @@ Behavior:
             if mf is None:
                 mf = float(_gget('MAX_FORCE', 500.0))
             try:
-                import pybullet as p
-                import pyrosim.pyrosim as pyrosim
                 try:
-                    pyrosim.Set_Motor_For_Joint(bodyIndex=robot.robotId, jointName=jname, controlMode=p.POSITION_CONTROL, targetPosition=angle, maxForce=float(mf))
+                    pyrosim.Set_Motor_For_Joint(bodyIndex=robot.robotId, jointName=self.jointName, controlMode=p.POSITION_CONTROL, targetPosition=angle, maxForce=float(mf))
                 except TypeError:
-                    pyrosim.Set_Motor_For_Joint(robot.robotId, jname, p.POSITION_CONTROL, angle, float(mf))
+                    pyrosim.Set_Motor_For_Joint(robot.robotId, self.jointName, p.POSITION_CONTROL, angle, float(mf))
                 return
             except Exception:
                 # fall back to the original method body if anything goes sideways
@@ -195,120 +191,5 @@ Behavior:
         except TypeError:
             pyrosim.Set_Motor_For_Joint(robot.robotId, self.jointName, p.POSITION_CONTROL, target, float(max_force))
 
-
-# === GAIT_VARIANT runtime override (auto-wrap) ===
-# NOTE:
-#   This section monkeypatches motor-setting methods at import time.
-#   It duplicates GAIT_VARIANT loading helpers (_GAIT, _gget, etc.) and exists as an
-#   experimental escape hatch. Prefer the explicit logic in MOTOR.Set_Value when possible.
-
-import os as _os, json as _json, math as _math
-from pathlib import Path as _Path
-
-_GAIT = None
-_GAIT_PATH = _os.getenv("GAIT_VARIANT_PATH","")
-if _GAIT_PATH:
-    try:
-        _GAIT = _json.loads(_Path(_GAIT_PATH).read_text(encoding="utf-8"))
-    except Exception:
-        _GAIT = None
-
-def _gget(k, default=None):
-    return default if _GAIT is None else _GAIT.get(k, default)
-
-def _dt_fallback():
-    try:
-        import constants as _c
-        return float(_os.getenv("PHYSICS_DT", str(getattr(_c, "TIME_STEP", 1/240.0))))
-    except Exception:
-        return float(_os.getenv("PHYSICS_DT", "0.0041666667"))
-
-def _angle_for_joint(jname, t):
-    A = float(_gget("A", 0.5))
-    f_hz = float(_gget("f", 1.0))
-    if "Back" in jname:
-        O = float(_gget("O_back", 0.0))
-        phi = float(_gget("phi_back", 0.0))
-    else:
-        O = float(_gget("O_front", 0.0))
-        phi = float(_gget("phi_front", 0.0))
-    dt = _dt_fallback()
-    return O + A * _math.sin(2.0 * _math.pi * f_hz * (float(t) * dt) + phi), f_hz
-
-def _find_robot(args):
-    for a in args:
-        if hasattr(a, "robotId"):
-            return a
-        if hasattr(a, "robot") and hasattr(a.robot, "robotId"):
-            return a.robot
-    return None
-
-def _find_t(args, kwargs):
-    if "t" in kwargs:
-        return kwargs["t"]
-    # common call: (robot, t, max_force) after self
-    for a in reversed(args):
-        if isinstance(a, (int, float)):
-            return int(a)
-    return 0
-
-def _find_max_force(args, kwargs):
-    if "max_force" in kwargs:
-        return kwargs["max_force"]
-    if "MAX_FORCE" in kwargs:
-        return kwargs["MAX_FORCE"]
-    return float(_gget("MAX_FORCE", _os.getenv("MAX_FORCE", "500.0")))
-
-def _wrap_method(orig):
-    if getattr(orig, "_gait_wrapped", False):
-        return orig
-
-    def wrapped(self, *args, **kwargs):
-        if _GAIT is None:
-            return orig(self, *args, **kwargs)
-
-        robot = _find_robot(args)
-        if robot is None:
-            return orig(self, *args, **kwargs)
-
-        jname = getattr(self, "jointNameStr", getattr(self, "jointName", ""))
-        if not jname:
-            return orig(self, *args, **kwargs)
-
-        t = _find_t(args, kwargs)
-        angle, f_hz = _angle_for_joint(jname, t)
-        try:
-            self.freq_hz = f_hz
-        except Exception:
-            pass
-
-        mf = _find_max_force(args, kwargs)
-
-        try:
-            import pybullet as p
-            import pyrosim.pyrosim as pyrosim
-            try:
-                pyrosim.Set_Motor_For_Joint(bodyIndex=robot.robotId,
-                                            jointName=jname,
-                                            controlMode=p.POSITION_CONTROL,
-                                            targetPosition=angle,
-                                            maxForce=float(mf))
-            except TypeError:
-                # older signature
-                pyrosim.Set_Motor_For_Joint(robot.robotId, jname, p.POSITION_CONTROL, angle, float(mf))
-            return
-        except Exception:
-            return orig(self, *args, **kwargs)
-
-    wrapped._gait_wrapped = True
-    return wrapped
-
-# Patch any class in this module that has a plausible motor-setting method
-for _name, _obj in list(globals().items()):
-    if isinstance(_obj, type):
-        for _meth in ("Set_Value","SetValue","Set_Motor","SetMotor","Set_Values"):
-            if hasattr(_obj, _meth):
-                try:
-                    setattr(_obj, _meth, _wrap_method(getattr(_obj, _meth)))
-                except Exception:
-                    pass
+# NOTE: Removed the auto-wrap GAIT_VARIANT monkeypatch block.
+# Use the explicit GAIT_VARIANT logic inside MOTOR.Set_Value instead.
