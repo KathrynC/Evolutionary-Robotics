@@ -1,3 +1,28 @@
+"""optimize_gait.py
+
+Random-search optimizer for a simple 2-joint sine gait in PyBullet.
+
+What it does:
+    - Runs many short headless (DIRECT) simulations.
+    - Controls the first two revolute joints with sinusoidal position targets.
+    - Scores each trial by horizontal displacement (sqrt(x^2 + y^2)).
+    - Applies a penalty for "catapult flips" (large roll/pitch or flying too high).
+
+What it does NOT do:
+    - It does not use your pyrosim/ROBOT/neural-network pipeline.
+      This is an independent, minimal optimizer using raw PyBullet motor controls.
+
+Outputs:
+    - Prints the best Params found and a “copy/paste” snippet for simulate_video_move.py.
+
+Requirements:
+    - body.urdf must exist in the current directory.
+      If missing: run `python3 generate.py`.
+
+Usage:
+    python3 optimize_gait.py --trials 800 --seconds 10 --dt 0.0041666667 --seed 2
+"""
+
 import argparse
 import math
 import random
@@ -10,6 +35,16 @@ import pybullet_data
 
 @dataclass
 class Params:
+    """Parameter bundle for the sine gait and physics tuning.
+
+    Units:
+        amp, bias0, bias1, phase_diff : radians
+        freq                          : Hz
+        force                         : Newtons (PyBullet motor force limit)
+        *_friction                    : unitless (PyBullet dynamics)
+        position_gain, velocity_gain  : controller gains (PyBullet POSITION_CONTROL)
+    """
+
     amp: float
     freq: float
     phase_diff: float
@@ -23,14 +58,21 @@ class Params:
 
 
 def dist_xy(pos) -> float:
+    """Horizontal distance from the origin given a base position (x, y, z)."""
     return math.hypot(pos[0], pos[1])
 
 
 def clamp(x, lo, hi):
+    """Clamp x into [lo, hi]."""
     return max(lo, min(hi, x))
 
 
 def get_limits(robot_id, joint_index):
+    """Return (lo, hi) joint limits for a revolute joint, or None if unusable.
+
+    PyBullet joint limits can be missing, non-finite, or absurdly wide depending on URDF.
+    This helper rejects invalid or extreme limits to avoid pointless clamping.
+    """
     info = p.getJointInfo(robot_id, joint_index)
     lo, hi = info[8], info[9]  # lower/upper
     if not (math.isfinite(lo) and math.isfinite(hi)) or hi <= lo:
@@ -42,6 +84,17 @@ def get_limits(robot_id, joint_index):
 
 
 def run_trial(params: Params, seconds: float, dt: float) -> float:
+    """Run one headless simulation trial and return a locomotion score.
+
+    Score:
+        - Primary: horizontal displacement (dist_xy).
+        - Penalty: if the robot flips hard or launches too high, reduce score.
+
+    Implementation notes:
+        - Uses DIRECT mode so trials are fast.
+        - Controls the first two revolute joints found in the URDF.
+        - Uses a friction "split" (slippery torso, grippy feet) to encourage travel.
+    """
     cid = p.connect(p.DIRECT)
     p.setAdditionalSearchPath(pybullet_data.getDataPath())
     p.setGravity(0, 0, -9.8)
@@ -124,6 +177,7 @@ def run_trial(params: Params, seconds: float, dt: float) -> float:
 
 
 def sample(rng: random.Random) -> Params:
+    """Draw a random parameter set from broad, hand-tuned ranges."""
     return Params(
         amp=rng.uniform(0.3, 1.8),
         freq=rng.uniform(0.6, 5.0),
@@ -139,6 +193,7 @@ def sample(rng: random.Random) -> Params:
 
 
 def main():
+    """CLI: run random search and print the best gait found."""
     ap = argparse.ArgumentParser()
     ap.add_argument("--trials", type=int, default=800)
     ap.add_argument("--seconds", type=float, default=10.0)
