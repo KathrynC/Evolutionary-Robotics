@@ -212,13 +212,23 @@ class SIMULATION:
                     print('[GAITMODE]', 'front', _GAIT_FRONT_JOINT, 'O', front_O, 'phi', front_phi, flush=True)
                 # Intentionally do NOT call robot.Act() in this mode (it may overwrite our targets).
             else:
+                # Sense -> Think -> Act (course architecture)
+                try:
+                    robot.Sense(i)
+                except Exception:
+                    pass
+                try:
+                    if hasattr(robot, 'nn'):
+                        robot.Think()
+                except Exception:
+                    pass
                 robot.Act(i, max_force=MAX_FORCE)
 
             p.stepSimulation()
             telemetry.log_step(_telemetry_step)
             _telemetry_step += 1
             if sleep_time:
-                time.sleep(getattr(c, "DEMO_SLEEP_TIME", sleep_time))
+                time.sleep(float(os.getenv("DEMO_SLEEP_TIME", str(getattr(c, "DEMO_SLEEP_TIME", sleep_time)))))
 
             pos, _ = safe_get_base_pose(robotId)
             x, z = pos[0], pos[2]

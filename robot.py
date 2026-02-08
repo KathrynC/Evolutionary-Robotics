@@ -17,6 +17,7 @@ Notes / gotchas:
     - This module uses a friction tweak to reduce bounce and improve locomotion stability.
 """
 
+import os
 import pybullet as p
 import pyrosim.pyrosim as pyrosim
 from pyrosim.neuralNetwork import NEURAL_NETWORK
@@ -99,7 +100,8 @@ Note:
     Printing every step is expensive; consider gating Print() behind an env var for long runs.
 """
         self.nn.Update()
-        self.nn.Print()
+        if os.getenv('NN_PRINT','0') == '1':
+            self.nn.Print()
     def Act(self, t: int, max_force: float=None, back_angle=None, front_angle=None, **kwargs):
         """Apply motor commands for timestep t.
 
@@ -116,7 +118,8 @@ Args:
 """
         if max_force is None:
             max_force = float(kwargs.get("MAX_FORCE", 500.0))
-        if hasattr(self, "nn"):
+        use_nn = os.getenv('USE_NN','1') in ('1','true','yes','on')
+        if use_nn and hasattr(self, "nn"):
             used_nn = False
             for neuronName in self.nn.neurons:
                 n = self.nn.neurons[neuronName]
