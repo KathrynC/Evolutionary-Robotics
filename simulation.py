@@ -174,6 +174,8 @@ class SIMULATION:
         _variant_id = os.getenv('TELEMETRY_VARIANT_ID','manual')
         _run_id = os.getenv('TELEMETRY_RUN_ID','run0')
         _out_dir = __import__('pathlib').Path(os.getenv('TELEMETRY_OUT','artifacts/telemetry')) / _variant_id / _run_id
+        if _telemetry_on:
+            _out_dir.mkdir(parents=True, exist_ok=True)
         self.telemetry = TelemetryLogger(robot.robotId, _out_dir, every=_telemetry_every, variant_id=_variant_id, run_id=_run_id, enabled=_telemetry_on)
         telemetry = self.telemetry  # Keep local variable for compatibility
 
@@ -284,7 +286,10 @@ class SIMULATION:
                 robot.Act(i, max_force=MAX_FORCE)
 
             p.stepSimulation()
-            telemetry.log_step(_telemetry_step)
+            if _telemetry_on:
+                if _telemetry_on:
+                    if _telemetry_on:
+                        telemetry.log_step(_telemetry_step)
             _telemetry_step += 1
             if sleep_time:
                 time.sleep(float(os.getenv("DEMO_SLEEP_TIME", str(getattr(c, "DEMO_SLEEP_TIME", sleep_time)))))
