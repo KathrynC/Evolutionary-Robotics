@@ -1,23 +1,41 @@
 """simulation.py
 
 Role:
-    Runs a single PyBullet simulation episode: connects, configures physics, builds WORLD/ROBOT,
-    steps SIM_STEPS, and optionally logs telemetry.
+    Runs a single PyBullet simulation episode.
 
-Main entrypoint:
-    SIMULATION().Run()
+What happens:
+    - Connects to PyBullet (GUI or DIRECT) based on HEADLESS.
+    - Configures physics (gravity + timestep).
+    - Builds WORLD and ROBOT.
+    - Steps the simulation for SIM_STEPS and applies motor commands each step.
+    - Optionally logs telemetry.
+
+Entrypoint:
+    Usually launched via `python3 simulate.py` (this module may not call Run() on import).
 
 Config precedence:
-    environment variables > constants.py > hardcoded defaults
+    Environment variables > constants.py > defaults in code.
 
-Key env vars (common):
-    HEADLESS, SIM_STEPS, SLEEP_TIME, MAX_FORCE
+Common env vars:
+    HEADLESS            : 1/true => run in DIRECT; otherwise GUI
+    SIM_STEPS           : number of steps in this episode
+    MAX_FORCE           : motor force limit
+    SLEEP_TIME          : sleep between steps (seconds) when DEMO_SLEEP_TIME is not set
+    DEMO_SLEEP_TIME     : preferred sleep between steps for recording/visibility
+    SIM_DEBUG           : print debug banners at startup
+
+Gait/debug env vars:
+    GAIT_MODE           : 1 => direct-drive joints from GAIT_VARIANT_PATH (bypass Robot.Act)
+    GAIT_VARIANT_PATH   : path to gait JSON used by GAIT_MODE (and/or motor.py variant logic)
+    GAIT_HALF_BACK      : when GAIT_MODE=1, optionally halve back-leg frequency
+
+Telemetry env vars:
     TELEMETRY, TELEMETRY_EVERY, TELEMETRY_OUT, TELEMETRY_VARIANT_ID, TELEMETRY_RUN_ID
-    GAIT_MODE, GAIT_VARIANT_PATH (debug/override)
 
 Notes:
     - Units: angles=radians, time=seconds, frequency=Hz, force=Newtons.
-    - GAIT_MODE is intended as a debugging escape hatch (direct joint drive).
+    - If you want the neural network to influence motion, the typical architecture is
+      Sense(t) -> Think() -> Act(t). (Some code paths may call Act directly.)
 """
 
 import os
@@ -105,7 +123,34 @@ class SIMULATION:
         self.robot = ROBOT()
 
     def Run(self):
-        """Step the simulation for SIM_STEPS; drive motors, step physics, and log telemetry (optional)."""
+
+        """Run a fixed-length simulation episode.
+
+
+        Each timestep:
+
+            - (optional) apply a "kick" external force for debugging
+
+            - drive motion either via:
+
+                * GAIT_MODE direct joint drive (bypasses Robot.Act), or
+
+                * normal control path (Robot.Act), optionally preceded by Sense/Think
+
+            - step PyBullet physics
+
+            - log telemetry (optional)
+
+            - sleep for visibility (DEMO_SLEEP_TIME override preferred)
+
+
+        Side effects:
+
+            - Opens a GUI window when HEADLESS is falsey
+
+            - Writes telemetry artifacts when enabled
+
+        """
         SIM_STEPS = int(os.getenv("SIM_STEPS", str(getattr(c, "SIM_STEPS", 2000))))
         robotId = self.robot.robotId
         robot = self.robot
