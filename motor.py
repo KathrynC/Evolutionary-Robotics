@@ -1,3 +1,35 @@
+"""motor.py
+
+Role:
+    Motor controller for a single joint. Generates target joint angles over time and sends
+    POSITION_CONTROL commands to PyBullet via pyrosim.Set_Motor_For_Joint.
+
+Control modes (highest priority first):
+    1) GAIT_VARIANT_PATH provided:
+         - Load a JSON "gait variant" dict and compute a sine target each timestep.
+         - Supports per-leg offsets/phases and optional half-frequency semantics.
+    2) No gait variant:
+         - Precompute a sine trajectory array (motorValues) using constants/env overrides.
+
+Important details:
+    - jointName may be bytes or str; keep the original type for pyrosim lookups.
+    - freq_hz is recorded on each MOTOR instance for debugging/telemetry.
+
+Key env vars:
+    GAIT_VARIANT_PATH: path to JSON gait variant file
+    GAIT_FREQ_HZ / GAIT_AMPLITUDE: quick overrides for demos
+    DEMO_PURE_SINE: force offsets/phases to 0 for visually countable motion
+    HALF_FREQ_DEMO: half frequency for one leg (demo/assignment)
+    PHYSICS_DT: timestep used when computing gait variant targets (fallbacks exist)
+    SIM_DEBUG: extra prints at t==0
+
+Notes for maintainers:
+    - This file currently contains an additional "auto-wrap" gait override block at the bottom.
+      It monkeypatches methods at import time and duplicates GAIT_VARIANT loading helpers.
+      It works as an escape hatch, but it is harder to reason about and is best treated as
+      generated/experimental code.
+"""
+
 import os
 import numpy as np
 import pybullet as p
@@ -17,10 +49,25 @@ if _GAIT_PATH:
         _GAIT = None
 
 def _gget(k, default=None):
+    """Get a key from the loaded gait variant dict, or return default when no variant is loaded."""
     return default if _GAIT is None else _GAIT.get(k, default)
 
 class MOTOR:
+    """Per-joint motor controller.
+
+Precomputes a trajectory (motorValues) unless a gait variant is active,
+then sends target angles to the joint each timestep.
+"""
     def __init__(self, jointName):
+        """Create a motor controller for a joint.
+
+Args:
+    jointName: Joint name key (bytes or str). Preserve the original type for pyrosim.
+
+Side effects:
+    - Reads env/constant overrides for frequency/amplitude and demo modes.
+    - Precomputes motorValues for the whole run when no GAIT_VARIANT is active.
+"""
         # Variant-provided frequency for debugging/telemetry
         if _GAIT is not None:
             try:
@@ -78,6 +125,17 @@ class MOTOR:
         self.motorValues = np.clip(self.motorValues, -1.3, 1.3)
 
     def Set_Value(self, robot, t: int, max_force: float):
+        """Send a target position command for this joint at timestep t.
+
+Args:
+    robot: ROBOT instance (must expose robotId).
+    t: integer timestep index.
+    max_force: max motor force in Newtons.
+
+Behavior:
+    - If a gait variant is loaded, compute a sine target angle on the fly.
+    - Otherwise, use the precomputed motorValues[t].
+"""
 
         if os.getenv('SIM_DEBUG','0') == '1' and t == 0:
 
@@ -139,6 +197,11 @@ class MOTOR:
 
 
 # === GAIT_VARIANT runtime override (auto-wrap) ===
+# NOTE:
+#   This section monkeypatches motor-setting methods at import time.
+#   It duplicates GAIT_VARIANT loading helpers (_GAIT, _gget, etc.) and exists as an
+#   experimental escape hatch. Prefer the explicit logic in MOTOR.Set_Value when possible.
+
 import os as _os, json as _json, math as _math
 from pathlib import Path as _Path
 
