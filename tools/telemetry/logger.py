@@ -1,3 +1,24 @@
+"""tools.telemetry.logger
+
+Lightweight telemetry recorder for PyBullet-based robot runs.
+
+Outputs (when enabled):
+    - telemetry.jsonl : newline-delimited JSON records sampled every N steps
+    - summary.json    : one-file summary with displacement and basic stability metrics
+
+Design goals:
+    - Safe: should not crash the simulation if PyBullet calls fail.
+    - Recoverable: finalize() should work even if the GUI closes or PyBullet disconnects,
+      by relying on cached last-known pose.
+    - Cheap: logging frequency is throttled via the `every` parameter.
+
+Recorded signals (per sampled step):
+    - base position (x, y, z)
+    - base orientation (roll, pitch, yaw)
+    - contact count
+    - joint states: position, velocity, and applied torque estimate (tau)
+"""
+
 from __future__ import annotations
 
 import json
@@ -9,6 +30,15 @@ import pybullet as p
 
 
 def _safe_float(x, default=None):
+    """Best-effort conversion to float.
+
+    Args:
+        x: Any value (including None, numpy scalars, etc.).
+        default: Returned if conversion fails.
+
+    Returns:
+        float(x) if possible, else default.
+    """
     try:
         return float(x)
     except Exception:
@@ -16,6 +46,17 @@ def _safe_float(x, default=None):
 
 
 def _normalize_step(t, fallback: int) -> int:
+    """Normalize a step index to a plain Python int.
+
+    Accepts numpy scalar-like values, floats, etc., and falls back safely.
+
+    Args:
+        t: Candidate timestep (may be numpy scalar, float, etc.).
+        fallback: Used if t cannot be converted.
+
+    Returns:
+        int timestep.
+    """
     # Accept numpy scalars/arrays, floats, etc.
     try:
         if hasattr(t, "item"):
@@ -30,6 +71,24 @@ def _normalize_step(t, fallback: int) -> int:
 
 @dataclass
 class TelemetryLogger:
+    """Records and summarizes telemetry for a single robot body in PyBullet.
+
+    Typical usage:
+        logger = TelemetryLogger(robot_id, out_dir, every=10, enabled=True)
+        for t in range(SIM_STEPS):
+            ... step physics ...
+            logger.log_step(t)
+        logger.finalize()
+
+    Parameters:
+        robot_id: PyBullet body unique id for the robot.
+        out_dir: Output directory for telemetry artifacts.
+        every: Log every N steps (N<=1 logs every step).
+        variant_id: Identifier for the gait/variant being tested (for foldering/metadata).
+        run_id: Identifier for this specific run (for foldering/metadata).
+        enabled: If False, all methods are no-ops and no files are created.
+    """
+
     robot_id: int
     out_dir: Path
     every: int = 10
@@ -44,17 +103,27 @@ class TelemetryLogger:
     _steps: int = field(default=0, init=False)
     _tip_steps: int = field(default=0, init=False)
 
-    # cache last known pose so finalize() is safe even after disconnect/crash
+    # Cache last known pose so finalize() is safe even after disconnect/crash.
     _last_pos: Optional[Tuple[float, float, float]] = field(default=None, init=False)
     _last_rpy: Optional[Tuple[float, float, float]] = field(default=None, init=False)
 
     def __post_init__(self):
+        """Create output directory and open the JSONL file when enabled."""
         if not self.enabled:
             return
         self.out_dir.mkdir(parents=True, exist_ok=True)
         self._fp = open(self.out_dir / "telemetry.jsonl", "w", encoding="utf-8")
 
     def log_step(self, t):
+        """Record one telemetry sample (throttled by `every`).
+
+        Args:
+            t: Timestep index (any numeric-ish type; normalized to int).
+
+        Notes:
+            - If PyBullet pose queries fail, this step is skipped.
+            - Joint telemetry is best-effort; failures are ignored.
+        """
         if not self.enabled:
             return
 
@@ -79,7 +148,7 @@ class TelemetryLogger:
         self._max_abs_roll = max(self._max_abs_roll, abs(float(roll)))
         self._max_abs_pitch = max(self._max_abs_pitch, abs(float(pitch)))
 
-        # crude tipping heuristic: big roll or pitch
+        # Crude tipping heuristic: big roll or pitch
         if abs(float(roll)) > 1.0 or abs(float(pitch)) > 1.0:
             self._tip_steps += 1
         self._steps += 1
@@ -90,12 +159,14 @@ class TelemetryLogger:
             n = p.getNumJoints(self.robot_id)
             for j in range(n):
                 js = p.getJointState(self.robot_id, j)
-                joints.append({
-                    "j": j,
-                    "pos": _safe_float(js[0]),
-                    "vel": _safe_float(js[1]),
-                    "tau": _safe_float(js[3]),
-                })
+                joints.append(
+                    {
+                        "j": j,
+                        "pos": _safe_float(js[0]),
+                        "vel": _safe_float(js[1]),
+                        "tau": _safe_float(js[3]),
+                    }
+                )
         except Exception:
             pass
 
@@ -116,6 +187,11 @@ class TelemetryLogger:
         self._fp.write(json.dumps(rec) + "\n")
 
     def finalize(self):
+        """Write summary.json and close the JSONL file.
+
+        This method is designed to be safe to call even if PyBullet disconnects:
+        it prefers cached pose values gathered during log_step().
+        """
         if not self.enabled:
             return
 
