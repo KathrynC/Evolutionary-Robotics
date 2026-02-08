@@ -16,6 +16,7 @@ import pybullet as p
 import pybullet_data
 
 
+import os
 def dist_xy(pos) -> float:
     return math.hypot(pos[0], pos[1])
 

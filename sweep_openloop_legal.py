@@ -19,6 +19,7 @@ import numpy
 import pybullet as p
 import pybullet_data
 
+import os
 # Must match your "legal" script: fixed motor strength (do not tune)
 MOTOR_MAX_FORCE = 50
 

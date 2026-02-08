@@ -41,6 +41,7 @@ import pybullet as p
 import pybullet_data
 
 
+import os
 @dataclass
 class Params:
     """Parameter bundle for the sine gait and physics tuning.

@@ -14,6 +14,7 @@ import json
 from pathlib import Path
 
 
+import os
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--telemetry_root", default="artifacts/telemetry", help="root dir: <variant>/<run>/summary.json")

@@ -35,6 +35,7 @@ import pybullet as p
 import pybullet_data
 import pyrosim.pyrosim as pyrosim
 
+import os
 SIM_STEPS = 6000
 DT = 1 / 240
 

@@ -43,6 +43,7 @@ import pybullet as p
 import pybullet_data
 
 
+import os
 def horiz_dist_xy(pos):
     """Return horizontal distance from origin given a base position (x, y, z)."""
     return math.hypot(pos[0], pos[1])

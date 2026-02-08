@@ -17,6 +17,7 @@ import numpy
 import pybullet as p
 import pybullet_data
 
+import os
 # Fixed motor strength. Do NOT tune this (assignment rule).
 MOTOR_MAX_FORCE = 50
 

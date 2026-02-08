@@ -15,6 +15,7 @@ import json
 from pathlib import Path
 from typing import Any, Optional
 
+import os
 SCORE_KEYS = ("score", "fitness", "total_score", "reward")
 
 
