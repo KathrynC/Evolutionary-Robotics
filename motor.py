@@ -24,7 +24,7 @@ class MOTOR:
         # Variant-provided frequency for debugging/telemetry
         if _GAIT is not None:
             try:
-                self.freq_hz = float(_gget('f', _gget('Frequency', getattr(self,'freq_hz', None) or 0.0)))
+                self.freq_hz = float(_gget('GAIT_FREQ_HZ', _gget('GAIT_FREQ', _gget('f', _gget('Frequency', getattr(self,'freq_hz', None) or 0.0)))))
             except Exception:
                 pass
         # Keep original key type for pyrosim dict lookups (bytes or str)
@@ -78,6 +78,13 @@ class MOTOR:
         self.motorValues = np.clip(self.motorValues, -1.3, 1.3)
 
     def Set_Value(self, robot, t: int, max_force: float):
+
+        if os.getenv('SIM_DEBUG','0') == '1' and t == 0:
+
+            jn = getattr(self,'jointNameStr', getattr(self,'jointName',''))
+
+            print('[SETVAL]', jn, 'GAIT?', (_GAIT is not None), flush=True)
+
         # If a gait variant is provided, drive this joint directly from sine params
         if _GAIT is not None:
             # timestep (fallbacks)
@@ -86,15 +93,18 @@ class MOTOR:
                 dt = float(os.getenv('PHYSICS_DT', str(getattr(_c, 'TIME_STEP', 1/240.0))))
             except Exception:
                 dt = float(os.getenv('PHYSICS_DT', '0.0041666667'))
-            A = float(_gget('A', _gget('Amplitude', 0.5)))
-            f_hz = float(_gget('f', _gget('Frequency', 1.0)))
+            A = float(_gget('GAIT_AMPLITUDE', _gget('GAIT_AMP', _gget('A', _gget('Amplitude', 0.5)))))
+            base_f = float(_gget('GAIT_FREQ_HZ', _gget('GAIT_FREQ', _gget('f', _gget('Frequency', 1.0)))))
             jname = getattr(self, 'jointNameStr', getattr(self, 'jointName', ''))
-            if 'BackLeg' in jname:
-                O = float(_gget('O_back', _gget('O_BACK', 0.0)))
-                phi = float(_gget('phi_back', _gget('PHI_BACK', 0.0)))
+            is_back = ('BackLeg' in str(jname)) or ('back' in str(jname).lower())
+            # preserve refactoring demo semantics: back leg half frequency, front full
+            f_hz = base_f * (0.5 if is_back else 1.0)
+            if is_back:
+                O = float(_gget('BACK_OFFSET', _gget('O_back', _gget('O_BACK', 0.0))))
+                phi = float(_gget('BACK_PHASE', _gget('phi_back', _gget('PHI_BACK', 0.0))))
             else:
-                O = float(_gget('O_front', _gget('O_FRONT', 0.0)))
-                phi = float(_gget('phi_front', _gget('PHI_FRONT', 0.0)))
+                O = float(_gget('FRONT_OFFSET', _gget('O_front', _gget('O_FRONT', 0.0))))
+                phi = float(_gget('FRONT_PHASE', _gget('phi_front', _gget('PHI_FRONT', 0.0))))
             angle = O + A * math.sin(2.0 * math.pi * f_hz * (t * dt) + phi)
             try:
                 self.freq_hz = f_hz

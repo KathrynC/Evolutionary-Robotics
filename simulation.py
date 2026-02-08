@@ -1,4 +1,25 @@
 import os
+
+# [GAIT_MODE] direct drive override
+import json, math
+from pathlib import Path as _Path
+
+_GAIT_PATH = os.getenv("GAIT_VARIANT_PATH", "")
+_GAIT = None
+if _GAIT_PATH:
+    try:
+        _GAIT = json.loads(_Path(_GAIT_PATH).read_text(encoding="utf-8"))
+    except Exception:
+        _GAIT = None
+
+def _gget(k, default=None):
+    return default if _GAIT is None else _GAIT.get(k, default)
+
+_GAIT_MODE = os.getenv("GAIT_MODE", "0") == "1"
+_GAIT_HALF_BACK = os.getenv("GAIT_HALF_BACK", "1") == "1"
+_GAIT_BACK_JOINT = os.getenv("GAIT_BACK_JOINT", "Torso_BackLeg")
+_GAIT_FRONT_JOINT = os.getenv("GAIT_FRONT_JOINT", "Torso_FrontLeg")
+
 if os.getenv("SIM_DEBUG","0") == "1":
     print("[SIMFILE]", __file__, flush=True)
     print("[ENV] GAIT_VARIANT_PATH", os.getenv("GAIT_VARIANT_PATH","<none>"), flush=True)
@@ -23,7 +44,7 @@ from robot import ROBOT
 
 def safe_get_base_pose(body_id):
     try:
-        return safe_get_base_pose(body_id)
+        return p.getBasePositionAndOrientation(body_id)
     except Exception:
         return (0.0, 0.0, 0.0), (0.0, 0.0, 0.0, 1.0)
 
@@ -68,7 +89,8 @@ class SIMULATION:
         _variant_id = os.getenv('TELEMETRY_VARIANT_ID','manual')
         _run_id = os.getenv('TELEMETRY_RUN_ID','run0')
         _out_dir = __import__('pathlib').Path(os.getenv('TELEMETRY_OUT','artifacts/telemetry')) / _variant_id / _run_id
-        telemetry = TelemetryLogger(robot.robotId, _out_dir, every=_telemetry_every, variant_id=_variant_id, run_id=_run_id, enabled=_telemetry_on)
+        self.telemetry = TelemetryLogger(robot.robotId, _out_dir, every=_telemetry_every, variant_id=_variant_id, run_id=_run_id, enabled=_telemetry_on)
+        telemetry = self.telemetry  # Keep local variable for compatibility
 
 
 
@@ -129,6 +151,41 @@ class SIMULATION:
                 )
 
             # Motors drive themselves (motor.py builds trajectories; HALF_FREQ_DEMO env var can be used there)
+            # [GAIT_MODE] if enabled, bypass motor/neural plumbing and drive joints directly
+            if _GAIT_MODE and _GAIT is not None:
+                # timestep (seconds)
+                try:
+                    dt = float(os.getenv('PHYSICS_DT', os.getenv('BULLET_DT', str(getattr(c, 'DT', getattr(c, 'TIME_STEP', 1/240.0))))))
+                except Exception:
+                    dt = float(os.getenv('PHYSICS_DT', '0.0041666667'))
+                tsec = float(i) * dt
+                A = float(_gget('GAIT_AMPLITUDE', _gget('GAIT_AMP', 0.5)))
+                base_f = float(_gget('GAIT_FREQ_HZ', _gget('GAIT_FREQ', 1.0)))
+                back_f = base_f * (0.5 if _GAIT_HALF_BACK else 1.0)
+                front_f = base_f
+                back_O = float(_gget('BACK_OFFSET', 0.0))
+                back_phi = float(_gget('BACK_PHASE', 0.0))
+                front_O = float(_gget('FRONT_OFFSET', 0.0))
+                front_phi = float(_gget('FRONT_PHASE', 0.0))
+                back_angle = back_O + A * math.sin(2.0 * math.pi * back_f * tsec + back_phi)
+                front_angle = front_O + A * math.sin(2.0 * math.pi * front_f * tsec + front_phi)
+                mf = float(os.getenv('MAX_FORCE', str(_gget('MAX_FORCE', getattr(c, 'MAX_FORCE', 500.0)))))
+                try:
+                    import pyrosim.pyrosim as pyrosim
+                    try:
+                        pyrosim.Set_Motor_For_Joint(bodyIndex=robot.robotId, jointName=_GAIT_BACK_JOINT, controlMode=p.POSITION_CONTROL, targetPosition=float(back_angle), maxForce=float(mf))
+                        pyrosim.Set_Motor_For_Joint(bodyIndex=robot.robotId, jointName=_GAIT_FRONT_JOINT, controlMode=p.POSITION_CONTROL, targetPosition=float(front_angle), maxForce=float(mf))
+                    except TypeError:
+                        pyrosim.Set_Motor_For_Joint(robot.robotId, _GAIT_BACK_JOINT, p.POSITION_CONTROL, float(back_angle), float(mf))
+                        pyrosim.Set_Motor_For_Joint(robot.robotId, _GAIT_FRONT_JOINT, p.POSITION_CONTROL, float(front_angle), float(mf))
+                except Exception:
+                    pass
+                if os.getenv('SIM_DEBUG','0') == '1' and i == 0:
+                    print('[GAITMODE]', 'A', A, 'base_f', base_f, 'back_f', back_f, 'front_f', front_f, 'mf', mf, flush=True)
+                    print('[GAITMODE]', 'back', _GAIT_BACK_JOINT, 'O', back_O, 'phi', back_phi, flush=True)
+                    print('[GAITMODE]', 'front', _GAIT_FRONT_JOINT, 'O', front_O, 'phi', front_phi, flush=True)
+                # do NOT call robot.Act() in this mode (it may overwrite our targets)
+                pass  # do NOT call robot.Act()
             robot.Act(i, max_force=MAX_FORCE)
 
             p.stepSimulation()
