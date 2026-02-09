@@ -204,17 +204,14 @@ class TelemetryLogger:
         self._fp.write(json.dumps(rec) + "\n")
 
     def finalize(self):
-
-        # Idempotent finalize: safe if called more than once
-
-        if getattr(self, '_finalized', False):
-
-            return
         """Write summary.json and close the JSONL file.
 
         This method is designed to be safe to call even if PyBullet disconnects:
         it prefers cached pose values gathered during log_step().
         """
+        # Idempotent finalize: safe if called more than once
+        if getattr(self, '_finalized', False):
+            return
         if not self.enabled:
             return
 

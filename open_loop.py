@@ -39,6 +39,7 @@ Beyond Ludobots (this repo):
 """
 
 import os
+import sys
 
 import numpy as np
 import pybullet as p
@@ -91,39 +92,39 @@ def main():
         return
 
     p.connect(p.DIRECT)
-    p.setAdditionalSearchPath(pybullet_data.getDataPath())
-    p.setGravity(0, 0, -9.8)
-    p.setTimeStep(DT)
+    try:
+        p.setAdditionalSearchPath(pybullet_data.getDataPath())
+        p.setGravity(0, 0, -9.8)
+        p.setTimeStep(DT)
 
-    p.loadURDF("plane.urdf")
-    if os.path.exists("world.sdf"):
-        try:
-            p.loadSDF("world.sdf")
-        except Exception as e:
-            if os.getenv('SIM_DEBUG','0') == '1':
-                print('[WARN]', __name__, 'suppressed exception:', repr(e), flush=True)
+        p.loadURDF("plane.urdf")
+        if os.path.exists("world.sdf"):
+            try:
+                p.loadSDF("world.sdf")
+            except Exception as e:
+                print('[WARN]', __name__, repr(e), file=sys.stderr, flush=True)
 
-    robotId = p.loadURDF("body.urdf")
-    pyrosim.Prepare_To_Simulate(robotId)
+        robotId = p.loadURDF("body.urdf")
+        pyrosim.Prepare_To_Simulate(robotId)
 
-    # pyrosim joint name keys may be bytes or str depending on version/setup.
-    back_key = b"Torso_BackLeg" if b"Torso_BackLeg" in pyrosim.jointNamesToIndices else "Torso_BackLeg"
-    front_key = b"Torso_FrontLeg" if b"Torso_FrontLeg" in pyrosim.jointNamesToIndices else "Torso_FrontLeg"
+        # pyrosim joint name keys may be bytes or str depending on version/setup.
+        back_key = b"Torso_BackLeg" if b"Torso_BackLeg" in pyrosim.jointNamesToIndices else "Torso_BackLeg"
+        front_key = b"Torso_FrontLeg" if b"Torso_FrontLeg" in pyrosim.jointNamesToIndices else "Torso_FrontLeg"
 
-    start = p.getBasePositionAndOrientation(robotId)[0]
+        start = p.getBasePositionAndOrientation(robotId)[0]
 
-    for t in range(SIM_STEPS):
-        pyrosim.Set_Motor_For_Joint(robotId, back_key, p.POSITION_CONTROL, float(backAngles[t]), MAX_FORCE)
-        pyrosim.Set_Motor_For_Joint(robotId, front_key, p.POSITION_CONTROL, float(frontAngles[t]), MAX_FORCE)
-        p.stepSimulation()
+        for t in range(SIM_STEPS):
+            pyrosim.Set_Motor_For_Joint(robotId, back_key, p.POSITION_CONTROL, float(backAngles[t]), MAX_FORCE)
+            pyrosim.Set_Motor_For_Joint(robotId, front_key, p.POSITION_CONTROL, float(frontAngles[t]), MAX_FORCE)
+            p.stepSimulation()
 
-    end = p.getBasePositionAndOrientation(robotId)[0]
-    dx = end[0] - start[0]
-    dy = end[1] - start[1]
-    dist = (dx * dx + dy * dy) ** 0.5
-    print("DIST", dist, "DX_DY", dx, dy, "MAX_FORCE", MAX_FORCE)
-
-    p.disconnect()
+        end = p.getBasePositionAndOrientation(robotId)[0]
+        dx = end[0] - start[0]
+        dy = end[1] - start[1]
+        dist = (dx * dx + dy * dy) ** 0.5
+        print("DIST", dist, "DX_DY", dx, dy, "MAX_FORCE", MAX_FORCE)
+    finally:
+        p.disconnect()
 
 
 if __name__ == "__main__":

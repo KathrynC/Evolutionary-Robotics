@@ -28,14 +28,15 @@ import constants as c
 class SENSOR:
     """Touch sensor logger for a single robot link."""
 
-    def __init__(self, linkName: str):
+    def __init__(self, linkName: str, num_steps: int = None):
         """Create a sensor bound to one link.
 
         Args:
             linkName: Link name as used by pyrosim / the URDF.
+            num_steps: Number of timesteps to pre-allocate. Defaults to c.SIM_STEPS.
         """
         self.linkName = linkName
-        self.values = np.zeros(c.SIM_STEPS)
+        self.values = np.zeros(num_steps if num_steps is not None else c.SIM_STEPS)
 
     def Get_Value(self, t: int):
         """Read and store the touch sensor value at timestep t.

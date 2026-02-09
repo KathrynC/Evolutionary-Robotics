@@ -50,6 +50,7 @@ SLEEP_TIME = 1/60
 DT = 1/240  # physics timestep in seconds
 RNG_SEED = 0
 TARGET_RANGE = 1.5707963267948966  # pi/2
+NN_MOTOR_SCALE = TARGET_RANGE     # NN motor output scaling (separate from random-target range)
 SINE_CYCLES = 3
 KICK_START = 200
 KICK_END = 350

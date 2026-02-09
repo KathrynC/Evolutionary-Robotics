@@ -52,6 +52,7 @@ Run:
 """
 
 import os
+import sys
 import pybullet as p
 
 # [GAIT_MODE] direct drive override
@@ -75,10 +76,8 @@ _GAIT_BACK_JOINT = os.getenv("GAIT_BACK_JOINT", "Torso_BackLeg")
 _GAIT_FRONT_JOINT = os.getenv("GAIT_FRONT_JOINT", "Torso_FrontLeg")
 
 if os.getenv("SIM_DEBUG","0") == "1":
-    if os.getenv('SIM_DEBUG','0') == '1':
-        print("[SIMFILE]", __file__, flush=True)
-    if os.getenv('SIM_DEBUG','0') == '1':
-        print("[ENV] GAIT_VARIANT_PATH", os.getenv("GAIT_VARIANT_PATH","<none>"), flush=True)
+    print("[SIMFILE]", __file__, flush=True)
+    print("[ENV] GAIT_VARIANT_PATH", os.getenv("GAIT_VARIANT_PATH","<none>"), flush=True)
 
 # Silence pyrosim neuralNetwork debug prints unless PYROSIM_NN_VERBOSE=1
 if os.getenv("PYROSIM_NN_VERBOSE","0") != "1":
@@ -86,8 +85,7 @@ if os.getenv("PYROSIM_NN_VERBOSE","0") != "1":
         import pyrosim.neuralNetwork as _nn
         _nn.print = (lambda *a, **k: None)
     except Exception as e:
-        if os.getenv('SIM_DEBUG','0') == '1':
-            print('[WARN]', __name__, 'suppressed exception:', repr(e), flush=True)
+        print('[WARN]', __name__, repr(e), file=sys.stderr, flush=True)
 
 import time
 import numpy as np
@@ -129,8 +127,7 @@ class SIMULATION:
             try:
                 p.configureDebugVisualizer(p.COV_ENABLE_GUI, 0)
             except Exception as e:
-                if os.getenv('SIM_DEBUG','0') == '1':
-                    print('[WARN]', __name__, 'suppressed exception:', repr(e), flush=True)
+                print('[WARN]', __name__, repr(e), file=sys.stderr, flush=True)
 
         p.setAdditionalSearchPath(pybullet_data.getDataPath())
         p.setGravity(0, 0, getattr(c, "GRAVITY_Z", -9.8))
@@ -271,8 +268,7 @@ class SIMULATION:
                             pyrosim.Set_Motor_For_Joint(robot.robotId, _GAIT_BACK_JOINT, p.POSITION_CONTROL, float(back_angle), float(mf))
                             pyrosim.Set_Motor_For_Joint(robot.robotId, _GAIT_FRONT_JOINT, p.POSITION_CONTROL, float(front_angle), float(mf))
                     except Exception as e:
-                        if os.getenv('SIM_DEBUG','0') == '1':
-                            print('[WARN]', __name__, 'suppressed exception:', repr(e), flush=True)
+                        print('[WARN]', __name__, repr(e), file=sys.stderr, flush=True)
                     if os.getenv('SIM_DEBUG','0') == '1' and i == 0:
                         print('[GAITMODE]', 'A', A, 'base_f', base_f, 'back_f', back_f, 'front_f', front_f, 'mf', mf, flush=True)
                         print('[GAITMODE]', 'back', _GAIT_BACK_JOINT, 'O', back_O, 'phi', back_phi, flush=True)
@@ -283,21 +279,17 @@ class SIMULATION:
                     try:
                         robot.Sense(i)
                     except Exception as e:
-                        if os.getenv('SIM_DEBUG','0') == '1':
-                            print('[WARN]', __name__, 'suppressed exception:', repr(e), flush=True)
+                        print('[WARN]', __name__, repr(e), file=sys.stderr, flush=True)
                     try:
                         if hasattr(robot, 'nn'):
                             robot.Think()
                     except Exception as e:
-                        if os.getenv('SIM_DEBUG','0') == '1':
-                            print('[WARN]', __name__, 'suppressed exception:', repr(e), flush=True)
+                        print('[WARN]', __name__, repr(e), file=sys.stderr, flush=True)
                     robot.Act(i, max_force=MAX_FORCE)
 
                 p.stepSimulation()
                 if _telemetry_on:
-                    if _telemetry_on:
-                        if _telemetry_on:
-                            telemetry.log_step(_telemetry_step)
+                    telemetry.log_step(_telemetry_step)
                 _telemetry_step += 1
                 if sleep_time:
                     time.sleep(float(os.getenv("DEMO_SLEEP_TIME", str(getattr(c, "DEMO_SLEEP_TIME", sleep_time)))))
@@ -320,8 +312,7 @@ class SIMULATION:
                                 cameraTargetPosition=target,
                             )
                     except Exception as e:
-                        if os.getenv('SIM_DEBUG','0') == '1':
-                            print('[WARN]', __name__, 'suppressed exception:', repr(e), flush=True)
+                        print('[WARN]', __name__, repr(e), file=sys.stderr, flush=True)
                 if os.getenv("DEBUG_PRINT","0")=="1" and i % 10 == 0:
                     # keep your familiar debug print, but avoid joint-index assumptions
                     bl = robot.sensors.get("BackLeg")
@@ -374,10 +365,8 @@ class SIMULATION:
                 if getattr(self, 'telemetry', None) is not None:
                     self.telemetry.finalize()
             except Exception as e:
-                if os.getenv('SIM_DEBUG','0') == '1':
-                    print('[WARN]', __name__, 'suppressed exception:', repr(e), flush=True)
+                print('[WARN]', __name__, repr(e), file=sys.stderr, flush=True)
             try:
                 p.disconnect()
             except Exception as e:
-                if os.getenv('SIM_DEBUG','0') == '1':
-                    print('[WARN]', __name__, 'suppressed exception:', repr(e), flush=True)
+                print('[WARN]', __name__, repr(e), file=sys.stderr, flush=True)

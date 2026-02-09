@@ -32,6 +32,7 @@ Beyond Ludobots (this repo):
 """
 
 import os
+import sys
 import pybullet as p
 import pyrosim.pyrosim as pyrosim
 from pyrosim.neuralNetwork import NEURAL_NETWORK
@@ -71,9 +72,9 @@ Side effects:
             for link in range(-1, p.getNumJoints(self.robotId)):
                 p.changeDynamics(self.robotId, link, lateralFriction=mu, restitution=0.0)
         except Exception as e:
-            if os.getenv('SIM_DEBUG','0') == '1':
-                print('[WARN]', __name__, 'suppressed exception:', repr(e), flush=True)
+            print('[WARN]', __name__, repr(e), file=sys.stderr, flush=True)
 
+        self.num_steps = int(os.getenv("SIM_STEPS", str(c.SIM_STEPS)))
         self.Prepare_To_Sense()
         self.Prepare_To_Act()
 
@@ -86,7 +87,7 @@ Uses:
         self.sensors = {}
         for k in pyrosim.linkNamesToIndices:
             name = k.decode() if isinstance(k, (bytes, bytearray)) else str(k)
-            self.sensors[name] = SENSOR(name)
+            self.sensors[name] = SENSOR(name, num_steps=self.num_steps)
 
     def Sense(self, t: int):
         """Update all sensors at timestep t.
@@ -105,7 +106,7 @@ Uses:
 """
         self.motors = {}
         for jointName in pyrosim.jointNamesToIndices:
-            self.motors[jointName] = MOTOR(jointName)
+            self.motors[jointName] = MOTOR(jointName, num_steps=self.num_steps)
 
     # Accept both old-style and new-style calls; angles are ignored when motors have trajectories.
     def Think(self):
@@ -143,7 +144,7 @@ Args:
 
                     jointName = jointName.encode("ASCII") if isinstance(jointName, str) else jointName
                     motor = float(n.Get_Value())
-                    scale = float(getattr(c, "TARGET_RANGE", 0.8))
+                    scale = float(getattr(c, "NN_MOTOR_SCALE", 0.8))
                     # Use joint name to pick a small stance bias (break symmetry, improve stability)
                     jn = jointName.decode("ascii") if isinstance(jointName, (bytes, bytearray)) else str(jointName)
                     offset = 0.0
@@ -154,9 +155,9 @@ Args:
                     desiredAngle = offset + scale * motor
 
                     try:
-                        pyrosim.Set_Motor_For_Joint(self.robotId, jointName, desiredAngle, max_force)
-                    except TypeError:
                         pyrosim.Set_Motor_For_Joint(self.robotId, jointName, p.POSITION_CONTROL, desiredAngle, max_force)
+                    except TypeError:
+                        pyrosim.Set_Motor_For_Joint(self.robotId, jointName, desiredAngle, max_force)
                     used_nn = True
             if used_nn:
                 return

@@ -38,6 +38,7 @@ Beyond Ludobots (this repo):
 """
 
 import os
+import sys
 import numpy as np
 import pybullet as p
 import pyrosim.pyrosim as pyrosim
@@ -65,23 +66,25 @@ class MOTOR:
 Precomputes a trajectory (motorValues) unless a gait variant is active,
 then sends target angles to the joint each timestep.
 """
-    def __init__(self, jointName):
+    def __init__(self, jointName, num_steps: int = None):
         """Create a motor controller for a joint.
 
 Args:
     jointName: Joint name key (bytes or str). Preserve the original type for pyrosim.
+    num_steps: Number of timesteps to pre-allocate. Defaults to c.SIM_STEPS.
 
 Side effects:
     - Reads env/constant overrides for frequency/amplitude and demo modes.
     - Precomputes motorValues for the whole run when no GAIT_VARIANT is active.
 """
+        if num_steps is None:
+            num_steps = c.SIM_STEPS
         # Variant-provided frequency for debugging/telemetry
         if _GAIT is not None:
             try:
                 self.freq_hz = float(_gget('GAIT_FREQ_HZ', _gget('GAIT_FREQ', _gget('f', _gget('Frequency', getattr(self,'freq_hz', None) or 0.0)))))
             except Exception as e:
-                if os.getenv('SIM_DEBUG','0') == '1':
-                    print('[WARN]', __name__, 'suppressed exception:', repr(e), flush=True)
+                print('[WARN]', __name__, repr(e), file=sys.stderr, flush=True)
         # Keep original key type for pyrosim dict lookups (bytes or str)
         self.jointName = jointName
         self.jointNameStr = jointName.decode() if isinstance(jointName, (bytes, bytearray)) else str(jointName)
@@ -126,7 +129,7 @@ Side effects:
 
 
         dt = float(getattr(c, "DT", 1/240))
-        t = np.arange(c.SIM_STEPS) * dt
+        t = np.arange(num_steps) * dt
         self.motorValues = offset + sign * amp * np.sin(2.0 * np.pi * freq * t + phase)
 
         # Keep angles reasonable
@@ -146,11 +149,8 @@ Behavior:
 """
 
         if os.getenv('SIM_DEBUG','0') == '1' and t == 0:
-
             jn = getattr(self,'jointNameStr', getattr(self,'jointName',''))
-
-            if os.getenv('SIM_DEBUG','0') == '1':
-                print('[SETVAL]', jn, 'GAIT?', (_GAIT is not None), flush=True)
+            print('[SETVAL]', jn, 'GAIT?', (_GAIT is not None), flush=True)
 
         # If a gait variant is provided, drive this joint directly from sine params
         if _GAIT is not None:
@@ -176,12 +176,9 @@ Behavior:
             try:
                 self.freq_hz = f_hz
             except Exception as e:
-                if os.getenv('SIM_DEBUG','0') == '1':
-                    print('[WARN]', __name__, 'suppressed exception:', repr(e), flush=True)
+                print('[WARN]', __name__, repr(e), file=sys.stderr, flush=True)
             # max force: prefer passed in, else variant, else constants default
-            mf = max_force if 'max_force' in locals() else None
-            if mf is None:
-                mf = float(_gget('MAX_FORCE', 500.0))
+            mf = max_force
             try:
                 try:
                     pyrosim.Set_Motor_For_Joint(bodyIndex=robot.robotId, jointName=self.jointName, controlMode=p.POSITION_CONTROL, targetPosition=angle, maxForce=float(mf))
