@@ -287,6 +287,22 @@
           "note": "Limit cycles use joints more asymmetrically, creating directed thrust rather than symmetric rocking."
         },
         "surprise_finding": "Complex:drifters rival limit cycles (mean disp 24.6m vs 23.5m, dir_eff 0.756 vs 0.740) but with higher speed variability. The curie_asymmetric_drive motif produces drifters when amplified."
+      },
+      "heading_control": {
+        "description": "Can the robot be steered to a specific heading? (Q5 analysis)",
+        "method": "Swept 83 configurations: curie base pattern with varying MB ratio (0.22-1.30) and cross-wiring asymmetry (w34-w43 from -1.4 to +1.4).",
+        "coverage": "Full 360\u00b0 heading achieved. All 30\u00b0 bins covered.",
+        "control_surface": {
+          "cw_heading_correlation": -0.136,
+          "note": "CW asymmetry alone does NOT predict heading. The control surface is nonlinear and non-monotonic. Nearby parameter configs can produce wildly different headings."
+        },
+        "heading_distribution": {
+          "forward_cluster": "35 of 82 moving configs head between -30\u00b0 and +30\u00b0",
+          "backward_cluster": "18 of 82 moving configs head between 150\u00b0 and 180\u00b0",
+          "lateral_rare": "Only 5 of 82 configs achieve headings between 60\u00b0 and 120\u00b0. Pure lateral motion is structurally difficult."
+        },
+        "mb_transition": "Forward/backward transition occurs around MB \u2248 0.4-0.5. Below this, robot tends backward. Above, forward \u2014 but heading within the forward regime is chaotic.",
+        "key_finding": "Heading is controllable (any angle is reachable) but the control landscape has cliffs \u2014 consistent with bifurcation findings. Would require evolutionary optimization with heading fitness function, not smooth analytical steering."
       }
     },
     "efficiency_frontier": {

@@ -169,6 +169,8 @@ Per-step telemetry captures what endpoint measurements miss. Every gait has 400 
 
 **Efficiency is a property of structure.** The torque-displacement Pareto frontier contains only 6 of 58 moving gaits. Motif determines efficiency: `half_center_oscillator` (0.414) and `minimal_wiring` (0.230) dominate; `spin_torque` (0.017) is dead last. Efficiency correlates strongly with directional efficiency (r=0.70) — walking straight IS being efficient. Displacement barely correlates with torque (r=0.21) — high torque does not guarantee high displacement.
 
+**Heading is controllable but the landscape has cliffs.** Sweeping 83 configurations (MB ratio × cross-wiring asymmetry) achieves full 360° heading coverage, but the control surface is nonlinear and non-monotonic (CW-heading correlation = -0.14). The heading distribution is bimodal: a forward cluster (-30° to +30°) and a backward cluster (150°-180°). Pure lateral headings (60°-120°) are rare — structurally difficult for this body plan. Consistent with bifurcation findings: nearby parameters can produce wildly different headings.
+
 ## Efficiency Frontier
 
 Only 6 gaits are Pareto-optimal (no other gait beats them on both displacement AND torque):
