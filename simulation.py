@@ -11,7 +11,7 @@ from robot import ROBOT
 
 def safe_get_base_pose(body_id):
     try:
-        return safe_get_base_pose(body_id)
+        return p.getBasePositionAndOrientation(body_id)
     except Exception:
         return (0.0, 0.0, 0.0), (0.0, 0.0, 0.0, 1.0)
 
@@ -139,7 +139,7 @@ class SIMULATION:
 
         if getattr(self, 'use_gui', False):
             input('Done. Press Enter to close the GUI...')
-def __del__(self):
+    def __del__(self):
         try:
             p.disconnect()
         except Exception:
