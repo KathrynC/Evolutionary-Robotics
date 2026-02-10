@@ -49,7 +49,7 @@
     ],
     "weight_format": "Sensor\u2192motor weights [w03, w13, w23, w04, w14, w24] map 3 touch sensors to 2 joint motors via tanh activation. Cross-wiring [w34, w43, w33, w44] adds motor\u2192motor recurrent connections. Hidden neurons add intermediate computational layers.",
     "created": "2026-02-08",
-    "total_gaits": 113,
+    "total_gaits": 116,
     "all_time_records": {
       "displacement": {
         "positive": {

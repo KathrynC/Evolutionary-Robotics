@@ -1,6 +1,6 @@
 # Synapse Gait Zoo
 
-A catalog of 116 discovered gaits for a 3-link PyBullet robot, organized by structural motif, behavioral skill, and attractor dynamics. Each gait is a fixed-weight neural network (no learning at runtime) that produces a distinct locomotion style from the same 3-link body.
+A catalog of 116 discovered gaits for a 3-link PyBullet robot, organized by structural motif, behavioral tag, and attractor dynamics. Each gait is a fixed-weight neural network (no learning at runtime) that produces a distinct locomotion style from the same 3-link body.
 
 ## The Robot
 
@@ -15,9 +15,9 @@ A catalog of 116 discovered gaits for a 3-link PyBullet robot, organized by stru
 
 ## The Zoo
 
-**116 gaits across 11 categories, 13 structural motifs, 22 behavioral skills, 112 unique motif-skill profiles.**
+**116 gaits across 11 categories, 13 structural motifs, 22 behavioral tags, 112 unique motif-tag profiles.**
 
-All gaits and their weights are stored in `synapse_gait_zoo.json`. Full taxonomy (motifs, skills, per-gait features) is in `artifacts/gait_taxonomy.json`. Per-step telemetry (400 records/gait) is in `artifacts/telemetry/`. Videos are in `videos/`.
+All gaits and their weights are stored in `synapse_gait_zoo.json`. Full taxonomy (motifs, behavioral tags, per-gait features) is in `artifacts/gait_taxonomy.json`. Per-step telemetry (400 records/gait) is in `artifacts/telemetry/`. Videos are in `videos/`.
 
 ### Categories
 
@@ -213,9 +213,9 @@ Per-step telemetry captures what endpoint measurements miss. Every gait has 400 
 
 ## Gait Taxonomy (v2.0)
 
-Every gait is classified along two axes: **structural motifs** (what the network looks like) and **behavioral skills** (what the robot does). The full taxonomy is in `artifacts/gait_taxonomy.json`.
+Every gait is classified along two axes: **structural motifs** (what the network looks like) and **behavioral tags** (what the robot does). The full taxonomy is in `artifacts/gait_taxonomy.json`.
 
-Of 116 gaits, 112 have unique motif-skill profiles. The 4 shared profiles reveal convergent evolution across categories.
+Of 116 gaits, 112 have unique motif-tag profiles. The 4 shared profiles reveal convergent evolution across categories.
 
 ### Structural Motifs (13)
 
@@ -241,7 +241,7 @@ Of 116 gaits, 112 have unique motif-skill profiles. The 4 shared profiles reveal
 | F4_same_sign_feedback | 4 | Both self-feedbacks share the same sign. Sustaining rather than alternating. |
 | F5_hidden_oscillator | 3 | Oscillation from hidden neuron cross-inhibition. A central pattern generator. |
 
-### Behavioral Skills (22)
+### Behavioral Tags (22)
 
 **Locomotion** — where does the robot go?
 
@@ -301,7 +301,7 @@ Of 116 gaits, 112 have unique motif-skill profiles. The 4 shared profiles reveal
 
 **Crab walkers reverse the cross-wiring rule.** Normal gaits have w43 negative (inhibitory cross-feedback). Crab walkers flip it positive (+0.16 vs -0.11). They also pump 76% of energy into J0 (back leg) — the most asymmetric energy budget of any category. Evolved crabs put 84-94% of energy into J0.
 
-**Convergent evolution is real.** 4 pairs of gaits from different categories share identical motif-skill profiles. deleuze_bwo (persona) and minsky (CPG) have nearly identical displacement (21.66 vs 21.79), joint ranges, and velocity profiles despite being designed independently with different intent. foucault_heterotopia (persona) matches rubato (time_signature). The physics of the body constrains the space of possible behaviors.
+**Convergent evolution is real.** 4 pairs of gaits from different categories share identical motif-tag profiles. deleuze_bwo (persona) and minsky (CPG) have nearly identical displacement (21.66 vs 21.79), joint ranges, and velocity profiles despite being designed independently with different intent. foucault_heterotopia (persona) matches rubato (time_signature). The physics of the body constrains the space of possible behaviors.
 
 **The leaderboard has a recipe.** All top-10 gaits are S1_strider + S2_sprinter. 80% are never-settlers. 70% are E1_efficient. F4_same_sign_feedback and M7_hidden_layer are 33x enriched in the top 10 vs population. The champion formula: full network + either hidden oscillator or same-sign feedback + never settling + high straightness.
 
@@ -374,7 +374,7 @@ Renders all configured gaits to `videos/` using offscreen PyBullet rendering pip
 | File | Description |
 |---|---|
 | `synapse_gait_zoo.json` | Complete catalog: 116 gaits, weights, measurements across 11 categories |
-| `artifacts/gait_taxonomy.json` | Taxonomy v2.0: 13 motifs, 22 skills, per-gait feature vectors |
+| `artifacts/gait_taxonomy.json` | Taxonomy v2.0: 13 motifs, 22 behavioral tags, per-gait feature vectors |
 | `artifacts/telemetry/` | Per-step telemetry for all 116 gaits (400 JSONL records + summary.json each) |
 | `artifacts/discovery_dig_full116.txt` | Deep analysis output: 13 digs across the full zoo |
 | `record_videos.py` | Video recording infrastructure (offscreen render to ffmpeg) |
