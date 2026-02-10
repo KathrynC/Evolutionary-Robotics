@@ -49,7 +49,7 @@
     ],
     "weight_format": "Sensor\u2192motor weights [w03, w13, w23, w04, w14, w24] map 3 touch sensors to 2 joint motors via tanh activation. Cross-wiring [w34, w43, w33, w44] adds motor\u2192motor recurrent connections. Hidden neurons add intermediate computational layers.",
     "created": "2026-02-08",
-    "total_gaits": 51,
+    "total_gaits": 55,
     "all_time_records": {
       "displacement": {
         "positive": {
@@ -89,6 +89,40 @@
         "name": "32_carry_trade",
         "dx_sensitivity": 1340,
         "note": "Highest total \u2202DX/\u2202w. Lives on the sharpest knife-edge in the zoo."
+      },
+      "lateral": {
+        "most_lateral": {
+          "name": "35_evolved_curie",
+          "dy": -17.5,
+          "note": "Walking at heading -36\u00b0, true distance 29.93 vs DX 24.28."
+        },
+        "most_crab": {
+          "name": "2_rucker",
+          "dy": 9.41,
+          "dx": -6.94,
+          "heading": 126.4,
+          "note": "Walks more sideways than forward. |DY|/|DX| = 1.36."
+        },
+        "straightest": {
+          "name": "18_curie",
+          "dy": 0.05,
+          "dx": 23.73,
+          "note": "Nearly perfect straight-line walk at DX=+23.73."
+        }
+      },
+      "bifurcation": {
+        "sharpest": {
+          "name": "51_bouncer_detonated",
+          "note": "10% weight change (w24: 1.0\u21920.9) converts DX=0/YAW=0 to YAW=-188\u00b0."
+        }
+      },
+      "pareto_walk_spin": {
+        "best_score": {
+          "name": "48_curie_dervish",
+          "pareto_score": 2886,
+          "dx": 24.07,
+          "yaw_deg": -119.9
+        }
       }
     }
   },
@@ -116,7 +150,10 @@
             "yaw_total": 5397.68,
             "hottest_dx_weight": "w14",
             "hottest_yaw_weight": "w24"
-          }
+          },
+          "dy": -0.35,
+          "heading_deg": -172.4,
+          "true_distance": 2.69
         },
         "2_rucker": {
           "weights": {
@@ -137,7 +174,10 @@
             "yaw_total": 3285.88,
             "hottest_dx_weight": "w24",
             "hottest_yaw_weight": "w24"
-          }
+          },
+          "dy": 9.41,
+          "heading_deg": 126.4,
+          "true_distance": 11.69
         },
         "3_mordvintsev": {
           "weights": {
@@ -159,7 +199,10 @@
             "yaw_total": 417.3,
             "hottest_dx_weight": "w23",
             "hottest_yaw_weight": "w23"
-          }
+          },
+          "dy": -0.07,
+          "heading_deg": -0.4,
+          "true_distance": 9.47
         },
         "4_sayama": {
           "weights": {
@@ -180,7 +223,10 @@
             "yaw_total": 5086.53,
             "hottest_dx_weight": "w04",
             "hottest_yaw_weight": "w13"
-          }
+          },
+          "dy": -4.58,
+          "heading_deg": -162.5,
+          "true_distance": 15.27
         },
         "5_pelton": {
           "weights": {
@@ -201,7 +247,10 @@
             "yaw_total": 6649.8,
             "hottest_dx_weight": "w03",
             "hottest_yaw_weight": "w24"
-          }
+          },
+          "dy": 6.32,
+          "heading_deg": 10.3,
+          "true_distance": 35.27
         },
         "6_fuller_trimtab": {
           "weights": {
@@ -223,7 +272,10 @@
             "yaw_total": 498.9,
             "hottest_dx_weight": "w23",
             "hottest_yaw_weight": "w14"
-          }
+          },
+          "dy": -0.05,
+          "heading_deg": -0.5,
+          "true_distance": 5.21
         },
         "7_fuller_dymaxion": {
           "weights": {
@@ -246,7 +298,10 @@
             "yaw_total": 571.62,
             "hottest_dx_weight": "w23",
             "hottest_yaw_weight": "w24"
-          }
+          },
+          "dy": -0.03,
+          "heading_deg": -0.7,
+          "true_distance": 2.46
         },
         "8_conway_glider": {
           "weights": {
@@ -267,7 +322,10 @@
             "yaw_total": 1251.77,
             "hottest_dx_weight": "w24",
             "hottest_yaw_weight": "w14"
-          }
+          },
+          "dy": -0.32,
+          "heading_deg": -12.6,
+          "true_distance": 1.49
         },
         "9_mandelbrot": {
           "weights": {
@@ -289,7 +347,10 @@
             "yaw_total": 992.0,
             "hottest_dx_weight": "w24",
             "hottest_yaw_weight": "w13"
-          }
+          },
+          "dy": -0.4,
+          "heading_deg": -170.5,
+          "true_distance": 2.45
         },
         "10_tesla_3phase": {
           "weights": {
@@ -310,7 +371,10 @@
             "yaw_total": 3156.03,
             "hottest_dx_weight": "w13",
             "hottest_yaw_weight": "w03"
-          }
+          },
+          "dy": 15.49,
+          "heading_deg": 139.8,
+          "true_distance": 23.99
         },
         "11_taleb_antifrag": {
           "weights": {
@@ -331,7 +395,10 @@
             "yaw_total": 2473.07,
             "hottest_dx_weight": "w23",
             "hottest_yaw_weight": "w24"
-          }
+          },
+          "dy": -0.12,
+          "heading_deg": -1.5,
+          "true_distance": 4.79
         },
         "12_lorenz_A": {
           "weights": {
@@ -352,7 +419,10 @@
             "yaw_total": 3818.22,
             "hottest_dx_weight": "w14",
             "hottest_yaw_weight": "w13"
-          }
+          },
+          "dy": -2.09,
+          "heading_deg": -165.2,
+          "true_distance": 8.19
         },
         "13_lorenz_B": {
           "weights": {
@@ -374,7 +444,10 @@
             "yaw_total": 3700.28,
             "hottest_dx_weight": "w23",
             "hottest_yaw_weight": "w14"
-          }
+          },
+          "dy": -2.58,
+          "heading_deg": -102.3,
+          "true_distance": 2.64
         },
         "14_lovelace": {
           "weights": {
@@ -395,7 +468,10 @@
             "yaw_total": 2953.43,
             "hottest_dx_weight": "w04",
             "hottest_yaw_weight": "w14"
-          }
+          },
+          "dy": 1.51,
+          "heading_deg": 21.0,
+          "true_distance": 4.22
         },
         "15_noether": {
           "weights": {
@@ -416,7 +492,10 @@
             "yaw_total": 3513.94,
             "hottest_dx_weight": "w14",
             "hottest_yaw_weight": "w13"
-          }
+          },
+          "dy": -0.48,
+          "heading_deg": -178.7,
+          "true_distance": 21.65
         },
         "16_franklin": {
           "weights": {
@@ -437,7 +516,10 @@
             "yaw_total": 2493.73,
             "hottest_dx_weight": "w04",
             "hottest_yaw_weight": "w04"
-          }
+          },
+          "dy": 10.24,
+          "heading_deg": 149.7,
+          "true_distance": 20.27
         },
         "17_lamarr": {
           "weights": {
@@ -458,7 +540,10 @@
             "yaw_total": 9216.51,
             "hottest_dx_weight": "w24",
             "hottest_yaw_weight": "w24"
-          }
+          },
+          "dy": 1.31,
+          "heading_deg": 165.0,
+          "true_distance": 5.03
         },
         "18_curie": {
           "weights": {
@@ -479,7 +564,10 @@
             "yaw_total": 6264.08,
             "hottest_dx_weight": "w03",
             "hottest_yaw_weight": "w14"
-          }
+          },
+          "dy": 0.05,
+          "heading_deg": 0.1,
+          "true_distance": 23.73
         },
         "19_haraway": {
           "weights": {
@@ -501,7 +589,10 @@
             "yaw_total": 942.36,
             "hottest_dx_weight": "w03",
             "hottest_yaw_weight": "w04"
-          }
+          },
+          "dy": 0.39,
+          "heading_deg": 5.7,
+          "true_distance": 3.91
         },
         "20_mcclintock": {
           "weights": {
@@ -523,7 +614,10 @@
             "yaw_total": 398.68,
             "hottest_dx_weight": "w03",
             "hottest_yaw_weight": "w24"
-          }
+          },
+          "dy": -1.01,
+          "heading_deg": -10.4,
+          "true_distance": 5.64
         }
       }
     },
@@ -555,7 +649,10 @@
             "yaw_total": 3854.32,
             "hottest_dx_weight": "w23",
             "hottest_yaw_weight": "w13"
-          }
+          },
+          "dy": -7.12,
+          "heading_deg": -170.7,
+          "true_distance": 43.81
         },
         "22_curie_amplified": {
           "weights": {
@@ -581,7 +678,10 @@
             "yaw_total": 6465.21,
             "hottest_dx_weight": "w43",
             "hottest_yaw_weight": "w03"
-          }
+          },
+          "dy": -1.6,
+          "heading_deg": -2.5,
+          "true_distance": 37.17
         },
         "23_hodgkin_huxley": {
           "weights": {
@@ -607,7 +707,10 @@
             "yaw_total": 2255.53,
             "hottest_dx_weight": "w33",
             "hottest_yaw_weight": "w14"
-          }
+          },
+          "dy": -7.2,
+          "heading_deg": -166.4,
+          "true_distance": 30.65
         },
         "24_wolfram_flipped": {
           "weights": {
@@ -633,7 +736,10 @@
             "yaw_total": 2857.8,
             "hottest_dx_weight": "w33",
             "hottest_yaw_weight": "w04"
-          }
+          },
+          "dy": 0.04,
+          "heading_deg": 179.4,
+          "true_distance": 3.69
         },
         "25_minsky": {
           "weights": {
@@ -659,7 +765,10 @@
             "yaw_total": 4348.0,
             "hottest_dx_weight": "w04",
             "hottest_yaw_weight": "w23"
-          }
+          },
+          "dy": -3.15,
+          "heading_deg": -171.7,
+          "true_distance": 21.76
         },
         "26_fitzhugh_nagumo": {
           "weights": {
@@ -685,7 +794,10 @@
             "yaw_total": 8861.77,
             "hottest_dx_weight": "w34",
             "hottest_yaw_weight": "w34"
-          }
+          },
+          "dy": 9.41,
+          "heading_deg": 32.9,
+          "true_distance": 17.31
         },
         "27_wiener": {
           "weights": {
@@ -711,7 +823,10 @@
             "yaw_total": 3007.18,
             "hottest_dx_weight": "w43",
             "hottest_yaw_weight": "w24"
-          }
+          },
+          "dy": -1.43,
+          "heading_deg": -5.8,
+          "true_distance": 14.16
         }
       }
     },
@@ -744,7 +859,10 @@
             "yaw_total": 2827.48,
             "hottest_dx_weight": "w23",
             "hottest_yaw_weight": "w03"
-          }
+          },
+          "dy": -6.06,
+          "heading_deg": -155.2,
+          "true_distance": 14.46
         },
         "29_fat_tails": {
           "weights": {
@@ -771,7 +889,10 @@
             "yaw_total": 4541.8,
             "hottest_dx_weight": "w44",
             "hottest_yaw_weight": "w13"
-          }
+          },
+          "dy": 5.74,
+          "heading_deg": 154.5,
+          "true_distance": 13.33
         },
         "30_garch": {
           "weights": {
@@ -797,7 +918,10 @@
             "yaw_total": 6380.65,
             "hottest_dx_weight": "w23",
             "hottest_yaw_weight": "w03"
-          }
+          },
+          "dy": 9.54,
+          "heading_deg": 157.2,
+          "true_distance": 24.62
         },
         "31_gamma_squeeze": {
           "weights": {
@@ -824,7 +948,10 @@
             "yaw_total": 10574.01,
             "hottest_dx_weight": "w24",
             "hottest_yaw_weight": "w34"
-          }
+          },
+          "dy": 1.41,
+          "heading_deg": 19.5,
+          "true_distance": 4.21
         },
         "32_carry_trade": {
           "weights": {
@@ -850,7 +977,10 @@
             "yaw_total": 11127.33,
             "hottest_dx_weight": "w43",
             "hottest_yaw_weight": "w03"
-          }
+          },
+          "dy": -2.07,
+          "heading_deg": -3.7,
+          "true_distance": 32.29
         },
         "33_mean_reversion": {
           "weights": {
@@ -876,7 +1006,10 @@
             "yaw_total": 9834.36,
             "hottest_dx_weight": "w24",
             "hottest_yaw_weight": "w13"
-          }
+          },
+          "dy": 2.99,
+          "heading_deg": 81.5,
+          "true_distance": 3.02
         },
         "34_zipf": {
           "weights": {
@@ -902,7 +1035,10 @@
             "yaw_total": 1885.51,
             "hottest_dx_weight": "w04",
             "hottest_yaw_weight": "w24"
-          }
+          },
+          "dy": 9.95,
+          "heading_deg": 154.2,
+          "true_distance": 22.85
         }
       }
     },
@@ -936,7 +1072,10 @@
             "yaw_total": 10483.63,
             "hottest_dx_weight": "w23",
             "hottest_yaw_weight": "w44"
-          }
+          },
+          "dy": -17.5,
+          "heading_deg": -35.8,
+          "true_distance": 29.93
         }
       }
     },
@@ -968,7 +1107,10 @@
             "yaw_total": 3625.44,
             "hottest_dx_weight": "w43",
             "hottest_yaw_weight": "w04"
-          }
+          },
+          "dy": 4.95,
+          "heading_deg": 169.9,
+          "true_distance": 28.15
         },
         "37_hemiola": {
           "weights": {
@@ -994,7 +1136,10 @@
             "yaw_total": 4373.42,
             "hottest_dx_weight": "w13",
             "hottest_yaw_weight": "w24"
-          }
+          },
+          "dy": 9.45,
+          "heading_deg": 22.7,
+          "true_distance": 24.52
         },
         "38_heavy_waltz": {
           "weights": {
@@ -1020,7 +1165,10 @@
             "yaw_total": 2490.85,
             "hottest_dx_weight": "w43",
             "hottest_yaw_weight": "w23"
-          }
+          },
+          "dy": -4.99,
+          "heading_deg": -165.5,
+          "true_distance": 19.94
         },
         "39_bulgarian": {
           "weights": {
@@ -1046,7 +1194,10 @@
             "yaw_total": 2224.16,
             "hottest_dx_weight": "w04",
             "hottest_yaw_weight": "w04"
-          }
+          },
+          "dy": -5.58,
+          "heading_deg": -18.7,
+          "true_distance": 17.43
         },
         "40_rubato": {
           "weights": {
@@ -1072,7 +1223,10 @@
             "yaw_total": 1989.37,
             "hottest_dx_weight": "w23",
             "hottest_yaw_weight": "w34"
-          }
+          },
+          "dy": -1.04,
+          "heading_deg": -3.8,
+          "true_distance": 15.65
         },
         "41_blues_shuffle": {
           "weights": {
@@ -1098,7 +1252,10 @@
             "yaw_total": 8229.03,
             "hottest_dx_weight": "w33",
             "hottest_yaw_weight": "w04"
-          }
+          },
+          "dy": 5.71,
+          "heading_deg": 27.8,
+          "true_distance": 12.24
         },
         "42_polyrhythm": {
           "weights": {
@@ -1124,7 +1281,10 @@
             "yaw_total": 3229.42,
             "hottest_dx_weight": "w04",
             "hottest_yaw_weight": "w04"
-          }
+          },
+          "dy": -5.11,
+          "heading_deg": -26.6,
+          "true_distance": 11.43
         }
       }
     },
@@ -1218,7 +1378,10 @@
           "n_hidden": 2,
           "video": "43_hidden_cpg_champion.mp4",
           "yaw_deg": -31.6,
-          "max_tilt": 40
+          "max_tilt": 40,
+          "dy": -2.88,
+          "heading_deg": -75.9,
+          "true_distance": 2.97
         }
       }
     },
@@ -1313,7 +1476,10 @@
           "n_synapses": 8,
           "n_hidden": 2,
           "architecture": "hidden",
-          "video": "44_spinner_champion.mp4"
+          "video": "44_spinner_champion.mp4",
+          "dy": 0.85,
+          "heading_deg": 73.9,
+          "true_distance": 0.88
         },
         "45_spinner_stable": {
           "neurons": [
@@ -1403,7 +1569,10 @@
           "n_synapses": 8,
           "n_hidden": 2,
           "architecture": "hidden",
-          "video": "45_spinner_stable.mp4"
+          "video": "45_spinner_stable.mp4",
+          "dy": 1.08,
+          "heading_deg": 165.9,
+          "true_distance": 4.44
         },
         "46_spinner_crosswired": {
           "weights": {
@@ -1431,7 +1600,10 @@
             "yaw_total": 9864.66,
             "hottest_dx_weight": "w03",
             "hottest_yaw_weight": "w13"
-          }
+          },
+          "dy": -0.16,
+          "heading_deg": -17.3,
+          "true_distance": 0.55
         },
         "47_spinner_6synapse": {
           "weights": {
@@ -1455,7 +1627,10 @@
             "yaw_total": 6057.28,
             "hottest_dx_weight": "w03",
             "hottest_yaw_weight": "w24"
-          }
+          },
+          "dy": -1.87,
+          "heading_deg": -139.0,
+          "true_distance": 2.85
         }
       }
     },
@@ -1482,7 +1657,10 @@
             "yaw_total": 17149.39,
             "hottest_dx_weight": "w23",
             "hottest_yaw_weight": "w23"
-          }
+          },
+          "dy": -2.02,
+          "heading_deg": -110.5,
+          "true_distance": 2.16
         },
         "2_flipped": {
           "weights": {
@@ -1503,7 +1681,10 @@
             "yaw_total": 3120.21,
             "hottest_dx_weight": "w23",
             "hottest_yaw_weight": "w03"
-          }
+          },
+          "dy": 2.92,
+          "heading_deg": 160.6,
+          "true_distance": 8.77
         },
         "5_gallop": {
           "weights": {
@@ -1524,7 +1705,10 @@
             "yaw_total": 9165.89,
             "hottest_dx_weight": "w13",
             "hottest_yaw_weight": "w14"
-          }
+          },
+          "dy": -0.46,
+          "heading_deg": -174.1,
+          "true_distance": 4.46
         },
         "5_bouncer": {
           "weights": {
@@ -1545,7 +1729,102 @@
             "yaw_total": 9412.92,
             "hottest_dx_weight": "w03",
             "hottest_yaw_weight": "w23"
-          }
+          },
+          "dy": 0.0,
+          "heading_deg": 72.5,
+          "true_distance": 0.0
+        }
+      }
+    },
+    "pareto_walk_spin": {
+      "description": "Gaits that simultaneously walk AND spin \u2014 occupying the Pareto frontier between displacement and rotation. Found by exhaustive cross-wiring search over Curie, Noether, and Pelton bases. Score = |DX| * |YAW|.",
+      "architecture": "crosswired_10",
+      "gaits": {
+        "48_curie_dervish": {
+          "weights": {
+            "w03": -0.3,
+            "w13": -0.9,
+            "w23": -0.3,
+            "w04": 0.9,
+            "w14": 0.3,
+            "w24": 0.9,
+            "w34": 0.0,
+            "w43": 0.7,
+            "w33": 0.5,
+            "w44": -0.3
+          },
+          "description": "PARETO CHAMPION \u2014 Curie base + strong reversed excitation (w43=+0.7) + asymmetric self-feedback. Walks +24m forward while spinning 120\u00b0 counterclockwise. The whirling dervish: fastest walk-and-spin in the zoo.",
+          "dx": 24.07,
+          "dy": -20.16,
+          "yaw_deg": -119.9,
+          "max_tilt": 36,
+          "n_synapses": 9,
+          "pareto_score": 2886
+        },
+        "49_pelton_pirouette": {
+          "weights": {
+            "w03": -0.3,
+            "w13": -1.0,
+            "w23": -0.3,
+            "w04": 1.0,
+            "w14": 0.3,
+            "w24": 1.0,
+            "w34": 0.3,
+            "w43": -0.5,
+            "w33": 0.5,
+            "w44": -0.5
+          },
+          "description": "Pelton base + mutual inhibition CPG + strong asymmetric self-feedback. Walks +11m while completing nearly a half revolution (+174\u00b0). The pirouette: most spin of any walking gait.",
+          "dx": 11.12,
+          "dy": 1.05,
+          "yaw_deg": 173.9,
+          "max_tilt": 40,
+          "n_synapses": 10,
+          "pareto_score": 1934
+        },
+        "50_noether_cyclone": {
+          "weights": {
+            "w03": -0.7,
+            "w13": -0.5,
+            "w23": -0.3,
+            "w04": 0.3,
+            "w14": 0.5,
+            "w24": 0.7,
+            "w34": 0.3,
+            "w43": 0.3,
+            "w33": 0.5,
+            "w44": -0.5
+          },
+          "description": "Noether base + mutual EXCITATION (w34=+0.3, w43=+0.3 \u2014 rare positive feedback) + self-feedback. Walks backward -30m while spinning +67\u00b0. The backward cyclone.",
+          "dx": -30.16,
+          "dy": -13.51,
+          "yaw_deg": 67.0,
+          "max_tilt": 38,
+          "n_synapses": 10,
+          "pareto_score": 2022
+        }
+      }
+    },
+    "bifurcation_gaits": {
+      "description": "Gaits discovered by pushing configurations near bifurcation boundaries. The bouncer (perfectly still, yaw_sensitivity=9413) was converted to a half-rotation spinner by changing ONE weight by 0.1. These demonstrate extreme sensitivity at phase transition boundaries.",
+      "architecture": "standard_6",
+      "gaits": {
+        "51_bouncer_detonated": {
+          "weights": {
+            "w03": 0.0,
+            "w13": 1.0,
+            "w23": -1.0,
+            "w04": 0.0,
+            "w14": -1.0,
+            "w24": 0.9
+          },
+          "description": "BIFURCATION CHAMPION \u2014 the bouncer [0,+1,-1,0,-1,+1] is perfectly still (DX=0, YAW=0). Reducing w24 by 0.1 (from +1.0 to +0.9) produces YAW=-188\u00b0. A 10% change in one synapse converts a stationary robot into a half-rotation spinner. The sharpest behavioral bifurcation in the zoo.",
+          "dx": 7.54,
+          "dy": -2.76,
+          "yaw_deg": -187.7,
+          "max_tilt": 47,
+          "n_synapses": 4,
+          "note": "Parent config (5_bouncer) has DX=0, YAW=0, tilt=0. Delta: w24 changed by -0.1."
         }
       }
     }
@@ -1589,107 +1868,107 @@
     },
     {
       "rank": 6,
+      "name": "50_noether_cyclone",
+      "dx": -30.16,
+      "category": "",
+      "architecture": ""
+    },
+    {
+      "rank": 7,
       "name": "23_hodgkin_huxley",
       "dx": -29.79,
       "category": "cross_wired_cpg",
       "architecture": "5 neurons, 10 synapses"
     },
     {
-      "rank": 7,
+      "rank": 8,
       "name": "36_take_five",
       "dx": -27.72,
       "category": "time_signatures",
       "architecture": "5 neurons, 10 synapses"
     },
     {
-      "rank": 8,
+      "rank": 9,
       "name": "35_evolved_curie",
       "dx": 24.28,
       "category": "evolved",
       "architecture": "5 neurons, 8 synapses (unclamped)"
     },
     {
-      "rank": 9,
+      "rank": 10,
+      "name": "48_curie_dervish",
+      "dx": 24.07,
+      "category": "",
+      "architecture": ""
+    },
+    {
+      "rank": 11,
       "name": "18_curie",
       "dx": 23.73,
       "category": "persona_gaits",
       "architecture": "5 neurons, 6 synapses"
     },
     {
-      "rank": 10,
+      "rank": 12,
       "name": "30_garch",
       "dx": -22.69,
       "category": "market_mathematics",
       "architecture": "5 neurons, 8 synapses"
     },
     {
-      "rank": 11,
+      "rank": 13,
       "name": "37_hemiola",
       "dx": 22.63,
       "category": "time_signatures",
       "architecture": "5 neurons, 6 synapses"
     },
     {
-      "rank": 12,
+      "rank": 14,
       "name": "15_noether",
       "dx": -21.65,
       "category": "persona_gaits",
       "architecture": "5 neurons, 6 synapses"
     },
     {
-      "rank": 13,
+      "rank": 15,
       "name": "25_minsky",
       "dx": -21.53,
       "category": "cross_wired_cpg",
       "architecture": "5 neurons, 10 synapses"
     },
     {
-      "rank": 14,
+      "rank": 16,
       "name": "34_zipf",
       "dx": -20.57,
       "category": "market_mathematics",
       "architecture": "5 neurons, 8 synapses"
     },
     {
-      "rank": 15,
+      "rank": 17,
       "name": "38_heavy_waltz",
       "dx": -19.31,
       "category": "time_signatures",
       "architecture": "5 neurons, 10 synapses"
     },
     {
-      "rank": 16,
+      "rank": 18,
       "name": "10_tesla_3phase",
       "dx": -18.33,
       "category": "persona_gaits",
       "architecture": "5 neurons, 4 synapses"
     },
     {
-      "rank": 17,
+      "rank": 19,
       "name": "16_franklin",
       "dx": -17.49,
       "category": "persona_gaits",
       "architecture": "5 neurons, 6 synapses"
     },
     {
-      "rank": 18,
+      "rank": 20,
       "name": "39_bulgarian",
       "dx": 16.52,
       "category": "time_signatures",
-      "architecture": "5 neurons, 6 synapses"
-    },
-    {
-      "rank": 19,
-      "name": "40_rubato",
-      "dx": 15.61,
-      "category": "time_signatures",
-      "architecture": "5 neurons, 10 synapses"
-    },
-    {
-      "rank": 20,
-      "name": "4_sayama",
-      "dx": -14.56,
-      "category": "persona_gaits",
       "architecture": "5 neurons, 6 synapses"
     }
   ],
@@ -1943,6 +2222,32 @@
           "28_flash_crash"
         ],
         "behavior": "Both motors reinforce each other. Only mutual-excitation topology in the zoo."
+      },
+      "walk_and_spin": {
+        "signature": "Strong base pattern (Curie/Noether/Pelton) + cross-wiring that creates both translational and rotational drive simultaneously",
+        "members": [
+          "48_curie_dervish",
+          "49_pelton_pirouette",
+          "50_noether_cyclone"
+        ],
+        "behavior": "Simultaneous walking and spinning. The Pareto frontier spans DX 11-27 and YAW 60-177\u00b0. Score = |DX| * |YAW|."
+      },
+      "crab_walk": {
+        "signature": "Lateral (Y) displacement exceeds forward (X) displacement. Often involves golden-ratio or non-standard weight patterns.",
+        "members": [
+          "2_rucker",
+          "33_mean_reversion",
+          "13_lorenz_B"
+        ],
+        "behavior": "Walking sideways. Rucker (golden ratio weights) has heading +126\u00b0, moving 1.36x more laterally than forward."
+      },
+      "bifurcation_boundary": {
+        "signature": "Configuration sitting exactly at a phase transition. Tiny perturbation causes qualitative behavior change.",
+        "members": [
+          "5_bouncer",
+          "51_bouncer_detonated"
+        ],
+        "behavior": "The bouncer is perfectly still. Reducing w24 by 10% detonates it into a 188\u00b0 spinner. The sharpest behavioral cliff in the zoo."
       }
     }
   },
