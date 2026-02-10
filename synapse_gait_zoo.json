@@ -49,7 +49,7 @@
     ],
     "weight_format": "Sensor\u2192motor weights [w03, w13, w23, w04, w14, w24] map 3 touch sensors to 2 joint motors via tanh activation. Cross-wiring [w34, w43, w33, w44] adds motor\u2192motor recurrent connections. Hidden neurons add intermediate computational layers.",
     "created": "2026-02-08",
-    "total_gaits": 55,
+    "total_gaits": 59,
     "all_time_records": {
       "displacement": {
         "positive": {
@@ -92,16 +92,18 @@
       },
       "lateral": {
         "most_lateral": {
-          "name": "35_evolved_curie",
-          "dy": -17.5,
-          "note": "Walking at heading -36\u00b0, true distance 29.93 vs DX 24.28."
+          "name": "52_curie_crab",
+          "dy": -28.79,
+          "dx": 24.44,
+          "note": "Walks at heading -50\u00b0, true distance 37.76. Dethroned evolved_curie (DY=-17.50)."
         },
         "most_crab": {
-          "name": "2_rucker",
-          "dy": 9.41,
-          "dx": -6.94,
-          "heading": 126.4,
-          "note": "Walks more sideways than forward. |DY|/|DX| = 1.36."
+          "name": "54_rucker_sidewinder",
+          "dy": 15.19,
+          "dx": 5.7,
+          "heading": 69.4,
+          "crab_ratio": 2.66,
+          "note": "Walks 2.66x more sideways than forward. Heading +69\u00b0."
         },
         "straightest": {
           "name": "18_curie",
@@ -124,7 +126,117 @@
           "yaw_deg": -119.9
         }
       }
-    }
+    },
+    "crab_leaderboard": [
+      {
+        "rank": 1,
+        "name": "52_curie_crab",
+        "dy": -28.79,
+        "dx": 24.44,
+        "heading": -49.7,
+        "crab_ratio": 1.18,
+        "note": "NEW \u2014 evolved Curie + cross-wiring"
+      },
+      {
+        "rank": 2,
+        "name": "53_rucker_landcrab",
+        "dy": 27.05,
+        "dx": 11.46,
+        "heading": 67.0,
+        "crab_ratio": 2.36,
+        "note": "NEW \u2014 golden ratio + w43=+0.7"
+      },
+      {
+        "rank": 3,
+        "name": "35_evolved_curie",
+        "dy": -17.5,
+        "dx": 24.28,
+        "heading": -35.8,
+        "crab_ratio": 0.72,
+        "note": "Existing \u2014 massive diagonal walker"
+      },
+      {
+        "rank": 4,
+        "name": "10_tesla_3phase",
+        "dy": 15.49,
+        "dx": -18.33,
+        "heading": 139.8,
+        "crab_ratio": 0.85,
+        "note": "Existing \u2014 backward diagonal"
+      },
+      {
+        "rank": 5,
+        "name": "54_rucker_sidewinder",
+        "dy": 15.19,
+        "dx": 5.7,
+        "heading": 69.4,
+        "crab_ratio": 2.66,
+        "note": "NEW \u2014 highest crab ratio of fast walkers"
+      },
+      {
+        "rank": 6,
+        "name": "55_skew_crab",
+        "dy": -13.71,
+        "dx": 9.78,
+        "heading": -54.5,
+        "crab_ratio": 1.4,
+        "note": "NEW \u2014 novel skew-drive base"
+      },
+      {
+        "rank": 7,
+        "name": "16_franklin",
+        "dy": 10.24,
+        "dx": -17.49,
+        "heading": 149.7,
+        "crab_ratio": 0.59,
+        "note": "Existing"
+      },
+      {
+        "rank": 8,
+        "name": "34_zipf",
+        "dy": 9.95,
+        "dx": -20.57,
+        "heading": 154.2,
+        "crab_ratio": 0.48,
+        "note": "Existing"
+      },
+      {
+        "rank": 9,
+        "name": "30_garch",
+        "dy": 9.54,
+        "dx": -22.69,
+        "heading": 157.2,
+        "crab_ratio": 0.42,
+        "note": "Existing"
+      },
+      {
+        "rank": 10,
+        "name": "37_hemiola",
+        "dy": 9.45,
+        "dx": 22.63,
+        "heading": 22.7,
+        "crab_ratio": 0.42,
+        "note": "Existing"
+      },
+      {
+        "rank": 11,
+        "name": "2_rucker",
+        "dy": 9.41,
+        "dx": -6.94,
+        "heading": 126.4,
+        "crab_ratio": 1.36,
+        "note": "Existing \u2014 original king crab"
+      },
+      {
+        "rank": 12,
+        "name": "26_fitzhugh_nagumo",
+        "dy": 9.41,
+        "dx": 14.52,
+        "heading": 32.9,
+        "crab_ratio": 0.65,
+        "note": "Existing"
+      }
+    ]
   },
   "categories": {
     "persona_gaits": {
@@ -1827,6 +1939,104 @@
           "note": "Parent config (5_bouncer) has DX=0, YAW=0, tilt=0. Delta: w24 changed by -0.1."
         }
       }
+    },
+    "crab_walkers": {
+      "description": "Gaits that walk more sideways (Y) than forward (X). Found by cross-wiring search over crab-prone bases (Rucker, mean_reversion, evolved_curie, novel asymmetric). Ranked by |DY|.",
+      "architecture": "crosswired_10",
+      "gaits": {
+        "52_curie_crab": {
+          "weights": {
+            "w03": -0.3,
+            "w13": -0.85,
+            "w23": -0.26,
+            "w04": 0.85,
+            "w14": 0.26,
+            "w24": 0.85,
+            "w34": -0.5,
+            "w43": 0.5,
+            "w33": 0,
+            "w44": 0
+          },
+          "description": "CRAB CHAMPION \u2014 evolved Curie base + inhibit-excite cross-wiring. Walks +24m forward AND -29m sideways simultaneously. Heading -50\u00b0. The most lateral displacement in the zoo.",
+          "dx": 24.44,
+          "dy": -28.79,
+          "true_distance": 37.76,
+          "heading_deg": -49.7,
+          "yaw_deg": -61.4,
+          "max_tilt": 29,
+          "n_synapses": 8,
+          "crab_ratio": 1.18
+        },
+        "53_rucker_landcrab": {
+          "weights": {
+            "w03": -0.618,
+            "w13": -1.0,
+            "w23": -0.618,
+            "w04": 1.0,
+            "w14": 0.618,
+            "w24": 1.0,
+            "w34": 0.0,
+            "w43": 0.7,
+            "w33": 0,
+            "w44": 0
+          },
+          "description": "Golden-ratio Rucker base + strong reversed excitation (w43=+0.7). Walks +11m forward and +27m sideways. Heading +67\u00b0. The highest pure lateral displacement.",
+          "dx": 11.46,
+          "dy": 27.05,
+          "true_distance": 29.38,
+          "heading_deg": 67.0,
+          "yaw_deg": 81.7,
+          "max_tilt": 37,
+          "n_synapses": 7,
+          "crab_ratio": 2.36
+        },
+        "54_rucker_sidewinder": {
+          "weights": {
+            "w03": -0.618,
+            "w13": -1.0,
+            "w23": -0.618,
+            "w04": 1.0,
+            "w14": 0.618,
+            "w24": 1.0,
+            "w34": -0.3,
+            "w43": 0.0,
+            "w33": 0,
+            "w44": 0
+          },
+          "description": "Rucker base + mild forward inhibition (w34=-0.3). Walks +6m forward and +15m sideways. Heading +69\u00b0. The highest crab ratio (2.66) of any fast walker.",
+          "dx": 5.7,
+          "dy": 15.19,
+          "true_distance": 16.23,
+          "heading_deg": 69.4,
+          "yaw_deg": 104.5,
+          "max_tilt": 43,
+          "n_synapses": 7,
+          "crab_ratio": 2.66
+        },
+        "55_skew_crab": {
+          "weights": {
+            "w03": -0.7,
+            "w13": -0.7,
+            "w23": -0.3,
+            "w04": 0.3,
+            "w14": 0.7,
+            "w24": 0.7,
+            "w34": 0.3,
+            "w43": 0.3,
+            "w33": 0,
+            "w44": 0
+          },
+          "description": "Novel skew-drive base (asymmetric sensor weights) + mutual excitation. Walks +10m forward and -14m sideways. Heading -55\u00b0. Only crab walker from a non-zoo base.",
+          "dx": 9.78,
+          "dy": -13.71,
+          "true_distance": 16.84,
+          "heading_deg": -54.5,
+          "yaw_deg": 168.1,
+          "max_tilt": 33,
+          "n_synapses": 8,
+          "crab_ratio": 1.4
+        }
+      }
     }
   },
   "leaderboard_note": "Ranked by |DX| (absolute displacement). All values verified against current physics (Feb 2026).",
@@ -2235,11 +2445,15 @@
       "crab_walk": {
         "signature": "Lateral (Y) displacement exceeds forward (X) displacement. Often involves golden-ratio or non-standard weight patterns.",
         "members": [
+          "52_curie_crab",
+          "53_rucker_landcrab",
+          "54_rucker_sidewinder",
+          "55_skew_crab",
           "2_rucker",
           "33_mean_reversion",
           "13_lorenz_B"
         ],
-        "behavior": "Walking sideways. Rucker (golden ratio weights) has heading +126\u00b0, moving 1.36x more laterally than forward."
+        "behavior": "Walking sideways. The curie_crab has |DY|=28.79, the highest lateral displacement ever measured. The sidewinder has crab_ratio=2.66 (walks 2.66x more sideways than forward). Cross-wiring (especially w43 excitation) amplifies lateral motion from crab-prone bases."
       },
       "bifurcation_boundary": {
         "signature": "Configuration sitting exactly at a phase transition. Tiny perturbation causes qualitative behavior change.",
