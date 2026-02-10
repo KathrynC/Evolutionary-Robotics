@@ -1,3 +1,38 @@
+# Python bytecode / caches
 __pycache__/
-*.pyc
+*.py[cod]
+*$py.class
+
+# generated outputs
+body.urdf
+world.sdf
+
+# sensors data
+data/
+*.npy
+
+# debug artifacts
+crash.log
+gui_*.py
+*.log
+
+# debug artifacts
+crash.log
+gui_*.py
+*.log
+
 .DS_Store
+
+.DS_Store
+*.png
+*.mp4
+*.mp4
+motor_*.txt
+motor_vectors.png
+*.mp4
+*.csv
+motor_*.txt
+motor_vectors.png
+
+# local patch helpers
+patch_simulate_constants*.py
