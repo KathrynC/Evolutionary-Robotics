@@ -61,33 +61,70 @@ The 35 persona gaits include five thematic groups added after the original 20:
 
 ### Displacement (|DX|)
 
-| # | Gait | DX |
-|---|---|---|
-| 1 | 43_hidden_cpg_champion | +50.11 |
-| 2 | 21_noether_cpg | -43.23 |
-| 3 | 22_curie_amplified | +37.14 |
-| 4 | 5_pelton | +34.70 |
-| 5 | 32_carry_trade | +32.22 |
+| # | Gait | DX | Category |
+|---|---|---|---|
+| 1 | 43_hidden_cpg_champion | +50.11 | hidden_neurons |
+| 2 | 21_noether_cpg | -43.23 | cross_wired_cpg |
+| 3 | 22_curie_amplified | +37.14 | cross_wired_cpg |
+| 4 | 5_pelton | +34.70 | persona_gaits |
+| 5 | 32_carry_trade | +32.22 | market_mathematics |
+| 6 | 69_grunbaum_deflation | -30.48 | persona_gaits |
+| 7 | 50_noether_cyclone | -30.16 | pareto_walk_spin |
+| 8 | 23_hodgkin_huxley | -29.79 | cross_wired_cpg |
+| 9 | 36_take_five | -27.72 | time_signatures |
+| 10 | 52_curie_crab | +24.44 | crab_walkers |
+
+### Total Distance (displacement)
+
+| # | Gait | Distance | DX | DY | Category |
+|---|---|---|---|---|---|
+| 1 | 43_hidden_cpg_champion | 50.19 | +50.11 | -2.88 | hidden_neurons |
+| 2 | 21_noether_cpg | 43.81 | -43.23 | -7.12 | cross_wired_cpg |
+| 3 | 56_evolved_crab_v2 | 41.19 | -6.71 | -40.64 | crab_walkers |
+| 4 | 57_evolved_sidewinder | 39.52 | -3.99 | -39.32 | crab_walkers |
+| 5 | 58_evolved_crab_positive_v2 | 38.10 | -1.17 | +38.08 | crab_walkers |
+| 6 | 52_curie_crab | 37.76 | +24.44 | -28.79 | crab_walkers |
+| 7 | 22_curie_amplified | 37.17 | +37.14 | -1.60 | cross_wired_cpg |
+| 8 | 5_pelton | 35.27 | +34.70 | +6.32 | persona_gaits |
+| 9 | 50_noether_cyclone | 33.05 | -30.16 | -13.51 | pareto_walk_spin |
+| 10 | 32_carry_trade | 32.29 | +32.22 | -2.07 | market_mathematics |
 
 ### Spin (|YAW|)
 
-| # | Gait | YAW | Turns |
-|---|---|---|---|
-| 1 | 44_spinner_champion | +838 | 2.33 |
-| 2 | 45_spinner_stable | -749 | 2.08 |
-| 3 | 46_spinner_crosswired | -320 | 0.89 |
+| # | Gait | YAW | Turns | Category |
+|---|---|---|---|---|
+| 1 | 44_spinner_champion | +838 | 2.33 | spinners |
+| 2 | 45_spinner_stable | -749 | 2.08 | spinners |
+| 3 | 46_spinner_crosswired | -320 | 0.89 | spinners |
+| 4 | 1_original | +299 | 0.83 | homework |
+| 5 | 2_flipped | +215 | 0.60 | homework |
 
 ### Crab Walking (|DY|)
 
 | # | Gait | DY | DX | Heading | Crab Ratio | Origin |
 |---|---|---|---|---|---|---|
 | 1 | 56_evolved_crab_v2 | -40.64 | -6.71 | -99 | 6.06 | evolved |
-| 2 | 57_evolved_sidewinder | -39.32 | -3.99 | -96 | 9.86 | evolved |
-| 3 | 58_evolved_crab_positive_v2 | +38.08 | -1.17 | +91 | 32.48 | evolved |
+| 2 | 57_evolved_sidewinder | -39.32 | -3.99 | -96 | 9.85 | evolved |
+| 3 | 58_evolved_crab_positive_v2 | +38.08 | -1.17 | +92 | 32.55 | evolved |
 | 4 | 52_curie_crab | -28.79 | +24.44 | -50 | 1.18 | hand-designed |
 | 5 | 53_rucker_landcrab | +27.05 | +11.46 | +67 | 2.36 | hand-designed |
 
 Crab ratio = |DY|/|DX|. Values > 1.0 mean the robot walks more sideways than forward. The top 3 are evolved solutions that require full float64 weight precision — rounding to 6 decimal places shifts them to different attractors (see knife-edge sensitivity below).
+
+### Persona Gaits (by total displacement)
+
+| # | Gait | Distance | DX | DY | Tilt | Notable |
+|---|---|---|---|---|---|---|
+| 1 | 5_pelton | 35.27 | +34.70 | +6.32 | 32° | All-time persona champion |
+| 2 | 69_grunbaum_deflation | 31.27 | -30.48 | -6.99 | 27° | Penrose deflation cascade |
+| 3 | 10_tesla_3phase | 24.00 | -18.33 | +15.49 | 186° | Fallen but far |
+| 4 | 18_curie | 23.73 | +23.73 | +0.05 | 52° | Purest forward walker |
+| 5 | 68_grunbaum_penrose | 23.03 | -22.70 | +3.90 | 33° | Tile angle geometry |
+| 6 | 15_noether | 21.66 | -21.65 | -0.48 | 37° | Near-pure backward |
+| 7 | 16_franklin | 20.27 | -17.49 | +10.24 | 56° | Strong diagonal |
+| 8 | 63_cage_prepared | 18.34 | -9.97 | +15.39 | 34° | Disrupted curie → crab |
+| 9 | 60_fibonacci_phyllotaxis | 16.51 | +9.72 | +13.34 | 186° | Golden angle, fallen |
+| 10 | 4_sayama | 15.26 | -14.56 | -4.58 | 53° | Complex attractor |
 
 ## Attractor Taxonomy
 
