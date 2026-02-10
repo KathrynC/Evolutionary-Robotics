@@ -1180,7 +1180,18 @@
           "max_tilt": 40,
           "yaw_degrees": 26.4,
           "architecture": "crosswired_10",
-          "description": "Golden ratio base weights + self-feedback at phi^-2. Stable diagonal walker (heading +50\u00b0). The golden ratio appears in both sensor-motor proportions and self-feedback strength."
+          "description": "Golden ratio base weights + self-feedback at phi^-2. Stable diagonal walker (heading +50\u00b0). The golden ratio appears in both sensor-motor proportions and self-feedback strength.",
+          "telemetry": {
+            "stride_freq_hz": 2.95,
+            "duty_cycle": 0.62,
+            "mean_torque": 56.48,
+            "transient_frac": 0.642,
+            "mean_speed": 1.323,
+            "speed_cv": 0.824,
+            "attractor_type": "complex",
+            "efficiency": 0.135,
+            "pareto_optimal": false
+          }
         },
         "60_fibonacci_phyllotaxis": {
           "weights": {
@@ -1202,7 +1213,18 @@
           "max_tilt": 186,
           "yaw_degrees": -145.6,
           "architecture": "crosswired_10",
-          "description": "Phyllotaxis-inspired: successive weights placed at the golden angle (137.5\u00b0) in a cosine mapping + light CPG. Falls over but covers 10.35m while spinning 595\u00b0. Chaotic/fallen attractor."
+          "description": "Phyllotaxis-inspired: successive weights placed at the golden angle (137.5\u00b0) in a cosine mapping + light CPG. Falls over but covers 10.35m while spinning 595\u00b0. Chaotic/fallen attractor.",
+          "telemetry": {
+            "stride_freq_hz": 4.12,
+            "duty_cycle": 0.738,
+            "mean_torque": 30.76,
+            "transient_frac": 0.295,
+            "mean_speed": 1.311,
+            "speed_cv": 1.518,
+            "attractor_type": "chaotic/fallen",
+            "efficiency": 0.5366,
+            "pareto_optimal": false
+          }
         },
         "61_fibonacci_spiral": {
           "weights": {
@@ -1224,7 +1246,18 @@
           "max_tilt": 90,
           "yaw_degrees": -75.8,
           "architecture": "standard_6",
-          "description": "Pure golden spiral: each weight magnitude is phi times the previous (0.382, 0.618, 1.0). Antisymmetric. Falls over but walks almost purely laterally (DY=3.72, heading 81\u00b0)."
+          "description": "Pure golden spiral: each weight magnitude is phi times the previous (0.382, 0.618, 1.0). Antisymmetric. Falls over but walks almost purely laterally (DY=3.72, heading 81\u00b0).",
+          "telemetry": {
+            "stride_freq_hz": 4.36,
+            "duty_cycle": 0.832,
+            "mean_torque": 24.03,
+            "transient_frac": 0.248,
+            "mean_speed": 0.833,
+            "speed_cv": 1.782,
+            "attractor_type": "chaotic/fallen",
+            "efficiency": 0.2657,
+            "pareto_optimal": false
+          }
         },
         "62_cage_433": {
           "weights": {
@@ -1246,7 +1279,18 @@
           "max_tilt": 0,
           "yaw_degrees": 0.2,
           "architecture": "standard_6",
-          "description": "4'33\" \u2014 near-silence. Weights at \u00b10.01 produce no visible motion. The ambient physics (gravity, friction, joint damping) IS the performance. A second fixed point alongside the bouncer, but arrived at through intention rather than symmetry."
+          "description": "4'33\" \u2014 near-silence. Weights at \u00b10.01 produce no visible motion. The ambient physics (gravity, friction, joint damping) IS the performance. A second fixed point alongside the bouncer, but arrived at through intention rather than symmetry.",
+          "telemetry": {
+            "stride_freq_hz": 0.12,
+            "duty_cycle": 0.998,
+            "mean_torque": 13.0,
+            "transient_frac": 1.0,
+            "mean_speed": 0.001,
+            "speed_cv": 0,
+            "attractor_type": "fixed_point",
+            "efficiency": 0.0006,
+            "pareto_optimal": false
+          }
         },
         "63_cage_prepared": {
           "weights": {
@@ -1268,7 +1312,18 @@
           "max_tilt": 34,
           "yaw_degrees": -169.8,
           "architecture": "standard_6",
-          "description": "Prepared curie: take the standard curie pattern and flip w13 (+0.85 \u2192 -0.85) and w24 (-0.85 \u2192 +0.85) \u2014 like inserting bolts and mutes into piano strings. The disruption creates a stable crab walker (DY=15.39, heading 123\u00b0) from a forward walker."
+          "description": "Prepared curie: take the standard curie pattern and flip w13 (+0.85 \u2192 -0.85) and w24 (-0.85 \u2192 +0.85) \u2014 like inserting bolts and mutes into piano strings. The disruption creates a stable crab walker (DY=15.39, heading 123\u00b0) from a forward walker.",
+          "telemetry": {
+            "stride_freq_hz": 3.04,
+            "duty_cycle": 0.152,
+            "mean_torque": 34.99,
+            "transient_frac": 0.398,
+            "mean_speed": 2.166,
+            "speed_cv": 0.484,
+            "attractor_type": "limit_cycle",
+            "efficiency": 0.5244,
+            "pareto_optimal": false
+          }
         },
         "64_cage_iching": {
           "weights": {
@@ -1290,7 +1345,18 @@
           "max_tilt": 235,
           "yaw_degrees": 15.9,
           "architecture": "crosswired_10",
-          "description": "I Ching: all 10 weights determined by chance operations (random.seed(1952), the year of 4'33\" premiere). With stored 3-decimal weights, the chance gait falls (tilt 235\u00b0) but still displaces 7.3m. Even rounded chance outperforms many designed gaits."
+          "description": "I Ching: all 10 weights determined by chance operations (random.seed(1952), the year of 4'33\" premiere). With stored 3-decimal weights, the chance gait falls (tilt 235\u00b0) but still displaces 7.3m. Even rounded chance outperforms many designed gaits.",
+          "telemetry": {
+            "stride_freq_hz": 4.54,
+            "duty_cycle": 0.532,
+            "mean_torque": 42.82,
+            "transient_frac": 0.555,
+            "mean_speed": 1.039,
+            "speed_cv": 1.122,
+            "attractor_type": "chaotic/fallen",
+            "efficiency": 0.1707,
+            "pareto_optimal": false
+          }
         },
         "65_womack_random_acts": {
           "weights": {
@@ -1312,7 +1378,18 @@
           "max_tilt": 10,
           "yaw_degrees": -23.6,
           "architecture": "crosswired_10",
-          "description": "Random Acts of Senseless Violence: only 2 sensor synapses (w03, w24) + self-feedback (w33=0.5, w44=-0.5). Institutional feedback loops drive backward locomotion. Tilt only 10\u00b0 \u2014 the most stable gait in the zoo relative to its displacement. Survival through structural austerity."
+          "description": "Random Acts of Senseless Violence: only 2 sensor synapses (w03, w24) + self-feedback (w33=0.5, w44=-0.5). Institutional feedback loops drive backward locomotion. Tilt only 10\u00b0 \u2014 the most stable gait in the zoo relative to its displacement. Survival through structural austerity.",
+          "telemetry": {
+            "stride_freq_hz": 2.47,
+            "duty_cycle": 0.618,
+            "mean_torque": 62.33,
+            "transient_frac": 0.852,
+            "mean_speed": 1.016,
+            "speed_cv": 0.724,
+            "attractor_type": "complex",
+            "efficiency": 0.1975,
+            "pareto_optimal": false
+          }
         },
         "66_womack_ambient": {
           "weights": {
@@ -1334,7 +1411,18 @@
           "max_tilt": 32,
           "yaw_degrees": 60.0,
           "architecture": "standard_6",
-          "description": "Ambient: only 2 active synapses (w13=-1, w24=+1) \u2014 the absolute minimum wiring for locomotion. BackLeg sensor drives one motor, FrontLeg sensor drives the other. 5.2m displacement from almost nothing. Survival at the margins."
+          "description": "Ambient: only 2 active synapses (w13=-1, w24=+1) \u2014 the absolute minimum wiring for locomotion. BackLeg sensor drives one motor, FrontLeg sensor drives the other. 5.2m displacement from almost nothing. Survival at the margins.",
+          "telemetry": {
+            "stride_freq_hz": 3.76,
+            "duty_cycle": 0.262,
+            "mean_torque": 79.83,
+            "transient_frac": 0.912,
+            "mean_speed": 1.943,
+            "speed_cv": 0.492,
+            "attractor_type": "limit_cycle",
+            "efficiency": 0.0661,
+            "pareto_optimal": false
+          }
         },
         "67_womack_terraplane": {
           "weights": {
@@ -1356,7 +1444,18 @@
           "max_tilt": 26,
           "yaw_degrees": -24.5,
           "architecture": "standard_6",
-          "description": "Terraplane: weights at 20-40% of normal magnitude. Existence at the poverty line. Walks 4.8m \u2014 just enough to count as locomotion. The compressed prose of synapse weights."
+          "description": "Terraplane: weights at 20-40% of normal magnitude. Existence at the poverty line. Walks 4.8m \u2014 just enough to count as locomotion. The compressed prose of synapse weights.",
+          "telemetry": {
+            "stride_freq_hz": 3.79,
+            "duty_cycle": 0.478,
+            "mean_torque": 70.13,
+            "transient_frac": 0.955,
+            "mean_speed": 1.239,
+            "speed_cv": 0.632,
+            "attractor_type": "complex",
+            "efficiency": 0.0686,
+            "pareto_optimal": false
+          }
         },
         "68_grunbaum_penrose": {
           "weights": {
@@ -1378,7 +1477,18 @@
           "max_tilt": 33,
           "yaw_degrees": -19.6,
           "architecture": "standard_6",
-          "description": "Penrose rhombus: weights from sin/cos of the two Penrose tile angles (36\u00b0 and 72\u00b0). The aperiodic tiling's fundamental geometry produces a strong backward-diagonal walker (35m+). Pure mathematics as locomotion."
+          "description": "Penrose rhombus: weights from sin/cos of the two Penrose tile angles (36\u00b0 and 72\u00b0). The aperiodic tiling's fundamental geometry produces a strong backward-diagonal walker (35m+). Pure mathematics as locomotion.",
+          "telemetry": {
+            "stride_freq_hz": 3.79,
+            "duty_cycle": 0.41,
+            "mean_torque": 71.52,
+            "transient_frac": 0.788,
+            "mean_speed": 2.172,
+            "speed_cv": 0.611,
+            "attractor_type": "complex",
+            "efficiency": 0.3219,
+            "pareto_optimal": false
+          }
         },
         "69_grunbaum_deflation": {
           "weights": {
@@ -1400,7 +1510,18 @@
           "max_tilt": 27,
           "yaw_degrees": -9.8,
           "architecture": "crosswired_10",
-          "description": "Deflation rule: weights cascade through phi^-1 levels (1.0, 0.618, 0.382, 0.236) like a Penrose tiling deflation. Self-feedback at phi^-3 (0.236). Aperiodic hierarchy in weight structure."
+          "description": "Deflation rule: weights cascade through phi^-1 levels (1.0, 0.618, 0.382, 0.236) like a Penrose tiling deflation. Self-feedback at phi^-3 (0.236). Aperiodic hierarchy in weight structure.",
+          "telemetry": {
+            "stride_freq_hz": 4.36,
+            "duty_cycle": 0.415,
+            "mean_torque": 69.76,
+            "transient_frac": 0.795,
+            "mean_speed": 2.464,
+            "speed_cv": 0.506,
+            "attractor_type": "complex",
+            "efficiency": 0.4484,
+            "pareto_optimal": false
+          }
         },
         "70_grunbaum_defect": {
           "weights": {
@@ -1422,7 +1543,18 @@
           "max_tilt": 3,
           "yaw_degrees": 2.6,
           "architecture": "crosswired_10",
-          "description": "Broken p6m symmetry: six uniform weights (\u00b10.7) form a perfect hexagonal tiling pattern. A single cross-wire defect (w34=0.15) breaks the symmetry. Result: near-stillness (0.2m). A third intentional fixed point alongside the bouncer and cage_433."
+          "description": "Broken p6m symmetry: six uniform weights (\u00b10.7) form a perfect hexagonal tiling pattern. A single cross-wire defect (w34=0.15) breaks the symmetry. Result: near-stillness (0.2m). A third intentional fixed point alongside the bouncer and cage_433.",
+          "telemetry": {
+            "stride_freq_hz": 2.74,
+            "duty_cycle": 0.972,
+            "mean_torque": 33.83,
+            "transient_frac": 1.0,
+            "mean_speed": 0.238,
+            "speed_cv": 1.736,
+            "attractor_type": "complex",
+            "efficiency": 0.0061,
+            "pareto_optimal": false
+          }
         },
         "71_gallagher_multiplicative": {
           "weights": {
@@ -1444,7 +1576,18 @@
           "max_tilt": 30,
           "yaw_degrees": -113.9,
           "architecture": "standard_6",
-          "description": "Multiplicative structure: weights are products of prime pairs from {2,3,5,7}, normalized by 30. The multiplicative (not additive) construction reflects Gallagher's work on multiplicative number theory. Stable backward walker."
+          "description": "Multiplicative structure: weights are products of prime pairs from {2,3,5,7}, normalized by 30. The multiplicative (not additive) construction reflects Gallagher's work on multiplicative number theory. Stable backward walker.",
+          "telemetry": {
+            "stride_freq_hz": 4.24,
+            "duty_cycle": 0.465,
+            "mean_torque": 79.84,
+            "transient_frac": 0.53,
+            "mean_speed": 1.981,
+            "speed_cv": 0.634,
+            "attractor_type": "complex",
+            "efficiency": 0.1272,
+            "pareto_optimal": false
+          }
         },
         "72_gallagher_gaps": {
           "weights": {
@@ -1466,7 +1609,18 @@
           "max_tilt": 10,
           "yaw_degrees": -56.4,
           "architecture": "standard_6",
-          "description": "Prime gaps: consecutive prime differences [1,2,2,4,2,4] normalized by max_gap (4) as motor weights. The irregular spacing of primes encoded in synapse structure. Very stable (tilt 10\u00b0)."
+          "description": "Prime gaps: consecutive prime differences [1,2,2,4,2,4] normalized by max_gap (4) as motor weights. The irregular spacing of primes encoded in synapse structure. Very stable (tilt 10\u00b0).",
+          "telemetry": {
+            "stride_freq_hz": 4.36,
+            "duty_cycle": 0.952,
+            "mean_torque": 38.07,
+            "transient_frac": 0.875,
+            "mean_speed": 0.768,
+            "speed_cv": 0.736,
+            "attractor_type": "complex",
+            "efficiency": 0.1532,
+            "pareto_optimal": false
+          }
         },
         "73_gallagher_sieve": {
           "weights": {
@@ -1488,7 +1642,18 @@
           "max_tilt": 95,
           "yaw_degrees": 93.3,
           "architecture": "crosswired_10",
-          "description": "Large sieve: weights placed only at prime-indexed positions (indices 2,3,5,7 out of 0-9). Composite indices zeroed \u2014 sieved out. Only 4 active synapses. Falls over but the sparsity pattern IS the sieve."
+          "description": "Large sieve: weights placed only at prime-indexed positions (indices 2,3,5,7 out of 0-9). Composite indices zeroed \u2014 sieved out. Only 4 active synapses. Falls over but the sparsity pattern IS the sieve.",
+          "telemetry": {
+            "stride_freq_hz": 4.06,
+            "duty_cycle": 0.875,
+            "mean_torque": 38.14,
+            "transient_frac": 0.115,
+            "mean_speed": 0.733,
+            "speed_cv": 1.45,
+            "attractor_type": "chaotic/fallen",
+            "efficiency": 0.0638,
+            "pareto_optimal": false
+          }
         }
       }
     },
@@ -3324,7 +3489,18 @@
             "note": "Weights stored at full float64 precision. These solutions are sensitivity-dependent: rounding to 6 decimal places changes behavior significantly."
           },
           "max_tilt": 13,
-          "yaw_degrees": -89.7
+          "yaw_degrees": -89.7,
+          "telemetry": {
+            "stride_freq_hz": 5.17,
+            "duty_cycle": 0.265,
+            "mean_torque": 80.83,
+            "transient_frac": 0.808,
+            "mean_speed": 2.588,
+            "speed_cv": 0.247,
+            "attractor_type": "limit_cycle",
+            "efficiency": 0.5085,
+            "pareto_optimal": false
+          }
         },
         "57_evolved_sidewinder": {
           "weights": {
@@ -3360,7 +3536,18 @@
             "note": "Weights stored at full float64 precision. These solutions are sensitivity-dependent: rounding to 6 decimal places changes behavior significantly."
           },
           "max_tilt": 26,
-          "yaw_degrees": -91.5
+          "yaw_degrees": -91.5,
+          "telemetry": {
+            "stride_freq_hz": 4.09,
+            "duty_cycle": 0.338,
+            "mean_torque": 67.03,
+            "transient_frac": 0.815,
+            "mean_speed": 2.679,
+            "speed_cv": 0.456,
+            "attractor_type": "limit_cycle",
+            "efficiency": 0.5873,
+            "pareto_optimal": false
+          }
         },
         "58_evolved_crab_positive_v2": {
           "weights": {
@@ -3396,7 +3583,18 @@
             "note": "Weights stored at full float64 precision. These solutions are sensitivity-dependent: rounding to 6 decimal places changes behavior significantly."
           },
           "max_tilt": 37,
-          "yaw_degrees": 84.3
+          "yaw_degrees": 84.3,
+          "telemetry": {
+            "stride_freq_hz": 4.12,
+            "duty_cycle": 0.288,
+            "mean_torque": 72.44,
+            "transient_frac": 0.842,
+            "mean_speed": 2.662,
+            "speed_cv": 0.393,
+            "attractor_type": "limit_cycle",
+            "efficiency": 0.525,
+            "pareto_optimal": false
+          }
         }
       }
     }
