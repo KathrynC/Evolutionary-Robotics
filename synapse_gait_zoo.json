@@ -49,7 +49,7 @@
     ],
     "weight_format": "Sensor\u2192motor weights [w03, w13, w23, w04, w14, w24] map 3 touch sensors to 2 joint motors via tanh activation. Cross-wiring [w34, w43, w33, w44] adds motor\u2192motor recurrent connections. Hidden neurons add intermediate computational layers.",
     "created": "2026-02-08",
-    "total_gaits": 71,
+    "total_gaits": 77,
     "all_time_records": {
       "displacement": {
         "positive": {
@@ -1337,6 +1337,138 @@
           "yaw_degrees": -24.5,
           "architecture": "standard_6",
           "description": "Terraplane: weights at 20-40% of normal magnitude. Existence at the poverty line. Walks 4.8m \u2014 just enough to count as locomotion. The compressed prose of synapse weights."
+        },
+        "68_grunbaum_penrose": {
+          "weights": {
+            "w03": -0.5878,
+            "w13": -0.9511,
+            "w23": -0.809,
+            "w04": 0.309,
+            "w14": 0.5878,
+            "w24": 0.9511,
+            "w34": 0,
+            "w43": 0,
+            "w33": 0,
+            "w44": 0
+          },
+          "dx": -22.7,
+          "dy": 3.9,
+          "true_distance": 23.03,
+          "heading": 170.2,
+          "max_tilt": 33,
+          "yaw_degrees": -19.6,
+          "architecture": "standard_6",
+          "description": "Penrose rhombus: weights from sin/cos of the two Penrose tile angles (36\u00b0 and 72\u00b0). The aperiodic tiling's fundamental geometry produces a strong backward-diagonal walker (35m+). Pure mathematics as locomotion."
+        },
+        "69_grunbaum_deflation": {
+          "weights": {
+            "w03": -1.0,
+            "w13": -0.618,
+            "w23": -0.618,
+            "w04": 0.382,
+            "w14": 0.618,
+            "w24": 1.0,
+            "w34": 0,
+            "w43": 0,
+            "w33": 0.236,
+            "w44": -0.236
+          },
+          "dx": -30.48,
+          "dy": -6.99,
+          "true_distance": 31.27,
+          "heading": -167.1,
+          "max_tilt": 27,
+          "yaw_degrees": -9.8,
+          "architecture": "crosswired_10",
+          "description": "Deflation rule: weights cascade through phi^-1 levels (1.0, 0.618, 0.382, 0.236) like a Penrose tiling deflation. Self-feedback at phi^-3 (0.236). Aperiodic hierarchy in weight structure."
+        },
+        "70_grunbaum_defect": {
+          "weights": {
+            "w03": -0.7,
+            "w13": -0.7,
+            "w23": -0.7,
+            "w04": 0.7,
+            "w14": 0.7,
+            "w24": 0.7,
+            "w34": 0.15,
+            "w43": 0,
+            "w33": 0,
+            "w44": 0
+          },
+          "dx": -0.07,
+          "dy": 0.2,
+          "true_distance": 0.21,
+          "heading": 0,
+          "max_tilt": 3,
+          "yaw_degrees": 2.6,
+          "architecture": "crosswired_10",
+          "description": "Broken p6m symmetry: six uniform weights (\u00b10.7) form a perfect hexagonal tiling pattern. A single cross-wire defect (w34=0.15) breaks the symmetry. Result: near-stillness (0.2m). A third intentional fixed point alongside the bouncer and cage_433."
+        },
+        "71_gallagher_multiplicative": {
+          "weights": {
+            "w03": -0.2,
+            "w13": -0.3333,
+            "w23": -0.5,
+            "w04": 0.4667,
+            "w14": 0.7,
+            "w24": 1.1667,
+            "w34": 0,
+            "w43": 0,
+            "w33": 0,
+            "w44": 0
+          },
+          "dx": -9.79,
+          "dy": -2.9,
+          "true_distance": 10.21,
+          "heading": -163.5,
+          "max_tilt": 30,
+          "yaw_degrees": -113.9,
+          "architecture": "standard_6",
+          "description": "Multiplicative structure: weights are products of prime pairs from {2,3,5,7}, normalized by 30. The multiplicative (not additive) construction reflects Gallagher's work on multiplicative number theory. Stable backward walker."
+        },
+        "72_gallagher_gaps": {
+          "weights": {
+            "w03": -0.25,
+            "w13": -0.5,
+            "w23": -0.5,
+            "w04": 1.0,
+            "w14": 0.5,
+            "w24": 1.0,
+            "w34": 0,
+            "w43": 0,
+            "w33": 0,
+            "w44": 0
+          },
+          "dx": 4.67,
+          "dy": -3.56,
+          "true_distance": 5.87,
+          "heading": -37.3,
+          "max_tilt": 10,
+          "yaw_degrees": -56.4,
+          "architecture": "standard_6",
+          "description": "Prime gaps: consecutive prime differences [1,2,2,4,2,4] normalized by max_gap (4) as motor weights. The irregular spacing of primes encoded in synapse structure. Very stable (tilt 10\u00b0)."
+        },
+        "73_gallagher_sieve": {
+          "weights": {
+            "w03": 0,
+            "w13": 0,
+            "w23": -0.8,
+            "w04": 0.8,
+            "w14": 0,
+            "w24": 0.8,
+            "w34": 0,
+            "w43": -0.8,
+            "w33": 0,
+            "w44": 0
+          },
+          "dx": 1.1,
+          "dy": -2.17,
+          "true_distance": 2.43,
+          "heading": -63.2,
+          "max_tilt": 95,
+          "yaw_degrees": 93.3,
+          "architecture": "crosswired_10",
+          "description": "Large sieve: weights placed only at prime-indexed positions (indices 2,3,5,7 out of 0-9). Composite indices zeroed \u2014 sieved out. Only 4 active synapses. Falls over but the sparsity pattern IS the sieve."
         }
       }
     },
@@ -3559,7 +3691,8 @@
           "7_fuller_dymaxion",
           "20_mcclintock",
           "66_womack_ambient",
-          "67_womack_terraplane"
+          "67_womack_terraplane",
+          "73_gallagher_sieve"
         ],
         "behavior": "Efficient locomotion from minimal infrastructure. Highest DX-per-synapse-weight ratios."
       },

@@ -1,6 +1,6 @@
 # Synapse Gait Zoo
 
-A catalog of 71 discovered gaits for a 3-link PyBullet robot, organized by weight motif, attractor dynamics, and behavioral class. Each gait is a fixed-weight neural network (no learning at runtime) that produces a distinct locomotion style from the same 3-link body.
+A catalog of 77 discovered gaits for a 3-link PyBullet robot, organized by weight motif, attractor dynamics, and behavioral class. Each gait is a fixed-weight neural network (no learning at runtime) that produces a distinct locomotion style from the same 3-link body.
 
 ## The Robot
 
@@ -15,7 +15,7 @@ A catalog of 71 discovered gaits for a 3-link PyBullet robot, organized by weigh
 
 ## The Zoo
 
-**71 gaits across 11 categories, 12 weight motifs, 4 attractor types (with 5 complex subtypes), 3 leaderboards.**
+**77 gaits across 11 categories, 12 weight motifs, 4 attractor types (with 5 complex subtypes), 3 leaderboards.**
 
 All gaits and their weights are stored in `synapse_gait_zoo.json`. Videos for every gait are in `videos/`. Per-step telemetry (400 records/gait) is in `artifacts/telemetry_full/`.
 
@@ -23,7 +23,7 @@ All gaits and their weights are stored in `synapse_gait_zoo.json`. Videos for ev
 
 | Category | Gaits | Architecture | Description |
 |---|---|---|---|
-| persona_gaits | 29 | standard 6-synapse / crosswired | Named after scientists/thinkers. Includes Fibonacci (golden ratio), Cage (silence/chance), Womack (austerity). |
+| persona_gaits | 35 | standard 6-synapse / crosswired | Named after scientists/thinkers. Includes Fibonacci, Cage, Womack, Grünbaum, Gallagher. |
 | cross_wired_cpg | 7 | crosswired 10-synapse | Motor-to-motor feedback creates internal central pattern generators |
 | market_mathematics | 7 | crosswired 10-synapse | Weight patterns inspired by financial mathematics |
 | evolved | 1 | crosswired 10-synapse | Found by evolutionary search |
@@ -37,13 +37,17 @@ All gaits and their weights are stored in `synapse_gait_zoo.json`. Videos for ev
 
 ### Persona Gait Themes
 
-The 29 persona gaits include three thematic groups added after the original 20:
+The 35 persona gaits include five thematic groups added after the original 20:
 
 - **Fibonacci (3 gaits)**: Golden ratio proportions in weight structure. `fibonacci_self` uses phi^-2 self-feedback for stable diagonal walking. `fibonacci_phyllotaxis` maps the golden angle (137.5°) to successive weights — chaotic but covers 10m while spinning 595°. `fibonacci_spiral` scales weights by phi (0.382, 0.618, 1.0) for near-pure lateral motion.
 
 - **John Cage (3 gaits)**: `cage_433` is near-silence (weights at ±0.01, no visible motion — the ambient physics IS the performance). `cage_prepared` takes the curie pattern and flips two weights (like inserting bolts into piano strings), transforming a forward walker into a crab walker (DY=15.39). `cage_iching` uses chance operations (random.seed(1952)) for all 10 weights — randomness produces the strongest backward walker in the group (DX=-19.95).
 
 - **Jack Womack (3 gaits)**: Austerity and survival. `womack_random_acts` uses only 2 sensor synapses + self-feedback — institutional feedback loops drive backward locomotion with the lowest tilt (10°) relative to displacement in the zoo. `womack_ambient` has only 2 active synapses (the absolute minimum for locomotion). `womack_terraplane` operates at 20-40% of normal weight magnitude — existence at the poverty line.
+
+- **Branko Grünbaum (3 gaits)**: Tilings and patterns. `grunbaum_penrose` uses sin/cos of the Penrose tile angles (36° and 72°) as weights — pure aperiodic geometry produces a 23m backward walker. `grunbaum_deflation` cascades through phi^-1 levels (1.0, 0.618, 0.382, 0.236) like a Penrose tiling deflation rule, with self-feedback at phi^-3 (31m, tilt 27°). `grunbaum_defect` starts with perfect p6m symmetry (uniform ±0.7) and breaks it with a single cross-wire — a third intentional near-fixed-point alongside bouncer and cage_433.
+
+- **Patrick X. Gallagher (3 gaits)**: Analytic number theory. `gallagher_multiplicative` uses products of prime pairs from {2,3,5,7} — multiplicative (not additive) weight construction. `gallagher_gaps` encodes consecutive prime differences [1,2,2,4,2,4] as weights — very stable (tilt 10°). `gallagher_sieve` places weights only at prime-indexed positions (indices 2,3,5,7), zeroing composites — only 4 active synapses. The sparsity IS the sieve.
 
 ### Architectures
 
@@ -149,7 +153,7 @@ Per-step telemetry captures what endpoint measurements miss. Every gait has 400 
 | curie_asymmetric_drive | 7 | Torso weight differs between motors; stronger front-leg drive |
 | noether_involution | 4 | Weights approximately negate under motor swap |
 | same_drive_symmetric | 4 | Both motors receive similar-sign drive |
-| minimal_wiring | 5 | 3-4 active synapses (most weights zero) |
+| minimal_wiring | 6 | 3-4 active synapses (most weights zero) |
 | cpg_dominant | 1 | Cross-wiring dominates over sensor input |
 | half_center_oscillator | 3 | Hidden neurons with mutual inhibition/excitation |
 | spin_torque | 4 | Asymmetric cross-wiring creates net rotational torque |
@@ -239,19 +243,19 @@ See `record_videos.py` for a complete example that writes brain files and runs s
 python record_videos.py
 ```
 
-Renders all configured gaits to `videos/` using offscreen PyBullet rendering piped to ffmpeg. 83 videos currently recorded.
+Renders all configured gaits to `videos/` using offscreen PyBullet rendering piped to ffmpeg. 89 videos currently recorded.
 
 ## Files
 
 | File | Description |
 |---|---|
-| `synapse_gait_zoo.json` | Complete catalog: 71 gaits, weights, measurements, motifs, attractors, telemetry metrics |
+| `synapse_gait_zoo.json` | Complete catalog: 77 gaits, weights, measurements, motifs, attractors, telemetry metrics |
 | `record_videos.py` | Video recording infrastructure (offscreen render to ffmpeg) |
 | `simulation.py` | Main simulation runner |
 | `body.urdf` | Robot body definition (3-link) |
 | `brain.nndf` | Current neural network weights (overwritten by scripts) |
 | `constants.py` | Physics parameters (SIM_STEPS=4000, DT=1/240, gravity, friction) |
-| `videos/` | 83 MP4 videos of gaits (gitignored) |
+| `videos/` | 89 MP4 videos of gaits (gitignored) |
 | `artifacts/telemetry_full/` | Per-step telemetry JSONL for all gaits (gitignored) |
 | `artifacts/plots/` | Trajectory maps, phase portraits, stability, speed, torque visualizations (gitignored) |
 | `pyrosim/` | Neural network and simulation utilities (ludobots/pyrosim) |
