@@ -1,6 +1,6 @@
 # Synapse Gait Zoo
 
-A catalog of 59 discovered gaits for a 3-link PyBullet robot, organized by weight motif and behavioral class. Each gait is a fixed-weight neural network (no learning at runtime) that produces a distinct locomotion style from the same 3-link body.
+A catalog of 59 discovered gaits for a 3-link PyBullet robot, organized by weight motif, attractor dynamics, and behavioral class. Each gait is a fixed-weight neural network (no learning at runtime) that produces a distinct locomotion style from the same 3-link body.
 
 ## The Robot
 
@@ -15,9 +15,9 @@ A catalog of 59 discovered gaits for a 3-link PyBullet robot, organized by weigh
 
 ## The Zoo
 
-**59 gaits across 11 categories, 12 weight motifs, 3 leaderboards.**
+**59 gaits across 11 categories, 12 weight motifs, 4 attractor types, 3 leaderboards.**
 
-All gaits and their weights are stored in `synapse_gait_zoo.json`. Videos for every gait are in `videos/`.
+All gaits and their weights are stored in `synapse_gait_zoo.json`. Videos for every gait are in `videos/`. Per-step telemetry (400 records/gait) is in `artifacts/telemetry_full/`.
 
 ### Categories
 
@@ -75,6 +75,46 @@ All gaits and their weights are stored in `synapse_gait_zoo.json`. Videos for ev
 
 Crab ratio = |DY|/|DX|. Values > 1.0 mean the robot walks more sideways than forward.
 
+## Attractor Taxonomy
+
+Every gait was instrumented with per-step telemetry (position, orientation, ground contacts, joint position/velocity/torque at every 10th sim step). From joint phase portraits, speed variability, and tilt time series, each gait is classified into one of four dynamical attractor types:
+
+| Type | Count | Character |
+|---|---|---|
+| **fixed_point** | 1 | Converges to stationary equilibrium. The bouncer: perfectly still, zero displacement, zero tilt. |
+| **limit_cycle** | 15 | Stable periodic orbit. Consistent stride, low speed variability (CV < 0.5). The most reliable walkers: CPG champion, curie, noether_cpg, carry_trade, pelton, rubato, etc. |
+| **complex** | 37 | Moving but not strictly periodic. Drifting phase, variable speed, or multi-frequency dynamics. Stable but irregular. Most gaits live here. |
+| **chaotic/fallen** | 6 | Tips over (tilt > 60). Unbounded phase portrait. Tesla, lamarr, gamma_squeeze, original, gallop, blues_shuffle. |
+
+## Telemetry
+
+Per-step telemetry captures what endpoint measurements miss. Every gait has 400 records (one per 10 sim steps across 4000 total steps), each containing:
+
+- **Base position** (x, y, z) — full trajectory, not just start/end
+- **Orientation** (roll, pitch, yaw) — stability time series
+- **Ground contacts** — when feet touch, revealing gait cycle
+- **Joint states** (position, velocity, torque) — motor dynamics and energetics
+
+### Telemetry-Derived Metrics (per gait)
+
+| Metric | Description | Range across zoo |
+|---|---|---|
+| `stride_freq_hz` | Zero-crossings of joint velocity / sim duration | 0 (bouncer) to 8.2 Hz |
+| `duty_cycle` | Fraction of time with ground contact | 0.002 (dymaxion) to 1.0 (bouncer) |
+| `mean_torque` | Average absolute joint torque (energy proxy) | 0.1 (bouncer) to 107.3 (mean_reversion) |
+| `transient_frac` | Fraction of sim before reaching 80% of final displacement | 0.015 (lorenz_B) to 1.0 (bouncer) |
+| `mean_speed` | Average instantaneous speed (m/s) | 0.0 (bouncer) to 3.33 (CPG champion) |
+| `speed_cv` | Speed coefficient of variation (lower = smoother) | 0.0 (bouncer) to 1.81 (original) |
+| `attractor_type` | Dynamical classification | fixed_point / limit_cycle / complex / chaotic_fallen |
+
+### Visualization Panels (in `artifacts/plots/`)
+
+- **trajectories.png** — (x, y) path for all 59 gaits, color-coded by time. Shows straight walkers, spirals, diagonals, loops, and the bouncer's single dot.
+- **phase_portraits.png** — Joint position vs velocity for both joints. Limit cycles show clean ellipses; chaotic fallers show unbounded spirals; the bouncer is a point.
+- **stability_contacts.png** — Tilt (red) and ground contact count (blue) over time. Shows exactly when fallers tip, and how stable gaits maintain low tilt.
+- **speed_profiles.png** — Instantaneous speed over time. The CPG champion has remarkably constant high speed. Limit cycles show rhythmic oscillations.
+- **torque_profiles.png** — Joint torque over time, showing energetic cost and motor rhythm.
+
 ## Weight Motifs
 
 12 structural motifs identified by analyzing weight patterns across all 59 gaits:
@@ -105,6 +145,8 @@ Crab ratio = |DY|/|DX|. Values > 1.0 mean the robot walks more sideways than for
 **Lateral motion was a blind dimension.** Before measuring DY, all gaits were characterized only by forward displacement. The average |DY| across the zoo is 3.75m. Many gaits walk at significant diagonal angles.
 
 **Bifurcation boundaries are sharp.** The bouncer configuration [0, +1, -1, 0, -1, +1] is perfectly still (DX=0, YAW=0, tilt=0). Reducing one weight by 10% (w24: 1.0 to 0.9) produces a 188 spin. The sharpest behavioral cliff in the zoo.
+
+**Limit cycles are the best walkers.** The 15 limit-cycle gaits include all top-5 displacement leaders. Clean periodic orbits in joint phase space correlate with high, consistent speed and long displacement. The CPG champion (limit cycle, mean_speed=3.33 m/s, speed_cv=0.42) is both the fastest and one of the smoothest.
 
 ## Sensitivity Classes
 
@@ -153,11 +195,13 @@ Renders all configured gaits to `videos/` using offscreen PyBullet rendering pip
 
 | File | Description |
 |---|---|
-| `synapse_gait_zoo.json` | Complete catalog: 59 gaits, weights, measurements, motifs, leaderboards |
+| `synapse_gait_zoo.json` | Complete catalog: 59 gaits, weights, measurements, motifs, attractors, telemetry metrics |
 | `record_videos.py` | Video recording infrastructure (offscreen render to ffmpeg) |
 | `simulation.py` | Main simulation runner |
 | `body.urdf` | Robot body definition (3-link) |
 | `brain.nndf` | Current neural network weights (overwritten by scripts) |
 | `constants.py` | Physics parameters (SIM_STEPS=4000, DT=1/240, gravity, friction) |
 | `videos/` | 66 MP4 videos of gaits (gitignored) |
+| `artifacts/telemetry_full/` | Per-step telemetry JSONL for all 59 gaits (gitignored) |
+| `artifacts/plots/` | Trajectory maps, phase portraits, stability, speed, torque visualizations (gitignored) |
 | `pyrosim/` | Neural network and simulation utilities (ludobots/pyrosim) |
