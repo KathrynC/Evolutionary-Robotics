@@ -1,3 +1,13 @@
+"""
+simulate_video_maxdist.py
+
+Ludobots role:
+  - Video capture plus distance-tracking to evaluate/compare gaits.
+
+Beyond Ludobots (this repo):
+  - (Document how max distance is computed and reported.)
+"""
+
 import math
 import time
 from pathlib import Path
@@ -6,6 +16,7 @@ import pybullet as p
 import pybullet_data
 
 
+import os
 def dist_xy(pos) -> float:
     return math.hypot(pos[0], pos[1])
 

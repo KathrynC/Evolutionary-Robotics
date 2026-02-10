@@ -1,3 +1,13 @@
+"""
+simulate_openloop_legal.py
+
+Ludobots role:
+  - Simulation runner specialized for open-loop 'legal' gait expressions.
+
+Beyond Ludobots (this repo):
+  - (Document telemetry, logging, or video capture hooks if present.)
+"""
+
 import argparse
 import math
 import time
@@ -7,6 +17,7 @@ import numpy
 import pybullet as p
 import pybullet_data
 
+import os
 # Fixed motor strength. Do NOT tune this (assignment rule).
 MOTOR_MAX_FORCE = 50
 

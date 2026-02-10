@@ -1,3 +1,14 @@
+"""
+sweep_openloop_legal.py
+
+Ludobots role:
+  - Experiment harness: sweep open-loop gait definitions to find movement.
+
+Beyond Ludobots (this repo):
+  - Uses a restricted expression grammar for defining trajectories compactly.
+  - Often paired with telemetry summaries for ranking.
+"""
+
 import argparse
 import csv
 import math
@@ -8,6 +19,7 @@ import numpy
 import pybullet as p
 import pybullet_data
 
+import os
 # Must match your "legal" script: fixed motor strength (do not tune)
 MOTOR_MAX_FORCE = 50
 

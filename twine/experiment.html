@@ -1,0 +1,2480 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Evolutionary Robotics: Experiment Designer</title>
+<script>
+/*
+ * Minimal SugarCube-compatible engine.
+ *
+ * This implements enough of SugarCube 2's runtime to drive
+ * tw-storydata/tw-passagedata passages with $variables, <<set>>,
+ * <<if>>/<<elseif>>/<<else>>/<<endif>>, <<goto>>, <<link>>, <<button>>,
+ * and wiki-style [[links]].
+ *
+ * It is NOT the full SugarCube engine — just enough for this story.
+ */
+(function () {
+  "use strict";
+
+  /* ── State ────────────────────────────────────────────────────── */
+  const State = { variables: {}, _history: [] };
+  window.State = State;
+
+  /* ── Passage store ────────────────────────────────────────────── */
+  const Story = { passages: {} };
+  window.Story = Story;
+
+  function loadPassages() {
+    const sd = document.querySelector("tw-storydata");
+    if (!sd) return;
+    sd.querySelectorAll("tw-passagedata").forEach(el => {
+      Story.passages[el.getAttribute("name")] = el.innerHTML
+        .replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&").replace(/&quot;/g, '"');
+    });
+  }
+
+  /* ── Template engine ──────────────────────────────────────────── */
+
+  // Process <<set $var to value>> / <<set $var = value>>
+  function processSet(src) {
+    return src.replace(/<<set\s+([\s\S]*?)>>/g, (_, body) => {
+      // support multiple assignments separated by ;
+      body.split(";").forEach(stmt => {
+        stmt = stmt.trim();
+        if (!stmt) return;
+        // $var to expr  OR  $var = expr
+        const m = stmt.match(/^\$(\w+)\s+(?:to|=)\s+([\s\S]+)$/);
+        if (m) {
+          try {
+            State.variables[m[1]] = evalExpr(m[2].trim());
+          } catch (e) { console.warn("<<set>> error:", e, stmt); }
+        }
+      });
+      return "";
+    });
+  }
+
+  function evalExpr(expr) {
+    // Replace $var references with State.variables.var
+    let code = expr.replace(/\$(\w+)/g, "State.variables.$1");
+    // Replace "eq" / "neq" / "is" / "isnot" / "and" / "or" / "not" / "gte" / "lte" / "gt" / "lt"
+    code = code.replace(/\beq\b/g, "===").replace(/\bneq\b/g, "!==")
+               .replace(/\bis\b/g, "===").replace(/\bisnot\b/g, "!==")
+               .replace(/\band\b/g, "&&").replace(/\bor\b/g, "||").replace(/\bnot\b/g, "!")
+               .replace(/\bgte\b/g, ">=").replace(/\blte\b/g, "<=")
+               .replace(/\bgt\b/g, ">").replace(/\blt\b/g, "<");
+    try { return Function("State", "return (" + code + ");")(State); }
+    catch (e) { console.warn("evalExpr error:", e, expr); return undefined; }
+  }
+
+  // Process <<if>>..<<elseif>>..<<else>>..<<endif>> and <</if>>
+  function processConditionals(src) {
+    // Normalize <</if>> to <<endif>>
+    src = src.replace(/<<\/if>>/g, "<<endif>>");
+    let limit = 50;
+    while (src.includes("<<if ") && limit-- > 0) {
+      src = src.replace(/<<if\s+([\s\S]*?)>>([\s\S]*?)<<endif>>/m, (_, cond, body) => {
+        // Split body on <<elseif>> and <<else>>
+        const parts = [];
+        let cur = { cond: cond.trim(), text: "" };
+        const tokens = body.split(/(<<elseif\s+[\s\S]*?>>|<<else>>)/);
+        for (let i = 0; i < tokens.length; i++) {
+          const tk = tokens[i];
+          const em = tk.match(/^<<elseif\s+([\s\S]*?)>>$/);
+          if (em) {
+            parts.push(cur);
+            cur = { cond: em[1].trim(), text: "" };
+          } else if (tk === "<<else>>") {
+            parts.push(cur);
+            cur = { cond: "true", text: "" };
+          } else {
+            cur.text += tk;
+          }
+        }
+        parts.push(cur);
+        for (const p of parts) {
+          try {
+            if (evalExpr(p.cond)) return p.text;
+          } catch (e) { /* skip */ }
+        }
+        return "";
+      });
+    }
+    return src;
+  }
+
+  // Process <<goto "PassageName">> / <<goto 'PassageName'>>
+  function processGoto(src) {
+    const m = src.match(/<<goto\s+["']([^"']+)["']\s*>>/);
+    if (m) {
+      setTimeout(() => Engine.play(m[1]), 0);
+      return src.replace(/<<goto\s+["'][^"']+["']\s*>>/, "");
+    }
+    return src;
+  }
+
+  // Process <<link>> and <<button>>
+  function processLinksAndButtons(src) {
+    // <<link "Text" "Passage">>...optional sets...<</link>>
+    // <<link "Text">><<goto "Passage">><</link>>
+    // <<button "Text" "Passage">>...<</button>>
+    src = src.replace(/<<(link|button)\s+"([^"]+)"\s+"([^"]+)">>([^]*?)<<\/\1>>/g,
+      (_, tag, text, passage, inner) => {
+        const id = "lnk_" + Math.random().toString(36).slice(2, 8);
+        setTimeout(() => {
+          const el = document.getElementById(id);
+          if (el) el.addEventListener("click", () => {
+            // Execute inner sets
+            processSet(inner);
+            Engine.play(passage);
+          });
+        }, 0);
+        return `<a id="${id}" class="link-internal" tabindex="0">${text}</a>`;
+      });
+    // <<link "Text">>inner with goto<</link>>
+    src = src.replace(/<<(link|button)\s+"([^"]+)">>([^]*?)<<\/\1>>/g,
+      (_, tag, text, inner) => {
+        const id = "lnk_" + Math.random().toString(36).slice(2, 8);
+        setTimeout(() => {
+          const el = document.getElementById(id);
+          if (el) el.addEventListener("click", () => {
+            let processed = processSet(inner);
+            const gm = inner.match(/<<goto\s+["']([^"']+)["']\s*>>/);
+            if (gm) Engine.play(gm[1]);
+          });
+        }, 0);
+        return `<a id="${id}" class="link-internal" tabindex="0">${text}</a>`;
+      });
+    return src;
+  }
+
+  // Process [[Link Text|Passage]] and [[Passage]]
+  function processWikiLinks(src) {
+    // [[Text|Passage]]
+    src = src.replace(/\[\[([^\]|]+)\|([^\]]+)\]\]/g, (_, text, passage) => {
+      const id = "wl_" + Math.random().toString(36).slice(2, 8);
+      setTimeout(() => {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener("click", () => Engine.play(passage.trim()));
+      }, 0);
+      return `<a id="${id}" class="link-internal" tabindex="0">${text}</a>`;
+    });
+    // [[Passage]]
+    src = src.replace(/\[\[([^\]]+)\]\]/g, (_, passage) => {
+      const id = "wl_" + Math.random().toString(36).slice(2, 8);
+      setTimeout(() => {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener("click", () => Engine.play(passage.trim()));
+      }, 0);
+      return `<a id="${id}" class="link-internal" tabindex="0">${passage}</a>`;
+    });
+    return src;
+  }
+
+  // Process <<print $var>> and bare $var in text
+  function processPrint(src) {
+    src = src.replace(/<<print\s+([\s\S]*?)>>/g, (_, expr) => {
+      try { const v = evalExpr(expr.trim()); return v !== undefined ? String(v) : ""; }
+      catch (e) { return ""; }
+    });
+    // Bare $var (not inside << >>)  — only word-boundary delimited
+    src = src.replace(/\$(\w+)/g, (match, name) => {
+      if (name in State.variables) return String(State.variables[name]);
+      return match;
+    });
+    return src;
+  }
+
+  // Process <<run expression>>
+  function processRun(src) {
+    return src.replace(/<<run\s+([\s\S]*?)>>/g, (_, expr) => {
+      try { evalExpr(expr.trim()); } catch (e) { console.warn("<<run>> error:", e); }
+      return "";
+    });
+  }
+
+  // Process <<script>>...<</script>>
+  function processScript(src) {
+    return src.replace(/<<script>>([\s\S]*?)<<\/script>>/g, (_, code) => {
+      try {
+        code = code.replace(/\$(\w+)/g, "State.variables.$1");
+        Function("State", code)(State);
+      } catch (e) { console.warn("<<script>> error:", e); }
+      return "";
+    });
+  }
+
+  // Simple markup: ''bold'', //italic//, @@.class;text@@, html passthrough
+  function processMarkup(src) {
+    src = src.replace(/''([\s\S]*?)''/g, "<strong>$1</strong>");
+    src = src.replace(/\/\/([\s\S]*?)\/\//g, "<em>$1</em>");
+    // Newlines to <br> (except inside tags)
+    src = src.replace(/\n/g, "<br>\n");
+    return src;
+  }
+
+  function render(src) {
+    src = processScript(src);
+    src = processSet(src);
+    src = processRun(src);
+    src = processConditionals(src);
+    src = processGoto(src);
+    src = processLinksAndButtons(src);
+    src = processWikiLinks(src);
+    src = processPrint(src);
+    src = processMarkup(src);
+    return src;
+  }
+
+  /* ── Engine ───────────────────────────────────────────────────── */
+  const Engine = {
+    play(name) {
+      const src = Story.passages[name];
+      if (src === undefined) {
+        console.error("Passage not found:", name);
+        document.getElementById("passages").innerHTML =
+          `<div class="passage"><h2>Error</h2><p>Passage "${name}" not found.</p></div>`;
+        return;
+      }
+      State._history.push(name);
+      // Update lens data attribute on body
+      if (State.variables.lens) {
+        document.body.setAttribute("data-lens", State.variables.lens);
+      }
+      const html = render(src);
+      const container = document.getElementById("passages");
+      container.innerHTML = `<div class="passage">${html}</div>`;
+      container.scrollTop = 0;
+      window.scrollTo(0, 0);
+    }
+  };
+  window.Engine = Engine;
+
+  /* ── Boot ─────────────────────────────────────────────────────── */
+  document.addEventListener("DOMContentLoaded", () => {
+    loadPassages();
+    const sd = document.querySelector("tw-storydata");
+    const start = sd ? sd.getAttribute("startnode") : null;
+    let startName = "ChooseLens";
+    if (start) {
+      const el = sd.querySelector(`tw-passagedata[pid="${start}"]`);
+      if (el) startName = el.getAttribute("name");
+    }
+    Engine.play(startName);
+  });
+})();
+</script>
+
+<style>
+/* ── Base styles ────────────────────────────────────────────────── */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: Georgia, 'Times New Roman', serif;
+  background: #1a1a2e;
+  color: #e0e0e0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem 1rem;
+}
+
+#passages {
+  max-width: 700px;
+  width: 100%;
+}
+
+.passage {
+  background: rgba(255,255,255,0.05);
+  border-radius: 8px;
+  padding: 2rem;
+  line-height: 1.7;
+}
+
+.passage h1, .passage h2 { margin-bottom: 1rem; }
+.passage h2 { font-size: 1.4rem; }
+.passage p { margin-bottom: 0.8rem; }
+
+a.link-internal {
+  color: #64b5f6;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+a.link-internal:hover { color: #90caf9; }
+
+.choice-grid {
+  display: grid;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.choice-grid a.link-internal {
+  display: block;
+  background: rgba(100, 181, 246, 0.1);
+  border: 1px solid rgba(100, 181, 246, 0.3);
+  border-radius: 6px;
+  padding: 0.8rem 1rem;
+  text-decoration: none;
+  transition: background 0.2s, border-color 0.2s;
+}
+.choice-grid a.link-internal:hover {
+  background: rgba(100, 181, 246, 0.2);
+  border-color: rgba(100, 181, 246, 0.6);
+}
+
+.spinner {
+  display: inline-block;
+  width: 24px; height: 24px;
+  border: 3px solid rgba(255,255,255,0.2);
+  border-top-color: #64b5f6;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  vertical-align: middle;
+  margin-right: 0.5rem;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.room-nav {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 6px;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+.room-nav h3 { font-size: 1rem; margin-bottom: 0.5rem; opacity: 0.8; }
+
+.param-display {
+  font-family: 'Courier New', monospace;
+  background: rgba(0,0,0,0.3);
+  padding: 1rem;
+  border-radius: 4px;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+}
+
+.marginalia {
+  float: right;
+  width: 180px;
+  font-size: 0.8rem;
+  opacity: 0.6;
+  font-style: italic;
+  padding-left: 1rem;
+  border-left: 2px solid rgba(255,255,255,0.1);
+  margin-left: 1rem;
+}
+
+/* ── Kathryn Cramer lens ─────────────────────────────────────── */
+body[data-lens="cramer"] {
+  background: #2c1810;
+  color: #e8dcc8;
+  font-family: 'Palatino Linotype', Palatino, Georgia, serif;
+}
+body[data-lens="cramer"] .passage {
+  background: rgba(232, 220, 200, 0.08);
+  border: 1px solid rgba(232, 220, 200, 0.15);
+}
+body[data-lens="cramer"] a.link-internal { color: #d4a574; }
+body[data-lens="cramer"] a.link-internal:hover { color: #e8c49a; }
+body[data-lens="cramer"] .choice-grid a.link-internal {
+  border-color: rgba(212, 165, 116, 0.3);
+  background: rgba(212, 165, 116, 0.08);
+}
+body[data-lens="cramer"] .choice-grid a.link-internal:hover {
+  background: rgba(212, 165, 116, 0.18);
+}
+
+/* ── Mordvintsev lens ───────────────────────────────────────── */
+body[data-lens="mordvintsev"] {
+  background: #0d0221;
+  color: #c8e6c9;
+  font-family: 'Segoe UI', Tahoma, Geneva, sans-serif;
+}
+body[data-lens="mordvintsev"] .passage {
+  background: rgba(76, 175, 80, 0.05);
+  border: 1px solid rgba(76, 175, 80, 0.15);
+}
+body[data-lens="mordvintsev"] a.link-internal { color: #69f0ae; }
+body[data-lens="mordvintsev"] a.link-internal:hover { color: #b9f6ca; }
+body[data-lens="mordvintsev"] .choice-grid a.link-internal {
+  border-color: rgba(105, 240, 174, 0.3);
+  background: rgba(105, 240, 174, 0.05);
+}
+
+/* ── Sayama lens ────────────────────────────────────────────── */
+body[data-lens="sayama"] {
+  background: #f5f5f5;
+  color: #212121;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+}
+body[data-lens="sayama"] .passage {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+body[data-lens="sayama"] a.link-internal { color: #1565c0; }
+body[data-lens="sayama"] a.link-internal:hover { color: #0d47a1; }
+body[data-lens="sayama"] .choice-grid a.link-internal {
+  border-color: #bbdefb;
+  background: #e3f2fd;
+  color: #1565c0;
+}
+body[data-lens="sayama"] .param-display {
+  background: #e8eaf6;
+  color: #212121;
+}
+
+/* ── Wolfram lens ───────────────────────────────────────────── */
+body[data-lens="wolfram"] {
+  background: #111111;
+  color: #ff9800;
+  font-family: 'Courier New', Courier, monospace;
+}
+body[data-lens="wolfram"] .passage {
+  background: rgba(255, 152, 0, 0.04);
+  border: 1px solid rgba(255, 152, 0, 0.2);
+}
+body[data-lens="wolfram"] a.link-internal { color: #ffb74d; }
+body[data-lens="wolfram"] a.link-internal:hover { color: #ffe0b2; }
+body[data-lens="wolfram"] .choice-grid a.link-internal {
+  border-color: rgba(255, 183, 77, 0.3);
+  background: rgba(255, 152, 0, 0.06);
+  font-family: 'Courier New', monospace;
+}
+
+/* ── Rucker lens ────────────────────────────────────────────── */
+body[data-lens="rucker"] {
+  background: #0a0020;
+  color: #e0e0ff;
+  font-family: 'Comic Sans MS', 'Chalkboard SE', cursive, sans-serif;
+}
+body[data-lens="rucker"] .passage {
+  background: linear-gradient(135deg, rgba(255,0,128,0.06), rgba(0,128,255,0.06));
+  border: 1px solid rgba(255, 0, 128, 0.2);
+}
+body[data-lens="rucker"] a.link-internal { color: #ff4081; }
+body[data-lens="rucker"] a.link-internal:hover { color: #ff80ab; }
+body[data-lens="rucker"] .choice-grid a.link-internal {
+  border-color: rgba(255, 64, 129, 0.3);
+  background: linear-gradient(90deg, rgba(255,0,128,0.08), rgba(0,200,255,0.08));
+}
+
+/* ── Mandelbrot lens ────────────────────────────────────────── */
+body[data-lens="mandelbrot"] {
+  background: #0a0a2e;
+  color: #ffd54f;
+  font-family: 'Garamond', 'Times New Roman', serif;
+}
+body[data-lens="mandelbrot"] .passage {
+  background: rgba(255, 213, 79, 0.04);
+  border: 1px solid rgba(255, 213, 79, 0.15);
+}
+body[data-lens="mandelbrot"] a.link-internal { color: #ffd54f; }
+body[data-lens="mandelbrot"] a.link-internal:hover { color: #ffecb3; }
+body[data-lens="mandelbrot"] .choice-grid a.link-internal {
+  border-color: rgba(255, 213, 79, 0.3);
+  background: rgba(255, 213, 79, 0.05);
+}
+
+/* ── John Cramer lens ───────────────────────────────────────── */
+body[data-lens="jcramer"] {
+  background: #1b1b1b;
+  color: #b0bec5;
+  font-family: 'Lucida Console', 'Menlo', monospace;
+}
+body[data-lens="jcramer"] .passage {
+  background: rgba(0, 200, 83, 0.04);
+  border: 1px solid rgba(0, 200, 83, 0.15);
+}
+body[data-lens="jcramer"] a.link-internal { color: #00c853; }
+body[data-lens="jcramer"] a.link-internal:hover { color: #69f0ae; }
+body[data-lens="jcramer"] .choice-grid a.link-internal {
+  border-color: rgba(0, 200, 83, 0.3);
+  background: rgba(0, 200, 83, 0.05);
+  font-family: 'Lucida Console', monospace;
+}
+body[data-lens="jcramer"] .param-display {
+  background: #0a0a0a;
+  color: #00c853;
+  border: 1px solid rgba(0, 200, 83, 0.2);
+}
+
+/* ── Pelton lens ────────────────────────────────────────────── */
+body[data-lens="pelton"] {
+  background: #1a1008;
+  color: #d4c4a0;
+  font-family: 'Trebuchet MS', 'Arial Narrow', sans-serif;
+}
+body[data-lens="pelton"] .passage {
+  background: rgba(210, 160, 60, 0.06);
+  border: 1px solid rgba(210, 160, 60, 0.2);
+}
+body[data-lens="pelton"] a.link-internal { color: #e6a817; }
+body[data-lens="pelton"] a.link-internal:hover { color: #ffd54f; }
+body[data-lens="pelton"] .choice-grid a.link-internal {
+  border-color: rgba(230, 168, 23, 0.3);
+  background: rgba(210, 160, 60, 0.08);
+}
+body[data-lens="pelton"] .param-display {
+  background: rgba(20, 10, 0, 0.5);
+  color: #e6a817;
+  border: 1px solid rgba(210, 160, 60, 0.2);
+}
+
+/* ── Womack lens ────────────────────────────────────────────── */
+body[data-lens="womack"] {
+  background: #0e0e12;
+  color: #8a8a9a;
+  font-family: 'Baskerville', 'Georgia', serif;
+}
+body[data-lens="womack"] .passage {
+  background: rgba(138, 138, 154, 0.04);
+  border: 1px solid rgba(138, 138, 154, 0.12);
+}
+body[data-lens="womack"] a.link-internal { color: #a0a0c0; }
+body[data-lens="womack"] a.link-internal:hover { color: #c8c8e0; }
+body[data-lens="womack"] .choice-grid a.link-internal {
+  border-color: rgba(160, 160, 192, 0.2);
+  background: rgba(138, 138, 154, 0.05);
+}
+body[data-lens="womack"] .param-display {
+  background: rgba(0, 0, 0, 0.4);
+  color: #7a7a8a;
+  border: 1px solid rgba(138, 138, 154, 0.1);
+}
+</style>
+</head>
+<body>
+<div id="passages"></div>
+
+<tw-storydata name="Experiment Designer" startnode="1" creator="Twine" format="custom" format-version="1.0.0">
+
+<!-- ═══════════════════════════════════════════════════════════════
+     PASSAGE 1: ChooseLens
+     ═══════════════════════════════════════════════════════════════ -->
+<tw-passagedata pid="1" name="ChooseLens">
+&lt;h1&gt;Experiment Designer&lt;/h1&gt;
+&lt;h2&gt;Choose Your Lens&lt;/h2&gt;
+
+Each lens shapes how you see the robot, its parameters, and its behavior. The simulation underneath is identical — what changes is the frame of interpretation.
+
+&lt;div class=&quot;choice-grid&quot;&gt;
+&lt;&lt;link &quot;Kathryn Cramer — Hypertext Pedagogy&quot; &quot;Lobby&quot;&gt;&gt;&lt;&lt;set $lens to &quot;cramer&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
+
+&lt;&lt;link &quot;Mordvintsev — Active Interpretability&quot; &quot;ChooseAmplitude&quot;&gt;&gt;&lt;&lt;set $lens to &quot;mordvintsev&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
+
+&lt;&lt;link &quot;Sayama — Complex Systems Modeling&quot; &quot;ChooseAmplitude&quot;&gt;&gt;&lt;&lt;set $lens to &quot;sayama&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
+
+&lt;&lt;link &quot;Wolfram — Computational Universe&quot; &quot;ChooseAmplitude&quot;&gt;&gt;&lt;&lt;set $lens to &quot;wolfram&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
+
+&lt;&lt;link &quot;Rucker — Higher-Dimensional Creatures&quot; &quot;ChooseAmplitude&quot;&gt;&gt;&lt;&lt;set $lens to &quot;rucker&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
+
+&lt;&lt;link &quot;Mandelbrot — Multi-Scale Structure&quot; &quot;ChooseAmplitude&quot;&gt;&gt;&lt;&lt;set $lens to &quot;mandelbrot&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
+
+&lt;&lt;link &quot;John Cramer — Experimental Physics&quot; &quot;ChooseAmplitude&quot;&gt;&gt;&lt;&lt;set $lens to &quot;jcramer&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
+
+&lt;&lt;link &quot;Robert Young Pelton — Survival Expeditions&quot; &quot;ChooseAmplitude&quot;&gt;&gt;&lt;&lt;set $lens to &quot;pelton&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
+
+&lt;&lt;link &quot;Jack Womack — Dystopian Lifelines&quot; &quot;ChooseAmplitude&quot;&gt;&gt;&lt;&lt;set $lens to &quot;womack&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;/div&gt;
+</tw-passagedata>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     KATHRYN CRAMER: Lobby (hub room)
+     ═══════════════════════════════════════════════════════════════ -->
+<tw-passagedata pid="2" name="Lobby">
+&lt;&lt;if $lens eq &quot;cramer&quot;&gt;&gt;
+&lt;&lt;script&gt;&gt;
+if (!State.variables.cramer_visits) State.variables.cramer_visits = {};
+if (!State.variables.bookmarks) State.variables.bookmarks = [];
+if (!State.variables.cramer_visits.Lobby) State.variables.cramer_visits.Lobby = 0;
+State.variables.cramer_visits.Lobby++;
+&lt;&lt;/script&gt;&gt;
+&lt;h2&gt;The Lobby&lt;/h2&gt;
+
+&lt;&lt;if $cramer_visits.Lobby gt 1&gt;&gt;
+&lt;div class=&quot;marginalia&quot;&gt;You know this room now. The mosaic quadruped seems more familiar each time — you're beginning to recognize its gait as one you've configured before.&lt;/div&gt;
+&lt;&lt;else&gt;&gt;
+&lt;div class=&quot;marginalia&quot;&gt;You are here: the central hall of the Gait Design Institute. Doors lead to specialized rooms. You may visit them in any order. Each room lets you configure one aspect of your robot's motion.&lt;/div&gt;
+&lt;&lt;/if&gt;&gt;
+
+You stand in a high-ceilinged lobby. The floor is tiled with a mosaic depicting a walking quadruped, its legs frozen mid-stride. Around you, doorways open into specialized chambers.
+
+&lt;&lt;script&gt;&gt;
+var cv = State.variables.cramer_visits || {};
+var allRooms = ['CramerAmplitude','CramerFrequency','CramerOffsets','CramerForce','SensorRoom','PhysicsCorridor'];
+var visitedAll = allRooms.every(function(r) { return cv[r] &amp;&amp; cv[r] &gt; 0; });
+State.variables._cramer_all_visited = visitedAll;
+&lt;&lt;/script&gt;&gt;
+
+&lt;&lt;if $_cramer_all_visited&gt;&gt;
+//A veteran's note appears beside the plaque: &quot;You have walked every corridor of the Institute. The rooms now know you as well as you know them.&quot;//
+&lt;&lt;else&gt;&gt;
+A brass plaque on the wall reads: //Configure your experiment by visiting the rooms. Return here at any time.//
+&lt;&lt;/if&gt;&gt;
+
+&lt;div class=&quot;room-nav&quot;&gt;
+&lt;h3&gt;Rooms&lt;/h3&gt;
+&lt;div class=&quot;choice-grid&quot;&gt;
+&lt;&lt;if $cramer_visits.CramerAmplitude&gt;&gt;[&amp;check;]&lt;&lt;else&gt;&gt;[ ]&lt;&lt;/if&gt;&gt; &lt;&lt;if $amplitude&gt;&gt;(amplitude: $amplitude rad)&lt;&lt;else&gt;&gt;(not set)&lt;&lt;/if&gt;&gt; [[Enter the Range-Mapping Gallery|CramerAmplitude]]
+&lt;&lt;if $cramer_visits.CramerFrequency&gt;&gt;[&amp;check;]&lt;&lt;else&gt;&gt;[ ]&lt;&lt;/if&gt;&gt; &lt;&lt;if $frequency&gt;&gt;(frequency: $frequency Hz)&lt;&lt;else&gt;&gt;(not set)&lt;&lt;/if&gt;&gt; [[Enter the Oscillation Chamber|CramerFrequency]]
+&lt;&lt;if $cramer_visits.CramerOffsets&gt;&gt;[&amp;check;]&lt;&lt;else&gt;&gt;[ ]&lt;&lt;/if&gt;&gt; &lt;&lt;if $back_offset&gt;&gt;(offsets: $back_offset / $front_offset)&lt;&lt;else&gt;&gt;(not set)&lt;&lt;/if&gt;&gt; [[Enter the Offset Workshop|CramerOffsets]]
+&lt;&lt;if $cramer_visits.CramerForce&gt;&gt;[&amp;check;]&lt;&lt;else&gt;&gt;[ ]&lt;&lt;/if&gt;&gt; &lt;&lt;if $max_force&gt;&gt;(force: $max_force N)&lt;&lt;else&gt;&gt;(not set)&lt;&lt;/if&gt;&gt; [[Enter the Force Vault|CramerForce]]
+&lt;&lt;if $cramer_visits.SensorRoom&gt;&gt;[&amp;check;]&lt;&lt;else&gt;&gt;[ ]&lt;&lt;/if&gt;&gt; [[Visit the Sensor Room|SensorRoom]]
+&lt;&lt;if $cramer_visits.PhysicsCorridor&gt;&gt;[&amp;check;]&lt;&lt;else&gt;&gt;[ ]&lt;&lt;/if&gt;&gt; [[Walk the Physics Corridor|PhysicsCorridor]]
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;param-display&quot;&gt;
+Current Configuration:
+  Amplitude:    &lt;&lt;if $amplitude&gt;&gt;$amplitude rad&lt;&lt;else&gt;&gt;not set&lt;&lt;/if&gt;&gt;
+  Frequency:    &lt;&lt;if $frequency&gt;&gt;$frequency Hz&lt;&lt;else&gt;&gt;not set&lt;&lt;/if&gt;&gt;
+  Back Offset:  &lt;&lt;if $back_offset&gt;&gt;$back_offset rad&lt;&lt;else&gt;&gt;not set&lt;&lt;/if&gt;&gt;
+  Front Offset: &lt;&lt;if $front_offset&gt;&gt;$front_offset rad&lt;&lt;else&gt;&gt;not set&lt;&lt;/if&gt;&gt;
+  Max Force:    &lt;&lt;if $max_force&gt;&gt;$max_force N&lt;&lt;else&gt;&gt;not set&lt;&lt;/if&gt;&gt;
+&lt;/div&gt;
+
+&lt;&lt;if $amplitude&gt;&gt;&lt;&lt;if $frequency&gt;&gt;&lt;&lt;if $max_force&gt;&gt;
+All parameters are set. [[Proceed to the Observation Deck (Review)|Review]]
+&lt;&lt;/if&gt;&gt;&lt;&lt;/if&gt;&gt;&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;script&gt;&gt;
+var bm = State.variables.bookmarks || [];
+State.variables._bookmark_count = bm.length;
+&lt;&lt;/script&gt;&gt;
+&lt;&lt;if $_bookmark_count gt 0&gt;&gt;
+[[View Bookmarks ($_bookmark_count)|Bookmarks]]
+&lt;&lt;/if&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+</tw-passagedata>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     KATHRYN CRAMER: Sensor Room
+     ═══════════════════════════════════════════════════════════════ -->
+<tw-passagedata pid="3" name="SensorRoom">
+&lt;&lt;script&gt;&gt;
+if (!State.variables.cramer_visits) State.variables.cramer_visits = {};
+if (!State.variables.cramer_visits.SensorRoom) State.variables.cramer_visits.SensorRoom = 0;
+State.variables.cramer_visits.SensorRoom++;
+&lt;&lt;/script&gt;&gt;
+&lt;h2&gt;The Sensor Room&lt;/h2&gt;
+
+&lt;&lt;if $cramer_visits.SensorRoom gt 1&gt;&gt;
+&lt;div class=&quot;marginalia&quot;&gt;Return visit: You notice details you missed before — the joint encoder sampling at 240 Hz, the contact sensor's binary threshold. The docent's voice sounds different the second time, as if addressed to someone who already knows the basics.&lt;/div&gt;
+&lt;&lt;else&gt;&gt;
+&lt;div class=&quot;marginalia&quot;&gt;Pedagogical note: The robot senses joint angles and contact forces. These are its only windows onto the world. Everything it &quot;knows&quot; comes through these channels.&lt;/div&gt;
+&lt;&lt;/if&gt;&gt;
+
+Glass cases line the walls, each containing a different sensor module. A docent's voice echoes from hidden speakers:
+
+&quot;Your robot has proprioceptive sensors in each joint — they measure the current angle, how fast it's changing, and the torque being applied. It also has contact sensors on its feet that fire when they touch the ground.&quot;
+
+&quot;The robot doesn't see. It doesn't hear. It feels its own body and the ground beneath it. Every behavior you observe emerges from this minimal sensorium.&quot;
+
+A side door leads to the Motor Room, where signals become motion.
+
+&lt;div class=&quot;choice-grid&quot;&gt;
+[[Continue to the Motor Room|MotorRoom]]
+[[Return to the Lobby|Lobby]]
+&lt;/div&gt;
+</tw-passagedata>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     KATHRYN CRAMER: Motor Room
+     ═══════════════════════════════════════════════════════════════ -->
+<tw-passagedata pid="4" name="MotorRoom">
+&lt;&lt;script&gt;&gt;
+if (!State.variables.cramer_visits) State.variables.cramer_visits = {};
+if (!State.variables.cramer_visits.MotorRoom) State.variables.cramer_visits.MotorRoom = 0;
+State.variables.cramer_visits.MotorRoom++;
+&lt;&lt;/script&gt;&gt;
+&lt;h2&gt;The Motor Room&lt;/h2&gt;
+
+&lt;&lt;if $cramer_visits.MotorRoom gt 1&gt;&gt;
+&lt;div class=&quot;marginalia&quot;&gt;Return visit: The sine wave diagrams now have your parameter values penciled in beside them. Someone — perhaps you — has annotated the phase relationship chart with notes from previous runs.&lt;/div&gt;
+&lt;&lt;else&gt;&gt;
+&lt;div class=&quot;marginalia&quot;&gt;The motor controller converts desired angles into forces. It's a position controller — you tell it where the joint should be, and it pushes to get there. The &quot;max force&quot; parameter caps how hard it can push.&lt;/div&gt;
+&lt;&lt;/if&gt;&gt;
+
+Massive diagrams cover the walls showing sine waves, phase relationships, and joint angle trajectories. A mechanical model in the center of the room slowly articulates a two-joint leg, its motors humming.
+
+&quot;Each joint follows a sine wave,&quot; the placard reads. &quot;The //amplitude// controls how far each swing goes. The //frequency// controls how fast. //Offsets// shift the center point of the swing. And the //phase// relationship between front and back legs determines whether the robot crawls, hops, or stumbles.&quot;
+
+&quot;In this experiment, the back leg starts at phase 0 and the front leg at phase pi — they move in anti-phase, like a natural walking gait.&quot;
+
+&lt;div class=&quot;choice-grid&quot;&gt;
+[[Set the Amplitude|CramerAmplitude]]
+[[Set the Frequency|CramerFrequency]]
+[[Return to the Lobby|Lobby]]
+&lt;/div&gt;
+</tw-passagedata>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     KATHRYN CRAMER: Physics Corridor
+     ═══════════════════════════════════════════════════════════════ -->
+<tw-passagedata pid="5" name="PhysicsCorridor">
+&lt;&lt;script&gt;&gt;
+if (!State.variables.cramer_visits) State.variables.cramer_visits = {};
+if (!State.variables.cramer_visits.PhysicsCorridor) State.variables.cramer_visits.PhysicsCorridor = 0;
+State.variables.cramer_visits.PhysicsCorridor++;
+&lt;&lt;/script&gt;&gt;
+&lt;h2&gt;The Physics Corridor&lt;/h2&gt;
+
+&lt;&lt;if $cramer_visits.PhysicsCorridor gt 1&gt;&gt;
+&lt;div class=&quot;marginalia&quot;&gt;Return visit: The corridor feels shorter this time. You notice wear marks on the floor plaques where other visitors have paused. The physics hasn't changed — 240 Hz, 9.8 m/s^2 — but your sense of what those numbers mean has.&lt;/div&gt;
+&lt;&lt;else&gt;&gt;
+&lt;div class=&quot;marginalia&quot;&gt;The simulation runs at 240 Hz. Gravity is -9.8 m/s^2. Friction coefficients are set high (2.0-2.5) to prevent sliding.&lt;/div&gt;
+&lt;&lt;/if&gt;&gt;
+
+The corridor is long and slightly inclined. Windows on one side show a PyBullet world — a flat plane stretching to the horizon, gravity pulling everything down at 9.8 m/s squared.
+
+Plaques along the wall explain:
+
+''Friction:'' &quot;The ground and the robot's feet have high friction coefficients. This means the robot grips the surface well — it won't slide. But it also means that poorly configured gaits will catch and stumble rather than glide.&quot;
+
+''Gravity:'' &quot;Standard Earth gravity. Your robot weighs what it weighs. More force means it can fight gravity harder, but too much force with too much amplitude will flip it.&quot;
+
+''Time:'' &quot;The physics engine ticks 240 times per second. A simulation of 1000 steps is about 4.2 seconds of robot time.&quot;
+
+&lt;div class=&quot;choice-grid&quot;&gt;
+[[Set the Motor Force|CramerForce]]
+[[Return to the Lobby|Lobby]]
+&lt;/div&gt;
+</tw-passagedata>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     CRAMER: Amplitude Room
+     ═══════════════════════════════════════════════════════════════ -->
+<tw-passagedata pid="6" name="CramerAmplitude">
+&lt;&lt;script&gt;&gt;
+if (!State.variables.cramer_visits) State.variables.cramer_visits = {};
+if (!State.variables.cramer_visits.CramerAmplitude) State.variables.cramer_visits.CramerAmplitude = 0;
+State.variables.cramer_visits.CramerAmplitude++;
+&lt;&lt;/script&gt;&gt;
+&lt;h2&gt;The Range-Mapping Gallery&lt;/h2&gt;
+
+&lt;&lt;if $cramer_visits.CramerAmplitude gt 1&gt;&gt;
+&lt;div class=&quot;marginalia&quot;&gt;Return visit: The dials seem different now. You notice the nonlinear scaling marks between 1.1 and 1.6 — the last 0.5 rad of range produces disproportionately more instability. You didn't see that the first time.&lt;/div&gt;
+&lt;&lt;else&gt;&gt;
+&lt;div class=&quot;marginalia&quot;&gt;Amplitude maps directly to stride length — but the relationship is nonlinear. Too much amplitude and the robot's legs overshoot, causing instability.&lt;/div&gt;
+&lt;&lt;/if&gt;&gt;
+
+Four dials on the wall, each set to a different amplitude. Beside each, a sketch shows the expected leg swing arc.
+
+&lt;div class=&quot;choice-grid&quot;&gt;
+&lt;&lt;link &quot;0.4 rad — Cautious steps, small arcs&quot; &quot;Lobby&quot;&gt;&gt;&lt;&lt;set $amplitude to 0.4&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;link &quot;0.7 rad — Moderate stride, balanced&quot; &quot;Lobby&quot;&gt;&gt;&lt;&lt;set $amplitude to 0.7&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;link &quot;1.1 rad — Long stride, aggressive&quot; &quot;Lobby&quot;&gt;&gt;&lt;&lt;set $amplitude to 1.1&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;link &quot;1.6 rad — Maximum reach, risky&quot; &quot;Lobby&quot;&gt;&gt;&lt;&lt;set $amplitude to 1.6&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;/div&gt;
+</tw-passagedata>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     CRAMER: Frequency Room
+     ═══════════════════════════════════════════════════════════════ -->
+<tw-passagedata pid="7" name="CramerFrequency">
+&lt;&lt;script&gt;&gt;
+if (!State.variables.cramer_visits) State.variables.cramer_visits = {};
+if (!State.variables.cramer_visits.CramerFrequency) State.variables.cramer_visits.CramerFrequency = 0;
+State.variables.cramer_visits.CramerFrequency++;
+&lt;&lt;/script&gt;&gt;
+&lt;h2&gt;The Oscillation Chamber&lt;/h2&gt;
+
+&lt;&lt;if $cramer_visits.CramerFrequency gt 1&gt;&gt;
+&lt;div class=&quot;marginalia&quot;&gt;Return visit: You listen more carefully to the metronomes now. The interaction between frequency and amplitude is clearer — at 4.0 Hz with 1.6 rad amplitude, the motor needs to reverse direction 8 times per second through a 3.2 rad arc. The math is unforgiving.&lt;/div&gt;
+&lt;&lt;else&gt;&gt;
+&lt;div class=&quot;marginalia&quot;&gt;Frequency and amplitude interact: high frequency with high amplitude demands enormous motor torque. The motor may not keep up.&lt;/div&gt;
+&lt;&lt;/if&gt;&gt;
+
+Metronomes of different speeds tick along a shelf. Each one drives a small mechanical leg model at its tempo.
+
+&lt;div class=&quot;choice-grid&quot;&gt;
+&lt;&lt;link &quot;0.8 Hz — Slow, deliberate cadence&quot; &quot;Lobby&quot;&gt;&gt;&lt;&lt;set $frequency to 0.8&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;link &quot;1.5 Hz — Walking pace&quot; &quot;Lobby&quot;&gt;&gt;&lt;&lt;set $frequency to 1.5&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;link &quot;2.5 Hz — Brisk trot&quot; &quot;Lobby&quot;&gt;&gt;&lt;&lt;set $frequency to 2.5&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;link &quot;4.0 Hz — Rapid scurry&quot; &quot;Lobby&quot;&gt;&gt;&lt;&lt;set $frequency to 4.0&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;/div&gt;
+</tw-passagedata>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     CRAMER: Offsets Room
+     ═══════════════════════════════════════════════════════════════ -->
+<tw-passagedata pid="8" name="CramerOffsets">
+&lt;&lt;script&gt;&gt;
+if (!State.variables.cramer_visits) State.variables.cramer_visits = {};
+if (!State.variables.cramer_visits.CramerOffsets) State.variables.cramer_visits.CramerOffsets = 0;
+State.variables.cramer_visits.CramerOffsets++;
+&lt;&lt;/script&gt;&gt;
+&lt;h2&gt;The Offset Workshop&lt;/h2&gt;
+
+&lt;&lt;if $cramer_visits.CramerOffsets gt 1&gt;&gt;
+&lt;div class=&quot;marginalia&quot;&gt;Return visit: The workbench models look different — someone has labeled them &quot;forward bias,&quot; &quot;neutral,&quot; &quot;retreat.&quot; You now understand that offsets are the robot's built-in opinion about which direction to go.&lt;/div&gt;
+&lt;&lt;else&gt;&gt;
+&lt;div class=&quot;marginalia&quot;&gt;Offsets shift the &quot;resting position&quot; of each joint. They determine posture — whether the robot leans forward, stands neutral, or leans back. Asymmetric offsets create directional bias.&lt;/div&gt;
+&lt;&lt;/if&gt;&gt;
+
+Workbenches hold adjustable leg models. Each is set to a different resting posture.
+
+&lt;div class=&quot;choice-grid&quot;&gt;
+&lt;&lt;link &quot;Neutral (back: 0.0, front: 0.0)&quot; &quot;Lobby&quot;&gt;&gt;&lt;&lt;set $back_offset to 0.0&gt;&gt;&lt;&lt;set $front_offset to 0.0&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;link &quot;Forward-leaning (back: 0.2, front: -0.3)&quot; &quot;Lobby&quot;&gt;&gt;&lt;&lt;set $back_offset to 0.2&gt;&gt;&lt;&lt;set $front_offset to -0.3&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;link &quot;Aggressive (back: 0.5, front: -0.5)&quot; &quot;Lobby&quot;&gt;&gt;&lt;&lt;set $back_offset to 0.5&gt;&gt;&lt;&lt;set $front_offset to -0.5&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;link &quot;Backward-leaning (back: -0.3, front: 0.2)&quot; &quot;Lobby&quot;&gt;&gt;&lt;&lt;set $back_offset to -0.3&gt;&gt;&lt;&lt;set $front_offset to 0.2&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;/div&gt;
+</tw-passagedata>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     CRAMER: Force Room
+     ═══════════════════════════════════════════════════════════════ -->
+<tw-passagedata pid="9" name="CramerForce">
+&lt;&lt;script&gt;&gt;
+if (!State.variables.cramer_visits) State.variables.cramer_visits = {};
+if (!State.variables.cramer_visits.CramerForce) State.variables.cramer_visits.CramerForce = 0;
+State.variables.cramer_visits.CramerForce++;
+&lt;&lt;/script&gt;&gt;
+&lt;h2&gt;The Force Vault&lt;/h2&gt;
+
+&lt;&lt;if $cramer_visits.CramerForce gt 1&gt;&gt;
+&lt;div class=&quot;marginalia&quot;&gt;Return visit: You understand the springs better now. 120 N is a suggestion; 350 N is a command; 600 N is an ultimatum. The joint obeys all three, but the consequences differ.&lt;/div&gt;
+&lt;&lt;else&gt;&gt;
+&lt;div class=&quot;marginalia&quot;&gt;Force is the motor's budget. Too little and the legs can't follow the trajectory. Too much and the robot may jerk violently at direction changes.&lt;/div&gt;
+&lt;&lt;/if&gt;&gt;
+
+Three massive springs are mounted to the wall, each labeled with its maximum output.
+
+&lt;div class=&quot;choice-grid&quot;&gt;
+&lt;&lt;link &quot;120 N — Gentle, may struggle with large amplitudes&quot; &quot;Lobby&quot;&gt;&gt;&lt;&lt;set $max_force to 120&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;link &quot;350 N — Standard, reliable for most gaits&quot; &quot;Lobby&quot;&gt;&gt;&lt;&lt;set $max_force to 350&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;link &quot;600 N — Powerful, risks instability at high amplitude&quot; &quot;Lobby&quot;&gt;&gt;&lt;&lt;set $max_force to 600&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;/div&gt;
+</tw-passagedata>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     COMMON: ChooseAmplitude (non-Cramer lenses)
+     ═══════════════════════════════════════════════════════════════ -->
+<tw-passagedata pid="10" name="ChooseAmplitude">
+&lt;&lt;if $lens eq &quot;mordvintsev&quot;&gt;&gt;
+&lt;h2&gt;Growth Amplitude&lt;/h2&gt;
+
+The growth amplitude — how far each developmental cycle reaches into the space of possible joint configurations. A small amplitude means the pattern barely perturbs the resting state. A large one means the self-organizing process swings wide, exploring the extremes.
+
+&lt;&lt;elseif $lens eq &quot;sayama&quot;&gt;&gt;
+&lt;h2&gt;Variable 1: Amplitude&lt;/h2&gt;
+
+''Hypothesis:'' Amplitude controls stride length. Larger amplitude should produce longer strides, but may decrease stability beyond a threshold.
+
+Select a value to test:
+
+&lt;&lt;elseif $lens eq &quot;wolfram&quot;&gt;&gt;
+&lt;h2&gt;Rule Parameter 1/4: Amplitude&lt;/h2&gt;
+
+Amplitude &amp;isin; {0.4, 0.7, 1.1, 1.6} rad. This parameter sets the excursion range of the joint oscillator. Select:
+
+&lt;&lt;elseif $lens eq &quot;rucker&quot;&gt;&gt;
+&lt;h2&gt;How Wild?&lt;/h2&gt;
+
+How far should your creature's legs swing through phase space? A timid creature barely moves. A wild one throws its limbs to the edges of configuration space and sees what happens.
+
+&lt;&lt;elseif $lens eq &quot;mandelbrot&quot;&gt;&gt;
+&lt;h2&gt;Characteristic Scale of Oscillation&lt;/h2&gt;
+
+The amplitude sets the characteristic scale of the joint trajectory. Larger values produce rougher, more jagged motion paths — the trajectory's fractal dimension increases with amplitude.
+
+&lt;&lt;elseif $lens eq &quot;jcramer&quot;&gt;&gt;
+&lt;h2&gt;Motor Excursion Range&lt;/h2&gt;
+
+Motor excursion range (&amp;plusmn;rad). Instrument limit: 1.8 rad.
+Calibration note: Joint encoder resolution is 0.001 rad. Values below 0.3 rad approach the noise floor of the position controller.
+
+&lt;&lt;elseif $lens eq &quot;pelton&quot;&gt;&gt;
+&lt;h2&gt;Range of Motion — Threat Assessment&lt;/h2&gt;
+
+How far can this thing reach? In the field, the difference between a cautious shuffle and a full leg extension is the difference between getting across the wire and getting caught on it. Small movements keep you low and quiet. Big swings cover ground fast but you're exposed. Pick your risk tolerance.
+
+&lt;&lt;elseif $lens eq &quot;womack&quot;&gt;&gt;
+&lt;h2&gt;Amplitude&lt;/h2&gt;
+
+The range of the permitted gesture. In the reduced city the body learns how far it may extend before the architecture corrects it. A small amplitude: the walk of someone who knows the walls. A large one: the reach of someone who has forgotten what waits at the edges.
+
+&lt;&lt;else&gt;&gt;
+&lt;h2&gt;Choose Amplitude&lt;/h2&gt;
+
+Select the amplitude of joint oscillation (radians):
+&lt;&lt;/if&gt;&gt;
+
+&lt;div class=&quot;choice-grid&quot;&gt;
+&lt;&lt;link &quot;0.4 rad&quot; &quot;ChooseFrequency&quot;&gt;&gt;&lt;&lt;set $amplitude to 0.4&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;link &quot;0.7 rad&quot; &quot;ChooseFrequency&quot;&gt;&gt;&lt;&lt;set $amplitude to 0.7&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;link &quot;1.1 rad&quot; &quot;ChooseFrequency&quot;&gt;&gt;&lt;&lt;set $amplitude to 1.1&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;link &quot;1.6 rad&quot; &quot;ChooseFrequency&quot;&gt;&gt;&lt;&lt;set $amplitude to 1.6&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;/div&gt;
+</tw-passagedata>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     COMMON: ChooseFrequency
+     ═══════════════════════════════════════════════════════════════ -->
+<tw-passagedata pid="11" name="ChooseFrequency">
+&lt;&lt;if $lens eq &quot;mordvintsev&quot;&gt;&gt;
+&lt;h2&gt;Oscillation Tempo&lt;/h2&gt;
+
+The tempo of the developmental cycle — how rapidly the growth pattern iterates. Faster iteration means more cycles per unit time, each one reinforcing or destabilizing the emergent pattern.
+
+&lt;&lt;elseif $lens eq &quot;sayama&quot;&gt;&gt;
+&lt;h2&gt;Variable 2: Frequency&lt;/h2&gt;
+
+''Prediction:'' Higher frequency should increase stepping rate. Combined with amplitude, this determines the speed-stability tradeoff.
+
+Select frequency (Hz):
+
+&lt;&lt;elseif $lens eq &quot;wolfram&quot;&gt;&gt;
+&lt;h2&gt;Rule Parameter 2/4: Frequency&lt;/h2&gt;
+
+Frequency &amp;isin; {0.8, 1.5, 2.5, 4.0} Hz. Oscillation rate of the joint controller:
+
+&lt;&lt;elseif $lens eq &quot;rucker&quot;&gt;&gt;
+&lt;h2&gt;How Fast?&lt;/h2&gt;
+
+Your creature's metabolism — the clock speed of its limb oscillations. Slow and lumbering, or fast and frantic? The manifold of possible gaits looks very different at each tempo.
+
+&lt;&lt;elseif $lens eq &quot;mandelbrot&quot;&gt;&gt;
+&lt;h2&gt;Temporal Frequency&lt;/h2&gt;
+
+The fundamental frequency of the time series. Higher frequencies pack more oscillation cycles into the observation window, increasing the temporal complexity of the trajectory.
+
+&lt;&lt;elseif $lens eq &quot;jcramer&quot;&gt;&gt;
+&lt;h2&gt;Oscillation Frequency&lt;/h2&gt;
+
+Drive frequency (Hz). Instrument bandwidth: 0.1–10.0 Hz.
+Note: Motor servo loop runs at 240 Hz. Nyquist limit for resolved gait dynamics: 120 Hz. All test frequencies are well within band.
+
+&lt;&lt;elseif $lens eq &quot;pelton&quot;&gt;&gt;
+&lt;h2&gt;Pace — How Fast Are You Moving?&lt;/h2&gt;
+
+Tempo is everything. Slow means you can read the terrain, pick your footing, react to surprises. Fast means you outrun the problem — or you don't see the hole until you're in it. I've watched guys sprint across minefields and live, and I've watched careful people step wrong once. Choose your cadence.
+
+&lt;&lt;elseif $lens eq &quot;womack&quot;&gt;&gt;
+&lt;h2&gt;Frequency&lt;/h2&gt;
+
+The repetition rate of the body's single available phrase. Slow: the pace of someone conserving what remains. Fast: the pace of someone who has heard something behind them. The city's rhythm was never chosen. It was inherited from whatever came before the collapse.
+
+&lt;&lt;else&gt;&gt;
+&lt;h2&gt;Choose Frequency&lt;/h2&gt;
+
+Select the oscillation frequency (Hz):
+&lt;&lt;/if&gt;&gt;
+
+&lt;div class=&quot;choice-grid&quot;&gt;
+&lt;&lt;link &quot;0.8 Hz&quot; &quot;ChooseOffsets&quot;&gt;&gt;&lt;&lt;set $frequency to 0.8&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;link &quot;1.5 Hz&quot; &quot;ChooseOffsets&quot;&gt;&gt;&lt;&lt;set $frequency to 1.5&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;link &quot;2.5 Hz&quot; &quot;ChooseOffsets&quot;&gt;&gt;&lt;&lt;set $frequency to 2.5&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;link &quot;4.0 Hz&quot; &quot;ChooseOffsets&quot;&gt;&gt;&lt;&lt;set $frequency to 4.0&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;/div&gt;
+</tw-passagedata>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     COMMON: ChooseOffsets
+     ═══════════════════════════════════════════════════════════════ -->
+<tw-passagedata pid="12" name="ChooseOffsets">
+&lt;&lt;if $lens eq &quot;mordvintsev&quot;&gt;&gt;
+&lt;h2&gt;Positional Bias&lt;/h2&gt;
+
+The bias field — an asymmetry in the growth pattern that tilts the organism's posture. Like a gradient in a neural field, it determines the default direction of flow.
+
+&lt;&lt;elseif $lens eq &quot;sayama&quot;&gt;&gt;
+&lt;h2&gt;Variable 3: Joint Offsets&lt;/h2&gt;
+
+''Hypothesis:'' Offset asymmetry between front and back legs should create directional locomotion bias. Symmetric offsets should produce in-place oscillation.
+
+&lt;&lt;elseif $lens eq &quot;wolfram&quot;&gt;&gt;
+&lt;h2&gt;Rule Parameter 3/4: Offsets&lt;/h2&gt;
+
+Joint offset presets. These shift the DC component of the sine controller for each leg:
+
+&lt;&lt;elseif $lens eq &quot;rucker&quot;&gt;&gt;
+&lt;h2&gt;How Crooked?&lt;/h2&gt;
+
+Your creature's posture — its default lean, its characteristic slouch or swagger. A neutral creature is symmetrical. An offset creature has attitude, a built-in direction.
+
+&lt;&lt;elseif $lens eq &quot;mandelbrot&quot;&gt;&gt;
+&lt;h2&gt;Positional Offset&lt;/h2&gt;
+
+The DC component of the oscillation — a translation in configuration space. Asymmetric offsets break the bilateral symmetry and create directional bias in the trajectory.
+
+&lt;&lt;elseif $lens eq &quot;jcramer&quot;&gt;&gt;
+&lt;h2&gt;Joint DC Offset&lt;/h2&gt;
+
+Servo zero-point bias (rad). These offsets shift the center of oscillation for each joint. Calibration reference: mechanical zero confirmed via limit switches.
+
+&lt;&lt;elseif $lens eq &quot;pelton&quot;&gt;&gt;
+&lt;h2&gt;Stance — Which Way Are You Leaning?&lt;/h2&gt;
+
+Posture determines direction. Neutral stance keeps your options open — you can go any way. Forward lean means you're committed: faster off the mark, harder to stop. Aggressive lean is a sprint posture — great for getting out of somewhere, terrible for changing your mind. Backward lean? That's a fighting retreat. Sometimes it's the right call.
+
+&lt;&lt;elseif $lens eq &quot;womack&quot;&gt;&gt;
+&lt;h2&gt;Offset&lt;/h2&gt;
+
+The body's permanent inclination. Neutral: a posture no one holds for long. Forward: the lean of someone moving toward something that may not still be there when they arrive. Backward: the lean of someone who has already seen what's ahead. Every survivor walks crooked. The question is which direction.
+
+&lt;&lt;else&gt;&gt;
+&lt;h2&gt;Choose Offsets&lt;/h2&gt;
+
+Select a leg offset preset:
+&lt;&lt;/if&gt;&gt;
+
+&lt;div class=&quot;choice-grid&quot;&gt;
+&lt;&lt;link &quot;Neutral (0.0 / 0.0)&quot; &quot;ChooseForce&quot;&gt;&gt;&lt;&lt;set $back_offset to 0.0&gt;&gt;&lt;&lt;set $front_offset to 0.0&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;link &quot;Forward-leaning (0.2 / -0.3)&quot; &quot;ChooseForce&quot;&gt;&gt;&lt;&lt;set $back_offset to 0.2&gt;&gt;&lt;&lt;set $front_offset to -0.3&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;link &quot;Aggressive (0.5 / -0.5)&quot; &quot;ChooseForce&quot;&gt;&gt;&lt;&lt;set $back_offset to 0.5&gt;&gt;&lt;&lt;set $front_offset to -0.5&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;link &quot;Backward-leaning (-0.3 / 0.2)&quot; &quot;ChooseForce&quot;&gt;&gt;&lt;&lt;set $back_offset to -0.3&gt;&gt;&lt;&lt;set $front_offset to 0.2&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;/div&gt;
+</tw-passagedata>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     COMMON: ChooseForce
+     ═══════════════════════════════════════════════════════════════ -->
+<tw-passagedata pid="13" name="ChooseForce">
+&lt;&lt;if $lens eq &quot;mordvintsev&quot;&gt;&gt;
+&lt;h2&gt;Growth Energy&lt;/h2&gt;
+
+The energy available for pattern formation — how much force the developmental process can exert on the substrate. Too little energy and the pattern dissolves. Too much and it shatters into chaos.
+
+&lt;&lt;elseif $lens eq &quot;sayama&quot;&gt;&gt;
+&lt;h2&gt;Variable 4: Motor Force&lt;/h2&gt;
+
+''Control variable:'' Maximum motor force constrains the system's ability to follow the commanded trajectory. Insufficient force = trajectory tracking error.
+
+&lt;&lt;elseif $lens eq &quot;wolfram&quot;&gt;&gt;
+&lt;h2&gt;Rule Parameter 4/4: Force&lt;/h2&gt;
+
+MAX_FORCE &amp;isin; {120, 350, 600} N. Motor torque limit:
+
+&lt;&lt;elseif $lens eq &quot;rucker&quot;&gt;&gt;
+&lt;h2&gt;How Strong?&lt;/h2&gt;
+
+Your creature's muscle power. A weak creature moves gently, its legs drifting through the commanded positions like suggestions. A strong creature snaps to each target with authority — maybe too much authority.
+
+&lt;&lt;elseif $lens eq &quot;mandelbrot&quot;&gt;&gt;
+&lt;h2&gt;Force Scale&lt;/h2&gt;
+
+The force parameter sets an upper bound on the motor's output. It acts as a regularizer on the trajectory — higher force allows the trajectory to track the commanded sine more faithfully, producing sharper corners and higher-frequency content.
+
+&lt;&lt;elseif $lens eq &quot;jcramer&quot;&gt;&gt;
+&lt;h2&gt;Motor Force Limit&lt;/h2&gt;
+
+Maximum motor force (N). Actuator spec sheet: continuous rated force 650 N, peak 800 N. Derating applied for thermal margin.
+
+Test values within rated envelope:
+
+&lt;&lt;elseif $lens eq &quot;pelton&quot;&gt;&gt;
+&lt;h2&gt;Power — How Hard Can You Push?&lt;/h2&gt;
+
+Force is your budget for surviving contact with reality. Too little and your legs are just suggestions — they'll fold under load, slip on wet ground, fail to pull you over an obstacle. Too much and you're burning energy you don't have, jerking yourself off balance, snapping tendons. The sweet spot depends on everything else. In my experience, people who survive usually have a little more force than they think they need.
+
+&lt;&lt;elseif $lens eq &quot;womack&quot;&gt;&gt;
+&lt;h2&gt;Force&lt;/h2&gt;
+
+The ration of violence permitted to the limbs. A small force: the motors petition the joints and the joints consider it. A large force: the motors command and the joints comply instantly, brutally. In the old economy there was always enough force. Now you choose: gentle and slow, or fast and breaking.
+
+&lt;&lt;else&gt;&gt;
+&lt;h2&gt;Choose Force&lt;/h2&gt;
+
+Select the maximum motor force (N):
+&lt;&lt;/if&gt;&gt;
+
+&lt;div class=&quot;choice-grid&quot;&gt;
+&lt;&lt;link &quot;120 N&quot; &quot;Review&quot;&gt;&gt;&lt;&lt;set $max_force to 120&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;link &quot;350 N&quot; &quot;Review&quot;&gt;&gt;&lt;&lt;set $max_force to 350&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;link &quot;600 N&quot; &quot;Review&quot;&gt;&gt;&lt;&lt;set $max_force to 600&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;/div&gt;
+</tw-passagedata>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     COMMON: Review
+     ═══════════════════════════════════════════════════════════════ -->
+<tw-passagedata pid="14" name="Review">
+&lt;&lt;if $lens eq &quot;cramer&quot;&gt;&gt;
+&lt;h2&gt;The Observation Deck — Pre-Launch Review&lt;/h2&gt;
+
+&lt;div class=&quot;marginalia&quot;&gt;From this vantage point you can see the simulation floor below. Your robot waits in its starting position, motors primed with your chosen parameters.&lt;/div&gt;
+
+You stand at the railing of the observation deck. Below, the robot sits motionless on the simulation floor, its joints configured with your specifications.
+
+&lt;&lt;elseif $lens eq &quot;mordvintsev&quot;&gt;&gt;
+&lt;h2&gt;Pattern Summary&lt;/h2&gt;
+
+The growth parameters are set. Before initiating the developmental process, review the configuration of your self-organizing system:
+
+&lt;&lt;elseif $lens eq &quot;sayama&quot;&gt;&gt;
+&lt;h2&gt;Experiment Protocol — Review&lt;/h2&gt;
+
+Before running the experiment, verify your independent variables:
+
+&lt;&lt;elseif $lens eq &quot;wolfram&quot;&gt;&gt;
+&lt;h2&gt;Rule Configuration Summary&lt;/h2&gt;
+
+All rule parameters specified. Configuration:
+
+&lt;&lt;elseif $lens eq &quot;rucker&quot;&gt;&gt;
+&lt;h2&gt;Your Creature Awaits&lt;/h2&gt;
+
+Your creature is assembled, crouching at the edge of configuration space, ready to be released into the physics manifold. Here's what you've built:
+
+&lt;&lt;elseif $lens eq &quot;mandelbrot&quot;&gt;&gt;
+&lt;h2&gt;Configuration at All Scales&lt;/h2&gt;
+
+The generator parameters are set. The resulting trajectory will have structure at multiple scales determined by these values:
+
+&lt;&lt;elseif $lens eq &quot;jcramer&quot;&gt;&gt;
+&lt;h2&gt;Pre-Run Checklist&lt;/h2&gt;
+
+Instrument configuration verified. Run parameters:
+
+&lt;&lt;elseif $lens eq &quot;pelton&quot;&gt;&gt;
+&lt;h2&gt;Pre-Mission Briefing&lt;/h2&gt;
+
+Here's your loadout. Look it over. Once you hit go, your robot is on its own — four seconds of simulated terrain with nothing but these parameters between it and the ground. No second chances in the field, but here you can always come back and refit.
+
+&lt;&lt;elseif $lens eq &quot;womack&quot;&gt;&gt;
+&lt;h2&gt;Before&lt;/h2&gt;
+
+The configuration is fixed. These are the terms under which the body will be permitted to move. Review them. They will not be renegotiated once the process begins.
+
+&lt;&lt;/if&gt;&gt;
+
+&lt;div class=&quot;param-display&quot;&gt;
+  Amplitude:    $amplitude rad
+  Frequency:    $frequency Hz
+  Back Offset:  $back_offset rad
+  Front Offset: $front_offset rad
+  Max Force:    $max_force N
+  Sim Steps:    1000
+&lt;/div&gt;
+
+&lt;div class=&quot;choice-grid&quot;&gt;
+&lt;&lt;if $lens eq &quot;sayama&quot;&gt;&gt;
+&lt;&lt;link &quot;Record Prediction &amp; Run&quot; &quot;SayamaPrediction&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;else&gt;&gt;
+&lt;&lt;link &quot;Run Simulation&quot; &quot;RunSimulation&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if $lens eq &quot;cramer&quot;&gt;&gt;
+&lt;&lt;link &quot;Return to the Lobby to adjust&quot; &quot;Lobby&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;else&gt;&gt;
+&lt;&lt;link &quot;Go back and change amplitude&quot; &quot;ChooseAmplitude&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+&lt;/div&gt;
+</tw-passagedata>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     COMMON: RunSimulation
+     ═══════════════════════════════════════════════════════════════ -->
+<tw-passagedata pid="15" name="RunSimulation">
+&lt;&lt;if $lens eq &quot;cramer&quot;&gt;&gt;
+&lt;h2&gt;Launching Simulation...&lt;/h2&gt;
+&lt;div class=&quot;marginalia&quot;&gt;The robot is running on a headless PyBullet instance. No graphics — just physics, joints, and ground truth.&lt;/div&gt;
+&lt;div class=&quot;spinner&quot;&gt;&lt;/div&gt; The simulation floor hums to life below. Your robot begins to move...
+&lt;&lt;elseif $lens eq &quot;mordvintsev&quot;&gt;&gt;
+&lt;h2&gt;Growing...&lt;/h2&gt;
+&lt;div class=&quot;spinner&quot;&gt;&lt;/div&gt; The developmental process unfolds. Patterns emerge from the initial conditions...
+&lt;&lt;elseif $lens eq &quot;sayama&quot;&gt;&gt;
+&lt;h2&gt;Running Experiment...&lt;/h2&gt;
+&lt;div class=&quot;spinner&quot;&gt;&lt;/div&gt; Simulation in progress. Collecting time-series data...
+&lt;&lt;elseif $lens eq &quot;wolfram&quot;&gt;&gt;
+&lt;h2&gt;Computing...&lt;/h2&gt;
+&lt;div class=&quot;spinner&quot;&gt;&lt;/div&gt; Evaluating rule configuration. Generating space-time evolution...
+&lt;&lt;elseif $lens eq &quot;rucker&quot;&gt;&gt;
+&lt;h2&gt;Releasing Your Creature!&lt;/h2&gt;
+&lt;div class=&quot;spinner&quot;&gt;&lt;/div&gt; Your creature tumbles into the physics manifold, limbs churning...
+&lt;&lt;elseif $lens eq &quot;mandelbrot&quot;&gt;&gt;
+&lt;h2&gt;Iterating...&lt;/h2&gt;
+&lt;div class=&quot;spinner&quot;&gt;&lt;/div&gt; The generator iterates, producing the trajectory at all scales...
+&lt;&lt;elseif $lens eq &quot;jcramer&quot;&gt;&gt;
+&lt;h2&gt;Acquiring Data...&lt;/h2&gt;
+&lt;div class=&quot;spinner&quot;&gt;&lt;/div&gt; DAQ active. Motors armed. Recording displacement telemetry...
+&lt;&lt;elseif $lens eq &quot;pelton&quot;&gt;&gt;
+&lt;h2&gt;Deploying...&lt;/h2&gt;
+&lt;div class=&quot;spinner&quot;&gt;&lt;/div&gt; Your robot hits the ground running. Or crawling. Or falling. We'll find out in a second...
+&lt;&lt;elseif $lens eq &quot;womack&quot;&gt;&gt;
+&lt;h2&gt;Running&lt;/h2&gt;
+&lt;div class=&quot;spinner&quot;&gt;&lt;/div&gt; The body moves through the allotted space. The ground receives it or doesn't.
+&lt;&lt;else&gt;&gt;
+&lt;h2&gt;Running...&lt;/h2&gt;
+&lt;div class=&quot;spinner&quot;&gt;&lt;/div&gt; Simulation running...
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;script&gt;&gt;
+(function() {
+  var params = {
+    amplitude: State.variables.amplitude || 0.7,
+    frequency: State.variables.frequency || 1.5,
+    back_offset: State.variables.back_offset || 0.0,
+    front_offset: State.variables.front_offset || 0.0,
+    max_force: State.variables.max_force || 350,
+    sim_steps: 1000
+  };
+  fetch(&quot;/simulate&quot;, {
+    method: &quot;POST&quot;,
+    headers: {&quot;Content-Type&quot;: &quot;application/json&quot;},
+    body: JSON.stringify(params)
+  })
+  .then(function(r) { return r.json(); })
+  .then(function(data) {
+    State.variables.sim_result = data;
+    if (data.summary) {
+      var s = data.summary;
+      var d = s.delta || s;
+      State.variables.result_dx = (d.dx !== undefined &amp;&amp; d.dx !== null) ? Number(d.dx).toFixed(3) : (s.dx !== undefined ? Number(s.dx).toFixed(3) : &quot;N/A&quot;);
+      State.variables.result_max_z = (s.max_z !== undefined &amp;&amp; s.max_z !== null) ? Number(s.max_z).toFixed(3) : &quot;N/A&quot;;
+      State.variables.result_upright = (s.upright_fraction !== undefined &amp;&amp; s.upright_fraction !== null) ? (Number(s.upright_fraction) * 100).toFixed(1) : &quot;N/A&quot;;
+      State.variables.result_max_roll = (s.max_abs_roll !== undefined) ? Number(s.max_abs_roll).toFixed(3) : &quot;N/A&quot;;
+      State.variables.result_max_pitch = (s.max_abs_pitch !== undefined) ? Number(s.max_abs_pitch).toFixed(3) : &quot;N/A&quot;;
+
+      // Store null test result for John Cramer lens
+      if (State.variables._jcramer_is_null) {
+        State.variables.jcramer_null = State.variables.result_dx;
+        State.variables._jcramer_is_null = false;
+      }
+
+      // Determine salvage path flags for Cramer lens
+      var dx_val = parseFloat(State.variables.result_dx);
+      if (!isNaN(dx_val) &amp;&amp; Math.abs(dx_val) &lt; 0.05) {
+        State.variables.salvage = &quot;no_motion&quot;;
+      } else if (!isNaN(dx_val) &amp;&amp; dx_val &lt; -0.05) {
+        State.variables.salvage = &quot;backward&quot;;
+      } else if (s.upright_fraction !== undefined &amp;&amp; s.upright_fraction !== null &amp;&amp; Number(s.upright_fraction) &lt; 0.5) {
+        State.variables.salvage = &quot;flipped&quot;;
+      } else {
+        State.variables.salvage = &quot;none&quot;;
+      }
+    }
+    Engine.play(&quot;Results&quot;);
+  })
+  .catch(function(err) {
+    State.variables.sim_error = String(err);
+    Engine.play(&quot;Error&quot;);
+  });
+})();
+&lt;&lt;/script&gt;&gt;
+</tw-passagedata>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     COMMON: Results
+     ═══════════════════════════════════════════════════════════════ -->
+<tw-passagedata pid="16" name="Results">
+&lt;&lt;if $lens eq &quot;cramer&quot;&gt;&gt;
+&lt;h2&gt;Observation Deck — Results&lt;/h2&gt;
+
+&lt;&lt;if $salvage eq &quot;no_motion&quot;&gt;&gt;
+&lt;div class=&quot;marginalia&quot;&gt;Your robot didn't move. A salvage path is available — a diagnostic room where you can understand why and adjust.&lt;/div&gt;
+From the observation deck you watch... and nothing happens. The robot vibrates slightly but stays in place. A red light blinks on the console: ''NO SIGNIFICANT DISPLACEMENT DETECTED.''
+
+A door at the side of the deck is marked: //Salvage Path — Diagnostics//
+
+&lt;div class=&quot;param-display&quot;&gt;
+  Displacement:     $result_dx m
+  Max Height:       $result_max_z m
+  Upright Fraction: $result_upright%
+  Max Roll:         $result_max_roll rad
+  Max Pitch:        $result_max_pitch rad
+&lt;/div&gt;
+
+&lt;div class=&quot;choice-grid&quot;&gt;
+&lt;&lt;link &quot;Bookmark this gait&quot;&gt;&gt;&lt;&lt;script&gt;&gt;
+if (!State.variables.bookmarks) State.variables.bookmarks = [];
+State.variables.bookmarks.push({
+  amplitude: State.variables.amplitude,
+  frequency: State.variables.frequency,
+  back_offset: State.variables.back_offset,
+  front_offset: State.variables.front_offset,
+  max_force: State.variables.max_force,
+  result_dx: State.variables.result_dx,
+  salvage: State.variables.salvage,
+  timestamp: new Date().toLocaleTimeString()
+});
+&lt;&lt;/script&gt;&gt;&lt;&lt;goto &quot;Lobby&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
+[[Enter the Salvage Path|SalvagePath_NoMotion]]
+[[Return to the Lobby to try again|Lobby]]
+&lt;/div&gt;
+
+&lt;&lt;elseif $salvage eq &quot;backward&quot;&gt;&gt;
+&lt;div class=&quot;marginalia&quot;&gt;The robot moved backward. The offset configuration pushed it the wrong way. Explore the salvage path to understand why.&lt;/div&gt;
+From the observation deck you watch your robot lurch... backward. It moves with purpose, but in the wrong direction. The displacement counter ticks into negative numbers.
+
+&lt;div class=&quot;param-display&quot;&gt;
+  Displacement:     $result_dx m (BACKWARD)
+  Max Height:       $result_max_z m
+  Upright Fraction: $result_upright%
+&lt;/div&gt;
+
+&lt;div class=&quot;choice-grid&quot;&gt;
+&lt;&lt;link &quot;Bookmark this gait&quot;&gt;&gt;&lt;&lt;script&gt;&gt;
+if (!State.variables.bookmarks) State.variables.bookmarks = [];
+State.variables.bookmarks.push({
+  amplitude: State.variables.amplitude,
+  frequency: State.variables.frequency,
+  back_offset: State.variables.back_offset,
+  front_offset: State.variables.front_offset,
+  max_force: State.variables.max_force,
+  result_dx: State.variables.result_dx,
+  salvage: State.variables.salvage,
+  timestamp: new Date().toLocaleTimeString()
+});
+&lt;&lt;/script&gt;&gt;&lt;&lt;goto &quot;Lobby&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
+[[Enter the Salvage Path|SalvagePath_Backward]]
+[[Return to the Lobby to adjust|Lobby]]
+&lt;/div&gt;
+
+&lt;&lt;elseif $salvage eq &quot;flipped&quot;&gt;&gt;
+&lt;div class=&quot;marginalia&quot;&gt;The robot tipped over. It spent most of its run time on its back or side, unable to walk. Force and amplitude likely overwhelmed stability.&lt;/div&gt;
+From the observation deck you watch your robot tip, flail, and end up on its side. The upright indicator drops to red.
+
+&lt;div class=&quot;param-display&quot;&gt;
+  Displacement:     $result_dx m
+  Max Height:       $result_max_z m
+  Upright Fraction: $result_upright% (UNSTABLE)
+  Max Roll:         $result_max_roll rad
+  Max Pitch:        $result_max_pitch rad
+&lt;/div&gt;
+
+&lt;div class=&quot;choice-grid&quot;&gt;
+&lt;&lt;link &quot;Bookmark this gait&quot;&gt;&gt;&lt;&lt;script&gt;&gt;
+if (!State.variables.bookmarks) State.variables.bookmarks = [];
+State.variables.bookmarks.push({
+  amplitude: State.variables.amplitude,
+  frequency: State.variables.frequency,
+  back_offset: State.variables.back_offset,
+  front_offset: State.variables.front_offset,
+  max_force: State.variables.max_force,
+  result_dx: State.variables.result_dx,
+  salvage: State.variables.salvage,
+  timestamp: new Date().toLocaleTimeString()
+});
+&lt;&lt;/script&gt;&gt;&lt;&lt;goto &quot;Lobby&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
+[[Enter the Salvage Path|SalvagePath_Flipped]]
+[[Return to the Lobby to adjust|Lobby]]
+&lt;/div&gt;
+
+&lt;&lt;else&gt;&gt;
+&lt;div class=&quot;marginalia&quot;&gt;A pin appears on your map marking this gait configuration as &quot;viable.&quot; You can bookmark this result and compare it with future runs.&lt;/div&gt;
+From the observation deck, you see your robot cross the simulation floor. Its legs cycle in the rhythm you specified, each stride carrying it forward.
+
+A pin appears on your map. This gait is viable.
+
+&lt;div class=&quot;param-display&quot;&gt;
+  Displacement:     $result_dx m
+  Max Height:       $result_max_z m
+  Upright Fraction: $result_upright%
+  Max Roll:         $result_max_roll rad
+  Max Pitch:        $result_max_pitch rad
+&lt;/div&gt;
+
+&lt;div class=&quot;choice-grid&quot;&gt;
+&lt;&lt;link &quot;Bookmark this gait&quot;&gt;&gt;&lt;&lt;script&gt;&gt;
+if (!State.variables.bookmarks) State.variables.bookmarks = [];
+State.variables.bookmarks.push({
+  amplitude: State.variables.amplitude,
+  frequency: State.variables.frequency,
+  back_offset: State.variables.back_offset,
+  front_offset: State.variables.front_offset,
+  max_force: State.variables.max_force,
+  result_dx: State.variables.result_dx,
+  salvage: State.variables.salvage,
+  timestamp: new Date().toLocaleTimeString()
+});
+&lt;&lt;/script&gt;&gt;&lt;&lt;goto &quot;Lobby&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
+[[Return to the Lobby for another experiment|Lobby]]
+[[Start over with a new lens|ChooseLens]]
+&lt;/div&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;elseif $lens eq &quot;mordvintsev&quot;&gt;&gt;
+&lt;h2&gt;Emergent Pattern&lt;/h2&gt;
+
+The self-organizing pattern &lt;&lt;if $salvage eq &quot;no_motion&quot;&gt;&gt;failed to sustain itself — the growth parameters produced a stationary fixed point rather than a traveling wave&lt;&lt;elseif $salvage eq &quot;backward&quot;&gt;&gt;organized into a backward-propagating wave — the developmental gradient was inverted&lt;&lt;elseif $salvage eq &quot;flipped&quot;&gt;&gt;destabilized and collapsed — the growth energy overwhelmed the substrate's capacity for coherent pattern formation&lt;&lt;else&gt;&gt;sustained itself across $result_dx meters of emergent locomotion. The developmental parameters produced a stable traveling wave, self-reinforcing through ground contact feedback&lt;&lt;/if&gt;&gt;.
+
+&lt;div class=&quot;param-display&quot;&gt;
+  Displacement:     $result_dx m
+  Max Height:       $result_max_z m
+  Upright Fraction: $result_upright%
+  Max Roll:         $result_max_roll rad
+&lt;/div&gt;
+
+&lt;&lt;script&gt;&gt;
+// Contribution receipt: heuristic parameter contribution to displacement
+var amp = State.variables.amplitude || 0.7;
+var freq = State.variables.frequency || 1.5;
+var bo = State.variables.back_offset || 0;
+var fo = State.variables.front_offset || 0;
+var force = State.variables.max_force || 350;
+
+// Normalize each parameter to its range fraction
+var amp_n = (amp - 0.4) / (1.6 - 0.4);     // 0..1
+var freq_n = (freq - 0.8) / (4.0 - 0.8);    // 0..1
+var offset_asym = Math.abs(bo - fo) / 1.0;   // 0..1 roughly
+var force_n = (force - 120) / (600 - 120);   // 0..1
+
+var total = amp_n + freq_n + offset_asym + force_n + 0.001;
+var c_amp = ((amp_n / total) * 100).toFixed(0);
+var c_freq = ((freq_n / total) * 100).toFixed(0);
+var c_offset = ((offset_asym / total) * 100).toFixed(0);
+var c_force = ((force_n / total) * 100).toFixed(0);
+
+State.variables._contrib_html = &quot;\x3cdiv class='param-display'\x3e\x3cstrong\x3eContribution Breakdown (heuristic):\x3c/strong\x3e\x3cbr\x3e&quot;
+  + &quot;  Amplitude contribution:  &quot; + c_amp + &quot;%\x3cbr\x3e&quot;
+  + &quot;  Frequency contribution:  &quot; + c_freq + &quot;%\x3cbr\x3e&quot;
+  + &quot;  Offset asymmetry:        &quot; + c_offset + &quot;%\x3cbr\x3e&quot;
+  + &quot;  Force contribution:      &quot; + c_force + &quot;%\x3cbr\x3e&quot;
+  + &quot;\x3cem\x3eNote: This is a narrative approximation based on parameter magnitudes relative to their ranges, not a true ablation study.\x3c/em\x3e\x3c/div\x3e&quot;;
+
+// Counterfactual display
+var dx_val = parseFloat(State.variables.result_dx);
+var cf = &quot;\x3cstrong\x3eCounterfactual framing:\x3c/strong\x3e\x3cbr\x3e&quot;;
+if (amp &lt;= 0.7) {
+  cf += &quot;  If you had doubled the amplitude to &quot; + (amp*2).toFixed(1) + &quot; rad, the stride would reach further \u2014 but the stability cost grows nonlinearly.\x3cbr\x3e&quot;;
+} else {
+  cf += &quot;  If the amplitude had been halved to &quot; + (amp/2).toFixed(1) + &quot; rad, the pattern would be gentler \u2014 more stable, but with less spatial extent.\x3cbr\x3e&quot;;
+}
+if (force &lt;= 350) {
+  cf += &quot;  If force had been doubled to &quot; + (force*2) + &quot; N, the motors would snap to targets faster \u2014 sharper pattern edges, but risk of shattering the coherence.\x3cbr\x3e&quot;;
+} else {
+  cf += &quot;  If force had been halved to &quot; + (force/2) + &quot; N, the developmental process would be softer \u2014 smoother gradients, but the pattern might not sustain itself.\x3cbr\x3e&quot;;
+}
+State.variables._counterfactual_html = cf;
+
+// Store baseline for ablation comparison
+State.variables._has_baseline = State.variables.mordvintsev_baseline ? true : false;
+&lt;&lt;/script&gt;&gt;
+
+&lt;&lt;print $_contrib_html&gt;&gt;
+
+&lt;&lt;print $_counterfactual_html&gt;&gt;
+
+&lt;&lt;if $_has_baseline&gt;&gt;
+&lt;div class=&quot;param-display&quot;&gt;
+&lt;strong&gt;Ablation comparison:&lt;/strong&gt;
+  Baseline (amplitude=0.4): $mordvintsev_baseline m
+  Current run:              $result_dx m
+  Difference:               &lt;&lt;script&gt;&gt;
+    var diff = (parseFloat(State.variables.result_dx) - parseFloat(State.variables.mordvintsev_baseline)).toFixed(3);
+    State.variables._ablation_diff = diff;
+  &lt;&lt;/script&gt;&gt;$_ablation_diff m
+&lt;/div&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;div class=&quot;choice-grid&quot;&gt;
+&lt;&lt;link &quot;Run ablation (set amplitude to minimum, re-run)&quot;&gt;&gt;&lt;&lt;script&gt;&gt;
+State.variables.mordvintsev_baseline_params = {
+  amplitude: State.variables.amplitude,
+  frequency: State.variables.frequency,
+  back_offset: State.variables.back_offset,
+  front_offset: State.variables.front_offset,
+  max_force: State.variables.max_force
+};
+State.variables.mordvintsev_baseline = State.variables.result_dx;
+State.variables.amplitude = 0.4;
+&lt;&lt;/script&gt;&gt;&lt;&lt;goto &quot;RunSimulation&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
+[[Design another pattern|ChooseAmplitude]]
+[[Choose a different lens|ChooseLens]]
+&lt;/div&gt;
+
+&lt;&lt;elseif $lens eq &quot;sayama&quot;&gt;&gt;
+&lt;h2&gt;Experimental Results&lt;/h2&gt;
+
+''Measured outcome:''
+
+&lt;div class=&quot;param-display&quot;&gt;
+  Displacement (dx): $result_dx m
+  Max Height (z):    $result_max_z m
+  Upright Fraction:  $result_upright%
+  Max Roll:          $result_max_roll rad
+  Max Pitch:         $result_max_pitch rad
+&lt;/div&gt;
+
+&lt;&lt;if $salvage eq &quot;no_motion&quot;&gt;&gt;
+''Analysis:'' The system produced negligible displacement. The chosen parameters may be below the locomotion threshold. Consider increasing amplitude or adjusting offsets.
+&lt;&lt;elseif $salvage eq &quot;backward&quot;&gt;&gt;
+''Analysis:'' Negative displacement — the robot moved backward. The offset configuration created a directional bias opposite to the intended direction of travel. Reversing the offset signs should correct this.
+&lt;&lt;elseif $salvage eq &quot;flipped&quot;&gt;&gt;
+''Analysis:'' The system became unstable (upright fraction below 50%). The force-amplitude product likely exceeded the stability envelope. Reducing either parameter should restore upright locomotion.
+&lt;&lt;else&gt;&gt;
+''Analysis:'' Forward locomotion achieved. Compare this result to your hypothesis. Was the displacement consistent with your prediction?
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;script&gt;&gt;
+// Prediction comparison
+if (!State.variables.sayama_score) State.variables.sayama_score = { correct: 0, total: 0 };
+var pred = State.variables.prediction;
+var dx = parseFloat(State.variables.result_dx);
+var salvage = State.variables.salvage;
+var actual = &quot;&quot;;
+var match = false;
+
+if (salvage === &quot;no_motion&quot;) actual = &quot;no_motion&quot;;
+else if (salvage === &quot;backward&quot;) actual = &quot;backward&quot;;
+else if (salvage === &quot;flipped&quot;) actual = &quot;unstable&quot;;
+else if (dx &gt;= 1.0) actual = &quot;more_than_1m&quot;;
+else actual = &quot;less_than_1m&quot;;
+
+if (pred) {
+  match = (pred === actual);
+  State.variables.sayama_score.total++;
+  if (match) State.variables.sayama_score.correct++;
+  State.variables._pred_result = match ? &quot;CONFIRMED&quot; : &quot;REFUTED&quot;;
+  var predLabels = {
+    &quot;more_than_1m&quot;: &quot;more than 1m forward&quot;,
+    &quot;less_than_1m&quot;: &quot;less than 1m forward&quot;,
+    &quot;no_motion&quot;: &quot;no significant motion&quot;,
+    &quot;backward&quot;: &quot;backward motion&quot;,
+    &quot;unstable&quot;: &quot;unstable/flipped&quot;
+  };
+  State.variables._pred_label = predLabels[pred] || pred;
+  State.variables._actual_label = predLabels[actual] || actual;
+  State.variables._score_correct = State.variables.sayama_score.correct;
+  State.variables._score_total = State.variables.sayama_score.total;
+}
+&lt;&lt;/script&gt;&gt;
+
+&lt;&lt;if $prediction&gt;&gt;
+&lt;div class=&quot;param-display&quot;&gt;
+&lt;strong&gt;Prediction vs. Observation:&lt;/strong&gt;
+  Your prediction:  $_pred_label
+  Actual outcome:   $_actual_label
+  Verdict:          ''$_pred_result''
+  Running score:    $_score_correct / $_score_total correct
+&lt;/div&gt;
+&lt;&lt;/if&gt;&gt;
+
+//Ensemble runs: A single trial has variance due to simulation dynamics. Ideally you would run 5 trials with identical parameters and examine the distribution of outcomes. In physical systems, measurement noise and initial condition sensitivity make single-run conclusions unreliable. Consider this result one data point, not a conclusion.//
+
+&lt;div class=&quot;choice-grid&quot;&gt;
+[[Run another trial|ChooseAmplitude]]
+[[Choose a different lens|ChooseLens]]
+&lt;/div&gt;
+
+&lt;&lt;elseif $lens eq &quot;wolfram&quot;&gt;&gt;
+&lt;h2&gt;Rule Evaluation Complete&lt;/h2&gt;
+
+&lt;div class=&quot;param-display&quot;&gt;
+  Displacement: $result_dx m
+  Max Z:        $result_max_z m
+  Upright:      $result_upright%
+&lt;/div&gt;
+
+&lt;&lt;if $salvage eq &quot;no_motion&quot;&gt;&gt;
+''Classification:'' Class 1 behavior — fixed point. The rule produces a static configuration.
+&lt;&lt;elseif $salvage eq &quot;flipped&quot;&gt;&gt;
+''Classification:'' Class 3 behavior — chaotic. The rule produces unbounded oscillation leading to instability.
+&lt;&lt;elseif $salvage eq &quot;backward&quot;&gt;&gt;
+''Classification:'' Class 2 behavior — periodic but inverted. The rule produces consistent backward locomotion. Phase inversion detected.
+&lt;&lt;else&gt;&gt;
+''Classification:'' Class 2 behavior — periodic locomotion. Net displacement $result_dx m. Catalog entry updated.
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;script&gt;&gt;
+// Auto-log to atlas
+if (!State.variables.wolfram_atlas) State.variables.wolfram_atlas = [];
+var classification = &quot;Class 2&quot;;
+if (State.variables.salvage === &quot;no_motion&quot;) classification = &quot;Class 1&quot;;
+else if (State.variables.salvage === &quot;flipped&quot;) classification = &quot;Class 3&quot;;
+else if (State.variables.salvage === &quot;backward&quot;) classification = &quot;Class 2 (inv)&quot;;
+
+State.variables.wolfram_atlas.push({
+  amplitude: State.variables.amplitude,
+  frequency: State.variables.frequency,
+  back_offset: State.variables.back_offset,
+  front_offset: State.variables.front_offset,
+  max_force: State.variables.max_force,
+  result_dx: State.variables.result_dx,
+  classification: classification
+});
+
+// Find next unexplored rule
+var amps = [0.4, 0.7, 1.1, 1.6];
+var freqs = [0.8, 1.5, 2.5, 4.0];
+var forces = [120, 350, 600];
+var atlas = State.variables.wolfram_atlas;
+var tried = {};
+for (var i = 0; i &lt; atlas.length; i++) {
+  var a = atlas[i];
+  tried[a.amplitude + &quot;,&quot; + a.frequency + &quot;,&quot; + a.max_force] = true;
+}
+var suggestion = null;
+for (var ai = 0; ai &lt; amps.length &amp;&amp; !suggestion; ai++) {
+  for (var fi = 0; fi &lt; freqs.length &amp;&amp; !suggestion; fi++) {
+    for (var fci = 0; fci &lt; forces.length &amp;&amp; !suggestion; fci++) {
+      var key = amps[ai] + &quot;,&quot; + freqs[fi] + &quot;,&quot; + forces[fci];
+      if (!tried[key]) {
+        suggestion = { amplitude: amps[ai], frequency: freqs[fi], max_force: forces[fci] };
+      }
+    }
+  }
+}
+State.variables._wolfram_suggestion = suggestion;
+State.variables._atlas_count = atlas.length;
+State.variables._total_rules = amps.length * freqs.length * forces.length;
+&lt;&lt;/script&gt;&gt;
+
+Atlas: $_atlas_count / $_total_rules rules evaluated. [[View Full Atlas|WolframAtlas]]
+
+&lt;&lt;if $_wolfram_suggestion&gt;&gt;
+''Next unexplored rule:'' Amplitude &lt;&lt;print $_wolfram_suggestion.amplitude&gt;&gt; rad, Frequency &lt;&lt;print $_wolfram_suggestion.frequency&gt;&gt; Hz, Force &lt;&lt;print $_wolfram_suggestion.max_force&gt;&gt; N.
+&lt;&lt;link &quot;Run this rule&quot;&gt;&gt;&lt;&lt;script&gt;&gt;
+var s = State.variables._wolfram_suggestion;
+State.variables.amplitude = s.amplitude;
+State.variables.frequency = s.frequency;
+State.variables.max_force = s.max_force;
+State.variables.back_offset = State.variables.back_offset || 0.0;
+State.variables.front_offset = State.variables.front_offset || 0.0;
+&lt;&lt;/script&gt;&gt;&lt;&lt;goto &quot;RunSimulation&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;else&gt;&gt;
+''All rule combinations in the primary grid have been evaluated.''
+&lt;&lt;/if&gt;&gt;
+
+&lt;div class=&quot;choice-grid&quot;&gt;
+[[Evaluate another rule|ChooseAmplitude]]
+[[Choose a different lens|ChooseLens]]
+&lt;/div&gt;
+
+&lt;&lt;elseif $lens eq &quot;rucker&quot;&gt;&gt;
+&lt;h2&gt;Trip Report&lt;/h2&gt;
+
+&lt;&lt;if $salvage eq &quot;no_motion&quot;&gt;&gt;
+Your creature just... sat there. Vibrating slightly, like it was thinking about moving but couldn't commit. A meditation on potential energy, maybe. Or just stuck. Sometimes parameter space has potholes.
+&lt;&lt;elseif $salvage eq &quot;backward&quot;&gt;&gt;
+Your creature surfed backward! $result_dx meters in the wrong direction. It looked confused but committed. Like a crab that forgot which way was forward. Beautiful in its own way.
+&lt;&lt;elseif $salvage eq &quot;flipped&quot;&gt;&gt;
+Your creature flipped out — literally. It threw itself over and spent most of the run flailing on its back like a beetle. Too much energy, not enough stability. The phase space manifold has cliffs, and your creature found one.
+&lt;&lt;else&gt;&gt;
+Your creature surfed $result_dx meters across the manifold! A gnarly achievement in parameter space. Its legs churned through the oscillation pattern you specified, and the physics rewarded it with forward motion.
+&lt;&lt;/if&gt;&gt;
+
+&lt;div class=&quot;param-display&quot;&gt;
+  Distance surfed: $result_dx m
+  Max altitude:    $result_max_z m
+  Stayed upright:  $result_upright%
+&lt;/div&gt;
+
+&lt;&lt;script&gt;&gt;
+// Compute weirdness score
+if (!State.variables.rucker_safari) State.variables.rucker_safari = [];
+if (!State.variables.rucker_weird) State.variables.rucker_weird = [];
+var amp = State.variables.amplitude || 0.7;
+var freq = State.variables.frequency || 1.5;
+var weirdness = 0;
+// High amplitude * high frequency = weird
+weirdness += (amp * freq) / 2.0;
+// Backward motion is weird
+if (State.variables.salvage === &quot;backward&quot;) weirdness += 2.0;
+// Flipped is very weird
+if (State.variables.salvage === &quot;flipped&quot;) weirdness += 3.0;
+// Negative offsets that produce forward motion = weird
+var bo = State.variables.back_offset || 0;
+var fo = State.variables.front_offset || 0;
+if (bo &lt; 0 &amp;&amp; parseFloat(State.variables.result_dx) &gt; 0.5) weirdness += 1.5;
+
+var verdict = &quot;&quot;;
+if (State.variables.salvage === &quot;no_motion&quot;) verdict = &quot;Sat there&quot;;
+else if (State.variables.salvage === &quot;backward&quot;) verdict = &quot;Surfed backward&quot;;
+else if (State.variables.salvage === &quot;flipped&quot;) verdict = &quot;Flipped out&quot;;
+else verdict = &quot;Forward surfer&quot;;
+
+var entry = {
+  amplitude: amp,
+  frequency: freq,
+  back_offset: bo,
+  front_offset: fo,
+  max_force: State.variables.max_force,
+  result_dx: State.variables.result_dx,
+  weirdness: weirdness,
+  verdict: verdict
+};
+State.variables.rucker_safari.push(entry);
+State.variables._weirdness = weirdness.toFixed(1);
+State.variables._is_weird = weirdness &gt;= 3.0;
+State.variables._safari_count = State.variables.rucker_safari.length;
+&lt;&lt;/script&gt;&gt;
+
+''Weirdness score: $_weirdness'' &lt;&lt;if $_is_weird&gt;&gt;— //This one's a keeper. That's genuinely strange behavior.//&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if $_is_weird&gt;&gt;
+&lt;&lt;link &quot;Bookmark this weird gait&quot;&gt;&gt;&lt;&lt;script&gt;&gt;
+State.variables.rucker_weird.push(State.variables.rucker_safari[State.variables.rucker_safari.length - 1]);
+&lt;&lt;/script&gt;&gt;&lt;&lt;goto &quot;RuckerSafari&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
+Safari log: $_safari_count creature(s) released so far. [[View Safari Log|RuckerSafari]]
+
+&lt;div class=&quot;choice-grid&quot;&gt;
+[[Release another creature|ChooseAmplitude]]
+[[Choose a different lens|ChooseLens]]
+&lt;/div&gt;
+
+&lt;&lt;elseif $lens eq &quot;mandelbrot&quot;&gt;&gt;
+&lt;h2&gt;Trajectory Analysis&lt;/h2&gt;
+
+&lt;div class=&quot;param-display&quot;&gt;
+  Displacement:  $result_dx m
+  Max Height:    $result_max_z m
+  Upright:       $result_upright%
+  Max Roll:      $result_max_roll rad
+  Max Pitch:     $result_max_pitch rad
+&lt;/div&gt;
+
+&lt;&lt;if $salvage eq &quot;no_motion&quot;&gt;&gt;
+The trajectory collapsed to a point — zero effective displacement. The generator parameters produced a degenerate set with no spatial extent at the macroscopic scale. The oscillation existed but was self-canceling.
+&lt;&lt;elseif $salvage eq &quot;backward&quot;&gt;&gt;
+$result_dx m displacement. The trajectory extended in the negative direction — a mirror image of the intended behavior. The boundary between forward and backward locomotion in parameter space has been located nearby.
+&lt;&lt;elseif $salvage eq &quot;flipped&quot;&gt;&gt;
+The trajectory became unbounded in the vertical dimension. The max-z/dx ratio diverges, indicating a breakdown in the scaling relationship. The generator exceeded the stability boundary.
+&lt;&lt;else&gt;&gt;
+$result_dx m displacement. The trajectory roughness (max_z/dx ratio) suggests stable scaling behavior. The oscillation pattern maintained coherence across the full observation window.
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;script&gt;&gt;
+// Roughness ratio and scale analysis
+if (!State.variables.mandelbrot_runs) State.variables.mandelbrot_runs = [];
+var dx = parseFloat(State.variables.result_dx);
+var maxz = parseFloat(State.variables.result_max_z);
+var roughness = (Math.abs(dx) &gt; 0.001) ? (maxz / Math.abs(dx)) : Infinity;
+var roughness_str = isFinite(roughness) ? roughness.toFixed(3) : &quot;divergent&quot;;
+
+State.variables.mandelbrot_runs.push({
+  amplitude: State.variables.amplitude,
+  frequency: State.variables.frequency,
+  back_offset: State.variables.back_offset,
+  front_offset: State.variables.front_offset,
+  max_force: State.variables.max_force,
+  result_dx: State.variables.result_dx,
+  result_max_z: State.variables.result_max_z,
+  roughness: roughness,
+  roughness_str: roughness_str
+});
+
+var interp = &quot;&quot;;
+if (!isFinite(roughness) || roughness &gt; 10) {
+  interp = &quot;The roughness ratio diverges — vertical motion dominates horizontal. At this scale, the trajectory is essentially columnar: energy goes up, not forward.&quot;;
+} else if (roughness &gt; 2) {
+  interp = &quot;High roughness ratio — the trajectory has significant vertical structure relative to its horizontal extent. Like a coastline with deep fjords relative to its length.&quot;;
+} else if (roughness &gt; 0.5) {
+  interp = &quot;Moderate roughness — the vertical and horizontal scales are comparable. The trajectory fills space efficiently, with structure at both scales.&quot;;
+} else {
+  interp = &quot;Low roughness — the trajectory is smooth and predominantly horizontal. Little vertical complexity. Like a gently undulating plain.&quot;;
+}
+State.variables._roughness = roughness_str;
+State.variables._roughness_interp = interp;
+
+// Check if near boundary (close to zero displacement or close to tipping)
+var near_boundary = false;
+var upright = parseFloat(State.variables.result_upright);
+if (Math.abs(dx) &lt; 0.15 &amp;&amp; Math.abs(dx) &gt; 0.001) near_boundary = true;
+if (upright &gt; 45 &amp;&amp; upright &lt; 60) near_boundary = true;
+State.variables._near_boundary = near_boundary;
+
+// Scale comparison across runs
+var runs = State.variables.mandelbrot_runs;
+var scale_html = &quot;&quot;;
+if (runs.length &gt; 1) {
+  scale_html = &quot;\x3cstrong\x3eScale comparison across &quot; + runs.length + &quot; runs:\x3c/strong\x3e\x3cbr\x3e&quot;;
+  for (var i = 0; i &lt; runs.length; i++) {
+    scale_html += &quot;  Run &quot; + (i+1) + &quot;: dx=&quot; + runs[i].result_dx + &quot; m, roughness=&quot; + runs[i].roughness_str + &quot;\x3cbr\x3e&quot;;
+  }
+}
+State.variables._scale_html = scale_html;
+&lt;&lt;/script&gt;&gt;
+
+&lt;div class=&quot;param-display&quot;&gt;
+&lt;strong&gt;Roughness ratio&lt;/strong&gt; (max_z / |dx|): $_roughness
+$_roughness_interp
+&lt;/div&gt;
+
+&lt;&lt;if $_scale_html&gt;&gt;
+&lt;div class=&quot;param-display&quot;&gt;
+&lt;&lt;print $_scale_html&gt;&gt;
+&lt;/div&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if $_near_boundary&gt;&gt;
+This result lies near a boundary in parameter space — the transition between qualitatively different behaviors. A small change in parameters here could produce dramatically different outcomes.
+
+&lt;&lt;link &quot;Scan the boundary (run two nearby configurations)&quot;&gt;&gt;&lt;&lt;script&gt;&gt;
+// Store current as center, shift amplitude slightly in both directions
+State.variables.mandelbrot_boundary = { center_dx: State.variables.result_dx, center_amp: State.variables.amplitude };
+State.variables.amplitude = State.variables.amplitude + 0.15;
+&lt;&lt;/script&gt;&gt;&lt;&lt;goto &quot;RunSimulation&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;script&gt;&gt;
+if (State.variables.mandelbrot_boundary) {
+  State.variables._has_boundary = true;
+} else {
+  State.variables._has_boundary = false;
+}
+&lt;&lt;/script&gt;&gt;
+&lt;&lt;if $_has_boundary&gt;&gt;
+&lt;div class=&quot;param-display&quot;&gt;
+&lt;strong&gt;Boundary scan reference:&lt;/strong&gt;
+  Center configuration displacement: &lt;&lt;print $mandelbrot_boundary.center_dx&gt;&gt; m (at amplitude &lt;&lt;print $mandelbrot_boundary.center_amp&gt;&gt;)
+  Current scan displacement: $result_dx m
+&lt;/div&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;div class=&quot;choice-grid&quot;&gt;
+[[Generate another trajectory|ChooseAmplitude]]
+[[Choose a different lens|ChooseLens]]
+&lt;/div&gt;
+
+&lt;&lt;elseif $lens eq &quot;jcramer&quot;&gt;&gt;
+&lt;h2&gt;Measurement Report&lt;/h2&gt;
+
+&lt;div class=&quot;param-display&quot;&gt;
+  Measured displacement:  $result_dx m (&amp;plusmn;0.001 m systematic)
+  Maximum vertical:       $result_max_z m
+  Upright fraction:       $result_upright%
+  Max roll excursion:     $result_max_roll rad
+  Max pitch excursion:    $result_max_pitch rad
+  Contact noise floor:    nominal
+&lt;/div&gt;
+
+&lt;&lt;if $salvage eq &quot;no_motion&quot;&gt;&gt;
+''Status:'' NULL RESULT. Displacement consistent with zero within systematic uncertainty. Motor commands were issued but did not produce net translation. Possible causes: insufficient force for commanded trajectory, symmetric offset cancellation, or resonance at natural frequency.
+&lt;&lt;elseif $salvage eq &quot;backward&quot;&gt;&gt;
+''Status:'' NEGATIVE DISPLACEMENT. The instrument recorded motion opposite to the nominal forward direction. Offset polarity should be reviewed. Measurement is valid — the negative sign is physical, not instrumental.
+&lt;&lt;elseif $salvage eq &quot;flipped&quot;&gt;&gt;
+''Status:'' STABILITY FAILURE. Upright fraction below 50% indicates the test article lost orientation control. Data after tip-over may not reflect intended gait dynamics. Recommend reducing force or amplitude for next run.
+&lt;&lt;else&gt;&gt;
+''Status:'' NOMINAL RUN. Displacement $result_dx m. Reconstruction residual within calibration bounds. All channels recorded successfully.
+&lt;&lt;/if&gt;&gt;
+
+&lt;div class=&quot;param-display&quot;&gt;
+&lt;strong&gt;Measurement Pipeline:&lt;/strong&gt;
+  Joint encoder (240 Hz) &amp;rarr; Position controller (PD) &amp;rarr; PyBullet integrator (240 Hz) &amp;rarr; Telemetry logger &amp;rarr; summary.json &amp;rarr; this display
+
+  Each stage introduces measurement uncertainty. The encoder resolves 0.001 rad. The PD controller has tracking error proportional to commanded velocity. The integrator accumulates numerical error at ~1e-6 m/step. The telemetry logger samples at the integrator rate.
+&lt;/div&gt;
+
+&lt;div class=&quot;param-display&quot;&gt;
+&lt;strong&gt;Calibration Context &amp;amp; Systematic Uncertainty:&lt;/strong&gt;
+  Displacement:   &amp;plusmn;0.001 m (encoder resolution limit)
+  Vertical (z):   &amp;plusmn;0.0005 m (integrator precision)
+  Upright:        &amp;plusmn;0.5% (orientation quaternion quantization)
+  Roll/Pitch:     &amp;plusmn;0.001 rad (gyroscope equivalent resolution)
+  Temporal:       &amp;plusmn;0.004 s (1/240 Hz sample period)
+&lt;/div&gt;
+
+&lt;&lt;script&gt;&gt;
+// Null test comparison
+if (State.variables.jcramer_null) {
+  var nulldx = parseFloat(State.variables.jcramer_null);
+  var curdx = parseFloat(State.variables.result_dx);
+  var aboveNull = Math.abs(curdx) &gt; Math.abs(nulldx) + 0.01;
+  State.variables._null_comparison = aboveNull ? &quot;ABOVE NULL — displacement exceeds null baseline by &quot; + (Math.abs(curdx) - Math.abs(nulldx)).toFixed(3) + &quot; m. Signal is physical.&quot; : &quot;WITHIN NULL — displacement is within the null test envelope. Result may not represent meaningful locomotion.&quot;;
+  State.variables._has_null = true;
+} else {
+  State.variables._has_null = false;
+}
+&lt;&lt;/script&gt;&gt;
+
+&lt;&lt;if $_has_null&gt;&gt;
+&lt;div class=&quot;param-display&quot;&gt;
+&lt;strong&gt;Null Test Reference:&lt;/strong&gt;
+  Null baseline displacement: $jcramer_null m
+  Current measurement:        $result_dx m
+  Assessment:                 $_null_comparison
+&lt;/div&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;div class=&quot;choice-grid&quot;&gt;
+&lt;&lt;link &quot;Run null test (amplitude=0.3, force=120, neutral offsets)&quot;&gt;&gt;&lt;&lt;script&gt;&gt;
+State.variables.amplitude = 0.3;
+State.variables.frequency = 1.5;
+State.variables.back_offset = 0.0;
+State.variables.front_offset = 0.0;
+State.variables.max_force = 120;
+State.variables._jcramer_is_null = true;
+&lt;&lt;/script&gt;&gt;&lt;&lt;goto &quot;RunSimulation&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
+[[Configure next run|ChooseAmplitude]]
+[[Choose a different lens|ChooseLens]]
+&lt;/div&gt;
+
+&lt;&lt;elseif $lens eq &quot;pelton&quot;&gt;&gt;
+&lt;h2&gt;After-Action Report&lt;/h2&gt;
+
+&lt;&lt;if $salvage eq &quot;no_motion&quot;&gt;&gt;
+Your robot didn't move. Zero displacement. I've seen this before — guy freezes at the border crossing, legs shaking, going nowhere. Not enough force, not enough asymmetry, or the stance was too neutral to commit to a direction. In the field this gets you caught. Refit and try again. More force, lean forward, commit to the direction.
+&lt;&lt;elseif $salvage eq &quot;backward&quot;&gt;&gt;
+It moved — backward. $result_dx meters in the wrong direction. I once watched a Land Cruiser do this on a mountain switchback in Colombia. The driver had the wheels turned the wrong way. Your robot has the same problem: the offsets are pointing it the wrong direction. Flip the lean. Forward-leaning preset. Try again. The fix is simple if you survive the mistake.
+&lt;&lt;elseif $salvage eq &quot;flipped&quot;&gt;&gt;
+Your robot flipped. Upright fraction: $result_upright%. That's a rollover. Too much power, too much swing, and the center of gravity said goodbye. I've rolled vehicles in worse places than this simulation. The survival strategy is the same: dial back the aggression. Less amplitude, less force. Stay low, stay upright, stay alive. You can't walk anywhere from your back.
+&lt;&lt;else&gt;&gt;
+$result_dx meters. Your robot made it. Not pretty, maybe, but forward motion across hostile terrain. In my experience, the gaits that work aren't elegant — they're stubborn. They keep the legs moving and the body upright and they grind out distance. That's what survival looks like: ugly, persistent forward progress.
+&lt;&lt;/if&gt;&gt;
+
+&lt;div class=&quot;param-display&quot;&gt;
+  Distance covered: $result_dx m
+  Max height:       $result_max_z m
+  Stayed upright:   $result_upright%
+  Max roll:         $result_max_roll rad
+  Max pitch:        $result_max_pitch rad
+&lt;/div&gt;
+
+&lt;&lt;script&gt;&gt;
+// Detect exploits: success despite aggressive parameters
+if (!State.variables.pelton_exploits) State.variables.pelton_exploits = [];
+if (!State.variables.pelton_survival) State.variables.pelton_survival = [];
+var amp = State.variables.amplitude || 0.7;
+var force = State.variables.max_force || 350;
+var bo = State.variables.back_offset || 0;
+var fo = State.variables.front_offset || 0;
+var dx = parseFloat(State.variables.result_dx);
+var salvage = State.variables.salvage;
+
+var isExploit = false;
+var reason = &quot;&quot;;
+// High amplitude + high force but still moved forward
+if (salvage === &quot;none&quot; &amp;&amp; amp &gt;= 1.1 &amp;&amp; force &gt;= 350) {
+  isExploit = true;
+  reason = &quot;High amplitude (&quot; + amp + &quot;) + high force (&quot; + force + &quot;N) — survived&quot;;
+}
+// Backward offsets that still produce forward motion
+if (salvage === &quot;none&quot; &amp;&amp; bo &lt; 0 &amp;&amp; dx &gt; 0.3) {
+  isExploit = true;
+  reason = &quot;Backward-leaning offsets but still moved forward &quot; + dx + &quot;m — improbable&quot;;
+}
+// High everything
+if (salvage === &quot;none&quot; &amp;&amp; amp &gt;= 1.1 &amp;&amp; force &gt;= 600) {
+  isExploit = true;
+  reason = &quot;Maximum aggression (amp &quot; + amp + &quot;, force &quot; + force + &quot;N) — should have flipped, didn't&quot;;
+}
+
+State.variables._is_exploit = isExploit;
+State.variables._exploit_reason = reason;
+State.variables._is_success = (salvage === &quot;none&quot;);
+
+if (isExploit) {
+  // Auto-catalog exploit
+  State.variables.pelton_exploits.push({
+    amplitude: amp,
+    frequency: State.variables.frequency,
+    back_offset: bo,
+    front_offset: fo,
+    max_force: force,
+    result_dx: State.variables.result_dx,
+    reason: reason
+  });
+}
+State.variables._exploits_count = State.variables.pelton_exploits.length;
+State.variables._survival_count = State.variables.pelton_survival.length;
+&lt;&lt;/script&gt;&gt;
+
+&lt;&lt;if $_is_exploit&gt;&gt;
+''EXPLOIT DETECTED:'' $_exploit_reason
+//This configuration has been automatically filed in your exploit catalog.//
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if $_is_success&gt;&gt;
+&lt;&lt;link &quot;File this under survival strategies&quot;&gt;&gt;&lt;&lt;script&gt;&gt;
+State.variables.pelton_survival.push({
+  amplitude: State.variables.amplitude,
+  frequency: State.variables.frequency,
+  back_offset: State.variables.back_offset,
+  front_offset: State.variables.front_offset,
+  max_force: State.variables.max_force,
+  result_dx: State.variables.result_dx
+});
+&lt;&lt;/script&gt;&gt;&lt;&lt;goto &quot;PeltonExploits&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if $_exploits_count gt 0&gt;&gt;
+$_exploits_count exploit(s) cataloged.
+&lt;&lt;/if&gt;&gt; &lt;&lt;if $_survival_count gt 0&gt;&gt;$_survival_count survival strategy(ies) filed.&lt;&lt;/if&gt;&gt;
+[[View Field Reports|PeltonExploits]]
+
+&lt;div class=&quot;choice-grid&quot;&gt;
+[[Run another expedition|ChooseAmplitude]]
+[[Choose a different lens|ChooseLens]]
+&lt;/div&gt;
+
+&lt;&lt;elseif $lens eq &quot;womack&quot;&gt;&gt;
+&lt;h2&gt;After&lt;/h2&gt;
+
+&lt;&lt;if $salvage eq &quot;no_motion&quot;&gt;&gt;
+The body did not move. The motors fired and the joints articulated and the displacement was zero. This is the most common outcome in the reduced city: effort without progress, motion without travel. The infrastructure for locomotion existed. The conditions for it did not. The body remains where it was placed.
+&lt;&lt;elseif $salvage eq &quot;backward&quot;&gt;&gt;
+$result_dx meters. The negative sign means backward. The body moved away from where it was meant to go. In the old language this was called failure. In the current language it is called information. The offsets specified a direction and the direction was wrong. The body obeyed its instructions perfectly. The instructions were the problem.
+&lt;&lt;elseif $salvage eq &quot;flipped&quot;&gt;&gt;
+The body lost orientation. Upright fraction: $result_upright%. It fell and did not recover. The force budget exceeded what the structure could metabolize. This is familiar: systems given more power than their architecture can organize will always destroy themselves. The fix is not more power. The fix is less ambition, or better structure. Neither is free.
+&lt;&lt;else&gt;&gt;
+$result_dx meters of displacement. The body moved forward through the space allotted to it. The gait held. The joints cycled. The ground did not refuse it. This is what passes for success: the body arrived somewhere other than where it started, still upright, still intact. The margin between this and failure was smaller than the numbers suggest.
+&lt;&lt;/if&gt;&gt;
+
+&lt;div class=&quot;param-display&quot;&gt;
+  Displacement: $result_dx m
+  Max height:   $result_max_z m
+  Upright:      $result_upright%
+  Max roll:     $result_max_roll rad
+  Max pitch:    $result_max_pitch rad
+&lt;/div&gt;
+
+&lt;&lt;script&gt;&gt;
+// Log failures and lifelines
+if (!State.variables.womack_failures) State.variables.womack_failures = [];
+if (!State.variables.womack_lifelines) State.variables.womack_lifelines = [];
+var salvage = State.variables.salvage;
+var entry = {
+  amplitude: State.variables.amplitude,
+  frequency: State.variables.frequency,
+  back_offset: State.variables.back_offset,
+  front_offset: State.variables.front_offset,
+  max_force: State.variables.max_force,
+  result_dx: State.variables.result_dx
+};
+
+if (salvage !== &quot;none&quot;) {
+  var mode = &quot;&quot;;
+  if (salvage === &quot;no_motion&quot;) mode = &quot;Stasis — effort without displacement&quot;;
+  else if (salvage === &quot;backward&quot;) mode = &quot;Inversion — motion in the wrong direction&quot;;
+  else if (salvage === &quot;flipped&quot;) mode = &quot;Structural failure — loss of orientation&quot;;
+  entry.mode = mode;
+  State.variables.womack_failures.push(entry);
+} else {
+  State.variables.womack_lifelines.push(entry);
+}
+
+// Analyze failure patterns
+var failures = State.variables.womack_failures;
+var genealogy = &quot;&quot;;
+if (failures.length &gt; 0) {
+  var force_failures = 0;
+  var stasis_count = 0;
+  var inversion_count = 0;
+  for (var i = 0; i &lt; failures.length; i++) {
+    if (failures[i].mode.indexOf(&quot;Structural&quot;) &gt;= 0) force_failures++;
+    if (failures[i].mode.indexOf(&quot;Stasis&quot;) &gt;= 0) stasis_count++;
+    if (failures[i].mode.indexOf(&quot;Inversion&quot;) &gt;= 0) inversion_count++;
+  }
+  if (force_failures &gt; 1) genealogy += &quot;This is failure #&quot; + force_failures + &quot; by structural collapse. Force has exceeded structure &quot; + force_failures + &quot; times. The pattern is not subtle. &quot;;
+  if (stasis_count &gt; 1) genealogy += &quot;Stasis has occurred &quot; + stasis_count + &quot; times. The body keeps trying to move and keeps failing to. &quot;;
+  if (inversion_count &gt; 1) genealogy += &quot;Direction has been wrong &quot; + inversion_count + &quot; times. The instructions keep specifying retreat. &quot;;
+  if (failures.length &gt;= 3) genealogy += &quot;The failure archive now has &quot; + failures.length + &quot; entries. The genealogy of failure is becoming the primary record.&quot;;
+}
+State.variables._genealogy = genealogy;
+State.variables._failures_count = failures.length;
+State.variables._lifelines_count = State.variables.womack_lifelines.length;
+State.variables._is_failure = (salvage !== &quot;none&quot;);
+&lt;&lt;/script&gt;&gt;
+
+&lt;&lt;if $_genealogy&gt;&gt;
+//$_genealogy//
+&lt;&lt;/if&gt;&gt;
+
+&lt;&lt;if $_failures_count gt 0&gt;&gt;Failures: $_failures_count. &lt;&lt;/if&gt;&gt;&lt;&lt;if $_lifelines_count gt 0&gt;&gt;Lifelines: $_lifelines_count.&lt;&lt;/if&gt;&gt;
+[[View Archive|WomackArchive]]
+
+&lt;div class=&quot;choice-grid&quot;&gt;
+[[Configure another body|ChooseAmplitude]]
+[[Choose a different lens|ChooseLens]]
+&lt;/div&gt;
+
+&lt;&lt;/if&gt;&gt;
+</tw-passagedata>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     CRAMER SALVAGE: No Motion
+     ═══════════════════════════════════════════════════════════════ -->
+<tw-passagedata pid="17" name="SalvagePath_NoMotion">
+&lt;h2&gt;Salvage Path: No Motion Detected&lt;/h2&gt;
+
+&lt;div class=&quot;marginalia&quot;&gt;Diagnostic room. The simulation ran, the motors fired, but the robot didn't go anywhere. This is a common and informative failure mode.&lt;/div&gt;
+
+You enter a dimly lit diagnostic chamber. Screens replay your robot's run in slow motion — you can see the joints twitching, the legs moving, but the body going nowhere.
+
+A diagnostic panel reads:
+
+''Common causes of zero displacement:''
+
+1. ''Insufficient force:'' If max force is too low relative to amplitude, the motors can't track the commanded trajectory. The legs move but don't push hard enough to move the body. //Try increasing force to 350N or above.//
+
+2. ''Symmetric offsets:'' With both offsets at zero, the robot's leg swings are symmetric around the neutral position. This can produce oscillation without net forward motion. //Try the forward-leaning preset (0.2 / -0.3).//
+
+3. ''Very low amplitude:'' At 0.4 rad, the leg swing may be too small to generate meaningful ground contact forces. //Try 0.7 or 1.1 rad.//
+
+4. ''Very low frequency:'' At 0.8 Hz, the robot barely completes one gait cycle in 1000 steps. //Try 1.5 Hz or higher.//
+
+&lt;div class=&quot;choice-grid&quot;&gt;
+[[Return to the Lobby to adjust parameters|Lobby]]
+[[Try a quick fix: moderate everything|QuickFix]]
+&lt;/div&gt;
+</tw-passagedata>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     CRAMER SALVAGE: Flipped
+     ═══════════════════════════════════════════════════════════════ -->
+<tw-passagedata pid="18" name="SalvagePath_Flipped">
+&lt;h2&gt;Salvage Path: Robot Tipped Over&lt;/h2&gt;
+
+&lt;div class=&quot;marginalia&quot;&gt;The upright fraction tells you what percentage of the run the robot was &quot;right side up.&quot; Below 50% means it spent more time on its side or back than walking.&lt;/div&gt;
+
+The replay shows your robot launch itself off the ground and tumble. The upright indicator drops immediately.
+
+''What happened:''
+
+The combination of high amplitude and high force created violent joint motions. At each direction change (the peaks and troughs of the sine wave), the motor snaps the joint to the target position with maximum force. This creates a jerk that rocks the body. If the rocking exceeds the robot's base of support, it tips.
+
+''Fixes:''
+
+1. ''Reduce amplitude:'' Drop from 1.6 to 0.7 rad. Smaller swings = less rocking.
+2. ''Reduce force:'' Drop from 600 to 350 N. Gentler tracking = smoother motion.
+3. ''Reduce frequency:'' Slower oscillation gives the body more time to settle between cycles.
+
+The stability envelope is roughly: ''amplitude * force * frequency &amp;lt; threshold''. All three contribute to instability.
+
+&lt;div class=&quot;choice-grid&quot;&gt;
+[[Return to the Lobby to adjust parameters|Lobby]]
+[[Try a quick fix: moderate everything|QuickFix]]
+&lt;/div&gt;
+</tw-passagedata>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     CRAMER SALVAGE: Backward
+     ═══════════════════════════════════════════════════════════════ -->
+<tw-passagedata pid="19" name="SalvagePath_Backward">
+&lt;h2&gt;Salvage Path: Backward Motion&lt;/h2&gt;
+
+&lt;div class=&quot;marginalia&quot;&gt;The sign of displacement tells you direction. Negative = backward in the simulation coordinate frame. The offset preset determines which way the robot &quot;leans&quot; and thus which way it pushes off.&lt;/div&gt;
+
+Your robot walked with conviction — in the wrong direction. The displacement counter shows a negative number.
+
+''Why this happens:''
+
+The joint offsets create a postural asymmetry. The &quot;forward-leaning&quot; preset tilts the legs so that ground contact happens preferentially on one side of the swing cycle. If you chose the &quot;backward-leaning&quot; preset (-0.3 / 0.2), the contact asymmetry points backward.
+
+Think of it like this: the robot pushes off the ground at the bottom of each leg swing. The offset determines //where// the bottom is, and therefore //which direction// the push goes.
+
+''Fix:'' Switch to the &quot;forward-leaning&quot; preset (0.2 / -0.3) or the &quot;aggressive&quot; preset (0.5 / -0.5). Both push the robot forward.
+
+&lt;div class=&quot;choice-grid&quot;&gt;
+[[Return to the Lobby to adjust offsets|Lobby]]
+[[Try a quick fix: moderate everything|QuickFix]]
+&lt;/div&gt;
+</tw-passagedata>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     QuickFix (Cramer convenience)
+     ═══════════════════════════════════════════════════════════════ -->
+<tw-passagedata pid="20" name="QuickFix">
+&lt;&lt;set $amplitude to 0.7&gt;&gt;
+&lt;&lt;set $frequency to 1.5&gt;&gt;
+&lt;&lt;set $back_offset to 0.2&gt;&gt;
+&lt;&lt;set $front_offset to -0.3&gt;&gt;
+&lt;&lt;set $max_force to 350&gt;&gt;
+
+&lt;h2&gt;Quick Fix Applied&lt;/h2&gt;
+
+&lt;div class=&quot;marginalia&quot;&gt;These moderate parameters are a known-good starting point: enough amplitude to move, enough force to track, enough asymmetry to go forward.&lt;/div&gt;
+
+The diagnostic system has loaded a balanced configuration:
+
+&lt;div class=&quot;param-display&quot;&gt;
+  Amplitude:    0.7 rad
+  Frequency:    1.5 Hz
+  Back Offset:  0.2 rad
+  Front Offset: -0.3 rad
+  Max Force:    350 N
+&lt;/div&gt;
+
+&lt;div class=&quot;choice-grid&quot;&gt;
+[[Run with these parameters|RunSimulation]]
+[[Return to the Lobby to fine-tune|Lobby]]
+&lt;/div&gt;
+</tw-passagedata>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     Error passage
+     ═══════════════════════════════════════════════════════════════ -->
+<tw-passagedata pid="21" name="Error">
+&lt;h2&gt;Simulation Error&lt;/h2&gt;
+
+Something went wrong while running the simulation.
+
+&lt;&lt;if $sim_error&gt;&gt;
+''Error:'' $sim_error
+&lt;&lt;/if&gt;&gt;
+
+This might mean the simulation server isn't running, or there was an internal error in PyBullet. Make sure the server is running:
+
+&lt;div class=&quot;param-display&quot;&gt;
+python3 twine/server.py
+&lt;/div&gt;
+
+&lt;div class=&quot;choice-grid&quot;&gt;
+[[Try again|RunSimulation]]
+[[Start over|ChooseLens]]
+&lt;/div&gt;
+</tw-passagedata>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     CRAMER: Bookmarks
+     ═══════════════════════════════════════════════════════════════ -->
+<tw-passagedata pid="22" name="Bookmarks">
+&lt;h2&gt;Bookmarked Gaits&lt;/h2&gt;
+
+&lt;div class=&quot;marginalia&quot;&gt;Your collection of saved gait configurations — a personal atlas of the parameter space you've explored.&lt;/div&gt;
+
+&lt;&lt;script&gt;&gt;
+var bm = State.variables.bookmarks || [];
+if (bm.length === 0) {
+  State.variables._bm_html = &quot;\x3cem\x3eNo bookmarks yet. Run experiments and bookmark interesting results.\x3c/em\x3e&quot;;
+} else {
+  var html = &quot;&quot;;
+  for (var i = 0; i &lt; bm.length; i++) {
+    var b = bm[i];
+    var status = b.salvage === &quot;none&quot; ? &quot;FORWARD&quot; : b.salvage === &quot;backward&quot; ? &quot;BACKWARD&quot; : b.salvage === &quot;flipped&quot; ? &quot;FLIPPED&quot; : &quot;NO MOTION&quot;;
+    html += &quot;\x3cdiv class='param-display'\x3e&quot;;
+    html += &quot;\x3cstrong\x3eGait #&quot; + (i+1) + &quot;\x3c/strong\x3e (&quot; + b.timestamp + &quot;)\x3cbr\x3e&quot;;
+    html += &quot;  Amplitude: &quot; + b.amplitude + &quot; rad | Frequency: &quot; + b.frequency + &quot; Hz\x3cbr\x3e&quot;;
+    html += &quot;  Offsets: &quot; + b.back_offset + &quot; / &quot; + b.front_offset + &quot; | Force: &quot; + b.max_force + &quot; N\x3cbr\x3e&quot;;
+    html += &quot;  Result: &quot; + b.result_dx + &quot; m \u2014 &quot; + status;
+    html += &quot;\x3c/div\x3e&quot;;
+  }
+  State.variables._bm_html = html;
+}
+&lt;&lt;/script&gt;&gt;
+&lt;&lt;print $_bm_html&gt;&gt;
+
+&lt;div class=&quot;choice-grid&quot;&gt;
+[[Return to the Lobby|Lobby]]
+&lt;/div&gt;
+</tw-passagedata>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SAYAMA: Prediction
+     ═══════════════════════════════════════════════════════════════ -->
+<tw-passagedata pid="23" name="SayamaPrediction">
+&lt;h2&gt;Record Your Prediction&lt;/h2&gt;
+
+Before running the experiment, record a qualitative prediction. This is the hypothesis step of the scientific method — commit to an expected outcome before observing the data.
+
+''Your parameters:''
+&lt;div class=&quot;param-display&quot;&gt;
+  Amplitude:    $amplitude rad
+  Frequency:    $frequency Hz
+  Back Offset:  $back_offset rad
+  Front Offset: $front_offset rad
+  Max Force:    $max_force N
+&lt;/div&gt;
+
+''What do you predict will happen?''
+
+&lt;div class=&quot;choice-grid&quot;&gt;
+&lt;&lt;link &quot;More than 1 meter forward displacement&quot; &quot;RunSimulation&quot;&gt;&gt;&lt;&lt;set $prediction to &quot;more_than_1m&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;link &quot;Less than 1 meter forward displacement&quot; &quot;RunSimulation&quot;&gt;&gt;&lt;&lt;set $prediction to &quot;less_than_1m&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;link &quot;No significant motion&quot; &quot;RunSimulation&quot;&gt;&gt;&lt;&lt;set $prediction to &quot;no_motion&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;link &quot;Backward motion&quot; &quot;RunSimulation&quot;&gt;&gt;&lt;&lt;set $prediction to &quot;backward&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;link &quot;Unstable / flipped&quot; &quot;RunSimulation&quot;&gt;&gt;&lt;&lt;set $prediction to &quot;unstable&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;/div&gt;
+</tw-passagedata>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     WOLFRAM: Atlas
+     ═══════════════════════════════════════════════════════════════ -->
+<tw-passagedata pid="24" name="WolframAtlas">
+&lt;h2&gt;Atlas of Behaviors&lt;/h2&gt;
+
+The rule space is being enumerated. Each entry represents a configuration you have evaluated — a cell in the vast table of possible behaviors. The atlas grows with each experiment.
+
+&lt;&lt;script&gt;&gt;
+var atlas = State.variables.wolfram_atlas || [];
+if (atlas.length === 0) {
+  State.variables._atlas_html = &quot;\x3cem\x3eNo rules evaluated yet.\x3c/em\x3e&quot;;
+} else {
+  var html = &quot;\x3ctable style='width:100%;border-collapse:collapse;font-family:monospace;font-size:0.85rem;'\x3e&quot;;
+  html += &quot;\x3ctr style='border-bottom:1px solid rgba(255,152,0,0.3);'\x3e\x3cth style='text-align:left;padding:4px;'\x3eRun\x3c/th\x3e\x3cth style='text-align:left;padding:4px;'\x3eAmp\x3c/th\x3e\x3cth style='text-align:left;padding:4px;'\x3eFreq\x3c/th\x3e\x3cth style='text-align:left;padding:4px;'\x3eOffsets\x3c/th\x3e\x3cth style='text-align:left;padding:4px;'\x3eForce\x3c/th\x3e\x3cth style='text-align:left;padding:4px;'\x3edx\x3c/th\x3e\x3cth style='text-align:left;padding:4px;'\x3eClass\x3c/th\x3e\x3c/tr\x3e&quot;;
+  for (var i = 0; i &lt; atlas.length; i++) {
+    var a = atlas[i];
+    html += &quot;\x3ctr style='border-bottom:1px solid rgba(255,152,0,0.1);'\x3e&quot;;
+    html += &quot;\x3ctd style='padding:4px;'\x3e&quot; + (i+1) + &quot;\x3c/td\x3e&quot;;
+    html += &quot;\x3ctd style='padding:4px;'\x3e&quot; + a.amplitude + &quot;\x3c/td\x3e&quot;;
+    html += &quot;\x3ctd style='padding:4px;'\x3e&quot; + a.frequency + &quot;\x3c/td\x3e&quot;;
+    html += &quot;\x3ctd style='padding:4px;'\x3e&quot; + a.back_offset + &quot;/&quot; + a.front_offset + &quot;\x3c/td\x3e&quot;;
+    html += &quot;\x3ctd style='padding:4px;'\x3e&quot; + a.max_force + &quot;\x3c/td\x3e&quot;;
+    html += &quot;\x3ctd style='padding:4px;'\x3e&quot; + a.result_dx + &quot;\x3c/td\x3e&quot;;
+    html += &quot;\x3ctd style='padding:4px;'\x3e&quot; + a.classification + &quot;\x3c/td\x3e\x3c/tr\x3e&quot;;
+  }
+  html += &quot;\x3c/table\x3e&quot;;
+  State.variables._atlas_html = html;
+}
+&lt;&lt;/script&gt;&gt;
+&lt;&lt;print $_atlas_html&gt;&gt;
+
+&lt;div class=&quot;choice-grid&quot;&gt;
+[[Evaluate another rule|ChooseAmplitude]]
+[[Choose a different lens|ChooseLens]]
+&lt;/div&gt;
+</tw-passagedata>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     RUCKER: Safari
+     ═══════════════════════════════════════════════════════════════ -->
+<tw-passagedata pid="25" name="RuckerSafari">
+&lt;h2&gt;Parameter Space Safari Log&lt;/h2&gt;
+
+Your expedition record through the manifold of possible creatures. Sorted by weirdness — the strangest gaits bubble to the top.
+
+&lt;&lt;script&gt;&gt;
+var safari = State.variables.rucker_safari || [];
+if (safari.length === 0) {
+  State.variables._safari_html = &quot;\x3cem\x3eNo creatures released yet. The safari begins with your first experiment.\x3c/em\x3e&quot;;
+} else {
+  var sorted = safari.slice().sort(function(a,b) { return b.weirdness - a.weirdness; });
+  var html = &quot;&quot;;
+  for (var i = 0; i &lt; sorted.length; i++) {
+    var s = sorted[i];
+    var stars = &quot;&quot;;
+    for (var w = 0; w &lt; Math.min(Math.round(s.weirdness), 5); w++) stars += &quot;*&quot;;
+    if (!stars) stars = &quot;-&quot;;
+    html += &quot;\x3cdiv class='param-display'\x3e&quot;;
+    html += &quot;\x3cstrong\x3eCreature #&quot; + (i+1) + &quot;\x3c/strong\x3e \u2014 Weirdness: &quot; + stars + &quot; (&quot; + s.weirdness.toFixed(1) + &quot;)\x3cbr\x3e&quot;;
+    html += &quot;  Amp: &quot; + s.amplitude + &quot; | Freq: &quot; + s.frequency + &quot; | Force: &quot; + s.max_force + &quot;\x3cbr\x3e&quot;;
+    html += &quot;  Offsets: &quot; + s.back_offset + &quot;/&quot; + s.front_offset + &quot;\x3cbr\x3e&quot;;
+    html += &quot;  Distance: &quot; + s.result_dx + &quot; m \u2014 &quot; + s.verdict;
+    html += &quot;\x3c/div\x3e&quot;;
+  }
+  State.variables._safari_html = html;
+}
+&lt;&lt;/script&gt;&gt;
+&lt;&lt;print $_safari_html&gt;&gt;
+
+&lt;&lt;script&gt;&gt;
+var weird = State.variables.rucker_weird || [];
+State.variables._weird_count = weird.length;
+&lt;&lt;/script&gt;&gt;
+&lt;&lt;if $_weird_count gt 0&gt;&gt;
+
+''Weird Gait Collection:'' $_weird_count specimen(s) bookmarked.
+&lt;&lt;/if&gt;&gt;
+
+&lt;div class=&quot;choice-grid&quot;&gt;
+[[Release another creature|ChooseAmplitude]]
+[[Choose a different lens|ChooseLens]]
+&lt;/div&gt;
+</tw-passagedata>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     PELTON: Exploits
+     ═══════════════════════════════════════════════════════════════ -->
+<tw-passagedata pid="26" name="PeltonExploits">
+&lt;h2&gt;Field Reports: Exploits &amp;amp; Survival Strategies&lt;/h2&gt;
+
+&lt;&lt;script&gt;&gt;
+var exploits = State.variables.pelton_exploits || [];
+var survival = State.variables.pelton_survival || [];
+State.variables._exploits_count = exploits.length;
+State.variables._survival_count = survival.length;
+
+var html = &quot;&quot;;
+if (exploits.length &gt; 0) {
+  html += &quot;\x3ch3\x3eExploit Catalog\x3c/h3\x3e&quot;;
+  html += &quot;\x3cem\x3eConfigurations that succeeded despite aggressive parameters \u2014 improbable survival strategies.\x3c/em\x3e\x3cbr\x3e\x3cbr\x3e&quot;;
+  for (var i = 0; i &lt; exploits.length; i++) {
+    var e = exploits[i];
+    html += &quot;\x3cdiv class='param-display'\x3e&quot;;
+    html += &quot;\x3cstrong\x3eExploit #&quot; + (i+1) + &quot;\x3c/strong\x3e \u2014 &quot; + e.reason + &quot;\x3cbr\x3e&quot;;
+    html += &quot;  Amp: &quot; + e.amplitude + &quot; | Freq: &quot; + e.frequency + &quot; | Force: &quot; + e.max_force + &quot;\x3cbr\x3e&quot;;
+    html += &quot;  Offsets: &quot; + e.back_offset + &quot;/&quot; + e.front_offset + &quot;\x3cbr\x3e&quot;;
+    html += &quot;  Distance: &quot; + e.result_dx + &quot; m \u2014 survived.&quot;;
+    html += &quot;\x3c/div\x3e&quot;;
+  }
+} else {
+  html += &quot;\x3cem\x3eNo exploits cataloged yet. Run with aggressive parameters and survive to earn one.\x3c/em\x3e\x3cbr\x3e&quot;;
+}
+
+html += &quot;\x3cbr\x3e&quot;;
+
+if (survival.length &gt; 0) {
+  html += &quot;\x3ch3\x3eSurvival Strategies\x3c/h3\x3e&quot;;
+  html += &quot;\x3cem\x3eAny successful run filed as a survival strategy.\x3c/em\x3e\x3cbr\x3e\x3cbr\x3e&quot;;
+  for (var i = 0; i &lt; survival.length; i++) {
+    var s = survival[i];
+    html += &quot;\x3cdiv class='param-display'\x3e&quot;;
+    html += &quot;\x3cstrong\x3eStrategy #&quot; + (i+1) + &quot;\x3c/strong\x3e\x3cbr\x3e&quot;;
+    html += &quot;  Amp: &quot; + s.amplitude + &quot; | Freq: &quot; + s.frequency + &quot; | Force: &quot; + s.max_force + &quot;\x3cbr\x3e&quot;;
+    html += &quot;  Distance: &quot; + s.result_dx + &quot; m&quot;;
+    html += &quot;\x3c/div\x3e&quot;;
+  }
+} else {
+  html += &quot;\x3cem\x3eNo survival strategies filed yet.\x3c/em\x3e&quot;;
+}
+State.variables._pelton_html = html;
+&lt;&lt;/script&gt;&gt;
+&lt;&lt;print $_pelton_html&gt;&gt;
+
+&lt;div class=&quot;choice-grid&quot;&gt;
+[[Run another expedition|ChooseAmplitude]]
+[[Choose a different lens|ChooseLens]]
+&lt;/div&gt;
+</tw-passagedata>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     WOMACK: Archive
+     ═══════════════════════════════════════════════════════════════ -->
+<tw-passagedata pid="27" name="WomackArchive">
+&lt;h2&gt;Archive&lt;/h2&gt;
+
+The record. Failures on the left. Lifelines on the right. The distance between them is the margin of the possible.
+
+&lt;&lt;script&gt;&gt;
+var failures = State.variables.womack_failures || [];
+var lifelines = State.variables.womack_lifelines || [];
+State.variables._failures_count = failures.length;
+State.variables._lifelines_count = lifelines.length;
+
+var html = &quot;\x3cdiv style='display:flex;gap:2rem;flex-wrap:wrap;'\x3e&quot;;
+
+html += &quot;\x3cdiv style='flex:1;min-width:250px;'\x3e&quot;;
+html += &quot;\x3ch3\x3eFailure Genealogy\x3c/h3\x3e&quot;;
+if (failures.length === 0) {
+  html += &quot;\x3cem\x3eNo failures recorded.\x3c/em\x3e&quot;;
+} else {
+  for (var i = 0; i &lt; failures.length; i++) {
+    var f = failures[i];
+    html += &quot;\x3cdiv class='param-display'\x3e&quot;;
+    html += &quot;Failure #&quot; + (i+1) + &quot; \u2014 &quot; + f.mode + &quot;\x3cbr\x3e&quot;;
+    html += &quot;  Amp: &quot; + f.amplitude + &quot; | Freq: &quot; + f.frequency + &quot; | Force: &quot; + f.max_force + &quot;\x3cbr\x3e&quot;;
+    html += &quot;  dx: &quot; + f.result_dx + &quot; m&quot;;
+    html += &quot;\x3c/div\x3e&quot;;
+  }
+}
+html += &quot;\x3c/div\x3e&quot;;
+
+html += &quot;\x3cdiv style='flex:1;min-width:250px;'\x3e&quot;;
+html += &quot;\x3ch3\x3eLifelines\x3c/h3\x3e&quot;;
+if (lifelines.length === 0) {
+  html += &quot;\x3cem\x3eNo lifelines found.\x3c/em\x3e&quot;;
+} else {
+  for (var i = 0; i &lt; lifelines.length; i++) {
+    var l = lifelines[i];
+    html += &quot;\x3cdiv class='param-display'\x3e&quot;;
+    html += &quot;Lifeline #&quot; + (i+1) + &quot;\x3cbr\x3e&quot;;
+    html += &quot;  Amp: &quot; + l.amplitude + &quot; | Freq: &quot; + l.frequency + &quot; | Force: &quot; + l.max_force + &quot;\x3cbr\x3e&quot;;
+    html += &quot;  dx: &quot; + l.result_dx + &quot; m&quot;;
+    html += &quot;\x3c/div\x3e&quot;;
+  }
+}
+html += &quot;\x3c/div\x3e\x3c/div\x3e&quot;;
+
+State.variables._womack_html = html;
+&lt;&lt;/script&gt;&gt;
+&lt;&lt;print $_womack_html&gt;&gt;
+
+&lt;div class=&quot;choice-grid&quot;&gt;
+[[Configure another body|ChooseAmplitude]]
+[[Choose a different lens|ChooseLens]]
+&lt;/div&gt;
+</tw-passagedata>
+
+</tw-storydata>
+</body>
+</html>

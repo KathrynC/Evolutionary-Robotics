@@ -1,3 +1,40 @@
+"""
+simulate_video_move.py
+
+GUI video recorder that drives all revolute joints with a simple sinusoidal pattern.
+
+Purpose:
+    - Produce a quick MP4 recording ("motors_run.mp4") of a robot attempting locomotion.
+    - Bypass pyrosim/neural-network plumbing and control joints directly via PyBullet.
+    - Provide a visible baseline motion pattern for debugging URDF, friction, and motor limits.
+
+What it does:
+    - Loads plane.urdf and body.urdf.
+    - Finds all revolute joints and applies a traveling-wave sine target across them.
+    - Uses startStateLogging(...) to record an MP4.
+    - Uses a follow camera so the robot stays centered during recording.
+
+Requirements:
+    - body.urdf in the current directory (run `python3 generate.py` if missing).
+
+Usage:
+    python3 simulate_video_move.py
+
+Outputs:
+    motors_run.mp4 (in the current directory)
+
+Notes:
+    - This script intentionally uses PyBullet GUI mode and sleeps at dt for stable video.
+    - If the robot does not move, the usual culprits are friction, motor force, or joint
+      axis/limits in the URDF.
+
+Ludobots role:
+  - Video capture emphasizing visible movement for demos.
+
+Beyond Ludobots (this repo):
+  - (Document any camera/pose adjustments made to amplify motion visibility.)
+"""
+
 import math
 import time
 from pathlib import Path
@@ -6,11 +43,23 @@ import pybullet as p
 import pybullet_data
 
 
+import os
 def horiz_dist_xy(pos):
+    """Return horizontal distance from origin given a base position (x, y, z)."""
     return math.hypot(pos[0], pos[1])
 
 
 def main():
+    """Run a ~10s GUI simulation while recording an MP4.
+
+    Flow:
+        1) Setup physics + plane friction
+        2) Load body.urdf and apply baseline friction to all links
+        3) Discover revolute joints (motors)
+        4) Settle for 1s (no motors), then start MP4 recording
+        5) Drive all revolute joints with a phase-offset sine pattern
+        6) Follow camera + print periodic telemetry
+    """
     # GUI is simplest for MP4 recording and for seeing what's happening.
     cid = p.connect(p.GUI)
     p.configureDebugVisualizer(p.COV_ENABLE_GUI, 0)
@@ -70,7 +119,7 @@ def main():
     dt = 1.0 / 240.0
     record_seconds = 10.0
     steps = int(record_seconds / dt)  # record ~10 seconds
-    target_dist = 1e9        # disable early stop on distance
+    target_dist = 1e9  # disable early stop on distance
 
     # Let the robot settle before recording/motors (avoids "it moved because it fell").
     settle_seconds = 1.0
@@ -86,9 +135,10 @@ def main():
     log_id = p.startStateLogging(p.STATE_LOGGING_VIDEO_MP4, out_name)
     print(f"Recording -> {out_name}")
 
+    # --- Tune knobs (main behavior is here) ---
     # Locomotion attempt: traveling wave + small bias breaks symmetry
-    amp = 1.1                # radians
-    freq = 2.0               # Hz
+    amp = 1.1   # radians
+    freq = 2.0  # Hz
     force = 200
     n = max(1, len(revolute))
 

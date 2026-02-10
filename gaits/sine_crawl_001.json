@@ -1,0 +1,15 @@
+{
+  "name": "Sine Crawl 001",
+  "variant_id": "001",
+  "type": "sine_2joint",
+  "A": 0.5145,
+  "f": 2.1371,
+  "O_back": 0.7591,
+  "O_front": -0.3463,
+  "phi_back": 6.234472,
+  "phi_front": 1.287714,
+  "MAX_FORCE": 2000.0,
+  "SIM_STEPS": 2000,
+  "ROBOT_FRICTION": 2.5,
+  "PLANE_FRICTION": 2.0
+}

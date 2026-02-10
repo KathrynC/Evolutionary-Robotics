@@ -36,3 +36,16 @@ motor_vectors.png
 
 # local patch helpers
 patch_simulate_constants*.py
+
+# generated experiment outputs
+artifacts/
+*.jsonl
+*.tsv
+
+# local backups/scratch
+*.bak
+*.bak_*
+*.broken_*
+*_GOOD_*
+__pycache__/
+.DS_Store
