@@ -15,7 +15,7 @@ A catalog of 59 discovered gaits for a 3-link PyBullet robot, organized by weigh
 
 ## The Zoo
 
-**59 gaits across 11 categories, 12 weight motifs, 4 attractor types, 3 leaderboards.**
+**59 gaits across 11 categories, 12 weight motifs, 4 attractor types (with 5 complex subtypes), 3 leaderboards.**
 
 All gaits and their weights are stored in `synapse_gait_zoo.json`. Videos for every gait are in `videos/`. Per-step telemetry (400 records/gait) is in `artifacts/telemetry_full/`.
 
@@ -83,8 +83,22 @@ Every gait was instrumented with per-step telemetry (position, orientation, grou
 |---|---|---|
 | **fixed_point** | 1 | Converges to stationary equilibrium. The bouncer: perfectly still, zero displacement, zero tilt. |
 | **limit_cycle** | 15 | Stable periodic orbit. Consistent stride, low speed variability (CV < 0.5). The most reliable walkers: CPG champion, curie, noether_cpg, carry_trade, pelton, rubato, etc. |
-| **complex** | 37 | Moving but not strictly periodic. Drifting phase, variable speed, or multi-frequency dynamics. Stable but irregular. Most gaits live here. |
+| **complex** | 37 | Moving but not strictly periodic. Subdivides into 5 subtypes (see below). Most gaits live here. |
 | **chaotic/fallen** | 6 | Tips over (tilt > 60). Unbounded phase portrait. Tesla, lamarr, gamma_squeeze, original, gallop, blues_shuffle. |
+
+### Complex Attractor Subtypes
+
+The 37 complex gaits are not one category — they split into 5 dynamically distinct subtypes based on FFT spectral content, speed autocorrelation, trajectory curvature, and transient analysis:
+
+| Subtype | Count | Mean Disp | Character |
+|---|---|---|---|
+| **multi_frequency** | 23 | 14.0m | Multiple competing frequencies in speed signal. Spectrally rich. The largest subgroup. |
+| **drifter** | 5 | 24.6m | High displacement with irregular rhythm. Rivals limit cycles. Produced by amplified curie_asymmetric_drive motif. |
+| **quasi_periodic** | 5 | 8.4m | Nearly periodic (autocorrelation 0.4–0.78). At the limit-cycle boundary — closest to reclassification. |
+| **transient_decay** | 3 | 5.5m | Activity changes dramatically over time (speed CV > 1.0). Not in steady state. Includes bifurcation-boundary gaits. |
+| **wobbler** | 1 | 0.8m | Active joint oscillation with high tilt but no displacement. Rocking without locomotion. |
+
+The `canonical_antisymmetric` motif spans 3 subtypes (multi_frequency, quasi_periodic, transient_decay) — structurally simple but dynamically versatile. The `curie_asymmetric_drive` motif splits cleanly: multi_frequency when moderate, drifter when amplified.
 
 ## Telemetry
 
@@ -146,7 +160,12 @@ Per-step telemetry captures what endpoint measurements miss. Every gait has 400 
 
 **Bifurcation boundaries are sharp.** The bouncer configuration [0, +1, -1, 0, -1, +1] is perfectly still (DX=0, YAW=0, tilt=0). Reducing one weight by 10% (w24: 1.0 to 0.9) produces a 188 spin. The sharpest behavioral cliff in the zoo.
 
-**Limit cycles are the best walkers.** The 15 limit-cycle gaits include all top-5 displacement leaders. Clean periodic orbits in joint phase space correlate with high, consistent speed and long displacement. The CPG champion (limit cycle, mean_speed=3.33 m/s, speed_cv=0.42) is both the fastest and one of the smoothest.
+**Limit cycles are the best walkers — and we know why.** The 15 limit-cycle gaits include all top-5 displacement leaders. Three mechanisms explain this:
+- *Directional efficiency*: Limit cycles convert 74% of path length into net displacement vs 54% for complex gaits (1.4x). They walk straighter — less motion wasted on non-locomotory oscillation.
+- *Speed consistency*: 1.8x lower speed variability (CV 0.41 vs 0.72). Uniform stride wastes less energy on acceleration/deceleration.
+- *Joint asymmetry*: Limit cycles use joints more asymmetrically (0.20 vs 0.13), creating directed thrust rather than symmetric rocking.
+
+**Complex:drifters are the hidden contenders.** Five "complex" gaits classified as drifters actually rival limit cycles in displacement (mean 24.6m vs 23.5m) and directional efficiency (0.756 vs 0.740). They walk far despite lacking clean periodicity. The curie_asymmetric_drive motif produces drifters when amplified — these are "almost-limit-cycles" with enough core periodicity to walk straight.
 
 ## Sensitivity Classes
 

@@ -261,7 +261,34 @@
         "crab_ratio": 0.65,
         "note": "Existing"
       }
-    ]
+    ],
+    "analysis": {
+      "limit_cycle_advantage": {
+        "description": "Why limit cycles are the best walkers (Q1 analysis)",
+        "directional_efficiency": {
+          "limit_cycle": 0.74,
+          "complex": 0.536,
+          "chaotic_fallen": 0.45,
+          "note": "Fraction of path length converted to net displacement. Limit cycles walk 1.4x straighter."
+        },
+        "speed_consistency": {
+          "limit_cycle_cv": 0.409,
+          "complex_cv": 0.719,
+          "note": "Limit cycles have 1.8x lower speed variability \u2014 uniform stride wastes less energy."
+        },
+        "torque_efficiency": {
+          "limit_cycle": 0.2,
+          "complex": 0.11,
+          "note": "Displacement per unit mean torque. Limit cycles are 1.8x more efficient."
+        },
+        "joint_asymmetry": {
+          "limit_cycle": 0.2,
+          "complex": 0.131,
+          "note": "Limit cycles use joints more asymmetrically, creating directed thrust rather than symmetric rocking."
+        },
+        "surprise_finding": "Complex:drifters rival limit cycles (mean disp 24.6m vs 23.5m, dir_eff 0.756 vs 0.740) but with higher speed variability. The curie_asymmetric_drive motif produces drifters when amplified."
+      }
+    }
   },
   "categories": {
     "persona_gaits": {
@@ -298,7 +325,8 @@
             "transient_frac": 0.052,
             "mean_speed": 0.692,
             "speed_cv": 0.861,
-            "attractor_type": "complex"
+            "attractor_type": "complex",
+            "attractor_subtype": "multi_frequency"
           }
         },
         "2_rucker": {
@@ -331,7 +359,8 @@
             "transient_frac": 0.812,
             "mean_speed": 0.95,
             "speed_cv": 0.638,
-            "attractor_type": "complex"
+            "attractor_type": "complex",
+            "attractor_subtype": "multi_frequency"
           }
         },
         "3_mordvintsev": {
@@ -398,7 +427,8 @@
             "transient_frac": 0.73,
             "mean_speed": 1.462,
             "speed_cv": 0.669,
-            "attractor_type": "complex"
+            "attractor_type": "complex",
+            "attractor_subtype": "quasi_periodic"
           }
         },
         "5_pelton": {
@@ -465,7 +495,8 @@
             "transient_frac": 0.765,
             "mean_speed": 0.623,
             "speed_cv": 0.636,
-            "attractor_type": "complex"
+            "attractor_type": "complex",
+            "attractor_subtype": "quasi_periodic"
           }
         },
         "7_fuller_dymaxion": {
@@ -567,7 +598,8 @@
             "transient_frac": 0.512,
             "mean_speed": 0.744,
             "speed_cv": 0.601,
-            "attractor_type": "complex"
+            "attractor_type": "complex",
+            "attractor_subtype": "multi_frequency"
           }
         },
         "10_tesla_3phase": {
@@ -633,7 +665,8 @@
             "transient_frac": 0.285,
             "mean_speed": 0.51,
             "speed_cv": 1.522,
-            "attractor_type": "complex"
+            "attractor_type": "complex",
+            "attractor_subtype": "transient_decay"
           }
         },
         "12_lorenz_A": {
@@ -666,7 +699,8 @@
             "transient_frac": 0.698,
             "mean_speed": 0.889,
             "speed_cv": 0.82,
-            "attractor_type": "complex"
+            "attractor_type": "complex",
+            "attractor_subtype": "multi_frequency"
           }
         },
         "13_lorenz_B": {
@@ -700,7 +734,8 @@
             "transient_frac": 0.015,
             "mean_speed": 0.98,
             "speed_cv": 0.885,
-            "attractor_type": "complex"
+            "attractor_type": "complex",
+            "attractor_subtype": "multi_frequency"
           }
         },
         "14_lovelace": {
@@ -733,7 +768,8 @@
             "transient_frac": 0.425,
             "mean_speed": 0.616,
             "speed_cv": 0.827,
-            "attractor_type": "complex"
+            "attractor_type": "complex",
+            "attractor_subtype": "multi_frequency"
           }
         },
         "15_noether": {
@@ -766,7 +802,8 @@
             "transient_frac": 0.85,
             "mean_speed": 2.058,
             "speed_cv": 0.578,
-            "attractor_type": "complex"
+            "attractor_type": "complex",
+            "attractor_subtype": "multi_frequency"
           }
         },
         "16_franklin": {
@@ -799,7 +836,8 @@
             "transient_frac": 0.808,
             "mean_speed": 1.805,
             "speed_cv": 0.647,
-            "attractor_type": "complex"
+            "attractor_type": "complex",
+            "attractor_subtype": "multi_frequency"
           }
         },
         "17_lamarr": {
@@ -899,7 +937,8 @@
             "transient_frac": 0.8,
             "mean_speed": 0.527,
             "speed_cv": 0.858,
-            "attractor_type": "complex"
+            "attractor_type": "complex",
+            "attractor_subtype": "multi_frequency"
           }
         },
         "20_mcclintock": {
@@ -1015,7 +1054,8 @@
             "transient_frac": 0.798,
             "mean_speed": 2.499,
             "speed_cv": 0.503,
-            "attractor_type": "complex"
+            "attractor_type": "complex",
+            "attractor_subtype": "drifter"
           }
         },
         "23_hodgkin_huxley": {
@@ -1091,7 +1131,8 @@
             "transient_frac": 0.062,
             "mean_speed": 0.5,
             "speed_cv": 1.721,
-            "attractor_type": "complex"
+            "attractor_type": "complex",
+            "attractor_subtype": "transient_decay"
           }
         },
         "25_minsky": {
@@ -1129,7 +1170,8 @@
             "transient_frac": 0.838,
             "mean_speed": 1.78,
             "speed_cv": 0.667,
-            "attractor_type": "complex"
+            "attractor_type": "complex",
+            "attractor_subtype": "drifter"
           }
         },
         "26_fitzhugh_nagumo": {
@@ -1167,7 +1209,8 @@
             "transient_frac": 0.53,
             "mean_speed": 2.263,
             "speed_cv": 0.514,
-            "attractor_type": "complex"
+            "attractor_type": "complex",
+            "attractor_subtype": "multi_frequency"
           }
         },
         "27_wiener": {
@@ -1205,7 +1248,8 @@
             "transient_frac": 0.848,
             "mean_speed": 1.352,
             "speed_cv": 0.667,
-            "attractor_type": "complex"
+            "attractor_type": "complex",
+            "attractor_subtype": "quasi_periodic"
           }
         }
       }
@@ -1250,7 +1294,8 @@
             "transient_frac": 0.822,
             "mean_speed": 1.288,
             "speed_cv": 0.83,
-            "attractor_type": "complex"
+            "attractor_type": "complex",
+            "attractor_subtype": "drifter"
           }
         },
         "29_fat_tails": {
@@ -1289,7 +1334,8 @@
             "transient_frac": 0.87,
             "mean_speed": 1.564,
             "speed_cv": 0.586,
-            "attractor_type": "complex"
+            "attractor_type": "complex",
+            "attractor_subtype": "multi_frequency"
           }
         },
         "30_garch": {
@@ -1327,7 +1373,8 @@
             "transient_frac": 0.812,
             "mean_speed": 1.884,
             "speed_cv": 0.59,
-            "attractor_type": "complex"
+            "attractor_type": "complex",
+            "attractor_subtype": "multi_frequency"
           }
         },
         "31_gamma_squeeze": {
@@ -1442,7 +1489,8 @@
             "transient_frac": 1.0,
             "mean_speed": 1.885,
             "speed_cv": 0.531,
-            "attractor_type": "complex"
+            "attractor_type": "complex",
+            "attractor_subtype": "quasi_periodic"
           }
         },
         "34_zipf": {
@@ -1480,7 +1528,8 @@
             "transient_frac": 0.822,
             "mean_speed": 1.794,
             "speed_cv": 0.529,
-            "attractor_type": "complex"
+            "attractor_type": "complex",
+            "attractor_subtype": "multi_frequency"
           }
         }
       }
@@ -1526,7 +1575,8 @@
             "transient_frac": 0.602,
             "mean_speed": 2.428,
             "speed_cv": 0.547,
-            "attractor_type": "complex"
+            "attractor_type": "complex",
+            "attractor_subtype": "drifter"
           }
         }
       }
@@ -1570,7 +1620,8 @@
             "transient_frac": 0.908,
             "mean_speed": 2.264,
             "speed_cv": 0.553,
-            "attractor_type": "complex"
+            "attractor_type": "complex",
+            "attractor_subtype": "multi_frequency"
           }
         },
         "37_hemiola": {
@@ -1608,7 +1659,8 @@
             "transient_frac": 0.755,
             "mean_speed": 1.924,
             "speed_cv": 0.63,
-            "attractor_type": "complex"
+            "attractor_type": "complex",
+            "attractor_subtype": "multi_frequency"
           }
         },
         "38_heavy_waltz": {
@@ -1646,7 +1698,8 @@
             "transient_frac": 0.885,
             "mean_speed": 1.638,
             "speed_cv": 0.75,
-            "attractor_type": "complex"
+            "attractor_type": "complex",
+            "attractor_subtype": "drifter"
           }
         },
         "39_bulgarian": {
@@ -1684,7 +1737,8 @@
             "transient_frac": 0.822,
             "mean_speed": 1.497,
             "speed_cv": 0.554,
-            "attractor_type": "complex"
+            "attractor_type": "complex",
+            "attractor_subtype": "multi_frequency"
           }
         },
         "40_rubato": {
@@ -1798,7 +1852,8 @@
             "transient_frac": 0.805,
             "mean_speed": 0.949,
             "speed_cv": 0.5,
-            "attractor_type": "complex"
+            "attractor_type": "complex",
+            "attractor_subtype": "multi_frequency"
           }
         }
       }
@@ -2011,7 +2066,8 @@
             "transient_frac": 1.0,
             "mean_speed": 2.039,
             "speed_cv": 0.649,
-            "attractor_type": "complex"
+            "attractor_type": "complex",
+            "attractor_subtype": "wobbler"
           }
         },
         "45_spinner_stable": {
@@ -2113,7 +2169,8 @@
             "transient_frac": 0.46,
             "mean_speed": 1.842,
             "speed_cv": 0.587,
-            "attractor_type": "complex"
+            "attractor_type": "complex",
+            "attractor_subtype": "quasi_periodic"
           }
         },
         "46_spinner_crosswired": {
@@ -2189,7 +2246,8 @@
             "transient_frac": 0.908,
             "mean_speed": 0.776,
             "speed_cv": 0.524,
-            "attractor_type": "complex"
+            "attractor_type": "complex",
+            "attractor_subtype": "multi_frequency"
           }
         }
       }
@@ -2261,7 +2319,8 @@
             "transient_frac": 0.75,
             "mean_speed": 1.046,
             "speed_cv": 0.751,
-            "attractor_type": "complex"
+            "attractor_type": "complex",
+            "attractor_subtype": "multi_frequency"
           }
         },
         "5_gallop": {
@@ -2393,7 +2452,8 @@
             "transient_frac": 0.945,
             "mean_speed": 2.041,
             "speed_cv": 0.517,
-            "attractor_type": "complex"
+            "attractor_type": "complex",
+            "attractor_subtype": "multi_frequency"
           }
         },
         "50_noether_cyclone": {
@@ -2455,7 +2515,8 @@
             "transient_frac": 0.542,
             "mean_speed": 0.864,
             "speed_cv": 1.484,
-            "attractor_type": "complex"
+            "attractor_type": "complex",
+            "attractor_subtype": "transient_decay"
           }
         }
       }
@@ -2525,7 +2586,8 @@
             "transient_frac": 0.56,
             "mean_speed": 2.409,
             "speed_cv": 0.529,
-            "attractor_type": "complex"
+            "attractor_type": "complex",
+            "attractor_subtype": "multi_frequency"
           }
         },
         "54_rucker_sidewinder": {
@@ -2557,7 +2619,8 @@
             "transient_frac": 0.635,
             "mean_speed": 1.42,
             "speed_cv": 0.779,
-            "attractor_type": "complex"
+            "attractor_type": "complex",
+            "attractor_subtype": "multi_frequency"
           }
         },
         "55_skew_crab": {
@@ -2589,7 +2652,8 @@
             "transient_frac": 0.805,
             "mean_speed": 2.042,
             "speed_cv": 0.583,
-            "attractor_type": "complex"
+            "attractor_type": "complex",
+            "attractor_subtype": "multi_frequency"
           }
         }
       }
@@ -3140,7 +3204,86 @@
           "53_rucker_landcrab",
           "54_rucker_sidewinder",
           "55_skew_crab"
-        ]
+        ],
+        "subtypes": {
+          "multi_frequency": {
+            "description": "Multiple competing frequencies in speed signal. Spectrally rich, moderate displacement. The largest subgroup (23 gaits) \u2014 likely contains further structure.",
+            "count": 23,
+            "mean_displacement_m": 13.992,
+            "mean_speed_cv": 0.646,
+            "members": [
+              "1_wolfram",
+              "2_rucker",
+              "9_mandelbrot",
+              "12_lorenz_A",
+              "13_lorenz_B",
+              "14_lovelace",
+              "15_noether",
+              "16_franklin",
+              "19_haraway",
+              "26_fitzhugh_nagumo",
+              "29_fat_tails",
+              "30_garch",
+              "34_zipf",
+              "36_take_five",
+              "37_hemiola",
+              "39_bulgarian",
+              "42_polyrhythm",
+              "47_spinner_6synapse",
+              "2_flipped",
+              "49_pelton_pirouette",
+              "53_rucker_landcrab",
+              "54_rucker_sidewinder",
+              "55_skew_crab"
+            ]
+          },
+          "drifter": {
+            "description": "High displacement with irregular rhythm. Walks far but without clean periodicity. Often produced by amplified curie_asymmetric_drive motif. Rivals limit cycles in displacement.",
+            "count": 5,
+            "mean_displacement_m": 24.641,
+            "mean_speed_cv": 0.66,
+            "members": [
+              "22_curie_amplified",
+              "25_minsky",
+              "28_flash_crash",
+              "35_evolved_curie",
+              "38_heavy_waltz"
+            ]
+          },
+          "quasi_periodic": {
+            "description": "Nearly periodic but with drift or modulation. High autocorrelation (0.4-0.78). These sit at the limit-cycle boundary \u2014 the closest complex gaits to being reclassified as limit cycles.",
+            "count": 5,
+            "mean_displacement_m": 8.382,
+            "mean_speed_cv": 0.618,
+            "members": [
+              "4_sayama",
+              "6_fuller_trimtab",
+              "27_wiener",
+              "33_mean_reversion",
+              "45_spinner_stable"
+            ]
+          },
+          "transient_decay": {
+            "description": "Activity changes dramatically over time (speed CV > 1.0). Not in steady state \u2014 transient dynamics dominate. Includes bifurcation-boundary gaits.",
+            "count": 3,
+            "mean_displacement_m": 5.502,
+            "mean_speed_cv": 1.576,
+            "members": [
+              "11_taleb_antifrag",
+              "24_wolfram_flipped",
+              "51_bouncer_detonated"
+            ]
+          },
+          "wobbler": {
+            "description": "Active joint oscillation with high tilt but no significant displacement. Rocking without locomotion.",
+            "count": 1,
+            "mean_displacement_m": 0.827,
+            "mean_speed_cv": 0.649,
+            "members": [
+              "44_spinner_champion"
+            ]
+          }
+        }
       },
       "chaotic_fallen": {
         "description": "Robot tips over (tilt > 60\u00b0). Phase portrait shows unbounded trajectories. May still achieve significant displacement before falling.",
