@@ -1,6 +1,6 @@
 # Synapse Gait Zoo
 
-A catalog of 59 discovered gaits for a 3-link PyBullet robot, organized by weight motif, attractor dynamics, and behavioral class. Each gait is a fixed-weight neural network (no learning at runtime) that produces a distinct locomotion style from the same 3-link body.
+A catalog of 62 discovered gaits for a 3-link PyBullet robot, organized by weight motif, attractor dynamics, and behavioral class. Each gait is a fixed-weight neural network (no learning at runtime) that produces a distinct locomotion style from the same 3-link body.
 
 ## The Robot
 
@@ -15,7 +15,7 @@ A catalog of 59 discovered gaits for a 3-link PyBullet robot, organized by weigh
 
 ## The Zoo
 
-**59 gaits across 11 categories, 12 weight motifs, 4 attractor types (with 5 complex subtypes), 3 leaderboards.**
+**62 gaits across 11 categories, 12 weight motifs, 4 attractor types (with 5 complex subtypes), 3 leaderboards.**
 
 All gaits and their weights are stored in `synapse_gait_zoo.json`. Videos for every gait are in `videos/`. Per-step telemetry (400 records/gait) is in `artifacts/telemetry_full/`.
 
@@ -33,7 +33,7 @@ All gaits and their weights are stored in `synapse_gait_zoo.json`. Videos for ev
 | homework | 4 | standard 6-synapse | Ludobots course assignments |
 | pareto_walk_spin | 3 | crosswired 10-synapse | Simultaneously walk AND spin — Pareto frontier of displacement vs rotation |
 | bifurcation_gaits | 1 | standard 6-synapse | Configurations at sharp phase transition boundaries |
-| crab_walkers | 4 | crosswired 10-synapse | Walk more sideways (Y) than forward (X) |
+| crab_walkers | 7 | crosswired 10-synapse | Walk more sideways (Y) than forward (X). Top 3 are evolved. |
 
 ### Architectures
 
@@ -65,15 +65,15 @@ All gaits and their weights are stored in `synapse_gait_zoo.json`. Videos for ev
 
 ### Crab Walking (|DY|)
 
-| # | Gait | DY | DX | Heading | Crab Ratio |
-|---|---|---|---|---|---|
-| 1 | 52_curie_crab | -28.79 | +24.44 | -50 | 1.18 |
-| 2 | 53_rucker_landcrab | +27.05 | +11.46 | +67 | 2.36 |
-| 3 | 35_evolved_curie | -17.50 | +24.28 | -36 | 0.72 |
-| 4 | 10_tesla_3phase | +15.49 | -18.33 | +140 | 0.85 |
-| 5 | 54_rucker_sidewinder | +15.19 | +5.70 | +69 | 2.66 |
+| # | Gait | DY | DX | Heading | Crab Ratio | Origin |
+|---|---|---|---|---|---|---|
+| 1 | 56_evolved_crab_v2 | -40.64 | -6.71 | -99 | 6.06 | evolved |
+| 2 | 57_evolved_sidewinder | -39.32 | -3.99 | -96 | 9.86 | evolved |
+| 3 | 58_evolved_crab_positive_v2 | +38.08 | -1.17 | +91 | 32.48 | evolved |
+| 4 | 52_curie_crab | -28.79 | +24.44 | -50 | 1.18 | hand-designed |
+| 5 | 53_rucker_landcrab | +27.05 | +11.46 | +67 | 2.36 | hand-designed |
 
-Crab ratio = |DY|/|DX|. Values > 1.0 mean the robot walks more sideways than forward.
+Crab ratio = |DY|/|DX|. Values > 1.0 mean the robot walks more sideways than forward. The top 3 are evolved solutions that require full float64 weight precision — rounding to 6 decimal places shifts them to different attractors (see knife-edge sensitivity below).
 
 ## Attractor Taxonomy
 
@@ -168,6 +168,8 @@ Per-step telemetry captures what endpoint measurements miss. Every gait has 400 
 **Complex:drifters are the hidden contenders.** Five "complex" gaits classified as drifters actually rival limit cycles in displacement (mean 24.6m vs 23.5m) and directional efficiency (0.756 vs 0.740). They walk far despite lacking clean periodicity. The curie_asymmetric_drive motif produces drifters when amplified — these are "almost-limit-cycles" with enough core periodicity to walk straight.
 
 **Efficiency is a property of structure.** The torque-displacement Pareto frontier contains only 6 of 58 moving gaits. Motif determines efficiency: `half_center_oscillator` (0.414) and `minimal_wiring` (0.230) dominate; `spin_torque` (0.017) is dead last. Efficiency correlates strongly with directional efficiency (r=0.70) — walking straight IS being efficient. Displacement barely correlates with torque (r=0.21) — high torque does not guarantee high displacement.
+
+**Evolution finds knife-edge solutions.** Evolving crab walkers with |DY| fitness produced a verified champion (|DY|=40.64, crab ratio 6.06), beating the hand-designed record by 41%. But the first attempt stored weights at 6 decimal places, and the rounding shifted the champion from DY=-36.34 to DY=-25.68 — a 30% performance drop from ~1e-7 weight change. Full float64 precision is required for reproducibility. This is the reality gap operating through weight precision rather than environmental noise.
 
 **Heading is controllable but the landscape has cliffs.** Sweeping 83 configurations (MB ratio × cross-wiring asymmetry) achieves full 360° heading coverage, but the control surface is nonlinear and non-monotonic (CW-heading correlation = -0.14). The heading distribution is bimodal: a forward cluster (-30° to +30°) and a backward cluster (150°-180°). Pure lateral headings (60°-120°) are rare — structurally difficult for this body plan. Consistent with bifurcation findings: nearby parameters can produce wildly different headings.
 
