@@ -1,0 +1,623 @@
+Full dataset: 116 gaits (113 standard, 3 hidden)
+
+====================================================================================================
+DIG 1: w44 AS STABILITY GOVERNOR — FULL SCALE TEST
+====================================================================================================
+
+  w44 neg_strong   (n=22)  avg_disp= 18.90  avg_yaw=0.751  avg_straight=0.651
+    categories: persona_gaits:11, market_mathematics:4, cross_wired_cpg:2, pareto_walk_spin:2, crab_walkers:2, time_signatures:1
+    57_evolved_sidewinder                    [crab_walkers        ] w44=-0.31 disp= 39.37
+    58_evolved_crab_positive_v2              [crab_walkers        ] w44=-0.31 disp= 38.03
+    50_noether_cyclone                       [pareto_walk_spin    ] w44=-0.50 disp= 33.06
+
+  w44 neg_weak     (n=16)  avg_disp= 18.45  avg_yaw=0.651  avg_straight=0.538
+    categories: persona_gaits:10, cross_wired_cpg:2, time_signatures:2, spinners:1, pareto_walk_spin:1
+    21_noether_cpg                           [cross_wired_cpg     ] w44=-0.20 disp= 43.68
+    48_curie_dervish                         [pareto_walk_spin    ] w44=-0.30 disp= 31.42
+    69_grunbaum_deflation                    [persona_gaits       ] w44=-0.24 disp= 31.28
+
+  w44 zero         (n=70)  avg_disp= 11.18  avg_yaw=0.943  avg_straight=0.531
+    categories: persona_gaits:49, time_signatures:4, homework:4, crab_walkers:4, cross_wired_cpg:3, market_mathematics:3, evolved:1, spinners:1, bifurcation_gaits:1
+    52_curie_crab                            [crab_walkers        ] w44=+0.00 disp= 37.74
+    22_curie_amplified                       [cross_wired_cpg     ] w44=+0.00 disp= 37.15
+    5_pelton                                 [persona_gaits       ] w44=+0.00 disp= 35.12
+
+  w44 pos_strong   (n= 5)  avg_disp= 12.77  avg_yaw=1.649  avg_straight=0.421
+    categories: persona_gaits:4, crab_walkers:1
+    56_evolved_crab_v2                       [crab_walkers        ] w44=+0.85 disp= 41.10
+    111_biles_twisties                       [persona_gaits       ] w44=+0.70 disp=  7.83
+    90_stein_continuous_present              [persona_gaits       ] w44=+0.80 disp=  5.92
+
+  w44 by category (mean):
+    pareto_walk_spin          avg_w44=-0.433  negative=100%  n=3
+    market_mathematics        avg_w44=-0.371  negative=57%  n=7
+    cross_wired_cpg           avg_w44=-0.229  negative=57%  n=7
+    spinners                  avg_w44=-0.150  negative=50%  n=2
+    time_signatures           avg_w44=-0.143  negative=43%  n=7
+    persona_gaits             avg_w44=-0.078  negative=28%  n=74
+    evolved                   avg_w44=+0.000  negative=0%  n=1
+    homework                  avg_w44=+0.000  negative=0%  n=4
+    bifurcation_gaits         avg_w44=+0.000  negative=0%  n=1
+    crab_walkers              avg_w44=+0.033  negative=29%  n=7
+
+
+====================================================================================================
+DIG 2: NEVER-SETTLERS ACROSS ALL CATEGORIES
+====================================================================================================
+
+  Category                  Total  Never%  Accel  Decel Steady Static
+  bifurcation_gaits             1      0%      0      1      0      0
+  crab_walkers                  7     71%      1      2      4      0
+  cross_wired_cpg               7     71%      2      2      3      0
+  evolved                       1      0%      0      1      0      0
+  hidden_neurons                1    100%      1      0      0      0
+  homework                      4     50%      1      2      0      1
+  market_mathematics            7     57%      3      2      2      0
+  pareto_walk_spin              3    100%      0      1      2      0
+  persona_gaits                74     61%     19     31     24      0
+  spinners                      4    100%      1      2      1      0
+  time_signatures               7     71%      4      1      2      0
+  TOTAL                       116     64%
+
+
+====================================================================================================
+DIG 3: ANTI-PHASE vs IN-PHASE — FULL SCALE WITH CATEGORIES
+====================================================================================================
+
+  Anti-phase (n=31): avg_disp=17.04, median=16.17
+  In-phase  (n=63): avg_disp=12.68, median=8.21
+  Neither   (n=22): avg_disp=12.98
+
+  Anti-phase by category:
+    crab_walkers              n= 3 avg_disp= 31.67
+    homework                  n= 2 avg_disp=  6.61
+    market_mathematics        n= 2 avg_disp= 22.76
+    pareto_walk_spin          n= 2 avg_disp= 21.30
+    persona_gaits             n=19 avg_disp= 14.90
+    spinners                  n= 1 avg_disp=  4.33
+    time_signatures           n= 2 avg_disp= 22.20
+
+
+====================================================================================================
+DIG 4: EFFICIENCY vs COMPLEXITY — FULL SCALE
+====================================================================================================
+
+  Efficiency vs active synapse count (all 116):
+     1 synapses: n= 1  avg_eff=0.000100  avg_disp=  5.20  best_eff=6_fuller_trimtab
+     2 synapses: n= 4  avg_eff=0.000322  avg_disp=  4.82  best_eff=7_fuller_dymaxion
+     4 synapses: n= 6  avg_eff=0.245543  avg_disp=  8.59  best_eff=5_bouncer
+     6 synapses: n=40  avg_eff=0.000077  avg_disp= 10.85  best_eff=62_cage_433
+     7 synapses: n= 3  avg_eff=0.000069  avg_disp= 15.22  best_eff=53_rucker_landcrab
+     8 synapses: n=27  avg_eff=0.000092  avg_disp= 14.56  best_eff=80_deleuze_fold
+     9 synapses: n= 1  avg_eff=0.000095  avg_disp= 31.42  best_eff=48_curie_dervish
+    10 synapses: n=31  avg_eff=0.000093  avg_disp= 18.62  best_eff=93_borges_mirror
+    hidden synapses: n= 3  avg_eff=0.000127  avg_disp= 18.40  best_eff=43_hidden_cpg_champion
+
+  Efficiency by architecture:
+    standard_6           n=49  avg_eff=0.030155  max_eff=1.472927
+    hidden               n= 3  avg_eff=0.000127  max_eff=0.000316
+    crosswired_10        n=63  avg_eff=0.000092  max_eff=0.000248
+    crosswired_8         n= 1  avg_eff=0.000033  max_eff=0.000033
+
+
+====================================================================================================
+DIG 5: WHY DO HIDDEN NEURONS DOMINATE?
+====================================================================================================
+
+  Hidden layer gaits: 3
+  Hidden oscillator (CPG) gaits: 3
+
+  43_hidden_cpg_champion [hidden_neurons]:
+    disp=50.03 dx=50.03 dy=-0.03
+    straightness=0.905 z_range=0.539
+    j0_period=21 j1_period=11 phase=0.14
+    efficiency=0.000316 yaw=0.551
+
+  44_spinner_champion [spinners]:
+    disp=0.83 dx=0.23 dy=0.80
+    straightness=0.024 z_range=0.556
+    j0_period=8 j1_period=43 phase=0.12
+    efficiency=0.000008 yaw=2.057
+
+  45_spinner_stable [spinners]:
+    disp=4.33 dx=-4.21 dy=1.01
+    straightness=0.141 z_range=0.469
+    j0_period=4 j1_period=5 phase=0.50
+    efficiency=0.000058 yaw=0.497
+
+  --- Time-series deep compare: hidden champion vs standard champions ---
+
+  43_hidden_cpg_champion [hidden_neurons] (hidden):
+    disp= 50.03 avg_vel=+0.12540 max_vel=0.27366
+    j0_range=0.6340 j1_range=0.4633
+    j0_vel_rms=3.1295 j1_vel_rms=2.8801
+    contact_changes=113 avg_contacts=0.29
+    jerk_rms=0.02827280 z_range=0.5395
+
+  44_spinner_champion [spinners] (hidden):
+    disp=  0.83 avg_vel=+0.00057 max_vel=0.18979
+    j0_range=0.4700 j1_range=0.3614
+    j0_vel_rms=2.3494 j1_vel_rms=2.0796
+    contact_changes=141 avg_contacts=0.30
+    jerk_rms=0.01876293 z_range=0.5558
+
+  45_spinner_stable [spinners] (hidden):
+    disp=  4.33 avg_vel=-0.01056 max_vel=0.18422
+    j0_range=0.3894 j1_range=0.2813
+    j0_vel_rms=2.1607 j1_vel_rms=1.3883
+    contact_changes=180 avg_contacts=0.35
+    jerk_rms=0.01750179 z_range=0.4686
+
+  21_noether_cpg [cross_wired_cpg] (standard):
+    disp= 43.68 avg_vel=-0.10805 max_vel=0.20315
+    j0_range=0.9794 j1_range=0.9485
+    j0_vel_rms=2.8417 j1_vel_rms=6.1647
+    contact_changes=174 avg_contacts=0.65
+    jerk_rms=0.02816355 z_range=0.5213
+
+  56_evolved_crab_v2 [crab_walkers] (standard):
+    disp= 41.10 avg_vel=-0.01680 max_vel=0.06905
+    j0_range=1.3604 j1_range=0.9996
+    j0_vel_rms=5.8249 j1_vel_rms=0.9548
+    contact_changes=156 avg_contacts=0.36
+    jerk_rms=0.01543405 z_range=0.4775
+
+  57_evolved_sidewinder [crab_walkers] (standard):
+    disp= 39.37 avg_vel=-0.01001 max_vel=0.11897
+    j0_range=1.4097 j1_range=1.0500
+    j0_vel_rms=6.7278 j1_vel_rms=1.9429
+    contact_changes=145 avg_contacts=0.52
+    jerk_rms=0.01733528 z_range=0.5020
+
+
+====================================================================================================
+DIG 6: FALLER SIGNATURE — FULL SCALE
+====================================================================================================
+
+  Fallers by category (total: 12/116):
+    homework                   2/ 4 = 50%
+      1_original                             disp=2.15 z_range=1.336
+      5_gallop                               disp=4.46 z_range=1.605
+    market_mathematics         1/ 7 = 14%
+      31_gamma_squeeze                       disp=4.21 z_range=1.474
+    persona_gaits              9/74 = 12%
+      101_jgcramer_transactional             disp=5.07 z_range=1.599
+      10_tesla_3phase                        disp=23.99 z_range=1.670
+      17_lamarr                              disp=5.04 z_range=1.694
+      60_fibonacci_phyllotaxis               disp=16.51 z_range=1.569
+      61_fibonacci_spiral                    disp=6.38 z_range=1.265
+      64_cage_iching                         disp=7.31 z_range=1.845
+      73_gallagher_sieve                     disp=2.43 z_range=1.327
+      76_dick_ubik                           disp=4.14 z_range=1.658
+      88_breton_automatic                    disp=4.13 z_range=2.243
+
+  Weight means: fallers (n=12) vs non-fallers (n=101):
+    w03   fallers=-0.041  non-fallers=-0.417  diff=+0.375 ***
+    w13   fallers=-0.113  non-fallers=-0.612  diff=+0.500 ***
+    w23   fallers=-0.111  non-fallers=-0.371  diff=+0.260 ***
+    w04   fallers=+0.059  non-fallers=+0.524  diff=-0.465 ***
+    w14   fallers=+0.073  non-fallers=+0.340  diff=-0.266 ***
+    w24   fallers=+0.143  non-fallers=+0.577  diff=-0.434 ***
+    w34   fallers=+0.001  non-fallers=+0.122  diff=-0.120 **
+    w43   fallers=-0.299  non-fallers=-0.062  diff=-0.237 ***
+    w33   fallers=+0.061  non-fallers=+0.123  diff=-0.062
+    w44   fallers=+0.020  non-fallers=-0.125  diff=+0.144 **
+
+
+====================================================================================================
+DIG 7: DIRECTION PREDICTION — FULL 116
+====================================================================================================
+
+  Moving standard gaits: 106 (|dx| > 0.5)
+  Forward: 56, Backward: 50
+
+  Single weight direction prediction:
+    w03   52/106 = 49.1% (neg->fwd)
+    w13   55/106 = 51.9% (neg->fwd)
+    w23   53/106 = 50.0% (neg->fwd)
+    w04   51/106 = 48.1% (neg->fwd)
+    w14   51/106 = 48.1% (pos->fwd)
+    w24   52/106 = 49.1% (pos->fwd)
+    w34   55/106 = 51.9% (neg->fwd)
+    w43   59/106 = 55.7% (neg->fwd)
+    w33   47/106 = 44.3% (pos->fwd)
+    w44   47/106 = 44.3% (pos->fwd)
+
+  Composite direction predictors:
+    net_sensor_sum > 0 predicts forward: 67/106 = 63.2%
+    |motor4_inputs| > |motor3_inputs|: 69/106 = 65.1%
+
+  Direction by category:
+    bifurcation_gaits         fwd= 1 bwd= 0 stat= 0
+    crab_walkers              fwd= 4 bwd= 3 stat= 0
+    cross_wired_cpg           fwd= 3 bwd= 4 stat= 0
+    evolved                   fwd= 1 bwd= 0 stat= 0
+    hidden_neurons            fwd= 1 bwd= 0 stat= 0
+    homework                  fwd= 0 bwd= 3 stat= 1
+    market_mathematics        fwd= 2 bwd= 4 stat= 1
+    pareto_walk_spin          fwd= 2 bwd= 1 stat= 0
+    persona_gaits             fwd=38 bwd=32 stat= 4
+    spinners                  fwd= 0 bwd= 2 stat= 2
+    time_signatures           fwd= 5 bwd= 2 stat= 0
+
+
+====================================================================================================
+DIG 8: CRAB WALKERS — HOW DOES LATERAL MOTION WORK?
+====================================================================================================
+
+  Crab gaits: 10
+
+  56_evolved_crab_v2 [crab_walkers]:
+    dx=  -6.70 dy= -40.55 disp=41.10
+    yaw_range=1.987rad (113.8deg)
+    y_vel sign bias: 0.03 (0.5=balanced, 1.0=always positive)
+    active weights: {'w03': 0.2515753101143031, 'w13': -1.4976902964989567, 'w23': -0.6410900845427805, 'w04': 0.9733372173225151, 'w14': 1.5824646682114387, 'w24': 1.2083292616061312, 'w34': 0.7254521057740698, 'w43': 1.1328779669631484, 'w33': -0.24636848771593106, 'w44': 0.8480271198639224}
+
+  57_evolved_sidewinder [crab_walkers]:
+    dx=  -4.00 dy= -39.16 disp=39.37
+    yaw_range=2.088rad (119.7deg)
+    y_vel sign bias: 0.11 (0.5=balanced, 1.0=always positive)
+    active weights: {'w03': -0.026377908384466117, 'w13': -1.2564439315013083, 'w23': -0.7030132640035148, 'w04': 1.5391416964614093, 'w14': 1.4939319677183045, 'w24': 2.0, 'w34': 0.6886014609896243, 'w43': 0.8426897656599622, 'w33': -0.15736991596664235, 'w44': -0.31190802476890234}
+
+  58_evolved_crab_positive_v2 [crab_walkers]:
+    dx=  -1.18 dy= +38.02 disp=38.03
+    yaw_range=1.950rad (111.7deg)
+    y_vel sign bias: 0.96 (0.5=balanced, 1.0=always positive)
+    active weights: {'w03': 0.23072461184014542, 'w13': -1.4022677827784948, 'w23': -0.9186363031170268, 'w04': 1.5038870895479943, 'w14': 0.9919020161353844, 'w24': 0.8092953216480049, 'w34': 0.6184601499975225, 'w43': 0.06891423023014609, 'w33': -0.2238301426805867, 'w44': -0.3055743156252235}
+
+  53_rucker_landcrab [crab_walkers]:
+    dx= +11.46 dy= +26.93 disp=29.27
+    yaw_range=1.664rad (95.4deg)
+    y_vel sign bias: 0.83 (0.5=balanced, 1.0=always positive)
+    active weights: {'w03': -0.618, 'w13': -1.0, 'w23': -0.618, 'w04': 1.0, 'w14': 0.618, 'w24': 1.0, 'w43': 0.7}
+
+  63_cage_prepared [persona_gaits]:
+    dx=  -9.99 dy= +15.39 disp=18.35
+    yaw_range=6.256rad (358.4deg)
+    y_vel sign bias: 0.83 (0.5=balanced, 1.0=always positive)
+    active weights: {'w03': -0.3, 'w13': 0.85, 'w23': -0.26, 'w04': 0.85, 'w14': 0.26, 'w24': -0.85}
+
+  54_rucker_sidewinder [crab_walkers]:
+    dx=  +5.73 dy= +15.13 disp=16.17
+    yaw_range=2.014rad (115.4deg)
+    y_vel sign bias: 0.89 (0.5=balanced, 1.0=always positive)
+    active weights: {'w03': -0.618, 'w13': -1.0, 'w23': -0.618, 'w04': 1.0, 'w14': 0.618, 'w24': 1.0, 'w34': -0.3}
+
+  94_borges_aleph [persona_gaits]:
+    dx=  +3.37 dy=  +8.24 disp=8.90
+    yaw_range=1.008rad (57.7deg)
+    y_vel sign bias: 0.69 (0.5=balanced, 1.0=always positive)
+    active weights: {'w03': -0.2, 'w13': -0.7, 'w23': -0.1, 'w04': 0.8, 'w14': 0.2, 'w24': 0.8, 'w34': 0.1, 'w43': -0.8, 'w33': 0.2, 'w44': -0.8}
+
+  90_stein_continuous_present [persona_gaits]:
+    dx=  -0.58 dy=  +5.89 disp=5.92
+    yaw_range=2.574rad (147.5deg)
+    y_vel sign bias: 0.56 (0.5=balanced, 1.0=always positive)
+    active weights: {'w03': -0.4, 'w13': -0.4, 'w23': -0.4, 'w04': 0.4, 'w14': 0.4, 'w24': 0.4, 'w33': 0.8, 'w44': 0.8}
+
+  78_ernst_celebes [persona_gaits]:
+    dx=  +3.47 dy=  +5.88 disp=6.83
+    yaw_range=1.616rad (92.6deg)
+    y_vel sign bias: 0.92 (0.5=balanced, 1.0=always positive)
+    active weights: {'w03': -0.95, 'w13': -0.9, 'w23': -0.85, 'w04': 0.85, 'w14': 0.9, 'w24': 0.95, 'w34': 0.3, 'w43': -0.3}
+
+  61_fibonacci_spiral [persona_gaits]:
+    dx=  +2.81 dy=  +5.73 disp=6.38
+    yaw_range=1.424rad (81.6deg)
+    y_vel sign bias: 0.67 (0.5=balanced, 1.0=always positive)
+    active weights: {'w03': -0.382, 'w13': -0.618, 'w23': -1.0, 'w04': 0.382, 'w14': 0.618, 'w24': 1.0}
+
+  Weight patterns in crabs vs non-crabs (standard topology only):
+    w03   crabs=-0.301  non-crabs=-0.384  diff=+0.083
+    w13   crabs=-0.792  non-crabs=-0.537  diff=-0.256 ***
+    w23   crabs=-0.611  non-crabs=-0.318  diff=-0.293 ***
+    w04   crabs=+0.930  non-crabs=+0.431  diff=+0.499 ***
+    w14   crabs=+0.768  non-crabs=+0.267  diff=+0.501 ***
+    w24   crabs=+0.832  non-crabs=+0.502  diff=+0.330 ***
+    w34   crabs=+0.213  non-crabs=+0.099  diff=+0.114 **
+    w43   crabs=+0.164  non-crabs=-0.112  diff=+0.276 ***
+    w33   crabs=+0.037  non-crabs=+0.124  diff=-0.087
+    w44   crabs=+0.023  non-crabs=-0.122  diff=+0.145 **
+
+
+====================================================================================================
+DIG 9: CONVERGENT EVOLUTION — CROSS-CATEGORY TWINS
+====================================================================================================
+
+  Unique profiles: 112
+  Profiles shared by 2+ gaits: 4
+
+  CROSS-CATEGORY TWIN (2 gaits, 2 categories):
+    Profile: ['C2_in_phase', 'E3_backward', 'F2_standard_feedback', 'M4_full_network', 'M6_maximal', 'S1_strider', 'T3_never_settler', 'T4_fast_oscillator']
+    81_deleuze_bwo                           [persona_gaits       ] disp= 21.66 dx= -21.53
+    25_minsky                                [cross_wired_cpg     ] disp= 21.79 dx= -21.57
+    --- Dynamics comparison ---
+      81_deleuze_bwo                         j0_range=0.9852 j1_range=0.7093 vel_std=0.069338
+      25_minsky                              j0_range=1.0517 j1_range=0.6833 vel_std=0.067006
+
+  CROSS-CATEGORY TWIN (2 gaits, 2 categories):
+    Profile: ['C2_in_phase', 'C3_asymmetric_amplitude', 'E1_efficient', 'F2_standard_feedback', 'M4_full_network', 'M6_maximal', 'S1_strider', 'S8_glider', 'T5_slow_oscillator']
+    83_foucault_heterotopia                  [persona_gaits       ] disp= 15.12 dx= +15.11
+    40_rubato                                [time_signatures     ] disp= 15.60 dx= +15.56
+    --- Dynamics comparison ---
+      83_foucault_heterotopia                j0_range=0.4394 j1_range=0.0695 vel_std=0.012798
+      40_rubato                              j0_range=0.5441 j1_range=0.0872 vel_std=0.017501
+
+  CROSS-CATEGORY TWIN (2 gaits, 2 categories):
+    Profile: ['C2_in_phase', 'E1_efficient', 'E3_backward', 'F2_standard_feedback', 'M4_full_network', 'M6_maximal', 'S1_strider', 'S2_sprinter', 'T3_never_settler', 'T4_fast_oscillator']
+    21_noether_cpg                           [cross_wired_cpg     ] disp= 43.68 dx= -43.11
+    36_take_five                             [time_signatures     ] disp= 28.07 dx= -27.64
+    --- Dynamics comparison ---
+      21_noether_cpg                         j0_range=0.9794 j1_range=0.9485 vel_std=0.072719
+      36_take_five                           j0_range=1.0067 j1_range=0.9686 vel_std=0.077411
+
+  Same-category cluster (2 gaits in market_mathematics):
+    Profile: ['C2_in_phase', 'E1_efficient', 'E3_backward', 'F2_standard_feedback', 'M3_sensor_self', 'S1_strider']
+    30_garch                                 [market_mathematics  ] disp= 24.64 dx= -22.70
+    34_zipf                                  [market_mathematics  ] disp= 22.83 dx= -20.55
+
+
+====================================================================================================
+DIG 10: ARCHITECTURE AS PERFORMANCE PREDICTOR
+====================================================================================================
+
+  Architecture           N  AvgDisp  MedDisp  MaxDisp     AvgEff  Faller%
+  hidden                 3    18.40     4.33    50.03   0.000127       0%
+  crosswired_10         63    16.77    14.34    43.68   0.000092      10%
+  standard_6            49    10.11     5.83    35.12   0.030155      12%
+  crosswired_8           1     5.88     5.88     5.88   0.000033       0%
+
+  Within standard_6 — top vs bottom quartile:
+    Top quartile: n=12 avg_disp=23.85 avg_synapses=5.8 avg_straightness=0.706 avg_z_range=0.678
+    Bottom quartile: n=12 avg_disp=1.98 avg_synapses=5.5 avg_straightness=0.444 avg_z_range=0.426
+
+  Crosswired_10 gaits ranked:
+    21_noether_cpg                           [cross_wired_cpg     ] disp= 43.68 eff=0.000156
+    56_evolved_crab_v2                       [crab_walkers        ] disp= 41.10 eff=0.000199
+    57_evolved_sidewinder                    [crab_walkers        ] disp= 39.37 eff=0.000164
+    58_evolved_crab_positive_v2              [crab_walkers        ] disp= 38.03 eff=0.000123
+    52_curie_crab                            [crab_walkers        ] disp= 37.74 eff=0.000119
+    22_curie_amplified                       [cross_wired_cpg     ] disp= 37.15 eff=0.000126
+    50_noether_cyclone                       [pareto_walk_spin    ] disp= 33.06 eff=0.000154
+    32_carry_trade                           [market_mathematics  ] disp= 32.25 eff=0.000116
+    48_curie_dervish                         [pareto_walk_spin    ] disp= 31.42 eff=0.000095
+    69_grunbaum_deflation                    [persona_gaits       ] disp= 31.28 eff=0.000115
+    23_hodgkin_huxley                        [cross_wired_cpg     ] disp= 30.57 eff=0.000147
+    35_evolved_curie                         [evolved             ] disp= 29.89 eff=0.000107
+    53_rucker_landcrab                       [crab_walkers        ] disp= 29.27 eff=0.000119
+    36_take_five                             [time_signatures     ] disp= 28.07 eff=0.000125
+    74_dick_valis                            [persona_gaits       ] disp= 28.07 eff=0.000086
+    30_garch                                 [market_mathematics  ] disp= 24.64 eff=0.000184
+    80_deleuze_fold                          [persona_gaits       ] disp= 23.52 eff=0.000189
+    34_zipf                                  [market_mathematics  ] disp= 22.83 eff=0.000156
+    25_minsky                                [cross_wired_cpg     ] disp= 21.79 eff=0.000109
+    93_borges_mirror                         [persona_gaits       ] disp= 21.75 eff=0.000248
+    81_deleuze_bwo                           [persona_gaits       ] disp= 21.66 eff=0.000105
+    38_heavy_waltz                           [time_signatures     ] disp= 19.91 eff=0.000105
+    98_kcramer_hypertext                     [persona_gaits       ] disp= 19.25 eff=0.000085
+    26_fitzhugh_nagumo                       [cross_wired_cpg     ] disp= 17.23 eff=0.000065
+    55_skew_crab                             [crab_walkers        ] disp= 16.87 eff=0.000077
+    60_fibonacci_phyllotaxis                 [persona_gaits       ] disp= 16.51 eff=0.000154
+    54_rucker_sidewinder                     [crab_walkers        ] disp= 16.17 eff=0.000083
+    103_jgcramer_absorber                    [persona_gaits       ] disp= 15.96 eff=0.000141
+    40_rubato                                [time_signatures     ] disp= 15.60 eff=0.000145
+    83_foucault_heterotopia                  [persona_gaits       ] disp= 15.12 eff=0.000158
+    28_flash_crash                           [market_mathematics  ] disp= 14.46 eff=0.000126
+    84_foucault_madness                      [persona_gaits       ] disp= 14.34 eff=0.000097
+    27_wiener                                [cross_wired_cpg     ] disp= 14.05 eff=0.000097
+    29_fat_tails                             [market_mathematics  ] disp= 13.27 eff=0.000098
+    102_jgcramer_handshake                   [persona_gaits       ] disp= 13.06 eff=0.000072
+    86_breton_nadja                          [persona_gaits       ] disp= 12.59 eff=0.000112
+    65_womack_random_acts                    [persona_gaits       ] disp= 12.31 eff=0.000121
+    41_blues_shuffle                         [time_signatures     ] disp= 12.21 eff=0.000113
+    112_biles_floor                          [persona_gaits       ] disp= 11.48 eff=0.000061
+    91_stein_tender_buttons                  [persona_gaits       ] disp= 11.47 eff=0.000049
+    92_borges_labyrinth                      [persona_gaits       ] disp= 11.39 eff=0.000068
+    49_pelton_pirouette                      [pareto_walk_spin    ] disp= 11.19 eff=0.000039
+    82_deleuze_rhizome                       [persona_gaits       ] disp=  9.80 eff=0.000052
+    94_borges_aleph                          [persona_gaits       ] disp=  8.90 eff=0.000033
+    111_biles_twisties                       [persona_gaits       ] disp=  7.83 eff=0.000065
+    59_fibonacci_self                        [persona_gaits       ] disp=  7.62 eff=0.000034
+    64_cage_iching                           [persona_gaits       ] disp=  7.31 eff=0.000052
+    78_ernst_celebes                         [persona_gaits       ] disp=  6.83 eff=0.000081
+    106_papp_chorus_line                     [persona_gaits       ] disp=  6.35 eff=0.000040
+    90_stein_continuous_present              [persona_gaits       ] disp=  5.92 eff=0.000042
+    109_pacino_hooah                         [persona_gaits       ] disp=  5.26 eff=0.000034
+    101_jgcramer_transactional               [persona_gaits       ] disp=  5.07 eff=0.000096
+    96_jackson_hill_house                    [persona_gaits       ] disp=  4.85 eff=0.000025
+    105_papp_shakespeare                     [persona_gaits       ] disp=  4.39 eff=0.000015
+    31_gamma_squeeze                         [market_mathematics  ] disp=  4.21 eff=0.000024
+    88_breton_automatic                      [persona_gaits       ] disp=  4.13 eff=0.000031
+    108_pacino_godfather                     [persona_gaits       ] disp=  3.96 eff=0.000017
+    24_wolfram_flipped                       [cross_wired_cpg     ] disp=  3.69 eff=0.000069
+    33_mean_reversion                        [market_mathematics  ] disp=  3.06 eff=0.000017
+    99_kcramer_salvage                       [persona_gaits       ] disp=  2.45 eff=0.000015
+    73_gallagher_sieve                       [persona_gaits       ] disp=  2.43 eff=0.000019
+    46_spinner_crosswired                    [spinners            ] disp=  0.51 eff=0.000001
+    70_grunbaum_defect                       [persona_gaits       ] disp=  0.21 eff=0.000004
+
+
+====================================================================================================
+DIG 11: CATEGORY BEHAVIORAL SIGNATURES
+====================================================================================================
+
+  Enriched skills by category (>2x background rate):
+
+  bifurcation_gaits (n=1):
+    E2_turner                 100% vs 37% background (2.7x)
+    S7_bouncer                100% vs 29% background (3.5x)
+    T2_chaotic                100% vs 8% background (12.8x)
+
+  crab_walkers (n=7):
+    E2_turner                 100% vs 34% background (2.9x)
+    S1_strider                86% vs 27% background (3.2x)
+    S2_sprinter               71% vs 13% background (5.6x)
+    S9_crab                   71% vs 5% background (15.6x)
+
+  cross_wired_cpg (n=7):
+    S1_strider                57% vs 28% background (2.0x)
+    S2_sprinter               43% vs 15% background (2.9x)
+    T5_slow_oscillator        43% vs 17% background (2.6x)
+
+  evolved (n=1):
+    E2_turner                 100% vs 37% background (2.7x)
+    S1_strider                100% vs 30% background (3.4x)
+    S2_sprinter               100% vs 16% background (6.4x)
+
+  hidden_neurons (n=1):
+    E1_efficient              100% vs 23% background (4.3x)
+    S1_strider                100% vs 30% background (3.4x)
+    S2_sprinter               100% vs 16% background (6.4x)
+
+  homework (n=4):
+    E2_turner                 75% vs 37% background (2.0x)
+    S6_faller                 50% vs 9% background (5.6x)
+    S5_statue                 25% vs 4% background (5.6x)
+    S8_glider                 25% vs 8% background (3.1x)
+    T2_chaotic                25% vs 8% background (3.1x)
+
+  market_mathematics (n=7):
+    T1_metronome              29% vs 13% background (2.2x)
+    S4_spinner                14% vs 6% background (2.6x)
+
+  pareto_walk_spin (n=3):
+    E2_turner                 100% vs 36% background (2.8x)
+    C1_anti_phase             67% vs 26% background (2.6x)
+    S1_strider                67% vs 29% background (2.3x)
+    S2_sprinter               67% vs 15% background (4.4x)
+    T4_fast_oscillator        67% vs 31% background (2.2x)
+    S3_drifter                33% vs 16% background (2.1x)
+
+  persona_gaits (n=74):
+    S3_drifter                24% vs 2% background (10.2x)
+    S8_glider                 11% vs 5% background (2.3x)
+    T2_chaotic                11% vs 5% background (2.3x)
+    C3_asymmetric_amplitude   9% vs 2% background (4.0x)
+
+  spinners (n=4):
+    T4_fast_oscillator        100% vs 29% background (3.4x)
+    S4_spinner                75% vs 4% background (21.0x)
+    S5_statue                 50% vs 4% background (14.0x)
+
+  time_signatures (n=7):
+    S1_strider                71% vs 28% background (2.6x)
+    E1_efficient              57% vs 22% background (2.6x)
+    C3_asymmetric_amplitude   14% vs 6% background (2.2x)
+
+
+====================================================================================================
+DIG 12: ENERGY BUDGET — WHERE DOES THE ENERGY GO?
+====================================================================================================
+
+  Name                                Cat                 Disp     J0_E     J1_E   J0% Contacts
+
+  Top 10 most efficient (displacement / energy):
+    7_fuller_dymaxion                   [persona_gaits    ] disp=  2.45 energy=  2047.0 eff=0.001198 j0%=50%
+    62_cage_433                         [persona_gaits    ] disp=  0.01 energy=    21.0 eff=0.000381 j0%=43%
+    43_hidden_cpg_champion              [hidden_neurons   ] disp= 50.03 energy=158183.4 eff=0.000316 j0%=53%
+    93_borges_mirror                    [persona_gaits    ] disp= 21.75 energy= 87555.8 eff=0.000248 j0%=36%
+    56_evolved_crab_v2                  [crab_walkers     ] disp= 41.10 energy=207050.5 eff=0.000199 j0%=94%
+    80_deleuze_fold                     [persona_gaits    ] disp= 23.52 energy=124764.2 eff=0.000189 j0%=41%
+    30_garch                            [market_mathematics] disp= 24.64 energy=134257.0 eff=0.000184 j0%=40%
+    16_franklin                         [persona_gaits    ] disp= 20.17 energy=111602.5 eff=0.000181 j0%=51%
+    104_papp_public                     [persona_gaits    ] disp= 19.29 energy=116052.3 eff=0.000166 j0%=45%
+    57_evolved_sidewinder               [crab_walkers     ] disp= 39.37 energy=239416.8 eff=0.000164 j0%=86%
+
+  Top 10 biggest energy wasters (high energy, low displacement):
+    46_spinner_crosswired               [spinners         ] disp=  0.51 energy=398646.9 eff=0.000001
+    8_conway_glider                     [persona_gaits    ] disp=  1.44 energy=346038.0 eff=0.000004
+    70_grunbaum_defect                  [persona_gaits    ] disp=  0.21 energy= 46962.3 eff=0.000004
+    47_spinner_6synapse                 [spinners         ] disp=  2.83 energy=396227.2 eff=0.000007
+    44_spinner_champion                 [spinners         ] disp=  0.83 energy=100743.6 eff=0.000008
+    9_mandelbrot                        [persona_gaits    ] disp=  2.42 energy=206353.6 eff=0.000012
+    75_dick_replicant                   [persona_gaits    ] disp=  3.92 energy=321042.7 eff=0.000012
+    105_papp_shakespeare                [persona_gaits    ] disp=  4.39 energy=292183.5 eff=0.000015
+    95_jackson_lottery                  [persona_gaits    ] disp=  5.09 energy=338696.9 eff=0.000015
+    99_kcramer_salvage                  [persona_gaits    ] disp=  2.45 energy=162134.2 eff=0.000015
+
+  Energy balance by category:
+    bifurcation_gaits         avg_j0_fraction=45.30% (bias from 50%: 4.70%)
+    crab_walkers              avg_j0_fraction=75.82% (bias from 50%: 25.82%)
+    cross_wired_cpg           avg_j0_fraction=50.57% (bias from 50%: 0.57%)
+    evolved                   avg_j0_fraction=84.07% (bias from 50%: 34.07%)
+    hidden_neurons            avg_j0_fraction=53.41% (bias from 50%: 3.41%)
+    homework                  avg_j0_fraction=54.81% (bias from 50%: 4.81%)
+    market_mathematics        avg_j0_fraction=47.59% (bias from 50%: 2.41%)
+    pareto_walk_spin          avg_j0_fraction=51.23% (bias from 50%: 1.23%)
+    persona_gaits             avg_j0_fraction=51.94% (bias from 50%: 1.94%)
+    spinners                  avg_j0_fraction=56.31% (bias from 50%: 6.31%)
+    time_signatures           avg_j0_fraction=59.34% (bias from 50%: 9.34%)
+
+
+====================================================================================================
+DIG 13: LEADERBOARD FORENSICS — WHAT MAKES A CHAMPION?
+====================================================================================================
+
+  Top 10:
+   1. 43_hidden_cpg_champion                   [hidden_neurons      ] disp= 50.03
+      motifs: ['M7_hidden_layer', 'F5_hidden_oscillator']
+      skills: ['S1_strider', 'S2_sprinter', 'T3_never_settler', 'C2_in_phase', 'E1_efficient']
+   2. 21_noether_cpg                           [cross_wired_cpg     ] disp= 43.68
+      motifs: ['M4_full_network', 'M6_maximal', 'F2_standard_feedback']
+      skills: ['S1_strider', 'S2_sprinter', 'T3_never_settler', 'T4_fast_oscillator', 'C2_in_phase', 'E1_efficient', 'E3_backward']
+   3. 56_evolved_crab_v2                       [crab_walkers        ] disp= 41.10
+      motifs: ['M4_full_network', 'M6_maximal', 'F3_reversed_feedback']
+      skills: ['S1_strider', 'S2_sprinter', 'S9_crab', 'T3_never_settler', 'C1_anti_phase', 'E1_efficient', 'E2_turner', 'E3_backward']
+   4. 57_evolved_sidewinder                    [crab_walkers        ] disp= 39.37
+      motifs: ['M4_full_network', 'M6_maximal', 'F4_same_sign_feedback']
+      skills: ['S1_strider', 'S2_sprinter', 'S9_crab', 'T3_never_settler', 'T4_fast_oscillator', 'C2_in_phase', 'E1_efficient', 'E2_turner', 'E3_backward']
+   5. 58_evolved_crab_positive_v2              [crab_walkers        ] disp= 38.03
+      motifs: ['M4_full_network', 'M6_maximal', 'F4_same_sign_feedback']
+      skills: ['S1_strider', 'S2_sprinter', 'S7_bouncer', 'S9_crab', 'T4_fast_oscillator', 'C2_in_phase', 'E1_efficient', 'E2_turner', 'E3_backward']
+   6. 52_curie_crab                            [crab_walkers        ] disp= 37.74
+      motifs: ['M2_sensor_cross', 'F1_no_feedback']
+      skills: ['S1_strider', 'S2_sprinter', 'T3_never_settler', 'T4_fast_oscillator', 'C1_anti_phase', 'E2_turner']
+   7. 22_curie_amplified                       [cross_wired_cpg     ] disp= 37.15
+      motifs: ['M2_sensor_cross', 'F1_no_feedback']
+      skills: ['S1_strider', 'S2_sprinter', 'E1_efficient']
+   8. 5_pelton                                 [persona_gaits       ] disp= 35.12
+      motifs: ['M1_pure_sensor', 'F1_no_feedback']
+      skills: ['S1_strider', 'S2_sprinter', 'T3_never_settler']
+   9. 50_noether_cyclone                       [pareto_walk_spin    ] disp= 33.06
+      motifs: ['M4_full_network', 'M6_maximal', 'F2_standard_feedback']
+      skills: ['S1_strider', 'S2_sprinter', 'T3_never_settler', 'T5_slow_oscillator', 'E1_efficient', 'E2_turner', 'E3_backward']
+  10. 100_kcramer_anthology                    [persona_gaits       ] disp= 32.98
+      motifs: ['M1_pure_sensor', 'F1_no_feedback']
+      skills: ['S1_strider', 'S2_sprinter', 'S7_bouncer', 'T3_never_settler']
+
+  Top 10 vs Rest:
+    displacement         top10_avg= 38.8282  rest_avg= 11.5525  ratio=3.36x
+    straightness         top10_avg=  0.8748  rest_avg=  0.5146  ratio=1.70x
+    z_range              top10_avg=  0.5360  rest_avg=  0.5947  ratio=0.90x
+    efficiency           top10_avg=  0.0002  rest_avg=  0.0140  ratio=0.01x
+    yaw_total            top10_avg=  0.8834  rest_avg=  0.9005  ratio=0.98x
+
+  Motif frequency in top 10:
+    M4_full_network           5/10 top10 vs 32/116 overall (28%)
+    M6_maximal                5/10 top10 vs 31/116 overall (27%)
+    F1_no_feedback            4/10 top10 vs 70/116 overall (60%)
+    F2_standard_feedback      2/10 top10 vs 35/116 overall (30%)
+    F4_same_sign_feedback     2/10 top10 vs 4/116 overall (3%)
+    M2_sensor_cross           2/10 top10 vs 20/116 overall (17%)
+    M1_pure_sensor            2/10 top10 vs 40/116 overall (34%)
+    M7_hidden_layer           1/10 top10 vs 3/116 overall (3%)
+    F5_hidden_oscillator      1/10 top10 vs 3/116 overall (3%)
+    F3_reversed_feedback      1/10 top10 vs 4/116 overall (3%)
+
+  Skill frequency in top 10:
+    S1_strider                10/10 top10 vs 35/116 overall (30%)
+    S2_sprinter               10/10 top10 vs 19/116 overall (16%)
+    T3_never_settler          8/10 top10 vs 74/116 overall (64%)
+    E1_efficient              7/10 top10 vs 28/116 overall (24%)
+    E3_backward               5/10 top10 vs 51/116 overall (44%)
+    E2_turner                 5/10 top10 vs 44/116 overall (38%)
+    C2_in_phase               4/10 top10 vs 63/116 overall (54%)
+    T4_fast_oscillator        4/10 top10 vs 37/116 overall (32%)
+    S9_crab                   3/10 top10 vs 10/116 overall (9%)
+    C1_anti_phase             2/10 top10 vs 31/116 overall (27%)
+    S7_bouncer                2/10 top10 vs 34/116 overall (29%)
+    T5_slow_oscillator        1/10 top10 vs 21/116 overall (18%)
+
+====================================================================================================
+END DEEP DIGS — FULL 116
+====================================================================================================
