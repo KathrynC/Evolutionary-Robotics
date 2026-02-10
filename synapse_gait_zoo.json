@@ -49,7 +49,7 @@
     ],
     "weight_format": "Sensor\u2192motor weights [w03, w13, w23, w04, w14, w24] map 3 touch sensors to 2 joint motors via tanh activation. Cross-wiring [w34, w43, w33, w44] adds motor\u2192motor recurrent connections. Hidden neurons add intermediate computational layers.",
     "created": "2026-02-08",
-    "total_gaits": 62,
+    "total_gaits": 71,
     "all_time_records": {
       "displacement": {
         "positive": {
@@ -1139,6 +1139,204 @@
             "efficiency": 0.0631,
             "pareto_optimal": false
           }
+        },
+        "59_fibonacci_self": {
+          "weights": {
+            "w03": -0.618,
+            "w13": -1.0,
+            "w23": -0.618,
+            "w04": 1.0,
+            "w14": 0.618,
+            "w24": 1.0,
+            "w34": 0,
+            "w43": 0,
+            "w33": 0.382,
+            "w44": -0.382
+          },
+          "dx": 7.18,
+          "dy": 2.43,
+          "true_distance": 7.58,
+          "heading": 18.7,
+          "max_tilt": 40,
+          "yaw_degrees": 26.4,
+          "architecture": "crosswired_10",
+          "description": "Golden ratio base weights + self-feedback at phi^-2. Stable diagonal walker (heading +50\u00b0). The golden ratio appears in both sensor-motor proportions and self-feedback strength."
+        },
+        "60_fibonacci_phyllotaxis": {
+          "weights": {
+            "w03": -1.0,
+            "w13": 0.7373,
+            "w23": -0.0873,
+            "w04": 0.6086,
+            "w14": -0.9848,
+            "w24": 0.8436,
+            "w34": 0.3,
+            "w43": -0.3,
+            "w33": 0,
+            "w44": 0
+          },
+          "dx": 9.72,
+          "dy": 13.34,
+          "true_distance": 16.51,
+          "heading": 53.9,
+          "max_tilt": 186,
+          "yaw_degrees": -145.6,
+          "architecture": "crosswired_10",
+          "description": "Phyllotaxis-inspired: successive weights placed at the golden angle (137.5\u00b0) in a cosine mapping + light CPG. Falls over but covers 10.35m while spinning 595\u00b0. Chaotic/fallen attractor."
+        },
+        "61_fibonacci_spiral": {
+          "weights": {
+            "w03": -0.382,
+            "w13": -0.618,
+            "w23": -1.0,
+            "w04": 0.382,
+            "w14": 0.618,
+            "w24": 1.0,
+            "w34": 0,
+            "w43": 0,
+            "w33": 0,
+            "w44": 0
+          },
+          "dx": 2.81,
+          "dy": 5.73,
+          "true_distance": 6.38,
+          "heading": 63.9,
+          "max_tilt": 90,
+          "yaw_degrees": -75.8,
+          "architecture": "standard_6",
+          "description": "Pure golden spiral: each weight magnitude is phi times the previous (0.382, 0.618, 1.0). Antisymmetric. Falls over but walks almost purely laterally (DY=3.72, heading 81\u00b0)."
+        },
+        "62_cage_433": {
+          "weights": {
+            "w03": 0.01,
+            "w13": -0.01,
+            "w23": 0.01,
+            "w04": -0.01,
+            "w14": 0.01,
+            "w24": -0.01,
+            "w34": 0,
+            "w43": 0,
+            "w33": 0,
+            "w44": 0
+          },
+          "dx": 0.0,
+          "dy": 0.01,
+          "true_distance": 0.01,
+          "heading": 0,
+          "max_tilt": 0,
+          "yaw_degrees": 0.2,
+          "architecture": "standard_6",
+          "description": "4'33\" \u2014 near-silence. Weights at \u00b10.01 produce no visible motion. The ambient physics (gravity, friction, joint damping) IS the performance. A second fixed point alongside the bouncer, but arrived at through intention rather than symmetry."
+        },
+        "63_cage_prepared": {
+          "weights": {
+            "w03": -0.3,
+            "w13": 0.85,
+            "w23": -0.26,
+            "w04": 0.85,
+            "w14": 0.26,
+            "w24": -0.85,
+            "w34": 0,
+            "w43": 0,
+            "w33": 0,
+            "w44": 0
+          },
+          "dx": -9.97,
+          "dy": 15.39,
+          "true_distance": 18.34,
+          "heading": 122.9,
+          "max_tilt": 34,
+          "yaw_degrees": -169.8,
+          "architecture": "standard_6",
+          "description": "Prepared curie: take the standard curie pattern and flip w13 (+0.85 \u2192 -0.85) and w24 (-0.85 \u2192 +0.85) \u2014 like inserting bolts and mutes into piano strings. The disruption creates a stable crab walker (DY=15.39, heading 123\u00b0) from a forward walker."
+        },
+        "64_cage_iching": {
+          "weights": {
+            "w03": 0.639,
+            "w13": 0.025,
+            "w23": -0.463,
+            "w04": 0.279,
+            "w14": -0.691,
+            "w24": -0.932,
+            "w34": -0.204,
+            "w43": -0.336,
+            "w33": 0.849,
+            "w44": -0.65
+          },
+          "dx": 5.56,
+          "dy": -4.74,
+          "true_distance": 7.31,
+          "heading": -40.4,
+          "max_tilt": 235,
+          "yaw_degrees": 15.9,
+          "architecture": "crosswired_10",
+          "description": "I Ching: all 10 weights determined by chance operations (random.seed(1952), the year of 4'33\" premiere). With stored 3-decimal weights, the chance gait falls (tilt 235\u00b0) but still displaces 7.3m. Even rounded chance outperforms many designed gaits."
+        },
+        "65_womack_random_acts": {
+          "weights": {
+            "w03": -0.8,
+            "w13": 0,
+            "w23": 0,
+            "w04": 0,
+            "w14": 0,
+            "w24": 0.8,
+            "w34": 0,
+            "w43": 0,
+            "w33": 0.5,
+            "w44": -0.5
+          },
+          "dx": -11.56,
+          "dy": 4.18,
+          "true_distance": 12.29,
+          "heading": 160.1,
+          "max_tilt": 10,
+          "yaw_degrees": -23.6,
+          "architecture": "crosswired_10",
+          "description": "Random Acts of Senseless Violence: only 2 sensor synapses (w03, w24) + self-feedback (w33=0.5, w44=-0.5). Institutional feedback loops drive backward locomotion. Tilt only 10\u00b0 \u2014 the most stable gait in the zoo relative to its displacement. Survival through structural austerity."
+        },
+        "66_womack_ambient": {
+          "weights": {
+            "w03": 0,
+            "w13": -1.0,
+            "w23": 0,
+            "w04": 0,
+            "w14": 0,
+            "w24": 1.0,
+            "w34": 0,
+            "w43": 0,
+            "w33": 0,
+            "w44": 0
+          },
+          "dx": 3.25,
+          "dy": 4.06,
+          "true_distance": 5.2,
+          "heading": 51.3,
+          "max_tilt": 32,
+          "yaw_degrees": 60.0,
+          "architecture": "standard_6",
+          "description": "Ambient: only 2 active synapses (w13=-1, w24=+1) \u2014 the absolute minimum wiring for locomotion. BackLeg sensor drives one motor, FrontLeg sensor drives the other. 5.2m displacement from almost nothing. Survival at the margins."
+        },
+        "67_womack_terraplane": {
+          "weights": {
+            "w03": -0.2,
+            "w13": -0.4,
+            "w23": 0,
+            "w04": 0,
+            "w14": 0.4,
+            "w24": 0.2,
+            "w34": 0,
+            "w43": 0,
+            "w33": 0,
+            "w44": 0
+          },
+          "dx": 4.41,
+          "dy": -1.91,
+          "true_distance": 4.81,
+          "heading": -23.4,
+          "max_tilt": 26,
+          "yaw_degrees": -24.5,
+          "architecture": "standard_6",
+          "description": "Terraplane: weights at 20-40% of normal magnitude. Existence at the poverty line. Walks 4.8m \u2014 just enough to count as locomotion. The compressed prose of synapse weights."
         }
       }
     },
@@ -3359,7 +3557,9 @@
         "members": [
           "6_fuller_trimtab",
           "7_fuller_dymaxion",
-          "20_mcclintock"
+          "20_mcclintock",
+          "66_womack_ambient",
+          "67_womack_terraplane"
         ],
         "behavior": "Efficient locomotion from minimal infrastructure. Highest DX-per-synapse-weight ratios."
       },
