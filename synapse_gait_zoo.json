@@ -125,6 +125,31 @@
           "dx": 24.07,
           "yaw_deg": -119.9
         }
+      },
+      "telemetry": {
+        "fastest_stride": {
+          "name": "45_spinner_stable",
+          "stride_freq_hz": 5.89
+        },
+        "most_efficient": {
+          "name": "7_fuller_dymaxion",
+          "efficiency": 0.0735,
+          "note": "speed / mean_torque"
+        },
+        "highest_duty_cycle": {
+          "name": "1_wolfram",
+          "duty_cycle": 0.97
+        },
+        "smoothest_speed": {
+          "name": "21_noether_cpg",
+          "speed_cv": 0.329,
+          "note": "Lowest speed coefficient of variation among gaits with mean_speed > 1"
+        },
+        "fastest_warmup": {
+          "name": "13_lorenz_B",
+          "transient_frac": 0.015,
+          "note": "Reaches 80% of final displacement earliest"
+        }
       }
     },
     "crab_leaderboard": [
@@ -265,7 +290,16 @@
           },
           "dy": -0.35,
           "heading_deg": -172.4,
-          "true_distance": 2.69
+          "true_distance": 2.69,
+          "telemetry": {
+            "stride_freq_hz": 3.07,
+            "duty_cycle": 0.97,
+            "mean_torque": 27.46,
+            "transient_frac": 0.052,
+            "mean_speed": 0.692,
+            "speed_cv": 0.861,
+            "attractor_type": "complex"
+          }
         },
         "2_rucker": {
           "weights": {
@@ -289,7 +323,16 @@
           },
           "dy": 9.41,
           "heading_deg": 126.4,
-          "true_distance": 11.69
+          "true_distance": 11.69,
+          "telemetry": {
+            "stride_freq_hz": 3.73,
+            "duty_cycle": 0.502,
+            "mean_torque": 67.7,
+            "transient_frac": 0.812,
+            "mean_speed": 0.95,
+            "speed_cv": 0.638,
+            "attractor_type": "complex"
+          }
         },
         "3_mordvintsev": {
           "weights": {
@@ -314,7 +357,16 @@
           },
           "dy": -0.07,
           "heading_deg": -0.4,
-          "true_distance": 9.47
+          "true_distance": 9.47,
+          "telemetry": {
+            "stride_freq_hz": 4.78,
+            "duty_cycle": 0.232,
+            "mean_torque": 58.99,
+            "transient_frac": 0.802,
+            "mean_speed": 0.578,
+            "speed_cv": 0.16,
+            "attractor_type": "limit_cycle"
+          }
         },
         "4_sayama": {
           "weights": {
@@ -338,7 +390,16 @@
           },
           "dy": -4.58,
           "heading_deg": -162.5,
-          "true_distance": 15.27
+          "true_distance": 15.27,
+          "telemetry": {
+            "stride_freq_hz": 2.35,
+            "duty_cycle": 0.722,
+            "mean_torque": 51.86,
+            "transient_frac": 0.73,
+            "mean_speed": 1.462,
+            "speed_cv": 0.669,
+            "attractor_type": "complex"
+          }
         },
         "5_pelton": {
           "weights": {
@@ -362,7 +423,16 @@
           },
           "dy": 6.32,
           "heading_deg": 10.3,
-          "true_distance": 35.27
+          "true_distance": 35.27,
+          "telemetry": {
+            "stride_freq_hz": 3.85,
+            "duty_cycle": 0.298,
+            "mean_torque": 66.61,
+            "transient_frac": 0.79,
+            "mean_speed": 2.433,
+            "speed_cv": 0.497,
+            "attractor_type": "limit_cycle"
+          }
         },
         "6_fuller_trimtab": {
           "weights": {
@@ -387,7 +457,16 @@
           },
           "dy": -0.05,
           "heading_deg": -0.5,
-          "true_distance": 5.21
+          "true_distance": 5.21,
+          "telemetry": {
+            "stride_freq_hz": 2.71,
+            "duty_cycle": 0.65,
+            "mean_torque": 46.74,
+            "transient_frac": 0.765,
+            "mean_speed": 0.623,
+            "speed_cv": 0.636,
+            "attractor_type": "complex"
+          }
         },
         "7_fuller_dymaxion": {
           "weights": {
@@ -413,7 +492,16 @@
           },
           "dy": -0.03,
           "heading_deg": -0.7,
-          "true_distance": 2.46
+          "true_distance": 2.46,
+          "telemetry": {
+            "stride_freq_hz": 0.03,
+            "duty_cycle": 0.002,
+            "mean_torque": 2.04,
+            "transient_frac": 0.802,
+            "mean_speed": 0.15,
+            "speed_cv": 0.184,
+            "attractor_type": "limit_cycle"
+          }
         },
         "8_conway_glider": {
           "weights": {
@@ -437,7 +525,16 @@
           },
           "dy": -0.32,
           "heading_deg": -12.6,
-          "true_distance": 1.49
+          "true_distance": 1.49,
+          "telemetry": {
+            "stride_freq_hz": 5.17,
+            "duty_cycle": 0.298,
+            "mean_torque": 81.8,
+            "transient_frac": 0.048,
+            "mean_speed": 1.593,
+            "speed_cv": 0.438,
+            "attractor_type": "limit_cycle"
+          }
         },
         "9_mandelbrot": {
           "weights": {
@@ -462,7 +559,16 @@
           },
           "dy": -0.4,
           "heading_deg": -170.5,
-          "true_distance": 2.45
+          "true_distance": 2.45,
+          "telemetry": {
+            "stride_freq_hz": 5.08,
+            "duty_cycle": 0.222,
+            "mean_torque": 57.11,
+            "transient_frac": 0.512,
+            "mean_speed": 0.744,
+            "speed_cv": 0.601,
+            "attractor_type": "complex"
+          }
         },
         "10_tesla_3phase": {
           "weights": {
@@ -486,7 +592,16 @@
           },
           "dy": 15.49,
           "heading_deg": 139.8,
-          "true_distance": 23.99
+          "true_distance": 23.99,
+          "telemetry": {
+            "stride_freq_hz": 2.41,
+            "duty_cycle": 0.29,
+            "mean_torque": 56.01,
+            "transient_frac": 0.478,
+            "mean_speed": 2.41,
+            "speed_cv": 0.505,
+            "attractor_type": "chaotic/fallen"
+          }
         },
         "11_taleb_antifrag": {
           "weights": {
@@ -510,7 +625,16 @@
           },
           "dy": -0.12,
           "heading_deg": -1.5,
-          "true_distance": 4.79
+          "true_distance": 4.79,
+          "telemetry": {
+            "stride_freq_hz": 3.7,
+            "duty_cycle": 0.875,
+            "mean_torque": 44.77,
+            "transient_frac": 0.285,
+            "mean_speed": 0.51,
+            "speed_cv": 1.522,
+            "attractor_type": "complex"
+          }
         },
         "12_lorenz_A": {
           "weights": {
@@ -534,7 +658,16 @@
           },
           "dy": -2.09,
           "heading_deg": -165.2,
-          "true_distance": 8.19
+          "true_distance": 8.19,
+          "telemetry": {
+            "stride_freq_hz": 3.07,
+            "duty_cycle": 0.765,
+            "mean_torque": 55.16,
+            "transient_frac": 0.698,
+            "mean_speed": 0.889,
+            "speed_cv": 0.82,
+            "attractor_type": "complex"
+          }
         },
         "13_lorenz_B": {
           "weights": {
@@ -559,7 +692,16 @@
           },
           "dy": -2.58,
           "heading_deg": -102.3,
-          "true_distance": 2.64
+          "true_distance": 2.64,
+          "telemetry": {
+            "stride_freq_hz": 2.8,
+            "duty_cycle": 0.74,
+            "mean_torque": 58.7,
+            "transient_frac": 0.015,
+            "mean_speed": 0.98,
+            "speed_cv": 0.885,
+            "attractor_type": "complex"
+          }
         },
         "14_lovelace": {
           "weights": {
@@ -583,7 +725,16 @@
           },
           "dy": 1.51,
           "heading_deg": 21.0,
-          "true_distance": 4.22
+          "true_distance": 4.22,
+          "telemetry": {
+            "stride_freq_hz": 3.94,
+            "duty_cycle": 0.555,
+            "mean_torque": 59.47,
+            "transient_frac": 0.425,
+            "mean_speed": 0.616,
+            "speed_cv": 0.827,
+            "attractor_type": "complex"
+          }
         },
         "15_noether": {
           "weights": {
@@ -607,7 +758,16 @@
           },
           "dy": -0.48,
           "heading_deg": -178.7,
-          "true_distance": 21.65
+          "true_distance": 21.65,
+          "telemetry": {
+            "stride_freq_hz": 3.97,
+            "duty_cycle": 0.492,
+            "mean_torque": 75.19,
+            "transient_frac": 0.85,
+            "mean_speed": 2.058,
+            "speed_cv": 0.578,
+            "attractor_type": "complex"
+          }
         },
         "16_franklin": {
           "weights": {
@@ -631,7 +791,16 @@
           },
           "dy": 10.24,
           "heading_deg": 149.7,
-          "true_distance": 20.27
+          "true_distance": 20.27,
+          "telemetry": {
+            "stride_freq_hz": 2.41,
+            "duty_cycle": 0.73,
+            "mean_torque": 49.64,
+            "transient_frac": 0.808,
+            "mean_speed": 1.805,
+            "speed_cv": 0.647,
+            "attractor_type": "complex"
+          }
         },
         "17_lamarr": {
           "weights": {
@@ -655,7 +824,16 @@
           },
           "dy": 1.31,
           "heading_deg": 165.0,
-          "true_distance": 5.03
+          "true_distance": 5.03,
+          "telemetry": {
+            "stride_freq_hz": 5.08,
+            "duty_cycle": 0.815,
+            "mean_torque": 23.59,
+            "transient_frac": 0.118,
+            "mean_speed": 0.791,
+            "speed_cv": 1.728,
+            "attractor_type": "chaotic/fallen"
+          }
         },
         "18_curie": {
           "weights": {
@@ -679,7 +857,16 @@
           },
           "dy": 0.05,
           "heading_deg": 0.1,
-          "true_distance": 23.73
+          "true_distance": 23.73,
+          "telemetry": {
+            "stride_freq_hz": 4.03,
+            "duty_cycle": 0.31,
+            "mean_torque": 72.5,
+            "transient_frac": 0.82,
+            "mean_speed": 2.253,
+            "speed_cv": 0.477,
+            "attractor_type": "limit_cycle"
+          }
         },
         "19_haraway": {
           "weights": {
@@ -704,7 +891,16 @@
           },
           "dy": 0.39,
           "heading_deg": 5.7,
-          "true_distance": 3.91
+          "true_distance": 3.91,
+          "telemetry": {
+            "stride_freq_hz": 3.58,
+            "duty_cycle": 0.18,
+            "mean_torque": 55.65,
+            "transient_frac": 0.8,
+            "mean_speed": 0.527,
+            "speed_cv": 0.858,
+            "attractor_type": "complex"
+          }
         },
         "20_mcclintock": {
           "weights": {
@@ -729,7 +925,16 @@
           },
           "dy": -1.01,
           "heading_deg": -10.4,
-          "true_distance": 5.64
+          "true_distance": 5.64,
+          "telemetry": {
+            "stride_freq_hz": 4.66,
+            "duty_cycle": 0.338,
+            "mean_torque": 89.42,
+            "transient_frac": 0.792,
+            "mean_speed": 0.385,
+            "speed_cv": 0.45,
+            "attractor_type": "limit_cycle"
+          }
         }
       }
     },
@@ -764,7 +969,16 @@
           },
           "dy": -7.12,
           "heading_deg": -170.7,
-          "true_distance": 43.81
+          "true_distance": 43.81,
+          "telemetry": {
+            "stride_freq_hz": 4.84,
+            "duty_cycle": 0.39,
+            "mean_torque": 77.59,
+            "transient_frac": 0.852,
+            "mean_speed": 3.058,
+            "speed_cv": 0.329,
+            "attractor_type": "limit_cycle"
+          }
         },
         "22_curie_amplified": {
           "weights": {
@@ -793,7 +1007,16 @@
           },
           "dy": -1.6,
           "heading_deg": -2.5,
-          "true_distance": 37.17
+          "true_distance": 37.17,
+          "telemetry": {
+            "stride_freq_hz": 4.21,
+            "duty_cycle": 0.332,
+            "mean_torque": 70.2,
+            "transient_frac": 0.798,
+            "mean_speed": 2.499,
+            "speed_cv": 0.503,
+            "attractor_type": "complex"
+          }
         },
         "23_hodgkin_huxley": {
           "weights": {
@@ -822,7 +1045,16 @@
           },
           "dy": -7.2,
           "heading_deg": -166.4,
-          "true_distance": 30.65
+          "true_distance": 30.65,
+          "telemetry": {
+            "stride_freq_hz": 4.36,
+            "duty_cycle": 0.43,
+            "mean_torque": 77.82,
+            "transient_frac": 0.805,
+            "mean_speed": 2.325,
+            "speed_cv": 0.465,
+            "attractor_type": "limit_cycle"
+          }
         },
         "24_wolfram_flipped": {
           "weights": {
@@ -851,7 +1083,16 @@
           },
           "dy": 0.04,
           "heading_deg": 179.4,
-          "true_distance": 3.69
+          "true_distance": 3.69,
+          "telemetry": {
+            "stride_freq_hz": 5.2,
+            "duty_cycle": 0.908,
+            "mean_torque": 36.65,
+            "transient_frac": 0.062,
+            "mean_speed": 0.5,
+            "speed_cv": 1.721,
+            "attractor_type": "complex"
+          }
         },
         "25_minsky": {
           "weights": {
@@ -880,7 +1121,16 @@
           },
           "dy": -3.15,
           "heading_deg": -171.7,
-          "true_distance": 21.76
+          "true_distance": 21.76,
+          "telemetry": {
+            "stride_freq_hz": 4.24,
+            "duty_cycle": 0.615,
+            "mean_torque": 75.08,
+            "transient_frac": 0.838,
+            "mean_speed": 1.78,
+            "speed_cv": 0.667,
+            "attractor_type": "complex"
+          }
         },
         "26_fitzhugh_nagumo": {
           "weights": {
@@ -909,7 +1159,16 @@
           },
           "dy": 9.41,
           "heading_deg": 32.9,
-          "true_distance": 17.31
+          "true_distance": 17.31,
+          "telemetry": {
+            "stride_freq_hz": 4.24,
+            "duty_cycle": 0.365,
+            "mean_torque": 74.48,
+            "transient_frac": 0.53,
+            "mean_speed": 2.263,
+            "speed_cv": 0.514,
+            "attractor_type": "complex"
+          }
         },
         "27_wiener": {
           "weights": {
@@ -938,7 +1197,16 @@
           },
           "dy": -1.43,
           "heading_deg": -5.8,
-          "true_distance": 14.16
+          "true_distance": 14.16,
+          "telemetry": {
+            "stride_freq_hz": 3.97,
+            "duty_cycle": 0.58,
+            "mean_torque": 78.8,
+            "transient_frac": 0.848,
+            "mean_speed": 1.352,
+            "speed_cv": 0.667,
+            "attractor_type": "complex"
+          }
         }
       }
     },
@@ -974,7 +1242,16 @@
           },
           "dy": -6.06,
           "heading_deg": -155.2,
-          "true_distance": 14.46
+          "true_distance": 14.46,
+          "telemetry": {
+            "stride_freq_hz": 3.79,
+            "duty_cycle": 0.788,
+            "mean_torque": 57.2,
+            "transient_frac": 0.822,
+            "mean_speed": 1.288,
+            "speed_cv": 0.83,
+            "attractor_type": "complex"
+          }
         },
         "29_fat_tails": {
           "weights": {
@@ -1004,7 +1281,16 @@
           },
           "dy": 5.74,
           "heading_deg": 154.5,
-          "true_distance": 13.33
+          "true_distance": 13.33,
+          "telemetry": {
+            "stride_freq_hz": 4.45,
+            "duty_cycle": 0.482,
+            "mean_torque": 83.65,
+            "transient_frac": 0.87,
+            "mean_speed": 1.564,
+            "speed_cv": 0.586,
+            "attractor_type": "complex"
+          }
         },
         "30_garch": {
           "weights": {
@@ -1033,7 +1319,16 @@
           },
           "dy": 9.54,
           "heading_deg": 157.2,
-          "true_distance": 24.62
+          "true_distance": 24.62,
+          "telemetry": {
+            "stride_freq_hz": 2.92,
+            "duty_cycle": 0.74,
+            "mean_torque": 45.95,
+            "transient_frac": 0.812,
+            "mean_speed": 1.884,
+            "speed_cv": 0.59,
+            "attractor_type": "complex"
+          }
         },
         "31_gamma_squeeze": {
           "weights": {
@@ -1063,7 +1358,16 @@
           },
           "dy": 1.41,
           "heading_deg": 19.5,
-          "true_distance": 4.21
+          "true_distance": 4.21,
+          "telemetry": {
+            "stride_freq_hz": 4.15,
+            "duty_cycle": 0.655,
+            "mean_torque": 53.81,
+            "transient_frac": 0.06,
+            "mean_speed": 1.483,
+            "speed_cv": 1.005,
+            "attractor_type": "chaotic/fallen"
+          }
         },
         "32_carry_trade": {
           "weights": {
@@ -1092,7 +1396,16 @@
           },
           "dy": -2.07,
           "heading_deg": -3.7,
-          "true_distance": 32.29
+          "true_distance": 32.29,
+          "telemetry": {
+            "stride_freq_hz": 4.33,
+            "duty_cycle": 0.295,
+            "mean_torque": 74.75,
+            "transient_frac": 0.802,
+            "mean_speed": 2.388,
+            "speed_cv": 0.479,
+            "attractor_type": "limit_cycle"
+          }
         },
         "33_mean_reversion": {
           "weights": {
@@ -1121,7 +1434,16 @@
           },
           "dy": 2.99,
           "heading_deg": 81.5,
-          "true_distance": 3.02
+          "true_distance": 3.02,
+          "telemetry": {
+            "stride_freq_hz": 4.78,
+            "duty_cycle": 0.37,
+            "mean_torque": 107.26,
+            "transient_frac": 1.0,
+            "mean_speed": 1.885,
+            "speed_cv": 0.531,
+            "attractor_type": "complex"
+          }
         },
         "34_zipf": {
           "weights": {
@@ -1150,7 +1472,16 @@
           },
           "dy": 9.95,
           "heading_deg": 154.2,
-          "true_distance": 22.85
+          "true_distance": 22.85,
+          "telemetry": {
+            "stride_freq_hz": 4.51,
+            "duty_cycle": 0.498,
+            "mean_torque": 76.92,
+            "transient_frac": 0.822,
+            "mean_speed": 1.794,
+            "speed_cv": 0.529,
+            "attractor_type": "complex"
+          }
         }
       }
     },
@@ -1187,7 +1518,16 @@
           },
           "dy": -17.5,
           "heading_deg": -35.8,
-          "true_distance": 29.93
+          "true_distance": 29.93,
+          "telemetry": {
+            "stride_freq_hz": 3.61,
+            "duty_cycle": 0.355,
+            "mean_torque": 62.5,
+            "transient_frac": 0.602,
+            "mean_speed": 2.428,
+            "speed_cv": 0.547,
+            "attractor_type": "complex"
+          }
         }
       }
     },
@@ -1222,7 +1562,16 @@
           },
           "dy": 4.95,
           "heading_deg": 169.9,
-          "true_distance": 28.15
+          "true_distance": 28.15,
+          "telemetry": {
+            "stride_freq_hz": 3.88,
+            "duty_cycle": 0.512,
+            "mean_torque": 65.48,
+            "transient_frac": 0.908,
+            "mean_speed": 2.264,
+            "speed_cv": 0.553,
+            "attractor_type": "complex"
+          }
         },
         "37_hemiola": {
           "weights": {
@@ -1251,7 +1600,16 @@
           },
           "dy": 9.45,
           "heading_deg": 22.7,
-          "true_distance": 24.52
+          "true_distance": 24.52,
+          "telemetry": {
+            "stride_freq_hz": 3.67,
+            "duty_cycle": 0.422,
+            "mean_torque": 65.21,
+            "transient_frac": 0.755,
+            "mean_speed": 1.924,
+            "speed_cv": 0.63,
+            "attractor_type": "complex"
+          }
         },
         "38_heavy_waltz": {
           "weights": {
@@ -1280,7 +1638,16 @@
           },
           "dy": -4.99,
           "heading_deg": -165.5,
-          "true_distance": 19.94
+          "true_distance": 19.94,
+          "telemetry": {
+            "stride_freq_hz": 5.05,
+            "duty_cycle": 0.53,
+            "mean_torque": 67.49,
+            "transient_frac": 0.885,
+            "mean_speed": 1.638,
+            "speed_cv": 0.75,
+            "attractor_type": "complex"
+          }
         },
         "39_bulgarian": {
           "weights": {
@@ -1309,7 +1676,16 @@
           },
           "dy": -5.58,
           "heading_deg": -18.7,
-          "true_distance": 17.43
+          "true_distance": 17.43,
+          "telemetry": {
+            "stride_freq_hz": 3.34,
+            "duty_cycle": 0.762,
+            "mean_torque": 38.86,
+            "transient_frac": 0.822,
+            "mean_speed": 1.497,
+            "speed_cv": 0.554,
+            "attractor_type": "complex"
+          }
         },
         "40_rubato": {
           "weights": {
@@ -1338,7 +1714,16 @@
           },
           "dy": -1.04,
           "heading_deg": -3.8,
-          "true_distance": 15.65
+          "true_distance": 15.65,
+          "telemetry": {
+            "stride_freq_hz": 4.81,
+            "duty_cycle": 0.378,
+            "mean_torque": 81.17,
+            "transient_frac": 0.778,
+            "mean_speed": 0.954,
+            "speed_cv": 0.421,
+            "attractor_type": "limit_cycle"
+          }
         },
         "41_blues_shuffle": {
           "weights": {
@@ -1367,7 +1752,16 @@
           },
           "dy": 5.71,
           "heading_deg": 27.8,
-          "true_distance": 12.24
+          "true_distance": 12.24,
+          "telemetry": {
+            "stride_freq_hz": 3.85,
+            "duty_cycle": 0.572,
+            "mean_torque": 41.4,
+            "transient_frac": 0.46,
+            "mean_speed": 1.432,
+            "speed_cv": 0.639,
+            "attractor_type": "chaotic/fallen"
+          }
         },
         "42_polyrhythm": {
           "weights": {
@@ -1396,7 +1790,16 @@
           },
           "dy": -5.11,
           "heading_deg": -26.6,
-          "true_distance": 11.43
+          "true_distance": 11.43,
+          "telemetry": {
+            "stride_freq_hz": 3.58,
+            "duty_cycle": 0.95,
+            "mean_torque": 34.83,
+            "transient_frac": 0.805,
+            "mean_speed": 0.949,
+            "speed_cv": 0.5,
+            "attractor_type": "complex"
+          }
         }
       }
     },
@@ -1493,7 +1896,16 @@
           "max_tilt": 40,
           "dy": -2.88,
           "heading_deg": -75.9,
-          "true_distance": 2.97
+          "true_distance": 2.97,
+          "telemetry": {
+            "stride_freq_hz": 4.06,
+            "duty_cycle": 0.215,
+            "mean_torque": 60.39,
+            "transient_frac": 0.815,
+            "mean_speed": 3.326,
+            "speed_cv": 0.417,
+            "attractor_type": "limit_cycle"
+          }
         }
       }
     },
@@ -1591,7 +2003,16 @@
           "video": "44_spinner_champion.mp4",
           "dy": 0.85,
           "heading_deg": 73.9,
-          "true_distance": 0.88
+          "true_distance": 0.88,
+          "telemetry": {
+            "stride_freq_hz": 5.08,
+            "duty_cycle": 0.232,
+            "mean_torque": 53.09,
+            "transient_frac": 1.0,
+            "mean_speed": 2.039,
+            "speed_cv": 0.649,
+            "attractor_type": "complex"
+          }
         },
         "45_spinner_stable": {
           "neurons": [
@@ -1684,7 +2105,16 @@
           "video": "45_spinner_stable.mp4",
           "dy": 1.08,
           "heading_deg": 165.9,
-          "true_distance": 4.44
+          "true_distance": 4.44,
+          "telemetry": {
+            "stride_freq_hz": 5.89,
+            "duty_cycle": 0.292,
+            "mean_torque": 50.01,
+            "transient_frac": 0.46,
+            "mean_speed": 1.842,
+            "speed_cv": 0.587,
+            "attractor_type": "complex"
+          }
         },
         "46_spinner_crosswired": {
           "weights": {
@@ -1715,7 +2145,16 @@
           },
           "dy": -0.16,
           "heading_deg": -17.3,
-          "true_distance": 0.55
+          "true_distance": 0.55,
+          "telemetry": {
+            "stride_freq_hz": 4.81,
+            "duty_cycle": 0.185,
+            "mean_torque": 83.66,
+            "transient_frac": 1.0,
+            "mean_speed": 0.763,
+            "speed_cv": 0.498,
+            "attractor_type": "limit_cycle"
+          }
         },
         "47_spinner_6synapse": {
           "weights": {
@@ -1742,7 +2181,16 @@
           },
           "dy": -1.87,
           "heading_deg": -139.0,
-          "true_distance": 2.85
+          "true_distance": 2.85,
+          "telemetry": {
+            "stride_freq_hz": 4.96,
+            "duty_cycle": 0.29,
+            "mean_torque": 96.71,
+            "transient_frac": 0.908,
+            "mean_speed": 0.776,
+            "speed_cv": 0.524,
+            "attractor_type": "complex"
+          }
         }
       }
     },
@@ -1772,7 +2220,16 @@
           },
           "dy": -2.02,
           "heading_deg": -110.5,
-          "true_distance": 2.16
+          "true_distance": 2.16,
+          "telemetry": {
+            "stride_freq_hz": 5.41,
+            "duty_cycle": 0.732,
+            "mean_torque": 66.5,
+            "transient_frac": 0.1,
+            "mean_speed": 0.219,
+            "speed_cv": 1.808,
+            "attractor_type": "chaotic/fallen"
+          }
         },
         "2_flipped": {
           "weights": {
@@ -1796,7 +2253,16 @@
           },
           "dy": 2.92,
           "heading_deg": 160.6,
-          "true_distance": 8.77
+          "true_distance": 8.77,
+          "telemetry": {
+            "stride_freq_hz": 3.76,
+            "duty_cycle": 0.558,
+            "mean_torque": 47.54,
+            "transient_frac": 0.75,
+            "mean_speed": 1.046,
+            "speed_cv": 0.751,
+            "attractor_type": "complex"
+          }
         },
         "5_gallop": {
           "weights": {
@@ -1820,7 +2286,16 @@
           },
           "dy": -0.46,
           "heading_deg": -174.1,
-          "true_distance": 4.46
+          "true_distance": 4.46,
+          "telemetry": {
+            "stride_freq_hz": 5.5,
+            "duty_cycle": 0.298,
+            "mean_torque": 98.69,
+            "transient_frac": 0.108,
+            "mean_speed": 0.603,
+            "speed_cv": 1.633,
+            "attractor_type": "chaotic/fallen"
+          }
         },
         "5_bouncer": {
           "weights": {
@@ -1844,7 +2319,16 @@
           },
           "dy": 0.0,
           "heading_deg": 72.5,
-          "true_distance": 0.0
+          "true_distance": 0.0,
+          "telemetry": {
+            "stride_freq_hz": 8.24,
+            "duty_cycle": 1.0,
+            "mean_torque": 0.07,
+            "transient_frac": 1.0,
+            "mean_speed": 0.0,
+            "speed_cv": 0,
+            "attractor_type": "fixed_point"
+          }
         }
       }
     },
@@ -1871,7 +2355,16 @@
           "yaw_deg": -119.9,
           "max_tilt": 36,
           "n_synapses": 9,
-          "pareto_score": 2886
+          "pareto_score": 2886,
+          "telemetry": {
+            "stride_freq_hz": 4.36,
+            "duty_cycle": 0.3,
+            "mean_torque": 74.21,
+            "transient_frac": 0.452,
+            "mean_speed": 2.862,
+            "speed_cv": 0.456,
+            "attractor_type": "limit_cycle"
+          }
         },
         "49_pelton_pirouette": {
           "weights": {
@@ -1892,7 +2385,16 @@
           "yaw_deg": 173.9,
           "max_tilt": 40,
           "n_synapses": 10,
-          "pareto_score": 1934
+          "pareto_score": 1934,
+          "telemetry": {
+            "stride_freq_hz": 4.42,
+            "duty_cycle": 0.35,
+            "mean_torque": 71.2,
+            "transient_frac": 0.945,
+            "mean_speed": 2.041,
+            "speed_cv": 0.517,
+            "attractor_type": "complex"
+          }
         },
         "50_noether_cyclone": {
           "weights": {
@@ -1913,7 +2415,16 @@
           "yaw_deg": 67.0,
           "max_tilt": 38,
           "n_synapses": 10,
-          "pareto_score": 2022
+          "pareto_score": 2022,
+          "telemetry": {
+            "stride_freq_hz": 4.63,
+            "duty_cycle": 0.41,
+            "mean_torque": 86.08,
+            "transient_frac": 0.745,
+            "mean_speed": 2.671,
+            "speed_cv": 0.367,
+            "attractor_type": "limit_cycle"
+          }
         }
       }
     },
@@ -1936,7 +2447,16 @@
           "yaw_deg": -187.7,
           "max_tilt": 47,
           "n_synapses": 4,
-          "note": "Parent config (5_bouncer) has DX=0, YAW=0, tilt=0. Delta: w24 changed by -0.1."
+          "note": "Parent config (5_bouncer) has DX=0, YAW=0, tilt=0. Delta: w24 changed by -0.1.",
+          "telemetry": {
+            "stride_freq_hz": 3.67,
+            "duty_cycle": 0.66,
+            "mean_torque": 65.97,
+            "transient_frac": 0.542,
+            "mean_speed": 0.864,
+            "speed_cv": 1.484,
+            "attractor_type": "complex"
+          }
         }
       }
     },
@@ -1965,7 +2485,16 @@
           "yaw_deg": -61.4,
           "max_tilt": 29,
           "n_synapses": 8,
-          "crab_ratio": 1.18
+          "crab_ratio": 1.18,
+          "telemetry": {
+            "stride_freq_hz": 4.93,
+            "duty_cycle": 0.345,
+            "mean_torque": 72.26,
+            "transient_frac": 0.788,
+            "mean_speed": 2.514,
+            "speed_cv": 0.494,
+            "attractor_type": "limit_cycle"
+          }
         },
         "53_rucker_landcrab": {
           "weights": {
@@ -1988,7 +2517,16 @@
           "yaw_deg": 81.7,
           "max_tilt": 37,
           "n_synapses": 7,
-          "crab_ratio": 2.36
+          "crab_ratio": 2.36,
+          "telemetry": {
+            "stride_freq_hz": 3.82,
+            "duty_cycle": 0.368,
+            "mean_torque": 60.66,
+            "transient_frac": 0.56,
+            "mean_speed": 2.409,
+            "speed_cv": 0.529,
+            "attractor_type": "complex"
+          }
         },
         "54_rucker_sidewinder": {
           "weights": {
@@ -2011,7 +2549,16 @@
           "yaw_deg": 104.5,
           "max_tilt": 43,
           "n_synapses": 7,
-          "crab_ratio": 2.66
+          "crab_ratio": 2.66,
+          "telemetry": {
+            "stride_freq_hz": 3.25,
+            "duty_cycle": 0.645,
+            "mean_torque": 57.22,
+            "transient_frac": 0.635,
+            "mean_speed": 1.42,
+            "speed_cv": 0.779,
+            "attractor_type": "complex"
+          }
         },
         "55_skew_crab": {
           "weights": {
@@ -2034,7 +2581,16 @@
           "yaw_deg": 168.1,
           "max_tilt": 33,
           "n_synapses": 8,
-          "crab_ratio": 1.4
+          "crab_ratio": 1.4,
+          "telemetry": {
+            "stride_freq_hz": 3.52,
+            "duty_cycle": 0.55,
+            "mean_torque": 71.63,
+            "transient_frac": 0.805,
+            "mean_speed": 2.042,
+            "speed_cv": 0.583,
+            "attractor_type": "complex"
+          }
         }
       }
     }
@@ -2512,6 +3068,90 @@
           "41_blues_shuffle"
         ],
         "note": "Would appear to randomly spin in any noisy system. The bouncer (yaw_sens=9413) currently shows zero spin but sits on a yaw bifurcation boundary."
+      }
+    }
+  },
+  "attractor_taxonomy": {
+    "description": "Classification of gaits by their dynamical attractor type, derived from per-step telemetry (joint phase portraits, speed variability, tilt).",
+    "types": {
+      "fixed_point": {
+        "description": "Robot converges to a stationary equilibrium. No oscillation, no displacement.",
+        "members": [
+          "5_bouncer"
+        ]
+      },
+      "limit_cycle": {
+        "description": "Robot settles into a stable periodic orbit. Consistent stride, low speed variability (CV < 0.5). These are the most reliable walkers.",
+        "members": [
+          "3_mordvintsev",
+          "5_pelton",
+          "7_fuller_dymaxion",
+          "8_conway_glider",
+          "18_curie",
+          "20_mcclintock",
+          "21_noether_cpg",
+          "23_hodgkin_huxley",
+          "32_carry_trade",
+          "40_rubato",
+          "43_hidden_cpg_champion",
+          "46_spinner_crosswired",
+          "48_curie_dervish",
+          "50_noether_cyclone",
+          "52_curie_crab"
+        ]
+      },
+      "complex": {
+        "description": "Robot moves but without clean periodicity. May have drifting phase, variable speed, or multi-frequency dynamics. Stable but not strictly periodic.",
+        "members": [
+          "1_wolfram",
+          "2_rucker",
+          "4_sayama",
+          "6_fuller_trimtab",
+          "9_mandelbrot",
+          "11_taleb_antifrag",
+          "12_lorenz_A",
+          "13_lorenz_B",
+          "14_lovelace",
+          "15_noether",
+          "16_franklin",
+          "19_haraway",
+          "22_curie_amplified",
+          "24_wolfram_flipped",
+          "25_minsky",
+          "26_fitzhugh_nagumo",
+          "27_wiener",
+          "28_flash_crash",
+          "29_fat_tails",
+          "30_garch",
+          "33_mean_reversion",
+          "34_zipf",
+          "35_evolved_curie",
+          "36_take_five",
+          "37_hemiola",
+          "38_heavy_waltz",
+          "39_bulgarian",
+          "42_polyrhythm",
+          "44_spinner_champion",
+          "45_spinner_stable",
+          "47_spinner_6synapse",
+          "2_flipped",
+          "49_pelton_pirouette",
+          "51_bouncer_detonated",
+          "53_rucker_landcrab",
+          "54_rucker_sidewinder",
+          "55_skew_crab"
+        ]
+      },
+      "chaotic_fallen": {
+        "description": "Robot tips over (tilt > 60\u00b0). Phase portrait shows unbounded trajectories. May still achieve significant displacement before falling.",
+        "members": [
+          "10_tesla_3phase",
+          "17_lamarr",
+          "31_gamma_squeeze",
+          "41_blues_shuffle",
+          "1_original",
+          "5_gallop"
+        ]
       }
     }
   }
