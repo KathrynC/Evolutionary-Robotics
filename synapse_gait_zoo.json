@@ -288,6 +288,112 @@
         },
         "surprise_finding": "Complex:drifters rival limit cycles (mean disp 24.6m vs 23.5m, dir_eff 0.756 vs 0.740) but with higher speed variability. The curie_asymmetric_drive motif produces drifters when amplified."
       }
+    },
+    "efficiency_frontier": {
+      "description": "Pareto frontier of displacement vs mean torque. Gaits where no other gait has both higher displacement AND lower torque.",
+      "total_movers": 58,
+      "frontier_size": 6,
+      "members": [
+        {
+          "name": "43_hidden_cpg_champion",
+          "displacement": 50.03,
+          "mean_torque": 120.78,
+          "efficiency": 0.414,
+          "dir_efficiency": 0.905,
+          "cost_of_transport": 965.6,
+          "attractor": "limit_cycle",
+          "motif": "half_center_oscillator"
+        },
+        {
+          "name": "30_garch",
+          "displacement": 24.64,
+          "mean_torque": 91.89,
+          "efficiency": 0.268,
+          "dir_efficiency": 0.786,
+          "cost_of_transport": 1491.9,
+          "attractor": "complex:multi_frequency",
+          "motif": "-"
+        },
+        {
+          "name": "39_bulgarian",
+          "displacement": 17.39,
+          "mean_torque": 77.72,
+          "efficiency": 0.224,
+          "dir_efficiency": 0.699,
+          "cost_of_transport": 1787.8,
+          "attractor": "complex:multi_frequency",
+          "motif": "-"
+        },
+        {
+          "name": "42_polyrhythm",
+          "displacement": 11.41,
+          "mean_torque": 69.65,
+          "efficiency": 0.164,
+          "dir_efficiency": 0.723,
+          "cost_of_transport": 2441.8,
+          "attractor": "complex:multi_frequency",
+          "motif": "-"
+        },
+        {
+          "name": "17_lamarr",
+          "displacement": 5.03,
+          "mean_torque": 47.17,
+          "efficiency": 0.107,
+          "dir_efficiency": 0.383,
+          "cost_of_transport": 3747.7,
+          "attractor": "chaotic/fallen",
+          "motif": "-"
+        },
+        {
+          "name": "7_fuller_dymaxion",
+          "displacement": 2.45,
+          "mean_torque": 4.08,
+          "efficiency": 0.602,
+          "dir_efficiency": 0.986,
+          "cost_of_transport": 665.0,
+          "attractor": "limit_cycle",
+          "motif": "minimal_wiring"
+        }
+      ],
+      "key_findings": {
+        "correlation_efficiency_vs_directional": 0.698,
+        "correlation_displacement_vs_torque": 0.21,
+        "note": "Efficiency correlates strongly with directional efficiency (walking straight = being efficient). Displacement barely correlates with torque (high torque does not guarantee high displacement)."
+      },
+      "motif_efficiency_ranking": [
+        {
+          "motif": "half_center_oscillator",
+          "mean_efficiency": 0.414,
+          "note": "CPG champion \u2014 most efficient by far"
+        },
+        {
+          "motif": "minimal_wiring",
+          "mean_efficiency": 0.23,
+          "note": "Sparse networks waste less energy"
+        },
+        {
+          "motif": "curie_asymmetric_drive",
+          "mean_efficiency": 0.207,
+          "note": "Strong directional drive"
+        },
+        {
+          "motif": "noether_involution",
+          "mean_efficiency": 0.207
+        },
+        {
+          "motif": "walk_and_spin",
+          "mean_efficiency": 0.161
+        },
+        {
+          "motif": "crab_walk",
+          "mean_efficiency": 0.126
+        },
+        {
+          "motif": "spin_torque",
+          "mean_efficiency": 0.017,
+          "note": "Dead last \u2014 spinners waste nearly all energy on rotation"
+        }
+      ]
     }
   },
   "categories": {
@@ -326,7 +432,9 @@
             "mean_speed": 0.692,
             "speed_cv": 0.861,
             "attractor_type": "complex",
-            "attractor_subtype": "multi_frequency"
+            "attractor_subtype": "multi_frequency",
+            "efficiency": 0.0981,
+            "pareto_optimal": false
           }
         },
         "2_rucker": {
@@ -360,7 +468,9 @@
             "mean_speed": 0.95,
             "speed_cv": 0.638,
             "attractor_type": "complex",
-            "attractor_subtype": "multi_frequency"
+            "attractor_subtype": "multi_frequency",
+            "efficiency": 0.1727,
+            "pareto_optimal": false
           }
         },
         "3_mordvintsev": {
@@ -394,7 +504,9 @@
             "transient_frac": 0.802,
             "mean_speed": 0.578,
             "speed_cv": 0.16,
-            "attractor_type": "limit_cycle"
+            "attractor_type": "limit_cycle",
+            "efficiency": 0.1605,
+            "pareto_optimal": false
           }
         },
         "4_sayama": {
@@ -428,7 +540,9 @@
             "mean_speed": 1.462,
             "speed_cv": 0.669,
             "attractor_type": "complex",
-            "attractor_subtype": "quasi_periodic"
+            "attractor_subtype": "quasi_periodic",
+            "efficiency": 0.2943,
+            "pareto_optimal": false
           }
         },
         "5_pelton": {
@@ -461,7 +575,9 @@
             "transient_frac": 0.79,
             "mean_speed": 2.433,
             "speed_cv": 0.497,
-            "attractor_type": "limit_cycle"
+            "attractor_type": "limit_cycle",
+            "efficiency": 0.5295,
+            "pareto_optimal": false
           }
         },
         "6_fuller_trimtab": {
@@ -496,7 +612,9 @@
             "mean_speed": 0.623,
             "speed_cv": 0.636,
             "attractor_type": "complex",
-            "attractor_subtype": "quasi_periodic"
+            "attractor_subtype": "quasi_periodic",
+            "efficiency": 0.1115,
+            "pareto_optimal": false
           }
         },
         "7_fuller_dymaxion": {
@@ -531,7 +649,9 @@
             "transient_frac": 0.802,
             "mean_speed": 0.15,
             "speed_cv": 0.184,
-            "attractor_type": "limit_cycle"
+            "attractor_type": "limit_cycle",
+            "efficiency": 1.206,
+            "pareto_optimal": true
           }
         },
         "8_conway_glider": {
@@ -564,7 +684,9 @@
             "transient_frac": 0.048,
             "mean_speed": 1.593,
             "speed_cv": 0.438,
-            "attractor_type": "limit_cycle"
+            "attractor_type": "limit_cycle",
+            "efficiency": 0.0182,
+            "pareto_optimal": false
           }
         },
         "9_mandelbrot": {
@@ -599,7 +721,9 @@
             "mean_speed": 0.744,
             "speed_cv": 0.601,
             "attractor_type": "complex",
-            "attractor_subtype": "multi_frequency"
+            "attractor_subtype": "multi_frequency",
+            "efficiency": 0.0428,
+            "pareto_optimal": false
           }
         },
         "10_tesla_3phase": {
@@ -632,7 +756,9 @@
             "transient_frac": 0.478,
             "mean_speed": 2.41,
             "speed_cv": 0.505,
-            "attractor_type": "chaotic/fallen"
+            "attractor_type": "chaotic/fallen",
+            "efficiency": 0.4285,
+            "pareto_optimal": false
           }
         },
         "11_taleb_antifrag": {
@@ -666,7 +792,9 @@
             "mean_speed": 0.51,
             "speed_cv": 1.522,
             "attractor_type": "complex",
-            "attractor_subtype": "transient_decay"
+            "attractor_subtype": "transient_decay",
+            "efficiency": 0.107,
+            "pareto_optimal": false
           }
         },
         "12_lorenz_A": {
@@ -700,7 +828,9 @@
             "mean_speed": 0.889,
             "speed_cv": 0.82,
             "attractor_type": "complex",
-            "attractor_subtype": "multi_frequency"
+            "attractor_subtype": "multi_frequency",
+            "efficiency": 0.1485,
+            "pareto_optimal": false
           }
         },
         "13_lorenz_B": {
@@ -735,7 +865,9 @@
             "mean_speed": 0.98,
             "speed_cv": 0.885,
             "attractor_type": "complex",
-            "attractor_subtype": "multi_frequency"
+            "attractor_subtype": "multi_frequency",
+            "efficiency": 0.045,
+            "pareto_optimal": false
           }
         },
         "14_lovelace": {
@@ -769,7 +901,9 @@
             "mean_speed": 0.616,
             "speed_cv": 0.827,
             "attractor_type": "complex",
-            "attractor_subtype": "multi_frequency"
+            "attractor_subtype": "multi_frequency",
+            "efficiency": 0.071,
+            "pareto_optimal": false
           }
         },
         "15_noether": {
@@ -803,7 +937,9 @@
             "mean_speed": 2.058,
             "speed_cv": 0.578,
             "attractor_type": "complex",
-            "attractor_subtype": "multi_frequency"
+            "attractor_subtype": "multi_frequency",
+            "efficiency": 0.288,
+            "pareto_optimal": false
           }
         },
         "16_franklin": {
@@ -837,7 +973,9 @@
             "mean_speed": 1.805,
             "speed_cv": 0.647,
             "attractor_type": "complex",
-            "attractor_subtype": "multi_frequency"
+            "attractor_subtype": "multi_frequency",
+            "efficiency": 0.4083,
+            "pareto_optimal": false
           }
         },
         "17_lamarr": {
@@ -870,7 +1008,9 @@
             "transient_frac": 0.118,
             "mean_speed": 0.791,
             "speed_cv": 1.728,
-            "attractor_type": "chaotic/fallen"
+            "attractor_type": "chaotic/fallen",
+            "efficiency": 0.2134,
+            "pareto_optimal": true
           }
         },
         "18_curie": {
@@ -903,7 +1043,9 @@
             "transient_frac": 0.82,
             "mean_speed": 2.253,
             "speed_cv": 0.477,
-            "attractor_type": "limit_cycle"
+            "attractor_type": "limit_cycle",
+            "efficiency": 0.3273,
+            "pareto_optimal": false
           }
         },
         "19_haraway": {
@@ -938,7 +1080,9 @@
             "mean_speed": 0.527,
             "speed_cv": 0.858,
             "attractor_type": "complex",
-            "attractor_subtype": "multi_frequency"
+            "attractor_subtype": "multi_frequency",
+            "efficiency": 0.0703,
+            "pareto_optimal": false
           }
         },
         "20_mcclintock": {
@@ -972,7 +1116,9 @@
             "transient_frac": 0.792,
             "mean_speed": 0.385,
             "speed_cv": 0.45,
-            "attractor_type": "limit_cycle"
+            "attractor_type": "limit_cycle",
+            "efficiency": 0.0631,
+            "pareto_optimal": false
           }
         }
       }
@@ -1016,7 +1162,9 @@
             "transient_frac": 0.852,
             "mean_speed": 3.058,
             "speed_cv": 0.329,
-            "attractor_type": "limit_cycle"
+            "attractor_type": "limit_cycle",
+            "efficiency": 0.5647,
+            "pareto_optimal": false
           }
         },
         "22_curie_amplified": {
@@ -1055,7 +1203,9 @@
             "mean_speed": 2.499,
             "speed_cv": 0.503,
             "attractor_type": "complex",
-            "attractor_subtype": "drifter"
+            "attractor_subtype": "drifter",
+            "efficiency": 0.5296,
+            "pareto_optimal": false
           }
         },
         "23_hodgkin_huxley": {
@@ -1093,7 +1243,9 @@
             "transient_frac": 0.805,
             "mean_speed": 2.325,
             "speed_cv": 0.465,
-            "attractor_type": "limit_cycle"
+            "attractor_type": "limit_cycle",
+            "efficiency": 0.3938,
+            "pareto_optimal": false
           }
         },
         "24_wolfram_flipped": {
@@ -1132,7 +1284,9 @@
             "mean_speed": 0.5,
             "speed_cv": 1.721,
             "attractor_type": "complex",
-            "attractor_subtype": "transient_decay"
+            "attractor_subtype": "transient_decay",
+            "efficiency": 0.1007,
+            "pareto_optimal": false
           }
         },
         "25_minsky": {
@@ -1171,7 +1325,9 @@
             "mean_speed": 1.78,
             "speed_cv": 0.667,
             "attractor_type": "complex",
-            "attractor_subtype": "drifter"
+            "attractor_subtype": "drifter",
+            "efficiency": 0.2898,
+            "pareto_optimal": false
           }
         },
         "26_fitzhugh_nagumo": {
@@ -1210,7 +1366,9 @@
             "mean_speed": 2.263,
             "speed_cv": 0.514,
             "attractor_type": "complex",
-            "attractor_subtype": "multi_frequency"
+            "attractor_subtype": "multi_frequency",
+            "efficiency": 0.2324,
+            "pareto_optimal": false
           }
         },
         "27_wiener": {
@@ -1249,7 +1407,9 @@
             "mean_speed": 1.352,
             "speed_cv": 0.667,
             "attractor_type": "complex",
-            "attractor_subtype": "quasi_periodic"
+            "attractor_subtype": "quasi_periodic",
+            "efficiency": 0.1796,
+            "pareto_optimal": false
           }
         }
       }
@@ -1295,7 +1455,9 @@
             "mean_speed": 1.288,
             "speed_cv": 0.83,
             "attractor_type": "complex",
-            "attractor_subtype": "drifter"
+            "attractor_subtype": "drifter",
+            "efficiency": 0.2528,
+            "pareto_optimal": false
           }
         },
         "29_fat_tails": {
@@ -1335,7 +1497,9 @@
             "mean_speed": 1.564,
             "speed_cv": 0.586,
             "attractor_type": "complex",
-            "attractor_subtype": "multi_frequency"
+            "attractor_subtype": "multi_frequency",
+            "efficiency": 0.1593,
+            "pareto_optimal": false
           }
         },
         "30_garch": {
@@ -1374,7 +1538,9 @@
             "mean_speed": 1.884,
             "speed_cv": 0.59,
             "attractor_type": "complex",
-            "attractor_subtype": "multi_frequency"
+            "attractor_subtype": "multi_frequency",
+            "efficiency": 0.5357,
+            "pareto_optimal": true
           }
         },
         "31_gamma_squeeze": {
@@ -1413,7 +1579,9 @@
             "transient_frac": 0.06,
             "mean_speed": 1.483,
             "speed_cv": 1.005,
-            "attractor_type": "chaotic/fallen"
+            "attractor_type": "chaotic/fallen",
+            "efficiency": 0.0783,
+            "pareto_optimal": false
           }
         },
         "32_carry_trade": {
@@ -1451,7 +1619,9 @@
             "transient_frac": 0.802,
             "mean_speed": 2.388,
             "speed_cv": 0.479,
-            "attractor_type": "limit_cycle"
+            "attractor_type": "limit_cycle",
+            "efficiency": 0.4319,
+            "pareto_optimal": false
           }
         },
         "33_mean_reversion": {
@@ -1490,7 +1660,9 @@
             "mean_speed": 1.885,
             "speed_cv": 0.531,
             "attractor_type": "complex",
-            "attractor_subtype": "quasi_periodic"
+            "attractor_subtype": "quasi_periodic",
+            "efficiency": 0.0282,
+            "pareto_optimal": false
           }
         },
         "34_zipf": {
@@ -1529,7 +1701,9 @@
             "mean_speed": 1.794,
             "speed_cv": 0.529,
             "attractor_type": "complex",
-            "attractor_subtype": "multi_frequency"
+            "attractor_subtype": "multi_frequency",
+            "efficiency": 0.2971,
+            "pareto_optimal": false
           }
         }
       }
@@ -1576,7 +1750,9 @@
             "mean_speed": 2.428,
             "speed_cv": 0.547,
             "attractor_type": "complex",
-            "attractor_subtype": "drifter"
+            "attractor_subtype": "drifter",
+            "efficiency": 0.4789,
+            "pareto_optimal": false
           }
         }
       }
@@ -1621,7 +1797,9 @@
             "mean_speed": 2.264,
             "speed_cv": 0.553,
             "attractor_type": "complex",
-            "attractor_subtype": "multi_frequency"
+            "attractor_subtype": "multi_frequency",
+            "efficiency": 0.43,
+            "pareto_optimal": false
           }
         },
         "37_hemiola": {
@@ -1660,7 +1838,9 @@
             "mean_speed": 1.924,
             "speed_cv": 0.63,
             "attractor_type": "complex",
-            "attractor_subtype": "multi_frequency"
+            "attractor_subtype": "multi_frequency",
+            "efficiency": 0.3761,
+            "pareto_optimal": false
           }
         },
         "38_heavy_waltz": {
@@ -1699,7 +1879,9 @@
             "mean_speed": 1.638,
             "speed_cv": 0.75,
             "attractor_type": "complex",
-            "attractor_subtype": "drifter"
+            "attractor_subtype": "drifter",
+            "efficiency": 0.2955,
+            "pareto_optimal": false
           }
         },
         "39_bulgarian": {
@@ -1738,7 +1920,9 @@
             "mean_speed": 1.497,
             "speed_cv": 0.554,
             "attractor_type": "complex",
-            "attractor_subtype": "multi_frequency"
+            "attractor_subtype": "multi_frequency",
+            "efficiency": 0.4487,
+            "pareto_optimal": true
           }
         },
         "40_rubato": {
@@ -1776,7 +1960,9 @@
             "transient_frac": 0.778,
             "mean_speed": 0.954,
             "speed_cv": 0.421,
-            "attractor_type": "limit_cycle"
+            "attractor_type": "limit_cycle",
+            "efficiency": 0.1927,
+            "pareto_optimal": false
           }
         },
         "41_blues_shuffle": {
@@ -1814,7 +2000,9 @@
             "transient_frac": 0.46,
             "mean_speed": 1.432,
             "speed_cv": 0.639,
-            "attractor_type": "chaotic/fallen"
+            "attractor_type": "chaotic/fallen",
+            "efficiency": 0.2955,
+            "pareto_optimal": false
           }
         },
         "42_polyrhythm": {
@@ -1853,7 +2041,9 @@
             "mean_speed": 0.949,
             "speed_cv": 0.5,
             "attractor_type": "complex",
-            "attractor_subtype": "multi_frequency"
+            "attractor_subtype": "multi_frequency",
+            "efficiency": 0.3281,
+            "pareto_optimal": true
           }
         }
       }
@@ -1959,7 +2149,9 @@
             "transient_frac": 0.815,
             "mean_speed": 3.326,
             "speed_cv": 0.417,
-            "attractor_type": "limit_cycle"
+            "attractor_type": "limit_cycle",
+            "efficiency": 0.8311,
+            "pareto_optimal": true
           }
         }
       }
@@ -2067,7 +2259,9 @@
             "mean_speed": 2.039,
             "speed_cv": 0.649,
             "attractor_type": "complex",
-            "attractor_subtype": "wobbler"
+            "attractor_subtype": "wobbler",
+            "efficiency": 0.0166,
+            "pareto_optimal": false
           }
         },
         "45_spinner_stable": {
@@ -2170,7 +2364,9 @@
             "mean_speed": 1.842,
             "speed_cv": 0.587,
             "attractor_type": "complex",
-            "attractor_subtype": "quasi_periodic"
+            "attractor_subtype": "quasi_periodic",
+            "efficiency": 0.0887,
+            "pareto_optimal": false
           }
         },
         "46_spinner_crosswired": {
@@ -2210,7 +2406,9 @@
             "transient_frac": 1.0,
             "mean_speed": 0.763,
             "speed_cv": 0.498,
-            "attractor_type": "limit_cycle"
+            "attractor_type": "limit_cycle",
+            "efficiency": 0.0066,
+            "pareto_optimal": false
           }
         },
         "47_spinner_6synapse": {
@@ -2247,7 +2445,9 @@
             "mean_speed": 0.776,
             "speed_cv": 0.524,
             "attractor_type": "complex",
-            "attractor_subtype": "multi_frequency"
+            "attractor_subtype": "multi_frequency",
+            "efficiency": 0.0295,
+            "pareto_optimal": false
           }
         }
       }
@@ -2286,7 +2486,9 @@
             "transient_frac": 0.1,
             "mean_speed": 0.219,
             "speed_cv": 1.808,
-            "attractor_type": "chaotic/fallen"
+            "attractor_type": "chaotic/fallen",
+            "efficiency": 0.0324,
+            "pareto_optimal": false
           }
         },
         "2_flipped": {
@@ -2320,7 +2522,9 @@
             "mean_speed": 1.046,
             "speed_cv": 0.751,
             "attractor_type": "complex",
-            "attractor_subtype": "multi_frequency"
+            "attractor_subtype": "multi_frequency",
+            "efficiency": 0.1845,
+            "pareto_optimal": false
           }
         },
         "5_gallop": {
@@ -2353,7 +2557,9 @@
             "transient_frac": 0.108,
             "mean_speed": 0.603,
             "speed_cv": 1.633,
-            "attractor_type": "chaotic/fallen"
+            "attractor_type": "chaotic/fallen",
+            "efficiency": 0.0452,
+            "pareto_optimal": false
           }
         },
         "5_bouncer": {
@@ -2422,7 +2628,9 @@
             "transient_frac": 0.452,
             "mean_speed": 2.862,
             "speed_cv": 0.456,
-            "attractor_type": "limit_cycle"
+            "attractor_type": "limit_cycle",
+            "efficiency": 0.4231,
+            "pareto_optimal": false
           }
         },
         "49_pelton_pirouette": {
@@ -2453,7 +2661,9 @@
             "mean_speed": 2.041,
             "speed_cv": 0.517,
             "attractor_type": "complex",
-            "attractor_subtype": "multi_frequency"
+            "attractor_subtype": "multi_frequency",
+            "efficiency": 0.1569,
+            "pareto_optimal": false
           }
         },
         "50_noether_cyclone": {
@@ -2483,7 +2693,9 @@
             "transient_frac": 0.745,
             "mean_speed": 2.671,
             "speed_cv": 0.367,
-            "attractor_type": "limit_cycle"
+            "attractor_type": "limit_cycle",
+            "efficiency": 0.3839,
+            "pareto_optimal": false
           }
         }
       }
@@ -2516,7 +2728,9 @@
             "mean_speed": 0.864,
             "speed_cv": 1.484,
             "attractor_type": "complex",
-            "attractor_subtype": "transient_decay"
+            "attractor_subtype": "transient_decay",
+            "efficiency": 0.1217,
+            "pareto_optimal": false
           }
         }
       }
@@ -2554,7 +2768,9 @@
             "transient_frac": 0.788,
             "mean_speed": 2.514,
             "speed_cv": 0.494,
-            "attractor_type": "limit_cycle"
+            "attractor_type": "limit_cycle",
+            "efficiency": 0.5226,
+            "pareto_optimal": false
           }
         },
         "53_rucker_landcrab": {
@@ -2587,7 +2803,9 @@
             "mean_speed": 2.409,
             "speed_cv": 0.529,
             "attractor_type": "complex",
-            "attractor_subtype": "multi_frequency"
+            "attractor_subtype": "multi_frequency",
+            "efficiency": 0.4843,
+            "pareto_optimal": false
           }
         },
         "54_rucker_sidewinder": {
@@ -2620,7 +2838,9 @@
             "mean_speed": 1.42,
             "speed_cv": 0.779,
             "attractor_type": "complex",
-            "attractor_subtype": "multi_frequency"
+            "attractor_subtype": "multi_frequency",
+            "efficiency": 0.2835,
+            "pareto_optimal": false
           }
         },
         "55_skew_crab": {
@@ -2653,7 +2873,9 @@
             "mean_speed": 2.042,
             "speed_cv": 0.583,
             "attractor_type": "complex",
-            "attractor_subtype": "multi_frequency"
+            "attractor_subtype": "multi_frequency",
+            "efficiency": 0.2351,
+            "pareto_optimal": false
           }
         }
       }

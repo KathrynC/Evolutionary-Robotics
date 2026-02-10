@@ -167,6 +167,23 @@ Per-step telemetry captures what endpoint measurements miss. Every gait has 400 
 
 **Complex:drifters are the hidden contenders.** Five "complex" gaits classified as drifters actually rival limit cycles in displacement (mean 24.6m vs 23.5m) and directional efficiency (0.756 vs 0.740). They walk far despite lacking clean periodicity. The curie_asymmetric_drive motif produces drifters when amplified — these are "almost-limit-cycles" with enough core periodicity to walk straight.
 
+**Efficiency is a property of structure.** The torque-displacement Pareto frontier contains only 6 of 58 moving gaits. Motif determines efficiency: `half_center_oscillator` (0.414) and `minimal_wiring` (0.230) dominate; `spin_torque` (0.017) is dead last. Efficiency correlates strongly with directional efficiency (r=0.70) — walking straight IS being efficient. Displacement barely correlates with torque (r=0.21) — high torque does not guarantee high displacement.
+
+## Efficiency Frontier
+
+Only 6 gaits are Pareto-optimal (no other gait beats them on both displacement AND torque):
+
+| Gait | Displacement | Mean Torque | Efficiency | Attractor |
+|---|---|---|---|---|
+| 43_hidden_cpg_champion | 50.03m | 120.78 | 0.414 | limit_cycle |
+| 30_garch | 24.64m | 91.89 | 0.268 | complex:multi_frequency |
+| 39_bulgarian | 17.39m | 77.72 | 0.224 | complex:multi_frequency |
+| 42_polyrhythm | 11.41m | 69.65 | 0.164 | complex:multi_frequency |
+| 17_lamarr | 5.03m | 47.17 | 0.107 | chaotic/fallen |
+| 7_fuller_dymaxion | 2.45m | 4.08 | 0.602 | limit_cycle |
+
+The frontier is bookended by two limit cycles: fuller_dymaxion (minimum energy, sparse wiring) and the CPG champion (maximum performance, hidden-layer oscillator). The middle is complex:multi_frequency — moderate displacement at moderate cost.
+
 ## Sensitivity Classes
 
 Gaits fall into three sensitivity classes based on how their behavior changes with small weight perturbations (central-difference gradient, +/-0.05):
