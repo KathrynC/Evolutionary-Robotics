@@ -1,0 +1,2147 @@
+{
+  "version": "1.0",
+  "motif_definitions": {
+    "M1_pure_sensor": "Only sensor\u2192motor synapses active (w03-w24). No cross-wiring, no self-feedback. The feedforward archetype.",
+    "M2_sensor_cross": "Sensor\u2192motor plus motor\u2194motor cross-wiring (w34/w43). No self-feedback. Motors coordinate laterally.",
+    "M3_sensor_self": "Sensor\u2192motor plus self-feedback (w33/w44). No cross-wiring. Each motor has memory but no lateral coordination.",
+    "M4_full_network": "All three synapse classes active: sensor\u2192motor, cross-wiring, and self-feedback. Maximum recurrence.",
+    "M5_minimal": "Four or fewer active synapses. Sparse network \u2014 maximum function from minimum structure.",
+    "M6_maximal": "All 10 possible synapses active. Dense network \u2014 every possible connection is used.",
+    "F1_no_feedback": "No self-feedback (w33=0, w44=0). Pure feedforward dynamics.",
+    "F2_standard_feedback": "Standard self-feedback: w33>0 (back leg positive), w44<0 (front leg negative). The canonical oscillator-amplifier pattern.",
+    "F3_reversed_feedback": "Reversed self-feedback: w33<0, w44>0. Inverted proprioception \u2014 destabilizing.",
+    "F4_same_sign_feedback": "Both self-feedbacks share the same sign. Sustaining rather than alternating."
+  },
+  "skill_definitions": {
+    "S1_strider": "High displacement (>15), mostly straight (>0.65), stable. The efficient long-distance walker.",
+    "S2_sprinter": "Very high displacement (>25). Raw speed regardless of path quality.",
+    "S3_drifter": "Moderate displacement (5-15), curved path (<0.5 straightness). Goes somewhere, but indirectly.",
+    "S4_spinner": "High path length relative to displacement (straightness < 0.15). Walking in circles.",
+    "S5_statue": "Near-static displacement (<2). Moves limbs but stays in place.",
+    "S6_faller": "Height collapses below 50% of initial. The robot falls over during simulation.",
+    "S7_bouncer": "Large vertical oscillation (z_range > 0.6). Bouncy gait with significant height variation.",
+    "S8_glider": "Smooth vertical profile (z_range < 0.2), stable. Floats rather than bounces.",
+    "T1_metronome": "Highly periodic joints (ACF peak > 0.3). Clock-like regularity.",
+    "T2_chaotic": "No detectable periodicity in joint signals. Aperiodic motion.",
+    "T3_never_settler": "Gait never reaches steady state within simulation (transient > 3000 steps).",
+    "T4_fast_oscillator": "Joint period < 10 (high-frequency limb motion).",
+    "T5_slow_oscillator": "Joint period > 40 (low-frequency limb motion).",
+    "C1_anti_phase": "Legs alternate in anti-phase (phase fraction 0.35-0.65). The canonical walking gait.",
+    "C2_in_phase": "Legs move together in-phase (phase fraction <0.15 or >0.85). Hopping or bounding.",
+    "C3_asymmetric_amplitude": "One joint has >2x the amplitude of the other. Unilateral drive.",
+    "E1_efficient": "Top-quartile efficiency (displacement per unit energy). Does more with less.",
+    "E2_turner": "Significant yaw accumulation (>1.0 rad total). The robot rotates during locomotion.",
+    "E3_backward": "Walks backward (dx < -0.5). Negative displacement on the X axis."
+  },
+  "gaits": {
+    "100_kcramer_anthology": {
+      "motifs": [
+        "M1_pure_sensor",
+        "F1_no_feedback"
+      ],
+      "skills": [
+        "S1_strider",
+        "S2_sprinter",
+        "S7_bouncer",
+        "T3_never_settler"
+      ],
+      "features": {
+        "displacement": 32.985,
+        "dx": 32.17,
+        "straightness": 0.8749,
+        "z_range": 0.666,
+        "collapsed": false,
+        "j0_period": 25,
+        "j1_period": 8,
+        "phase_fraction": 0.16,
+        "amp_ratio": 1.544,
+        "efficiency": 0.000111,
+        "yaw_total": 0.15,
+        "transient_steps": 3200,
+        "active_synapses": 6,
+        "fb_pattern": "none"
+      }
+    },
+    "101_jgcramer_transactional": {
+      "motifs": [
+        "M2_sensor_cross",
+        "F1_no_feedback"
+      ],
+      "skills": [
+        "S6_faller",
+        "S7_bouncer",
+        "T2_chaotic",
+        "E2_turner"
+      ],
+      "features": {
+        "displacement": 5.07,
+        "dx": 4.905,
+        "straightness": 0.7013,
+        "z_range": 1.5985,
+        "collapsed": true,
+        "j0_period": null,
+        "j1_period": null,
+        "phase_fraction": null,
+        "amp_ratio": 1.139,
+        "efficiency": 9.6e-05,
+        "yaw_total": 1.19,
+        "transient_steps": 0,
+        "active_synapses": 8,
+        "fb_pattern": "none"
+      }
+    },
+    "102_jgcramer_handshake": {
+      "motifs": [
+        "M4_full_network",
+        "M6_maximal",
+        "F2_standard_feedback"
+      ],
+      "skills": [
+        "S3_drifter",
+        "T3_never_settler",
+        "C2_in_phase",
+        "C3_asymmetric_amplitude",
+        "E2_turner"
+      ],
+      "features": {
+        "displacement": 13.056,
+        "dx": 10.627,
+        "straightness": 0.4632,
+        "z_range": 0.4393,
+        "collapsed": false,
+        "j0_period": 10,
+        "j1_period": 9,
+        "phase_fraction": 6.1,
+        "amp_ratio": 2.668,
+        "efficiency": 7.2e-05,
+        "yaw_total": 1.705,
+        "transient_steps": 3000,
+        "active_synapses": 10,
+        "fb_pattern": "standard"
+      }
+    },
+    "103_jgcramer_absorber": {
+      "motifs": [
+        "M3_sensor_self",
+        "F2_standard_feedback"
+      ],
+      "skills": [
+        "S1_strider",
+        "C1_anti_phase",
+        "C3_asymmetric_amplitude",
+        "E1_efficient",
+        "E3_backward"
+      ],
+      "features": {
+        "displacement": 15.964,
+        "dx": -12.424,
+        "straightness": 0.8291,
+        "z_range": 0.5038,
+        "collapsed": false,
+        "j0_period": 24,
+        "j1_period": 24,
+        "phase_fraction": 0.417,
+        "amp_ratio": 4.31,
+        "efficiency": 0.000141,
+        "yaw_total": 0.667,
+        "transient_steps": 2800,
+        "active_synapses": 8,
+        "fb_pattern": "standard"
+      }
+    },
+    "104_papp_public": {
+      "motifs": [
+        "M1_pure_sensor",
+        "F1_no_feedback"
+      ],
+      "skills": [
+        "S1_strider",
+        "T1_metronome",
+        "C1_anti_phase",
+        "E1_efficient",
+        "E3_backward"
+      ],
+      "features": {
+        "displacement": 19.289,
+        "dx": -19.286,
+        "straightness": 0.8912,
+        "z_range": 0.2774,
+        "collapsed": false,
+        "j0_period": 20,
+        "j1_period": 20,
+        "phase_fraction": 0.5,
+        "amp_ratio": 0.97,
+        "efficiency": 0.000166,
+        "yaw_total": 0.011,
+        "transient_steps": 0,
+        "active_synapses": 6,
+        "fb_pattern": "none"
+      }
+    },
+    "105_papp_shakespeare": {
+      "motifs": [
+        "M4_full_network",
+        "M6_maximal",
+        "F2_standard_feedback"
+      ],
+      "skills": [
+        "S4_spinner",
+        "T3_never_settler",
+        "T4_fast_oscillator",
+        "C2_in_phase"
+      ],
+      "features": {
+        "displacement": 4.391,
+        "dx": 3.195,
+        "straightness": 0.1325,
+        "z_range": 0.5941,
+        "collapsed": false,
+        "j0_period": 7,
+        "j1_period": 6,
+        "phase_fraction": 10.143,
+        "amp_ratio": 1.141,
+        "efficiency": 1.5e-05,
+        "yaw_total": 0.615,
+        "transient_steps": 3400,
+        "active_synapses": 10,
+        "fb_pattern": "standard"
+      }
+    },
+    "106_papp_chorus_line": {
+      "motifs": [
+        "M2_sensor_cross",
+        "F1_no_feedback"
+      ],
+      "skills": [
+        "S3_drifter",
+        "S7_bouncer",
+        "T3_never_settler",
+        "T4_fast_oscillator",
+        "C2_in_phase",
+        "E2_turner"
+      ],
+      "features": {
+        "displacement": 6.347,
+        "dx": 6.199,
+        "straightness": 0.3415,
+        "z_range": 0.6136,
+        "collapsed": false,
+        "j0_period": 7,
+        "j1_period": 7,
+        "phase_fraction": 3.429,
+        "amp_ratio": 0.878,
+        "efficiency": 4e-05,
+        "yaw_total": 1.059,
+        "transient_steps": 3400,
+        "active_synapses": 8,
+        "fb_pattern": "none"
+      }
+    },
+    "107_pacino_heat": {
+      "motifs": [
+        "M1_pure_sensor",
+        "F1_no_feedback"
+      ],
+      "skills": [
+        "S1_strider",
+        "S2_sprinter",
+        "S7_bouncer",
+        "T4_fast_oscillator",
+        "C1_anti_phase"
+      ],
+      "features": {
+        "displacement": 26.226,
+        "dx": 23.583,
+        "straightness": 0.6935,
+        "z_range": 0.6235,
+        "collapsed": false,
+        "j0_period": 8,
+        "j1_period": 7,
+        "phase_fraction": 0.5,
+        "amp_ratio": 1.264,
+        "efficiency": 9e-05,
+        "yaw_total": 0.143,
+        "transient_steps": 1400,
+        "active_synapses": 6,
+        "fb_pattern": "none"
+      }
+    },
+    "108_pacino_godfather": {
+      "motifs": [
+        "M4_full_network",
+        "M6_maximal",
+        "F2_standard_feedback"
+      ],
+      "skills": [
+        "T3_never_settler",
+        "C1_anti_phase"
+      ],
+      "features": {
+        "displacement": 3.965,
+        "dx": 3.323,
+        "straightness": 0.1568,
+        "z_range": 0.5747,
+        "collapsed": false,
+        "j0_period": 11,
+        "j1_period": 6,
+        "phase_fraction": 0.364,
+        "amp_ratio": 1.447,
+        "efficiency": 1.7e-05,
+        "yaw_total": 0.589,
+        "transient_steps": 3400,
+        "active_synapses": 10,
+        "fb_pattern": "standard"
+      }
+    },
+    "109_pacino_hooah": {
+      "motifs": [
+        "M4_full_network",
+        "M6_maximal",
+        "F2_standard_feedback"
+      ],
+      "skills": [
+        "S3_drifter",
+        "S7_bouncer",
+        "T3_never_settler",
+        "C2_in_phase",
+        "E2_turner"
+      ],
+      "features": {
+        "displacement": 5.257,
+        "dx": 5.136,
+        "straightness": 0.2717,
+        "z_range": 0.6136,
+        "collapsed": false,
+        "j0_period": 37,
+        "j1_period": 8,
+        "phase_fraction": 1.946,
+        "amp_ratio": 1.112,
+        "efficiency": 3.4e-05,
+        "yaw_total": 1.52,
+        "transient_steps": 3400,
+        "active_synapses": 10,
+        "fb_pattern": "standard"
+      }
+    },
+    "10_tesla_3phase": {
+      "motifs": [
+        "M5_minimal",
+        "F1_no_feedback"
+      ],
+      "skills": [
+        "S6_faller",
+        "S7_bouncer",
+        "T3_never_settler",
+        "T5_slow_oscillator",
+        "C2_in_phase",
+        "E2_turner",
+        "E3_backward"
+      ],
+      "features": {
+        "displacement": 23.989,
+        "dx": -18.541,
+        "straightness": 0.5987,
+        "z_range": 1.6702,
+        "collapsed": true,
+        "j0_period": 61,
+        "j1_period": 8,
+        "phase_fraction": 1.18,
+        "amp_ratio": 0.684,
+        "efficiency": 9.9e-05,
+        "yaw_total": 2.831,
+        "transient_steps": 3400,
+        "active_synapses": 4,
+        "fb_pattern": "none"
+      }
+    },
+    "110_biles_yurchenko": {
+      "motifs": [
+        "M2_sensor_cross",
+        "F1_no_feedback"
+      ],
+      "skills": [
+        "S3_drifter",
+        "S7_bouncer",
+        "T3_never_settler",
+        "C2_in_phase",
+        "E3_backward"
+      ],
+      "features": {
+        "displacement": 5.88,
+        "dx": -4.309,
+        "straightness": 0.3043,
+        "z_range": 0.7193,
+        "collapsed": false,
+        "j0_period": 20,
+        "j1_period": 6,
+        "phase_fraction": 4.95,
+        "amp_ratio": 1.219,
+        "efficiency": 3.3e-05,
+        "yaw_total": 0.066,
+        "transient_steps": 3400,
+        "active_synapses": 8,
+        "fb_pattern": "none"
+      }
+    },
+    "111_biles_twisties": {
+      "motifs": [
+        "M4_full_network",
+        "M6_maximal",
+        "F3_reversed_feedback"
+      ],
+      "skills": [
+        "S3_drifter",
+        "T1_metronome",
+        "C2_in_phase"
+      ],
+      "features": {
+        "displacement": 7.832,
+        "dx": 7.354,
+        "straightness": 0.3545,
+        "z_range": 0.3181,
+        "collapsed": false,
+        "j0_period": 28,
+        "j1_period": 27,
+        "phase_fraction": 2.571,
+        "amp_ratio": 0.608,
+        "efficiency": 6.5e-05,
+        "yaw_total": 0.596,
+        "transient_steps": 2600,
+        "active_synapses": 10,
+        "fb_pattern": "reversed"
+      }
+    },
+    "112_biles_floor": {
+      "motifs": [
+        "M4_full_network",
+        "M6_maximal",
+        "F2_standard_feedback"
+      ],
+      "skills": [
+        "T3_never_settler"
+      ],
+      "features": {
+        "displacement": 11.485,
+        "dx": 10.188,
+        "straightness": 0.5951,
+        "z_range": 0.5549,
+        "collapsed": false,
+        "j0_period": 16,
+        "j1_period": 51,
+        "phase_fraction": 0.188,
+        "amp_ratio": 1.625,
+        "efficiency": 6.1e-05,
+        "yaw_total": 0.065,
+        "transient_steps": 3200,
+        "active_synapses": 10,
+        "fb_pattern": "standard"
+      }
+    },
+    "11_taleb_antifrag": {
+      "motifs": [
+        "M1_pure_sensor",
+        "F1_no_feedback"
+      ],
+      "skills": [
+        "T1_metronome",
+        "T3_never_settler",
+        "T5_slow_oscillator"
+      ],
+      "features": {
+        "displacement": 4.787,
+        "dx": 4.785,
+        "straightness": 0.5651,
+        "z_range": 0.2354,
+        "collapsed": false,
+        "j0_period": 96,
+        "j1_period": 96,
+        "phase_fraction": 0.177,
+        "amp_ratio": 0.972,
+        "efficiency": 8.7e-05,
+        "yaw_total": 0.144,
+        "transient_steps": 3400,
+        "active_synapses": 6,
+        "fb_pattern": "none"
+      }
+    },
+    "12_lorenz_A": {
+      "motifs": [
+        "M1_pure_sensor",
+        "F1_no_feedback"
+      ],
+      "skills": [
+        "S7_bouncer",
+        "T5_slow_oscillator",
+        "C2_in_phase",
+        "E3_backward"
+      ],
+      "features": {
+        "displacement": 8.214,
+        "dx": -7.946,
+        "straightness": 0.5555,
+        "z_range": 0.6007,
+        "collapsed": false,
+        "j0_period": 41,
+        "j1_period": 42,
+        "phase_fraction": 1.537,
+        "amp_ratio": 1.039,
+        "efficiency": 6.3e-05,
+        "yaw_total": 0.365,
+        "transient_steps": 2800,
+        "active_synapses": 6,
+        "fb_pattern": "none"
+      }
+    },
+    "13_lorenz_B": {
+      "motifs": [
+        "M1_pure_sensor",
+        "F1_no_feedback"
+      ],
+      "skills": [
+        "S7_bouncer",
+        "T3_never_settler",
+        "C1_anti_phase",
+        "E2_turner",
+        "E3_backward"
+      ],
+      "features": {
+        "displacement": 2.637,
+        "dx": -0.561,
+        "straightness": 0.1618,
+        "z_range": 0.6065,
+        "collapsed": false,
+        "j0_period": 36,
+        "j1_period": 8,
+        "phase_fraction": 0.611,
+        "amp_ratio": 0.848,
+        "efficiency": 1.6e-05,
+        "yaw_total": 1.022,
+        "transient_steps": 3000,
+        "active_synapses": 6,
+        "fb_pattern": "none"
+      }
+    },
+    "14_lovelace": {
+      "motifs": [
+        "M1_pure_sensor",
+        "F1_no_feedback"
+      ],
+      "skills": [
+        "T4_fast_oscillator",
+        "C2_in_phase",
+        "C3_asymmetric_amplitude"
+      ],
+      "features": {
+        "displacement": 4.183,
+        "dx": 3.905,
+        "straightness": 0.4087,
+        "z_range": 0.3913,
+        "collapsed": false,
+        "j0_period": 5,
+        "j1_period": 102,
+        "phase_fraction": 14.4,
+        "amp_ratio": 5.301,
+        "efficiency": 4.5e-05,
+        "yaw_total": 0.66,
+        "transient_steps": 0,
+        "active_synapses": 6,
+        "fb_pattern": "none"
+      }
+    },
+    "15_noether": {
+      "motifs": [
+        "M1_pure_sensor",
+        "F1_no_feedback"
+      ],
+      "skills": [
+        "T3_never_settler",
+        "T5_slow_oscillator",
+        "C1_anti_phase",
+        "E3_backward"
+      ],
+      "features": {
+        "displacement": 21.526,
+        "dx": -21.52,
+        "straightness": 0.6291,
+        "z_range": 0.5594,
+        "collapsed": false,
+        "j0_period": 44,
+        "j1_period": 8,
+        "phase_fraction": 0.455,
+        "amp_ratio": 0.961,
+        "efficiency": 9.5e-05,
+        "yaw_total": 0.281,
+        "transient_steps": 3400,
+        "active_synapses": 6,
+        "fb_pattern": "none"
+      }
+    },
+    "16_franklin": {
+      "motifs": [
+        "M1_pure_sensor",
+        "F1_no_feedback"
+      ],
+      "skills": [
+        "S1_strider",
+        "S7_bouncer",
+        "T1_metronome",
+        "T3_never_settler",
+        "C2_in_phase",
+        "E1_efficient",
+        "E3_backward"
+      ],
+      "features": {
+        "displacement": 20.172,
+        "dx": -17.43,
+        "straightness": 0.6723,
+        "z_range": 0.7097,
+        "collapsed": false,
+        "j0_period": 26,
+        "j1_period": 26,
+        "phase_fraction": 3.462,
+        "amp_ratio": 1.192,
+        "efficiency": 0.000181,
+        "yaw_total": 0.925,
+        "transient_steps": 3000,
+        "active_synapses": 6,
+        "fb_pattern": "none"
+      }
+    },
+    "17_lamarr": {
+      "motifs": [
+        "M1_pure_sensor",
+        "F1_no_feedback"
+      ],
+      "skills": [
+        "S3_drifter",
+        "S6_faller",
+        "S7_bouncer",
+        "T2_chaotic",
+        "E2_turner",
+        "E3_backward"
+      ],
+      "features": {
+        "displacement": 5.035,
+        "dx": -4.863,
+        "straightness": 0.383,
+        "z_range": 1.6942,
+        "collapsed": true,
+        "j0_period": null,
+        "j1_period": null,
+        "phase_fraction": null,
+        "amp_ratio": 1.0,
+        "efficiency": 6.4e-05,
+        "yaw_total": 1.107,
+        "transient_steps": 0,
+        "active_synapses": 6,
+        "fb_pattern": "none"
+      }
+    },
+    "18_curie": {
+      "motifs": [
+        "M1_pure_sensor",
+        "F1_no_feedback"
+      ],
+      "skills": [
+        "S7_bouncer",
+        "T3_never_settler",
+        "T4_fast_oscillator",
+        "C1_anti_phase"
+      ],
+      "features": {
+        "displacement": 23.593,
+        "dx": 23.593,
+        "straightness": 0.6299,
+        "z_range": 0.6165,
+        "collapsed": false,
+        "j0_period": 8,
+        "j1_period": 7,
+        "phase_fraction": 0.5,
+        "amp_ratio": 1.189,
+        "efficiency": 7.5e-05,
+        "yaw_total": 0.16,
+        "transient_steps": 3000,
+        "active_synapses": 6,
+        "fb_pattern": "none"
+      }
+    },
+    "19_haraway": {
+      "motifs": [
+        "M1_pure_sensor",
+        "F1_no_feedback"
+      ],
+      "skills": [
+        "T3_never_settler",
+        "C2_in_phase"
+      ],
+      "features": {
+        "displacement": 3.899,
+        "dx": 3.88,
+        "straightness": 0.4447,
+        "z_range": 0.4139,
+        "collapsed": false,
+        "j0_period": 40,
+        "j1_period": 40,
+        "phase_fraction": 0.0,
+        "amp_ratio": 1.003,
+        "efficiency": 2.3e-05,
+        "yaw_total": 0.082,
+        "transient_steps": 3200,
+        "active_synapses": 6,
+        "fb_pattern": "none"
+      }
+    },
+    "1_wolfram": {
+      "motifs": [
+        "M1_pure_sensor",
+        "F1_no_feedback"
+      ],
+      "skills": [
+        "T3_never_settler",
+        "C2_in_phase",
+        "E2_turner",
+        "E3_backward"
+      ],
+      "features": {
+        "displacement": 2.713,
+        "dx": -2.687,
+        "straightness": 0.2359,
+        "z_range": 0.4269,
+        "collapsed": false,
+        "j0_period": 26,
+        "j1_period": 52,
+        "phase_fraction": 3.308,
+        "amp_ratio": 0.93,
+        "efficiency": 5.1e-05,
+        "yaw_total": 3.024,
+        "transient_steps": 3200,
+        "active_synapses": 6,
+        "fb_pattern": "none"
+      }
+    },
+    "20_mcclintock": {
+      "motifs": [
+        "M5_minimal",
+        "F1_no_feedback"
+      ],
+      "skills": [
+        "S8_glider",
+        "C2_in_phase"
+      ],
+      "features": {
+        "displacement": 5.621,
+        "dx": 5.53,
+        "straightness": 0.8794,
+        "z_range": 0.1445,
+        "collapsed": false,
+        "j0_period": 13,
+        "j1_period": 7,
+        "phase_fraction": 0.0,
+        "amp_ratio": 0.869,
+        "efficiency": 4.3e-05,
+        "yaw_total": 0.167,
+        "transient_steps": 1800,
+        "active_synapses": 2,
+        "fb_pattern": "none"
+      }
+    },
+    "2_rucker": {
+      "motifs": [
+        "M1_pure_sensor",
+        "F1_no_feedback"
+      ],
+      "skills": [
+        "T4_fast_oscillator",
+        "C2_in_phase",
+        "E3_backward"
+      ],
+      "features": {
+        "displacement": 11.639,
+        "dx": -6.898,
+        "straightness": 0.7367,
+        "z_range": 0.5084,
+        "collapsed": false,
+        "j0_period": 9,
+        "j1_period": 10,
+        "phase_fraction": 0.0,
+        "amp_ratio": 1.066,
+        "efficiency": 3.3e-05,
+        "yaw_total": 0.781,
+        "transient_steps": 2800,
+        "active_synapses": 6,
+        "fb_pattern": "none"
+      }
+    },
+    "3_mordvintsev": {
+      "motifs": [
+        "M1_pure_sensor",
+        "F1_no_feedback"
+      ],
+      "skills": [
+        "S8_glider",
+        "T4_fast_oscillator",
+        "C2_in_phase"
+      ],
+      "features": {
+        "displacement": 9.447,
+        "dx": 9.447,
+        "straightness": 0.9834,
+        "z_range": 0.1503,
+        "collapsed": false,
+        "j0_period": 3,
+        "j1_period": 3,
+        "phase_fraction": 0.0,
+        "amp_ratio": 0.985,
+        "efficiency": 3.6e-05,
+        "yaw_total": 0.024,
+        "transient_steps": 0,
+        "active_synapses": 6,
+        "fb_pattern": "none"
+      }
+    },
+    "4_sayama": {
+      "motifs": [
+        "M1_pure_sensor",
+        "F1_no_feedback"
+      ],
+      "skills": [
+        "S7_bouncer",
+        "T3_never_settler",
+        "C2_in_phase",
+        "E2_turner",
+        "E3_backward"
+      ],
+      "features": {
+        "displacement": 15.259,
+        "dx": -14.561,
+        "straightness": 0.6277,
+        "z_range": 0.6507,
+        "collapsed": false,
+        "j0_period": 22,
+        "j1_period": 22,
+        "phase_fraction": 4.273,
+        "amp_ratio": 0.97,
+        "efficiency": 0.000117,
+        "yaw_total": 1.453,
+        "transient_steps": 3400,
+        "active_synapses": 6,
+        "fb_pattern": "none"
+      }
+    },
+    "59_fibonacci_self": {
+      "motifs": [
+        "M3_sensor_self",
+        "F2_standard_feedback"
+      ],
+      "skills": [
+        "S3_drifter",
+        "S7_bouncer",
+        "T3_never_settler",
+        "C1_anti_phase"
+      ],
+      "features": {
+        "displacement": 7.625,
+        "dx": 7.219,
+        "straightness": 0.3465,
+        "z_range": 0.6434,
+        "collapsed": false,
+        "j0_period": 10,
+        "j1_period": 7,
+        "phase_fraction": 0.4,
+        "amp_ratio": 1.497,
+        "efficiency": 3.4e-05,
+        "yaw_total": 0.504,
+        "transient_steps": 3400,
+        "active_synapses": 8,
+        "fb_pattern": "standard"
+      }
+    },
+    "5_pelton": {
+      "motifs": [
+        "M1_pure_sensor",
+        "F1_no_feedback"
+      ],
+      "skills": [
+        "S1_strider",
+        "S2_sprinter",
+        "T3_never_settler"
+      ],
+      "features": {
+        "displacement": 35.121,
+        "dx": 34.558,
+        "straightness": 0.8684,
+        "z_range": 0.5886,
+        "collapsed": false,
+        "j0_period": 26,
+        "j1_period": 37,
+        "phase_fraction": 0.154,
+        "amp_ratio": 1.366,
+        "efficiency": 0.000112,
+        "yaw_total": 0.757,
+        "transient_steps": 3000,
+        "active_synapses": 6,
+        "fb_pattern": "none"
+      }
+    },
+    "60_fibonacci_phyllotaxis": {
+      "motifs": [
+        "M2_sensor_cross",
+        "F1_no_feedback"
+      ],
+      "skills": [
+        "S6_faller",
+        "S7_bouncer",
+        "T1_metronome",
+        "C2_in_phase",
+        "E1_efficient",
+        "E2_turner"
+      ],
+      "features": {
+        "displacement": 16.506,
+        "dx": 9.724,
+        "straightness": 0.7574,
+        "z_range": 1.5692,
+        "collapsed": true,
+        "j0_period": 15,
+        "j1_period": 6,
+        "phase_fraction": 6.533,
+        "amp_ratio": 1.131,
+        "efficiency": 0.000154,
+        "yaw_total": 2.541,
+        "transient_steps": 0,
+        "active_synapses": 8,
+        "fb_pattern": "none"
+      }
+    },
+    "61_fibonacci_spiral": {
+      "motifs": [
+        "M1_pure_sensor",
+        "F1_no_feedback"
+      ],
+      "skills": [
+        "S3_drifter",
+        "S6_faller",
+        "S7_bouncer",
+        "T2_chaotic",
+        "E2_turner"
+      ],
+      "features": {
+        "displacement": 6.385,
+        "dx": 2.814,
+        "straightness": 0.4609,
+        "z_range": 1.2652,
+        "collapsed": true,
+        "j0_period": null,
+        "j1_period": null,
+        "phase_fraction": null,
+        "amp_ratio": 1.002,
+        "efficiency": 6.3e-05,
+        "yaw_total": 1.323,
+        "transient_steps": 0,
+        "active_synapses": 6,
+        "fb_pattern": "none"
+      }
+    },
+    "62_cage_433": {
+      "motifs": [
+        "M1_pure_sensor",
+        "F1_no_feedback"
+      ],
+      "skills": [
+        "S5_statue",
+        "S8_glider",
+        "T4_fast_oscillator",
+        "C2_in_phase",
+        "E1_efficient"
+      ],
+      "features": {
+        "displacement": 0.008,
+        "dx": 0.003,
+        "straightness": 0.8402,
+        "z_range": 0.0102,
+        "collapsed": false,
+        "j0_period": 4,
+        "j1_period": 4,
+        "phase_fraction": 1.5,
+        "amp_ratio": 1.097,
+        "efficiency": 0.000384,
+        "yaw_total": 0.003,
+        "transient_steps": 0,
+        "active_synapses": 6,
+        "fb_pattern": "none"
+      }
+    },
+    "63_cage_prepared": {
+      "motifs": [
+        "M1_pure_sensor",
+        "F1_no_feedback"
+      ],
+      "skills": [
+        "T3_never_settler",
+        "T4_fast_oscillator",
+        "C2_in_phase",
+        "E1_efficient",
+        "E2_turner",
+        "E3_backward"
+      ],
+      "features": {
+        "displacement": 18.349,
+        "dx": -9.991,
+        "straightness": 0.5095,
+        "z_range": 0.5763,
+        "collapsed": false,
+        "j0_period": 9,
+        "j1_period": 9,
+        "phase_fraction": 0.0,
+        "amp_ratio": 0.832,
+        "efficiency": 0.000122,
+        "yaw_total": 2.886,
+        "transient_steps": 3200,
+        "active_synapses": 6,
+        "fb_pattern": "none"
+      }
+    },
+    "64_cage_iching": {
+      "motifs": [
+        "M4_full_network",
+        "M6_maximal",
+        "F2_standard_feedback"
+      ],
+      "skills": [
+        "S3_drifter",
+        "S6_faller",
+        "S7_bouncer",
+        "T2_chaotic"
+      ],
+      "features": {
+        "displacement": 7.309,
+        "dx": 5.565,
+        "straightness": 0.4233,
+        "z_range": 1.845,
+        "collapsed": true,
+        "j0_period": null,
+        "j1_period": null,
+        "phase_fraction": null,
+        "amp_ratio": 1.128,
+        "efficiency": 5.2e-05,
+        "yaw_total": 0.279,
+        "transient_steps": 0,
+        "active_synapses": 10,
+        "fb_pattern": "standard"
+      }
+    },
+    "65_womack_random_acts": {
+      "motifs": [
+        "M3_sensor_self",
+        "M5_minimal",
+        "F2_standard_feedback"
+      ],
+      "skills": [
+        "T2_chaotic",
+        "T3_never_settler",
+        "E1_efficient",
+        "E3_backward"
+      ],
+      "features": {
+        "displacement": 12.307,
+        "dx": -11.572,
+        "straightness": 0.729,
+        "z_range": 0.2849,
+        "collapsed": false,
+        "j0_period": null,
+        "j1_period": 15,
+        "phase_fraction": null,
+        "amp_ratio": 1.036,
+        "efficiency": 0.000121,
+        "yaw_total": 0.413,
+        "transient_steps": 3400,
+        "active_synapses": 4,
+        "fb_pattern": "standard"
+      }
+    },
+    "66_womack_ambient": {
+      "motifs": [
+        "M5_minimal",
+        "F1_no_feedback"
+      ],
+      "skills": [
+        "S3_drifter",
+        "T3_never_settler",
+        "C1_anti_phase",
+        "E2_turner"
+      ],
+      "features": {
+        "displacement": 5.278,
+        "dx": 3.286,
+        "straightness": 0.1634,
+        "z_range": 0.4484,
+        "collapsed": false,
+        "j0_period": 27,
+        "j1_period": 6,
+        "phase_fraction": 0.481,
+        "amp_ratio": 1.586,
+        "efficiency": 2.1e-05,
+        "yaw_total": 1.126,
+        "transient_steps": 3000,
+        "active_synapses": 2,
+        "fb_pattern": "none"
+      }
+    },
+    "67_womack_terraplane": {
+      "motifs": [
+        "M5_minimal",
+        "F1_no_feedback"
+      ],
+      "skills": [
+        "T3_never_settler"
+      ],
+      "features": {
+        "displacement": 4.811,
+        "dx": 4.416,
+        "straightness": 0.2335,
+        "z_range": 0.3792,
+        "collapsed": false,
+        "j0_period": 37,
+        "j1_period": 129,
+        "phase_fraction": 0.162,
+        "amp_ratio": 0.81,
+        "efficiency": 3.7e-05,
+        "yaw_total": 0.424,
+        "transient_steps": 3400,
+        "active_synapses": 4,
+        "fb_pattern": "none"
+      }
+    },
+    "68_grunbaum_penrose": {
+      "motifs": [
+        "M1_pure_sensor",
+        "F1_no_feedback"
+      ],
+      "skills": [
+        "S7_bouncer",
+        "T3_never_settler",
+        "T4_fast_oscillator",
+        "C1_anti_phase",
+        "E3_backward"
+      ],
+      "features": {
+        "displacement": 23.024,
+        "dx": -22.69,
+        "straightness": 0.6377,
+        "z_range": 0.6506,
+        "collapsed": false,
+        "j0_period": 8,
+        "j1_period": 8,
+        "phase_fraction": 0.5,
+        "amp_ratio": 0.951,
+        "efficiency": 8.1e-05,
+        "yaw_total": 0.196,
+        "transient_steps": 3400,
+        "active_synapses": 6,
+        "fb_pattern": "none"
+      }
+    },
+    "69_grunbaum_deflation": {
+      "motifs": [
+        "M3_sensor_self",
+        "F2_standard_feedback"
+      ],
+      "skills": [
+        "S1_strider",
+        "S2_sprinter",
+        "S7_bouncer",
+        "T1_metronome",
+        "T3_never_settler",
+        "T5_slow_oscillator",
+        "C2_in_phase",
+        "E3_backward"
+      ],
+      "features": {
+        "displacement": 31.282,
+        "dx": -30.491,
+        "straightness": 0.7638,
+        "z_range": 0.6926,
+        "collapsed": false,
+        "j0_period": 70,
+        "j1_period": 9,
+        "phase_fraction": 0.071,
+        "amp_ratio": 0.578,
+        "efficiency": 0.000115,
+        "yaw_total": 0.291,
+        "transient_steps": 3200,
+        "active_synapses": 8,
+        "fb_pattern": "standard"
+      }
+    },
+    "6_fuller_trimtab": {
+      "motifs": [
+        "M5_minimal",
+        "F1_no_feedback"
+      ],
+      "skills": [
+        "S8_glider",
+        "T1_metronome",
+        "T3_never_settler",
+        "C2_in_phase",
+        "C3_asymmetric_amplitude"
+      ],
+      "features": {
+        "displacement": 5.204,
+        "dx": 5.204,
+        "straightness": 0.5023,
+        "z_range": 0.1026,
+        "collapsed": false,
+        "j0_period": 20,
+        "j1_period": 20,
+        "phase_fraction": 4.15,
+        "amp_ratio": 18.024,
+        "efficiency": 0.0001,
+        "yaw_total": 0.014,
+        "transient_steps": 3000,
+        "active_synapses": 1,
+        "fb_pattern": "none"
+      }
+    },
+    "70_grunbaum_defect": {
+      "motifs": [
+        "M2_sensor_cross",
+        "F1_no_feedback"
+      ],
+      "skills": [
+        "S5_statue",
+        "T5_slow_oscillator",
+        "C2_in_phase"
+      ],
+      "features": {
+        "displacement": 0.206,
+        "dx": -0.063,
+        "straightness": 0.0521,
+        "z_range": 0.474,
+        "collapsed": false,
+        "j0_period": 42,
+        "j1_period": 42,
+        "phase_fraction": 1.119,
+        "amp_ratio": 0.848,
+        "efficiency": 4e-06,
+        "yaw_total": 0.047,
+        "transient_steps": 400,
+        "active_synapses": 7,
+        "fb_pattern": "none"
+      }
+    },
+    "71_gallagher_multiplicative": {
+      "motifs": [
+        "M1_pure_sensor",
+        "F1_no_feedback"
+      ],
+      "skills": [
+        "S3_drifter",
+        "S7_bouncer",
+        "T3_never_settler",
+        "C2_in_phase",
+        "E2_turner",
+        "E3_backward"
+      ],
+      "features": {
+        "displacement": 10.156,
+        "dx": -9.744,
+        "straightness": 0.3084,
+        "z_range": 0.7599,
+        "collapsed": false,
+        "j0_period": 24,
+        "j1_period": 7,
+        "phase_fraction": 1.708,
+        "amp_ratio": 0.714,
+        "efficiency": 4.2e-05,
+        "yaw_total": 2.216,
+        "transient_steps": 3200,
+        "active_synapses": 6,
+        "fb_pattern": "none"
+      }
+    },
+    "72_gallagher_gaps": {
+      "motifs": [
+        "M1_pure_sensor",
+        "F1_no_feedback"
+      ],
+      "skills": [
+        "S3_drifter",
+        "T2_chaotic",
+        "T3_never_settler",
+        "E2_turner"
+      ],
+      "features": {
+        "displacement": 5.831,
+        "dx": 4.658,
+        "straightness": 0.4566,
+        "z_range": 0.3388,
+        "collapsed": false,
+        "j0_period": null,
+        "j1_period": 13,
+        "phase_fraction": null,
+        "amp_ratio": 0.883,
+        "efficiency": 7.5e-05,
+        "yaw_total": 1.165,
+        "transient_steps": 3400,
+        "active_synapses": 6,
+        "fb_pattern": "none"
+      }
+    },
+    "73_gallagher_sieve": {
+      "motifs": [
+        "M5_minimal",
+        "F1_no_feedback"
+      ],
+      "skills": [
+        "S6_faller",
+        "S7_bouncer",
+        "T1_metronome",
+        "C2_in_phase",
+        "E2_turner"
+      ],
+      "features": {
+        "displacement": 2.433,
+        "dx": 1.095,
+        "straightness": 0.1997,
+        "z_range": 1.3275,
+        "collapsed": true,
+        "j0_period": 10,
+        "j1_period": null,
+        "phase_fraction": 10.0,
+        "amp_ratio": 0.989,
+        "efficiency": 1.9e-05,
+        "yaw_total": 1.628,
+        "transient_steps": 0,
+        "active_synapses": 4,
+        "fb_pattern": "none"
+      }
+    },
+    "74_dick_valis": {
+      "motifs": [
+        "M4_full_network",
+        "M6_maximal",
+        "F2_standard_feedback"
+      ],
+      "skills": [
+        "S1_strider",
+        "S2_sprinter",
+        "S7_bouncer",
+        "T3_never_settler",
+        "T4_fast_oscillator",
+        "C1_anti_phase",
+        "E2_turner"
+      ],
+      "features": {
+        "displacement": 28.068,
+        "dx": 23.697,
+        "straightness": 0.8035,
+        "z_range": 0.6499,
+        "collapsed": false,
+        "j0_period": 7,
+        "j1_period": 7,
+        "phase_fraction": 0.571,
+        "amp_ratio": 1.154,
+        "efficiency": 8.6e-05,
+        "yaw_total": 1.25,
+        "transient_steps": 3000,
+        "active_synapses": 10,
+        "fb_pattern": "standard"
+      }
+    },
+    "75_dick_replicant": {
+      "motifs": [
+        "M1_pure_sensor",
+        "F1_no_feedback"
+      ],
+      "skills": [
+        "S4_spinner",
+        "T3_never_settler",
+        "T4_fast_oscillator",
+        "E3_backward"
+      ],
+      "features": {
+        "displacement": 3.922,
+        "dx": -3.355,
+        "straightness": 0.1054,
+        "z_range": 0.5948,
+        "collapsed": false,
+        "j0_period": 6,
+        "j1_period": 7,
+        "phase_fraction": 0.667,
+        "amp_ratio": 1.095,
+        "efficiency": 1.2e-05,
+        "yaw_total": 0.359,
+        "transient_steps": 3400,
+        "active_synapses": 6,
+        "fb_pattern": "none"
+      }
+    },
+    "76_dick_ubik": {
+      "motifs": [
+        "M1_pure_sensor",
+        "F1_no_feedback"
+      ],
+      "skills": [
+        "S6_faller",
+        "S7_bouncer",
+        "C2_in_phase"
+      ],
+      "features": {
+        "displacement": 4.144,
+        "dx": 0.885,
+        "straightness": 0.5575,
+        "z_range": 1.6578,
+        "collapsed": true,
+        "j0_period": 12,
+        "j1_period": 61,
+        "phase_fraction": 8.25,
+        "amp_ratio": 1.144,
+        "efficiency": 6.3e-05,
+        "yaw_total": 0.116,
+        "transient_steps": 0,
+        "active_synapses": 6,
+        "fb_pattern": "none"
+      }
+    },
+    "77_ernst_collage": {
+      "motifs": [
+        "M1_pure_sensor",
+        "F1_no_feedback"
+      ],
+      "skills": [
+        "S1_strider",
+        "T2_chaotic",
+        "T3_never_settler",
+        "E1_efficient"
+      ],
+      "features": {
+        "displacement": 15.949,
+        "dx": 14.858,
+        "straightness": 0.8868,
+        "z_range": 0.3607,
+        "collapsed": false,
+        "j0_period": null,
+        "j1_period": 11,
+        "phase_fraction": null,
+        "amp_ratio": 1.588,
+        "efficiency": 0.000131,
+        "yaw_total": 0.507,
+        "transient_steps": 3200,
+        "active_synapses": 6,
+        "fb_pattern": "none"
+      }
+    },
+    "78_ernst_celebes": {
+      "motifs": [
+        "M2_sensor_cross",
+        "F1_no_feedback"
+      ],
+      "skills": [
+        "T3_never_settler",
+        "T5_slow_oscillator",
+        "C2_in_phase",
+        "E2_turner"
+      ],
+      "features": {
+        "displacement": 6.83,
+        "dx": 3.466,
+        "straightness": 0.6621,
+        "z_range": 0.2701,
+        "collapsed": false,
+        "j0_period": 59,
+        "j1_period": 13,
+        "phase_fraction": 0.119,
+        "amp_ratio": 0.975,
+        "efficiency": 8.1e-05,
+        "yaw_total": 1.493,
+        "transient_steps": 3400,
+        "active_synapses": 8,
+        "fb_pattern": "none"
+      }
+    },
+    "79_ernst_decalcomania": {
+      "motifs": [
+        "M1_pure_sensor",
+        "F1_no_feedback"
+      ],
+      "skills": [
+        "T3_never_settler",
+        "T5_slow_oscillator",
+        "C1_anti_phase",
+        "E2_turner"
+      ],
+      "features": {
+        "displacement": 2.758,
+        "dx": 0.78,
+        "straightness": 0.1973,
+        "z_range": 0.4889,
+        "collapsed": false,
+        "j0_period": 147,
+        "j1_period": 68,
+        "phase_fraction": 0.497,
+        "amp_ratio": 0.982,
+        "efficiency": 2.1e-05,
+        "yaw_total": 1.783,
+        "transient_steps": 3400,
+        "active_synapses": 6,
+        "fb_pattern": "none"
+      }
+    },
+    "7_fuller_dymaxion": {
+      "motifs": [
+        "M5_minimal",
+        "F1_no_feedback"
+      ],
+      "skills": [
+        "S8_glider",
+        "T2_chaotic",
+        "E1_efficient"
+      ],
+      "features": {
+        "displacement": 2.453,
+        "dx": 2.453,
+        "straightness": 0.9863,
+        "z_range": 0.0219,
+        "collapsed": false,
+        "j0_period": null,
+        "j1_period": null,
+        "phase_fraction": null,
+        "amp_ratio": 1.0,
+        "efficiency": 0.001198,
+        "yaw_total": 0.014,
+        "transient_steps": 0,
+        "active_synapses": 2,
+        "fb_pattern": "none"
+      }
+    },
+    "80_deleuze_fold": {
+      "motifs": [
+        "M3_sensor_self",
+        "F2_standard_feedback"
+      ],
+      "skills": [
+        "S1_strider",
+        "T1_metronome",
+        "C1_anti_phase",
+        "E1_efficient",
+        "E3_backward"
+      ],
+      "features": {
+        "displacement": 23.519,
+        "dx": -21.94,
+        "straightness": 0.7951,
+        "z_range": 0.4965,
+        "collapsed": false,
+        "j0_period": 26,
+        "j1_period": 26,
+        "phase_fraction": 0.615,
+        "amp_ratio": 1.187,
+        "efficiency": 0.000189,
+        "yaw_total": 0.432,
+        "transient_steps": 1800,
+        "active_synapses": 8,
+        "fb_pattern": "standard"
+      }
+    },
+    "81_deleuze_bwo": {
+      "motifs": [
+        "M4_full_network",
+        "M6_maximal",
+        "F2_standard_feedback"
+      ],
+      "skills": [
+        "S1_strider",
+        "T3_never_settler",
+        "T4_fast_oscillator",
+        "C2_in_phase",
+        "E3_backward"
+      ],
+      "features": {
+        "displacement": 21.663,
+        "dx": -21.531,
+        "straightness": 0.7059,
+        "z_range": 0.4544,
+        "collapsed": false,
+        "j0_period": 6,
+        "j1_period": 7,
+        "phase_fraction": 3.5,
+        "amp_ratio": 1.389,
+        "efficiency": 0.000105,
+        "yaw_total": 0.053,
+        "transient_steps": 3000,
+        "active_synapses": 10,
+        "fb_pattern": "standard"
+      }
+    },
+    "82_deleuze_rhizome": {
+      "motifs": [
+        "M4_full_network",
+        "M6_maximal",
+        "F2_standard_feedback"
+      ],
+      "skills": [
+        "S3_drifter",
+        "T3_never_settler",
+        "T5_slow_oscillator",
+        "E3_backward"
+      ],
+      "features": {
+        "displacement": 9.796,
+        "dx": -9.586,
+        "straightness": 0.3766,
+        "z_range": 0.427,
+        "collapsed": false,
+        "j0_period": 111,
+        "j1_period": 86,
+        "phase_fraction": 0.676,
+        "amp_ratio": 1.621,
+        "efficiency": 5.2e-05,
+        "yaw_total": 0.396,
+        "transient_steps": 3400,
+        "active_synapses": 10,
+        "fb_pattern": "standard"
+      }
+    },
+    "83_foucault_heterotopia": {
+      "motifs": [
+        "M4_full_network",
+        "M6_maximal",
+        "F2_standard_feedback"
+      ],
+      "skills": [
+        "S1_strider",
+        "S8_glider",
+        "T5_slow_oscillator",
+        "C2_in_phase",
+        "C3_asymmetric_amplitude",
+        "E1_efficient"
+      ],
+      "features": {
+        "displacement": 15.12,
+        "dx": 15.108,
+        "straightness": 0.9848,
+        "z_range": 0.136,
+        "collapsed": false,
+        "j0_period": 106,
+        "j1_period": 132,
+        "phase_fraction": 0.0,
+        "amp_ratio": 6.322,
+        "efficiency": 0.000158,
+        "yaw_total": 0.063,
+        "transient_steps": 2800,
+        "active_synapses": 10,
+        "fb_pattern": "standard"
+      }
+    },
+    "84_foucault_madness": {
+      "motifs": [
+        "M3_sensor_self",
+        "F2_standard_feedback"
+      ],
+      "skills": [
+        "T3_never_settler",
+        "T5_slow_oscillator",
+        "C2_in_phase",
+        "C3_asymmetric_amplitude",
+        "E3_backward"
+      ],
+      "features": {
+        "displacement": 14.336,
+        "dx": -14.161,
+        "straightness": 0.7093,
+        "z_range": 0.3252,
+        "collapsed": false,
+        "j0_period": 79,
+        "j1_period": 84,
+        "phase_fraction": 0.962,
+        "amp_ratio": 2.31,
+        "efficiency": 9.7e-05,
+        "yaw_total": 0.349,
+        "transient_steps": 3200,
+        "active_synapses": 8,
+        "fb_pattern": "standard"
+      }
+    },
+    "85_foucault_panopticon": {
+      "motifs": [
+        "M1_pure_sensor",
+        "F1_no_feedback"
+      ],
+      "skills": [
+        "S8_glider",
+        "T4_fast_oscillator",
+        "C2_in_phase",
+        "E3_backward"
+      ],
+      "features": {
+        "displacement": 2.034,
+        "dx": -1.927,
+        "straightness": 0.5362,
+        "z_range": 0.1947,
+        "collapsed": false,
+        "j0_period": 9,
+        "j1_period": 8,
+        "phase_fraction": 1.333,
+        "amp_ratio": 1.046,
+        "efficiency": 8.5e-05,
+        "yaw_total": 0.025,
+        "transient_steps": 400,
+        "active_synapses": 6,
+        "fb_pattern": "none"
+      }
+    },
+    "86_breton_nadja": {
+      "motifs": [
+        "M2_sensor_cross",
+        "F1_no_feedback"
+      ],
+      "skills": [
+        "T3_never_settler",
+        "C1_anti_phase"
+      ],
+      "features": {
+        "displacement": 12.589,
+        "dx": 12.295,
+        "straightness": 0.5683,
+        "z_range": 0.2485,
+        "collapsed": false,
+        "j0_period": 19,
+        "j1_period": 37,
+        "phase_fraction": 0.579,
+        "amp_ratio": 1.48,
+        "efficiency": 0.000112,
+        "yaw_total": 0.281,
+        "transient_steps": 3400,
+        "active_synapses": 8,
+        "fb_pattern": "none"
+      }
+    },
+    "87_breton_chance": {
+      "motifs": [
+        "M1_pure_sensor",
+        "F1_no_feedback"
+      ],
+      "skills": [
+        "S3_drifter",
+        "T5_slow_oscillator",
+        "C1_anti_phase",
+        "E2_turner",
+        "E3_backward"
+      ],
+      "features": {
+        "displacement": 12.052,
+        "dx": -7.837,
+        "straightness": 0.3925,
+        "z_range": 0.5644,
+        "collapsed": false,
+        "j0_period": 95,
+        "j1_period": 43,
+        "phase_fraction": 0.642,
+        "amp_ratio": 0.702,
+        "efficiency": 5.8e-05,
+        "yaw_total": 1.086,
+        "transient_steps": 2800,
+        "active_synapses": 6,
+        "fb_pattern": "none"
+      }
+    },
+    "88_breton_automatic": {
+      "motifs": [
+        "M4_full_network",
+        "M6_maximal",
+        "F3_reversed_feedback"
+      ],
+      "skills": [
+        "S6_faller",
+        "S7_bouncer",
+        "T1_metronome",
+        "C2_in_phase",
+        "E2_turner",
+        "E3_backward"
+      ],
+      "features": {
+        "displacement": 4.131,
+        "dx": -2.852,
+        "straightness": 0.3061,
+        "z_range": 2.2433,
+        "collapsed": true,
+        "j0_period": 16,
+        "j1_period": 10,
+        "phase_fraction": 6.0,
+        "amp_ratio": 1.046,
+        "efficiency": 3.1e-05,
+        "yaw_total": 1.975,
+        "transient_steps": 0,
+        "active_synapses": 10,
+        "fb_pattern": "reversed"
+      }
+    },
+    "89_stein_rose": {
+      "motifs": [
+        "M1_pure_sensor",
+        "F1_no_feedback"
+      ],
+      "skills": [
+        "C2_in_phase"
+      ],
+      "features": {
+        "displacement": 2.291,
+        "dx": 0.29,
+        "straightness": 0.3245,
+        "z_range": 0.5013,
+        "collapsed": false,
+        "j0_period": 13,
+        "j1_period": 9,
+        "phase_fraction": 6.231,
+        "amp_ratio": 1.033,
+        "efficiency": 3.6e-05,
+        "yaw_total": 0.864,
+        "transient_steps": 800,
+        "active_synapses": 6,
+        "fb_pattern": "none"
+      }
+    },
+    "8_conway_glider": {
+      "motifs": [
+        "M1_pure_sensor",
+        "F1_no_feedback"
+      ],
+      "skills": [
+        "S4_spinner",
+        "S5_statue",
+        "T3_never_settler",
+        "T5_slow_oscillator",
+        "C2_in_phase"
+      ],
+      "features": {
+        "displacement": 1.441,
+        "dx": 1.409,
+        "straightness": 0.0544,
+        "z_range": 0.416,
+        "collapsed": false,
+        "j0_period": 82,
+        "j1_period": 5,
+        "phase_fraction": 0.037,
+        "amp_ratio": 0.848,
+        "efficiency": 4e-06,
+        "yaw_total": 0.664,
+        "transient_steps": 3400,
+        "active_synapses": 6,
+        "fb_pattern": "none"
+      }
+    },
+    "90_stein_continuous_present": {
+      "motifs": [
+        "M3_sensor_self",
+        "F4_same_sign_feedback"
+      ],
+      "skills": [
+        "S3_drifter",
+        "C2_in_phase",
+        "E2_turner",
+        "E3_backward"
+      ],
+      "features": {
+        "displacement": 5.923,
+        "dx": -0.582,
+        "straightness": 0.2716,
+        "z_range": 0.5993,
+        "collapsed": false,
+        "j0_period": 27,
+        "j1_period": 28,
+        "phase_fraction": 0.148,
+        "amp_ratio": 0.999,
+        "efficiency": 4.2e-05,
+        "yaw_total": 2.253,
+        "transient_steps": 2400,
+        "active_synapses": 8,
+        "fb_pattern": "both_positive"
+      }
+    },
+    "91_stein_tender_buttons": {
+      "motifs": [
+        "M4_full_network",
+        "M6_maximal",
+        "F2_standard_feedback"
+      ],
+      "skills": [
+        "T3_never_settler",
+        "C2_in_phase",
+        "E3_backward"
+      ],
+      "features": {
+        "displacement": 11.469,
+        "dx": -10.701,
+        "straightness": 0.5005,
+        "z_range": 0.496,
+        "collapsed": false,
+        "j0_period": 39,
+        "j1_period": 6,
+        "phase_fraction": 0.103,
+        "amp_ratio": 1.214,
+        "efficiency": 4.9e-05,
+        "yaw_total": 0.735,
+        "transient_steps": 3400,
+        "active_synapses": 10,
+        "fb_pattern": "standard"
+      }
+    },
+    "92_borges_labyrinth": {
+      "motifs": [
+        "M4_full_network",
+        "M6_maximal",
+        "F2_standard_feedback"
+      ],
+      "skills": [
+        "S8_glider",
+        "T1_metronome",
+        "C2_in_phase",
+        "C3_asymmetric_amplitude"
+      ],
+      "features": {
+        "displacement": 11.39,
+        "dx": 11.124,
+        "straightness": 0.5391,
+        "z_range": 0.1561,
+        "collapsed": false,
+        "j0_period": 33,
+        "j1_period": 28,
+        "phase_fraction": 0.091,
+        "amp_ratio": 4.133,
+        "efficiency": 6.8e-05,
+        "yaw_total": 0.436,
+        "transient_steps": 2400,
+        "active_synapses": 10,
+        "fb_pattern": "standard"
+      }
+    },
+    "93_borges_mirror": {
+      "motifs": [
+        "M4_full_network",
+        "M6_maximal",
+        "F2_standard_feedback"
+      ],
+      "skills": [
+        "S1_strider",
+        "T1_metronome",
+        "C1_anti_phase",
+        "E1_efficient",
+        "E3_backward"
+      ],
+      "features": {
+        "displacement": 21.747,
+        "dx": -21.541,
+        "straightness": 0.744,
+        "z_range": 0.4206,
+        "collapsed": false,
+        "j0_period": 23,
+        "j1_period": 23,
+        "phase_fraction": 0.435,
+        "amp_ratio": 1.385,
+        "efficiency": 0.000248,
+        "yaw_total": 0.249,
+        "transient_steps": 1400,
+        "active_synapses": 10,
+        "fb_pattern": "standard"
+      }
+    },
+    "94_borges_aleph": {
+      "motifs": [
+        "M4_full_network",
+        "M6_maximal",
+        "F2_standard_feedback"
+      ],
+      "skills": [
+        "S3_drifter",
+        "T3_never_settler",
+        "T4_fast_oscillator",
+        "C1_anti_phase"
+      ],
+      "features": {
+        "displacement": 8.903,
+        "dx": 3.367,
+        "straightness": 0.2265,
+        "z_range": 0.5166,
+        "collapsed": false,
+        "j0_period": 7,
+        "j1_period": 7,
+        "phase_fraction": 0.571,
+        "amp_ratio": 1.336,
+        "efficiency": 3.3e-05,
+        "yaw_total": 0.613,
+        "transient_steps": 3000,
+        "active_synapses": 10,
+        "fb_pattern": "standard"
+      }
+    },
+    "95_jackson_lottery": {
+      "motifs": [
+        "M1_pure_sensor",
+        "F1_no_feedback"
+      ],
+      "skills": [
+        "S3_drifter",
+        "T3_never_settler",
+        "T4_fast_oscillator",
+        "C1_anti_phase",
+        "E2_turner",
+        "E3_backward"
+      ],
+      "features": {
+        "displacement": 5.094,
+        "dx": -4.41,
+        "straightness": 0.1641,
+        "z_range": 0.4466,
+        "collapsed": false,
+        "j0_period": 6,
+        "j1_period": 64,
+        "phase_fraction": 0.5,
+        "amp_ratio": 1.199,
+        "efficiency": 1.5e-05,
+        "yaw_total": 1.204,
+        "transient_steps": 3400,
+        "active_synapses": 6,
+        "fb_pattern": "none"
+      }
+    },
+    "96_jackson_hill_house": {
+      "motifs": [
+        "M3_sensor_self",
+        "F3_reversed_feedback"
+      ],
+      "skills": [
+        "T3_never_settler",
+        "T4_fast_oscillator",
+        "C2_in_phase",
+        "E2_turner",
+        "E3_backward"
+      ],
+      "features": {
+        "displacement": 4.849,
+        "dx": -2.583,
+        "straightness": 0.2155,
+        "z_range": 0.5767,
+        "collapsed": false,
+        "j0_period": 7,
+        "j1_period": 21,
+        "phase_fraction": 9.286,
+        "amp_ratio": 0.85,
+        "efficiency": 2.5e-05,
+        "yaw_total": 1.921,
+        "transient_steps": 3000,
+        "active_synapses": 8,
+        "fb_pattern": "reversed"
+      }
+    },
+    "97_jackson_castle": {
+      "motifs": [
+        "M5_minimal",
+        "F1_no_feedback"
+      ],
+      "skills": [
+        "S3_drifter",
+        "T3_never_settler",
+        "C2_in_phase"
+      ],
+      "features": {
+        "displacement": 5.933,
+        "dx": 3.494,
+        "straightness": 0.2189,
+        "z_range": 0.4658,
+        "collapsed": false,
+        "j0_period": 20,
+        "j1_period": 65,
+        "phase_fraction": 4.8,
+        "amp_ratio": 1.533,
+        "efficiency": 2.4e-05,
+        "yaw_total": 0.251,
+        "transient_steps": 3200,
+        "active_synapses": 2,
+        "fb_pattern": "none"
+      }
+    },
+    "98_kcramer_hypertext": {
+      "motifs": [
+        "M4_full_network",
+        "M6_maximal",
+        "F2_standard_feedback"
+      ],
+      "skills": [
+        "T3_never_settler",
+        "T4_fast_oscillator",
+        "C1_anti_phase",
+        "E3_backward"
+      ],
+      "features": {
+        "displacement": 19.255,
+        "dx": -18.691,
+        "straightness": 0.5354,
+        "z_range": 0.5794,
+        "collapsed": false,
+        "j0_period": 7,
+        "j1_period": 8,
+        "phase_fraction": 0.571,
+        "amp_ratio": 0.998,
+        "efficiency": 8.5e-05,
+        "yaw_total": 0.628,
+        "transient_steps": 3400,
+        "active_synapses": 10,
+        "fb_pattern": "standard"
+      }
+    },
+    "99_kcramer_salvage": {
+      "motifs": [
+        "M2_sensor_cross",
+        "F1_no_feedback"
+      ],
+      "skills": [
+        "T3_never_settler",
+        "T4_fast_oscillator",
+        "C2_in_phase",
+        "E2_turner"
+      ],
+      "features": {
+        "displacement": 2.447,
+        "dx": -0.089,
+        "straightness": 0.1614,
+        "z_range": 0.4864,
+        "collapsed": false,
+        "j0_period": 7,
+        "j1_period": 40,
+        "phase_fraction": 13.571,
+        "amp_ratio": 1.148,
+        "efficiency": 1.5e-05,
+        "yaw_total": 1.754,
+        "transient_steps": 3000,
+        "active_synapses": 8,
+        "fb_pattern": "none"
+      }
+    },
+    "9_mandelbrot": {
+      "motifs": [
+        "M1_pure_sensor",
+        "F1_no_feedback"
+      ],
+      "skills": [
+        "C2_in_phase",
+        "E3_backward"
+      ],
+      "features": {
+        "displacement": 2.415,
+        "dx": -2.385,
+        "straightness": 0.1953,
+        "z_range": 0.4516,
+        "collapsed": false,
+        "j0_period": 25,
+        "j1_period": 16,
+        "phase_fraction": 0.0,
+        "amp_ratio": 1.033,
+        "efficiency": 1.2e-05,
+        "yaw_total": 0.578,
+        "transient_steps": 2200,
+        "active_synapses": 6,
+        "fb_pattern": "none"
+      }
+    }
+  }
+}
