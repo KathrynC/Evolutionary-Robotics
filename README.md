@@ -1,6 +1,6 @@
 # Synapse Gait Zoo
 
-A catalog of 113 discovered gaits for a 3-link PyBullet robot, organized by weight motif, attractor dynamics, and behavioral class. Each gait is a fixed-weight neural network (no learning at runtime) that produces a distinct locomotion style from the same 3-link body.
+A catalog of 116 discovered gaits for a 3-link PyBullet robot, organized by structural motif, behavioral skill, and attractor dynamics. Each gait is a fixed-weight neural network (no learning at runtime) that produces a distinct locomotion style from the same 3-link body.
 
 ## The Robot
 
@@ -15,15 +15,15 @@ A catalog of 113 discovered gaits for a 3-link PyBullet robot, organized by weig
 
 ## The Zoo
 
-**113 gaits across 11 categories, 12 weight motifs, 4 attractor types (with 5 complex subtypes), 5 leaderboards.**
+**116 gaits across 11 categories, 13 structural motifs, 22 behavioral skills, 112 unique motif-skill profiles.**
 
-All gaits and their weights are stored in `synapse_gait_zoo.json`. Videos for every gait are in `videos/`. Per-step telemetry (400 records/gait) is in `artifacts/telemetry_full/`.
+All gaits and their weights are stored in `synapse_gait_zoo.json`. Full taxonomy (motifs, skills, per-gait features) is in `artifacts/gait_taxonomy.json`. Per-step telemetry (400 records/gait) is in `artifacts/telemetry/`. Videos are in `videos/`.
 
 ### Categories
 
 | Category | Gaits | Architecture | Description |
 |---|---|---|---|
-| persona_gaits | 71 | standard 6-synapse / crosswired | Named after scientists/thinkers/artists. 17 thematic groups + 20 originals. |
+| persona_gaits | 74 | standard 6-synapse / crosswired | Named after scientists/thinkers/artists. 18 thematic groups + 20 originals. |
 | cross_wired_cpg | 7 | crosswired 10-synapse | Motor-to-motor feedback creates internal central pattern generators |
 | market_mathematics | 7 | crosswired 10-synapse | Weight patterns inspired by financial mathematics |
 | evolved | 1 | crosswired 10-synapse | Found by evolutionary search |
@@ -37,7 +37,7 @@ All gaits and their weights are stored in `synapse_gait_zoo.json`. Videos for ev
 
 ### Persona Gait Themes
 
-The 71 persona gaits include seventeen thematic groups added after the original 20:
+The 74 persona gaits include eighteen thematic groups added after the original 20:
 
 - **Fibonacci (3 gaits)**: Golden ratio proportions in weight structure. `fibonacci_self` uses phi^-2 self-feedback for stable diagonal walking. `fibonacci_phyllotaxis` maps the golden angle (137.5°) to successive weights — chaotic but covers 10m while spinning 595°. `fibonacci_spiral` scales weights by phi (0.382, 0.618, 1.0) for near-pure lateral motion.
 
@@ -211,49 +211,105 @@ Per-step telemetry captures what endpoint measurements miss. Every gait has 400 
 - **speed_profiles.png** — Instantaneous speed over time. The CPG champion has remarkably constant high speed. Limit cycles show rhythmic oscillations.
 - **torque_profiles.png** — Joint torque over time, showing energetic cost and motor rhythm.
 
-## Weight Motifs
+## Gait Taxonomy (v2.0)
 
-12 structural motifs identified by analyzing weight patterns across all gaits:
+Every gait is classified along two axes: **structural motifs** (what the network looks like) and **behavioral skills** (what the robot does). The full taxonomy is in `artifacts/gait_taxonomy.json`.
 
-| Motif | Members | Signature |
+Of 116 gaits, 112 have unique motif-skill profiles. The 4 shared profiles reveal convergent evolution across categories.
+
+### Structural Motifs (13)
+
+**Topology motifs** — which synapse classes are active:
+
+| Motif | Count | Description |
 |---|---|---|
-| canonical_antisymmetric | 7 | w_i3 = -w_i4 (equal and opposite drive to each motor) |
-| curie_asymmetric_drive | 7 | Torso weight differs between motors; stronger front-leg drive |
-| noether_involution | 4 | Weights approximately negate under motor swap |
-| same_drive_symmetric | 4 | Both motors receive similar-sign drive |
-| minimal_wiring | 6 | 3-4 active synapses (most weights zero) |
-| cpg_dominant | 1 | Cross-wiring dominates over sensor input |
-| half_center_oscillator | 3 | Hidden neurons with mutual inhibition/excitation |
-| spin_torque | 4 | Asymmetric cross-wiring creates net rotational torque |
-| positive_feedback_cascade | 1 | Self-reinforcing motor feedback |
-| walk_and_spin | 3 | Strong base pattern + cross-wiring for simultaneous translation and rotation |
-| crab_walk | 7 | Asymmetric drive patterns amplified by cross-wiring for lateral motion |
-| bifurcation_boundary | 2 | Configuration at a sharp phase transition; tiny perturbation changes behavior qualitatively |
+| M1_pure_sensor | 40 | Only sensor-to-motor synapses (w03-w24). The feedforward archetype. |
+| M2_sensor_cross | 20 | Sensor-to-motor + motor-to-motor cross-wiring (w34/w43). No self-feedback. |
+| M3_sensor_self | 3 | Sensor-to-motor + self-feedback (w33/w44). No cross-wiring. |
+| M4_full_network | 32 | All three synapse classes active. Maximum recurrence. |
+| M5_minimal | 14 | Four or fewer active synapses. Maximum function from minimum structure. |
+| M6_maximal | 31 | All 10 possible synapses active. Dense network. |
+| M7_hidden_layer | 3 | Hidden neurons between sensors and motors. Adds computational depth. |
+
+**Feedback motifs** — the character of self-feedback (w33, w44):
+
+| Motif | Count | Description |
+|---|---|---|
+| F1_no_feedback | 70 | No self-feedback. Pure feedforward. |
+| F2_standard_feedback | 35 | w33>0 (back leg positive), w44<0 (front leg negative). The canonical oscillator-amplifier. |
+| F3_reversed_feedback | 4 | w33<0, w44>0. Inverted proprioception — destabilizing. |
+| F4_same_sign_feedback | 4 | Both self-feedbacks share the same sign. Sustaining rather than alternating. |
+| F5_hidden_oscillator | 3 | Oscillation from hidden neuron cross-inhibition. A central pattern generator. |
+
+### Behavioral Skills (22)
+
+**Locomotion** — where does the robot go?
+
+| Skill | Count | Description |
+|---|---|---|
+| S1_strider | 35 | High displacement (>15), mostly straight, stable |
+| S2_sprinter | 19 | Very high displacement (>25). Raw speed. |
+| S3_drifter | 18 | Moderate displacement (5-15), curved path. Goes somewhere, but indirectly. |
+| S4_spinner | 7 | Walking in circles (straightness < 0.15). |
+| S5_statue | 5 | Near-static (<2). Moves limbs but stays in place. |
+| S6_faller | 12 | Height collapses below 50%. Falls over. |
+| S7_bouncer | 34 | Large vertical oscillation (z_range > 0.6). |
+| S8_glider | 10 | Smooth vertical profile (z_range < 0.2). Floats. |
+| S9_crab | 10 | Lateral displacement dominates forward (|DY/DX| > 1.5). |
+
+**Temporal** — how does it move through time?
+
+| Skill | Count | Description |
+|---|---|---|
+| T1_metronome | 16 | Highly periodic joints. Clock-like regularity. |
+| T2_chaotic | 10 | No detectable periodicity. Aperiodic motion. |
+| T3_never_settler | 74 | Never reaches steady state within simulation (64% of all gaits). |
+| T4_fast_oscillator | 37 | Joint period < 10 (high-frequency limb motion). |
+| T5_slow_oscillator | 21 | Joint period > 40 (low-frequency limb motion). |
+
+**Coordination** — how do the legs relate?
+
+| Skill | Count | Description |
+|---|---|---|
+| C1_anti_phase | 31 | Legs alternate. The canonical walking gait. |
+| C2_in_phase | 63 | Legs move together. Hopping or bounding. |
+| C3_asymmetric_amplitude | 8 | One joint has >2x the amplitude of the other. |
+
+**Efficiency and direction:**
+
+| Skill | Count | Description |
+|---|---|---|
+| E1_efficient | 28 | Top-quartile displacement per unit energy. |
+| E2_turner | 44 | Significant yaw accumulation (>1.0 rad). |
+| E3_backward | 51 | Walks backward (dx < -0.5). |
 
 ## Key Discoveries
 
 **All gaits are perfectly deterministic.** PyBullet DIRECT mode produces zero variance across trials (CV=0.000 for all gaits). What matters is sensitivity — how much a gait's behavior changes with small weight perturbations.
 
-**Motor balance ratio predicts direction.** The ratio of total drive to motor 3 vs motor 4 (MB = sum|w_i3| / sum|w_i4|) predicts forward vs backward walking. MB < 1.0 tends forward, MB > 1.0 tends backward.
+**w44 is the stability governor.** Across 113 standard-topology gaits, negative w44 (front leg self-feedback) correlates with higher displacement (avg 18.9 negative vs 11.2 zero vs 12.8 positive), lower yaw, and higher straightness. Performance-designed categories (pareto, market_math, CPG) have 57-100% negative w44 rates; persona gaits only 28%. Exception: reversed feedback (w44>0) works for crab walkers.
+
+**Anti-phase legs produce better walkers.** 31 anti-phase gaits average 17.0 displacement vs 12.7 for 63 in-phase gaits. Anti-phase crabs are the strongest combo: avg 31.7 displacement. The advantage is mechanical — alternating legs produce more consistent ground contact for propulsion.
+
+**64% of all gaits never reach steady state.** 74/116 gaits are still accelerating or decelerating at simulation end (4000 steps). Spinners, pareto_walk_spin, and hidden neurons are 100% never-settlers. Only evolved/bifurcation gaits consistently settle. The implication: longer simulations would change the leaderboard.
+
+**Direction is emergent.** No single weight predicts forward vs backward walking above 55.7% accuracy (w43 is the best, barely above coin flip). The best composite predictor — |motor4 inputs| > |motor3 inputs| — reaches only 65.1%. Direction is a nonlinear function of the full weight vector, not any subset.
+
+**The faller signature is weak sensor coupling.** All 10 sensor-to-motor weights are weaker in fallers than non-fallers (diffs of +0.26 to +0.50). Fallers also have strong w43 cross-wiring (-0.30 vs -0.06 in non-fallers). The recipe for falling: disconnect sensors, let motors talk to each other.
+
+**Architecture is the strongest performance predictor.** Crosswired 10-synapse gaits average 16.8 displacement vs 10.1 for standard 6-synapse. Hidden-layer gaits include the all-time champion (50.0). Within standard_6, top and bottom quartiles have nearly identical synapse counts (5.8 vs 5.5) — it's weight values, not count, that matters within an architecture.
+
+**Crab walkers reverse the cross-wiring rule.** Normal gaits have w43 negative (inhibitory cross-feedback). Crab walkers flip it positive (+0.16 vs -0.11). They also pump 76% of energy into J0 (back leg) — the most asymmetric energy budget of any category. Evolved crabs put 84-94% of energy into J0.
+
+**Convergent evolution is real.** 4 pairs of gaits from different categories share identical motif-skill profiles. deleuze_bwo (persona) and minsky (CPG) have nearly identical displacement (21.66 vs 21.79), joint ranges, and velocity profiles despite being designed independently with different intent. foucault_heterotopia (persona) matches rubato (time_signature). The physics of the body constrains the space of possible behaviors.
+
+**The leaderboard has a recipe.** All top-10 gaits are S1_strider + S2_sprinter. 80% are never-settlers. 70% are E1_efficient. F4_same_sign_feedback and M7_hidden_layer are 33x enriched in the top 10 vs population. The champion formula: full network + either hidden oscillator or same-sign feedback + never settling + high straightness.
 
 **Cross-wiring unlocks new behaviors.** The 4 motor-to-motor weights (w34, w43, w33, w44) enable CPG oscillation, spin, and crab walking that are impossible with sensor-to-motor weights alone.
 
-**Lateral motion was a blind dimension.** Before measuring DY, all gaits were characterized only by forward displacement. The average |DY| across the zoo is 3.75m. Many gaits walk at significant diagonal angles.
-
 **Bifurcation boundaries are sharp.** The bouncer configuration [0, +1, -1, 0, -1, +1] is perfectly still (DX=0, YAW=0, tilt=0). Reducing one weight by 10% (w24: 1.0 to 0.9) produces a 188 spin. The sharpest behavioral cliff in the zoo.
 
-**Limit cycles are the best walkers — and we know why.** The 15 limit-cycle gaits include all top-5 displacement leaders. Three mechanisms explain this:
-- *Directional efficiency*: Limit cycles convert 74% of path length into net displacement vs 54% for complex gaits (1.4x). They walk straighter — less motion wasted on non-locomotory oscillation.
-- *Speed consistency*: 1.8x lower speed variability (CV 0.41 vs 0.72). Uniform stride wastes less energy on acceleration/deceleration.
-- *Joint asymmetry*: Limit cycles use joints more asymmetrically (0.20 vs 0.13), creating directed thrust rather than symmetric rocking.
-
-**Complex:drifters are the hidden contenders.** Five "complex" gaits classified as drifters actually rival limit cycles in displacement (mean 24.6m vs 23.5m) and directional efficiency (0.756 vs 0.740). They walk far despite lacking clean periodicity. The curie_asymmetric_drive motif produces drifters when amplified — these are "almost-limit-cycles" with enough core periodicity to walk straight.
-
-**Efficiency is a property of structure.** The torque-displacement Pareto frontier contains only 6 of 58 moving gaits. Motif determines efficiency: `half_center_oscillator` (0.414) and `minimal_wiring` (0.230) dominate; `spin_torque` (0.017) is dead last. Efficiency correlates strongly with directional efficiency (r=0.70) — walking straight IS being efficient. Displacement barely correlates with torque (r=0.21) — high torque does not guarantee high displacement.
-
-**Evolution finds knife-edge solutions.** Evolving crab walkers with |DY| fitness produced a verified champion (|DY|=40.64, crab ratio 6.06), beating the hand-designed record by 41%. But the first attempt stored weights at 6 decimal places, and the rounding shifted the champion from DY=-36.34 to DY=-25.68 — a 30% performance drop from ~1e-7 weight change. Full float64 precision is required for reproducibility. This is the reality gap operating through weight precision rather than environmental noise.
-
-**Heading is controllable but the landscape has cliffs.** Sweeping 83 configurations (MB ratio × cross-wiring asymmetry) achieves full 360° heading coverage, but the control surface is nonlinear and non-monotonic (CW-heading correlation = -0.14). The heading distribution is bimodal: a forward cluster (-30° to +30°) and a backward cluster (150°-180°). Pure lateral headings (60°-120°) are rare — structurally difficult for this body plan. Consistent with bifurcation findings: nearby parameters can produce wildly different headings.
+**Evolution finds knife-edge solutions.** Evolving crab walkers with |DY| fitness produced a verified champion (|DY|=40.64, crab ratio 6.06), beating the hand-designed record by 41%. But the first attempt stored weights at 6 decimal places, and the rounding shifted the champion from DY=-36.34 to DY=-25.68 — a 30% performance drop from ~1e-7 weight change. Full float64 precision is required for reproducibility.
 
 ## Efficiency Frontier
 
@@ -317,15 +373,17 @@ Renders all configured gaits to `videos/` using offscreen PyBullet rendering pip
 
 | File | Description |
 |---|---|
-| `synapse_gait_zoo.json` | Complete catalog: 101 gaits, weights, measurements, motifs, attractors, telemetry metrics |
+| `synapse_gait_zoo.json` | Complete catalog: 116 gaits, weights, measurements across 11 categories |
+| `artifacts/gait_taxonomy.json` | Taxonomy v2.0: 13 motifs, 22 skills, per-gait feature vectors |
+| `artifacts/telemetry/` | Per-step telemetry for all 116 gaits (400 JSONL records + summary.json each) |
+| `artifacts/discovery_dig_full116.txt` | Deep analysis output: 13 digs across the full zoo |
 | `record_videos.py` | Video recording infrastructure (offscreen render to ffmpeg) |
 | `simulation.py` | Main simulation runner |
 | `body.urdf` | Robot body definition (3-link) |
 | `brain.nndf` | Current neural network weights (overwritten by scripts) |
 | `constants.py` | Physics parameters (SIM_STEPS=4000, DT=1/240, gravity, friction) |
-| `videos/` | 89 MP4 videos of gaits (gitignored) |
-| `artifacts/telemetry_full/` | Per-step telemetry JSONL for all gaits (gitignored) |
-| `artifacts/plots/` | Trajectory maps, phase portraits, stability, speed, torque visualizations (gitignored) |
+| `videos/` | MP4 videos of gaits |
+| `artifacts/plots/` | Trajectory maps, phase portraits, stability, speed, torque visualizations |
 | `pyrosim/` | Neural network and simulation utilities (ludobots/pyrosim) |
 
 ## Related Work
