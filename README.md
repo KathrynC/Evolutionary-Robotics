@@ -1,3 +1,5 @@
+NOTE: THIS REAGME CONTAINS ERRORS AND IS IN REVISION
+
 # Synapse Gait Zoo
 
 A catalog of 116 discovered gaits for a 3-link PyBullet robot, organized by structural motif, behavioral tag, and attractor dynamics. Each gait is a fixed-weight neural network (no learning at runtime) that produces a distinct locomotion style from the same 3-link body.
