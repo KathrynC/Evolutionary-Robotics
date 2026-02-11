@@ -33,6 +33,8 @@
       Story.passages[el.getAttribute("name")] = el.innerHTML
         .replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&").replace(/&quot;/g, '"');
     });
+    // Hide embedded Twine story source so it doesn't render as raw text in the page.
+    sd.style.display = "none";
   }
 
   /* ── Template engine ──────────────────────────────────────────── */
@@ -195,7 +197,7 @@
     });
   }
 
-  // Process <<script>>...<</script>>
+  // Process <<script>>...<</scr"+"ipt>>  (avoid literal </script> in HTML)
   function processScript(src) {
     return src.replace(/<<script>>([\s\S]*?)<<\/script>>/g, (_, code) => {
       try {
@@ -269,6 +271,8 @@
 
 <style>
 /* ── Base styles ────────────────────────────────────────────────── */
+/* Prevent Twine's embedded story source from appearing as raw text. */
+tw-storydata, tw-passagedata { display: none !important; }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
