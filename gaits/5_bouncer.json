@@ -1,0 +1,43 @@
+{
+  "architecture": "standard_6",
+  "category": "homework",
+  "description": "Zero Torso coupling \u2014 only leg sensors drive motors, creates bouncing behavior.",
+  "dx": 0.0,
+  "dy": 0.0,
+  "heading": 72.5,
+  "id": "5_bouncer",
+  "max_tilt": 0,
+  "physics": {
+    "dt": 0.004167,
+    "friction": 2.5,
+    "gravity_z": -9.8,
+    "max_force": 150.0,
+    "sim_steps": 4000
+  },
+  "sensitivity": {
+    "dx_total": 376.95,
+    "hottest_dx_weight": "w03",
+    "hottest_yaw_weight": "w23",
+    "yaw_total": 9412.92
+  },
+  "telemetry": {
+    "attractor_type": "fixed_point",
+    "duty_cycle": 1.0,
+    "mean_speed": 0.0,
+    "mean_torque": 0.07,
+    "speed_cv": 0,
+    "stride_freq_hz": 8.24,
+    "transient_frac": 1.0
+  },
+  "true_distance": 0.0,
+  "video": "5_bouncer.mp4",
+  "weights": {
+    "w03": 0.0,
+    "w04": 0.0,
+    "w13": 1.0,
+    "w14": -1.0,
+    "w23": -1.0,
+    "w24": 1.0
+  },
+  "yaw_degrees": -0.0
+}

@@ -1,0 +1,42 @@
+{
+  "architecture": "crosswired_10",
+  "category": "persona_gaits",
+  "description": "Nadja: weights from the digits of sqrt(2) (1,4,1,4,2,1,3,5) \u2014 the irrational wanderer. Found by walking the streets of mathematics. Walks 12m with 17\u00b0 tilt. The encounter with the irrational produces directed motion.",
+  "dx": 12.3,
+  "dy": -2.7,
+  "heading": -12.4,
+  "id": "86_breton_nadja",
+  "max_tilt": 17,
+  "physics": {
+    "dt": 0.004167,
+    "friction": 2.5,
+    "gravity_z": -9.8,
+    "max_force": 150.0,
+    "sim_steps": 4000
+  },
+  "telemetry": {
+    "attractor_type": "complex",
+    "duty_cycle": 0.618,
+    "efficiency": 0.2031,
+    "mean_speed": 1.333,
+    "mean_torque": 61.99,
+    "pareto_optimal": false,
+    "speed_cv": 0.679,
+    "stride_freq_hz": 3.85,
+    "transient_frac": 0.778
+  },
+  "true_distance": 12.59,
+  "weights": {
+    "w03": -0.1,
+    "w04": 0.4,
+    "w13": -0.4,
+    "w14": 0.2,
+    "w23": -0.1,
+    "w24": 0.1,
+    "w33": 0,
+    "w34": 0.3,
+    "w43": -0.5,
+    "w44": 0
+  },
+  "yaw_degrees": -14.6
+}

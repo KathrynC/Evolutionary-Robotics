@@ -1,0 +1,47 @@
+{
+  "architecture": "standard_6",
+  "category": "persona_gaits",
+  "description": "Edward Lorenz (wing B) \u2014 butterfly effect: w14 changed from 0.70 to 0.62 (delta 0.08). DX drops from -7.92 to -0.56. Sensitive dependence on initial conditions.",
+  "dx": -0.56,
+  "dy": -2.58,
+  "heading": -102.3,
+  "id": "13_lorenz_B",
+  "max_tilt": 43,
+  "note": "Pair with 12_lorenz_A. One synapse changed by 0.08 causes 14x reduction in displacement.",
+  "physics": {
+    "dt": 0.004167,
+    "friction": 2.5,
+    "gravity_z": -9.8,
+    "max_force": 150.0,
+    "sim_steps": 4000
+  },
+  "sensitivity": {
+    "dx_total": 333.33,
+    "hottest_dx_weight": "w23",
+    "hottest_yaw_weight": "w14",
+    "yaw_total": 3700.28
+  },
+  "telemetry": {
+    "attractor_subtype": "multi_frequency",
+    "attractor_type": "complex",
+    "duty_cycle": 0.74,
+    "efficiency": 0.045,
+    "mean_speed": 0.98,
+    "mean_torque": 58.7,
+    "pareto_optimal": false,
+    "speed_cv": 0.885,
+    "stride_freq_hz": 2.8,
+    "transient_frac": 0.015
+  },
+  "true_distance": 2.64,
+  "video": "13_lorenz_B.mp4",
+  "weights": {
+    "w03": -0.6,
+    "w04": 0.6,
+    "w13": -0.7,
+    "w14": 0.62,
+    "w23": -0.6,
+    "w24": 0.6
+  },
+  "yaw_degrees": -58.6
+}

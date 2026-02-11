@@ -1,0 +1,52 @@
+{
+  "architecture": "crosswired_10",
+  "category": "market_mathematics",
+  "description": "Fat Tails (Zipf/Mandelbrot) \u2014 power-law weight distribution: each weight is half the next. Extreme moves happen far more often than Gaussian predicts.",
+  "dx": -12.03,
+  "dx_note": "Corrected from -23.55 (old physics). Verified -12.03.",
+  "dy": 5.74,
+  "heading": 154.5,
+  "id": "29_fat_tails",
+  "max_tilt": 27,
+  "n_synapses": 8,
+  "physics": {
+    "dt": 0.004167,
+    "friction": 2.5,
+    "gravity_z": -9.8,
+    "max_force": 150.0,
+    "sim_steps": 4000
+  },
+  "sensitivity": {
+    "dx_total": 336.1,
+    "hottest_dx_weight": "w44",
+    "hottest_yaw_weight": "w13",
+    "yaw_total": 4541.8
+  },
+  "telemetry": {
+    "attractor_subtype": "multi_frequency",
+    "attractor_type": "complex",
+    "duty_cycle": 0.482,
+    "efficiency": 0.1593,
+    "mean_speed": 1.564,
+    "mean_torque": 83.65,
+    "pareto_optimal": false,
+    "speed_cv": 0.586,
+    "stride_freq_hz": 4.45,
+    "transient_frac": 0.87
+  },
+  "true_distance": 13.33,
+  "video": "29_fat_tails.mp4",
+  "weights": {
+    "w03": -0.5,
+    "w04": 0.125,
+    "w13": -0.25,
+    "w14": 0.25,
+    "w23": -0.125,
+    "w24": 0.5,
+    "w33": 0.0,
+    "w34": 0.4,
+    "w43": -0.4,
+    "w44": 0.0
+  },
+  "yaw_degrees": -35.9
+}

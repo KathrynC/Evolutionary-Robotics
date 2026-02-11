@@ -1,0 +1,42 @@
+{
+  "architecture": "crosswired_10",
+  "category": "persona_gaits",
+  "description": "The Fold: symmetric sensor-motor base + strong self-feedback (w33=0.7, w44=-0.7). The interior folds onto the exterior \u2014 motors feed back into themselves, creating a 23m walker with only 16\u00b0 tilt. The fold produces locomotion.",
+  "dx": -21.93,
+  "dy": 8.47,
+  "heading": 158.9,
+  "id": "80_deleuze_fold",
+  "max_tilt": 16,
+  "physics": {
+    "dt": 0.004167,
+    "friction": 2.5,
+    "gravity_z": -9.8,
+    "max_force": 150.0,
+    "sim_steps": 4000
+  },
+  "telemetry": {
+    "attractor_type": "complex",
+    "duty_cycle": 0.762,
+    "efficiency": 0.5466,
+    "mean_speed": 1.779,
+    "mean_torque": 43.03,
+    "pareto_optimal": false,
+    "speed_cv": 0.644,
+    "stride_freq_hz": 2.53,
+    "transient_frac": 0.852
+  },
+  "true_distance": 23.51,
+  "weights": {
+    "w03": -0.5,
+    "w04": 0.5,
+    "w13": -0.8,
+    "w14": 0.8,
+    "w23": -0.5,
+    "w24": 0.5,
+    "w33": 0.7,
+    "w34": 0,
+    "w43": 0,
+    "w44": -0.7
+  },
+  "yaw_degrees": -23.7
+}

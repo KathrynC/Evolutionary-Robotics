@@ -1,0 +1,31 @@
+{
+  "architecture": "crosswired_10",
+  "category": "persona_gaits",
+  "description": "Aleph: weights from the digits of e (2.718281828). The Aleph is the point containing all points; e is the number containing all growth. Digits mapped to weights with standard polarity. The curie-adjacent pattern with strong asymmetric cross-wiring.",
+  "dx": 3.41,
+  "dy": 8.28,
+  "heading": 67.6,
+  "id": "94_borges_aleph",
+  "max_tilt": 33,
+  "physics": {
+    "dt": 0.004167,
+    "friction": 2.5,
+    "gravity_z": -9.8,
+    "max_force": 150.0,
+    "sim_steps": 4000
+  },
+  "true_distance": 8.95,
+  "weights": {
+    "w03": -0.2,
+    "w04": 0.8,
+    "w13": -0.7,
+    "w14": 0.2,
+    "w23": -0.1,
+    "w24": 0.8,
+    "w33": 0.2,
+    "w34": 0.1,
+    "w43": -0.8,
+    "w44": -0.8
+  },
+  "yaw_degrees": 37.4
+}

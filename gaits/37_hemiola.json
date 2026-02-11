@@ -1,0 +1,51 @@
+{
+  "architecture": "standard_6",
+  "category": "time_signatures",
+  "description": "Hemiola \u2014 Bernstein's America: 3/4\u21946/8 ambiguity. No cross-wiring because the rhythmic ambiguity IS the rhythm.",
+  "dx": 22.63,
+  "dy": 9.45,
+  "heading": 22.7,
+  "id": "37_hemiola",
+  "max_tilt": 46,
+  "n_synapses": 6,
+  "physics": {
+    "dt": 0.004167,
+    "friction": 2.5,
+    "gravity_z": -9.8,
+    "max_force": 150.0,
+    "sim_steps": 4000
+  },
+  "sensitivity": {
+    "dx_total": 742.71,
+    "hottest_dx_weight": "w13",
+    "hottest_yaw_weight": "w24",
+    "yaw_total": 4373.42
+  },
+  "telemetry": {
+    "attractor_subtype": "multi_frequency",
+    "attractor_type": "complex",
+    "duty_cycle": 0.422,
+    "efficiency": 0.3761,
+    "mean_speed": 1.924,
+    "mean_torque": 65.21,
+    "pareto_optimal": false,
+    "speed_cv": 0.63,
+    "stride_freq_hz": 3.67,
+    "transient_frac": 0.755
+  },
+  "true_distance": 24.52,
+  "video": "37_hemiola.mp4",
+  "weights": {
+    "w03": -0.5,
+    "w04": 1.0,
+    "w13": -1.0,
+    "w14": 0.5,
+    "w23": -0.5,
+    "w24": 1.0,
+    "w33": 0.0,
+    "w34": 0.0,
+    "w43": 0.0,
+    "w44": 0.0
+  },
+  "yaw_degrees": 49.3
+}

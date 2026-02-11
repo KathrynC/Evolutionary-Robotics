@@ -1,0 +1,44 @@
+{
+  "architecture": "crosswired_10",
+  "category": "pareto_walk_spin",
+  "description": "Noether base + mutual EXCITATION (w34=+0.3, w43=+0.3 \u2014 rare positive feedback) + self-feedback. Walks backward -30m while spinning +67\u00b0. The backward cyclone.",
+  "dx": -30.16,
+  "dy": -13.51,
+  "heading": -155.9,
+  "id": "50_noether_cyclone",
+  "max_tilt": 38,
+  "n_synapses": 10,
+  "pareto_score": 2022,
+  "physics": {
+    "dt": 0.004167,
+    "friction": 2.5,
+    "gravity_z": -9.8,
+    "max_force": 150.0,
+    "sim_steps": 4000
+  },
+  "telemetry": {
+    "attractor_type": "limit_cycle",
+    "duty_cycle": 0.41,
+    "efficiency": 0.3839,
+    "mean_speed": 2.671,
+    "mean_torque": 86.08,
+    "pareto_optimal": false,
+    "speed_cv": 0.367,
+    "stride_freq_hz": 4.63,
+    "transient_frac": 0.745
+  },
+  "true_distance": 33.05,
+  "weights": {
+    "w03": -0.7,
+    "w04": 0.3,
+    "w13": -0.5,
+    "w14": 0.5,
+    "w23": -0.3,
+    "w24": 0.7,
+    "w33": 0.5,
+    "w34": 0.3,
+    "w43": 0.3,
+    "w44": -0.5
+  },
+  "yaw_degrees": 67.0
+}

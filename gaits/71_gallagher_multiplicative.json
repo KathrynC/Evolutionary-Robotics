@@ -1,0 +1,42 @@
+{
+  "architecture": "standard_6",
+  "category": "persona_gaits",
+  "description": "Multiplicative structure: weights are products of prime pairs from {2,3,5,7}, normalized by 30. The multiplicative (not additive) construction reflects Gallagher's work on multiplicative number theory. Stable backward walker.",
+  "dx": -9.79,
+  "dy": -2.9,
+  "heading": -163.5,
+  "id": "71_gallagher_multiplicative",
+  "max_tilt": 30,
+  "physics": {
+    "dt": 0.004167,
+    "friction": 2.5,
+    "gravity_z": -9.8,
+    "max_force": 150.0,
+    "sim_steps": 4000
+  },
+  "telemetry": {
+    "attractor_type": "complex",
+    "duty_cycle": 0.465,
+    "efficiency": 0.1272,
+    "mean_speed": 1.981,
+    "mean_torque": 79.84,
+    "pareto_optimal": false,
+    "speed_cv": 0.634,
+    "stride_freq_hz": 4.24,
+    "transient_frac": 0.53
+  },
+  "true_distance": 10.21,
+  "weights": {
+    "w03": -0.2,
+    "w04": 0.4667,
+    "w13": -0.3333,
+    "w14": 0.7,
+    "w23": -0.5,
+    "w24": 1.1667,
+    "w33": 0,
+    "w34": 0,
+    "w43": 0,
+    "w44": 0
+  },
+  "yaw_degrees": -113.9
+}

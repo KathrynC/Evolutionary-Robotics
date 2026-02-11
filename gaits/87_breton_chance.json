@@ -1,0 +1,42 @@
+{
+  "architecture": "standard_6",
+  "category": "persona_gaits",
+  "description": "Objective Chance: Fibonacci ratios (0.618, 0.382) meet prime gaps (0.25, 0.5, 1.0) \u2014 two unrelated mathematical sources combined. The meaningful coincidence produces a 12m diagonal walker. Breton's 'marvelous' in weight space.",
+  "dx": -7.86,
+  "dy": -9.21,
+  "heading": -130.5,
+  "id": "87_breton_chance",
+  "max_tilt": 30,
+  "physics": {
+    "dt": 0.004167,
+    "friction": 2.5,
+    "gravity_z": -9.8,
+    "max_force": 150.0,
+    "sim_steps": 4000
+  },
+  "telemetry": {
+    "attractor_type": "complex",
+    "duty_cycle": 0.598,
+    "efficiency": 0.1815,
+    "mean_speed": 1.847,
+    "mean_torque": 66.41,
+    "pareto_optimal": false,
+    "speed_cv": 0.626,
+    "stride_freq_hz": 4.75,
+    "transient_frac": 0.648
+  },
+  "true_distance": 12.11,
+  "weights": {
+    "w03": -0.618,
+    "w04": 0.5,
+    "w13": -0.25,
+    "w14": 0.618,
+    "w23": -0.382,
+    "w24": 1.0,
+    "w33": 0,
+    "w34": 0,
+    "w43": 0,
+    "w44": 0
+  },
+  "yaw_degrees": 59.4
+}

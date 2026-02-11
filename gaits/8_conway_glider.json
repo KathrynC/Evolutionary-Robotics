@@ -1,0 +1,45 @@
+{
+  "architecture": "standard_6",
+  "category": "persona_gaits",
+  "description": "John Conway \u2014 Game of Life glider: all weights binary (+1 or -1). 14 direction reversals \u2014 oscillating glider behavior. The minimal self-propagating pattern.",
+  "dx": 1.45,
+  "dy": -0.32,
+  "heading": -12.6,
+  "id": "8_conway_glider",
+  "max_tilt": 21,
+  "physics": {
+    "dt": 0.004167,
+    "friction": 2.5,
+    "gravity_z": -9.8,
+    "max_force": 150.0,
+    "sim_steps": 4000
+  },
+  "sensitivity": {
+    "dx_total": 537.28,
+    "hottest_dx_weight": "w24",
+    "hottest_yaw_weight": "w14",
+    "yaw_total": 1251.77
+  },
+  "telemetry": {
+    "attractor_type": "limit_cycle",
+    "duty_cycle": 0.298,
+    "efficiency": 0.0182,
+    "mean_speed": 1.593,
+    "mean_torque": 81.8,
+    "pareto_optimal": false,
+    "speed_cv": 0.438,
+    "stride_freq_hz": 5.17,
+    "transient_frac": 0.048
+  },
+  "true_distance": 1.48,
+  "video": "8_conway_glider.mp4",
+  "weights": {
+    "w03": -1.0,
+    "w04": 1.0,
+    "w13": -1.0,
+    "w14": -1.0,
+    "w23": 1.0,
+    "w24": 1.0
+  },
+  "yaw_degrees": 38.0
+}

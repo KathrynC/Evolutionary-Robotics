@@ -1,0 +1,51 @@
+{
+  "architecture": "crosswired_10",
+  "category": "time_signatures",
+  "description": "5/4 Take Five \u2014 Dave Brubeck's asymmetric 3+2 grouping with full CPG. The jazz pulse: 3 strong beats then 2 weak.",
+  "dx": -27.72,
+  "dy": 4.95,
+  "heading": 169.9,
+  "id": "36_take_five",
+  "max_tilt": 35,
+  "n_synapses": 10,
+  "physics": {
+    "dt": 0.004167,
+    "friction": 2.5,
+    "gravity_z": -9.8,
+    "max_force": 150.0,
+    "sim_steps": 4000
+  },
+  "sensitivity": {
+    "dx_total": 544.28,
+    "hottest_dx_weight": "w43",
+    "hottest_yaw_weight": "w04",
+    "yaw_total": 3625.44
+  },
+  "telemetry": {
+    "attractor_subtype": "multi_frequency",
+    "attractor_type": "complex",
+    "duty_cycle": 0.512,
+    "efficiency": 0.43,
+    "mean_speed": 2.264,
+    "mean_torque": 65.48,
+    "pareto_optimal": false,
+    "speed_cv": 0.553,
+    "stride_freq_hz": 3.88,
+    "transient_frac": 0.908
+  },
+  "true_distance": 28.16,
+  "video": "36_take_five.mp4",
+  "weights": {
+    "w03": -0.8,
+    "w04": 0.5,
+    "w13": -0.8,
+    "w14": 0.8,
+    "w23": -0.5,
+    "w24": 0.8,
+    "w33": 0.3,
+    "w34": 0.5,
+    "w43": -0.5,
+    "w44": -0.3
+  },
+  "yaw_degrees": -5.0
+}

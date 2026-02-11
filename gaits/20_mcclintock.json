@@ -1,0 +1,46 @@
+{
+  "architecture": "standard_6",
+  "category": "persona_gaits",
+  "description": "Barbara McClintock \u2014 transposon: two cross-wired jumping genes. BackLeg sensor drives BackLeg motor; BackLeg sensor also drives FrontLeg motor. Everything else zero.",
+  "dx": 5.55,
+  "dy": -1.01,
+  "heading": -10.4,
+  "id": "20_mcclintock",
+  "max_tilt": 14,
+  "n_synapses": 2,
+  "physics": {
+    "dt": 0.004167,
+    "friction": 2.5,
+    "gravity_z": -9.8,
+    "max_force": 150.0,
+    "sim_steps": 4000
+  },
+  "sensitivity": {
+    "dx_total": 79.66,
+    "hottest_dx_weight": "w03",
+    "hottest_yaw_weight": "w24",
+    "yaw_total": 398.68
+  },
+  "telemetry": {
+    "attractor_type": "limit_cycle",
+    "duty_cycle": 0.338,
+    "efficiency": 0.0631,
+    "mean_speed": 0.385,
+    "mean_torque": 89.42,
+    "pareto_optimal": false,
+    "speed_cv": 0.45,
+    "stride_freq_hz": 4.66,
+    "transient_frac": 0.792
+  },
+  "true_distance": 5.64,
+  "video": "20_mcclintock.mp4",
+  "weights": {
+    "w03": 0.0,
+    "w04": 0.0,
+    "w13": -0.5,
+    "w14": 0.0,
+    "w23": 0.0,
+    "w24": -0.5
+  },
+  "yaw_degrees": -9.6
+}

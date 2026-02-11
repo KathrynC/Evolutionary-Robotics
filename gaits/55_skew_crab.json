@@ -1,0 +1,45 @@
+{
+  "architecture": "crosswired_10",
+  "category": "crab_walkers",
+  "crab_ratio": 1.4,
+  "description": "Novel skew-drive base (asymmetric sensor weights) + mutual excitation. Walks +10m forward and -14m sideways. Heading -55\u00b0. Only crab walker from a non-zoo base.",
+  "dx": 9.78,
+  "dy": -13.71,
+  "heading": -54.5,
+  "id": "55_skew_crab",
+  "max_tilt": 33,
+  "n_synapses": 8,
+  "physics": {
+    "dt": 0.004167,
+    "friction": 2.5,
+    "gravity_z": -9.8,
+    "max_force": 150.0,
+    "sim_steps": 4000
+  },
+  "telemetry": {
+    "attractor_subtype": "multi_frequency",
+    "attractor_type": "complex",
+    "duty_cycle": 0.55,
+    "efficiency": 0.2351,
+    "mean_speed": 2.042,
+    "mean_torque": 71.63,
+    "pareto_optimal": false,
+    "speed_cv": 0.583,
+    "stride_freq_hz": 3.52,
+    "transient_frac": 0.805
+  },
+  "true_distance": 16.84,
+  "weights": {
+    "w03": -0.7,
+    "w04": 0.3,
+    "w13": -0.7,
+    "w14": 0.7,
+    "w23": -0.3,
+    "w24": 0.7,
+    "w33": 0,
+    "w34": 0.3,
+    "w43": 0.3,
+    "w44": 0
+  },
+  "yaw_degrees": 168.1
+}

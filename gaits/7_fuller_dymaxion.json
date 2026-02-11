@@ -1,0 +1,47 @@
+{
+  "architecture": "standard_6",
+  "category": "persona_gaits",
+  "description": "Buckminster Fuller (dymaxion) \u2014 doing more with less. Total weight 0.2, efficiency ratio 12.3 (highest found). Ephemeralization: 18x less synapse weight than Pelton, still walks.",
+  "dx": 2.46,
+  "dy": -0.03,
+  "efficiency": 12.3,
+  "heading": -0.7,
+  "id": "7_fuller_dymaxion",
+  "max_tilt": 2,
+  "n_synapses": 2,
+  "physics": {
+    "dt": 0.004167,
+    "friction": 2.5,
+    "gravity_z": -9.8,
+    "max_force": 150.0,
+    "sim_steps": 4000
+  },
+  "sensitivity": {
+    "dx_total": 152.85,
+    "hottest_dx_weight": "w23",
+    "hottest_yaw_weight": "w24",
+    "yaw_total": 571.62
+  },
+  "telemetry": {
+    "attractor_type": "limit_cycle",
+    "duty_cycle": 0.002,
+    "efficiency": 1.206,
+    "mean_speed": 0.15,
+    "mean_torque": 2.04,
+    "pareto_optimal": true,
+    "speed_cv": 0.184,
+    "stride_freq_hz": 0.03,
+    "transient_frac": 0.802
+  },
+  "true_distance": 2.46,
+  "video": "7_fuller_dymaxion.mp4",
+  "weights": {
+    "w03": 0.0,
+    "w04": 0.0,
+    "w13": -0.1,
+    "w14": -0.1,
+    "w23": 0.0,
+    "w24": 0.0
+  },
+  "yaw_degrees": -0.8
+}

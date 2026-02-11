@@ -1,0 +1,42 @@
+{
+  "architecture": "crosswired_10",
+  "category": "persona_gaits",
+  "description": "The Elephant Celebes: near-maximal weights (0.85-0.95) + CPG cross-wiring. The mechanical animal \u2014 heavy, lumbering, but remarkably stable (tilt 5\u00b0, lowest in the zoo for its displacement). Ernst's biomechanical beast.",
+  "dx": 3.47,
+  "dy": 5.99,
+  "heading": 59.9,
+  "id": "78_ernst_celebes",
+  "max_tilt": 5,
+  "physics": {
+    "dt": 0.004167,
+    "friction": 2.5,
+    "gravity_z": -9.8,
+    "max_force": 150.0,
+    "sim_steps": 4000
+  },
+  "telemetry": {
+    "attractor_type": "complex",
+    "duty_cycle": 0.975,
+    "efficiency": 0.1812,
+    "mean_speed": 0.62,
+    "mean_torque": 37.69,
+    "pareto_optimal": false,
+    "speed_cv": 0.886,
+    "stride_freq_hz": 3.4,
+    "transient_frac": 0.775
+  },
+  "true_distance": 6.92,
+  "weights": {
+    "w03": -0.95,
+    "w04": 0.85,
+    "w13": -0.9,
+    "w14": 0.9,
+    "w23": -0.85,
+    "w24": 0.95,
+    "w33": 0,
+    "w34": 0.3,
+    "w43": -0.3,
+    "w44": 0
+  },
+  "yaw_degrees": 83.0
+}

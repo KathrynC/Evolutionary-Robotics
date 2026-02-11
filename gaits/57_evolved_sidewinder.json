@@ -1,0 +1,56 @@
+{
+  "architecture": "crosswired_10",
+  "category": "crab_walkers",
+  "crab_ratio": 9.86,
+  "description": "Evolved near-pure lateral walker (verified). |DY|=39.32, crab ratio 9.86. Heading -96\u00b0.",
+  "dx": -3.99,
+  "dy": -39.32,
+  "evolution": {
+    "fitness": "|DY| with tilt penalty",
+    "method": "(mu+lambda) ES, pop=40, children=30, 80 generations",
+    "note": "Weights stored at full float64 precision. These solutions are sensitivity-dependent: rounding to 6 decimal places changes behavior significantly.",
+    "seeded_from": [
+      "52_curie_crab",
+      "53_rucker_landcrab",
+      "54_rucker_sidewinder",
+      "55_skew_crab"
+    ]
+  },
+  "heading": -95.8,
+  "id": "57_evolved_sidewinder",
+  "max_tilt": 26,
+  "origin": "evolved",
+  "physics": {
+    "dt": 0.004167,
+    "friction": 2.5,
+    "gravity_z": -9.8,
+    "max_force": 150.0,
+    "sim_steps": 4000
+  },
+  "telemetry": {
+    "attractor_type": "limit_cycle",
+    "duty_cycle": 0.338,
+    "efficiency": 0.5873,
+    "mean_speed": 2.679,
+    "mean_torque": 67.03,
+    "pareto_optimal": false,
+    "speed_cv": 0.456,
+    "stride_freq_hz": 4.09,
+    "transient_frac": 0.815
+  },
+  "true_distance": 39.52,
+  "verified": true,
+  "weights": {
+    "w03": -0.026377908384466117,
+    "w04": 1.5391416964614093,
+    "w13": -1.2564439315013083,
+    "w14": 1.4939319677183045,
+    "w23": -0.7030132640035148,
+    "w24": 2.0,
+    "w33": -0.15736991596664235,
+    "w34": 0.6886014609896243,
+    "w43": 0.8426897656599622,
+    "w44": -0.31190802476890234
+  },
+  "yaw_degrees": -91.5
+}

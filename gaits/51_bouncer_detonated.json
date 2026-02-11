@@ -1,0 +1,41 @@
+{
+  "architecture": "standard_6",
+  "category": "bifurcation_gaits",
+  "description": "BIFURCATION CHAMPION \u2014 the bouncer [0,+1,-1,0,-1,+1] is perfectly still (DX=0, YAW=0). Reducing w24 by 0.1 (from +1.0 to +0.9) produces YAW=-188\u00b0. A 10% change in one synapse converts a stationary robot into a half-rotation spinner. The sharpest behavioral bifurcation in the zoo.",
+  "dx": 7.54,
+  "dy": -2.76,
+  "heading": -20.1,
+  "id": "51_bouncer_detonated",
+  "max_tilt": 47,
+  "n_synapses": 4,
+  "note": "Parent config (5_bouncer) has DX=0, YAW=0, tilt=0. Delta: w24 changed by -0.1.",
+  "physics": {
+    "dt": 0.004167,
+    "friction": 2.5,
+    "gravity_z": -9.8,
+    "max_force": 150.0,
+    "sim_steps": 4000
+  },
+  "telemetry": {
+    "attractor_subtype": "transient_decay",
+    "attractor_type": "complex",
+    "duty_cycle": 0.66,
+    "efficiency": 0.1217,
+    "mean_speed": 0.864,
+    "mean_torque": 65.97,
+    "pareto_optimal": false,
+    "speed_cv": 1.484,
+    "stride_freq_hz": 3.67,
+    "transient_frac": 0.542
+  },
+  "true_distance": 8.03,
+  "weights": {
+    "w03": 0.0,
+    "w04": 0.0,
+    "w13": 1.0,
+    "w14": -1.0,
+    "w23": -1.0,
+    "w24": 0.9
+  },
+  "yaw_degrees": -187.7
+}

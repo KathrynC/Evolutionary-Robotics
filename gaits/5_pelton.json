@@ -1,0 +1,45 @@
+{
+  "architecture": "standard_6",
+  "category": "persona_gaits",
+  "description": "Robert Young Pelton \u2014 survival sprint: maximum distance without falling. Aggressive asymmetry, BackLeg sensor at -1.0 and FrontLeg motor at +1.0 create extreme drive.",
+  "dx": 34.7,
+  "dy": 6.32,
+  "heading": 10.3,
+  "id": "5_pelton",
+  "max_tilt": 32,
+  "physics": {
+    "dt": 0.004167,
+    "friction": 2.5,
+    "gravity_z": -9.8,
+    "max_force": 150.0,
+    "sim_steps": 4000
+  },
+  "sensitivity": {
+    "dx_total": 721.24,
+    "hottest_dx_weight": "w03",
+    "hottest_yaw_weight": "w24",
+    "yaw_total": 6649.8
+  },
+  "telemetry": {
+    "attractor_type": "limit_cycle",
+    "duty_cycle": 0.298,
+    "efficiency": 0.5295,
+    "mean_speed": 2.433,
+    "mean_torque": 66.61,
+    "pareto_optimal": false,
+    "speed_cv": 0.497,
+    "stride_freq_hz": 3.85,
+    "transient_frac": 0.79
+  },
+  "true_distance": 35.27,
+  "video": "5_pelton.mp4",
+  "weights": {
+    "w03": -0.3,
+    "w04": 1.0,
+    "w13": -1.0,
+    "w14": 0.3,
+    "w23": -0.3,
+    "w24": 1.0
+  },
+  "yaw_degrees": 43.4
+}

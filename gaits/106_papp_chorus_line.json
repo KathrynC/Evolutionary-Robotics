@@ -1,0 +1,31 @@
+{
+  "architecture": "crosswired_10",
+  "category": "persona_gaits",
+  "description": "A Chorus Line: every sensor-motor weight is identical magnitude (0.7) \u2014 the ensemble moves as one. The cross-wiring (w34=0.3, w43=-0.3) is the choreographer's coordination, ensuring the line stays together. Every dancer does the same steps. The singular sensation of uniform commitment.",
+  "dx": 6.22,
+  "dy": 1.4,
+  "heading": 12.7,
+  "id": "106_papp_chorus_line",
+  "max_tilt": 35,
+  "physics": {
+    "dt": 0.004167,
+    "friction": 2.5,
+    "gravity_z": -9.8,
+    "max_force": 150.0,
+    "sim_steps": 4000
+  },
+  "true_distance": 6.38,
+  "weights": {
+    "w03": -0.7,
+    "w04": 0.7,
+    "w13": -0.7,
+    "w14": 0.7,
+    "w23": -0.7,
+    "w24": 0.7,
+    "w33": 0,
+    "w34": 0.3,
+    "w43": -0.3,
+    "w44": 0
+  },
+  "yaw_degrees": 58.0
+}

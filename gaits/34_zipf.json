@@ -1,0 +1,51 @@
+{
+  "architecture": "crosswired_10",
+  "category": "market_mathematics",
+  "description": "Zipf's Law \u2014 power-law distribution with self-feedback: rank-frequency relationship where the nth weight is 1/n of the first. Asymmetric self-loops add regime character.",
+  "dx": -20.57,
+  "dy": 9.95,
+  "heading": 154.2,
+  "id": "34_zipf",
+  "max_tilt": 29,
+  "n_synapses": 8,
+  "physics": {
+    "dt": 0.004167,
+    "friction": 2.5,
+    "gravity_z": -9.8,
+    "max_force": 150.0,
+    "sim_steps": 4000
+  },
+  "sensitivity": {
+    "dx_total": 380.31,
+    "hottest_dx_weight": "w04",
+    "hottest_yaw_weight": "w24",
+    "yaw_total": 1885.51
+  },
+  "telemetry": {
+    "attractor_subtype": "multi_frequency",
+    "attractor_type": "complex",
+    "duty_cycle": 0.498,
+    "efficiency": 0.2971,
+    "mean_speed": 1.794,
+    "mean_torque": 76.92,
+    "pareto_optimal": false,
+    "speed_cv": 0.529,
+    "stride_freq_hz": 4.51,
+    "transient_frac": 0.822
+  },
+  "true_distance": 22.85,
+  "video": "34_zipf.mp4",
+  "weights": {
+    "w03": -0.5,
+    "w04": 0.125,
+    "w13": -0.25,
+    "w14": 0.25,
+    "w23": -0.125,
+    "w24": 0.5,
+    "w33": 0.5,
+    "w34": 0.0,
+    "w43": 0.0,
+    "w44": -0.5
+  },
+  "yaw_degrees": -26.0
+}

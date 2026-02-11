@@ -1,0 +1,31 @@
+{
+  "architecture": "standard_6",
+  "category": "persona_gaits",
+  "description": "Heat: precision and commitment. Near-maximal weights on the dominant channels (w13=-0.95, w04=0.95, w24=0.95) with restrained supporting weights. The professional who is disciplined until the moment of action, then fully committed. Don't let yourself get attached to anything you can't walk away from in 30 seconds flat.",
+  "dx": 23.71,
+  "dy": -11.44,
+  "heading": -25.8,
+  "id": "107_pacino_heat",
+  "max_tilt": 32,
+  "physics": {
+    "dt": 0.004167,
+    "friction": 2.5,
+    "gravity_z": -9.8,
+    "max_force": 150.0,
+    "sim_steps": 4000
+  },
+  "true_distance": 26.33,
+  "weights": {
+    "w03": -0.4,
+    "w04": 0.95,
+    "w13": -0.95,
+    "w14": 0.4,
+    "w23": -0.4,
+    "w24": 0.95,
+    "w33": 0,
+    "w34": 0,
+    "w43": 0,
+    "w44": 0
+  },
+  "yaw_degrees": -6.1
+}

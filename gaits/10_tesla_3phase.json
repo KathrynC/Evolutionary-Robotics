@@ -1,0 +1,45 @@
+{
+  "architecture": "standard_6",
+  "category": "persona_gaits",
+  "description": "Nikola Tesla \u2014 three-phase AC motor: sin(60\u00b0), sin(30\u00b0), 0 mirrored antisymmetrically. Tesla's crowning invention encoded in synapses.",
+  "dx": -18.33,
+  "dy": 15.49,
+  "heading": 139.8,
+  "id": "10_tesla_3phase",
+  "max_tilt": 186,
+  "physics": {
+    "dt": 0.004167,
+    "friction": 2.5,
+    "gravity_z": -9.8,
+    "max_force": 150.0,
+    "sim_steps": 4000
+  },
+  "sensitivity": {
+    "dx_total": 843.07,
+    "hottest_dx_weight": "w13",
+    "hottest_yaw_weight": "w03",
+    "yaw_total": 3156.03
+  },
+  "telemetry": {
+    "attractor_type": "chaotic/fallen",
+    "duty_cycle": 0.29,
+    "efficiency": 0.4285,
+    "mean_speed": 2.41,
+    "mean_torque": 56.01,
+    "pareto_optimal": false,
+    "speed_cv": 0.505,
+    "stride_freq_hz": 2.41,
+    "transient_frac": 0.478
+  },
+  "true_distance": 24.0,
+  "video": "10_tesla_3phase.mp4",
+  "weights": {
+    "w03": -0.866,
+    "w04": 0.0,
+    "w13": -0.5,
+    "w14": 0.5,
+    "w23": 0.0,
+    "w24": 0.866
+  },
+  "yaw_degrees": -162.2
+}

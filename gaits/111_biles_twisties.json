@@ -1,0 +1,31 @@
+{
+  "architecture": "crosswired_10",
+  "category": "persona_gaits",
+  "description": "The twisties: when the body's internal model inverts. Weak sensor drive (0.2 uniform) \u2014 the proprioceptive signal fades. Self-feedback signs are REVERSED (w33=-0.7, w44=+0.7) \u2014 the motors' self-model is wrong. Like jackson_hill_house, the internal geometry is inverted. The bravest thing she ever did was stop.",
+  "dx": 7.32,
+  "dy": -2.68,
+  "heading": -20.1,
+  "id": "111_biles_twisties",
+  "max_tilt": 21,
+  "physics": {
+    "dt": 0.004167,
+    "friction": 2.5,
+    "gravity_z": -9.8,
+    "max_force": 150.0,
+    "sim_steps": 4000
+  },
+  "true_distance": 7.8,
+  "weights": {
+    "w03": -0.2,
+    "w04": 0.2,
+    "w13": -0.2,
+    "w14": 0.2,
+    "w23": -0.2,
+    "w24": 0.2,
+    "w33": -0.7,
+    "w34": 0.3,
+    "w43": -0.3,
+    "w44": 0.7
+  },
+  "yaw_degrees": -33.9
+}

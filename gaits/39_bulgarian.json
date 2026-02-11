@@ -1,0 +1,51 @@
+{
+  "architecture": "standard_6",
+  "category": "time_signatures",
+  "description": "7/8 Bulgarian \u2014 the limping meter of Balkan folk: 2+2+3 ratio encoded in weight magnitudes. Pure meter, no cross-wiring.",
+  "dx": 16.52,
+  "dy": -5.58,
+  "heading": -18.7,
+  "id": "39_bulgarian",
+  "max_tilt": 33,
+  "n_synapses": 6,
+  "physics": {
+    "dt": 0.004167,
+    "friction": 2.5,
+    "gravity_z": -9.8,
+    "max_force": 150.0,
+    "sim_steps": 4000
+  },
+  "sensitivity": {
+    "dx_total": 346.55,
+    "hottest_dx_weight": "w04",
+    "hottest_yaw_weight": "w04",
+    "yaw_total": 2224.16
+  },
+  "telemetry": {
+    "attractor_subtype": "multi_frequency",
+    "attractor_type": "complex",
+    "duty_cycle": 0.762,
+    "efficiency": 0.4487,
+    "mean_speed": 1.497,
+    "mean_torque": 38.86,
+    "pareto_optimal": true,
+    "speed_cv": 0.554,
+    "stride_freq_hz": 3.34,
+    "transient_frac": 0.822
+  },
+  "true_distance": 17.44,
+  "video": "39_bulgarian.mp4",
+  "weights": {
+    "w03": -0.57,
+    "w04": 0.86,
+    "w13": -0.57,
+    "w14": 0.57,
+    "w23": -0.86,
+    "w24": 0.57,
+    "w33": 0.0,
+    "w34": 0.0,
+    "w43": 0.0,
+    "w44": 0.0
+  },
+  "yaw_degrees": 0.8
+}

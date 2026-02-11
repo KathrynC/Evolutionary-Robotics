@@ -1,0 +1,42 @@
+{
+  "architecture": "crosswired_10",
+  "category": "persona_gaits",
+  "description": "I Ching: all 10 weights determined by chance operations (random.seed(1952), the year of 4'33\" premiere). With stored 3-decimal weights, the chance gait falls (tilt 235\u00b0) but still displaces 7.3m. Even rounded chance outperforms many designed gaits.",
+  "dx": 5.56,
+  "dy": -4.74,
+  "heading": -40.4,
+  "id": "64_cage_iching",
+  "max_tilt": 235,
+  "physics": {
+    "dt": 0.004167,
+    "friction": 2.5,
+    "gravity_z": -9.8,
+    "max_force": 150.0,
+    "sim_steps": 4000
+  },
+  "telemetry": {
+    "attractor_type": "chaotic/fallen",
+    "duty_cycle": 0.532,
+    "efficiency": 0.1707,
+    "mean_speed": 1.039,
+    "mean_torque": 42.82,
+    "pareto_optimal": false,
+    "speed_cv": 1.122,
+    "stride_freq_hz": 4.54,
+    "transient_frac": 0.555
+  },
+  "true_distance": 7.31,
+  "weights": {
+    "w03": 0.639,
+    "w04": 0.279,
+    "w13": 0.025,
+    "w14": -0.691,
+    "w23": -0.463,
+    "w24": -0.932,
+    "w33": 0.849,
+    "w34": -0.204,
+    "w43": -0.336,
+    "w44": -0.65
+  },
+  "yaw_degrees": 15.9
+}

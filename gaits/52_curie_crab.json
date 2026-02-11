@@ -1,0 +1,44 @@
+{
+  "architecture": "crosswired_10",
+  "category": "crab_walkers",
+  "crab_ratio": 1.18,
+  "description": "CRAB CHAMPION \u2014 evolved Curie base + inhibit-excite cross-wiring. Walks +24m forward AND -29m sideways simultaneously. Heading -50\u00b0. The most lateral displacement in the zoo.",
+  "dx": 24.44,
+  "dy": -28.79,
+  "heading": -49.7,
+  "id": "52_curie_crab",
+  "max_tilt": 29,
+  "n_synapses": 8,
+  "physics": {
+    "dt": 0.004167,
+    "friction": 2.5,
+    "gravity_z": -9.8,
+    "max_force": 150.0,
+    "sim_steps": 4000
+  },
+  "telemetry": {
+    "attractor_type": "limit_cycle",
+    "duty_cycle": 0.345,
+    "efficiency": 0.5226,
+    "mean_speed": 2.514,
+    "mean_torque": 72.26,
+    "pareto_optimal": false,
+    "speed_cv": 0.494,
+    "stride_freq_hz": 4.93,
+    "transient_frac": 0.788
+  },
+  "true_distance": 37.76,
+  "weights": {
+    "w03": -0.3,
+    "w04": 0.85,
+    "w13": -0.85,
+    "w14": 0.26,
+    "w23": -0.26,
+    "w24": 0.85,
+    "w33": 0,
+    "w34": -0.5,
+    "w43": 0.5,
+    "w44": 0
+  },
+  "yaw_degrees": -61.4
+}

@@ -1,0 +1,42 @@
+{
+  "architecture": "standard_6",
+  "category": "persona_gaits",
+  "description": "Terraplane: weights at 20-40% of normal magnitude. Existence at the poverty line. Walks 4.8m \u2014 just enough to count as locomotion. The compressed prose of synapse weights.",
+  "dx": 4.41,
+  "dy": -1.91,
+  "heading": -23.4,
+  "id": "67_womack_terraplane",
+  "max_tilt": 26,
+  "physics": {
+    "dt": 0.004167,
+    "friction": 2.5,
+    "gravity_z": -9.8,
+    "max_force": 150.0,
+    "sim_steps": 4000
+  },
+  "telemetry": {
+    "attractor_type": "complex",
+    "duty_cycle": 0.478,
+    "efficiency": 0.0686,
+    "mean_speed": 1.239,
+    "mean_torque": 70.13,
+    "pareto_optimal": false,
+    "speed_cv": 0.632,
+    "stride_freq_hz": 3.79,
+    "transient_frac": 0.955
+  },
+  "true_distance": 4.81,
+  "weights": {
+    "w03": -0.2,
+    "w04": 0,
+    "w13": -0.4,
+    "w14": 0.4,
+    "w23": 0,
+    "w24": 0.2,
+    "w33": 0,
+    "w34": 0,
+    "w43": 0,
+    "w44": 0
+  },
+  "yaw_degrees": -24.5
+}

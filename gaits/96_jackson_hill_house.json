@@ -1,0 +1,31 @@
+{
+  "architecture": "crosswired_10",
+  "category": "persona_gaits",
+  "description": "Hill House: the base pattern looks like sayama (a stable walker), but the self-feedback has the wrong sign (w33=-0.6, w44=+0.6 \u2014 reversed from the stabilizing w33>0/w44<0 pattern). The house looks right from outside. The angles are not quite right inside. Whatever walks there, walks alone.",
+  "dx": -2.55,
+  "dy": -4.13,
+  "heading": -121.7,
+  "id": "96_jackson_hill_house",
+  "max_tilt": 49,
+  "physics": {
+    "dt": 0.004167,
+    "friction": 2.5,
+    "gravity_z": -9.8,
+    "max_force": 150.0,
+    "sim_steps": 4000
+  },
+  "true_distance": 4.86,
+  "weights": {
+    "w03": -0.5,
+    "w04": 0.5,
+    "w13": -0.7,
+    "w14": 0.7,
+    "w23": -0.5,
+    "w24": 0.5,
+    "w33": -0.6,
+    "w34": 0,
+    "w43": 0,
+    "w44": 0.6
+  },
+  "yaw_degrees": 101.7
+}

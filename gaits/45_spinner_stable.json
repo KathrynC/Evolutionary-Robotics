@@ -1,0 +1,114 @@
+{
+  "architecture": "hidden",
+  "category": "spinners",
+  "description": "Stable spinner \u2014 hidden half-center with stronger cross-inhibition (0.4 vs 0.35) and larger motor asymmetry (h5\u2192m3=-0.7 vs h6\u2192m4=+0.4). 2.08 rotations (-749\u00b0) at only 31\u00b0 tilt \u2014 the best spin-to-tilt ratio. Spins opposite direction from champion.",
+  "dx": -4.3,
+  "dy": 1.08,
+  "heading": 165.9,
+  "id": "45_spinner_stable",
+  "max_tilt": 30,
+  "n_hidden": 2,
+  "n_synapses": 8,
+  "neurons": [
+    {
+      "id": "0",
+      "ref": "Torso",
+      "type": "sensor"
+    },
+    {
+      "id": "1",
+      "ref": "BackLeg",
+      "type": "sensor"
+    },
+    {
+      "id": "2",
+      "ref": "FrontLeg",
+      "type": "sensor"
+    },
+    {
+      "id": "3",
+      "ref": "Torso_BackLeg",
+      "type": "motor"
+    },
+    {
+      "id": "4",
+      "ref": "Torso_FrontLeg",
+      "type": "motor"
+    },
+    {
+      "id": "5",
+      "ref": null,
+      "type": "hidden"
+    },
+    {
+      "id": "6",
+      "ref": null,
+      "type": "hidden"
+    }
+  ],
+  "physics": {
+    "dt": 0.004167,
+    "friction": 2.5,
+    "gravity_z": -9.8,
+    "max_force": 150.0,
+    "sim_steps": 4000
+  },
+  "synapses": [
+    {
+      "src": "1",
+      "tgt": "5",
+      "w": -0.3
+    },
+    {
+      "src": "2",
+      "tgt": "6",
+      "w": -0.3
+    },
+    {
+      "src": "5",
+      "tgt": "6",
+      "w": 0.4
+    },
+    {
+      "src": "6",
+      "tgt": "5",
+      "w": -0.4
+    },
+    {
+      "src": "5",
+      "tgt": "3",
+      "w": -0.7
+    },
+    {
+      "src": "6",
+      "tgt": "4",
+      "w": 0.4
+    },
+    {
+      "src": "0",
+      "tgt": "3",
+      "w": -0.3
+    },
+    {
+      "src": "0",
+      "tgt": "4",
+      "w": 0.3
+    }
+  ],
+  "telemetry": {
+    "attractor_subtype": "quasi_periodic",
+    "attractor_type": "complex",
+    "duty_cycle": 0.292,
+    "efficiency": 0.0887,
+    "mean_speed": 1.842,
+    "mean_torque": 50.01,
+    "pareto_optimal": false,
+    "speed_cv": 0.587,
+    "stride_freq_hz": 5.89,
+    "transient_frac": 0.46
+  },
+  "true_distance": 4.43,
+  "turns": -2.08,
+  "video": "45_spinner_stable.mp4",
+  "yaw_degrees": -748.5
+}

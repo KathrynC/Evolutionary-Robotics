@@ -1,0 +1,51 @@
+{
+  "architecture": "crosswired_10",
+  "category": "market_mathematics",
+  "description": "Mean Reversion (Ornstein-Uhlenbeck) \u2014 strong self-inhibition: motors fight their own excursions, pulled back to center like prices reverting to fair value.",
+  "dx": 0.45,
+  "dy": 2.99,
+  "heading": 81.5,
+  "id": "33_mean_reversion",
+  "max_tilt": 33,
+  "n_synapses": 8,
+  "physics": {
+    "dt": 0.004167,
+    "friction": 2.5,
+    "gravity_z": -9.8,
+    "max_force": 150.0,
+    "sim_steps": 4000
+  },
+  "sensitivity": {
+    "dx_total": 697.38,
+    "hottest_dx_weight": "w24",
+    "hottest_yaw_weight": "w13",
+    "yaw_total": 9834.36
+  },
+  "telemetry": {
+    "attractor_subtype": "quasi_periodic",
+    "attractor_type": "complex",
+    "duty_cycle": 0.37,
+    "efficiency": 0.0282,
+    "mean_speed": 1.885,
+    "mean_torque": 107.26,
+    "pareto_optimal": false,
+    "speed_cv": 0.531,
+    "stride_freq_hz": 4.78,
+    "transient_frac": 1.0
+  },
+  "true_distance": 3.02,
+  "video": "33_mean_reversion.mp4",
+  "weights": {
+    "w03": -0.7,
+    "w04": 0.3,
+    "w13": -0.5,
+    "w14": 0.5,
+    "w23": -0.3,
+    "w24": 0.7,
+    "w33": -0.7,
+    "w34": 0.0,
+    "w43": 0.0,
+    "w44": -0.7
+  },
+  "yaw_degrees": -75.7
+}

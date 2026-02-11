@@ -1,0 +1,51 @@
+{
+  "architecture": "crosswired_10",
+  "category": "cross_wired_cpg",
+  "description": "Wolfram + direction reversal \u2014 uniform base with anti-phase coupling that flips the walking direction.",
+  "dx": -3.69,
+  "dy": 0.04,
+  "heading": 179.4,
+  "id": "24_wolfram_flipped",
+  "max_tilt": 48,
+  "n_synapses": 8,
+  "physics": {
+    "dt": 0.004167,
+    "friction": 2.5,
+    "gravity_z": -9.8,
+    "max_force": 150.0,
+    "sim_steps": 4000
+  },
+  "sensitivity": {
+    "dx_total": 564.62,
+    "hottest_dx_weight": "w33",
+    "hottest_yaw_weight": "w04",
+    "yaw_total": 2857.8
+  },
+  "telemetry": {
+    "attractor_subtype": "transient_decay",
+    "attractor_type": "complex",
+    "duty_cycle": 0.908,
+    "efficiency": 0.1007,
+    "mean_speed": 0.5,
+    "mean_torque": 36.65,
+    "pareto_optimal": false,
+    "speed_cv": 1.721,
+    "stride_freq_hz": 5.2,
+    "transient_frac": 0.062
+  },
+  "true_distance": 3.69,
+  "video": "24_wolfram_flipped.mp4",
+  "weights": {
+    "w03": -0.8,
+    "w04": 0.8,
+    "w13": -0.8,
+    "w14": 0.8,
+    "w23": -0.8,
+    "w24": 0.8,
+    "w33": 0.0,
+    "w34": -0.8,
+    "w43": 0.5,
+    "w44": 0.0
+  },
+  "yaw_degrees": 8.5
+}

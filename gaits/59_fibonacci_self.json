@@ -1,0 +1,42 @@
+{
+  "architecture": "crosswired_10",
+  "category": "persona_gaits",
+  "description": "Golden ratio base weights + self-feedback at phi^-2. Stable diagonal walker (heading +50\u00b0). The golden ratio appears in both sensor-motor proportions and self-feedback strength.",
+  "dx": 7.18,
+  "dy": 2.43,
+  "heading": 18.7,
+  "id": "59_fibonacci_self",
+  "max_tilt": 40,
+  "physics": {
+    "dt": 0.004167,
+    "friction": 2.5,
+    "gravity_z": -9.8,
+    "max_force": 150.0,
+    "sim_steps": 4000
+  },
+  "telemetry": {
+    "attractor_type": "complex",
+    "duty_cycle": 0.62,
+    "efficiency": 0.135,
+    "mean_speed": 1.323,
+    "mean_torque": 56.48,
+    "pareto_optimal": false,
+    "speed_cv": 0.824,
+    "stride_freq_hz": 2.95,
+    "transient_frac": 0.642
+  },
+  "true_distance": 7.58,
+  "weights": {
+    "w03": -0.618,
+    "w04": 1.0,
+    "w13": -1.0,
+    "w14": 0.618,
+    "w23": -0.618,
+    "w24": 1.0,
+    "w33": 0.382,
+    "w34": 0,
+    "w43": 0,
+    "w44": -0.382
+  },
+  "yaw_degrees": 26.4
+}

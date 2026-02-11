@@ -1,0 +1,42 @@
+{
+  "architecture": "standard_6",
+  "category": "persona_gaits",
+  "description": "Penrose rhombus: weights from sin/cos of the two Penrose tile angles (36\u00b0 and 72\u00b0). The aperiodic tiling's fundamental geometry produces a strong backward-diagonal walker (35m+). Pure mathematics as locomotion.",
+  "dx": -22.7,
+  "dy": 3.9,
+  "heading": 170.2,
+  "id": "68_grunbaum_penrose",
+  "max_tilt": 33,
+  "physics": {
+    "dt": 0.004167,
+    "friction": 2.5,
+    "gravity_z": -9.8,
+    "max_force": 150.0,
+    "sim_steps": 4000
+  },
+  "telemetry": {
+    "attractor_type": "complex",
+    "duty_cycle": 0.41,
+    "efficiency": 0.3219,
+    "mean_speed": 2.172,
+    "mean_torque": 71.52,
+    "pareto_optimal": false,
+    "speed_cv": 0.611,
+    "stride_freq_hz": 3.79,
+    "transient_frac": 0.788
+  },
+  "true_distance": 23.03,
+  "weights": {
+    "w03": -0.5878,
+    "w04": 0.309,
+    "w13": -0.9511,
+    "w14": 0.5878,
+    "w23": -0.809,
+    "w24": 0.9511,
+    "w33": 0,
+    "w34": 0,
+    "w43": 0,
+    "w44": 0
+  },
+  "yaw_degrees": -19.6
+}

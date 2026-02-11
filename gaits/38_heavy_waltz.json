@@ -1,0 +1,51 @@
+{
+  "architecture": "crosswired_10",
+  "category": "time_signatures",
+  "description": "3/4 Heavy Waltz \u2014 ONE-two-three: beat 1 is 5x beats 2 and 3. CPG reinforces the downbeat. Motor reversal ratio 1:380.",
+  "dx": -19.31,
+  "dy": -4.99,
+  "heading": -165.5,
+  "id": "38_heavy_waltz",
+  "max_tilt": 35,
+  "n_synapses": 10,
+  "physics": {
+    "dt": 0.004167,
+    "friction": 2.5,
+    "gravity_z": -9.8,
+    "max_force": 150.0,
+    "sim_steps": 4000
+  },
+  "sensitivity": {
+    "dx_total": 790.45,
+    "hottest_dx_weight": "w43",
+    "hottest_yaw_weight": "w23",
+    "yaw_total": 2490.85
+  },
+  "telemetry": {
+    "attractor_subtype": "drifter",
+    "attractor_type": "complex",
+    "duty_cycle": 0.53,
+    "efficiency": 0.2955,
+    "mean_speed": 1.638,
+    "mean_torque": 67.49,
+    "pareto_optimal": false,
+    "speed_cv": 0.75,
+    "stride_freq_hz": 5.05,
+    "transient_frac": 0.885
+  },
+  "true_distance": 19.94,
+  "video": "38_heavy_waltz.mp4",
+  "weights": {
+    "w03": -1.0,
+    "w04": 0.2,
+    "w13": -0.2,
+    "w14": 0.2,
+    "w23": -0.2,
+    "w24": 1.0,
+    "w33": 0.2,
+    "w34": 0.5,
+    "w43": -0.5,
+    "w44": -0.2
+  },
+  "yaw_degrees": 16.5
+}

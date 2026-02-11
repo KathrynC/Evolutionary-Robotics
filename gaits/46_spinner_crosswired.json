@@ -1,0 +1,51 @@
+{
+  "architecture": "crosswired_10",
+  "category": "spinners",
+  "description": "Cross-wired spinner \u2014 no hidden neurons, 10 synapses. Positive FrontLeg\u2192BackLeg_motor (+0.9) combined with motor cross-wiring creates rotation. Rock-solid 23\u00b0 tilt, 0.89 rotations (-320\u00b0). The most stable spinner.",
+  "dx": 0.53,
+  "dy": -0.16,
+  "heading": -17.3,
+  "id": "46_spinner_crosswired",
+  "max_tilt": 23,
+  "n_synapses": 10,
+  "physics": {
+    "dt": 0.004167,
+    "friction": 2.5,
+    "gravity_z": -9.8,
+    "max_force": 150.0,
+    "sim_steps": 4000
+  },
+  "sensitivity": {
+    "dx_total": 304.09,
+    "hottest_dx_weight": "w03",
+    "hottest_yaw_weight": "w13",
+    "yaw_total": 9864.66
+  },
+  "telemetry": {
+    "attractor_type": "limit_cycle",
+    "duty_cycle": 0.185,
+    "efficiency": 0.0066,
+    "mean_speed": 0.763,
+    "mean_torque": 83.66,
+    "pareto_optimal": false,
+    "speed_cv": 0.498,
+    "stride_freq_hz": 4.81,
+    "transient_frac": 1.0
+  },
+  "true_distance": 0.55,
+  "turns": -0.89,
+  "video": "46_spinner_crosswired.mp4",
+  "weights": {
+    "w03": -0.5,
+    "w04": 0.5,
+    "w13": -0.7,
+    "w14": -0.7,
+    "w23": 0.9,
+    "w24": -0.6,
+    "w33": 0.5,
+    "w34": 0.5,
+    "w43": -0.3,
+    "w44": -0.3
+  },
+  "yaw_degrees": -319.7
+}

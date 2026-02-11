@@ -1,0 +1,45 @@
+{
+  "architecture": "standard_6",
+  "category": "homework",
+  "description": "Asymmetric mixed weights \u2014 creates an irregular galloping gait.",
+  "dx": -4.44,
+  "dy": -0.46,
+  "heading": -174.1,
+  "id": "5_gallop",
+  "max_tilt": 242,
+  "physics": {
+    "dt": 0.004167,
+    "friction": 2.5,
+    "gravity_z": -9.8,
+    "max_force": 150.0,
+    "sim_steps": 4000
+  },
+  "sensitivity": {
+    "dx_total": 298.57,
+    "hottest_dx_weight": "w13",
+    "hottest_yaw_weight": "w14",
+    "yaw_total": 9165.89
+  },
+  "telemetry": {
+    "attractor_type": "chaotic/fallen",
+    "duty_cycle": 0.298,
+    "efficiency": 0.0452,
+    "mean_speed": 0.603,
+    "mean_torque": 98.69,
+    "pareto_optimal": false,
+    "speed_cv": 1.633,
+    "stride_freq_hz": 5.5,
+    "transient_frac": 0.108
+  },
+  "true_distance": 4.46,
+  "video": "5_gallop.mp4",
+  "weights": {
+    "w03": 0.5,
+    "w04": -0.5,
+    "w13": -1.0,
+    "w14": 1.0,
+    "w23": 1.0,
+    "w24": -1.0
+  },
+  "yaw_degrees": 120.5
+}

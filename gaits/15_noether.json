@@ -1,0 +1,46 @@
+{
+  "architecture": "standard_6",
+  "category": "persona_gaits",
+  "description": "Emmy Noether \u2014 involution symmetry: perfect antisymmetry (w_i3 = -w_i4) with ascending magnitudes. Reverse + negate. The foundation of locomotion.",
+  "dx": -21.65,
+  "dy": -0.48,
+  "heading": -178.7,
+  "id": "15_noether",
+  "max_tilt": 37,
+  "physics": {
+    "dt": 0.004167,
+    "friction": 2.5,
+    "gravity_z": -9.8,
+    "max_force": 150.0,
+    "sim_steps": 4000
+  },
+  "sensitivity": {
+    "dx_total": 493.5,
+    "hottest_dx_weight": "w14",
+    "hottest_yaw_weight": "w13",
+    "yaw_total": 3513.94
+  },
+  "telemetry": {
+    "attractor_subtype": "multi_frequency",
+    "attractor_type": "complex",
+    "duty_cycle": 0.492,
+    "efficiency": 0.288,
+    "mean_speed": 2.058,
+    "mean_torque": 75.19,
+    "pareto_optimal": false,
+    "speed_cv": 0.578,
+    "stride_freq_hz": 3.97,
+    "transient_frac": 0.85
+  },
+  "true_distance": 21.66,
+  "video": "15_noether.mp4",
+  "weights": {
+    "w03": -0.7,
+    "w04": 0.3,
+    "w13": -0.5,
+    "w14": 0.5,
+    "w23": -0.3,
+    "w24": 0.7
+  },
+  "yaw_degrees": -16.1
+}

@@ -1,0 +1,31 @@
+{
+  "architecture": "crosswired_10",
+  "category": "persona_gaits",
+  "description": "Godfather: quiet authority. Moderate weights that don't shout but command \u2014 the Don speaks softly. Cross-wiring and self-feedback at low levels create internal deliberation. The offer you can't refuse is made at conversational volume. Every weight below 0.65, yet the network produces directed motion through controlled asymmetry.",
+  "dx": 3.4,
+  "dy": 2.22,
+  "heading": 33.1,
+  "id": "108_pacino_godfather",
+  "max_tilt": 38,
+  "physics": {
+    "dt": 0.004167,
+    "friction": 2.5,
+    "gravity_z": -9.8,
+    "max_force": 150.0,
+    "sim_steps": 4000
+  },
+  "true_distance": 4.06,
+  "weights": {
+    "w03": -0.35,
+    "w04": 0.6,
+    "w13": -0.6,
+    "w14": 0.35,
+    "w23": -0.35,
+    "w24": 0.6,
+    "w33": 0.15,
+    "w34": 0.2,
+    "w43": -0.2,
+    "w44": -0.15
+  },
+  "yaw_degrees": 12.6
+}

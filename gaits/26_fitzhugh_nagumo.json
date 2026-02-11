@@ -1,0 +1,51 @@
+{
+  "architecture": "crosswired_10",
+  "category": "cross_wired_cpg",
+  "description": "FitzHugh-Nagumo \u2014 excitable medium: Curie base + fast excitation/slow recovery dynamics.",
+  "dx": 14.53,
+  "dy": 9.41,
+  "heading": 32.9,
+  "id": "26_fitzhugh_nagumo",
+  "max_tilt": 48,
+  "n_synapses": 10,
+  "physics": {
+    "dt": 0.004167,
+    "friction": 2.5,
+    "gravity_z": -9.8,
+    "max_force": 150.0,
+    "sim_steps": 4000
+  },
+  "sensitivity": {
+    "dx_total": 939.96,
+    "hottest_dx_weight": "w34",
+    "hottest_yaw_weight": "w34",
+    "yaw_total": 8861.77
+  },
+  "telemetry": {
+    "attractor_subtype": "multi_frequency",
+    "attractor_type": "complex",
+    "duty_cycle": 0.365,
+    "efficiency": 0.2324,
+    "mean_speed": 2.263,
+    "mean_torque": 74.48,
+    "pareto_optimal": false,
+    "speed_cv": 0.514,
+    "stride_freq_hz": 4.24,
+    "transient_frac": 0.53
+  },
+  "true_distance": 17.31,
+  "video": "26_fitzhugh_nagumo.mp4",
+  "weights": {
+    "w03": -0.3,
+    "w04": 0.9,
+    "w13": -0.9,
+    "w14": 0.3,
+    "w23": -0.3,
+    "w24": 0.9,
+    "w33": 0.5,
+    "w34": -0.3,
+    "w43": 0.7,
+    "w44": -0.3
+  },
+  "yaw_degrees": 22.7
+}

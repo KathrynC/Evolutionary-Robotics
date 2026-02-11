@@ -1,0 +1,42 @@
+{
+  "architecture": "standard_6",
+  "category": "persona_gaits",
+  "description": "4'33\" \u2014 near-silence. Weights at \u00b10.01 produce no visible motion. The ambient physics (gravity, friction, joint damping) IS the performance. A second fixed point alongside the bouncer, but arrived at through intention rather than symmetry.",
+  "dx": 0.0,
+  "dy": 0.01,
+  "heading": 0,
+  "id": "62_cage_433",
+  "max_tilt": 0,
+  "physics": {
+    "dt": 0.004167,
+    "friction": 2.5,
+    "gravity_z": -9.8,
+    "max_force": 150.0,
+    "sim_steps": 4000
+  },
+  "telemetry": {
+    "attractor_type": "fixed_point",
+    "duty_cycle": 0.998,
+    "efficiency": 0.0006,
+    "mean_speed": 0.001,
+    "mean_torque": 13.0,
+    "pareto_optimal": false,
+    "speed_cv": 0,
+    "stride_freq_hz": 0.12,
+    "transient_frac": 1.0
+  },
+  "true_distance": 0.01,
+  "weights": {
+    "w03": 0.01,
+    "w04": -0.01,
+    "w13": -0.01,
+    "w14": 0.01,
+    "w23": 0.01,
+    "w24": -0.01,
+    "w33": 0,
+    "w34": 0,
+    "w43": 0,
+    "w44": 0
+  },
+  "yaw_degrees": 0.2
+}

@@ -1,0 +1,42 @@
+{
+  "architecture": "crosswired_10",
+  "category": "persona_gaits",
+  "description": "VALIS: curie-like base pattern + tiny cross-wiring noise (w34=0.05, w43=-0.05, w33=0.03, w44=-0.03). Divine static in the signal \u2014 the noise IS the information. Strongest persona walker after pelton (28m+).",
+  "dx": 23.74,
+  "dy": 15.19,
+  "heading": 32.6,
+  "id": "74_dick_valis",
+  "max_tilt": 37,
+  "physics": {
+    "dt": 0.004167,
+    "friction": 2.5,
+    "gravity_z": -9.8,
+    "max_force": 150.0,
+    "sim_steps": 4000
+  },
+  "telemetry": {
+    "attractor_type": "complex",
+    "duty_cycle": 0.322,
+    "efficiency": 0.4074,
+    "mean_speed": 2.101,
+    "mean_torque": 68.89,
+    "pareto_optimal": false,
+    "speed_cv": 0.541,
+    "stride_freq_hz": 3.76,
+    "transient_frac": 0.82
+  },
+  "true_distance": 28.19,
+  "weights": {
+    "w03": -0.3,
+    "w04": 0.85,
+    "w13": -0.85,
+    "w14": 0.26,
+    "w23": -0.26,
+    "w24": 0.85,
+    "w33": 0.03,
+    "w34": 0.05,
+    "w43": -0.05,
+    "w44": -0.03
+  },
+  "yaw_degrees": 57.4
+}

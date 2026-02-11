@@ -1,0 +1,42 @@
+{
+  "architecture": "crosswired_10",
+  "category": "persona_gaits",
+  "description": "Automatic Writing: all 10 weights from pure chance operations (random.seed(1924), year of the first Surrealist Manifesto). The unconscious speaks through random numbers. Falls over (tilt 178\u00b0) \u2014 the automatic text is illegible but real.",
+  "dx": -2.85,
+  "dy": -2.99,
+  "heading": -133.7,
+  "id": "88_breton_automatic",
+  "max_tilt": 178,
+  "physics": {
+    "dt": 0.004167,
+    "friction": 2.5,
+    "gravity_z": -9.8,
+    "max_force": 150.0,
+    "sim_steps": 4000
+  },
+  "telemetry": {
+    "attractor_type": "chaotic/fallen",
+    "duty_cycle": 0.832,
+    "efficiency": 0.1254,
+    "mean_speed": 0.812,
+    "mean_torque": 32.95,
+    "pareto_optimal": false,
+    "speed_cv": 1.816,
+    "stride_freq_hz": 4.75,
+    "transient_frac": 0.158
+  },
+  "true_distance": 4.13,
+  "weights": {
+    "w03": 0.815,
+    "w04": 0.093,
+    "w13": 0.453,
+    "w14": -0.606,
+    "w23": -0.342,
+    "w24": 0.489,
+    "w33": -0.118,
+    "w34": -0.68,
+    "w43": -0.751,
+    "w44": 0.885
+  },
+  "yaw_degrees": 113.2
+}

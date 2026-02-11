@@ -1,0 +1,31 @@
+{
+  "architecture": "standard_6",
+  "category": "persona_gaits",
+  "description": "Rose: a rose is a rose is a rose. One magnitude (0.65) repeated six times with standard polarity. Repetition as structure \u2014 the word 'rose' means nothing and everything through iteration. No cross-wiring, no differentiation. The same weight, again and again.",
+  "dx": 0.29,
+  "dy": -2.27,
+  "heading": -82.8,
+  "id": "89_stein_rose",
+  "max_tilt": 24,
+  "physics": {
+    "dt": 0.004167,
+    "friction": 2.5,
+    "gravity_z": -9.8,
+    "max_force": 150.0,
+    "sim_steps": 4000
+  },
+  "true_distance": 2.29,
+  "weights": {
+    "w03": -0.65,
+    "w04": 0.65,
+    "w13": -0.65,
+    "w14": 0.65,
+    "w23": -0.65,
+    "w24": 0.65,
+    "w33": 0,
+    "w34": 0,
+    "w43": 0,
+    "w44": 0
+  },
+  "yaw_degrees": -49.6
+}

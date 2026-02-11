@@ -1,0 +1,52 @@
+{
+  "architecture": "crosswired_10",
+  "category": "market_mathematics",
+  "description": "Flash Crash \u2014 positive feedback cascade: mutual excitation where selling begets selling, prices drop 9% in minutes.",
+  "dx": -13.13,
+  "dx_note": "Corrected from -25.85 (old physics). Verified -13.13.",
+  "dy": -6.06,
+  "heading": -155.2,
+  "id": "28_flash_crash",
+  "max_tilt": 23,
+  "n_synapses": 8,
+  "physics": {
+    "dt": 0.004167,
+    "friction": 2.5,
+    "gravity_z": -9.8,
+    "max_force": 150.0,
+    "sim_steps": 4000
+  },
+  "sensitivity": {
+    "dx_total": 407.81,
+    "hottest_dx_weight": "w23",
+    "hottest_yaw_weight": "w03",
+    "yaw_total": 2827.48
+  },
+  "telemetry": {
+    "attractor_subtype": "drifter",
+    "attractor_type": "complex",
+    "duty_cycle": 0.788,
+    "efficiency": 0.2528,
+    "mean_speed": 1.288,
+    "mean_torque": 57.2,
+    "pareto_optimal": false,
+    "speed_cv": 0.83,
+    "stride_freq_hz": 3.79,
+    "transient_frac": 0.822
+  },
+  "true_distance": 14.46,
+  "video": "28_flash_crash.mp4",
+  "weights": {
+    "w03": -0.5,
+    "w04": 0.5,
+    "w13": -0.5,
+    "w14": 0.5,
+    "w23": -0.5,
+    "w24": 0.5,
+    "w33": 0.0,
+    "w34": 0.5,
+    "w43": 0.5,
+    "w44": 0.0
+  },
+  "yaw_degrees": 33.3
+}

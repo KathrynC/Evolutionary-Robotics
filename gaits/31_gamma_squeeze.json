@@ -1,0 +1,51 @@
+{
+  "architecture": "crosswired_10",
+  "category": "market_mathematics",
+  "description": "Gamma Squeeze \u2014 asymmetric amplification: one motor dominantly drives the other (9:1 ratio). GameStop dynamics where delta-hedging creates a feedback loop.",
+  "dx": 3.97,
+  "dx_note": "Corrected from -30.72 (old physics). Verified +3.97.",
+  "dy": 1.41,
+  "heading": 19.5,
+  "id": "31_gamma_squeeze",
+  "max_tilt": 114,
+  "n_synapses": 8,
+  "physics": {
+    "dt": 0.004167,
+    "friction": 2.5,
+    "gravity_z": -9.8,
+    "max_force": 150.0,
+    "sim_steps": 4000
+  },
+  "sensitivity": {
+    "dx_total": 446.2,
+    "hottest_dx_weight": "w24",
+    "hottest_yaw_weight": "w34",
+    "yaw_total": 10574.01
+  },
+  "telemetry": {
+    "attractor_type": "chaotic/fallen",
+    "duty_cycle": 0.655,
+    "efficiency": 0.0783,
+    "mean_speed": 1.483,
+    "mean_torque": 53.81,
+    "pareto_optimal": false,
+    "speed_cv": 1.005,
+    "stride_freq_hz": 4.15,
+    "transient_frac": 0.06
+  },
+  "true_distance": 4.21,
+  "video": "31_gamma_squeeze.mp4",
+  "weights": {
+    "w03": -0.5,
+    "w04": 0.3,
+    "w13": -0.7,
+    "w14": 0.7,
+    "w23": -0.3,
+    "w24": 0.5,
+    "w33": 0.0,
+    "w34": 0.1,
+    "w43": -0.9,
+    "w44": 0.0
+  },
+  "yaw_degrees": 30.8
+}

@@ -1,0 +1,31 @@
+{
+  "architecture": "standard_6",
+  "category": "persona_gaits",
+  "description": "Lottery: curie base (the village's normal walk) with one weight drawn for destruction \u2014 w14 flipped from +0.3 to -1.0. One synapse is chosen, one stone is thrown. Compare to dick_replicant (which flipped w14 to -0.26); this goes further \u2014 maximum negative weight. The lottery always ends badly for someone.",
+  "dx": -4.38,
+  "dy": -2.47,
+  "heading": -150.6,
+  "id": "95_jackson_lottery",
+  "max_tilt": 16,
+  "physics": {
+    "dt": 0.004167,
+    "friction": 2.5,
+    "gravity_z": -9.8,
+    "max_force": 150.0,
+    "sim_steps": 4000
+  },
+  "true_distance": 5.02,
+  "weights": {
+    "w03": -0.3,
+    "w04": 0.9,
+    "w13": -0.9,
+    "w14": -1.0,
+    "w23": -0.3,
+    "w24": 0.9,
+    "w33": 0,
+    "w34": 0,
+    "w43": 0,
+    "w44": 0
+  },
+  "yaw_degrees": 67.3
+}
