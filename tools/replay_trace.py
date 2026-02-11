@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+"""tools.replay_trace
+
+Replay/inspect telemetry traces: load, summarize, and render diagnostic views.
+"""
+
 from __future__ import annotations
 
 import argparse

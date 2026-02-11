@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+"""tools.replay_a_mode
+
+Replay utilities for A-mode experiments (loading traces and reproducing key views).
+"""
+
 import argparse, glob, json, os
 from pathlib import Path
 

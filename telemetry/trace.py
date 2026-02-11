@@ -1,3 +1,9 @@
+"""telemetry.trace
+
+Helpers for reading and working with trace/telemetry artifacts produced by simulations.
+Typical uses: loading a trace, extracting time series, and printing quick summaries.
+"""
+
 from __future__ import annotations
 import json
 from dataclasses import dataclass

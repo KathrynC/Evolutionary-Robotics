@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+"""tools.tail_trace
+
+CLI helper to preview the tail end of a telemetry/trace file (useful during runs).
+"""
+
 import sys
 from pathlib import Path
 

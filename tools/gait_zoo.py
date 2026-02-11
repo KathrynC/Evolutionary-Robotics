@@ -1,3 +1,9 @@
+"""tools.gait_zoo
+
+Utilities for working with the "gait zoo": enumerating/expanding gait variants,
+running batches, and writing artifact outputs for later analysis.
+"""
+
 import argparse, json, os, random, subprocess, sys
 from pathlib import Path
 

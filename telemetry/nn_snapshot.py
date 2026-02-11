@@ -1,3 +1,8 @@
+"""telemetry.nn_snapshot
+
+Create/read compact neural-network snapshots for debugging and offline inspection.
+"""
+
 from __future__ import annotations
 
 from typing import Any, Dict, Optional

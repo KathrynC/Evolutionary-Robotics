@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+"""apply_step2_commentary.py
+
+One-off utility for applying or regenerating commentary for the Step 2 materials.
+"""
+
 from __future__ import annotations
 
 import argparse

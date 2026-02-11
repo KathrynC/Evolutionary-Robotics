@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+"""tools.rule_table
+
+Generate tabular views of gait rules/variants and export them for analysis.
+"""
+
 import argparse, glob, json, math
 from collections import defaultdict
 
