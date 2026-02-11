@@ -1,0 +1,5270 @@
+{
+  "meta": {
+    "title": "Synapse Gait Zoo",
+    "description": "Catalog of all discovered synapse-based gait configurations for the 3-link PyBullet robot (Torso, BackLeg, FrontLeg). Each entry defines a neural network topology and synapse weights that produce a distinct locomotion behavior.",
+    "robot": {
+      "links": [
+        "Torso",
+        "BackLeg",
+        "FrontLeg"
+      ],
+      "joints": [
+        "Torso_BackLeg",
+        "Torso_FrontLeg"
+      ],
+      "physics": {
+        "sim_steps": 4000,
+        "dt": 0.004167,
+        "gravity_z": -9.8,
+        "max_force": 150.0,
+        "friction": 2.5
+      }
+    },
+    "base_neurons": [
+      {
+        "id": "0",
+        "type": "sensor",
+        "ref": "Torso"
+      },
+      {
+        "id": "1",
+        "type": "sensor",
+        "ref": "BackLeg"
+      },
+      {
+        "id": "2",
+        "type": "sensor",
+        "ref": "FrontLeg"
+      },
+      {
+        "id": "3",
+        "type": "motor",
+        "ref": "Torso_BackLeg"
+      },
+      {
+        "id": "4",
+        "type": "motor",
+        "ref": "Torso_FrontLeg"
+      }
+    ],
+    "weight_format": "Sensor\u2192motor weights [w03, w13, w23, w04, w14, w24] map 3 touch sensors to 2 joint motors via tanh activation. Cross-wiring [w34, w43, w33, w44] adds motor\u2192motor recurrent connections. Hidden neurons add intermediate computational layers.",
+    "created": "2026-02-08",
+    "total_gaits": 113,
+    "all_time_records": {
+      "displacement": {
+        "positive": {
+          "name": "43_hidden_cpg_champion",
+          "dx": 50.11
+        },
+        "negative": {
+          "name": "21_noether_cpg",
+          "dx": -43.23
+        }
+      },
+      "spin": {
+        "positive": {
+          "name": "44_spinner_champion",
+          "yaw_deg": 837.9,
+          "turns": 2.33,
+          "max_tilt": 48
+        },
+        "negative": {
+          "name": "45_spinner_stable",
+          "yaw_deg": -748.5,
+          "turns": -2.08,
+          "max_tilt": 31
+        }
+      },
+      "most_robust": {
+        "name": "19_haraway",
+        "dx_sensitivity": 32,
+        "note": "All 6 weights identical at -0.5. Lowest sensitivity in zoo by 2.5x margin."
+      },
+      "most_efficient": {
+        "name": "7_fuller_dymaxion",
+        "efficiency": 12.3,
+        "note": "DX=2.46 from total weight 0.2. Two synapses, both -0.1."
+      },
+      "most_sensitive": {
+        "name": "32_carry_trade",
+        "dx_sensitivity": 1340,
+        "note": "Highest total \u2202DX/\u2202w. Lives on the sharpest knife-edge in the zoo."
+      },
+      "lateral": {
+        "name": "56_evolved_crab_v2",
+        "dy": -40.64,
+        "dx": -6.71,
+        "heading": -99.4,
+        "crab_ratio": 6.06,
+        "note": "Evolved via (mu+lambda) ES. Verified reproducible. Full float64 weights required \u2014 solution is knife-edge sensitive to rounding."
+      },
+      "bifurcation": {
+        "sharpest": {
+          "name": "51_bouncer_detonated",
+          "note": "10% weight change (w24: 1.0\u21920.9) converts DX=0/YAW=0 to YAW=-188\u00b0."
+        }
+      },
+      "pareto_walk_spin": {
+        "best_score": {
+          "name": "48_curie_dervish",
+          "pareto_score": 2886,
+          "dx": 24.07,
+          "yaw_deg": -119.9
+        }
+      },
+      "telemetry": {
+        "fastest_stride": {
+          "name": "45_spinner_stable",
+          "stride_freq_hz": 5.89
+        },
+        "most_efficient": {
+          "name": "7_fuller_dymaxion",
+          "efficiency": 0.0735,
+          "note": "speed / mean_torque"
+        },
+        "highest_duty_cycle": {
+          "name": "1_wolfram",
+          "duty_cycle": 0.97
+        },
+        "smoothest_speed": {
+          "name": "21_noether_cpg",
+          "speed_cv": 0.329,
+          "note": "Lowest speed coefficient of variation among gaits with mean_speed > 1"
+        },
+        "fastest_warmup": {
+          "name": "13_lorenz_B",
+          "transient_frac": 0.015,
+          "note": "Reaches 80% of final displacement earliest"
+        }
+      }
+    },
+    "crab_leaderboard": [
+      {
+        "name": "56_evolved_crab_v2",
+        "dy": -40.64,
+        "dx": -6.71,
+        "heading": -99.4,
+        "crab_ratio": 6.06,
+        "true_distance": 41.19
+      },
+      {
+        "name": "57_evolved_sidewinder",
+        "dy": -39.32,
+        "dx": -3.99,
+        "heading": -95.8,
+        "crab_ratio": 9.85,
+        "true_distance": 39.52
+      },
+      {
+        "name": "58_evolved_crab_positive_v2",
+        "dy": 38.08,
+        "dx": -1.17,
+        "heading": 91.8,
+        "crab_ratio": 32.55,
+        "true_distance": 38.1
+      },
+      {
+        "name": "52_curie_crab",
+        "dy": -28.79,
+        "dx": 24.44,
+        "heading": -49.7,
+        "crab_ratio": 1.18,
+        "true_distance": 37.76
+      },
+      {
+        "name": "53_rucker_landcrab",
+        "dy": 27.05,
+        "dx": 11.46,
+        "heading": 67.0,
+        "crab_ratio": 2.36,
+        "true_distance": 29.38
+      },
+      {
+        "name": "48_curie_dervish",
+        "dy": -20.16,
+        "dx": 24.07,
+        "heading": -39.9,
+        "crab_ratio": 0.84,
+        "true_distance": 31.4
+      },
+      {
+        "name": "35_evolved_curie",
+        "dy": -17.5,
+        "dx": 24.28,
+        "heading": -35.8,
+        "crab_ratio": 0.72,
+        "true_distance": 29.93
+      },
+      {
+        "name": "10_tesla_3phase",
+        "dy": 15.49,
+        "dx": -18.33,
+        "heading": 139.8,
+        "crab_ratio": 0.85,
+        "true_distance": 24.0
+      },
+      {
+        "name": "54_rucker_sidewinder",
+        "dy": 15.19,
+        "dx": 5.7,
+        "heading": 69.4,
+        "crab_ratio": 2.66,
+        "true_distance": 16.22
+      },
+      {
+        "name": "55_skew_crab",
+        "dy": -13.71,
+        "dx": 9.78,
+        "heading": -54.5,
+        "crab_ratio": 1.4,
+        "true_distance": 16.84
+      },
+      {
+        "name": "50_noether_cyclone",
+        "dy": -13.51,
+        "dx": -30.16,
+        "heading": -155.9,
+        "crab_ratio": 0.45,
+        "true_distance": 33.05
+      },
+      {
+        "name": "16_franklin",
+        "dy": 10.24,
+        "dx": -17.49,
+        "heading": 149.7,
+        "crab_ratio": 0.59,
+        "true_distance": 20.27
+      },
+      {
+        "name": "34_zipf",
+        "dy": 9.95,
+        "dx": -20.57,
+        "heading": 154.2,
+        "crab_ratio": 0.48,
+        "true_distance": 22.85
+      },
+      {
+        "name": "30_garch",
+        "dy": 9.54,
+        "dx": -22.69,
+        "heading": 157.2,
+        "crab_ratio": 0.42,
+        "true_distance": 24.61
+      },
+      {
+        "name": "37_hemiola",
+        "dy": 9.45,
+        "dx": 22.63,
+        "heading": 22.7,
+        "crab_ratio": 0.42,
+        "true_distance": 24.52
+      }
+    ],
+    "analysis": {
+      "limit_cycle_advantage": {
+        "description": "Why limit cycles are the best walkers (Q1 analysis)",
+        "directional_efficiency": {
+          "limit_cycle": 0.74,
+          "complex": 0.536,
+          "chaotic_fallen": 0.45,
+          "note": "Fraction of path length converted to net displacement. Limit cycles walk 1.4x straighter."
+        },
+        "speed_consistency": {
+          "limit_cycle_cv": 0.409,
+          "complex_cv": 0.719,
+          "note": "Limit cycles have 1.8x lower speed variability \u2014 uniform stride wastes less energy."
+        },
+        "torque_efficiency": {
+          "limit_cycle": 0.2,
+          "complex": 0.11,
+          "note": "Displacement per unit mean torque. Limit cycles are 1.8x more efficient."
+        },
+        "joint_asymmetry": {
+          "limit_cycle": 0.2,
+          "complex": 0.131,
+          "note": "Limit cycles use joints more asymmetrically, creating directed thrust rather than symmetric rocking."
+        },
+        "surprise_finding": "Complex:drifters rival limit cycles (mean disp 24.6m vs 23.5m, dir_eff 0.756 vs 0.740) but with higher speed variability. The curie_asymmetric_drive motif produces drifters when amplified."
+      },
+      "heading_control": {
+        "description": "Can the robot be steered to a specific heading? (Q5 analysis)",
+        "method": "Swept 83 configurations: curie base pattern with varying MB ratio (0.22-1.30) and cross-wiring asymmetry (w34-w43 from -1.4 to +1.4).",
+        "coverage": "Full 360\u00b0 heading achieved. All 30\u00b0 bins covered.",
+        "control_surface": {
+          "cw_heading_correlation": -0.136,
+          "note": "CW asymmetry alone does NOT predict heading. The control surface is nonlinear and non-monotonic. Nearby parameter configs can produce wildly different headings."
+        },
+        "heading_distribution": {
+          "forward_cluster": "35 of 82 moving configs head between -30\u00b0 and +30\u00b0",
+          "backward_cluster": "18 of 82 moving configs head between 150\u00b0 and 180\u00b0",
+          "lateral_rare": "Only 5 of 82 configs achieve headings between 60\u00b0 and 120\u00b0. Pure lateral motion is structurally difficult."
+        },
+        "mb_transition": "Forward/backward transition occurs around MB \u2248 0.4-0.5. Below this, robot tends backward. Above, forward \u2014 but heading within the forward regime is chaotic.",
+        "key_finding": "Heading is controllable (any angle is reachable) but the control landscape has cliffs \u2014 consistent with bifurcation findings. Would require evolutionary optimization with heading fitness function, not smooth analytical steering."
+      },
+      "evolved_sensitivity": {
+        "description": "Evolved solutions are knife-edge sensitive to weight precision (Q2 finding)",
+        "evidence": "v1 evolution found |DY|=36.34 but 6-decimal rounding produced |DY|=25.68 \u2014 a 30% drop. v2 with full float64 precision + verification confirms |DY|=40.64.",
+        "implication": "Evolutionary optimization finds solutions on sensitivity cliffs. High-performing evolved gaits may not transfer to hardware without exact weight reproduction. This is a concrete instance of the reality gap operating through weight precision rather than environmental noise."
+      }
+    },
+    "efficiency_frontier": {
+      "description": "Pareto frontier of displacement vs mean torque. Gaits where no other gait has both higher displacement AND lower torque.",
+      "total_movers": 58,
+      "frontier_size": 6,
+      "members": [
+        {
+          "name": "43_hidden_cpg_champion",
+          "displacement": 50.03,
+          "mean_torque": 120.78,
+          "efficiency": 0.414,
+          "dir_efficiency": 0.905,
+          "cost_of_transport": 965.6,
+          "attractor": "limit_cycle",
+          "motif": "half_center_oscillator"
+        },
+        {
+          "name": "30_garch",
+          "displacement": 24.64,
+          "mean_torque": 91.89,
+          "efficiency": 0.268,
+          "dir_efficiency": 0.786,
+          "cost_of_transport": 1491.9,
+          "attractor": "complex:multi_frequency",
+          "motif": "-"
+        },
+        {
+          "name": "39_bulgarian",
+          "displacement": 17.39,
+          "mean_torque": 77.72,
+          "efficiency": 0.224,
+          "dir_efficiency": 0.699,
+          "cost_of_transport": 1787.8,
+          "attractor": "complex:multi_frequency",
+          "motif": "-"
+        },
+        {
+          "name": "42_polyrhythm",
+          "displacement": 11.41,
+          "mean_torque": 69.65,
+          "efficiency": 0.164,
+          "dir_efficiency": 0.723,
+          "cost_of_transport": 2441.8,
+          "attractor": "complex:multi_frequency",
+          "motif": "-"
+        },
+        {
+          "name": "17_lamarr",
+          "displacement": 5.03,
+          "mean_torque": 47.17,
+          "efficiency": 0.107,
+          "dir_efficiency": 0.383,
+          "cost_of_transport": 3747.7,
+          "attractor": "chaotic/fallen",
+          "motif": "-"
+        },
+        {
+          "name": "7_fuller_dymaxion",
+          "displacement": 2.45,
+          "mean_torque": 4.08,
+          "efficiency": 0.602,
+          "dir_efficiency": 0.986,
+          "cost_of_transport": 665.0,
+          "attractor": "limit_cycle",
+          "motif": "minimal_wiring"
+        }
+      ],
+      "key_findings": {
+        "correlation_efficiency_vs_directional": 0.698,
+        "correlation_displacement_vs_torque": 0.21,
+        "note": "Efficiency correlates strongly with directional efficiency (walking straight = being efficient). Displacement barely correlates with torque (high torque does not guarantee high displacement)."
+      },
+      "motif_efficiency_ranking": [
+        {
+          "motif": "half_center_oscillator",
+          "mean_efficiency": 0.414,
+          "note": "CPG champion \u2014 most efficient by far"
+        },
+        {
+          "motif": "minimal_wiring",
+          "mean_efficiency": 0.23,
+          "note": "Sparse networks waste less energy"
+        },
+        {
+          "motif": "curie_asymmetric_drive",
+          "mean_efficiency": 0.207,
+          "note": "Strong directional drive"
+        },
+        {
+          "motif": "noether_involution",
+          "mean_efficiency": 0.207
+        },
+        {
+          "motif": "walk_and_spin",
+          "mean_efficiency": 0.161
+        },
+        {
+          "motif": "crab_walk",
+          "mean_efficiency": 0.126
+        },
+        {
+          "motif": "spin_torque",
+          "mean_efficiency": 0.017,
+          "note": "Dead last \u2014 spinners waste nearly all energy on rotation"
+        }
+      ]
+    }
+  },
+  "categories": {
+    "persona_gaits": {
+      "description": "Each gait embodies an intellectual persona's core philosophy through synapse weight topology. 6 sensor\u2192motor synapses only. Original weights recovered from session transcript (gaitsapce.md). DX values are from recording sessions; PyBullet has minor nondeterminism between runs.",
+      "architecture": "standard_6",
+      "gaits": {
+        "1_wolfram": {
+          "weights": {
+            "w03": -0.8,
+            "w13": -0.8,
+            "w23": -0.8,
+            "w04": 0.8,
+            "w14": 0.8,
+            "w24": 0.8
+          },
+          "description": "Stephen Wolfram \u2014 one coefficient, one rule. All weights equal magnitude. Simple rule, systematic walk.",
+          "dx": -2.67,
+          "video": "1_wolfram.mp4",
+          "max_tilt": 22,
+          "sensitivity": {
+            "dx_total": 171.0,
+            "yaw_total": 5397.68,
+            "hottest_dx_weight": "w14",
+            "hottest_yaw_weight": "w24"
+          },
+          "dy": -0.35,
+          "true_distance": 2.69,
+          "telemetry": {
+            "stride_freq_hz": 3.07,
+            "duty_cycle": 0.97,
+            "mean_torque": 27.46,
+            "transient_frac": 0.052,
+            "mean_speed": 0.692,
+            "speed_cv": 0.861,
+            "attractor_type": "complex",
+            "attractor_subtype": "multi_frequency",
+            "efficiency": 0.0981,
+            "pareto_optimal": false
+          },
+          "yaw_degrees": 186.8,
+          "heading": -172.4,
+          "architecture": "standard_6"
+        },
+        "2_rucker": {
+          "weights": {
+            "w03": 0.618,
+            "w13": -1.0,
+            "w23": 0.382,
+            "w04": -0.382,
+            "w14": -1.0,
+            "w24": 0.618
+          },
+          "description": "Rudy Rucker \u2014 golden ratio synapses: phi and 1-phi as weights. Mathematical beauty hiding inside apparent gonzo chaos.",
+          "dx": -6.94,
+          "video": "2_rucker.mp4",
+          "max_tilt": 29,
+          "sensitivity": {
+            "dx_total": 268.71,
+            "yaw_total": 3285.88,
+            "hottest_dx_weight": "w24",
+            "hottest_yaw_weight": "w24"
+          },
+          "dy": 9.41,
+          "true_distance": 11.69,
+          "telemetry": {
+            "stride_freq_hz": 3.73,
+            "duty_cycle": 0.502,
+            "mean_torque": 67.7,
+            "transient_frac": 0.812,
+            "mean_speed": 0.95,
+            "speed_cv": 0.638,
+            "attractor_type": "complex",
+            "attractor_subtype": "multi_frequency",
+            "efficiency": 0.1727,
+            "pareto_optimal": false
+          },
+          "yaw_degrees": -44.7,
+          "heading": 126.4,
+          "architecture": "standard_6"
+        },
+        "3_mordvintsev": {
+          "weights": {
+            "w03": -0.1,
+            "w13": -0.4,
+            "w23": -0.1,
+            "w04": -0.1,
+            "w14": -0.4,
+            "w24": -0.1
+          },
+          "description": "Alexander Mordvintsev \u2014 emergence from minimal signal: tiny uniform weights, BOTH motors receive identical drive. Motion emerges from pure sensor feedback despite near-zero initial signal.",
+          "dx": 9.47,
+          "note": "Non-standard topology: w_i3 = w_i4 (same drive to both motors, not antisymmetric).",
+          "video": "3_mordvintsev.mp4",
+          "max_tilt": 21,
+          "sensitivity": {
+            "dx_total": 159.67,
+            "yaw_total": 417.3,
+            "hottest_dx_weight": "w23",
+            "hottest_yaw_weight": "w23"
+          },
+          "dy": -0.07,
+          "true_distance": 9.47,
+          "telemetry": {
+            "stride_freq_hz": 4.78,
+            "duty_cycle": 0.232,
+            "mean_torque": 58.99,
+            "transient_frac": 0.802,
+            "mean_speed": 0.578,
+            "speed_cv": 0.16,
+            "attractor_type": "limit_cycle",
+            "efficiency": 0.1605,
+            "pareto_optimal": false
+          },
+          "yaw_degrees": -1.4,
+          "heading": -0.4,
+          "architecture": "standard_6"
+        },
+        "4_sayama": {
+          "weights": {
+            "w03": -0.5,
+            "w13": -0.7,
+            "w23": -0.5,
+            "w04": 0.5,
+            "w14": 0.7,
+            "w24": 0.5
+          },
+          "description": "Hiroki Sayama \u2014 systematic hypothesis-driven parameter variation. Started from uniform 0.5, increased BackLeg sensor weight to 0.7. One-parameter-at-a-time exploration yields 8x improvement.",
+          "dx": -14.56,
+          "video": "4_sayama.mp4",
+          "max_tilt": 53,
+          "sensitivity": {
+            "dx_total": 396.78,
+            "yaw_total": 5086.53,
+            "hottest_dx_weight": "w04",
+            "hottest_yaw_weight": "w13"
+          },
+          "dy": -4.58,
+          "true_distance": 15.26,
+          "telemetry": {
+            "stride_freq_hz": 2.35,
+            "duty_cycle": 0.722,
+            "mean_torque": 51.86,
+            "transient_frac": 0.73,
+            "mean_speed": 1.462,
+            "speed_cv": 0.669,
+            "attractor_type": "complex",
+            "attractor_subtype": "quasi_periodic",
+            "efficiency": 0.2943,
+            "pareto_optimal": false
+          },
+          "yaw_degrees": 83.3,
+          "heading": -162.5,
+          "architecture": "standard_6"
+        },
+        "5_pelton": {
+          "weights": {
+            "w03": -0.3,
+            "w13": -1.0,
+            "w23": -0.3,
+            "w04": 1.0,
+            "w14": 0.3,
+            "w24": 1.0
+          },
+          "description": "Robert Young Pelton \u2014 survival sprint: maximum distance without falling. Aggressive asymmetry, BackLeg sensor at -1.0 and FrontLeg motor at +1.0 create extreme drive.",
+          "dx": 34.7,
+          "video": "5_pelton.mp4",
+          "max_tilt": 32,
+          "sensitivity": {
+            "dx_total": 721.24,
+            "yaw_total": 6649.8,
+            "hottest_dx_weight": "w03",
+            "hottest_yaw_weight": "w24"
+          },
+          "dy": 6.32,
+          "true_distance": 35.27,
+          "telemetry": {
+            "stride_freq_hz": 3.85,
+            "duty_cycle": 0.298,
+            "mean_torque": 66.61,
+            "transient_frac": 0.79,
+            "mean_speed": 2.433,
+            "speed_cv": 0.497,
+            "attractor_type": "limit_cycle",
+            "efficiency": 0.5295,
+            "pareto_optimal": false
+          },
+          "yaw_degrees": 43.4,
+          "heading": 10.3,
+          "architecture": "standard_6"
+        },
+        "6_fuller_trimtab": {
+          "weights": {
+            "w03": 0.0,
+            "w13": -0.5,
+            "w23": 0.0,
+            "w04": 0.0,
+            "w14": 0.0,
+            "w24": 0.0
+          },
+          "description": "Buckminster Fuller (trimtab) \u2014 ONE single synapse. BackLeg sensor \u2192 BackLeg motor, weight -0.5. Five of six synapses are zero. The tiny rudder that steers the ship.",
+          "dx": 5.21,
+          "n_synapses": 1,
+          "video": "6_fuller_trimtab.mp4",
+          "max_tilt": 10,
+          "sensitivity": {
+            "dx_total": 95.19,
+            "yaw_total": 498.9,
+            "hottest_dx_weight": "w23",
+            "hottest_yaw_weight": "w14"
+          },
+          "dy": -0.05,
+          "true_distance": 5.21,
+          "telemetry": {
+            "stride_freq_hz": 2.71,
+            "duty_cycle": 0.65,
+            "mean_torque": 46.74,
+            "transient_frac": 0.765,
+            "mean_speed": 0.623,
+            "speed_cv": 0.636,
+            "attractor_type": "complex",
+            "attractor_subtype": "quasi_periodic",
+            "efficiency": 0.1115,
+            "pareto_optimal": false
+          },
+          "yaw_degrees": -0.8,
+          "heading": -0.5,
+          "architecture": "standard_6"
+        },
+        "7_fuller_dymaxion": {
+          "weights": {
+            "w03": 0.0,
+            "w13": -0.1,
+            "w23": 0.0,
+            "w04": 0.0,
+            "w14": -0.1,
+            "w24": 0.0
+          },
+          "description": "Buckminster Fuller (dymaxion) \u2014 doing more with less. Total weight 0.2, efficiency ratio 12.3 (highest found). Ephemeralization: 18x less synapse weight than Pelton, still walks.",
+          "dx": 2.46,
+          "n_synapses": 2,
+          "efficiency": 12.3,
+          "video": "7_fuller_dymaxion.mp4",
+          "max_tilt": 2,
+          "sensitivity": {
+            "dx_total": 152.85,
+            "yaw_total": 571.62,
+            "hottest_dx_weight": "w23",
+            "hottest_yaw_weight": "w24"
+          },
+          "dy": -0.03,
+          "true_distance": 2.46,
+          "telemetry": {
+            "stride_freq_hz": 0.03,
+            "duty_cycle": 0.002,
+            "mean_torque": 2.04,
+            "transient_frac": 0.802,
+            "mean_speed": 0.15,
+            "speed_cv": 0.184,
+            "attractor_type": "limit_cycle",
+            "efficiency": 1.206,
+            "pareto_optimal": true
+          },
+          "yaw_degrees": -0.8,
+          "heading": -0.7,
+          "architecture": "standard_6"
+        },
+        "8_conway_glider": {
+          "weights": {
+            "w03": -1.0,
+            "w13": -1.0,
+            "w23": 1.0,
+            "w04": 1.0,
+            "w14": -1.0,
+            "w24": 1.0
+          },
+          "description": "John Conway \u2014 Game of Life glider: all weights binary (+1 or -1). 14 direction reversals \u2014 oscillating glider behavior. The minimal self-propagating pattern.",
+          "dx": 1.45,
+          "video": "8_conway_glider.mp4",
+          "max_tilt": 21,
+          "sensitivity": {
+            "dx_total": 537.28,
+            "yaw_total": 1251.77,
+            "hottest_dx_weight": "w24",
+            "hottest_yaw_weight": "w14"
+          },
+          "dy": -0.32,
+          "true_distance": 1.48,
+          "telemetry": {
+            "stride_freq_hz": 5.17,
+            "duty_cycle": 0.298,
+            "mean_torque": 81.8,
+            "transient_frac": 0.048,
+            "mean_speed": 1.593,
+            "speed_cv": 0.438,
+            "attractor_type": "limit_cycle",
+            "efficiency": 0.0182,
+            "pareto_optimal": false
+          },
+          "yaw_degrees": 38.0,
+          "heading": -12.6,
+          "architecture": "standard_6"
+        },
+        "9_mandelbrot": {
+          "weights": {
+            "w03": -0.1,
+            "w13": -0.3,
+            "w23": -0.9,
+            "w04": -0.1,
+            "w14": -0.3,
+            "w24": -0.9
+          },
+          "description": "Benoit Mandelbrot \u2014 self-similar 3x scaling: each weight is 3x the previous (0.1, 0.3, 0.9). Fractal roughness, 15 direction reversals. Both motors receive identical drive.",
+          "dx": -2.41,
+          "note": "Non-standard topology: w_i3 = w_i4 (same drive to both motors).",
+          "video": "9_mandelbrot.mp4",
+          "max_tilt": 46,
+          "sensitivity": {
+            "dx_total": 91.46,
+            "yaw_total": 992.0,
+            "hottest_dx_weight": "w24",
+            "hottest_yaw_weight": "w13"
+          },
+          "dy": -0.4,
+          "true_distance": 2.44,
+          "telemetry": {
+            "stride_freq_hz": 5.08,
+            "duty_cycle": 0.222,
+            "mean_torque": 57.11,
+            "transient_frac": 0.512,
+            "mean_speed": 0.744,
+            "speed_cv": 0.601,
+            "attractor_type": "complex",
+            "attractor_subtype": "multi_frequency",
+            "efficiency": 0.0428,
+            "pareto_optimal": false
+          },
+          "yaw_degrees": 33.1,
+          "heading": -170.5,
+          "architecture": "standard_6"
+        },
+        "10_tesla_3phase": {
+          "weights": {
+            "w03": -0.866,
+            "w13": -0.5,
+            "w23": 0.0,
+            "w04": 0.0,
+            "w14": 0.5,
+            "w24": 0.866
+          },
+          "description": "Nikola Tesla \u2014 three-phase AC motor: sin(60\u00b0), sin(30\u00b0), 0 mirrored antisymmetrically. Tesla's crowning invention encoded in synapses.",
+          "dx": -18.33,
+          "video": "10_tesla_3phase.mp4",
+          "max_tilt": 186,
+          "sensitivity": {
+            "dx_total": 843.07,
+            "yaw_total": 3156.03,
+            "hottest_dx_weight": "w13",
+            "hottest_yaw_weight": "w03"
+          },
+          "dy": 15.49,
+          "true_distance": 24.0,
+          "telemetry": {
+            "stride_freq_hz": 2.41,
+            "duty_cycle": 0.29,
+            "mean_torque": 56.01,
+            "transient_frac": 0.478,
+            "mean_speed": 2.41,
+            "speed_cv": 0.505,
+            "attractor_type": "chaotic/fallen",
+            "efficiency": 0.4285,
+            "pareto_optimal": false
+          },
+          "yaw_degrees": -162.2,
+          "heading": 139.8,
+          "architecture": "standard_6"
+        },
+        "11_taleb_antifrag": {
+          "weights": {
+            "w03": -0.3,
+            "w13": -0.3,
+            "w23": -0.3,
+            "w04": 0.3,
+            "w14": 0.3,
+            "w24": 0.3
+          },
+          "description": "Nassim Taleb \u2014 antifragile: all weights \u00b10.3. 22 direction reversals, max tilt 16\u00b0, never falls. Not the fastest or farthest \u2014 the most stable. Benefits from disorder.",
+          "dx": 4.79,
+          "video": "11_taleb_antifrag.mp4",
+          "max_tilt": 19,
+          "sensitivity": {
+            "dx_total": 217.69,
+            "yaw_total": 2473.07,
+            "hottest_dx_weight": "w23",
+            "hottest_yaw_weight": "w24"
+          },
+          "dy": -0.12,
+          "true_distance": 4.79,
+          "telemetry": {
+            "stride_freq_hz": 3.7,
+            "duty_cycle": 0.875,
+            "mean_torque": 44.77,
+            "transient_frac": 0.285,
+            "mean_speed": 0.51,
+            "speed_cv": 1.522,
+            "attractor_type": "complex",
+            "attractor_subtype": "transient_decay",
+            "efficiency": 0.107,
+            "pareto_optimal": false
+          },
+          "yaw_degrees": 8.2,
+          "heading": -1.5,
+          "architecture": "standard_6"
+        },
+        "12_lorenz_A": {
+          "weights": {
+            "w03": -0.6,
+            "w13": -0.7,
+            "w23": -0.6,
+            "w04": 0.6,
+            "w14": 0.7,
+            "w24": 0.6
+          },
+          "description": "Edward Lorenz (wing A) \u2014 butterfly effect: walks left. Compare with Lorenz B where ONE synapse changed by 0.08 kills almost all locomotion.",
+          "dx": -7.92,
+          "video": "12_lorenz_A.mp4",
+          "max_tilt": 39,
+          "sensitivity": {
+            "dx_total": 350.62,
+            "yaw_total": 3818.22,
+            "hottest_dx_weight": "w14",
+            "hottest_yaw_weight": "w13"
+          },
+          "dy": -2.09,
+          "true_distance": 8.19,
+          "telemetry": {
+            "stride_freq_hz": 3.07,
+            "duty_cycle": 0.765,
+            "mean_torque": 55.16,
+            "transient_frac": 0.698,
+            "mean_speed": 0.889,
+            "speed_cv": 0.82,
+            "attractor_type": "complex",
+            "attractor_subtype": "multi_frequency",
+            "efficiency": 0.1485,
+            "pareto_optimal": false
+          },
+          "yaw_degrees": 20.9,
+          "heading": -165.2,
+          "architecture": "standard_6"
+        },
+        "13_lorenz_B": {
+          "weights": {
+            "w03": -0.6,
+            "w13": -0.7,
+            "w23": -0.6,
+            "w04": 0.6,
+            "w14": 0.62,
+            "w24": 0.6
+          },
+          "description": "Edward Lorenz (wing B) \u2014 butterfly effect: w14 changed from 0.70 to 0.62 (delta 0.08). DX drops from -7.92 to -0.56. Sensitive dependence on initial conditions.",
+          "dx": -0.56,
+          "note": "Pair with 12_lorenz_A. One synapse changed by 0.08 causes 14x reduction in displacement.",
+          "video": "13_lorenz_B.mp4",
+          "max_tilt": 43,
+          "sensitivity": {
+            "dx_total": 333.33,
+            "yaw_total": 3700.28,
+            "hottest_dx_weight": "w23",
+            "hottest_yaw_weight": "w14"
+          },
+          "dy": -2.58,
+          "true_distance": 2.64,
+          "telemetry": {
+            "stride_freq_hz": 2.8,
+            "duty_cycle": 0.74,
+            "mean_torque": 58.7,
+            "transient_frac": 0.015,
+            "mean_speed": 0.98,
+            "speed_cv": 0.885,
+            "attractor_type": "complex",
+            "attractor_subtype": "multi_frequency",
+            "efficiency": 0.045,
+            "pareto_optimal": false
+          },
+          "yaw_degrees": -58.6,
+          "heading": -102.3,
+          "architecture": "standard_6"
+        },
+        "14_lovelace": {
+          "weights": {
+            "w03": 1.0,
+            "w13": -0.5,
+            "w23": 0.167,
+            "w04": -0.033,
+            "w14": 0.024,
+            "w24": -0.033
+          },
+          "description": "Ada Lovelace \u2014 Bernoulli numbers as synapse weights: the first algorithm, encoded in the first neural network.",
+          "dx": 3.94,
+          "video": "14_lovelace.mp4",
+          "max_tilt": 15,
+          "sensitivity": {
+            "dx_total": 230.16,
+            "yaw_total": 2953.43,
+            "hottest_dx_weight": "w04",
+            "hottest_yaw_weight": "w14"
+          },
+          "dy": 1.51,
+          "true_distance": 4.22,
+          "telemetry": {
+            "stride_freq_hz": 3.94,
+            "duty_cycle": 0.555,
+            "mean_torque": 59.47,
+            "transient_frac": 0.425,
+            "mean_speed": 0.616,
+            "speed_cv": 0.827,
+            "attractor_type": "complex",
+            "attractor_subtype": "multi_frequency",
+            "efficiency": 0.071,
+            "pareto_optimal": false
+          },
+          "yaw_degrees": 37.8,
+          "heading": 21.0,
+          "architecture": "standard_6"
+        },
+        "15_noether": {
+          "weights": {
+            "w03": -0.7,
+            "w13": -0.5,
+            "w23": -0.3,
+            "w04": 0.3,
+            "w14": 0.5,
+            "w24": 0.7
+          },
+          "description": "Emmy Noether \u2014 involution symmetry: perfect antisymmetry (w_i3 = -w_i4) with ascending magnitudes. Reverse + negate. The foundation of locomotion.",
+          "dx": -21.65,
+          "video": "15_noether.mp4",
+          "max_tilt": 37,
+          "sensitivity": {
+            "dx_total": 493.5,
+            "yaw_total": 3513.94,
+            "hottest_dx_weight": "w14",
+            "hottest_yaw_weight": "w13"
+          },
+          "dy": -0.48,
+          "true_distance": 21.66,
+          "telemetry": {
+            "stride_freq_hz": 3.97,
+            "duty_cycle": 0.492,
+            "mean_torque": 75.19,
+            "transient_frac": 0.85,
+            "mean_speed": 2.058,
+            "speed_cv": 0.578,
+            "attractor_type": "complex",
+            "attractor_subtype": "multi_frequency",
+            "efficiency": 0.288,
+            "pareto_optimal": false
+          },
+          "yaw_degrees": -16.1,
+          "heading": -178.7,
+          "architecture": "standard_6"
+        },
+        "16_franklin": {
+          "weights": {
+            "w03": -0.667,
+            "w13": -1.0,
+            "w23": -0.667,
+            "w04": 0.333,
+            "w14": 0.5,
+            "w24": 0.333
+          },
+          "description": "Rosalind Franklin \u2014 DNA base-pair bond ratios: A-T bond (2 hydrogen bonds) = 2/3, G-C bond (3 hydrogen bonds) = 1. The structure of life encoded in synapse weights.",
+          "dx": -17.49,
+          "video": "16_franklin.mp4",
+          "max_tilt": 56,
+          "sensitivity": {
+            "dx_total": 842.41,
+            "yaw_total": 2493.73,
+            "hottest_dx_weight": "w04",
+            "hottest_yaw_weight": "w04"
+          },
+          "dy": 10.24,
+          "true_distance": 20.27,
+          "telemetry": {
+            "stride_freq_hz": 2.41,
+            "duty_cycle": 0.73,
+            "mean_torque": 49.64,
+            "transient_frac": 0.808,
+            "mean_speed": 1.805,
+            "speed_cv": 0.647,
+            "attractor_type": "complex",
+            "attractor_subtype": "multi_frequency",
+            "efficiency": 0.4083,
+            "pareto_optimal": false
+          },
+          "yaw_degrees": -53.0,
+          "heading": 149.7,
+          "architecture": "standard_6"
+        },
+        "17_lamarr": {
+          "weights": {
+            "w03": -0.4,
+            "w13": -0.8,
+            "w23": -0.2,
+            "w04": 0.2,
+            "w14": 0.8,
+            "w24": 0.4
+          },
+          "description": "Hedy Lamarr \u2014 spread spectrum: BackLeg sensor dominates (0.8), spread-spectrum weight distribution across frequencies.",
+          "dx": -4.86,
+          "video": "17_lamarr.mp4",
+          "max_tilt": 93,
+          "sensitivity": {
+            "dx_total": 632.01,
+            "yaw_total": 9216.51,
+            "hottest_dx_weight": "w24",
+            "hottest_yaw_weight": "w24"
+          },
+          "dy": 1.31,
+          "true_distance": 5.03,
+          "telemetry": {
+            "stride_freq_hz": 5.08,
+            "duty_cycle": 0.815,
+            "mean_torque": 23.59,
+            "transient_frac": 0.118,
+            "mean_speed": 0.791,
+            "speed_cv": 1.728,
+            "attractor_type": "chaotic/fallen",
+            "efficiency": 0.2134,
+            "pareto_optimal": true
+          },
+          "yaw_degrees": -63.5,
+          "heading": 165.0,
+          "architecture": "standard_6"
+        },
+        "18_curie": {
+          "weights": {
+            "w03": -0.3,
+            "w13": -0.9,
+            "w23": -0.3,
+            "w04": 0.9,
+            "w14": 0.3,
+            "w24": 0.9
+          },
+          "description": "Marie Curie \u2014 relentless persistent drive: strong asymmetric coupling, FrontLeg motor gets double drive. Second fastest 6-synapse gait.",
+          "dx": 23.73,
+          "video": "18_curie.mp4",
+          "max_tilt": 52,
+          "sensitivity": {
+            "dx_total": 473.56,
+            "yaw_total": 6264.08,
+            "hottest_dx_weight": "w03",
+            "hottest_yaw_weight": "w14"
+          },
+          "dy": 0.05,
+          "true_distance": 23.73,
+          "telemetry": {
+            "stride_freq_hz": 4.03,
+            "duty_cycle": 0.31,
+            "mean_torque": 72.5,
+            "transient_frac": 0.82,
+            "mean_speed": 2.253,
+            "speed_cv": 0.477,
+            "attractor_type": "limit_cycle",
+            "efficiency": 0.3273,
+            "pareto_optimal": false
+          },
+          "yaw_degrees": 9.2,
+          "heading": 0.1,
+          "architecture": "standard_6"
+        },
+        "19_haraway": {
+          "weights": {
+            "w03": -0.5,
+            "w13": -0.5,
+            "w23": -0.5,
+            "w04": -0.5,
+            "w14": -0.5,
+            "w24": -0.5
+          },
+          "description": "Donna Haraway \u2014 maximum entanglement: ALL SIX weights identical at -0.5. No boundaries, no categories. Both motors receive the same negative drive from all sensors.",
+          "dx": 3.89,
+          "note": "Non-standard topology: all weights identical, both motors receive same drive.",
+          "video": "19_haraway.mp4",
+          "max_tilt": 56,
+          "sensitivity": {
+            "dx_total": 31.79,
+            "yaw_total": 942.36,
+            "hottest_dx_weight": "w03",
+            "hottest_yaw_weight": "w04"
+          },
+          "dy": 0.39,
+          "true_distance": 3.91,
+          "telemetry": {
+            "stride_freq_hz": 3.58,
+            "duty_cycle": 0.18,
+            "mean_torque": 55.65,
+            "transient_frac": 0.8,
+            "mean_speed": 0.527,
+            "speed_cv": 0.858,
+            "attractor_type": "complex",
+            "attractor_subtype": "multi_frequency",
+            "efficiency": 0.0703,
+            "pareto_optimal": false
+          },
+          "yaw_degrees": 4.7,
+          "heading": 5.7,
+          "architecture": "standard_6"
+        },
+        "20_mcclintock": {
+          "weights": {
+            "w03": 0.0,
+            "w13": -0.5,
+            "w23": 0.0,
+            "w04": 0.0,
+            "w14": 0.0,
+            "w24": -0.5
+          },
+          "description": "Barbara McClintock \u2014 transposon: two cross-wired jumping genes. BackLeg sensor drives BackLeg motor; BackLeg sensor also drives FrontLeg motor. Everything else zero.",
+          "dx": 5.55,
+          "n_synapses": 2,
+          "video": "20_mcclintock.mp4",
+          "max_tilt": 14,
+          "sensitivity": {
+            "dx_total": 79.66,
+            "yaw_total": 398.68,
+            "hottest_dx_weight": "w03",
+            "hottest_yaw_weight": "w24"
+          },
+          "dy": -1.01,
+          "true_distance": 5.64,
+          "telemetry": {
+            "stride_freq_hz": 4.66,
+            "duty_cycle": 0.338,
+            "mean_torque": 89.42,
+            "transient_frac": 0.792,
+            "mean_speed": 0.385,
+            "speed_cv": 0.45,
+            "attractor_type": "limit_cycle",
+            "efficiency": 0.0631,
+            "pareto_optimal": false
+          },
+          "yaw_degrees": -9.6,
+          "heading": -10.4,
+          "architecture": "standard_6"
+        },
+        "59_fibonacci_self": {
+          "weights": {
+            "w03": -0.618,
+            "w13": -1.0,
+            "w23": -0.618,
+            "w04": 1.0,
+            "w14": 0.618,
+            "w24": 1.0,
+            "w34": 0,
+            "w43": 0,
+            "w33": 0.382,
+            "w44": -0.382
+          },
+          "dx": 7.18,
+          "dy": 2.43,
+          "true_distance": 7.58,
+          "heading": 18.7,
+          "max_tilt": 40,
+          "yaw_degrees": 26.4,
+          "architecture": "crosswired_10",
+          "description": "Golden ratio base weights + self-feedback at phi^-2. Stable diagonal walker (heading +50\u00b0). The golden ratio appears in both sensor-motor proportions and self-feedback strength.",
+          "telemetry": {
+            "stride_freq_hz": 2.95,
+            "duty_cycle": 0.62,
+            "mean_torque": 56.48,
+            "transient_frac": 0.642,
+            "mean_speed": 1.323,
+            "speed_cv": 0.824,
+            "attractor_type": "complex",
+            "efficiency": 0.135,
+            "pareto_optimal": false
+          }
+        },
+        "60_fibonacci_phyllotaxis": {
+          "weights": {
+            "w03": -1.0,
+            "w13": 0.7373,
+            "w23": -0.0873,
+            "w04": 0.6086,
+            "w14": -0.9848,
+            "w24": 0.8436,
+            "w34": 0.3,
+            "w43": -0.3,
+            "w33": 0,
+            "w44": 0
+          },
+          "dx": 9.72,
+          "dy": 13.34,
+          "true_distance": 16.51,
+          "heading": 53.9,
+          "max_tilt": 186,
+          "yaw_degrees": -145.6,
+          "architecture": "crosswired_10",
+          "description": "Phyllotaxis-inspired: successive weights placed at the golden angle (137.5\u00b0) in a cosine mapping + light CPG. Falls over but covers 10.35m while spinning 595\u00b0. Chaotic/fallen attractor.",
+          "telemetry": {
+            "stride_freq_hz": 4.12,
+            "duty_cycle": 0.738,
+            "mean_torque": 30.76,
+            "transient_frac": 0.295,
+            "mean_speed": 1.311,
+            "speed_cv": 1.518,
+            "attractor_type": "chaotic/fallen",
+            "efficiency": 0.5366,
+            "pareto_optimal": false
+          }
+        },
+        "61_fibonacci_spiral": {
+          "weights": {
+            "w03": -0.382,
+            "w13": -0.618,
+            "w23": -1.0,
+            "w04": 0.382,
+            "w14": 0.618,
+            "w24": 1.0,
+            "w34": 0,
+            "w43": 0,
+            "w33": 0,
+            "w44": 0
+          },
+          "dx": 2.81,
+          "dy": 5.73,
+          "true_distance": 6.38,
+          "heading": 63.9,
+          "max_tilt": 90,
+          "yaw_degrees": -75.8,
+          "architecture": "standard_6",
+          "description": "Pure golden spiral: each weight magnitude is phi times the previous (0.382, 0.618, 1.0). Antisymmetric. Falls over but walks almost purely laterally (DY=3.72, heading 81\u00b0).",
+          "telemetry": {
+            "stride_freq_hz": 4.36,
+            "duty_cycle": 0.832,
+            "mean_torque": 24.03,
+            "transient_frac": 0.248,
+            "mean_speed": 0.833,
+            "speed_cv": 1.782,
+            "attractor_type": "chaotic/fallen",
+            "efficiency": 0.2657,
+            "pareto_optimal": false
+          }
+        },
+        "62_cage_433": {
+          "weights": {
+            "w03": 0.01,
+            "w13": -0.01,
+            "w23": 0.01,
+            "w04": -0.01,
+            "w14": 0.01,
+            "w24": -0.01,
+            "w34": 0,
+            "w43": 0,
+            "w33": 0,
+            "w44": 0
+          },
+          "dx": 0.0,
+          "dy": 0.01,
+          "true_distance": 0.01,
+          "heading": 0,
+          "max_tilt": 0,
+          "yaw_degrees": 0.2,
+          "architecture": "standard_6",
+          "description": "4'33\" \u2014 near-silence. Weights at \u00b10.01 produce no visible motion. The ambient physics (gravity, friction, joint damping) IS the performance. A second fixed point alongside the bouncer, but arrived at through intention rather than symmetry.",
+          "telemetry": {
+            "stride_freq_hz": 0.12,
+            "duty_cycle": 0.998,
+            "mean_torque": 13.0,
+            "transient_frac": 1.0,
+            "mean_speed": 0.001,
+            "speed_cv": 0,
+            "attractor_type": "fixed_point",
+            "efficiency": 0.0006,
+            "pareto_optimal": false
+          }
+        },
+        "63_cage_prepared": {
+          "weights": {
+            "w03": -0.3,
+            "w13": 0.85,
+            "w23": -0.26,
+            "w04": 0.85,
+            "w14": 0.26,
+            "w24": -0.85,
+            "w34": 0,
+            "w43": 0,
+            "w33": 0,
+            "w44": 0
+          },
+          "dx": -9.97,
+          "dy": 15.39,
+          "true_distance": 18.34,
+          "heading": 122.9,
+          "max_tilt": 34,
+          "yaw_degrees": -169.8,
+          "architecture": "standard_6",
+          "description": "Prepared curie: take the standard curie pattern and flip w13 (+0.85 \u2192 -0.85) and w24 (-0.85 \u2192 +0.85) \u2014 like inserting bolts and mutes into piano strings. The disruption creates a stable crab walker (DY=15.39, heading 123\u00b0) from a forward walker.",
+          "telemetry": {
+            "stride_freq_hz": 3.04,
+            "duty_cycle": 0.152,
+            "mean_torque": 34.99,
+            "transient_frac": 0.398,
+            "mean_speed": 2.166,
+            "speed_cv": 0.484,
+            "attractor_type": "limit_cycle",
+            "efficiency": 0.5244,
+            "pareto_optimal": false
+          }
+        },
+        "64_cage_iching": {
+          "weights": {
+            "w03": 0.639,
+            "w13": 0.025,
+            "w23": -0.463,
+            "w04": 0.279,
+            "w14": -0.691,
+            "w24": -0.932,
+            "w34": -0.204,
+            "w43": -0.336,
+            "w33": 0.849,
+            "w44": -0.65
+          },
+          "dx": 5.56,
+          "dy": -4.74,
+          "true_distance": 7.31,
+          "heading": -40.4,
+          "max_tilt": 235,
+          "yaw_degrees": 15.9,
+          "architecture": "crosswired_10",
+          "description": "I Ching: all 10 weights determined by chance operations (random.seed(1952), the year of 4'33\" premiere). With stored 3-decimal weights, the chance gait falls (tilt 235\u00b0) but still displaces 7.3m. Even rounded chance outperforms many designed gaits.",
+          "telemetry": {
+            "stride_freq_hz": 4.54,
+            "duty_cycle": 0.532,
+            "mean_torque": 42.82,
+            "transient_frac": 0.555,
+            "mean_speed": 1.039,
+            "speed_cv": 1.122,
+            "attractor_type": "chaotic/fallen",
+            "efficiency": 0.1707,
+            "pareto_optimal": false
+          }
+        },
+        "65_womack_random_acts": {
+          "weights": {
+            "w03": -0.8,
+            "w13": 0,
+            "w23": 0,
+            "w04": 0,
+            "w14": 0,
+            "w24": 0.8,
+            "w34": 0,
+            "w43": 0,
+            "w33": 0.5,
+            "w44": -0.5
+          },
+          "dx": -11.56,
+          "dy": 4.18,
+          "true_distance": 12.29,
+          "heading": 160.1,
+          "max_tilt": 10,
+          "yaw_degrees": -23.6,
+          "architecture": "crosswired_10",
+          "description": "Random Acts of Senseless Violence: only 2 sensor synapses (w03, w24) + self-feedback (w33=0.5, w44=-0.5). Institutional feedback loops drive backward locomotion. Tilt only 10\u00b0 \u2014 the most stable gait in the zoo relative to its displacement. Survival through structural austerity.",
+          "telemetry": {
+            "stride_freq_hz": 2.47,
+            "duty_cycle": 0.618,
+            "mean_torque": 62.33,
+            "transient_frac": 0.852,
+            "mean_speed": 1.016,
+            "speed_cv": 0.724,
+            "attractor_type": "complex",
+            "efficiency": 0.1975,
+            "pareto_optimal": false
+          }
+        },
+        "66_womack_ambient": {
+          "weights": {
+            "w03": 0,
+            "w13": -1.0,
+            "w23": 0,
+            "w04": 0,
+            "w14": 0,
+            "w24": 1.0,
+            "w34": 0,
+            "w43": 0,
+            "w33": 0,
+            "w44": 0
+          },
+          "dx": 3.25,
+          "dy": 4.06,
+          "true_distance": 5.2,
+          "heading": 51.3,
+          "max_tilt": 32,
+          "yaw_degrees": 60.0,
+          "architecture": "standard_6",
+          "description": "Ambient: only 2 active synapses (w13=-1, w24=+1) \u2014 the absolute minimum wiring for locomotion. BackLeg sensor drives one motor, FrontLeg sensor drives the other. 5.2m displacement from almost nothing. Survival at the margins.",
+          "telemetry": {
+            "stride_freq_hz": 3.76,
+            "duty_cycle": 0.262,
+            "mean_torque": 79.83,
+            "transient_frac": 0.912,
+            "mean_speed": 1.943,
+            "speed_cv": 0.492,
+            "attractor_type": "limit_cycle",
+            "efficiency": 0.0661,
+            "pareto_optimal": false
+          }
+        },
+        "67_womack_terraplane": {
+          "weights": {
+            "w03": -0.2,
+            "w13": -0.4,
+            "w23": 0,
+            "w04": 0,
+            "w14": 0.4,
+            "w24": 0.2,
+            "w34": 0,
+            "w43": 0,
+            "w33": 0,
+            "w44": 0
+          },
+          "dx": 4.41,
+          "dy": -1.91,
+          "true_distance": 4.81,
+          "heading": -23.4,
+          "max_tilt": 26,
+          "yaw_degrees": -24.5,
+          "architecture": "standard_6",
+          "description": "Terraplane: weights at 20-40% of normal magnitude. Existence at the poverty line. Walks 4.8m \u2014 just enough to count as locomotion. The compressed prose of synapse weights.",
+          "telemetry": {
+            "stride_freq_hz": 3.79,
+            "duty_cycle": 0.478,
+            "mean_torque": 70.13,
+            "transient_frac": 0.955,
+            "mean_speed": 1.239,
+            "speed_cv": 0.632,
+            "attractor_type": "complex",
+            "efficiency": 0.0686,
+            "pareto_optimal": false
+          }
+        },
+        "68_grunbaum_penrose": {
+          "weights": {
+            "w03": -0.5878,
+            "w13": -0.9511,
+            "w23": -0.809,
+            "w04": 0.309,
+            "w14": 0.5878,
+            "w24": 0.9511,
+            "w34": 0,
+            "w43": 0,
+            "w33": 0,
+            "w44": 0
+          },
+          "dx": -22.7,
+          "dy": 3.9,
+          "true_distance": 23.03,
+          "heading": 170.2,
+          "max_tilt": 33,
+          "yaw_degrees": -19.6,
+          "architecture": "standard_6",
+          "description": "Penrose rhombus: weights from sin/cos of the two Penrose tile angles (36\u00b0 and 72\u00b0). The aperiodic tiling's fundamental geometry produces a strong backward-diagonal walker (35m+). Pure mathematics as locomotion.",
+          "telemetry": {
+            "stride_freq_hz": 3.79,
+            "duty_cycle": 0.41,
+            "mean_torque": 71.52,
+            "transient_frac": 0.788,
+            "mean_speed": 2.172,
+            "speed_cv": 0.611,
+            "attractor_type": "complex",
+            "efficiency": 0.3219,
+            "pareto_optimal": false
+          }
+        },
+        "69_grunbaum_deflation": {
+          "weights": {
+            "w03": -1.0,
+            "w13": -0.618,
+            "w23": -0.618,
+            "w04": 0.382,
+            "w14": 0.618,
+            "w24": 1.0,
+            "w34": 0,
+            "w43": 0,
+            "w33": 0.236,
+            "w44": -0.236
+          },
+          "dx": -30.48,
+          "dy": -6.99,
+          "true_distance": 31.27,
+          "heading": -167.1,
+          "max_tilt": 27,
+          "yaw_degrees": -9.8,
+          "architecture": "crosswired_10",
+          "description": "Deflation rule: weights cascade through phi^-1 levels (1.0, 0.618, 0.382, 0.236) like a Penrose tiling deflation. Self-feedback at phi^-3 (0.236). Aperiodic hierarchy in weight structure.",
+          "telemetry": {
+            "stride_freq_hz": 4.36,
+            "duty_cycle": 0.415,
+            "mean_torque": 69.76,
+            "transient_frac": 0.795,
+            "mean_speed": 2.464,
+            "speed_cv": 0.506,
+            "attractor_type": "complex",
+            "efficiency": 0.4484,
+            "pareto_optimal": false
+          }
+        },
+        "70_grunbaum_defect": {
+          "weights": {
+            "w03": -0.7,
+            "w13": -0.7,
+            "w23": -0.7,
+            "w04": 0.7,
+            "w14": 0.7,
+            "w24": 0.7,
+            "w34": 0.15,
+            "w43": 0,
+            "w33": 0,
+            "w44": 0
+          },
+          "dx": -0.07,
+          "dy": 0.2,
+          "true_distance": 0.21,
+          "heading": 0,
+          "max_tilt": 3,
+          "yaw_degrees": 2.6,
+          "architecture": "crosswired_10",
+          "description": "Broken p6m symmetry: six uniform weights (\u00b10.7) form a perfect hexagonal tiling pattern. A single cross-wire defect (w34=0.15) breaks the symmetry. Result: near-stillness (0.2m). A third intentional fixed point alongside the bouncer and cage_433.",
+          "telemetry": {
+            "stride_freq_hz": 2.74,
+            "duty_cycle": 0.972,
+            "mean_torque": 33.83,
+            "transient_frac": 1.0,
+            "mean_speed": 0.238,
+            "speed_cv": 1.736,
+            "attractor_type": "complex",
+            "efficiency": 0.0061,
+            "pareto_optimal": false
+          }
+        },
+        "71_gallagher_multiplicative": {
+          "weights": {
+            "w03": -0.2,
+            "w13": -0.3333,
+            "w23": -0.5,
+            "w04": 0.4667,
+            "w14": 0.7,
+            "w24": 1.1667,
+            "w34": 0,
+            "w43": 0,
+            "w33": 0,
+            "w44": 0
+          },
+          "dx": -9.79,
+          "dy": -2.9,
+          "true_distance": 10.21,
+          "heading": -163.5,
+          "max_tilt": 30,
+          "yaw_degrees": -113.9,
+          "architecture": "standard_6",
+          "description": "Multiplicative structure: weights are products of prime pairs from {2,3,5,7}, normalized by 30. The multiplicative (not additive) construction reflects Gallagher's work on multiplicative number theory. Stable backward walker.",
+          "telemetry": {
+            "stride_freq_hz": 4.24,
+            "duty_cycle": 0.465,
+            "mean_torque": 79.84,
+            "transient_frac": 0.53,
+            "mean_speed": 1.981,
+            "speed_cv": 0.634,
+            "attractor_type": "complex",
+            "efficiency": 0.1272,
+            "pareto_optimal": false
+          }
+        },
+        "72_gallagher_gaps": {
+          "weights": {
+            "w03": -0.25,
+            "w13": -0.5,
+            "w23": -0.5,
+            "w04": 1.0,
+            "w14": 0.5,
+            "w24": 1.0,
+            "w34": 0,
+            "w43": 0,
+            "w33": 0,
+            "w44": 0
+          },
+          "dx": 4.67,
+          "dy": -3.56,
+          "true_distance": 5.87,
+          "heading": -37.3,
+          "max_tilt": 10,
+          "yaw_degrees": -56.4,
+          "architecture": "standard_6",
+          "description": "Prime gaps: consecutive prime differences [1,2,2,4,2,4] normalized by max_gap (4) as motor weights. The irregular spacing of primes encoded in synapse structure. Very stable (tilt 10\u00b0).",
+          "telemetry": {
+            "stride_freq_hz": 4.36,
+            "duty_cycle": 0.952,
+            "mean_torque": 38.07,
+            "transient_frac": 0.875,
+            "mean_speed": 0.768,
+            "speed_cv": 0.736,
+            "attractor_type": "complex",
+            "efficiency": 0.1532,
+            "pareto_optimal": false
+          }
+        },
+        "73_gallagher_sieve": {
+          "weights": {
+            "w03": 0,
+            "w13": 0,
+            "w23": -0.8,
+            "w04": 0.8,
+            "w14": 0,
+            "w24": 0.8,
+            "w34": 0,
+            "w43": -0.8,
+            "w33": 0,
+            "w44": 0
+          },
+          "dx": 1.1,
+          "dy": -2.17,
+          "true_distance": 2.43,
+          "heading": -63.2,
+          "max_tilt": 95,
+          "yaw_degrees": 93.3,
+          "architecture": "crosswired_10",
+          "description": "Large sieve: weights placed only at prime-indexed positions (indices 2,3,5,7 out of 0-9). Composite indices zeroed \u2014 sieved out. Only 4 active synapses. Falls over but the sparsity pattern IS the sieve.",
+          "telemetry": {
+            "stride_freq_hz": 4.06,
+            "duty_cycle": 0.875,
+            "mean_torque": 38.14,
+            "transient_frac": 0.115,
+            "mean_speed": 0.733,
+            "speed_cv": 1.45,
+            "attractor_type": "chaotic/fallen",
+            "efficiency": 0.0638,
+            "pareto_optimal": false
+          }
+        },
+        "74_dick_valis": {
+          "weights": {
+            "w03": -0.3,
+            "w13": -0.85,
+            "w23": -0.26,
+            "w04": 0.85,
+            "w14": 0.26,
+            "w24": 0.85,
+            "w34": 0.05,
+            "w43": -0.05,
+            "w33": 0.03,
+            "w44": -0.03
+          },
+          "dx": 23.74,
+          "dy": 15.19,
+          "true_distance": 28.19,
+          "heading": 32.6,
+          "max_tilt": 37,
+          "yaw_degrees": 57.4,
+          "architecture": "crosswired_10",
+          "description": "VALIS: curie-like base pattern + tiny cross-wiring noise (w34=0.05, w43=-0.05, w33=0.03, w44=-0.03). Divine static in the signal \u2014 the noise IS the information. Strongest persona walker after pelton (28m+).",
+          "telemetry": {
+            "stride_freq_hz": 3.76,
+            "duty_cycle": 0.322,
+            "mean_torque": 68.89,
+            "transient_frac": 0.82,
+            "mean_speed": 2.101,
+            "speed_cv": 0.541,
+            "attractor_type": "complex",
+            "efficiency": 0.4074,
+            "pareto_optimal": false
+          }
+        },
+        "75_dick_replicant": {
+          "weights": {
+            "w03": -0.3,
+            "w13": -0.9,
+            "w23": -0.3,
+            "w04": 0.9,
+            "w14": -0.3,
+            "w24": 0.9,
+            "w34": 0,
+            "w43": 0,
+            "w33": 0,
+            "w44": 0
+          },
+          "dx": -3.47,
+          "dy": -2.0,
+          "true_distance": 4.0,
+          "heading": -150.0,
+          "max_tilt": 36,
+          "yaw_degrees": 7.1,
+          "architecture": "standard_6",
+          "description": "Replicant: exact copy of curie with w14 sign-flipped \u2014 the Voigt-Kampff failure point. One inverted synapse transforms a 23m forward walker into a 4m backward stumbler. The android that almost passes.",
+          "telemetry": {
+            "stride_freq_hz": 5.11,
+            "duty_cycle": 0.298,
+            "mean_torque": 75.72,
+            "transient_frac": 0.082,
+            "mean_speed": 2.239,
+            "speed_cv": 0.485,
+            "attractor_type": "limit_cycle",
+            "efficiency": 0.0518,
+            "pareto_optimal": false
+          }
+        },
+        "76_dick_ubik": {
+          "weights": {
+            "w03": 0.3,
+            "w13": 0.85,
+            "w23": 0.26,
+            "w04": -0.85,
+            "w14": -0.26,
+            "w24": -0.85,
+            "w34": 0,
+            "w43": 0,
+            "w33": 0,
+            "w44": 0
+          },
+          "dx": 0.88,
+          "dy": -4.05,
+          "true_distance": 4.14,
+          "heading": -77.7,
+          "max_tilt": 202,
+          "yaw_degrees": -353.4,
+          "architecture": "standard_6",
+          "description": "Ubik: curie with ALL signs reversed \u2014 does entropy run backward? Falls over (tilt 202\u00b0) and spins 353\u00b0 (nearly a full turn). Time-reversed curie doesn't walk; it spirals into chaos.",
+          "telemetry": {
+            "stride_freq_hz": 2.5,
+            "duty_cycle": 0.82,
+            "mean_torque": 29.05,
+            "transient_frac": 0.25,
+            "mean_speed": 0.447,
+            "speed_cv": 1.742,
+            "attractor_type": "chaotic/fallen",
+            "efficiency": 0.1427,
+            "pareto_optimal": false
+          }
+        },
+        "77_ernst_collage": {
+          "weights": {
+            "w03": -0.3,
+            "w13": -0.85,
+            "w23": -0.26,
+            "w04": -0.85,
+            "w14": 0.26,
+            "w24": -0.85,
+            "w34": 0,
+            "w43": 0,
+            "w33": 0,
+            "w44": 0
+          },
+          "dx": 14.89,
+          "dy": -5.82,
+          "true_distance": 15.98,
+          "heading": -21.3,
+          "max_tilt": 32,
+          "yaw_degrees": -28.2,
+          "architecture": "standard_6",
+          "description": "Collage: motor 3 weights from curie, motor 4 weights from noether_cpg (negated). Two incompatible source gaits spliced together produce a new diagonal walker (16m). The surrealist juxtaposition works.",
+          "telemetry": {
+            "stride_freq_hz": 5.5,
+            "duty_cycle": 0.335,
+            "mean_torque": 90.47,
+            "transient_frac": 0.792,
+            "mean_speed": 1.082,
+            "speed_cv": 0.564,
+            "attractor_type": "complex",
+            "efficiency": 0.1763,
+            "pareto_optimal": false
+          }
+        },
+        "78_ernst_celebes": {
+          "weights": {
+            "w03": -0.95,
+            "w13": -0.9,
+            "w23": -0.85,
+            "w04": 0.85,
+            "w14": 0.9,
+            "w24": 0.95,
+            "w34": 0.3,
+            "w43": -0.3,
+            "w33": 0,
+            "w44": 0
+          },
+          "dx": 3.47,
+          "dy": 5.99,
+          "true_distance": 6.92,
+          "heading": 59.9,
+          "max_tilt": 5,
+          "yaw_degrees": 83.0,
+          "architecture": "crosswired_10",
+          "description": "The Elephant Celebes: near-maximal weights (0.85-0.95) + CPG cross-wiring. The mechanical animal \u2014 heavy, lumbering, but remarkably stable (tilt 5\u00b0, lowest in the zoo for its displacement). Ernst's biomechanical beast.",
+          "telemetry": {
+            "stride_freq_hz": 3.4,
+            "duty_cycle": 0.975,
+            "mean_torque": 37.69,
+            "transient_frac": 0.775,
+            "mean_speed": 0.62,
+            "speed_cv": 0.886,
+            "attractor_type": "complex",
+            "efficiency": 0.1812,
+            "pareto_optimal": false
+          }
+        },
+        "79_ernst_decalcomania": {
+          "weights": {
+            "w03": -0.7,
+            "w13": -0.5,
+            "w23": -0.3,
+            "w04": 0.7,
+            "w14": 0.5,
+            "w24": 0.35,
+            "w34": 0,
+            "w43": 0,
+            "w33": 0,
+            "w44": 0
+          },
+          "dx": 0.79,
+          "dy": -2.7,
+          "true_distance": 2.82,
+          "heading": -73.7,
+          "max_tilt": 26,
+          "yaw_degrees": 99.4,
+          "architecture": "standard_6",
+          "description": "Decalcomania: mirror weights across motors with a slight asymmetric smear (w24: 0.3\u21920.35, like paint pressed between surfaces). The tiny asymmetry produces lateral drift \u2014 form emerges from imperfect reflection.",
+          "telemetry": {
+            "stride_freq_hz": 3.37,
+            "duty_cycle": 0.782,
+            "mean_torque": 46.7,
+            "transient_frac": 0.628,
+            "mean_speed": 0.841,
+            "speed_cv": 0.851,
+            "attractor_type": "complex",
+            "efficiency": 0.0591,
+            "pareto_optimal": false
+          }
+        },
+        "80_deleuze_fold": {
+          "weights": {
+            "w03": -0.5,
+            "w13": -0.8,
+            "w23": -0.5,
+            "w04": 0.5,
+            "w14": 0.8,
+            "w24": 0.5,
+            "w34": 0,
+            "w43": 0,
+            "w33": 0.7,
+            "w44": -0.7
+          },
+          "dx": -21.93,
+          "dy": 8.47,
+          "true_distance": 23.51,
+          "heading": 158.9,
+          "max_tilt": 16,
+          "yaw_degrees": -23.7,
+          "architecture": "crosswired_10",
+          "description": "The Fold: symmetric sensor-motor base + strong self-feedback (w33=0.7, w44=-0.7). The interior folds onto the exterior \u2014 motors feed back into themselves, creating a 23m walker with only 16\u00b0 tilt. The fold produces locomotion.",
+          "telemetry": {
+            "stride_freq_hz": 2.53,
+            "duty_cycle": 0.762,
+            "mean_torque": 43.03,
+            "transient_frac": 0.852,
+            "mean_speed": 1.779,
+            "speed_cv": 0.644,
+            "attractor_type": "complex",
+            "efficiency": 0.5466,
+            "pareto_optimal": false
+          }
+        },
+        "81_deleuze_bwo": {
+          "weights": {
+            "w03": -0.55,
+            "w13": -0.55,
+            "w23": -0.55,
+            "w04": 0.55,
+            "w14": 0.55,
+            "w24": 0.55,
+            "w34": 0.55,
+            "w43": -0.55,
+            "w33": 0.55,
+            "w44": -0.55
+          },
+          "dx": -21.61,
+          "dy": 2.4,
+          "true_distance": 21.74,
+          "heading": 173.7,
+          "max_tilt": 20,
+          "yaw_degrees": -2.5,
+          "architecture": "crosswired_10",
+          "description": "Body without Organs: every weight has identical magnitude (0.55), no functional differentiation. The organism stripped of organization \u2014 yet it walks 21m at 20\u00b0 tilt. Structure emerges from the refusal of structure.",
+          "telemetry": {
+            "stride_freq_hz": 4.66,
+            "duty_cycle": 0.578,
+            "mean_torque": 78.17,
+            "transient_frac": 0.83,
+            "mean_speed": 1.846,
+            "speed_cv": 0.59,
+            "attractor_type": "complex",
+            "efficiency": 0.2771,
+            "pareto_optimal": false
+          }
+        },
+        "82_deleuze_rhizome": {
+          "weights": {
+            "w03": -0.4,
+            "w13": -0.5,
+            "w23": -0.3,
+            "w04": 0.5,
+            "w14": 0.3,
+            "w24": 0.4,
+            "w34": 0.35,
+            "w43": -0.25,
+            "w33": 0.2,
+            "w44": -0.15
+          },
+          "dx": -9.56,
+          "dy": 2.02,
+          "true_distance": 9.77,
+          "heading": 168.1,
+          "max_tilt": 33,
+          "yaw_degrees": -18.9,
+          "architecture": "crosswired_10",
+          "description": "Rhizome: all 10 weights active with no zero, no dominant path, no hierarchy. Any neuron connects to any other at moderate strength. The non-hierarchical network walks 10m \u2014 a plateau of intensity.",
+          "telemetry": {
+            "stride_freq_hz": 4.27,
+            "duty_cycle": 0.6,
+            "mean_torque": 71.76,
+            "transient_frac": 0.738,
+            "mean_speed": 1.565,
+            "speed_cv": 0.696,
+            "attractor_type": "complex",
+            "efficiency": 0.1365,
+            "pareto_optimal": false
+          }
+        },
+        "83_foucault_heterotopia": {
+          "weights": {
+            "w03": -0.1,
+            "w13": -0.1,
+            "w23": -0.1,
+            "w04": 0.1,
+            "w14": 0.1,
+            "w24": 0.1,
+            "w34": 0.8,
+            "w43": -0.8,
+            "w33": 0.4,
+            "w44": -0.4
+          },
+          "dx": 15.13,
+          "dy": 0.61,
+          "true_distance": 15.15,
+          "heading": 2.3,
+          "max_tilt": 4,
+          "yaw_degrees": 5.2,
+          "architecture": "crosswired_10",
+          "description": "Heterotopia: a space operating by different rules. Sensor input barely whispers (\u00b10.1) while internal cross-wiring dominates (w34=0.8). The motors govern themselves. Walks 15m with only 4\u00b0 tilt \u2014 the most stable cross-wired gait in the zoo.",
+          "telemetry": {
+            "stride_freq_hz": 4.54,
+            "duty_cycle": 0.31,
+            "mean_torque": 76.56,
+            "transient_frac": 0.798,
+            "mean_speed": 0.924,
+            "speed_cv": 0.326,
+            "attractor_type": "limit_cycle",
+            "efficiency": 0.1975,
+            "pareto_optimal": false
+          }
+        },
+        "84_foucault_madness": {
+          "weights": {
+            "w03": -0.3,
+            "w13": -0.3,
+            "w23": -0.3,
+            "w04": 0.3,
+            "w14": 0.3,
+            "w24": 0.3,
+            "w34": 0,
+            "w43": 0,
+            "w33": 0.9,
+            "w44": -0.9
+          },
+          "dx": -14.12,
+          "dy": 2.22,
+          "true_distance": 14.29,
+          "heading": 171.1,
+          "max_tilt": 14,
+          "yaw_degrees": -14.9,
+          "architecture": "crosswired_10",
+          "description": "Madness and Civilization: moderate external drive (\u00b10.3) with extreme self-feedback (w33=0.9, w44=-0.9). The confined mind \u2014 trapped in internal loops yet still producing locomotion (14m, tilt 14\u00b0). The institution generates its own logic.",
+          "telemetry": {
+            "stride_freq_hz": 5.41,
+            "duty_cycle": 0.62,
+            "mean_torque": 89.94,
+            "transient_frac": 0.745,
+            "mean_speed": 1.216,
+            "speed_cv": 0.466,
+            "attractor_type": "limit_cycle",
+            "efficiency": 0.1594,
+            "pareto_optimal": false
+          }
+        },
+        "85_foucault_panopticon": {
+          "weights": {
+            "w03": -0.5,
+            "w13": -0.5,
+            "w23": -0.5,
+            "w04": 0.5,
+            "w14": 0.5,
+            "w24": 0.5,
+            "w34": 0,
+            "w43": 0,
+            "w33": 0,
+            "w44": 0
+          },
+          "dx": -1.93,
+          "dy": 0.65,
+          "true_distance": 2.03,
+          "heading": 161.3,
+          "max_tilt": 3,
+          "yaw_degrees": -1.4,
+          "architecture": "standard_6",
+          "description": "Panopticon: perfect equal surveillance \u2014 every sensor monitors every motor at identical weight (\u00b10.5). Total symmetry of control produces near-stillness (2m, tilt 3\u00b0). Surveillance without differentiation is paralysis.",
+          "telemetry": {
+            "stride_freq_hz": 2.02,
+            "duty_cycle": 0.982,
+            "mean_torque": 32.09,
+            "transient_frac": 0.042,
+            "mean_speed": 0.228,
+            "speed_cv": 2.456,
+            "attractor_type": "complex",
+            "efficiency": 0.0634,
+            "pareto_optimal": false
+          }
+        },
+        "86_breton_nadja": {
+          "weights": {
+            "w03": -0.1,
+            "w13": -0.4,
+            "w23": -0.1,
+            "w04": 0.4,
+            "w14": 0.2,
+            "w24": 0.1,
+            "w34": 0.3,
+            "w43": -0.5,
+            "w33": 0,
+            "w44": 0
+          },
+          "dx": 12.3,
+          "dy": -2.7,
+          "true_distance": 12.59,
+          "heading": -12.4,
+          "max_tilt": 17,
+          "yaw_degrees": -14.6,
+          "architecture": "crosswired_10",
+          "description": "Nadja: weights from the digits of sqrt(2) (1,4,1,4,2,1,3,5) \u2014 the irrational wanderer. Found by walking the streets of mathematics. Walks 12m with 17\u00b0 tilt. The encounter with the irrational produces directed motion.",
+          "telemetry": {
+            "stride_freq_hz": 3.85,
+            "duty_cycle": 0.618,
+            "mean_torque": 61.99,
+            "transient_frac": 0.778,
+            "mean_speed": 1.333,
+            "speed_cv": 0.679,
+            "attractor_type": "complex",
+            "efficiency": 0.2031,
+            "pareto_optimal": false
+          }
+        },
+        "87_breton_chance": {
+          "weights": {
+            "w03": -0.618,
+            "w13": -0.25,
+            "w23": -0.382,
+            "w04": 0.5,
+            "w14": 0.618,
+            "w24": 1.0,
+            "w34": 0,
+            "w43": 0,
+            "w33": 0,
+            "w44": 0
+          },
+          "dx": -7.86,
+          "dy": -9.21,
+          "true_distance": 12.11,
+          "heading": -130.5,
+          "max_tilt": 30,
+          "yaw_degrees": 59.4,
+          "architecture": "standard_6",
+          "description": "Objective Chance: Fibonacci ratios (0.618, 0.382) meet prime gaps (0.25, 0.5, 1.0) \u2014 two unrelated mathematical sources combined. The meaningful coincidence produces a 12m diagonal walker. Breton's 'marvelous' in weight space.",
+          "telemetry": {
+            "stride_freq_hz": 4.75,
+            "duty_cycle": 0.598,
+            "mean_torque": 66.41,
+            "transient_frac": 0.648,
+            "mean_speed": 1.847,
+            "speed_cv": 0.626,
+            "attractor_type": "complex",
+            "efficiency": 0.1815,
+            "pareto_optimal": false
+          }
+        },
+        "88_breton_automatic": {
+          "weights": {
+            "w03": 0.815,
+            "w13": 0.453,
+            "w23": -0.342,
+            "w04": 0.093,
+            "w14": -0.606,
+            "w24": 0.489,
+            "w34": -0.68,
+            "w43": -0.751,
+            "w33": -0.118,
+            "w44": 0.885
+          },
+          "dx": -2.85,
+          "dy": -2.99,
+          "true_distance": 4.13,
+          "heading": -133.7,
+          "max_tilt": 178,
+          "yaw_degrees": 113.2,
+          "architecture": "crosswired_10",
+          "description": "Automatic Writing: all 10 weights from pure chance operations (random.seed(1924), year of the first Surrealist Manifesto). The unconscious speaks through random numbers. Falls over (tilt 178\u00b0) \u2014 the automatic text is illegible but real.",
+          "telemetry": {
+            "stride_freq_hz": 4.75,
+            "duty_cycle": 0.832,
+            "mean_torque": 32.95,
+            "transient_frac": 0.158,
+            "mean_speed": 0.812,
+            "speed_cv": 1.816,
+            "attractor_type": "chaotic/fallen",
+            "efficiency": 0.1254,
+            "pareto_optimal": false
+          }
+        },
+        "89_stein_rose": {
+          "weights": {
+            "w03": -0.65,
+            "w13": -0.65,
+            "w23": -0.65,
+            "w04": 0.65,
+            "w14": 0.65,
+            "w24": 0.65,
+            "w34": 0,
+            "w43": 0,
+            "w33": 0,
+            "w44": 0
+          },
+          "dx": 0.29,
+          "dy": -2.27,
+          "true_distance": 2.29,
+          "heading": -82.8,
+          "max_tilt": 24,
+          "yaw_degrees": -49.6,
+          "architecture": "standard_6",
+          "description": "Rose: a rose is a rose is a rose. One magnitude (0.65) repeated six times with standard polarity. Repetition as structure \u2014 the word 'rose' means nothing and everything through iteration. No cross-wiring, no differentiation. The same weight, again and again."
+        },
+        "90_stein_continuous_present": {
+          "weights": {
+            "w03": -0.4,
+            "w13": -0.4,
+            "w23": -0.4,
+            "w04": 0.4,
+            "w14": 0.4,
+            "w24": 0.4,
+            "w34": 0,
+            "w43": 0,
+            "w33": 0.8,
+            "w44": 0.8
+          },
+          "dx": -0.65,
+          "dy": 5.97,
+          "true_distance": 6.0,
+          "heading": 96.2,
+          "max_tilt": 23,
+          "yaw_degrees": 124.7,
+          "architecture": "crosswired_10",
+          "description": "Continuous Present: both self-feedbacks positive (w33=0.8, w44=0.8) \u2014 sustaining rather than alternating. The verb never shifts to past or future. Both motors reinforce their own position. The unusual same-sign self-feedback breaks the standard pattern deliberately."
+        },
+        "91_stein_tender_buttons": {
+          "weights": {
+            "w03": -0.84,
+            "w13": -0.69,
+            "w23": -0.78,
+            "w04": 0.68,
+            "w14": 0.69,
+            "w24": 0.82,
+            "w34": 0.66,
+            "w43": -0.85,
+            "w33": 0.84,
+            "w44": -0.79
+          },
+          "dx": -10.78,
+          "dy": -4.2,
+          "true_distance": 11.56,
+          "heading": -158.7,
+          "max_tilt": 35,
+          "yaw_degrees": 46.9,
+          "architecture": "crosswired_10",
+          "description": "Tender Buttons: weights from ASCII encoding of 'TENDER BUT' (T=0.84, E=0.69, N=0.78, D=0.68, E=0.69, R=0.82, B=0.66, U=0.85, T=0.84, O=0.79). Language as material \u2014 the text itself becomes the neural architecture. All 10 weights active."
+        },
+        "92_borges_labyrinth": {
+          "weights": {
+            "w03": -0.2,
+            "w13": -0.3,
+            "w23": -0.1,
+            "w04": 0.1,
+            "w14": 0.3,
+            "w24": 0.2,
+            "w34": 0.7,
+            "w43": -0.9,
+            "w33": 0.5,
+            "w44": -0.3
+          },
+          "dx": 11.17,
+          "dy": 2.47,
+          "true_distance": 11.44,
+          "heading": 12.5,
+          "max_tilt": 16,
+          "yaw_degrees": 26.1,
+          "architecture": "crosswired_10",
+          "description": "Labyrinth: sensor-motor connections are faint whispers (0.1-0.3) while cross-wiring dominates (w34=0.7, w43=-0.9). No direct path from input to output \u2014 every signal must route through the maze. The labyrinth has no center; the motors speak to each other more than they listen to the sensors."
+        },
+        "93_borges_mirror": {
+          "weights": {
+            "w03": -0.7,
+            "w13": -0.5,
+            "w23": -0.3,
+            "w04": 0.7,
+            "w14": 0.5,
+            "w24": 0.3,
+            "w34": 0.4,
+            "w43": -0.4,
+            "w33": 0.3,
+            "w44": -0.3
+          },
+          "dx": -21.61,
+          "dy": 3.0,
+          "true_distance": 21.82,
+          "heading": 172.1,
+          "max_tilt": 17,
+          "yaw_degrees": -13.9,
+          "architecture": "crosswired_10",
+          "description": "Mirror: perfect antisymmetry \u2014 every weight to motor 3 is the exact negation of the corresponding weight to motor 4. w34=-w43, w33=-w44. Tl\u00f6n is our world reflected. If the robot walks forward, its mirror-self walks backward in some other coordinate frame."
+        },
+        "94_borges_aleph": {
+          "weights": {
+            "w03": -0.2,
+            "w13": -0.7,
+            "w23": -0.1,
+            "w04": 0.8,
+            "w14": 0.2,
+            "w24": 0.8,
+            "w34": 0.1,
+            "w43": -0.8,
+            "w33": 0.2,
+            "w44": -0.8
+          },
+          "dx": 3.41,
+          "dy": 8.28,
+          "true_distance": 8.95,
+          "heading": 67.6,
+          "max_tilt": 33,
+          "yaw_degrees": 37.4,
+          "architecture": "crosswired_10",
+          "description": "Aleph: weights from the digits of e (2.718281828). The Aleph is the point containing all points; e is the number containing all growth. Digits mapped to weights with standard polarity. The curie-adjacent pattern with strong asymmetric cross-wiring."
+        },
+        "95_jackson_lottery": {
+          "weights": {
+            "w03": -0.3,
+            "w13": -0.9,
+            "w23": -0.3,
+            "w04": 0.9,
+            "w14": -1.0,
+            "w24": 0.9,
+            "w34": 0,
+            "w43": 0,
+            "w33": 0,
+            "w44": 0
+          },
+          "dx": -4.38,
+          "dy": -2.47,
+          "true_distance": 5.02,
+          "heading": -150.6,
+          "max_tilt": 16,
+          "yaw_degrees": 67.3,
+          "architecture": "standard_6",
+          "description": "Lottery: curie base (the village's normal walk) with one weight drawn for destruction \u2014 w14 flipped from +0.3 to -1.0. One synapse is chosen, one stone is thrown. Compare to dick_replicant (which flipped w14 to -0.26); this goes further \u2014 maximum negative weight. The lottery always ends badly for someone."
+        },
+        "96_jackson_hill_house": {
+          "weights": {
+            "w03": -0.5,
+            "w13": -0.7,
+            "w23": -0.5,
+            "w04": 0.5,
+            "w14": 0.7,
+            "w24": 0.5,
+            "w34": 0,
+            "w43": 0,
+            "w33": -0.6,
+            "w44": 0.6
+          },
+          "dx": -2.55,
+          "dy": -4.13,
+          "true_distance": 4.86,
+          "heading": -121.7,
+          "max_tilt": 49,
+          "yaw_degrees": 101.7,
+          "architecture": "crosswired_10",
+          "description": "Hill House: the base pattern looks like sayama (a stable walker), but the self-feedback has the wrong sign (w33=-0.6, w44=+0.6 \u2014 reversed from the stabilizing w33>0/w44<0 pattern). The house looks right from outside. The angles are not quite right inside. Whatever walks there, walks alone."
+        },
+        "97_jackson_castle": {
+          "weights": {
+            "w03": 0,
+            "w13": -0.9,
+            "w23": 0,
+            "w04": 0,
+            "w14": 0,
+            "w24": 0.9,
+            "w34": 0,
+            "w43": 0,
+            "w33": 0,
+            "w44": 0
+          },
+          "dx": 3.44,
+          "dy": 4.81,
+          "true_distance": 5.92,
+          "heading": 54.5,
+          "max_tilt": 36,
+          "yaw_degrees": -14.4,
+          "architecture": "standard_6",
+          "description": "Castle: only two synapses active \u2014 w13=-0.9 and w24=0.9 (diagonal connections). Each leg speaks only to its own motor through the body. No community, no cross-talk, no village. We have always lived in the castle. Two isolated pathways produce whatever motion isolation permits."
+        },
+        "98_kcramer_hypertext": {
+          "weights": {
+            "w03": -0.45,
+            "w13": -0.6,
+            "w23": -0.35,
+            "w04": 0.55,
+            "w14": 0.4,
+            "w24": 0.7,
+            "w34": 0.25,
+            "w43": -0.15,
+            "w33": 0.2,
+            "w44": -0.1
+          },
+          "dx": -18.72,
+          "dy": -4.66,
+          "true_distance": 19.29,
+          "heading": -166.0,
+          "max_tilt": 37,
+          "yaw_degrees": 36.9,
+          "architecture": "crosswired_10",
+          "description": "Hypertext: all 10 weights active at different moderate levels \u2014 a navigable network where every node connects to every other. No path dominates; the reader chooses their route through the weight space. The pedagogical topology: nothing too strong, nothing missing, everything available."
+        },
+        "99_kcramer_salvage": {
+          "weights": {
+            "w03": -0.5,
+            "w13": -0.5,
+            "w23": -0.5,
+            "w04": 0.5,
+            "w14": 0.5,
+            "w24": 0.5,
+            "w34": 0.35,
+            "w43": -0.25,
+            "w33": 0,
+            "w44": 0
+          },
+          "dx": -0.09,
+          "dy": 2.44,
+          "true_distance": 2.44,
+          "heading": 92.0,
+          "max_tilt": 21,
+          "yaw_degrees": 97.4,
+          "architecture": "crosswired_10",
+          "description": "Salvage Path: starts from panopticon-like symmetry (all \u00b10.5, which produces near-paralysis at 2m) but adds asymmetric cross-wiring (w34=0.35, w43=-0.25) to break the deadlock. The editorial intervention that rescues a failed text \u2014 one structural addition that transforms stasis into motion."
+        },
+        "100_kcramer_anthology": {
+          "weights": {
+            "w03": -0.3,
+            "w13": -1.0,
+            "w23": -0.26,
+            "w04": 0.9,
+            "w14": 0.3,
+            "w24": 0.618,
+            "w34": 0,
+            "w43": 0,
+            "w33": 0,
+            "w44": 0
+          },
+          "dx": 32.32,
+          "dy": -7.25,
+          "true_distance": 33.12,
+          "heading": -12.6,
+          "max_tilt": 40,
+          "yaw_degrees": 0.0,
+          "architecture": "standard_6",
+          "description": "Anthology: weights curated from three different successful gaits \u2014 w13=-1.0 from pelton (the champion), w04=0.9 from curie (the purest walker), w24=0.618 from fibonacci (the golden ratio). The editor's art: selecting the best from different sources and combining them into a new whole."
+        },
+        "101_jgcramer_transactional": {
+          "weights": {
+            "w03": -0.6,
+            "w13": -0.8,
+            "w23": -0.4,
+            "w04": 0.4,
+            "w14": 0.8,
+            "w24": 0.6,
+            "w34": 0.5,
+            "w43": -0.5,
+            "w33": 0,
+            "w44": 0
+          },
+          "dx": 4.9,
+          "dy": -1.28,
+          "true_distance": 5.07,
+          "heading": -14.7,
+          "max_tilt": 121,
+          "yaw_degrees": 68.2,
+          "architecture": "crosswired_10",
+          "description": "Transactional: the offer wave (motor 3, driven by strong negative weights) propagates forward in time; the confirmation wave (motor 4, driven by positive weights) propagates backward. The cross-wiring (w34=0.5, w43=-0.5) is the handshake \u2014 the transaction that creates the observable event of locomotion."
+        },
+        "102_jgcramer_handshake": {
+          "weights": {
+            "w03": -0.3,
+            "w13": -0.5,
+            "w23": -0.3,
+            "w04": 0.3,
+            "w14": 0.5,
+            "w24": 0.3,
+            "w34": 0.8,
+            "w43": -0.8,
+            "w33": 0.3,
+            "w44": -0.3
+          },
+          "dx": 10.61,
+          "dy": -7.74,
+          "true_distance": 13.13,
+          "heading": -36.1,
+          "max_tilt": 28,
+          "yaw_degrees": -77.2,
+          "architecture": "crosswired_10",
+          "description": "Handshake: moderate sensor-motor drive with dominant cross-wiring (w34=0.8, w43=-0.8). The quantum handshake between emitter and absorber \u2014 the motors exchange signals that are stronger than their connection to external reality. Like heterotopia but with more sensor input. The handshake protocol creates the event."
+        },
+        "103_jgcramer_absorber": {
+          "weights": {
+            "w03": -0.2,
+            "w13": -0.3,
+            "w23": -0.2,
+            "w04": 0.2,
+            "w14": 0.3,
+            "w24": 0.2,
+            "w34": 0,
+            "w43": 0,
+            "w33": 0.9,
+            "w44": -0.9
+          },
+          "dx": -12.48,
+          "dy": 10.07,
+          "true_distance": 16.03,
+          "heading": 141.1,
+          "max_tilt": 8,
+          "yaw_degrees": -39.2,
+          "architecture": "crosswired_10",
+          "description": "Absorber: weak sensor-motor drive (0.2-0.3) with near-maximal self-feedback (w33=0.9, w44=-0.9). The absorber in Wheeler-Feynman electrodynamics \u2014 the response of the universe that completes the transaction. Each motor absorbs its own signal, creating internal oscillation from minimal external input."
+        },
+        "104_papp_public": {
+          "weights": {
+            "w03": -0.5,
+            "w13": -0.6,
+            "w23": -0.4,
+            "w04": 0.5,
+            "w14": 0.6,
+            "w24": 0.4,
+            "w34": 0,
+            "w43": 0,
+            "w33": 0,
+            "w44": 0
+          },
+          "dx": -19.4,
+          "dy": -0.35,
+          "true_distance": 19.4,
+          "heading": -179.0,
+          "max_tilt": 12,
+          "yaw_degrees": -1.0,
+          "architecture": "standard_6",
+          "description": "Public Theater: moderate, accessible weights \u2014 nothing extreme, nothing exclusive. The democratic gait: parameters anyone could discover through methodical exploration. No cross-wiring mysticism, no hidden feedback. Free Shakespeare in the Park of parameter space."
+        },
+        "105_papp_shakespeare": {
+          "weights": {
+            "w03": -0.3,
+            "w13": -0.85,
+            "w23": -0.26,
+            "w04": 0.85,
+            "w14": 0.26,
+            "w24": 0.85,
+            "w34": 0.1,
+            "w43": -0.1,
+            "w33": 0.05,
+            "w44": -0.05
+          },
+          "dx": 3.28,
+          "dy": 2.93,
+          "true_distance": 4.4,
+          "heading": 41.7,
+          "max_tilt": 36,
+          "yaw_degrees": -19.2,
+          "architecture": "crosswired_10",
+          "description": "Shakespeare in the Park: the classical curie pattern (the most reliable forward walker) performed outdoors with ambient noise \u2014 tiny cross-wiring (w34=\u00b10.1, w33/w44=\u00b10.05) represents the wind, the traffic, the audience coughing. The text is timeless; the performance is alive. Compare to dick_valis which adds similar noise."
+        },
+        "106_papp_chorus_line": {
+          "weights": {
+            "w03": -0.7,
+            "w13": -0.7,
+            "w23": -0.7,
+            "w04": 0.7,
+            "w14": 0.7,
+            "w24": 0.7,
+            "w34": 0.3,
+            "w43": -0.3,
+            "w33": 0,
+            "w44": 0
+          },
+          "dx": 6.22,
+          "dy": 1.4,
+          "true_distance": 6.38,
+          "heading": 12.7,
+          "max_tilt": 35,
+          "yaw_degrees": 58.0,
+          "architecture": "crosswired_10",
+          "description": "A Chorus Line: every sensor-motor weight is identical magnitude (0.7) \u2014 the ensemble moves as one. The cross-wiring (w34=0.3, w43=-0.3) is the choreographer's coordination, ensuring the line stays together. Every dancer does the same steps. The singular sensation of uniform commitment."
+        },
+        "107_pacino_heat": {
+          "weights": {
+            "w03": -0.4,
+            "w13": -0.95,
+            "w23": -0.4,
+            "w04": 0.95,
+            "w14": 0.4,
+            "w24": 0.95,
+            "w34": 0,
+            "w43": 0,
+            "w33": 0,
+            "w44": 0
+          },
+          "dx": 23.71,
+          "dy": -11.44,
+          "true_distance": 26.33,
+          "heading": -25.8,
+          "max_tilt": 32,
+          "yaw_degrees": -6.1,
+          "architecture": "standard_6",
+          "description": "Heat: precision and commitment. Near-maximal weights on the dominant channels (w13=-0.95, w04=0.95, w24=0.95) with restrained supporting weights. The professional who is disciplined until the moment of action, then fully committed. Don't let yourself get attached to anything you can't walk away from in 30 seconds flat."
+        },
+        "108_pacino_godfather": {
+          "weights": {
+            "w03": -0.35,
+            "w13": -0.6,
+            "w23": -0.35,
+            "w04": 0.6,
+            "w14": 0.35,
+            "w24": 0.6,
+            "w34": 0.2,
+            "w43": -0.2,
+            "w33": 0.15,
+            "w44": -0.15
+          },
+          "dx": 3.4,
+          "dy": 2.22,
+          "true_distance": 4.06,
+          "heading": 33.1,
+          "max_tilt": 38,
+          "yaw_degrees": 12.6,
+          "architecture": "crosswired_10",
+          "description": "Godfather: quiet authority. Moderate weights that don't shout but command \u2014 the Don speaks softly. Cross-wiring and self-feedback at low levels create internal deliberation. The offer you can't refuse is made at conversational volume. Every weight below 0.65, yet the network produces directed motion through controlled asymmetry."
+        },
+        "109_pacino_hooah": {
+          "weights": {
+            "w03": -0.9,
+            "w13": -0.9,
+            "w23": -0.9,
+            "w04": 0.9,
+            "w14": 0.9,
+            "w24": 0.9,
+            "w34": 0.5,
+            "w43": -0.5,
+            "w33": 0.4,
+            "w44": -0.4
+          },
+          "dx": 5.15,
+          "dy": -1.19,
+          "true_distance": 5.29,
+          "heading": -13.0,
+          "max_tilt": 33,
+          "yaw_degrees": 89.0,
+          "architecture": "crosswired_10",
+          "description": "Hoo-ah!: maximum intensity across the board. All sensor-motor weights at 0.9, cross-wiring at 0.5, self-feedback at 0.4. The Scent of a Woman tango \u2014 every synapse firing at near-maximum, the full Pacino. When you got nothing, you got nothing to lose. The question is whether this much passion produces motion or chaos."
+        },
+        "110_biles_yurchenko": {
+          "weights": {
+            "w03": -0.95,
+            "w13": -0.95,
+            "w23": -0.95,
+            "w04": 0.95,
+            "w14": 0.95,
+            "w24": 0.95,
+            "w34": 0.6,
+            "w43": -0.6,
+            "w33": 0,
+            "w44": 0
+          },
+          "dx": -4.32,
+          "dy": 4.0,
+          "true_distance": 5.89,
+          "heading": 137.2,
+          "max_tilt": 57,
+          "yaw_degrees": 3.7,
+          "architecture": "crosswired_8",
+          "description": "The Yurchenko double pike: near-maximal sensor drive (0.95 uniform) with strong cross-wiring (0.6) but no self-feedback. Pure explosive coordination \u2014 the vault that changed gymnastics. Every synapse at competition intensity, the cross-wiring providing the rotational coupling that makes the double pike possible."
+        },
+        "111_biles_twisties": {
+          "weights": {
+            "w03": -0.2,
+            "w13": -0.2,
+            "w23": -0.2,
+            "w04": 0.2,
+            "w14": 0.2,
+            "w24": 0.2,
+            "w34": 0.3,
+            "w43": -0.3,
+            "w33": -0.7,
+            "w44": 0.7
+          },
+          "dx": 7.32,
+          "dy": -2.68,
+          "true_distance": 7.8,
+          "heading": -20.1,
+          "max_tilt": 21,
+          "yaw_degrees": -33.9,
+          "architecture": "crosswired_10",
+          "description": "The twisties: when the body's internal model inverts. Weak sensor drive (0.2 uniform) \u2014 the proprioceptive signal fades. Self-feedback signs are REVERSED (w33=-0.7, w44=+0.7) \u2014 the motors' self-model is wrong. Like jackson_hill_house, the internal geometry is inverted. The bravest thing she ever did was stop."
+        },
+        "112_biles_floor": {
+          "weights": {
+            "w03": -0.6,
+            "w13": -0.8,
+            "w23": -0.5,
+            "w04": 0.8,
+            "w14": 0.5,
+            "w24": 0.6,
+            "w34": 0.4,
+            "w43": -0.4,
+            "w33": 0.2,
+            "w44": -0.2
+          },
+          "dx": 10.18,
+          "dy": -5.3,
+          "true_distance": 11.47,
+          "heading": -27.5,
+          "max_tilt": 41,
+          "yaw_degrees": 5.8,
+          "architecture": "crosswired_10",
+          "description": "The floor routine: controlled power with rhythmic variation. Asymmetric sensor weights create the musical phrasing \u2014 strong w13/w04 for the tumbling passes, moderate w23/w14 for the dance elements. Cross-wiring (0.4) provides rotational awareness, light self-feedback (0.2) sustains the performance. The gait that shows mastery is not maximum force but maximum control."
+        }
+      }
+    },
+    "cross_wired_cpg": {
+      "description": "Motor\u2192motor recurrent connections create central pattern generators. 6 sensor\u2192motor + up to 4 motor\u2192motor synapses. The cross-wiring produces internal oscillatory dynamics independent of sensor input.",
+      "architecture": "crosswired_10",
+      "gaits": {
+        "21_noether_cpg": {
+          "weights": {
+            "w03": -0.7,
+            "w13": -0.5,
+            "w23": -0.3,
+            "w04": 0.3,
+            "w14": 0.5,
+            "w24": 0.7,
+            "w34": 0.3,
+            "w43": -0.5,
+            "w33": 0.2,
+            "w44": -0.2
+          },
+          "description": "Noether CPG \u2014 antisymmetric base + full CPG cross-wiring. ALL-TIME NEGATIVE CHAMPION. Razor-sharp fitness optimum; every perturbation degrades it.",
+          "dx": -43.23,
+          "n_synapses": 10,
+          "video": "21_noether_cpg.mp4",
+          "max_tilt": 35,
+          "sensitivity": {
+            "dx_total": 932.37,
+            "yaw_total": 3854.32,
+            "hottest_dx_weight": "w23",
+            "hottest_yaw_weight": "w13"
+          },
+          "dy": -7.12,
+          "true_distance": 43.81,
+          "telemetry": {
+            "stride_freq_hz": 4.84,
+            "duty_cycle": 0.39,
+            "mean_torque": 77.59,
+            "transient_frac": 0.852,
+            "mean_speed": 3.058,
+            "speed_cv": 0.329,
+            "attractor_type": "limit_cycle",
+            "efficiency": 0.5647,
+            "pareto_optimal": false
+          },
+          "yaw_degrees": 35.7,
+          "heading": -170.7,
+          "architecture": "crosswired_10"
+        },
+        "22_curie_amplified": {
+          "weights": {
+            "w03": -0.3,
+            "w13": -0.9,
+            "w23": -0.3,
+            "w04": 0.9,
+            "w14": 0.3,
+            "w24": 0.9,
+            "w34": -0.5,
+            "w43": 0.3,
+            "w33": 0.0,
+            "w44": 0.0
+          },
+          "description": "Curie + reversed mutual inhibition \u2014 the radioactive base amplified by anti-phase motor coupling. Verified DX=+37.14.",
+          "dx": 37.14,
+          "n_synapses": 8,
+          "video": "22_curie_amplified.mp4",
+          "max_tilt": 25,
+          "sensitivity": {
+            "dx_total": 684.1,
+            "yaw_total": 6465.21,
+            "hottest_dx_weight": "w43",
+            "hottest_yaw_weight": "w03"
+          },
+          "dy": -1.6,
+          "true_distance": 37.17,
+          "telemetry": {
+            "stride_freq_hz": 4.21,
+            "duty_cycle": 0.332,
+            "mean_torque": 70.2,
+            "transient_frac": 0.798,
+            "mean_speed": 2.499,
+            "speed_cv": 0.503,
+            "attractor_type": "complex",
+            "attractor_subtype": "drifter",
+            "efficiency": 0.5296,
+            "pareto_optimal": false
+          },
+          "yaw_degrees": -0.2,
+          "heading": -2.5,
+          "architecture": "crosswired_10"
+        },
+        "23_hodgkin_huxley": {
+          "weights": {
+            "w03": -0.7,
+            "w13": -0.5,
+            "w23": -0.3,
+            "w04": 0.3,
+            "w14": 0.5,
+            "w24": 0.7,
+            "w34": 0.4,
+            "w43": -0.4,
+            "w33": 0.6,
+            "w44": -0.6
+          },
+          "description": "Hodgkin-Huxley \u2014 ion channel dynamics: Noether base + sodium/potassium channel cross-wiring (strong self-feedback).",
+          "n_synapses": 10,
+          "video": "23_hodgkin_huxley.mp4",
+          "dx": -29.79,
+          "max_tilt": 36,
+          "sensitivity": {
+            "dx_total": 254.01,
+            "yaw_total": 2255.53,
+            "hottest_dx_weight": "w33",
+            "hottest_yaw_weight": "w14"
+          },
+          "dy": -7.2,
+          "true_distance": 30.65,
+          "telemetry": {
+            "stride_freq_hz": 4.36,
+            "duty_cycle": 0.43,
+            "mean_torque": 77.82,
+            "transient_frac": 0.805,
+            "mean_speed": 2.325,
+            "speed_cv": 0.465,
+            "attractor_type": "limit_cycle",
+            "efficiency": 0.3938,
+            "pareto_optimal": false
+          },
+          "yaw_degrees": 41.9,
+          "heading": -166.4,
+          "architecture": "crosswired_10"
+        },
+        "24_wolfram_flipped": {
+          "weights": {
+            "w03": -0.8,
+            "w13": -0.8,
+            "w23": -0.8,
+            "w04": 0.8,
+            "w14": 0.8,
+            "w24": 0.8,
+            "w34": -0.8,
+            "w43": 0.5,
+            "w33": 0.0,
+            "w44": 0.0
+          },
+          "description": "Wolfram + direction reversal \u2014 uniform base with anti-phase coupling that flips the walking direction.",
+          "n_synapses": 8,
+          "video": "24_wolfram_flipped.mp4",
+          "dx": -3.69,
+          "max_tilt": 48,
+          "sensitivity": {
+            "dx_total": 564.62,
+            "yaw_total": 2857.8,
+            "hottest_dx_weight": "w33",
+            "hottest_yaw_weight": "w04"
+          },
+          "dy": 0.04,
+          "true_distance": 3.69,
+          "telemetry": {
+            "stride_freq_hz": 5.2,
+            "duty_cycle": 0.908,
+            "mean_torque": 36.65,
+            "transient_frac": 0.062,
+            "mean_speed": 0.5,
+            "speed_cv": 1.721,
+            "attractor_type": "complex",
+            "attractor_subtype": "transient_decay",
+            "efficiency": 0.1007,
+            "pareto_optimal": false
+          },
+          "yaw_degrees": 8.5,
+          "heading": 179.4,
+          "architecture": "crosswired_10"
+        },
+        "25_minsky": {
+          "weights": {
+            "w03": -0.5,
+            "w13": -0.5,
+            "w23": -0.5,
+            "w04": 0.5,
+            "w14": 0.5,
+            "w24": 0.5,
+            "w34": 0.3,
+            "w43": -0.3,
+            "w33": 0.5,
+            "w44": -0.5
+          },
+          "description": "Marvin Minsky \u2014 Society of Mind: balanced base + asymmetric self-feedback, competing motor agents.",
+          "n_synapses": 10,
+          "video": "25_minsky.mp4",
+          "dx": -21.53,
+          "max_tilt": 27,
+          "sensitivity": {
+            "dx_total": 865.7,
+            "yaw_total": 4348.0,
+            "hottest_dx_weight": "w04",
+            "hottest_yaw_weight": "w23"
+          },
+          "dy": -3.15,
+          "true_distance": 21.76,
+          "telemetry": {
+            "stride_freq_hz": 4.24,
+            "duty_cycle": 0.615,
+            "mean_torque": 75.08,
+            "transient_frac": 0.838,
+            "mean_speed": 1.78,
+            "speed_cv": 0.667,
+            "attractor_type": "complex",
+            "attractor_subtype": "drifter",
+            "efficiency": 0.2898,
+            "pareto_optimal": false
+          },
+          "yaw_degrees": -1.2,
+          "heading": -171.7,
+          "architecture": "crosswired_10"
+        },
+        "26_fitzhugh_nagumo": {
+          "weights": {
+            "w03": -0.3,
+            "w13": -0.9,
+            "w23": -0.3,
+            "w04": 0.9,
+            "w14": 0.3,
+            "w24": 0.9,
+            "w34": -0.3,
+            "w43": 0.7,
+            "w33": 0.5,
+            "w44": -0.3
+          },
+          "description": "FitzHugh-Nagumo \u2014 excitable medium: Curie base + fast excitation/slow recovery dynamics.",
+          "n_synapses": 10,
+          "video": "26_fitzhugh_nagumo.mp4",
+          "dx": 14.53,
+          "max_tilt": 48,
+          "sensitivity": {
+            "dx_total": 939.96,
+            "yaw_total": 8861.77,
+            "hottest_dx_weight": "w34",
+            "hottest_yaw_weight": "w34"
+          },
+          "dy": 9.41,
+          "true_distance": 17.31,
+          "telemetry": {
+            "stride_freq_hz": 4.24,
+            "duty_cycle": 0.365,
+            "mean_torque": 74.48,
+            "transient_frac": 0.53,
+            "mean_speed": 2.263,
+            "speed_cv": 0.514,
+            "attractor_type": "complex",
+            "attractor_subtype": "multi_frequency",
+            "efficiency": 0.2324,
+            "pareto_optimal": false
+          },
+          "yaw_degrees": 22.7,
+          "heading": 32.9,
+          "architecture": "crosswired_10"
+        },
+        "27_wiener": {
+          "weights": {
+            "w03": -0.3,
+            "w13": -0.6,
+            "w23": -0.3,
+            "w04": 0.6,
+            "w14": 0.3,
+            "w24": 0.6,
+            "w34": -0.7,
+            "w43": 0.7,
+            "w33": 0.0,
+            "w44": 0.0
+          },
+          "description": "Norbert Wiener \u2014 cybernetic feedback loop: negative feedback creates self-correction, the governor principle.",
+          "n_synapses": 8,
+          "video": "27_wiener.mp4",
+          "dx": 14.08,
+          "max_tilt": 28,
+          "sensitivity": {
+            "dx_total": 504.62,
+            "yaw_total": 3007.18,
+            "hottest_dx_weight": "w43",
+            "hottest_yaw_weight": "w24"
+          },
+          "dy": -1.43,
+          "true_distance": 14.15,
+          "telemetry": {
+            "stride_freq_hz": 3.97,
+            "duty_cycle": 0.58,
+            "mean_torque": 78.8,
+            "transient_frac": 0.848,
+            "mean_speed": 1.352,
+            "speed_cv": 0.667,
+            "attractor_type": "complex",
+            "attractor_subtype": "quasi_periodic",
+            "efficiency": 0.1796,
+            "pareto_optimal": false
+          },
+          "yaw_degrees": -8.6,
+          "heading": -5.8,
+          "architecture": "crosswired_10"
+        }
+      }
+    },
+    "market_mathematics": {
+      "description": "Gaits inspired by the mathematics of anomalous and extreme stock market events. Financial phenomena mapped to synapse topology: feedback cascades, fat tails, regime switching, asymmetric amplification.",
+      "architecture": "crosswired_10",
+      "gaits": {
+        "28_flash_crash": {
+          "weights": {
+            "w03": -0.5,
+            "w13": -0.5,
+            "w23": -0.5,
+            "w04": 0.5,
+            "w14": 0.5,
+            "w24": 0.5,
+            "w34": 0.5,
+            "w43": 0.5,
+            "w33": 0.0,
+            "w44": 0.0
+          },
+          "description": "Flash Crash \u2014 positive feedback cascade: mutual excitation where selling begets selling, prices drop 9% in minutes.",
+          "dx": -13.13,
+          "n_synapses": 8,
+          "video": "28_flash_crash.mp4",
+          "max_tilt": 23,
+          "dx_note": "Corrected from -25.85 (old physics). Verified -13.13.",
+          "sensitivity": {
+            "dx_total": 407.81,
+            "yaw_total": 2827.48,
+            "hottest_dx_weight": "w23",
+            "hottest_yaw_weight": "w03"
+          },
+          "dy": -6.06,
+          "true_distance": 14.46,
+          "telemetry": {
+            "stride_freq_hz": 3.79,
+            "duty_cycle": 0.788,
+            "mean_torque": 57.2,
+            "transient_frac": 0.822,
+            "mean_speed": 1.288,
+            "speed_cv": 0.83,
+            "attractor_type": "complex",
+            "attractor_subtype": "drifter",
+            "efficiency": 0.2528,
+            "pareto_optimal": false
+          },
+          "yaw_degrees": 33.3,
+          "heading": -155.2,
+          "architecture": "crosswired_10"
+        },
+        "29_fat_tails": {
+          "weights": {
+            "w03": -0.5,
+            "w13": -0.25,
+            "w23": -0.125,
+            "w04": 0.125,
+            "w14": 0.25,
+            "w24": 0.5,
+            "w34": 0.4,
+            "w43": -0.4,
+            "w33": 0.0,
+            "w44": 0.0
+          },
+          "description": "Fat Tails (Zipf/Mandelbrot) \u2014 power-law weight distribution: each weight is half the next. Extreme moves happen far more often than Gaussian predicts.",
+          "dx": -12.03,
+          "n_synapses": 8,
+          "video": "29_fat_tails.mp4",
+          "max_tilt": 27,
+          "dx_note": "Corrected from -23.55 (old physics). Verified -12.03.",
+          "sensitivity": {
+            "dx_total": 336.1,
+            "yaw_total": 4541.8,
+            "hottest_dx_weight": "w44",
+            "hottest_yaw_weight": "w13"
+          },
+          "dy": 5.74,
+          "true_distance": 13.33,
+          "telemetry": {
+            "stride_freq_hz": 4.45,
+            "duty_cycle": 0.482,
+            "mean_torque": 83.65,
+            "transient_frac": 0.87,
+            "mean_speed": 1.564,
+            "speed_cv": 0.586,
+            "attractor_type": "complex",
+            "attractor_subtype": "multi_frequency",
+            "efficiency": 0.1593,
+            "pareto_optimal": false
+          },
+          "yaw_degrees": -35.9,
+          "heading": 154.5,
+          "architecture": "crosswired_10"
+        },
+        "30_garch": {
+          "weights": {
+            "w03": -0.5,
+            "w13": -0.75,
+            "w23": -0.5,
+            "w04": 0.5,
+            "w14": 0.75,
+            "w24": 0.5,
+            "w34": 0.0,
+            "w43": 0.0,
+            "w33": 0.7,
+            "w44": -0.5
+          },
+          "description": "GARCH / Volatility Clustering \u2014 self-feedback creates regime-switching: today's big move predicts tomorrow's. Motors persist in high/low activity regimes.",
+          "n_synapses": 8,
+          "video": "30_garch.mp4",
+          "dx": -22.69,
+          "max_tilt": 32,
+          "sensitivity": {
+            "dx_total": 904.14,
+            "yaw_total": 6380.65,
+            "hottest_dx_weight": "w23",
+            "hottest_yaw_weight": "w03"
+          },
+          "dy": 9.54,
+          "true_distance": 24.61,
+          "telemetry": {
+            "stride_freq_hz": 2.92,
+            "duty_cycle": 0.74,
+            "mean_torque": 45.95,
+            "transient_frac": 0.812,
+            "mean_speed": 1.884,
+            "speed_cv": 0.59,
+            "attractor_type": "complex",
+            "attractor_subtype": "multi_frequency",
+            "efficiency": 0.5357,
+            "pareto_optimal": true
+          },
+          "yaw_degrees": -31.4,
+          "heading": 157.2,
+          "architecture": "crosswired_10"
+        },
+        "31_gamma_squeeze": {
+          "weights": {
+            "w03": -0.5,
+            "w13": -0.7,
+            "w23": -0.3,
+            "w04": 0.3,
+            "w14": 0.7,
+            "w24": 0.5,
+            "w34": 0.1,
+            "w43": -0.9,
+            "w33": 0.0,
+            "w44": 0.0
+          },
+          "description": "Gamma Squeeze \u2014 asymmetric amplification: one motor dominantly drives the other (9:1 ratio). GameStop dynamics where delta-hedging creates a feedback loop.",
+          "dx": 3.97,
+          "n_synapses": 8,
+          "video": "31_gamma_squeeze.mp4",
+          "max_tilt": 114,
+          "dx_note": "Corrected from -30.72 (old physics). Verified +3.97.",
+          "sensitivity": {
+            "dx_total": 446.2,
+            "yaw_total": 10574.01,
+            "hottest_dx_weight": "w24",
+            "hottest_yaw_weight": "w34"
+          },
+          "dy": 1.41,
+          "true_distance": 4.21,
+          "telemetry": {
+            "stride_freq_hz": 4.15,
+            "duty_cycle": 0.655,
+            "mean_torque": 53.81,
+            "transient_frac": 0.06,
+            "mean_speed": 1.483,
+            "speed_cv": 1.005,
+            "attractor_type": "chaotic/fallen",
+            "efficiency": 0.0783,
+            "pareto_optimal": false
+          },
+          "yaw_degrees": 30.8,
+          "heading": 19.5,
+          "architecture": "crosswired_10"
+        },
+        "32_carry_trade": {
+          "weights": {
+            "w03": -0.3,
+            "w13": -0.9,
+            "w23": -0.3,
+            "w04": 0.9,
+            "w14": 0.3,
+            "w24": 0.9,
+            "w34": 0.3,
+            "w43": -0.3,
+            "w33": 0.3,
+            "w44": -0.9
+          },
+          "description": "Carry Trade Unwind \u2014 Curie base + asymmetric self-feedback: one motor accumulates slowly (positive self-excitation), the other snaps back (strong negative self-inhibition). Slow profit, violent reversal. Verified DX=+32.22.",
+          "dx": 32.22,
+          "n_synapses": 10,
+          "video": "32_carry_trade.mp4",
+          "max_tilt": 36,
+          "sensitivity": {
+            "dx_total": 1339.99,
+            "yaw_total": 11127.33,
+            "hottest_dx_weight": "w43",
+            "hottest_yaw_weight": "w03"
+          },
+          "dy": -2.07,
+          "true_distance": 32.29,
+          "telemetry": {
+            "stride_freq_hz": 4.33,
+            "duty_cycle": 0.295,
+            "mean_torque": 74.75,
+            "transient_frac": 0.802,
+            "mean_speed": 2.388,
+            "speed_cv": 0.479,
+            "attractor_type": "limit_cycle",
+            "efficiency": 0.4319,
+            "pareto_optimal": false
+          },
+          "yaw_degrees": -28.8,
+          "heading": -3.7,
+          "architecture": "crosswired_10"
+        },
+        "33_mean_reversion": {
+          "weights": {
+            "w03": -0.7,
+            "w13": -0.5,
+            "w23": -0.3,
+            "w04": 0.3,
+            "w14": 0.5,
+            "w24": 0.7,
+            "w34": 0.0,
+            "w43": 0.0,
+            "w33": -0.7,
+            "w44": -0.7
+          },
+          "description": "Mean Reversion (Ornstein-Uhlenbeck) \u2014 strong self-inhibition: motors fight their own excursions, pulled back to center like prices reverting to fair value.",
+          "n_synapses": 8,
+          "video": "33_mean_reversion.mp4",
+          "dx": 0.45,
+          "max_tilt": 33,
+          "sensitivity": {
+            "dx_total": 697.38,
+            "yaw_total": 9834.36,
+            "hottest_dx_weight": "w24",
+            "hottest_yaw_weight": "w13"
+          },
+          "dy": 2.99,
+          "true_distance": 3.02,
+          "telemetry": {
+            "stride_freq_hz": 4.78,
+            "duty_cycle": 0.37,
+            "mean_torque": 107.26,
+            "transient_frac": 1.0,
+            "mean_speed": 1.885,
+            "speed_cv": 0.531,
+            "attractor_type": "complex",
+            "attractor_subtype": "quasi_periodic",
+            "efficiency": 0.0282,
+            "pareto_optimal": false
+          },
+          "yaw_degrees": -75.7,
+          "heading": 81.5,
+          "architecture": "crosswired_10"
+        },
+        "34_zipf": {
+          "weights": {
+            "w03": -0.5,
+            "w13": -0.25,
+            "w23": -0.125,
+            "w04": 0.125,
+            "w14": 0.25,
+            "w24": 0.5,
+            "w34": 0.0,
+            "w43": 0.0,
+            "w33": 0.5,
+            "w44": -0.5
+          },
+          "description": "Zipf's Law \u2014 power-law distribution with self-feedback: rank-frequency relationship where the nth weight is 1/n of the first. Asymmetric self-loops add regime character.",
+          "n_synapses": 8,
+          "video": "34_zipf.mp4",
+          "dx": -20.57,
+          "max_tilt": 29,
+          "sensitivity": {
+            "dx_total": 380.31,
+            "yaw_total": 1885.51,
+            "hottest_dx_weight": "w04",
+            "hottest_yaw_weight": "w24"
+          },
+          "dy": 9.95,
+          "true_distance": 22.85,
+          "telemetry": {
+            "stride_freq_hz": 4.51,
+            "duty_cycle": 0.498,
+            "mean_torque": 76.92,
+            "transient_frac": 0.822,
+            "mean_speed": 1.794,
+            "speed_cv": 0.529,
+            "attractor_type": "complex",
+            "attractor_subtype": "multi_frequency",
+            "efficiency": 0.2971,
+            "pareto_optimal": false
+          },
+          "yaw_degrees": -26.0,
+          "heading": 154.2,
+          "architecture": "crosswired_10"
+        }
+      }
+    },
+    "evolved": {
+      "description": "Configurations discovered through evolutionary optimization \u2014 hill climbing, genetic algorithms, and random mutation on top of known champions.",
+      "architecture": "crosswired_10",
+      "gaits": {
+        "35_evolved_curie": {
+          "weights": {
+            "w03": -0.45,
+            "w13": -1.35,
+            "w23": -0.45,
+            "w04": 1.35,
+            "w14": 0.45,
+            "w24": 1.35,
+            "w34": -0.5,
+            "w43": 0.3,
+            "w33": 0.0,
+            "w44": 0.0
+          },
+          "description": "Evolved Curie \u2014 Curie base scaled to 1.5x (beyond the [-1,1] training range) then hill-climbed. Proves wider weight ranges unlock new optima.",
+          "dx": 24.28,
+          "n_synapses": 8,
+          "note": "Weights exceed [-1,1] range. Starting point was Curie\u00d71.5 at DX=+41.09, evolved to +42.14.",
+          "video": "35_evolved_curie.mp4",
+          "max_tilt": 41,
+          "dx_note": "Corrected from +42.14 (old physics). Verified +24.28.",
+          "sensitivity": {
+            "dx_total": 965.03,
+            "yaw_total": 10483.63,
+            "hottest_dx_weight": "w23",
+            "hottest_yaw_weight": "w44"
+          },
+          "dy": -17.5,
+          "true_distance": 29.93,
+          "telemetry": {
+            "stride_freq_hz": 3.61,
+            "duty_cycle": 0.355,
+            "mean_torque": 62.5,
+            "transient_frac": 0.602,
+            "mean_speed": 2.428,
+            "speed_cv": 0.547,
+            "attractor_type": "complex",
+            "attractor_subtype": "drifter",
+            "efficiency": 0.4789,
+            "pareto_optimal": false
+          },
+          "yaw_degrees": -60.1,
+          "heading": -35.8,
+          "architecture": "crosswired_10"
+        }
+      }
+    },
+    "time_signatures": {
+      "description": "Musical time signatures mapped to synapse topology. Beat strength \u2192 weight magnitude, beat grouping \u2192 neuron coupling, accent pattern \u2192 motor asymmetry, cross-wiring \u2192 internal metronome.",
+      "architecture": "crosswired_10",
+      "gaits": {
+        "36_take_five": {
+          "weights": {
+            "w03": -0.8,
+            "w13": -0.8,
+            "w23": -0.5,
+            "w04": 0.5,
+            "w14": 0.8,
+            "w24": 0.8,
+            "w34": 0.5,
+            "w43": -0.5,
+            "w33": 0.3,
+            "w44": -0.3
+          },
+          "description": "5/4 Take Five \u2014 Dave Brubeck's asymmetric 3+2 grouping with full CPG. The jazz pulse: 3 strong beats then 2 weak.",
+          "n_synapses": 10,
+          "video": "36_take_five.mp4",
+          "dx": -27.72,
+          "max_tilt": 35,
+          "sensitivity": {
+            "dx_total": 544.28,
+            "yaw_total": 3625.44,
+            "hottest_dx_weight": "w43",
+            "hottest_yaw_weight": "w04"
+          },
+          "dy": 4.95,
+          "true_distance": 28.16,
+          "telemetry": {
+            "stride_freq_hz": 3.88,
+            "duty_cycle": 0.512,
+            "mean_torque": 65.48,
+            "transient_frac": 0.908,
+            "mean_speed": 2.264,
+            "speed_cv": 0.553,
+            "attractor_type": "complex",
+            "attractor_subtype": "multi_frequency",
+            "efficiency": 0.43,
+            "pareto_optimal": false
+          },
+          "yaw_degrees": -5.0,
+          "heading": 169.9,
+          "architecture": "crosswired_10"
+        },
+        "37_hemiola": {
+          "weights": {
+            "w03": -0.5,
+            "w13": -1.0,
+            "w23": -0.5,
+            "w04": 1.0,
+            "w14": 0.5,
+            "w24": 1.0,
+            "w34": 0.0,
+            "w43": 0.0,
+            "w33": 0.0,
+            "w44": 0.0
+          },
+          "description": "Hemiola \u2014 Bernstein's America: 3/4\u21946/8 ambiguity. No cross-wiring because the rhythmic ambiguity IS the rhythm.",
+          "n_synapses": 6,
+          "video": "37_hemiola.mp4",
+          "dx": 22.63,
+          "max_tilt": 46,
+          "sensitivity": {
+            "dx_total": 742.71,
+            "yaw_total": 4373.42,
+            "hottest_dx_weight": "w13",
+            "hottest_yaw_weight": "w24"
+          },
+          "dy": 9.45,
+          "true_distance": 24.52,
+          "telemetry": {
+            "stride_freq_hz": 3.67,
+            "duty_cycle": 0.422,
+            "mean_torque": 65.21,
+            "transient_frac": 0.755,
+            "mean_speed": 1.924,
+            "speed_cv": 0.63,
+            "attractor_type": "complex",
+            "attractor_subtype": "multi_frequency",
+            "efficiency": 0.3761,
+            "pareto_optimal": false
+          },
+          "yaw_degrees": 49.3,
+          "heading": 22.7,
+          "architecture": "standard_6"
+        },
+        "38_heavy_waltz": {
+          "weights": {
+            "w03": -1.0,
+            "w13": -0.2,
+            "w23": -0.2,
+            "w04": 0.2,
+            "w14": 0.2,
+            "w24": 1.0,
+            "w34": 0.5,
+            "w43": -0.5,
+            "w33": 0.2,
+            "w44": -0.2
+          },
+          "description": "3/4 Heavy Waltz \u2014 ONE-two-three: beat 1 is 5x beats 2 and 3. CPG reinforces the downbeat. Motor reversal ratio 1:380.",
+          "n_synapses": 10,
+          "video": "38_heavy_waltz.mp4",
+          "dx": -19.31,
+          "max_tilt": 35,
+          "sensitivity": {
+            "dx_total": 790.45,
+            "yaw_total": 2490.85,
+            "hottest_dx_weight": "w43",
+            "hottest_yaw_weight": "w23"
+          },
+          "dy": -4.99,
+          "true_distance": 19.94,
+          "telemetry": {
+            "stride_freq_hz": 5.05,
+            "duty_cycle": 0.53,
+            "mean_torque": 67.49,
+            "transient_frac": 0.885,
+            "mean_speed": 1.638,
+            "speed_cv": 0.75,
+            "attractor_type": "complex",
+            "attractor_subtype": "drifter",
+            "efficiency": 0.2955,
+            "pareto_optimal": false
+          },
+          "yaw_degrees": 16.5,
+          "heading": -165.5,
+          "architecture": "crosswired_10"
+        },
+        "39_bulgarian": {
+          "weights": {
+            "w03": -0.57,
+            "w13": -0.57,
+            "w23": -0.86,
+            "w04": 0.86,
+            "w14": 0.57,
+            "w24": 0.57,
+            "w34": 0.0,
+            "w43": 0.0,
+            "w33": 0.0,
+            "w44": 0.0
+          },
+          "description": "7/8 Bulgarian \u2014 the limping meter of Balkan folk: 2+2+3 ratio encoded in weight magnitudes. Pure meter, no cross-wiring.",
+          "n_synapses": 6,
+          "video": "39_bulgarian.mp4",
+          "dx": 16.52,
+          "max_tilt": 33,
+          "sensitivity": {
+            "dx_total": 346.55,
+            "yaw_total": 2224.16,
+            "hottest_dx_weight": "w04",
+            "hottest_yaw_weight": "w04"
+          },
+          "dy": -5.58,
+          "true_distance": 17.44,
+          "telemetry": {
+            "stride_freq_hz": 3.34,
+            "duty_cycle": 0.762,
+            "mean_torque": 38.86,
+            "transient_frac": 0.822,
+            "mean_speed": 1.497,
+            "speed_cv": 0.554,
+            "attractor_type": "complex",
+            "attractor_subtype": "multi_frequency",
+            "efficiency": 0.4487,
+            "pareto_optimal": true
+          },
+          "yaw_degrees": 0.8,
+          "heading": -18.7,
+          "architecture": "standard_6"
+        },
+        "40_rubato": {
+          "weights": {
+            "w03": -0.1,
+            "w13": -0.1,
+            "w23": -0.1,
+            "w04": 0.1,
+            "w14": 0.1,
+            "w24": 0.1,
+            "w34": 0.7,
+            "w43": -0.7,
+            "w33": 0.5,
+            "w44": -0.5
+          },
+          "description": "Rubato (Chopin) \u2014 rhythm from within: near-zero sensor drive, strong internal CPG. The timing comes from the network, not the body. Motor reversal ratio 40:2192.",
+          "n_synapses": 10,
+          "video": "40_rubato.mp4",
+          "dx": 15.61,
+          "max_tilt": 13,
+          "sensitivity": {
+            "dx_total": 400.22,
+            "yaw_total": 1989.37,
+            "hottest_dx_weight": "w23",
+            "hottest_yaw_weight": "w34"
+          },
+          "dy": -1.04,
+          "true_distance": 15.64,
+          "telemetry": {
+            "stride_freq_hz": 4.81,
+            "duty_cycle": 0.378,
+            "mean_torque": 81.17,
+            "transient_frac": 0.778,
+            "mean_speed": 0.954,
+            "speed_cv": 0.421,
+            "attractor_type": "limit_cycle",
+            "efficiency": 0.1927,
+            "pareto_optimal": false
+          },
+          "yaw_degrees": -5.8,
+          "heading": -3.8,
+          "architecture": "crosswired_10"
+        },
+        "41_blues_shuffle": {
+          "weights": {
+            "w03": -0.67,
+            "w13": -0.33,
+            "w23": -1.0,
+            "w04": 1.0,
+            "w14": 0.33,
+            "w24": 0.67,
+            "w34": 0.4,
+            "w43": -0.4,
+            "w33": 0.0,
+            "w44": 0.0
+          },
+          "description": "12/8 Blues Shuffle \u2014 swung long-short-long: 2:1 swing ratio encoded as weight magnitudes (0.67:0.33). Cross-wired swing feel.",
+          "n_synapses": 8,
+          "video": "41_blues_shuffle.mp4",
+          "dx": 10.82,
+          "max_tilt": 77,
+          "sensitivity": {
+            "dx_total": 412.57,
+            "yaw_total": 8229.03,
+            "hottest_dx_weight": "w33",
+            "hottest_yaw_weight": "w04"
+          },
+          "dy": 5.71,
+          "true_distance": 12.23,
+          "telemetry": {
+            "stride_freq_hz": 3.85,
+            "duty_cycle": 0.572,
+            "mean_torque": 41.4,
+            "transient_frac": 0.46,
+            "mean_speed": 1.432,
+            "speed_cv": 0.639,
+            "attractor_type": "chaotic/fallen",
+            "efficiency": 0.2955,
+            "pareto_optimal": false
+          },
+          "yaw_degrees": 100.0,
+          "heading": 27.8,
+          "architecture": "crosswired_10"
+        },
+        "42_polyrhythm": {
+          "weights": {
+            "w03": -0.75,
+            "w13": -0.5,
+            "w23": -0.75,
+            "w04": 0.5,
+            "w14": 0.5,
+            "w24": 0.5,
+            "w34": 0.0,
+            "w43": 0.0,
+            "w33": 0.0,
+            "w44": 0.0
+          },
+          "description": "4:3 Polyrhythm \u2014 two meters simultaneously: BackLeg in 4 (varied weights), FrontLeg in 3 (uniform). No cross-wiring \u2014 let the meters collide.",
+          "n_synapses": 6,
+          "video": "42_polyrhythm.mp4",
+          "dx": 10.22,
+          "max_tilt": 24,
+          "sensitivity": {
+            "dx_total": 254.93,
+            "yaw_total": 3229.42,
+            "hottest_dx_weight": "w04",
+            "hottest_yaw_weight": "w04"
+          },
+          "dy": -5.11,
+          "true_distance": 11.43,
+          "telemetry": {
+            "stride_freq_hz": 3.58,
+            "duty_cycle": 0.95,
+            "mean_torque": 34.83,
+            "transient_frac": 0.805,
+            "mean_speed": 0.949,
+            "speed_cv": 0.5,
+            "attractor_type": "complex",
+            "attractor_subtype": "multi_frequency",
+            "efficiency": 0.3281,
+            "pareto_optimal": true
+          },
+          "yaw_degrees": -23.6,
+          "heading": -26.6,
+          "architecture": "standard_6"
+        }
+      }
+    },
+    "hidden_neurons": {
+      "description": "Architectures with hidden neurons between sensors and motors. Hidden neurons add computational depth \u2014 they receive weighted inputs, apply tanh, and feed forward. The half-center oscillator is the biological mechanism for vertebrate locomotion.",
+      "architecture": "hidden",
+      "gaits": {
+        "43_hidden_cpg_champion": {
+          "neurons": [
+            {
+              "id": "0",
+              "type": "sensor",
+              "ref": "Torso"
+            },
+            {
+              "id": "1",
+              "type": "sensor",
+              "ref": "BackLeg"
+            },
+            {
+              "id": "2",
+              "type": "sensor",
+              "ref": "FrontLeg"
+            },
+            {
+              "id": "3",
+              "type": "motor",
+              "ref": "Torso_BackLeg"
+            },
+            {
+              "id": "4",
+              "type": "motor",
+              "ref": "Torso_FrontLeg"
+            },
+            {
+              "id": "5",
+              "type": "hidden",
+              "ref": null
+            },
+            {
+              "id": "6",
+              "type": "hidden",
+              "ref": null
+            }
+          ],
+          "synapses": [
+            {
+              "src": "1",
+              "tgt": "5",
+              "w": -0.6
+            },
+            {
+              "src": "2",
+              "tgt": "6",
+              "w": -0.6
+            },
+            {
+              "src": "5",
+              "tgt": "6",
+              "w": 0.7
+            },
+            {
+              "src": "6",
+              "tgt": "5",
+              "w": -0.7
+            },
+            {
+              "src": "5",
+              "tgt": "3",
+              "w": -0.8
+            },
+            {
+              "src": "6",
+              "tgt": "4",
+              "w": 0.8
+            },
+            {
+              "src": "0",
+              "tgt": "3",
+              "w": -0.3
+            },
+            {
+              "src": "0",
+              "tgt": "4",
+              "w": 0.3
+            }
+          ],
+          "description": "Hidden CPG \u2014 half-center oscillator: ALL-TIME ABSOLUTE CHAMPION. Two hidden neurons form a mutual inhibition pair (5\u21926 excites, 6\u21925 inhibits) \u2014 the same circuit that generates locomotion in vertebrate spinal cords. Leg sensors seed the oscillator, which drives motors through clean antiphasic outputs. Fewer synapses (8) than the previous champion (10), yet 16% more displacement.",
+          "dx": 50.11,
+          "n_synapses": 8,
+          "n_hidden": 2,
+          "video": "43_hidden_cpg_champion.mp4",
+          "max_tilt": 40,
+          "dy": -2.88,
+          "true_distance": 50.19,
+          "telemetry": {
+            "stride_freq_hz": 4.06,
+            "duty_cycle": 0.215,
+            "mean_torque": 60.39,
+            "transient_frac": 0.815,
+            "mean_speed": 3.326,
+            "speed_cv": 0.417,
+            "attractor_type": "limit_cycle",
+            "efficiency": 0.8311,
+            "pareto_optimal": true
+          },
+          "yaw_degrees": -31.6,
+          "heading": -75.9,
+          "architecture": "hidden"
+        }
+      }
+    },
+    "spinners": {
+      "description": "Gaits optimized for maximum rotation (yaw) rather than displacement. Spin and translation are orthogonal fitness dimensions \u2014 the DX champion barely spins (0.09 turns), while the spin champion barely translates (DX=+0.2). Asymmetric hidden\u2192motor coupling creates torque: when |h5\u2192m3| \u2260 |h6\u2192m4|, angular momentum doesn't cancel each oscillation cycle.",
+      "gaits": {
+        "44_spinner_champion": {
+          "neurons": [
+            {
+              "id": "0",
+              "type": "sensor",
+              "ref": "Torso"
+            },
+            {
+              "id": "1",
+              "type": "sensor",
+              "ref": "BackLeg"
+            },
+            {
+              "id": "2",
+              "type": "sensor",
+              "ref": "FrontLeg"
+            },
+            {
+              "id": "3",
+              "type": "motor",
+              "ref": "Torso_BackLeg"
+            },
+            {
+              "id": "4",
+              "type": "motor",
+              "ref": "Torso_FrontLeg"
+            },
+            {
+              "id": "5",
+              "type": "hidden",
+              "ref": null
+            },
+            {
+              "id": "6",
+              "type": "hidden",
+              "ref": null
+            }
+          ],
+          "synapses": [
+            {
+              "src": "1",
+              "tgt": "5",
+              "w": -0.5
+            },
+            {
+              "src": "2",
+              "tgt": "6",
+              "w": -0.5
+            },
+            {
+              "src": "5",
+              "tgt": "6",
+              "w": 0.35
+            },
+            {
+              "src": "6",
+              "tgt": "5",
+              "w": -0.35
+            },
+            {
+              "src": "5",
+              "tgt": "3",
+              "w": -0.6
+            },
+            {
+              "src": "6",
+              "tgt": "4",
+              "w": 0.5
+            },
+            {
+              "src": "0",
+              "tgt": "3",
+              "w": -0.4
+            },
+            {
+              "src": "0",
+              "tgt": "4",
+              "w": 0.4
+            }
+          ],
+          "description": "SPIN CHAMPION \u2014 hidden half-center oscillator with asymmetric motor drive: h5\u2192m3=-0.6 vs h6\u2192m4=+0.5. The magnitude mismatch creates net torque each cycle. 2.33 full rotations (+838\u00b0) at 48\u00b0 max tilt. Barely translates (DX=+0.2).",
+          "dx": 0.24,
+          "turns": 2.33,
+          "max_tilt": 48,
+          "n_synapses": 8,
+          "n_hidden": 2,
+          "architecture": "hidden",
+          "video": "44_spinner_champion.mp4",
+          "dy": 0.85,
+          "true_distance": 0.88,
+          "telemetry": {
+            "stride_freq_hz": 5.08,
+            "duty_cycle": 0.232,
+            "mean_torque": 53.09,
+            "transient_frac": 1.0,
+            "mean_speed": 2.039,
+            "speed_cv": 0.649,
+            "attractor_type": "complex",
+            "attractor_subtype": "wobbler",
+            "efficiency": 0.0166,
+            "pareto_optimal": false
+          },
+          "yaw_degrees": 837.9,
+          "heading": 73.9
+        },
+        "45_spinner_stable": {
+          "neurons": [
+            {
+              "id": "0",
+              "type": "sensor",
+              "ref": "Torso"
+            },
+            {
+              "id": "1",
+              "type": "sensor",
+              "ref": "BackLeg"
+            },
+            {
+              "id": "2",
+              "type": "sensor",
+              "ref": "FrontLeg"
+            },
+            {
+              "id": "3",
+              "type": "motor",
+              "ref": "Torso_BackLeg"
+            },
+            {
+              "id": "4",
+              "type": "motor",
+              "ref": "Torso_FrontLeg"
+            },
+            {
+              "id": "5",
+              "type": "hidden",
+              "ref": null
+            },
+            {
+              "id": "6",
+              "type": "hidden",
+              "ref": null
+            }
+          ],
+          "synapses": [
+            {
+              "src": "1",
+              "tgt": "5",
+              "w": -0.3
+            },
+            {
+              "src": "2",
+              "tgt": "6",
+              "w": -0.3
+            },
+            {
+              "src": "5",
+              "tgt": "6",
+              "w": 0.4
+            },
+            {
+              "src": "6",
+              "tgt": "5",
+              "w": -0.4
+            },
+            {
+              "src": "5",
+              "tgt": "3",
+              "w": -0.7
+            },
+            {
+              "src": "6",
+              "tgt": "4",
+              "w": 0.4
+            },
+            {
+              "src": "0",
+              "tgt": "3",
+              "w": -0.3
+            },
+            {
+              "src": "0",
+              "tgt": "4",
+              "w": 0.3
+            }
+          ],
+          "description": "Stable spinner \u2014 hidden half-center with stronger cross-inhibition (0.4 vs 0.35) and larger motor asymmetry (h5\u2192m3=-0.7 vs h6\u2192m4=+0.4). 2.08 rotations (-749\u00b0) at only 31\u00b0 tilt \u2014 the best spin-to-tilt ratio. Spins opposite direction from champion.",
+          "dx": -4.3,
+          "turns": -2.08,
+          "max_tilt": 30,
+          "n_synapses": 8,
+          "n_hidden": 2,
+          "architecture": "hidden",
+          "video": "45_spinner_stable.mp4",
+          "dy": 1.08,
+          "true_distance": 4.43,
+          "telemetry": {
+            "stride_freq_hz": 5.89,
+            "duty_cycle": 0.292,
+            "mean_torque": 50.01,
+            "transient_frac": 0.46,
+            "mean_speed": 1.842,
+            "speed_cv": 0.587,
+            "attractor_type": "complex",
+            "attractor_subtype": "quasi_periodic",
+            "efficiency": 0.0887,
+            "pareto_optimal": false
+          },
+          "yaw_degrees": -748.5,
+          "heading": 165.9
+        },
+        "46_spinner_crosswired": {
+          "weights": {
+            "w03": -0.5,
+            "w13": -0.7,
+            "w23": 0.9,
+            "w04": 0.5,
+            "w14": -0.7,
+            "w24": -0.6,
+            "w34": 0.5,
+            "w43": -0.3,
+            "w33": 0.5,
+            "w44": -0.3
+          },
+          "description": "Cross-wired spinner \u2014 no hidden neurons, 10 synapses. Positive FrontLeg\u2192BackLeg_motor (+0.9) combined with motor cross-wiring creates rotation. Rock-solid 23\u00b0 tilt, 0.89 rotations (-320\u00b0). The most stable spinner.",
+          "dx": 0.53,
+          "turns": -0.89,
+          "max_tilt": 23,
+          "n_synapses": 10,
+          "architecture": "crosswired_10",
+          "video": "46_spinner_crosswired.mp4",
+          "sensitivity": {
+            "dx_total": 304.09,
+            "yaw_total": 9864.66,
+            "hottest_dx_weight": "w03",
+            "hottest_yaw_weight": "w13"
+          },
+          "dy": -0.16,
+          "true_distance": 0.55,
+          "telemetry": {
+            "stride_freq_hz": 4.81,
+            "duty_cycle": 0.185,
+            "mean_torque": 83.66,
+            "transient_frac": 1.0,
+            "mean_speed": 0.763,
+            "speed_cv": 0.498,
+            "attractor_type": "limit_cycle",
+            "efficiency": 0.0066,
+            "pareto_optimal": false
+          },
+          "yaw_degrees": -319.7,
+          "heading": -17.3
+        },
+        "47_spinner_6synapse": {
+          "weights": {
+            "w03": -0.5,
+            "w13": -0.7,
+            "w23": 1.0,
+            "w04": 0.5,
+            "w14": -0.7,
+            "w24": -0.7
+          },
+          "description": "6-synapse twist \u2014 minimal wiring spinner. Same base pattern as cross-wired but without motor\u2192motor connections. FrontLeg sensor reversal (w23=+1.0, w24=-0.7) creates the torque. 0.53 rotations (-190\u00b0) at 35\u00b0 tilt.",
+          "dx": -2.15,
+          "turns": -0.53,
+          "max_tilt": 35,
+          "n_synapses": 6,
+          "architecture": "standard_6",
+          "video": "47_spinner_6synapse.mp4",
+          "sensitivity": {
+            "dx_total": 97.09,
+            "yaw_total": 6057.28,
+            "hottest_dx_weight": "w03",
+            "hottest_yaw_weight": "w24"
+          },
+          "dy": -1.87,
+          "true_distance": 2.85,
+          "telemetry": {
+            "stride_freq_hz": 4.96,
+            "duty_cycle": 0.29,
+            "mean_torque": 96.71,
+            "transient_frac": 0.908,
+            "mean_speed": 0.776,
+            "speed_cv": 0.524,
+            "attractor_type": "complex",
+            "attractor_subtype": "multi_frequency",
+            "efficiency": 0.0295,
+            "pareto_optimal": false
+          },
+          "yaw_degrees": -190.1,
+          "heading": -139.0
+        }
+      }
+    },
+    "homework": {
+      "description": "The original 5 configurations for the Ludobots synapses tutorial (step 48). These were the starting point for the entire exploration.",
+      "architecture": "standard_6",
+      "gaits": {
+        "1_original": {
+          "weights": {
+            "w03": 1.0,
+            "w13": 1.0,
+            "w23": 1.0,
+            "w04": -1.0,
+            "w14": -1.0,
+            "w24": -1.0
+          },
+          "description": "The student's original default configuration \u2014 all sensors excite BackLeg motor and inhibit FrontLeg motor equally.",
+          "video": "1_original.mp4",
+          "dx": -0.75,
+          "max_tilt": 248,
+          "sensitivity": {
+            "dx_total": 63.97,
+            "yaw_total": 17149.39,
+            "hottest_dx_weight": "w23",
+            "hottest_yaw_weight": "w23"
+          },
+          "dy": -2.02,
+          "true_distance": 2.15,
+          "telemetry": {
+            "stride_freq_hz": 5.41,
+            "duty_cycle": 0.732,
+            "mean_torque": 66.5,
+            "transient_frac": 0.1,
+            "mean_speed": 0.219,
+            "speed_cv": 1.808,
+            "attractor_type": "chaotic/fallen",
+            "efficiency": 0.0324,
+            "pareto_optimal": false
+          },
+          "yaw_degrees": 299.2,
+          "heading": -110.5,
+          "architecture": "standard_6"
+        },
+        "2_flipped": {
+          "weights": {
+            "w03": -1.0,
+            "w13": -1.0,
+            "w23": -1.0,
+            "w04": 1.0,
+            "w14": 1.0,
+            "w24": 1.0
+          },
+          "description": "Sign-flipped original \u2014 all signs reversed, walks in opposite direction. The simplest demonstration that synapse signs control direction.",
+          "video": "2_flipped.mp4",
+          "dx": -8.27,
+          "max_tilt": 37,
+          "sensitivity": {
+            "dx_total": 119.64,
+            "yaw_total": 3120.21,
+            "hottest_dx_weight": "w23",
+            "hottest_yaw_weight": "w03"
+          },
+          "dy": 2.92,
+          "true_distance": 8.77,
+          "telemetry": {
+            "stride_freq_hz": 3.76,
+            "duty_cycle": 0.558,
+            "mean_torque": 47.54,
+            "transient_frac": 0.75,
+            "mean_speed": 1.046,
+            "speed_cv": 0.751,
+            "attractor_type": "complex",
+            "attractor_subtype": "multi_frequency",
+            "efficiency": 0.1845,
+            "pareto_optimal": false
+          },
+          "yaw_degrees": 214.7,
+          "heading": 160.6,
+          "architecture": "standard_6"
+        },
+        "5_gallop": {
+          "weights": {
+            "w03": 0.5,
+            "w13": -1.0,
+            "w23": 1.0,
+            "w04": -0.5,
+            "w14": 1.0,
+            "w24": -1.0
+          },
+          "description": "Asymmetric mixed weights \u2014 creates an irregular galloping gait.",
+          "video": "5_gallop.mp4",
+          "dx": -4.44,
+          "max_tilt": 242,
+          "sensitivity": {
+            "dx_total": 298.57,
+            "yaw_total": 9165.89,
+            "hottest_dx_weight": "w13",
+            "hottest_yaw_weight": "w14"
+          },
+          "dy": -0.46,
+          "true_distance": 4.46,
+          "telemetry": {
+            "stride_freq_hz": 5.5,
+            "duty_cycle": 0.298,
+            "mean_torque": 98.69,
+            "transient_frac": 0.108,
+            "mean_speed": 0.603,
+            "speed_cv": 1.633,
+            "attractor_type": "chaotic/fallen",
+            "efficiency": 0.0452,
+            "pareto_optimal": false
+          },
+          "yaw_degrees": 120.5,
+          "heading": -174.1,
+          "architecture": "standard_6"
+        },
+        "5_bouncer": {
+          "weights": {
+            "w03": 0.0,
+            "w13": 1.0,
+            "w23": -1.0,
+            "w04": 0.0,
+            "w14": -1.0,
+            "w24": 1.0
+          },
+          "description": "Zero Torso coupling \u2014 only leg sensors drive motors, creates bouncing behavior.",
+          "video": "5_bouncer.mp4",
+          "dx": 0.0,
+          "max_tilt": 0,
+          "sensitivity": {
+            "dx_total": 376.95,
+            "yaw_total": 9412.92,
+            "hottest_dx_weight": "w03",
+            "hottest_yaw_weight": "w23"
+          },
+          "dy": 0.0,
+          "true_distance": 0.0,
+          "telemetry": {
+            "stride_freq_hz": 8.24,
+            "duty_cycle": 1.0,
+            "mean_torque": 0.07,
+            "transient_frac": 1.0,
+            "mean_speed": 0.0,
+            "speed_cv": 0,
+            "attractor_type": "fixed_point"
+          },
+          "yaw_degrees": -0.0,
+          "heading": 72.5,
+          "architecture": "standard_6"
+        }
+      }
+    },
+    "pareto_walk_spin": {
+      "description": "Gaits that simultaneously walk AND spin \u2014 occupying the Pareto frontier between displacement and rotation. Found by exhaustive cross-wiring search over Curie, Noether, and Pelton bases. Score = |DX| * |YAW|.",
+      "architecture": "crosswired_10",
+      "gaits": {
+        "48_curie_dervish": {
+          "weights": {
+            "w03": -0.3,
+            "w13": -0.9,
+            "w23": -0.3,
+            "w04": 0.9,
+            "w14": 0.3,
+            "w24": 0.9,
+            "w34": 0.0,
+            "w43": 0.7,
+            "w33": 0.5,
+            "w44": -0.3
+          },
+          "description": "PARETO CHAMPION \u2014 Curie base + strong reversed excitation (w43=+0.7) + asymmetric self-feedback. Walks +24m forward while spinning 120\u00b0 counterclockwise. The whirling dervish: fastest walk-and-spin in the zoo.",
+          "dx": 24.07,
+          "dy": -20.16,
+          "max_tilt": 36,
+          "n_synapses": 9,
+          "pareto_score": 2886,
+          "telemetry": {
+            "stride_freq_hz": 4.36,
+            "duty_cycle": 0.3,
+            "mean_torque": 74.21,
+            "transient_frac": 0.452,
+            "mean_speed": 2.862,
+            "speed_cv": 0.456,
+            "attractor_type": "limit_cycle",
+            "efficiency": 0.4231,
+            "pareto_optimal": false
+          },
+          "yaw_degrees": -119.9,
+          "architecture": "crosswired_10",
+          "true_distance": 31.4,
+          "heading": -39.9
+        },
+        "49_pelton_pirouette": {
+          "weights": {
+            "w03": -0.3,
+            "w13": -1.0,
+            "w23": -0.3,
+            "w04": 1.0,
+            "w14": 0.3,
+            "w24": 1.0,
+            "w34": 0.3,
+            "w43": -0.5,
+            "w33": 0.5,
+            "w44": -0.5
+          },
+          "description": "Pelton base + mutual inhibition CPG + strong asymmetric self-feedback. Walks +11m while completing nearly a half revolution (+174\u00b0). The pirouette: most spin of any walking gait.",
+          "dx": 11.12,
+          "dy": 1.05,
+          "max_tilt": 40,
+          "n_synapses": 10,
+          "pareto_score": 1934,
+          "telemetry": {
+            "stride_freq_hz": 4.42,
+            "duty_cycle": 0.35,
+            "mean_torque": 71.2,
+            "transient_frac": 0.945,
+            "mean_speed": 2.041,
+            "speed_cv": 0.517,
+            "attractor_type": "complex",
+            "attractor_subtype": "multi_frequency",
+            "efficiency": 0.1569,
+            "pareto_optimal": false
+          },
+          "yaw_degrees": 173.9,
+          "architecture": "crosswired_10",
+          "true_distance": 11.17,
+          "heading": 5.4
+        },
+        "50_noether_cyclone": {
+          "weights": {
+            "w03": -0.7,
+            "w13": -0.5,
+            "w23": -0.3,
+            "w04": 0.3,
+            "w14": 0.5,
+            "w24": 0.7,
+            "w34": 0.3,
+            "w43": 0.3,
+            "w33": 0.5,
+            "w44": -0.5
+          },
+          "description": "Noether base + mutual EXCITATION (w34=+0.3, w43=+0.3 \u2014 rare positive feedback) + self-feedback. Walks backward -30m while spinning +67\u00b0. The backward cyclone.",
+          "dx": -30.16,
+          "dy": -13.51,
+          "max_tilt": 38,
+          "n_synapses": 10,
+          "pareto_score": 2022,
+          "telemetry": {
+            "stride_freq_hz": 4.63,
+            "duty_cycle": 0.41,
+            "mean_torque": 86.08,
+            "transient_frac": 0.745,
+            "mean_speed": 2.671,
+            "speed_cv": 0.367,
+            "attractor_type": "limit_cycle",
+            "efficiency": 0.3839,
+            "pareto_optimal": false
+          },
+          "yaw_degrees": 67.0,
+          "architecture": "crosswired_10",
+          "true_distance": 33.05,
+          "heading": -155.9
+        }
+      }
+    },
+    "bifurcation_gaits": {
+      "description": "Gaits discovered by pushing configurations near bifurcation boundaries. The bouncer (perfectly still, yaw_sensitivity=9413) was converted to a half-rotation spinner by changing ONE weight by 0.1. These demonstrate extreme sensitivity at phase transition boundaries.",
+      "architecture": "standard_6",
+      "gaits": {
+        "51_bouncer_detonated": {
+          "weights": {
+            "w03": 0.0,
+            "w13": 1.0,
+            "w23": -1.0,
+            "w04": 0.0,
+            "w14": -1.0,
+            "w24": 0.9
+          },
+          "description": "BIFURCATION CHAMPION \u2014 the bouncer [0,+1,-1,0,-1,+1] is perfectly still (DX=0, YAW=0). Reducing w24 by 0.1 (from +1.0 to +0.9) produces YAW=-188\u00b0. A 10% change in one synapse converts a stationary robot into a half-rotation spinner. The sharpest behavioral bifurcation in the zoo.",
+          "dx": 7.54,
+          "dy": -2.76,
+          "max_tilt": 47,
+          "n_synapses": 4,
+          "note": "Parent config (5_bouncer) has DX=0, YAW=0, tilt=0. Delta: w24 changed by -0.1.",
+          "telemetry": {
+            "stride_freq_hz": 3.67,
+            "duty_cycle": 0.66,
+            "mean_torque": 65.97,
+            "transient_frac": 0.542,
+            "mean_speed": 0.864,
+            "speed_cv": 1.484,
+            "attractor_type": "complex",
+            "attractor_subtype": "transient_decay",
+            "efficiency": 0.1217,
+            "pareto_optimal": false
+          },
+          "yaw_degrees": -187.7,
+          "architecture": "standard_6",
+          "true_distance": 8.03,
+          "heading": -20.1
+        }
+      }
+    },
+    "crab_walkers": {
+      "description": "Gaits that walk more sideways (Y) than forward (X). Found by cross-wiring search over crab-prone bases (Rucker, mean_reversion, evolved_curie, novel asymmetric). Ranked by |DY|.",
+      "architecture": "crosswired_10",
+      "gaits": {
+        "52_curie_crab": {
+          "weights": {
+            "w03": -0.3,
+            "w13": -0.85,
+            "w23": -0.26,
+            "w04": 0.85,
+            "w14": 0.26,
+            "w24": 0.85,
+            "w34": -0.5,
+            "w43": 0.5,
+            "w33": 0,
+            "w44": 0
+          },
+          "description": "CRAB CHAMPION \u2014 evolved Curie base + inhibit-excite cross-wiring. Walks +24m forward AND -29m sideways simultaneously. Heading -50\u00b0. The most lateral displacement in the zoo.",
+          "dx": 24.44,
+          "dy": -28.79,
+          "true_distance": 37.76,
+          "max_tilt": 29,
+          "n_synapses": 8,
+          "crab_ratio": 1.18,
+          "telemetry": {
+            "stride_freq_hz": 4.93,
+            "duty_cycle": 0.345,
+            "mean_torque": 72.26,
+            "transient_frac": 0.788,
+            "mean_speed": 2.514,
+            "speed_cv": 0.494,
+            "attractor_type": "limit_cycle",
+            "efficiency": 0.5226,
+            "pareto_optimal": false
+          },
+          "yaw_degrees": -61.4,
+          "heading": -49.7,
+          "architecture": "crosswired_10"
+        },
+        "53_rucker_landcrab": {
+          "weights": {
+            "w03": -0.618,
+            "w13": -1.0,
+            "w23": -0.618,
+            "w04": 1.0,
+            "w14": 0.618,
+            "w24": 1.0,
+            "w34": 0.0,
+            "w43": 0.7,
+            "w33": 0,
+            "w44": 0
+          },
+          "description": "Golden-ratio Rucker base + strong reversed excitation (w43=+0.7). Walks +11m forward and +27m sideways. Heading +67\u00b0. The highest pure lateral displacement.",
+          "dx": 11.46,
+          "dy": 27.05,
+          "true_distance": 29.38,
+          "max_tilt": 37,
+          "n_synapses": 7,
+          "crab_ratio": 2.36,
+          "telemetry": {
+            "stride_freq_hz": 3.82,
+            "duty_cycle": 0.368,
+            "mean_torque": 60.66,
+            "transient_frac": 0.56,
+            "mean_speed": 2.409,
+            "speed_cv": 0.529,
+            "attractor_type": "complex",
+            "attractor_subtype": "multi_frequency",
+            "efficiency": 0.4843,
+            "pareto_optimal": false
+          },
+          "yaw_degrees": 81.7,
+          "heading": 67.0,
+          "architecture": "crosswired_10"
+        },
+        "54_rucker_sidewinder": {
+          "weights": {
+            "w03": -0.618,
+            "w13": -1.0,
+            "w23": -0.618,
+            "w04": 1.0,
+            "w14": 0.618,
+            "w24": 1.0,
+            "w34": -0.3,
+            "w43": 0.0,
+            "w33": 0,
+            "w44": 0
+          },
+          "description": "Rucker base + mild forward inhibition (w34=-0.3). Walks +6m forward and +15m sideways. Heading +69\u00b0. The highest crab ratio (2.66) of any fast walker.",
+          "dx": 5.7,
+          "dy": 15.19,
+          "true_distance": 16.22,
+          "max_tilt": 43,
+          "n_synapses": 7,
+          "crab_ratio": 2.66,
+          "telemetry": {
+            "stride_freq_hz": 3.25,
+            "duty_cycle": 0.645,
+            "mean_torque": 57.22,
+            "transient_frac": 0.635,
+            "mean_speed": 1.42,
+            "speed_cv": 0.779,
+            "attractor_type": "complex",
+            "attractor_subtype": "multi_frequency",
+            "efficiency": 0.2835,
+            "pareto_optimal": false
+          },
+          "yaw_degrees": 104.5,
+          "heading": 69.4,
+          "architecture": "crosswired_10"
+        },
+        "55_skew_crab": {
+          "weights": {
+            "w03": -0.7,
+            "w13": -0.7,
+            "w23": -0.3,
+            "w04": 0.3,
+            "w14": 0.7,
+            "w24": 0.7,
+            "w34": 0.3,
+            "w43": 0.3,
+            "w33": 0,
+            "w44": 0
+          },
+          "description": "Novel skew-drive base (asymmetric sensor weights) + mutual excitation. Walks +10m forward and -14m sideways. Heading -55\u00b0. Only crab walker from a non-zoo base.",
+          "dx": 9.78,
+          "dy": -13.71,
+          "true_distance": 16.84,
+          "max_tilt": 33,
+          "n_synapses": 8,
+          "crab_ratio": 1.4,
+          "telemetry": {
+            "stride_freq_hz": 3.52,
+            "duty_cycle": 0.55,
+            "mean_torque": 71.63,
+            "transient_frac": 0.805,
+            "mean_speed": 2.042,
+            "speed_cv": 0.583,
+            "attractor_type": "complex",
+            "attractor_subtype": "multi_frequency",
+            "efficiency": 0.2351,
+            "pareto_optimal": false
+          },
+          "yaw_degrees": 168.1,
+          "heading": -54.5,
+          "architecture": "crosswired_10"
+        },
+        "56_evolved_crab_v2": {
+          "weights": {
+            "w03": 0.2515753101143031,
+            "w13": -1.4976902964989567,
+            "w23": -0.6410900845427805,
+            "w04": 0.9733372173225151,
+            "w14": 1.5824646682114387,
+            "w24": 1.2083292616061312,
+            "w34": 0.7254521057740698,
+            "w43": 1.1328779669631484,
+            "w33": -0.24636848771593106,
+            "w44": 0.8480271198639224
+          },
+          "dx": -6.71,
+          "dy": -40.64,
+          "true_distance": 41.19,
+          "heading": -99.4,
+          "crab_ratio": 6.06,
+          "architecture": "crosswired_10",
+          "description": "Evolved crab champion (verified). |DY|=40.64, crab ratio 6.06. Uses both w33 and w44 self-feedback. Heading -99\u00b0.",
+          "origin": "evolved",
+          "verified": true,
+          "evolution": {
+            "method": "(mu+lambda) ES, pop=40, children=30, 80 generations",
+            "fitness": "|DY| with tilt penalty",
+            "seeded_from": [
+              "52_curie_crab",
+              "53_rucker_landcrab",
+              "54_rucker_sidewinder",
+              "55_skew_crab"
+            ],
+            "note": "Weights stored at full float64 precision. These solutions are sensitivity-dependent: rounding to 6 decimal places changes behavior significantly."
+          },
+          "max_tilt": 13,
+          "yaw_degrees": -89.7,
+          "telemetry": {
+            "stride_freq_hz": 5.17,
+            "duty_cycle": 0.265,
+            "mean_torque": 80.83,
+            "transient_frac": 0.808,
+            "mean_speed": 2.588,
+            "speed_cv": 0.247,
+            "attractor_type": "limit_cycle",
+            "efficiency": 0.5085,
+            "pareto_optimal": false
+          }
+        },
+        "57_evolved_sidewinder": {
+          "weights": {
+            "w03": -0.026377908384466117,
+            "w13": -1.2564439315013083,
+            "w23": -0.7030132640035148,
+            "w04": 1.5391416964614093,
+            "w14": 1.4939319677183045,
+            "w24": 2.0,
+            "w34": 0.6886014609896243,
+            "w43": 0.8426897656599622,
+            "w33": -0.15736991596664235,
+            "w44": -0.31190802476890234
+          },
+          "dx": -3.99,
+          "dy": -39.32,
+          "true_distance": 39.52,
+          "heading": -95.8,
+          "crab_ratio": 9.86,
+          "architecture": "crosswired_10",
+          "description": "Evolved near-pure lateral walker (verified). |DY|=39.32, crab ratio 9.86. Heading -96\u00b0.",
+          "origin": "evolved",
+          "verified": true,
+          "evolution": {
+            "method": "(mu+lambda) ES, pop=40, children=30, 80 generations",
+            "fitness": "|DY| with tilt penalty",
+            "seeded_from": [
+              "52_curie_crab",
+              "53_rucker_landcrab",
+              "54_rucker_sidewinder",
+              "55_skew_crab"
+            ],
+            "note": "Weights stored at full float64 precision. These solutions are sensitivity-dependent: rounding to 6 decimal places changes behavior significantly."
+          },
+          "max_tilt": 26,
+          "yaw_degrees": -91.5,
+          "telemetry": {
+            "stride_freq_hz": 4.09,
+            "duty_cycle": 0.338,
+            "mean_torque": 67.03,
+            "transient_frac": 0.815,
+            "mean_speed": 2.679,
+            "speed_cv": 0.456,
+            "attractor_type": "limit_cycle",
+            "efficiency": 0.5873,
+            "pareto_optimal": false
+          }
+        },
+        "58_evolved_crab_positive_v2": {
+          "weights": {
+            "w03": 0.23072461184014542,
+            "w13": -1.4022677827784948,
+            "w23": -0.9186363031170268,
+            "w04": 1.5038870895479943,
+            "w14": 0.9919020161353844,
+            "w24": 0.8092953216480049,
+            "w34": 0.6184601499975225,
+            "w43": 0.06891423023014609,
+            "w33": -0.2238301426805867,
+            "w44": -0.3055743156252235
+          },
+          "dx": -1.17,
+          "dy": 38.08,
+          "true_distance": 38.1,
+          "heading": 91.8,
+          "crab_ratio": 32.48,
+          "architecture": "crosswired_10",
+          "description": "Evolved crab walking in +Y direction (verified). DY=+38.08, crab ratio 32.48. Nearly pure lateral. Heading +91\u00b0.",
+          "origin": "evolved",
+          "verified": true,
+          "evolution": {
+            "method": "(mu+lambda) ES, pop=40, children=30, 80 generations",
+            "fitness": "|DY| with tilt penalty",
+            "seeded_from": [
+              "52_curie_crab",
+              "53_rucker_landcrab",
+              "54_rucker_sidewinder",
+              "55_skew_crab"
+            ],
+            "note": "Weights stored at full float64 precision. These solutions are sensitivity-dependent: rounding to 6 decimal places changes behavior significantly."
+          },
+          "max_tilt": 37,
+          "yaw_degrees": 84.3,
+          "telemetry": {
+            "stride_freq_hz": 4.12,
+            "duty_cycle": 0.288,
+            "mean_torque": 72.44,
+            "transient_frac": 0.842,
+            "mean_speed": 2.662,
+            "speed_cv": 0.393,
+            "attractor_type": "limit_cycle",
+            "efficiency": 0.525,
+            "pareto_optimal": false
+          }
+        }
+      }
+    }
+  },
+  "leaderboard_note": "Ranked by |DX| (absolute displacement). All values verified against current physics (Feb 2026).",
+  "leaderboard": [
+    {
+      "rank": 1,
+      "name": "43_hidden_cpg_champion",
+      "dx": 50.11,
+      "category": "hidden_neurons",
+      "architecture": "7 neurons (2 hidden), 8 synapses"
+    },
+    {
+      "rank": 2,
+      "name": "21_noether_cpg",
+      "dx": -43.23,
+      "category": "cross_wired_cpg",
+      "architecture": "5 neurons, 10 synapses"
+    },
+    {
+      "rank": 3,
+      "name": "22_curie_amplified",
+      "dx": 37.14,
+      "category": "cross_wired_cpg",
+      "architecture": "5 neurons, 8 synapses"
+    },
+    {
+      "rank": 4,
+      "name": "5_pelton",
+      "dx": 34.7,
+      "category": "persona_gaits",
+      "architecture": "5 neurons, 6 synapses"
+    },
+    {
+      "rank": 5,
+      "name": "32_carry_trade",
+      "dx": 32.22,
+      "category": "market_mathematics",
+      "architecture": "5 neurons, 10 synapses"
+    },
+    {
+      "rank": 6,
+      "name": "50_noether_cyclone",
+      "dx": -30.16,
+      "category": "",
+      "architecture": ""
+    },
+    {
+      "rank": 7,
+      "name": "23_hodgkin_huxley",
+      "dx": -29.79,
+      "category": "cross_wired_cpg",
+      "architecture": "5 neurons, 10 synapses"
+    },
+    {
+      "rank": 8,
+      "name": "36_take_five",
+      "dx": -27.72,
+      "category": "time_signatures",
+      "architecture": "5 neurons, 10 synapses"
+    },
+    {
+      "rank": 9,
+      "name": "35_evolved_curie",
+      "dx": 24.28,
+      "category": "evolved",
+      "architecture": "5 neurons, 8 synapses (unclamped)"
+    },
+    {
+      "rank": 10,
+      "name": "48_curie_dervish",
+      "dx": 24.07,
+      "category": "",
+      "architecture": ""
+    },
+    {
+      "rank": 11,
+      "name": "18_curie",
+      "dx": 23.73,
+      "category": "persona_gaits",
+      "architecture": "5 neurons, 6 synapses"
+    },
+    {
+      "rank": 12,
+      "name": "30_garch",
+      "dx": -22.69,
+      "category": "market_mathematics",
+      "architecture": "5 neurons, 8 synapses"
+    },
+    {
+      "rank": 13,
+      "name": "37_hemiola",
+      "dx": 22.63,
+      "category": "time_signatures",
+      "architecture": "5 neurons, 6 synapses"
+    },
+    {
+      "rank": 14,
+      "name": "15_noether",
+      "dx": -21.65,
+      "category": "persona_gaits",
+      "architecture": "5 neurons, 6 synapses"
+    },
+    {
+      "rank": 15,
+      "name": "25_minsky",
+      "dx": -21.53,
+      "category": "cross_wired_cpg",
+      "architecture": "5 neurons, 10 synapses"
+    },
+    {
+      "rank": 16,
+      "name": "34_zipf",
+      "dx": -20.57,
+      "category": "market_mathematics",
+      "architecture": "5 neurons, 8 synapses"
+    },
+    {
+      "rank": 17,
+      "name": "38_heavy_waltz",
+      "dx": -19.31,
+      "category": "time_signatures",
+      "architecture": "5 neurons, 10 synapses"
+    },
+    {
+      "rank": 18,
+      "name": "10_tesla_3phase",
+      "dx": -18.33,
+      "category": "persona_gaits",
+      "architecture": "5 neurons, 4 synapses"
+    },
+    {
+      "rank": 19,
+      "name": "16_franklin",
+      "dx": -17.49,
+      "category": "persona_gaits",
+      "architecture": "5 neurons, 6 synapses"
+    },
+    {
+      "rank": 20,
+      "name": "39_bulgarian",
+      "dx": 16.52,
+      "category": "time_signatures",
+      "architecture": "5 neurons, 6 synapses"
+    }
+  ],
+  "spin_leaderboard_note": "All gaits with |yaw| > 50\u00b0. Ranked by |yaw|. Includes incidental spinners (walkers that also rotate).",
+  "spin_leaderboard": [
+    {
+      "rank": 1,
+      "name": "44_spinner_champion",
+      "yaw_deg": 837.9,
+      "turns": 2.33,
+      "max_tilt": 48,
+      "dx": 0.24,
+      "category": "spinners"
+    },
+    {
+      "rank": 2,
+      "name": "45_spinner_stable",
+      "yaw_deg": -748.5,
+      "turns": -2.08,
+      "max_tilt": 30,
+      "dx": -4.3,
+      "category": "spinners"
+    },
+    {
+      "rank": 3,
+      "name": "46_spinner_crosswired",
+      "yaw_deg": -319.7,
+      "turns": -0.89,
+      "max_tilt": 23,
+      "dx": 0.53,
+      "category": "spinners"
+    },
+    {
+      "rank": 4,
+      "name": "1_original",
+      "yaw_deg": 299.2,
+      "turns": 0.83,
+      "max_tilt": 248,
+      "dx": -0.75,
+      "category": "homework"
+    },
+    {
+      "rank": 5,
+      "name": "2_flipped",
+      "yaw_deg": 214.7,
+      "turns": 0.6,
+      "max_tilt": 37,
+      "dx": -8.27,
+      "category": "homework"
+    },
+    {
+      "rank": 6,
+      "name": "47_spinner_6synapse",
+      "yaw_deg": -190.1,
+      "turns": -0.53,
+      "max_tilt": 35,
+      "dx": -2.15,
+      "category": "spinners"
+    },
+    {
+      "rank": 7,
+      "name": "1_wolfram",
+      "yaw_deg": 186.8,
+      "turns": 0.52,
+      "max_tilt": 22,
+      "dx": -2.67,
+      "category": "persona_gaits"
+    },
+    {
+      "rank": 8,
+      "name": "10_tesla_3phase",
+      "yaw_deg": -162.2,
+      "turns": -0.45,
+      "max_tilt": 186,
+      "dx": -18.33,
+      "category": "persona_gaits"
+    },
+    {
+      "rank": 9,
+      "name": "5_gallop",
+      "yaw_deg": 120.5,
+      "turns": 0.33,
+      "max_tilt": 242,
+      "dx": -4.44,
+      "category": "homework"
+    },
+    {
+      "rank": 10,
+      "name": "41_blues_shuffle",
+      "yaw_deg": 100.0,
+      "turns": 0.28,
+      "max_tilt": 77,
+      "dx": 10.82,
+      "category": "time_signatures"
+    },
+    {
+      "rank": 11,
+      "name": "4_sayama",
+      "yaw_deg": 83.3,
+      "turns": 0.23,
+      "max_tilt": 53,
+      "dx": -14.56,
+      "category": "persona_gaits"
+    },
+    {
+      "rank": 12,
+      "name": "33_mean_reversion",
+      "yaw_deg": -75.7,
+      "turns": -0.21,
+      "max_tilt": 33,
+      "dx": 0.45,
+      "category": "market_mathematics"
+    },
+    {
+      "rank": 13,
+      "name": "17_lamarr",
+      "yaw_deg": -63.5,
+      "turns": -0.18,
+      "max_tilt": 93,
+      "dx": -4.86,
+      "category": "persona_gaits"
+    },
+    {
+      "rank": 14,
+      "name": "35_evolved_curie",
+      "yaw_deg": -60.1,
+      "turns": -0.17,
+      "max_tilt": 41,
+      "dx": 24.28,
+      "category": "evolved"
+    },
+    {
+      "rank": 15,
+      "name": "13_lorenz_B",
+      "yaw_deg": -58.6,
+      "turns": -0.16,
+      "max_tilt": 43,
+      "dx": -0.56,
+      "category": "persona_gaits"
+    },
+    {
+      "rank": 16,
+      "name": "16_franklin",
+      "yaw_deg": -53.0,
+      "turns": -0.15,
+      "max_tilt": 56,
+      "dx": -17.49,
+      "category": "persona_gaits"
+    }
+  ],
+  "design_principles": {
+    "noether_symmetry": "Antisymmetric sensor\u2192motor weights (w_i3 = -w_i4) enforce conservation of momentum between legs. The strongest locomotion foundation.",
+    "cpg_cross_wiring": "Motor\u2192motor mutual inhibition (w34 > 0, w43 < 0) creates a central pattern generator \u2014 an internal clock that oscillates independently of sensor input.",
+    "self_feedback": "Self-connections (w33, w44) create persistence (positive) or damping (negative). Asymmetric self-feedback (w33 \u2260 -w44) produces regime-switching behavior.",
+    "hidden_half_center": "Two hidden neurons with mutual inhibition form a half-center oscillator \u2014 the biological basis of vertebrate locomotion. Decouples oscillation frequency from raw sensor feedback.",
+    "weight_scaling": "The [-1,1] weight range is a convention, not a physical limit. Scaling beyond it (e.g., Curie\u00d71.5) unlocks new fitness peaks.",
+    "razor_sharp_optima": "The top configurations (Noether CPG at -43.23, Hidden CPG at +50.11) are razor-sharp isolated peaks \u2014 every small perturbation degrades performance. These are genuine optima in the fitness landscape, not broad plateaus.",
+    "spin_torque": "Asymmetric hidden\u2192motor weights (|h5\u2192m3| \u2260 |h6\u2192m4|) create net torque per oscillation cycle. The walking champion has symmetric magnitudes (0.8/0.8 = no torque). The spin champion has -0.6/+0.5 = net angular momentum each cycle. Spin and displacement are orthogonal fitness dimensions."
+  },
+  "motif_taxonomy": {
+    "description": "Nine structural motifs identified across all 51 gaits. Each motif is defined by weight topology patterns that correlate with specific behaviors.",
+    "master_rule": "Motor balance ratio (MB = total_drive_to_m3 / total_drive_to_m4) controls direction: MB < 1.0 \u2192 forward, MB = 1.0 with canonical signs \u2192 backward, MB > 1.0 \u2192 backward. Magnitude scales speed. Cross-wiring controls dynamics.",
+    "motifs": {
+      "canonical_antisymmetric": {
+        "signature": "w_i3 = -w_i4 for all i, MB = 1.0",
+        "members": [
+          "1_wolfram",
+          "4_sayama",
+          "11_taleb_antifrag",
+          "12_lorenz_A",
+          "2_flipped",
+          "5_bouncer",
+          "5_gallop"
+        ],
+        "behavior": "Reliable backward walk. Uniform magnitude = stable but slow. BackLeg-enhanced = faster.",
+        "avg_dx": -4.9
+      },
+      "curie_asymmetric_drive": {
+        "signature": "MB \u2248 0.71, motor 4 overloaded. Base: [-0.3, -0.9, -0.3, +0.9, +0.3, +0.9]",
+        "members": [
+          "18_curie",
+          "5_pelton",
+          "22_curie_amplified",
+          "32_carry_trade",
+          "35_evolved_curie",
+          "26_fitzhugh_nagumo",
+          "37_hemiola"
+        ],
+        "behavior": "Fast forward walk. Consistently highest positive DX. Cross-wiring with reversed polarity amplifies further.",
+        "avg_dx": 28.7
+      },
+      "noether_involution": {
+        "signature": "Ascending magnitudes [0.7, 0.5, 0.3] to m3, [0.3, 0.5, 0.7] to m4. MB = 1.0.",
+        "members": [
+          "15_noether",
+          "21_noether_cpg",
+          "23_hodgkin_huxley",
+          "33_mean_reversion"
+        ],
+        "behavior": "Fast backward walk. Noether CPG is all-time negative champion. Involution + CPG nearly doubles displacement.",
+        "avg_dx": -23.7
+      },
+      "same_drive_symmetric": {
+        "signature": "w_i3 = w_i4 (both motors receive identical signal from each sensor)",
+        "members": [
+          "3_mordvintsev",
+          "7_fuller_dymaxion",
+          "9_mandelbrot",
+          "19_haraway"
+        ],
+        "behavior": "Straight-line motion with very low spin. Direction comes from physical asymmetry, not neural asymmetry. Avg |YAW| \u2248 10\u00b0."
+      },
+      "minimal_wiring": {
+        "signature": "1-2 active synapses out of 6 possible",
+        "members": [
+          "6_fuller_trimtab",
+          "7_fuller_dymaxion",
+          "20_mcclintock",
+          "66_womack_ambient",
+          "67_womack_terraplane",
+          "73_gallagher_sieve"
+        ],
+        "behavior": "Efficient locomotion from minimal infrastructure. Highest DX-per-synapse-weight ratios."
+      },
+      "cpg_dominant": {
+        "signature": "Sensor weights near zero, cross-wiring provides most energy",
+        "members": [
+          "40_rubato"
+        ],
+        "behavior": "Internal clock drives motion. Most autonomous gait \u2014 locomotion emerges from CPG, not sensory feedback."
+      },
+      "half_center_oscillator": {
+        "signature": "Two hidden neurons with mutual inhibition, symmetric sensor\u2192hidden, variable hidden\u2192motor",
+        "members": [
+          "43_hidden_cpg_champion",
+          "44_spinner_champion",
+          "45_spinner_stable"
+        ],
+        "behavior": "Walk/spin controlled by single parameter: motor drive asymmetry. |h5\u2192m3| = |h6\u2192m4| \u2192 translation. |h5\u2192m3| \u2260 |h6\u2192m4| \u2192 rotation."
+      },
+      "spin_torque": {
+        "signature": "FrontLeg sensor sign reversal (w23 positive) OR hidden motor asymmetry",
+        "members": [
+          "44_spinner_champion",
+          "45_spinner_stable",
+          "46_spinner_crosswired",
+          "47_spinner_6synapse"
+        ],
+        "behavior": "Rotation dominates translation. Up to 2.33 full turns in 4000 timesteps."
+      },
+      "positive_feedback_cascade": {
+        "signature": "Cross-wiring w34 > 0 AND w43 > 0 (mutual excitation, unique in zoo)",
+        "members": [
+          "28_flash_crash"
+        ],
+        "behavior": "Both motors reinforce each other. Only mutual-excitation topology in the zoo."
+      },
+      "walk_and_spin": {
+        "signature": "Strong base pattern (Curie/Noether/Pelton) + cross-wiring that creates both translational and rotational drive simultaneously",
+        "members": [
+          "48_curie_dervish",
+          "49_pelton_pirouette",
+          "50_noether_cyclone"
+        ],
+        "behavior": "Simultaneous walking and spinning. The Pareto frontier spans DX 11-27 and YAW 60-177\u00b0. Score = |DX| * |YAW|."
+      },
+      "crab_walk": {
+        "signature": "Lateral (Y) displacement exceeds forward (X) displacement. Often involves golden-ratio or non-standard weight patterns.",
+        "members": [
+          "52_curie_crab",
+          "53_rucker_landcrab",
+          "54_rucker_sidewinder",
+          "55_skew_crab",
+          "2_rucker",
+          "33_mean_reversion",
+          "13_lorenz_B",
+          "56_evolved_crab_v2",
+          "57_evolved_sidewinder",
+          "58_evolved_crab_positive_v2"
+        ],
+        "behavior": "Walking sideways. The curie_crab has |DY|=28.79, the highest lateral displacement ever measured. The sidewinder has crab_ratio=2.66 (walks 2.66x more sideways than forward). Cross-wiring (especially w43 excitation) amplifies lateral motion from crab-prone bases."
+      },
+      "bifurcation_boundary": {
+        "signature": "Configuration sitting exactly at a phase transition. Tiny perturbation causes qualitative behavior change.",
+        "members": [
+          "5_bouncer",
+          "51_bouncer_detonated"
+        ],
+        "behavior": "The bouncer is perfectly still. Reducing w24 by 10% detonates it into a 188\u00b0 spinner. The sharpest behavioral cliff in the zoo."
+      }
+    }
+  },
+  "sensitivity_classes": {
+    "description": "All 51 gaits are perfectly deterministic in PyBullet DIRECT mode (zero variance across 5 trials). Sensitivity measures how much behavior changes when each weight is perturbed by \u00b10.05. High-sensitivity gaits would appear non-deterministic in any noisy real-world implementation.",
+    "method": "Central-difference gradient \u2202DX/\u2202w and \u2202YAW/\u2202w for each weight, summed across all weights.",
+    "classes": {
+      "antifragile": {
+        "criterion": "DX sensitivity < 160 AND YAW sensitivity < 1000",
+        "members": [
+          "19_haraway",
+          "20_mcclintock",
+          "3_mordvintsev",
+          "6_fuller_trimtab",
+          "7_fuller_dymaxion",
+          "9_mandelbrot"
+        ],
+        "note": "These gaits barely respond to weight perturbation. Would behave identically in a noisy real-world system. Haraway (dx_sens=32) is the most robust gait in the entire zoo."
+      },
+      "knife_edge": {
+        "criterion": "DX sensitivity > 800",
+        "members": [
+          "32_carry_trade",
+          "35_evolved_curie",
+          "26_fitzhugh_nagumo",
+          "21_noether_cpg",
+          "30_garch",
+          "25_minsky",
+          "10_tesla_3phase",
+          "16_franklin",
+          "38_heavy_waltz"
+        ],
+        "note": "High-performance gaits living on razor-sharp fitness peaks. A 0.05 weight change can shift DX by 10+. High performance correlates with high sensitivity."
+      },
+      "yaw_powder_keg": {
+        "criterion": "YAW sensitivity > 8000",
+        "members": [
+          "1_original",
+          "32_carry_trade",
+          "31_gamma_squeeze",
+          "35_evolved_curie",
+          "46_spinner_crosswired",
+          "33_mean_reversion",
+          "5_bouncer",
+          "17_lamarr",
+          "5_gallop",
+          "26_fitzhugh_nagumo",
+          "41_blues_shuffle"
+        ],
+        "note": "Would appear to randomly spin in any noisy system. The bouncer (yaw_sens=9413) currently shows zero spin but sits on a yaw bifurcation boundary."
+      }
+    }
+  },
+  "attractor_taxonomy": {
+    "description": "Classification of gaits by their dynamical attractor type, derived from per-step telemetry (joint phase portraits, speed variability, tilt).",
+    "types": {
+      "fixed_point": {
+        "description": "Robot converges to a stationary equilibrium. No oscillation, no displacement.",
+        "members": [
+          "5_bouncer"
+        ]
+      },
+      "limit_cycle": {
+        "description": "Robot settles into a stable periodic orbit. Consistent stride, low speed variability (CV < 0.5). These are the most reliable walkers.",
+        "members": [
+          "3_mordvintsev",
+          "5_pelton",
+          "7_fuller_dymaxion",
+          "8_conway_glider",
+          "18_curie",
+          "20_mcclintock",
+          "21_noether_cpg",
+          "23_hodgkin_huxley",
+          "32_carry_trade",
+          "40_rubato",
+          "43_hidden_cpg_champion",
+          "46_spinner_crosswired",
+          "48_curie_dervish",
+          "50_noether_cyclone",
+          "52_curie_crab"
+        ]
+      },
+      "complex": {
+        "description": "Robot moves but without clean periodicity. May have drifting phase, variable speed, or multi-frequency dynamics. Stable but not strictly periodic.",
+        "members": [
+          "1_wolfram",
+          "2_rucker",
+          "4_sayama",
+          "6_fuller_trimtab",
+          "9_mandelbrot",
+          "11_taleb_antifrag",
+          "12_lorenz_A",
+          "13_lorenz_B",
+          "14_lovelace",
+          "15_noether",
+          "16_franklin",
+          "19_haraway",
+          "22_curie_amplified",
+          "24_wolfram_flipped",
+          "25_minsky",
+          "26_fitzhugh_nagumo",
+          "27_wiener",
+          "28_flash_crash",
+          "29_fat_tails",
+          "30_garch",
+          "33_mean_reversion",
+          "34_zipf",
+          "35_evolved_curie",
+          "36_take_five",
+          "37_hemiola",
+          "38_heavy_waltz",
+          "39_bulgarian",
+          "42_polyrhythm",
+          "44_spinner_champion",
+          "45_spinner_stable",
+          "47_spinner_6synapse",
+          "2_flipped",
+          "49_pelton_pirouette",
+          "51_bouncer_detonated",
+          "53_rucker_landcrab",
+          "54_rucker_sidewinder",
+          "55_skew_crab"
+        ],
+        "subtypes": {
+          "multi_frequency": {
+            "description": "Multiple competing frequencies in speed signal. Spectrally rich, moderate displacement. The largest subgroup (23 gaits) \u2014 likely contains further structure.",
+            "count": 23,
+            "mean_displacement_m": 13.992,
+            "mean_speed_cv": 0.646,
+            "members": [
+              "1_wolfram",
+              "2_rucker",
+              "9_mandelbrot",
+              "12_lorenz_A",
+              "13_lorenz_B",
+              "14_lovelace",
+              "15_noether",
+              "16_franklin",
+              "19_haraway",
+              "26_fitzhugh_nagumo",
+              "29_fat_tails",
+              "30_garch",
+              "34_zipf",
+              "36_take_five",
+              "37_hemiola",
+              "39_bulgarian",
+              "42_polyrhythm",
+              "47_spinner_6synapse",
+              "2_flipped",
+              "49_pelton_pirouette",
+              "53_rucker_landcrab",
+              "54_rucker_sidewinder",
+              "55_skew_crab"
+            ]
+          },
+          "drifter": {
+            "description": "High displacement with irregular rhythm. Walks far but without clean periodicity. Often produced by amplified curie_asymmetric_drive motif. Rivals limit cycles in displacement.",
+            "count": 5,
+            "mean_displacement_m": 24.641,
+            "mean_speed_cv": 0.66,
+            "members": [
+              "22_curie_amplified",
+              "25_minsky",
+              "28_flash_crash",
+              "35_evolved_curie",
+              "38_heavy_waltz"
+            ]
+          },
+          "quasi_periodic": {
+            "description": "Nearly periodic but with drift or modulation. High autocorrelation (0.4-0.78). These sit at the limit-cycle boundary \u2014 the closest complex gaits to being reclassified as limit cycles.",
+            "count": 5,
+            "mean_displacement_m": 8.382,
+            "mean_speed_cv": 0.618,
+            "members": [
+              "4_sayama",
+              "6_fuller_trimtab",
+              "27_wiener",
+              "33_mean_reversion",
+              "45_spinner_stable"
+            ]
+          },
+          "transient_decay": {
+            "description": "Activity changes dramatically over time (speed CV > 1.0). Not in steady state \u2014 transient dynamics dominate. Includes bifurcation-boundary gaits.",
+            "count": 3,
+            "mean_displacement_m": 5.502,
+            "mean_speed_cv": 1.576,
+            "members": [
+              "11_taleb_antifrag",
+              "24_wolfram_flipped",
+              "51_bouncer_detonated"
+            ]
+          },
+          "wobbler": {
+            "description": "Active joint oscillation with high tilt but no significant displacement. Rocking without locomotion.",
+            "count": 1,
+            "mean_displacement_m": 0.827,
+            "mean_speed_cv": 0.649,
+            "members": [
+              "44_spinner_champion"
+            ]
+          }
+        }
+      },
+      "chaotic_fallen": {
+        "description": "Robot tips over (tilt > 60\u00b0). Phase portrait shows unbounded trajectories. May still achieve significant displacement before falling.",
+        "members": [
+          "10_tesla_3phase",
+          "17_lamarr",
+          "31_gamma_squeeze",
+          "41_blues_shuffle",
+          "1_original",
+          "5_gallop"
+        ]
+      }
+    }
+  }
+}
