@@ -1,0 +1,44 @@
+{
+  "name": "10_tesla_3phase",
+  "category": "persona_gaits",
+  "type": "synapse",
+  "architecture": "standard_6",
+  "weights": {
+    "w03": -0.866,
+    "w13": -0.5,
+    "w23": 0.0,
+    "w04": 0.0,
+    "w14": 0.5,
+    "w24": 0.866
+  },
+  "SIM_STEPS": 4000,
+  "MAX_FORCE": 150.0,
+  "DT": 0.004167,
+  "GRAVITY_Z": -9.8,
+  "ROBOT_FRICTION": 2.5,
+  "dx": -18.33,
+  "dy": 15.49,
+  "true_distance": 24.0,
+  "heading": 139.8,
+  "yaw_degrees": -162.2,
+  "max_tilt": 186,
+  "description": "Nikola Tesla \u2014 three-phase AC motor: sin(60\u00b0), sin(30\u00b0), 0 mirrored antisymmetrically. Tesla's crowning invention encoded in synapses.",
+  "telemetry": {
+    "stride_freq_hz": 2.41,
+    "duty_cycle": 0.29,
+    "mean_torque": 56.01,
+    "transient_frac": 0.478,
+    "mean_speed": 2.41,
+    "speed_cv": 0.505,
+    "attractor_type": "chaotic/fallen",
+    "efficiency": 0.4285,
+    "pareto_optimal": false
+  },
+  "sensitivity": {
+    "dx_total": 843.07,
+    "yaw_total": 3156.03,
+    "hottest_dx_weight": "w13",
+    "hottest_yaw_weight": "w03"
+  },
+  "video": "10_tesla_3phase.mp4"
+}

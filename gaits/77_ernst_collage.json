@@ -1,0 +1,41 @@
+{
+  "name": "77_ernst_collage",
+  "category": "persona_gaits",
+  "type": "synapse",
+  "architecture": "standard_6",
+  "weights": {
+    "w03": -0.3,
+    "w13": -0.85,
+    "w23": -0.26,
+    "w04": -0.85,
+    "w14": 0.26,
+    "w24": -0.85,
+    "w34": 0,
+    "w43": 0,
+    "w33": 0,
+    "w44": 0
+  },
+  "SIM_STEPS": 4000,
+  "MAX_FORCE": 150.0,
+  "DT": 0.004167,
+  "GRAVITY_Z": -9.8,
+  "ROBOT_FRICTION": 2.5,
+  "dx": 14.89,
+  "dy": -5.82,
+  "true_distance": 15.98,
+  "heading": -21.3,
+  "yaw_degrees": -28.2,
+  "max_tilt": 32,
+  "description": "Collage: motor 3 weights from curie, motor 4 weights from noether_cpg (negated). Two incompatible source gaits spliced together produce a new diagonal walker (16m). The surrealist juxtaposition works.",
+  "telemetry": {
+    "stride_freq_hz": 5.5,
+    "duty_cycle": 0.335,
+    "mean_torque": 90.47,
+    "transient_frac": 0.792,
+    "mean_speed": 1.082,
+    "speed_cv": 0.564,
+    "attractor_type": "complex",
+    "efficiency": 0.1763,
+    "pareto_optimal": false
+  }
+}

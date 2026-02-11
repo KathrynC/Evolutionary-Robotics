@@ -1,0 +1,45 @@
+{
+  "name": "16_franklin",
+  "category": "persona_gaits",
+  "type": "synapse",
+  "architecture": "standard_6",
+  "weights": {
+    "w03": -0.667,
+    "w13": -1.0,
+    "w23": -0.667,
+    "w04": 0.333,
+    "w14": 0.5,
+    "w24": 0.333
+  },
+  "SIM_STEPS": 4000,
+  "MAX_FORCE": 150.0,
+  "DT": 0.004167,
+  "GRAVITY_Z": -9.8,
+  "ROBOT_FRICTION": 2.5,
+  "dx": -17.49,
+  "dy": 10.24,
+  "true_distance": 20.27,
+  "heading": 149.7,
+  "yaw_degrees": -53.0,
+  "max_tilt": 56,
+  "description": "Rosalind Franklin \u2014 DNA base-pair bond ratios: A-T bond (2 hydrogen bonds) = 2/3, G-C bond (3 hydrogen bonds) = 1. The structure of life encoded in synapse weights.",
+  "telemetry": {
+    "stride_freq_hz": 2.41,
+    "duty_cycle": 0.73,
+    "mean_torque": 49.64,
+    "transient_frac": 0.808,
+    "mean_speed": 1.805,
+    "speed_cv": 0.647,
+    "attractor_type": "complex",
+    "attractor_subtype": "multi_frequency",
+    "efficiency": 0.4083,
+    "pareto_optimal": false
+  },
+  "sensitivity": {
+    "dx_total": 842.41,
+    "yaw_total": 2493.73,
+    "hottest_dx_weight": "w04",
+    "hottest_yaw_weight": "w04"
+  },
+  "video": "16_franklin.mp4"
+}

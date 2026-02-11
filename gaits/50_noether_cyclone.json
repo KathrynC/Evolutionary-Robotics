@@ -1,0 +1,41 @@
+{
+  "name": "50_noether_cyclone",
+  "category": "pareto_walk_spin",
+  "type": "synapse",
+  "architecture": "crosswired_10",
+  "weights": {
+    "w03": -0.7,
+    "w13": -0.5,
+    "w23": -0.3,
+    "w04": 0.3,
+    "w14": 0.5,
+    "w24": 0.7,
+    "w34": 0.3,
+    "w43": 0.3,
+    "w33": 0.5,
+    "w44": -0.5
+  },
+  "SIM_STEPS": 4000,
+  "MAX_FORCE": 150.0,
+  "DT": 0.004167,
+  "GRAVITY_Z": -9.8,
+  "ROBOT_FRICTION": 2.5,
+  "dx": -30.16,
+  "dy": -13.51,
+  "true_distance": 33.05,
+  "heading": -155.9,
+  "yaw_degrees": 67.0,
+  "max_tilt": 38,
+  "description": "Noether base + mutual EXCITATION (w34=+0.3, w43=+0.3 \u2014 rare positive feedback) + self-feedback. Walks backward -30m while spinning +67\u00b0. The backward cyclone.",
+  "telemetry": {
+    "stride_freq_hz": 4.63,
+    "duty_cycle": 0.41,
+    "mean_torque": 86.08,
+    "transient_frac": 0.745,
+    "mean_speed": 2.671,
+    "speed_cv": 0.367,
+    "attractor_type": "limit_cycle",
+    "efficiency": 0.3839,
+    "pareto_optimal": false
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "name": "103_jgcramer_absorber",
+  "category": "persona_gaits",
+  "type": "synapse",
+  "architecture": "crosswired_10",
+  "weights": {
+    "w03": -0.2,
+    "w13": -0.3,
+    "w23": -0.2,
+    "w04": 0.2,
+    "w14": 0.3,
+    "w24": 0.2,
+    "w34": 0,
+    "w43": 0,
+    "w33": 0.9,
+    "w44": -0.9
+  },
+  "SIM_STEPS": 4000,
+  "MAX_FORCE": 150.0,
+  "DT": 0.004167,
+  "GRAVITY_Z": -9.8,
+  "ROBOT_FRICTION": 2.5,
+  "dx": -12.48,
+  "dy": 10.07,
+  "true_distance": 16.03,
+  "heading": 141.1,
+  "yaw_degrees": -39.2,
+  "max_tilt": 8,
+  "description": "Absorber: weak sensor-motor drive (0.2-0.3) with near-maximal self-feedback (w33=0.9, w44=-0.9). The absorber in Wheeler-Feynman electrodynamics \u2014 the response of the universe that completes the transaction. Each motor absorbs its own signal, creating internal oscillation from minimal external input."
+}

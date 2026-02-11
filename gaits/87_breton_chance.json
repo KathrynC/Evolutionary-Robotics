@@ -1,0 +1,41 @@
+{
+  "name": "87_breton_chance",
+  "category": "persona_gaits",
+  "type": "synapse",
+  "architecture": "standard_6",
+  "weights": {
+    "w03": -0.618,
+    "w13": -0.25,
+    "w23": -0.382,
+    "w04": 0.5,
+    "w14": 0.618,
+    "w24": 1.0,
+    "w34": 0,
+    "w43": 0,
+    "w33": 0,
+    "w44": 0
+  },
+  "SIM_STEPS": 4000,
+  "MAX_FORCE": 150.0,
+  "DT": 0.004167,
+  "GRAVITY_Z": -9.8,
+  "ROBOT_FRICTION": 2.5,
+  "dx": -7.86,
+  "dy": -9.21,
+  "true_distance": 12.11,
+  "heading": -130.5,
+  "yaw_degrees": 59.4,
+  "max_tilt": 30,
+  "description": "Objective Chance: Fibonacci ratios (0.618, 0.382) meet prime gaps (0.25, 0.5, 1.0) \u2014 two unrelated mathematical sources combined. The meaningful coincidence produces a 12m diagonal walker. Breton's 'marvelous' in weight space.",
+  "telemetry": {
+    "stride_freq_hz": 4.75,
+    "duty_cycle": 0.598,
+    "mean_torque": 66.41,
+    "transient_frac": 0.648,
+    "mean_speed": 1.847,
+    "speed_cv": 0.626,
+    "attractor_type": "complex",
+    "efficiency": 0.1815,
+    "pareto_optimal": false
+  }
+}

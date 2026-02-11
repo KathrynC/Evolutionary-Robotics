@@ -1,0 +1,30 @@
+{
+  "name": "102_jgcramer_handshake",
+  "category": "persona_gaits",
+  "type": "synapse",
+  "architecture": "crosswired_10",
+  "weights": {
+    "w03": -0.3,
+    "w13": -0.5,
+    "w23": -0.3,
+    "w04": 0.3,
+    "w14": 0.5,
+    "w24": 0.3,
+    "w34": 0.8,
+    "w43": -0.8,
+    "w33": 0.3,
+    "w44": -0.3
+  },
+  "SIM_STEPS": 4000,
+  "MAX_FORCE": 150.0,
+  "DT": 0.004167,
+  "GRAVITY_Z": -9.8,
+  "ROBOT_FRICTION": 2.5,
+  "dx": 10.61,
+  "dy": -7.74,
+  "true_distance": 13.13,
+  "heading": -36.1,
+  "yaw_degrees": -77.2,
+  "max_tilt": 28,
+  "description": "Handshake: moderate sensor-motor drive with dominant cross-wiring (w34=0.8, w43=-0.8). The quantum handshake between emitter and absorber \u2014 the motors exchange signals that are stronger than their connection to external reality. Like heterotopia but with more sensor input. The handshake protocol creates the event."
+}

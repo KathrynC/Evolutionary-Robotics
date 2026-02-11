@@ -1,0 +1,45 @@
+{
+  "name": "1_wolfram",
+  "category": "persona_gaits",
+  "type": "synapse",
+  "architecture": "standard_6",
+  "weights": {
+    "w03": -0.8,
+    "w13": -0.8,
+    "w23": -0.8,
+    "w04": 0.8,
+    "w14": 0.8,
+    "w24": 0.8
+  },
+  "SIM_STEPS": 4000,
+  "MAX_FORCE": 150.0,
+  "DT": 0.004167,
+  "GRAVITY_Z": -9.8,
+  "ROBOT_FRICTION": 2.5,
+  "dx": -2.67,
+  "dy": -0.35,
+  "true_distance": 2.69,
+  "heading": -172.4,
+  "yaw_degrees": 186.8,
+  "max_tilt": 22,
+  "description": "Stephen Wolfram \u2014 one coefficient, one rule. All weights equal magnitude. Simple rule, systematic walk.",
+  "telemetry": {
+    "stride_freq_hz": 3.07,
+    "duty_cycle": 0.97,
+    "mean_torque": 27.46,
+    "transient_frac": 0.052,
+    "mean_speed": 0.692,
+    "speed_cv": 0.861,
+    "attractor_type": "complex",
+    "attractor_subtype": "multi_frequency",
+    "efficiency": 0.0981,
+    "pareto_optimal": false
+  },
+  "sensitivity": {
+    "dx_total": 171.0,
+    "yaw_total": 5397.68,
+    "hottest_dx_weight": "w14",
+    "hottest_yaw_weight": "w24"
+  },
+  "video": "1_wolfram.mp4"
+}

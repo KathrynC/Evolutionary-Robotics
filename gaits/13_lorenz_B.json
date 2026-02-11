@@ -1,0 +1,45 @@
+{
+  "name": "13_lorenz_B",
+  "category": "persona_gaits",
+  "type": "synapse",
+  "architecture": "standard_6",
+  "weights": {
+    "w03": -0.6,
+    "w13": -0.7,
+    "w23": -0.6,
+    "w04": 0.6,
+    "w14": 0.62,
+    "w24": 0.6
+  },
+  "SIM_STEPS": 4000,
+  "MAX_FORCE": 150.0,
+  "DT": 0.004167,
+  "GRAVITY_Z": -9.8,
+  "ROBOT_FRICTION": 2.5,
+  "dx": -0.56,
+  "dy": -2.58,
+  "true_distance": 2.64,
+  "heading": -102.3,
+  "yaw_degrees": -58.6,
+  "max_tilt": 43,
+  "description": "Edward Lorenz (wing B) \u2014 butterfly effect: w14 changed from 0.70 to 0.62 (delta 0.08). DX drops from -7.92 to -0.56. Sensitive dependence on initial conditions.",
+  "telemetry": {
+    "stride_freq_hz": 2.8,
+    "duty_cycle": 0.74,
+    "mean_torque": 58.7,
+    "transient_frac": 0.015,
+    "mean_speed": 0.98,
+    "speed_cv": 0.885,
+    "attractor_type": "complex",
+    "attractor_subtype": "multi_frequency",
+    "efficiency": 0.045,
+    "pareto_optimal": false
+  },
+  "sensitivity": {
+    "dx_total": 333.33,
+    "yaw_total": 3700.28,
+    "hottest_dx_weight": "w23",
+    "hottest_yaw_weight": "w14"
+  },
+  "video": "13_lorenz_B.mp4"
+}

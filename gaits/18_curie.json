@@ -1,0 +1,44 @@
+{
+  "name": "18_curie",
+  "category": "persona_gaits",
+  "type": "synapse",
+  "architecture": "standard_6",
+  "weights": {
+    "w03": -0.3,
+    "w13": -0.9,
+    "w23": -0.3,
+    "w04": 0.9,
+    "w14": 0.3,
+    "w24": 0.9
+  },
+  "SIM_STEPS": 4000,
+  "MAX_FORCE": 150.0,
+  "DT": 0.004167,
+  "GRAVITY_Z": -9.8,
+  "ROBOT_FRICTION": 2.5,
+  "dx": 23.73,
+  "dy": 0.05,
+  "true_distance": 23.73,
+  "heading": 0.1,
+  "yaw_degrees": 9.2,
+  "max_tilt": 52,
+  "description": "Marie Curie \u2014 relentless persistent drive: strong asymmetric coupling, FrontLeg motor gets double drive. Second fastest 6-synapse gait.",
+  "telemetry": {
+    "stride_freq_hz": 4.03,
+    "duty_cycle": 0.31,
+    "mean_torque": 72.5,
+    "transient_frac": 0.82,
+    "mean_speed": 2.253,
+    "speed_cv": 0.477,
+    "attractor_type": "limit_cycle",
+    "efficiency": 0.3273,
+    "pareto_optimal": false
+  },
+  "sensitivity": {
+    "dx_total": 473.56,
+    "yaw_total": 6264.08,
+    "hottest_dx_weight": "w03",
+    "hottest_yaw_weight": "w14"
+  },
+  "video": "18_curie.mp4"
+}

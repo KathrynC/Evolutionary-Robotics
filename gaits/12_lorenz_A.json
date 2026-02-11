@@ -1,0 +1,45 @@
+{
+  "name": "12_lorenz_A",
+  "category": "persona_gaits",
+  "type": "synapse",
+  "architecture": "standard_6",
+  "weights": {
+    "w03": -0.6,
+    "w13": -0.7,
+    "w23": -0.6,
+    "w04": 0.6,
+    "w14": 0.7,
+    "w24": 0.6
+  },
+  "SIM_STEPS": 4000,
+  "MAX_FORCE": 150.0,
+  "DT": 0.004167,
+  "GRAVITY_Z": -9.8,
+  "ROBOT_FRICTION": 2.5,
+  "dx": -7.92,
+  "dy": -2.09,
+  "true_distance": 8.19,
+  "heading": -165.2,
+  "yaw_degrees": 20.9,
+  "max_tilt": 39,
+  "description": "Edward Lorenz (wing A) \u2014 butterfly effect: walks left. Compare with Lorenz B where ONE synapse changed by 0.08 kills almost all locomotion.",
+  "telemetry": {
+    "stride_freq_hz": 3.07,
+    "duty_cycle": 0.765,
+    "mean_torque": 55.16,
+    "transient_frac": 0.698,
+    "mean_speed": 0.889,
+    "speed_cv": 0.82,
+    "attractor_type": "complex",
+    "attractor_subtype": "multi_frequency",
+    "efficiency": 0.1485,
+    "pareto_optimal": false
+  },
+  "sensitivity": {
+    "dx_total": 350.62,
+    "yaw_total": 3818.22,
+    "hottest_dx_weight": "w14",
+    "hottest_yaw_weight": "w13"
+  },
+  "video": "12_lorenz_A.mp4"
+}

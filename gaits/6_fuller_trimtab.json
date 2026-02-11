@@ -1,0 +1,45 @@
+{
+  "name": "6_fuller_trimtab",
+  "category": "persona_gaits",
+  "type": "synapse",
+  "architecture": "standard_6",
+  "weights": {
+    "w03": 0.0,
+    "w13": -0.5,
+    "w23": 0.0,
+    "w04": 0.0,
+    "w14": 0.0,
+    "w24": 0.0
+  },
+  "SIM_STEPS": 4000,
+  "MAX_FORCE": 150.0,
+  "DT": 0.004167,
+  "GRAVITY_Z": -9.8,
+  "ROBOT_FRICTION": 2.5,
+  "dx": 5.21,
+  "dy": -0.05,
+  "true_distance": 5.21,
+  "heading": -0.5,
+  "yaw_degrees": -0.8,
+  "max_tilt": 10,
+  "description": "Buckminster Fuller (trimtab) \u2014 ONE single synapse. BackLeg sensor \u2192 BackLeg motor, weight -0.5. Five of six synapses are zero. The tiny rudder that steers the ship.",
+  "telemetry": {
+    "stride_freq_hz": 2.71,
+    "duty_cycle": 0.65,
+    "mean_torque": 46.74,
+    "transient_frac": 0.765,
+    "mean_speed": 0.623,
+    "speed_cv": 0.636,
+    "attractor_type": "complex",
+    "attractor_subtype": "quasi_periodic",
+    "efficiency": 0.1115,
+    "pareto_optimal": false
+  },
+  "sensitivity": {
+    "dx_total": 95.19,
+    "yaw_total": 498.9,
+    "hottest_dx_weight": "w23",
+    "hottest_yaw_weight": "w14"
+  },
+  "video": "6_fuller_trimtab.mp4"
+}

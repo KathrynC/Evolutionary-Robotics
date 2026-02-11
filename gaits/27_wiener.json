@@ -1,0 +1,49 @@
+{
+  "name": "27_wiener",
+  "category": "cross_wired_cpg",
+  "type": "synapse",
+  "architecture": "crosswired_10",
+  "weights": {
+    "w03": -0.3,
+    "w13": -0.6,
+    "w23": -0.3,
+    "w04": 0.6,
+    "w14": 0.3,
+    "w24": 0.6,
+    "w34": -0.7,
+    "w43": 0.7,
+    "w33": 0.0,
+    "w44": 0.0
+  },
+  "SIM_STEPS": 4000,
+  "MAX_FORCE": 150.0,
+  "DT": 0.004167,
+  "GRAVITY_Z": -9.8,
+  "ROBOT_FRICTION": 2.5,
+  "dx": 14.08,
+  "dy": -1.43,
+  "true_distance": 14.15,
+  "heading": -5.8,
+  "yaw_degrees": -8.6,
+  "max_tilt": 28,
+  "description": "Norbert Wiener \u2014 cybernetic feedback loop: negative feedback creates self-correction, the governor principle.",
+  "telemetry": {
+    "stride_freq_hz": 3.97,
+    "duty_cycle": 0.58,
+    "mean_torque": 78.8,
+    "transient_frac": 0.848,
+    "mean_speed": 1.352,
+    "speed_cv": 0.667,
+    "attractor_type": "complex",
+    "attractor_subtype": "quasi_periodic",
+    "efficiency": 0.1796,
+    "pareto_optimal": false
+  },
+  "sensitivity": {
+    "dx_total": 504.62,
+    "yaw_total": 3007.18,
+    "hottest_dx_weight": "w43",
+    "hottest_yaw_weight": "w24"
+  },
+  "video": "27_wiener.mp4"
+}

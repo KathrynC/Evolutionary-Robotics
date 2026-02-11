@@ -1,0 +1,30 @@
+{
+  "name": "92_borges_labyrinth",
+  "category": "persona_gaits",
+  "type": "synapse",
+  "architecture": "crosswired_10",
+  "weights": {
+    "w03": -0.2,
+    "w13": -0.3,
+    "w23": -0.1,
+    "w04": 0.1,
+    "w14": 0.3,
+    "w24": 0.2,
+    "w34": 0.7,
+    "w43": -0.9,
+    "w33": 0.5,
+    "w44": -0.3
+  },
+  "SIM_STEPS": 4000,
+  "MAX_FORCE": 150.0,
+  "DT": 0.004167,
+  "GRAVITY_Z": -9.8,
+  "ROBOT_FRICTION": 2.5,
+  "dx": 11.17,
+  "dy": 2.47,
+  "true_distance": 11.44,
+  "heading": 12.5,
+  "yaw_degrees": 26.1,
+  "max_tilt": 16,
+  "description": "Labyrinth: sensor-motor connections are faint whispers (0.1-0.3) while cross-wiring dominates (w34=0.7, w43=-0.9). No direct path from input to output \u2014 every signal must route through the maze. The labyrinth has no center; the motors speak to each other more than they listen to the sensors."
+}

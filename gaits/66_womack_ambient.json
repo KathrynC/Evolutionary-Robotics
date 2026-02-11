@@ -1,0 +1,41 @@
+{
+  "name": "66_womack_ambient",
+  "category": "persona_gaits",
+  "type": "synapse",
+  "architecture": "standard_6",
+  "weights": {
+    "w03": 0,
+    "w13": -1.0,
+    "w23": 0,
+    "w04": 0,
+    "w14": 0,
+    "w24": 1.0,
+    "w34": 0,
+    "w43": 0,
+    "w33": 0,
+    "w44": 0
+  },
+  "SIM_STEPS": 4000,
+  "MAX_FORCE": 150.0,
+  "DT": 0.004167,
+  "GRAVITY_Z": -9.8,
+  "ROBOT_FRICTION": 2.5,
+  "dx": 3.25,
+  "dy": 4.06,
+  "true_distance": 5.2,
+  "heading": 51.3,
+  "yaw_degrees": 60.0,
+  "max_tilt": 32,
+  "description": "Ambient: only 2 active synapses (w13=-1, w24=+1) \u2014 the absolute minimum wiring for locomotion. BackLeg sensor drives one motor, FrontLeg sensor drives the other. 5.2m displacement from almost nothing. Survival at the margins.",
+  "telemetry": {
+    "stride_freq_hz": 3.76,
+    "duty_cycle": 0.262,
+    "mean_torque": 79.83,
+    "transient_frac": 0.912,
+    "mean_speed": 1.943,
+    "speed_cv": 0.492,
+    "attractor_type": "limit_cycle",
+    "efficiency": 0.0661,
+    "pareto_optimal": false
+  }
+}

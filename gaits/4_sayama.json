@@ -1,0 +1,45 @@
+{
+  "name": "4_sayama",
+  "category": "persona_gaits",
+  "type": "synapse",
+  "architecture": "standard_6",
+  "weights": {
+    "w03": -0.5,
+    "w13": -0.7,
+    "w23": -0.5,
+    "w04": 0.5,
+    "w14": 0.7,
+    "w24": 0.5
+  },
+  "SIM_STEPS": 4000,
+  "MAX_FORCE": 150.0,
+  "DT": 0.004167,
+  "GRAVITY_Z": -9.8,
+  "ROBOT_FRICTION": 2.5,
+  "dx": -14.56,
+  "dy": -4.58,
+  "true_distance": 15.26,
+  "heading": -162.5,
+  "yaw_degrees": 83.3,
+  "max_tilt": 53,
+  "description": "Hiroki Sayama \u2014 systematic hypothesis-driven parameter variation. Started from uniform 0.5, increased BackLeg sensor weight to 0.7. One-parameter-at-a-time exploration yields 8x improvement.",
+  "telemetry": {
+    "stride_freq_hz": 2.35,
+    "duty_cycle": 0.722,
+    "mean_torque": 51.86,
+    "transient_frac": 0.73,
+    "mean_speed": 1.462,
+    "speed_cv": 0.669,
+    "attractor_type": "complex",
+    "attractor_subtype": "quasi_periodic",
+    "efficiency": 0.2943,
+    "pareto_optimal": false
+  },
+  "sensitivity": {
+    "dx_total": 396.78,
+    "yaw_total": 5086.53,
+    "hottest_dx_weight": "w04",
+    "hottest_yaw_weight": "w13"
+  },
+  "video": "4_sayama.mp4"
+}

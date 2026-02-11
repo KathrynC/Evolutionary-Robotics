@@ -1,0 +1,48 @@
+{
+  "name": "40_rubato",
+  "category": "time_signatures",
+  "type": "synapse",
+  "architecture": "crosswired_10",
+  "weights": {
+    "w03": -0.1,
+    "w13": -0.1,
+    "w23": -0.1,
+    "w04": 0.1,
+    "w14": 0.1,
+    "w24": 0.1,
+    "w34": 0.7,
+    "w43": -0.7,
+    "w33": 0.5,
+    "w44": -0.5
+  },
+  "SIM_STEPS": 4000,
+  "MAX_FORCE": 150.0,
+  "DT": 0.004167,
+  "GRAVITY_Z": -9.8,
+  "ROBOT_FRICTION": 2.5,
+  "dx": 15.61,
+  "dy": -1.04,
+  "true_distance": 15.64,
+  "heading": -3.8,
+  "yaw_degrees": -5.8,
+  "max_tilt": 13,
+  "description": "Rubato (Chopin) \u2014 rhythm from within: near-zero sensor drive, strong internal CPG. The timing comes from the network, not the body. Motor reversal ratio 40:2192.",
+  "telemetry": {
+    "stride_freq_hz": 4.81,
+    "duty_cycle": 0.378,
+    "mean_torque": 81.17,
+    "transient_frac": 0.778,
+    "mean_speed": 0.954,
+    "speed_cv": 0.421,
+    "attractor_type": "limit_cycle",
+    "efficiency": 0.1927,
+    "pareto_optimal": false
+  },
+  "sensitivity": {
+    "dx_total": 400.22,
+    "yaw_total": 1989.37,
+    "hottest_dx_weight": "w23",
+    "hottest_yaw_weight": "w34"
+  },
+  "video": "40_rubato.mp4"
+}

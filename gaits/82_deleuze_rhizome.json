@@ -1,0 +1,41 @@
+{
+  "name": "82_deleuze_rhizome",
+  "category": "persona_gaits",
+  "type": "synapse",
+  "architecture": "crosswired_10",
+  "weights": {
+    "w03": -0.4,
+    "w13": -0.5,
+    "w23": -0.3,
+    "w04": 0.5,
+    "w14": 0.3,
+    "w24": 0.4,
+    "w34": 0.35,
+    "w43": -0.25,
+    "w33": 0.2,
+    "w44": -0.15
+  },
+  "SIM_STEPS": 4000,
+  "MAX_FORCE": 150.0,
+  "DT": 0.004167,
+  "GRAVITY_Z": -9.8,
+  "ROBOT_FRICTION": 2.5,
+  "dx": -9.56,
+  "dy": 2.02,
+  "true_distance": 9.77,
+  "heading": 168.1,
+  "yaw_degrees": -18.9,
+  "max_tilt": 33,
+  "description": "Rhizome: all 10 weights active with no zero, no dominant path, no hierarchy. Any neuron connects to any other at moderate strength. The non-hierarchical network walks 10m \u2014 a plateau of intensity.",
+  "telemetry": {
+    "stride_freq_hz": 4.27,
+    "duty_cycle": 0.6,
+    "mean_torque": 71.76,
+    "transient_frac": 0.738,
+    "mean_speed": 1.565,
+    "speed_cv": 0.696,
+    "attractor_type": "complex",
+    "efficiency": 0.1365,
+    "pareto_optimal": false
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "name": "104_papp_public",
+  "category": "persona_gaits",
+  "type": "synapse",
+  "architecture": "standard_6",
+  "weights": {
+    "w03": -0.5,
+    "w13": -0.6,
+    "w23": -0.4,
+    "w04": 0.5,
+    "w14": 0.6,
+    "w24": 0.4,
+    "w34": 0,
+    "w43": 0,
+    "w33": 0,
+    "w44": 0
+  },
+  "SIM_STEPS": 4000,
+  "MAX_FORCE": 150.0,
+  "DT": 0.004167,
+  "GRAVITY_Z": -9.8,
+  "ROBOT_FRICTION": 2.5,
+  "dx": -19.4,
+  "dy": -0.35,
+  "true_distance": 19.4,
+  "heading": -179.0,
+  "yaw_degrees": -1.0,
+  "max_tilt": 12,
+  "description": "Public Theater: moderate, accessible weights \u2014 nothing extreme, nothing exclusive. The democratic gait: parameters anyone could discover through methodical exploration. No cross-wiring mysticism, no hidden feedback. Free Shakespeare in the Park of parameter space."
+}

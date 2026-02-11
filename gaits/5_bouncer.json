@@ -1,0 +1,42 @@
+{
+  "name": "5_bouncer",
+  "category": "homework",
+  "type": "synapse",
+  "architecture": "standard_6",
+  "weights": {
+    "w03": 0.0,
+    "w13": 1.0,
+    "w23": -1.0,
+    "w04": 0.0,
+    "w14": -1.0,
+    "w24": 1.0
+  },
+  "SIM_STEPS": 4000,
+  "MAX_FORCE": 150.0,
+  "DT": 0.004167,
+  "GRAVITY_Z": -9.8,
+  "ROBOT_FRICTION": 2.5,
+  "dx": 0.0,
+  "dy": 0.0,
+  "true_distance": 0.0,
+  "heading": 72.5,
+  "yaw_degrees": -0.0,
+  "max_tilt": 0,
+  "description": "Zero Torso coupling \u2014 only leg sensors drive motors, creates bouncing behavior.",
+  "telemetry": {
+    "stride_freq_hz": 8.24,
+    "duty_cycle": 1.0,
+    "mean_torque": 0.07,
+    "transient_frac": 1.0,
+    "mean_speed": 0.0,
+    "speed_cv": 0,
+    "attractor_type": "fixed_point"
+  },
+  "sensitivity": {
+    "dx_total": 376.95,
+    "yaw_total": 9412.92,
+    "hottest_dx_weight": "w03",
+    "hottest_yaw_weight": "w23"
+  },
+  "video": "5_bouncer.mp4"
+}

@@ -1,0 +1,110 @@
+{
+  "name": "43_hidden_cpg_champion",
+  "category": "hidden_neurons",
+  "type": "synapse",
+  "architecture": "hidden",
+  "neurons": [
+    {
+      "id": "0",
+      "type": "sensor",
+      "ref": "Torso"
+    },
+    {
+      "id": "1",
+      "type": "sensor",
+      "ref": "BackLeg"
+    },
+    {
+      "id": "2",
+      "type": "sensor",
+      "ref": "FrontLeg"
+    },
+    {
+      "id": "3",
+      "type": "motor",
+      "ref": "Torso_BackLeg"
+    },
+    {
+      "id": "4",
+      "type": "motor",
+      "ref": "Torso_FrontLeg"
+    },
+    {
+      "id": "5",
+      "type": "hidden",
+      "ref": null
+    },
+    {
+      "id": "6",
+      "type": "hidden",
+      "ref": null
+    }
+  ],
+  "synapses": [
+    {
+      "src": "1",
+      "tgt": "5",
+      "w": -0.6
+    },
+    {
+      "src": "2",
+      "tgt": "6",
+      "w": -0.6
+    },
+    {
+      "src": "5",
+      "tgt": "6",
+      "w": 0.7
+    },
+    {
+      "src": "6",
+      "tgt": "5",
+      "w": -0.7
+    },
+    {
+      "src": "5",
+      "tgt": "3",
+      "w": -0.8
+    },
+    {
+      "src": "6",
+      "tgt": "4",
+      "w": 0.8
+    },
+    {
+      "src": "0",
+      "tgt": "3",
+      "w": -0.3
+    },
+    {
+      "src": "0",
+      "tgt": "4",
+      "w": 0.3
+    }
+  ],
+  "n_hidden": 2,
+  "SIM_STEPS": 4000,
+  "MAX_FORCE": 150.0,
+  "DT": 0.004167,
+  "GRAVITY_Z": -9.8,
+  "ROBOT_FRICTION": 2.5,
+  "dx": 50.11,
+  "dy": -2.88,
+  "true_distance": 50.19,
+  "heading": -75.9,
+  "yaw_degrees": -31.6,
+  "max_tilt": 40,
+  "description": "Hidden CPG \u2014 half-center oscillator: ALL-TIME ABSOLUTE CHAMPION. Two hidden neurons form a mutual inhibition pair (5\u21926 excites, 6\u21925 inhibits) \u2014 the same circuit that generates locomotion in vertebrate spinal cords. Leg sensors seed the oscillator, which drives motors through clean antiphasic outputs. Fewer synapses (8) than the previous champion (10), yet 16% more displacement.",
+  "telemetry": {
+    "stride_freq_hz": 4.06,
+    "duty_cycle": 0.215,
+    "mean_torque": 60.39,
+    "transient_frac": 0.815,
+    "mean_speed": 3.326,
+    "speed_cv": 0.417,
+    "attractor_type": "limit_cycle",
+    "efficiency": 0.8311,
+    "pareto_optimal": true
+  },
+  "video": "43_hidden_cpg_champion.mp4"
+}

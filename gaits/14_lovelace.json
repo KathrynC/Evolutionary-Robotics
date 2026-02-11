@@ -1,0 +1,45 @@
+{
+  "name": "14_lovelace",
+  "category": "persona_gaits",
+  "type": "synapse",
+  "architecture": "standard_6",
+  "weights": {
+    "w03": 1.0,
+    "w13": -0.5,
+    "w23": 0.167,
+    "w04": -0.033,
+    "w14": 0.024,
+    "w24": -0.033
+  },
+  "SIM_STEPS": 4000,
+  "MAX_FORCE": 150.0,
+  "DT": 0.004167,
+  "GRAVITY_Z": -9.8,
+  "ROBOT_FRICTION": 2.5,
+  "dx": 3.94,
+  "dy": 1.51,
+  "true_distance": 4.22,
+  "heading": 21.0,
+  "yaw_degrees": 37.8,
+  "max_tilt": 15,
+  "description": "Ada Lovelace \u2014 Bernoulli numbers as synapse weights: the first algorithm, encoded in the first neural network.",
+  "telemetry": {
+    "stride_freq_hz": 3.94,
+    "duty_cycle": 0.555,
+    "mean_torque": 59.47,
+    "transient_frac": 0.425,
+    "mean_speed": 0.616,
+    "speed_cv": 0.827,
+    "attractor_type": "complex",
+    "attractor_subtype": "multi_frequency",
+    "efficiency": 0.071,
+    "pareto_optimal": false
+  },
+  "sensitivity": {
+    "dx_total": 230.16,
+    "yaw_total": 2953.43,
+    "hottest_dx_weight": "w04",
+    "hottest_yaw_weight": "w14"
+  },
+  "video": "14_lovelace.mp4"
+}

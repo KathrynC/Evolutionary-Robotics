@@ -1,0 +1,41 @@
+{
+  "name": "81_deleuze_bwo",
+  "category": "persona_gaits",
+  "type": "synapse",
+  "architecture": "crosswired_10",
+  "weights": {
+    "w03": -0.55,
+    "w13": -0.55,
+    "w23": -0.55,
+    "w04": 0.55,
+    "w14": 0.55,
+    "w24": 0.55,
+    "w34": 0.55,
+    "w43": -0.55,
+    "w33": 0.55,
+    "w44": -0.55
+  },
+  "SIM_STEPS": 4000,
+  "MAX_FORCE": 150.0,
+  "DT": 0.004167,
+  "GRAVITY_Z": -9.8,
+  "ROBOT_FRICTION": 2.5,
+  "dx": -21.61,
+  "dy": 2.4,
+  "true_distance": 21.74,
+  "heading": 173.7,
+  "yaw_degrees": -2.5,
+  "max_tilt": 20,
+  "description": "Body without Organs: every weight has identical magnitude (0.55), no functional differentiation. The organism stripped of organization \u2014 yet it walks 21m at 20\u00b0 tilt. Structure emerges from the refusal of structure.",
+  "telemetry": {
+    "stride_freq_hz": 4.66,
+    "duty_cycle": 0.578,
+    "mean_torque": 78.17,
+    "transient_frac": 0.83,
+    "mean_speed": 1.846,
+    "speed_cv": 0.59,
+    "attractor_type": "complex",
+    "efficiency": 0.2771,
+    "pareto_optimal": false
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "name": "60_fibonacci_phyllotaxis",
+  "category": "persona_gaits",
+  "type": "synapse",
+  "architecture": "crosswired_10",
+  "weights": {
+    "w03": -1.0,
+    "w13": 0.7373,
+    "w23": -0.0873,
+    "w04": 0.6086,
+    "w14": -0.9848,
+    "w24": 0.8436,
+    "w34": 0.3,
+    "w43": -0.3,
+    "w33": 0,
+    "w44": 0
+  },
+  "SIM_STEPS": 4000,
+  "MAX_FORCE": 150.0,
+  "DT": 0.004167,
+  "GRAVITY_Z": -9.8,
+  "ROBOT_FRICTION": 2.5,
+  "dx": 9.72,
+  "dy": 13.34,
+  "true_distance": 16.51,
+  "heading": 53.9,
+  "yaw_degrees": -145.6,
+  "max_tilt": 186,
+  "description": "Phyllotaxis-inspired: successive weights placed at the golden angle (137.5\u00b0) in a cosine mapping + light CPG. Falls over but covers 10.35m while spinning 595\u00b0. Chaotic/fallen attractor.",
+  "telemetry": {
+    "stride_freq_hz": 4.12,
+    "duty_cycle": 0.738,
+    "mean_torque": 30.76,
+    "transient_frac": 0.295,
+    "mean_speed": 1.311,
+    "speed_cv": 1.518,
+    "attractor_type": "chaotic/fallen",
+    "efficiency": 0.5366,
+    "pareto_optimal": false
+  }
+}

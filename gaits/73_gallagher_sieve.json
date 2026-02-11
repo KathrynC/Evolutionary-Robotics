@@ -1,0 +1,41 @@
+{
+  "name": "73_gallagher_sieve",
+  "category": "persona_gaits",
+  "type": "synapse",
+  "architecture": "crosswired_10",
+  "weights": {
+    "w03": 0,
+    "w13": 0,
+    "w23": -0.8,
+    "w04": 0.8,
+    "w14": 0,
+    "w24": 0.8,
+    "w34": 0,
+    "w43": -0.8,
+    "w33": 0,
+    "w44": 0
+  },
+  "SIM_STEPS": 4000,
+  "MAX_FORCE": 150.0,
+  "DT": 0.004167,
+  "GRAVITY_Z": -9.8,
+  "ROBOT_FRICTION": 2.5,
+  "dx": 1.1,
+  "dy": -2.17,
+  "true_distance": 2.43,
+  "heading": -63.2,
+  "yaw_degrees": 93.3,
+  "max_tilt": 95,
+  "description": "Large sieve: weights placed only at prime-indexed positions (indices 2,3,5,7 out of 0-9). Composite indices zeroed \u2014 sieved out. Only 4 active synapses. Falls over but the sparsity pattern IS the sieve.",
+  "telemetry": {
+    "stride_freq_hz": 4.06,
+    "duty_cycle": 0.875,
+    "mean_torque": 38.14,
+    "transient_frac": 0.115,
+    "mean_speed": 0.733,
+    "speed_cv": 1.45,
+    "attractor_type": "chaotic/fallen",
+    "efficiency": 0.0638,
+    "pareto_optimal": false
+  }
+}

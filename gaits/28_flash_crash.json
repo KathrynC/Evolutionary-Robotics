@@ -1,0 +1,49 @@
+{
+  "name": "28_flash_crash",
+  "category": "market_mathematics",
+  "type": "synapse",
+  "architecture": "crosswired_10",
+  "weights": {
+    "w03": -0.5,
+    "w13": -0.5,
+    "w23": -0.5,
+    "w04": 0.5,
+    "w14": 0.5,
+    "w24": 0.5,
+    "w34": 0.5,
+    "w43": 0.5,
+    "w33": 0.0,
+    "w44": 0.0
+  },
+  "SIM_STEPS": 4000,
+  "MAX_FORCE": 150.0,
+  "DT": 0.004167,
+  "GRAVITY_Z": -9.8,
+  "ROBOT_FRICTION": 2.5,
+  "dx": -13.13,
+  "dy": -6.06,
+  "true_distance": 14.46,
+  "heading": -155.2,
+  "yaw_degrees": 33.3,
+  "max_tilt": 23,
+  "description": "Flash Crash \u2014 positive feedback cascade: mutual excitation where selling begets selling, prices drop 9% in minutes.",
+  "telemetry": {
+    "stride_freq_hz": 3.79,
+    "duty_cycle": 0.788,
+    "mean_torque": 57.2,
+    "transient_frac": 0.822,
+    "mean_speed": 1.288,
+    "speed_cv": 0.83,
+    "attractor_type": "complex",
+    "attractor_subtype": "drifter",
+    "efficiency": 0.2528,
+    "pareto_optimal": false
+  },
+  "sensitivity": {
+    "dx_total": 407.81,
+    "yaw_total": 2827.48,
+    "hottest_dx_weight": "w23",
+    "hottest_yaw_weight": "w03"
+  },
+  "video": "28_flash_crash.mp4"
+}

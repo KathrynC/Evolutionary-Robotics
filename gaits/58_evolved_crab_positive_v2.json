@@ -1,0 +1,41 @@
+{
+  "name": "58_evolved_crab_positive_v2",
+  "category": "crab_walkers",
+  "type": "synapse",
+  "architecture": "crosswired_10",
+  "weights": {
+    "w03": 0.23072461184014542,
+    "w13": -1.4022677827784948,
+    "w23": -0.9186363031170268,
+    "w04": 1.5038870895479943,
+    "w14": 0.9919020161353844,
+    "w24": 0.8092953216480049,
+    "w34": 0.6184601499975225,
+    "w43": 0.06891423023014609,
+    "w33": -0.2238301426805867,
+    "w44": -0.3055743156252235
+  },
+  "SIM_STEPS": 4000,
+  "MAX_FORCE": 150.0,
+  "DT": 0.004167,
+  "GRAVITY_Z": -9.8,
+  "ROBOT_FRICTION": 2.5,
+  "dx": -1.17,
+  "dy": 38.08,
+  "true_distance": 38.1,
+  "heading": 91.8,
+  "yaw_degrees": 84.3,
+  "max_tilt": 37,
+  "description": "Evolved crab walking in +Y direction (verified). DY=+38.08, crab ratio 32.48. Nearly pure lateral. Heading +91\u00b0.",
+  "telemetry": {
+    "stride_freq_hz": 4.12,
+    "duty_cycle": 0.288,
+    "mean_torque": 72.44,
+    "transient_frac": 0.842,
+    "mean_speed": 2.662,
+    "speed_cv": 0.393,
+    "attractor_type": "limit_cycle",
+    "efficiency": 0.525,
+    "pareto_optimal": false
+  }
+}

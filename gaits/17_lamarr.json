@@ -1,0 +1,44 @@
+{
+  "name": "17_lamarr",
+  "category": "persona_gaits",
+  "type": "synapse",
+  "architecture": "standard_6",
+  "weights": {
+    "w03": -0.4,
+    "w13": -0.8,
+    "w23": -0.2,
+    "w04": 0.2,
+    "w14": 0.8,
+    "w24": 0.4
+  },
+  "SIM_STEPS": 4000,
+  "MAX_FORCE": 150.0,
+  "DT": 0.004167,
+  "GRAVITY_Z": -9.8,
+  "ROBOT_FRICTION": 2.5,
+  "dx": -4.86,
+  "dy": 1.31,
+  "true_distance": 5.03,
+  "heading": 165.0,
+  "yaw_degrees": -63.5,
+  "max_tilt": 93,
+  "description": "Hedy Lamarr \u2014 spread spectrum: BackLeg sensor dominates (0.8), spread-spectrum weight distribution across frequencies.",
+  "telemetry": {
+    "stride_freq_hz": 5.08,
+    "duty_cycle": 0.815,
+    "mean_torque": 23.59,
+    "transient_frac": 0.118,
+    "mean_speed": 0.791,
+    "speed_cv": 1.728,
+    "attractor_type": "chaotic/fallen",
+    "efficiency": 0.2134,
+    "pareto_optimal": true
+  },
+  "sensitivity": {
+    "dx_total": 632.01,
+    "yaw_total": 9216.51,
+    "hottest_dx_weight": "w24",
+    "hottest_yaw_weight": "w24"
+  },
+  "video": "17_lamarr.mp4"
+}

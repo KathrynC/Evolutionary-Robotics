@@ -1,0 +1,49 @@
+{
+  "name": "25_minsky",
+  "category": "cross_wired_cpg",
+  "type": "synapse",
+  "architecture": "crosswired_10",
+  "weights": {
+    "w03": -0.5,
+    "w13": -0.5,
+    "w23": -0.5,
+    "w04": 0.5,
+    "w14": 0.5,
+    "w24": 0.5,
+    "w34": 0.3,
+    "w43": -0.3,
+    "w33": 0.5,
+    "w44": -0.5
+  },
+  "SIM_STEPS": 4000,
+  "MAX_FORCE": 150.0,
+  "DT": 0.004167,
+  "GRAVITY_Z": -9.8,
+  "ROBOT_FRICTION": 2.5,
+  "dx": -21.53,
+  "dy": -3.15,
+  "true_distance": 21.76,
+  "heading": -171.7,
+  "yaw_degrees": -1.2,
+  "max_tilt": 27,
+  "description": "Marvin Minsky \u2014 Society of Mind: balanced base + asymmetric self-feedback, competing motor agents.",
+  "telemetry": {
+    "stride_freq_hz": 4.24,
+    "duty_cycle": 0.615,
+    "mean_torque": 75.08,
+    "transient_frac": 0.838,
+    "mean_speed": 1.78,
+    "speed_cv": 0.667,
+    "attractor_type": "complex",
+    "attractor_subtype": "drifter",
+    "efficiency": 0.2898,
+    "pareto_optimal": false
+  },
+  "sensitivity": {
+    "dx_total": 865.7,
+    "yaw_total": 4348.0,
+    "hottest_dx_weight": "w04",
+    "hottest_yaw_weight": "w23"
+  },
+  "video": "25_minsky.mp4"
+}

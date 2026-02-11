@@ -1,0 +1,49 @@
+{
+  "name": "30_garch",
+  "category": "market_mathematics",
+  "type": "synapse",
+  "architecture": "crosswired_10",
+  "weights": {
+    "w03": -0.5,
+    "w13": -0.75,
+    "w23": -0.5,
+    "w04": 0.5,
+    "w14": 0.75,
+    "w24": 0.5,
+    "w34": 0.0,
+    "w43": 0.0,
+    "w33": 0.7,
+    "w44": -0.5
+  },
+  "SIM_STEPS": 4000,
+  "MAX_FORCE": 150.0,
+  "DT": 0.004167,
+  "GRAVITY_Z": -9.8,
+  "ROBOT_FRICTION": 2.5,
+  "dx": -22.69,
+  "dy": 9.54,
+  "true_distance": 24.61,
+  "heading": 157.2,
+  "yaw_degrees": -31.4,
+  "max_tilt": 32,
+  "description": "GARCH / Volatility Clustering \u2014 self-feedback creates regime-switching: today's big move predicts tomorrow's. Motors persist in high/low activity regimes.",
+  "telemetry": {
+    "stride_freq_hz": 2.92,
+    "duty_cycle": 0.74,
+    "mean_torque": 45.95,
+    "transient_frac": 0.812,
+    "mean_speed": 1.884,
+    "speed_cv": 0.59,
+    "attractor_type": "complex",
+    "attractor_subtype": "multi_frequency",
+    "efficiency": 0.5357,
+    "pareto_optimal": true
+  },
+  "sensitivity": {
+    "dx_total": 904.14,
+    "yaw_total": 6380.65,
+    "hottest_dx_weight": "w23",
+    "hottest_yaw_weight": "w03"
+  },
+  "video": "30_garch.mp4"
+}
