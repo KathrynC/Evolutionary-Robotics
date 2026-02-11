@@ -1,53 +1,49 @@
 {
-  "architecture": "crosswired_10",
+  "name": "35_evolved_curie",
   "category": "evolved",
-  "description": "Evolved Curie \u2014 Curie base scaled to 1.5x (beyond the [-1,1] training range) then hill-climbed. Proves wider weight ranges unlock new optima.",
+  "type": "synapse",
+  "architecture": "crosswired_10",
+  "weights": {
+    "w03": -0.45,
+    "w13": -1.35,
+    "w23": -0.45,
+    "w04": 1.35,
+    "w14": 0.45,
+    "w24": 1.35,
+    "w34": -0.5,
+    "w43": 0.3,
+    "w33": 0.0,
+    "w44": 0.0
+  },
+  "SIM_STEPS": 4000,
+  "MAX_FORCE": 150.0,
+  "DT": 0.004167,
+  "GRAVITY_Z": -9.8,
+  "ROBOT_FRICTION": 2.5,
   "dx": 24.28,
-  "dx_note": "Corrected from +42.14 (old physics). Verified +24.28.",
   "dy": -17.5,
+  "true_distance": 29.93,
   "heading": -35.8,
-  "id": "35_evolved_curie",
+  "yaw_degrees": -60.1,
   "max_tilt": 41,
-  "n_synapses": 8,
-  "note": "Weights exceed [-1,1] range. Starting point was Curie\u00d71.5 at DX=+41.09, evolved to +42.14.",
-  "physics": {
-    "dt": 0.004167,
-    "friction": 2.5,
-    "gravity_z": -9.8,
-    "max_force": 150.0,
-    "sim_steps": 4000
+  "description": "Evolved Curie \u2014 Curie base scaled to 1.5x (beyond the [-1,1] training range) then hill-climbed. Proves wider weight ranges unlock new optima.",
+  "telemetry": {
+    "stride_freq_hz": 3.61,
+    "duty_cycle": 0.355,
+    "mean_torque": 62.5,
+    "transient_frac": 0.602,
+    "mean_speed": 2.428,
+    "speed_cv": 0.547,
+    "attractor_type": "complex",
+    "attractor_subtype": "drifter",
+    "efficiency": 0.4789,
+    "pareto_optimal": false
   },
   "sensitivity": {
     "dx_total": 965.03,
+    "yaw_total": 10483.63,
     "hottest_dx_weight": "w23",
-    "hottest_yaw_weight": "w44",
-    "yaw_total": 10483.63
+    "hottest_yaw_weight": "w44"
   },
-  "telemetry": {
-    "attractor_subtype": "drifter",
-    "attractor_type": "complex",
-    "duty_cycle": 0.355,
-    "efficiency": 0.4789,
-    "mean_speed": 2.428,
-    "mean_torque": 62.5,
-    "pareto_optimal": false,
-    "speed_cv": 0.547,
-    "stride_freq_hz": 3.61,
-    "transient_frac": 0.602
-  },
-  "true_distance": 29.93,
-  "video": "35_evolved_curie.mp4",
-  "weights": {
-    "w03": -0.45,
-    "w04": 1.35,
-    "w13": -1.35,
-    "w14": 0.45,
-    "w23": -0.45,
-    "w24": 1.35,
-    "w33": 0.0,
-    "w34": -0.5,
-    "w43": 0.3,
-    "w44": 0.0
-  },
-  "yaw_degrees": -60.1
+  "video": "35_evolved_curie.mp4"
 }

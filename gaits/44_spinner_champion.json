@@ -1,58 +1,45 @@
 {
-  "architecture": "hidden",
+  "name": "44_spinner_champion",
   "category": "spinners",
-  "description": "SPIN CHAMPION \u2014 hidden half-center oscillator with asymmetric motor drive: h5\u2192m3=-0.6 vs h6\u2192m4=+0.5. The magnitude mismatch creates net torque each cycle. 2.33 full rotations (+838\u00b0) at 48\u00b0 max tilt. Barely translates (DX=+0.2).",
-  "dx": 0.24,
-  "dy": 0.85,
-  "heading": 73.9,
-  "id": "44_spinner_champion",
-  "max_tilt": 48,
-  "n_hidden": 2,
-  "n_synapses": 8,
+  "type": "synapse",
+  "architecture": "hidden",
   "neurons": [
     {
       "id": "0",
-      "ref": "Torso",
-      "type": "sensor"
+      "type": "sensor",
+      "ref": "Torso"
     },
     {
       "id": "1",
-      "ref": "BackLeg",
-      "type": "sensor"
+      "type": "sensor",
+      "ref": "BackLeg"
     },
     {
       "id": "2",
-      "ref": "FrontLeg",
-      "type": "sensor"
+      "type": "sensor",
+      "ref": "FrontLeg"
     },
     {
       "id": "3",
-      "ref": "Torso_BackLeg",
-      "type": "motor"
+      "type": "motor",
+      "ref": "Torso_BackLeg"
     },
     {
       "id": "4",
-      "ref": "Torso_FrontLeg",
-      "type": "motor"
+      "type": "motor",
+      "ref": "Torso_FrontLeg"
     },
     {
       "id": "5",
-      "ref": null,
-      "type": "hidden"
+      "type": "hidden",
+      "ref": null
     },
     {
       "id": "6",
-      "ref": null,
-      "type": "hidden"
+      "type": "hidden",
+      "ref": null
     }
   ],
-  "physics": {
-    "dt": 0.004167,
-    "friction": 2.5,
-    "gravity_z": -9.8,
-    "max_force": 150.0,
-    "sim_steps": 4000
-  },
   "synapses": [
     {
       "src": "1",
@@ -95,20 +82,30 @@
       "w": 0.4
     }
   ],
-  "telemetry": {
-    "attractor_subtype": "wobbler",
-    "attractor_type": "complex",
-    "duty_cycle": 0.232,
-    "efficiency": 0.0166,
-    "mean_speed": 2.039,
-    "mean_torque": 53.09,
-    "pareto_optimal": false,
-    "speed_cv": 0.649,
-    "stride_freq_hz": 5.08,
-    "transient_frac": 1.0
-  },
+  "n_hidden": 2,
+  "SIM_STEPS": 4000,
+  "MAX_FORCE": 150.0,
+  "DT": 0.004167,
+  "GRAVITY_Z": -9.8,
+  "ROBOT_FRICTION": 2.5,
+  "dx": 0.24,
+  "dy": 0.85,
   "true_distance": 0.88,
-  "turns": 2.33,
-  "video": "44_spinner_champion.mp4",
-  "yaw_degrees": 837.9
+  "heading": 73.9,
+  "yaw_degrees": 837.9,
+  "max_tilt": 48,
+  "description": "SPIN CHAMPION \u2014 hidden half-center oscillator with asymmetric motor drive: h5\u2192m3=-0.6 vs h6\u2192m4=+0.5. The magnitude mismatch creates net torque each cycle. 2.33 full rotations (+838\u00b0) at 48\u00b0 max tilt. Barely translates (DX=+0.2).",
+  "telemetry": {
+    "stride_freq_hz": 5.08,
+    "duty_cycle": 0.232,
+    "mean_torque": 53.09,
+    "transient_frac": 1.0,
+    "mean_speed": 2.039,
+    "speed_cv": 0.649,
+    "attractor_type": "complex",
+    "attractor_subtype": "wobbler",
+    "efficiency": 0.0166,
+    "pareto_optimal": false
+  },
+  "video": "44_spinner_champion.mp4"
 }

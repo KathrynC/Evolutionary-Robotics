@@ -1,4 +1,39 @@
 <!DOCTYPE html>
+<!--
+  twine/experiment.html
+
+  Interactive Twine-style story for designing and running gait experiments.
+
+  Architecture:
+      - Self-contained single HTML file (no external dependencies)
+      - Embeds a minimal SugarCube-compatible engine (JS, ~270 lines) that
+        processes tw-passagedata elements with $variables, <<set>>, <<if>>,
+        <<goto>>, <<link>>, <<button>>, and [[wiki links]]
+      - 25 story passages organized as a branching narrative
+      - 36 interpretive lenses (personas) that reframe the same gait parameters
+        through different cultural/scientific perspectives
+
+  Lens categories (36 total):
+      - Expedition Guides (5): Cramer, Sayama, J. Cramer, Rucker, Pelton
+      - Scientists & Engineers (8): Tesla, Curie, Franklin, Noether, Lovelace,
+        Lamarr, Lorenz, McClintock
+      - Mathematicians & Computationalists (8): Wolfram, Conway, Mandelbrot,
+        Fibonacci, Fuller, Grunbaum, Gallagher, Taleb
+      - Writers & Philosophers (8): Dick, Stein, Borges, Jackson, Deleuze,
+        Foucault, Womack, Papp
+      - Artists & Experimenters (7): Mordvintsev, Ernst, Breton, Cage, Haraway,
+        Pacino, Biles
+
+  Story flow:
+      ChooseLens → [lens-specific parameter passages] → Review → RunSimulation → Results
+
+  The RunSimulation passage POSTs gait parameters to the /simulate endpoint
+  (served by twine/server.py). Results are displayed narratively through the
+  chosen lens.
+
+  Served by: twine/server.py (GET / returns this file)
+  Backend:   twine/server.py (POST /simulate runs headless PyBullet)
+-->
 <html>
 <head>
 <meta charset="utf-8">
@@ -33,6 +68,8 @@
       Story.passages[el.getAttribute("name")] = el.innerHTML
         .replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&").replace(/&quot;/g, '"');
     });
+    // Hide embedded Twine story source so it doesn't render as raw text in the page.
+    sd.style.display = "none";
   }
 
   /* ── Template engine ──────────────────────────────────────────── */
@@ -195,7 +232,7 @@
     });
   }
 
-  // Process <<script>>...<</script>>
+  // Process <<script>>...<</scr"+"ipt>>  (avoid literal </script> in HTML)
   function processScript(src) {
     return src.replace(/<<script>>([\s\S]*?)<<\/script>>/g, (_, code) => {
       try {
@@ -269,6 +306,8 @@
 
 <style>
 /* ── Base styles ────────────────────────────────────────────────── */
+/* Prevent Twine's embedded story source from appearing as raw text. */
+tw-storydata, tw-passagedata { display: none !important; }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {

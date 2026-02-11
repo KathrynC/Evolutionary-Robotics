@@ -1,46 +1,45 @@
 {
-  "architecture": "standard_6",
+  "name": "11_taleb_antifrag",
   "category": "persona_gaits",
-  "description": "Nassim Taleb \u2014 antifragile: all weights \u00b10.3. 22 direction reversals, max tilt 16\u00b0, never falls. Not the fastest or farthest \u2014 the most stable. Benefits from disorder.",
+  "type": "synapse",
+  "architecture": "standard_6",
+  "weights": {
+    "w03": -0.3,
+    "w13": -0.3,
+    "w23": -0.3,
+    "w04": 0.3,
+    "w14": 0.3,
+    "w24": 0.3
+  },
+  "SIM_STEPS": 4000,
+  "MAX_FORCE": 150.0,
+  "DT": 0.004167,
+  "GRAVITY_Z": -9.8,
+  "ROBOT_FRICTION": 2.5,
   "dx": 4.79,
   "dy": -0.12,
+  "true_distance": 4.79,
   "heading": -1.5,
-  "id": "11_taleb_antifrag",
+  "yaw_degrees": 8.2,
   "max_tilt": 19,
-  "physics": {
-    "dt": 0.004167,
-    "friction": 2.5,
-    "gravity_z": -9.8,
-    "max_force": 150.0,
-    "sim_steps": 4000
+  "description": "Nassim Taleb \u2014 antifragile: all weights \u00b10.3. 22 direction reversals, max tilt 16\u00b0, never falls. Not the fastest or farthest \u2014 the most stable. Benefits from disorder.",
+  "telemetry": {
+    "stride_freq_hz": 3.7,
+    "duty_cycle": 0.875,
+    "mean_torque": 44.77,
+    "transient_frac": 0.285,
+    "mean_speed": 0.51,
+    "speed_cv": 1.522,
+    "attractor_type": "complex",
+    "attractor_subtype": "transient_decay",
+    "efficiency": 0.107,
+    "pareto_optimal": false
   },
   "sensitivity": {
     "dx_total": 217.69,
+    "yaw_total": 2473.07,
     "hottest_dx_weight": "w23",
-    "hottest_yaw_weight": "w24",
-    "yaw_total": 2473.07
+    "hottest_yaw_weight": "w24"
   },
-  "telemetry": {
-    "attractor_subtype": "transient_decay",
-    "attractor_type": "complex",
-    "duty_cycle": 0.875,
-    "efficiency": 0.107,
-    "mean_speed": 0.51,
-    "mean_torque": 44.77,
-    "pareto_optimal": false,
-    "speed_cv": 1.522,
-    "stride_freq_hz": 3.7,
-    "transient_frac": 0.285
-  },
-  "true_distance": 4.79,
-  "video": "11_taleb_antifrag.mp4",
-  "weights": {
-    "w03": -0.3,
-    "w04": 0.3,
-    "w13": -0.3,
-    "w14": 0.3,
-    "w23": -0.3,
-    "w24": 0.3
-  },
-  "yaw_degrees": 8.2
+  "video": "11_taleb_antifrag.mp4"
 }

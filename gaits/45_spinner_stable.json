@@ -1,58 +1,45 @@
 {
-  "architecture": "hidden",
+  "name": "45_spinner_stable",
   "category": "spinners",
-  "description": "Stable spinner \u2014 hidden half-center with stronger cross-inhibition (0.4 vs 0.35) and larger motor asymmetry (h5\u2192m3=-0.7 vs h6\u2192m4=+0.4). 2.08 rotations (-749\u00b0) at only 31\u00b0 tilt \u2014 the best spin-to-tilt ratio. Spins opposite direction from champion.",
-  "dx": -4.3,
-  "dy": 1.08,
-  "heading": 165.9,
-  "id": "45_spinner_stable",
-  "max_tilt": 30,
-  "n_hidden": 2,
-  "n_synapses": 8,
+  "type": "synapse",
+  "architecture": "hidden",
   "neurons": [
     {
       "id": "0",
-      "ref": "Torso",
-      "type": "sensor"
+      "type": "sensor",
+      "ref": "Torso"
     },
     {
       "id": "1",
-      "ref": "BackLeg",
-      "type": "sensor"
+      "type": "sensor",
+      "ref": "BackLeg"
     },
     {
       "id": "2",
-      "ref": "FrontLeg",
-      "type": "sensor"
+      "type": "sensor",
+      "ref": "FrontLeg"
     },
     {
       "id": "3",
-      "ref": "Torso_BackLeg",
-      "type": "motor"
+      "type": "motor",
+      "ref": "Torso_BackLeg"
     },
     {
       "id": "4",
-      "ref": "Torso_FrontLeg",
-      "type": "motor"
+      "type": "motor",
+      "ref": "Torso_FrontLeg"
     },
     {
       "id": "5",
-      "ref": null,
-      "type": "hidden"
+      "type": "hidden",
+      "ref": null
     },
     {
       "id": "6",
-      "ref": null,
-      "type": "hidden"
+      "type": "hidden",
+      "ref": null
     }
   ],
-  "physics": {
-    "dt": 0.004167,
-    "friction": 2.5,
-    "gravity_z": -9.8,
-    "max_force": 150.0,
-    "sim_steps": 4000
-  },
   "synapses": [
     {
       "src": "1",
@@ -95,20 +82,30 @@
       "w": 0.3
     }
   ],
-  "telemetry": {
-    "attractor_subtype": "quasi_periodic",
-    "attractor_type": "complex",
-    "duty_cycle": 0.292,
-    "efficiency": 0.0887,
-    "mean_speed": 1.842,
-    "mean_torque": 50.01,
-    "pareto_optimal": false,
-    "speed_cv": 0.587,
-    "stride_freq_hz": 5.89,
-    "transient_frac": 0.46
-  },
+  "n_hidden": 2,
+  "SIM_STEPS": 4000,
+  "MAX_FORCE": 150.0,
+  "DT": 0.004167,
+  "GRAVITY_Z": -9.8,
+  "ROBOT_FRICTION": 2.5,
+  "dx": -4.3,
+  "dy": 1.08,
   "true_distance": 4.43,
-  "turns": -2.08,
-  "video": "45_spinner_stable.mp4",
-  "yaw_degrees": -748.5
+  "heading": 165.9,
+  "yaw_degrees": -748.5,
+  "max_tilt": 30,
+  "description": "Stable spinner \u2014 hidden half-center with stronger cross-inhibition (0.4 vs 0.35) and larger motor asymmetry (h5\u2192m3=-0.7 vs h6\u2192m4=+0.4). 2.08 rotations (-749\u00b0) at only 31\u00b0 tilt \u2014 the best spin-to-tilt ratio. Spins opposite direction from champion.",
+  "telemetry": {
+    "stride_freq_hz": 5.89,
+    "duty_cycle": 0.292,
+    "mean_torque": 50.01,
+    "transient_frac": 0.46,
+    "mean_speed": 1.842,
+    "speed_cv": 0.587,
+    "attractor_type": "complex",
+    "attractor_subtype": "quasi_periodic",
+    "efficiency": 0.0887,
+    "pareto_optimal": false
+  },
+  "video": "45_spinner_stable.mp4"
 }

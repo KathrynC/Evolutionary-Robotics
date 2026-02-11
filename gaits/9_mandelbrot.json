@@ -1,47 +1,45 @@
 {
-  "architecture": "standard_6",
+  "name": "9_mandelbrot",
   "category": "persona_gaits",
-  "description": "Benoit Mandelbrot \u2014 self-similar 3x scaling: each weight is 3x the previous (0.1, 0.3, 0.9). Fractal roughness, 15 direction reversals. Both motors receive identical drive.",
+  "type": "synapse",
+  "architecture": "standard_6",
+  "weights": {
+    "w03": -0.1,
+    "w13": -0.3,
+    "w23": -0.9,
+    "w04": -0.1,
+    "w14": -0.3,
+    "w24": -0.9
+  },
+  "SIM_STEPS": 4000,
+  "MAX_FORCE": 150.0,
+  "DT": 0.004167,
+  "GRAVITY_Z": -9.8,
+  "ROBOT_FRICTION": 2.5,
   "dx": -2.41,
   "dy": -0.4,
+  "true_distance": 2.44,
   "heading": -170.5,
-  "id": "9_mandelbrot",
+  "yaw_degrees": 33.1,
   "max_tilt": 46,
-  "note": "Non-standard topology: w_i3 = w_i4 (same drive to both motors).",
-  "physics": {
-    "dt": 0.004167,
-    "friction": 2.5,
-    "gravity_z": -9.8,
-    "max_force": 150.0,
-    "sim_steps": 4000
+  "description": "Benoit Mandelbrot \u2014 self-similar 3x scaling: each weight is 3x the previous (0.1, 0.3, 0.9). Fractal roughness, 15 direction reversals. Both motors receive identical drive.",
+  "telemetry": {
+    "stride_freq_hz": 5.08,
+    "duty_cycle": 0.222,
+    "mean_torque": 57.11,
+    "transient_frac": 0.512,
+    "mean_speed": 0.744,
+    "speed_cv": 0.601,
+    "attractor_type": "complex",
+    "attractor_subtype": "multi_frequency",
+    "efficiency": 0.0428,
+    "pareto_optimal": false
   },
   "sensitivity": {
     "dx_total": 91.46,
+    "yaw_total": 992.0,
     "hottest_dx_weight": "w24",
-    "hottest_yaw_weight": "w13",
-    "yaw_total": 992.0
+    "hottest_yaw_weight": "w13"
   },
-  "telemetry": {
-    "attractor_subtype": "multi_frequency",
-    "attractor_type": "complex",
-    "duty_cycle": 0.222,
-    "efficiency": 0.0428,
-    "mean_speed": 0.744,
-    "mean_torque": 57.11,
-    "pareto_optimal": false,
-    "speed_cv": 0.601,
-    "stride_freq_hz": 5.08,
-    "transient_frac": 0.512
-  },
-  "true_distance": 2.44,
-  "video": "9_mandelbrot.mp4",
-  "weights": {
-    "w03": -0.1,
-    "w04": -0.1,
-    "w13": -0.3,
-    "w14": -0.3,
-    "w23": -0.9,
-    "w24": -0.9
-  },
-  "yaw_degrees": 33.1
+  "video": "9_mandelbrot.mp4"
 }

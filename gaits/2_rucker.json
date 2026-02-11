@@ -1,46 +1,45 @@
 {
-  "architecture": "standard_6",
+  "name": "2_rucker",
   "category": "persona_gaits",
-  "description": "Rudy Rucker \u2014 golden ratio synapses: phi and 1-phi as weights. Mathematical beauty hiding inside apparent gonzo chaos.",
+  "type": "synapse",
+  "architecture": "standard_6",
+  "weights": {
+    "w03": 0.618,
+    "w13": -1.0,
+    "w23": 0.382,
+    "w04": -0.382,
+    "w14": -1.0,
+    "w24": 0.618
+  },
+  "SIM_STEPS": 4000,
+  "MAX_FORCE": 150.0,
+  "DT": 0.004167,
+  "GRAVITY_Z": -9.8,
+  "ROBOT_FRICTION": 2.5,
   "dx": -6.94,
   "dy": 9.41,
+  "true_distance": 11.69,
   "heading": 126.4,
-  "id": "2_rucker",
+  "yaw_degrees": -44.7,
   "max_tilt": 29,
-  "physics": {
-    "dt": 0.004167,
-    "friction": 2.5,
-    "gravity_z": -9.8,
-    "max_force": 150.0,
-    "sim_steps": 4000
+  "description": "Rudy Rucker \u2014 golden ratio synapses: phi and 1-phi as weights. Mathematical beauty hiding inside apparent gonzo chaos.",
+  "telemetry": {
+    "stride_freq_hz": 3.73,
+    "duty_cycle": 0.502,
+    "mean_torque": 67.7,
+    "transient_frac": 0.812,
+    "mean_speed": 0.95,
+    "speed_cv": 0.638,
+    "attractor_type": "complex",
+    "attractor_subtype": "multi_frequency",
+    "efficiency": 0.1727,
+    "pareto_optimal": false
   },
   "sensitivity": {
     "dx_total": 268.71,
+    "yaw_total": 3285.88,
     "hottest_dx_weight": "w24",
-    "hottest_yaw_weight": "w24",
-    "yaw_total": 3285.88
+    "hottest_yaw_weight": "w24"
   },
-  "telemetry": {
-    "attractor_subtype": "multi_frequency",
-    "attractor_type": "complex",
-    "duty_cycle": 0.502,
-    "efficiency": 0.1727,
-    "mean_speed": 0.95,
-    "mean_torque": 67.7,
-    "pareto_optimal": false,
-    "speed_cv": 0.638,
-    "stride_freq_hz": 3.73,
-    "transient_frac": 0.812
-  },
-  "true_distance": 11.69,
-  "video": "2_rucker.mp4",
-  "weights": {
-    "w03": 0.618,
-    "w04": -0.382,
-    "w13": -1.0,
-    "w14": -1.0,
-    "w23": 0.382,
-    "w24": 0.618
-  },
-  "yaw_degrees": -44.7
+  "video": "2_rucker.mp4"
 }

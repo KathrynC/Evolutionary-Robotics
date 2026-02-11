@@ -1,51 +1,49 @@
 {
-  "architecture": "standard_6",
+  "name": "42_polyrhythm",
   "category": "time_signatures",
-  "description": "4:3 Polyrhythm \u2014 two meters simultaneously: BackLeg in 4 (varied weights), FrontLeg in 3 (uniform). No cross-wiring \u2014 let the meters collide.",
+  "type": "synapse",
+  "architecture": "standard_6",
+  "weights": {
+    "w03": -0.75,
+    "w13": -0.5,
+    "w23": -0.75,
+    "w04": 0.5,
+    "w14": 0.5,
+    "w24": 0.5,
+    "w34": 0.0,
+    "w43": 0.0,
+    "w33": 0.0,
+    "w44": 0.0
+  },
+  "SIM_STEPS": 4000,
+  "MAX_FORCE": 150.0,
+  "DT": 0.004167,
+  "GRAVITY_Z": -9.8,
+  "ROBOT_FRICTION": 2.5,
   "dx": 10.22,
   "dy": -5.11,
+  "true_distance": 11.43,
   "heading": -26.6,
-  "id": "42_polyrhythm",
+  "yaw_degrees": -23.6,
   "max_tilt": 24,
-  "n_synapses": 6,
-  "physics": {
-    "dt": 0.004167,
-    "friction": 2.5,
-    "gravity_z": -9.8,
-    "max_force": 150.0,
-    "sim_steps": 4000
+  "description": "4:3 Polyrhythm \u2014 two meters simultaneously: BackLeg in 4 (varied weights), FrontLeg in 3 (uniform). No cross-wiring \u2014 let the meters collide.",
+  "telemetry": {
+    "stride_freq_hz": 3.58,
+    "duty_cycle": 0.95,
+    "mean_torque": 34.83,
+    "transient_frac": 0.805,
+    "mean_speed": 0.949,
+    "speed_cv": 0.5,
+    "attractor_type": "complex",
+    "attractor_subtype": "multi_frequency",
+    "efficiency": 0.3281,
+    "pareto_optimal": true
   },
   "sensitivity": {
     "dx_total": 254.93,
+    "yaw_total": 3229.42,
     "hottest_dx_weight": "w04",
-    "hottest_yaw_weight": "w04",
-    "yaw_total": 3229.42
+    "hottest_yaw_weight": "w04"
   },
-  "telemetry": {
-    "attractor_subtype": "multi_frequency",
-    "attractor_type": "complex",
-    "duty_cycle": 0.95,
-    "efficiency": 0.3281,
-    "mean_speed": 0.949,
-    "mean_torque": 34.83,
-    "pareto_optimal": true,
-    "speed_cv": 0.5,
-    "stride_freq_hz": 3.58,
-    "transient_frac": 0.805
-  },
-  "true_distance": 11.43,
-  "video": "42_polyrhythm.mp4",
-  "weights": {
-    "w03": -0.75,
-    "w04": 0.5,
-    "w13": -0.5,
-    "w14": 0.5,
-    "w23": -0.75,
-    "w24": 0.5,
-    "w33": 0.0,
-    "w34": 0.0,
-    "w43": 0.0,
-    "w44": 0.0
-  },
-  "yaw_degrees": -23.6
+  "video": "42_polyrhythm.mp4"
 }

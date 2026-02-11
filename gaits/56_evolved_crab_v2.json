@@ -1,56 +1,41 @@
 {
-  "architecture": "crosswired_10",
+  "name": "56_evolved_crab_v2",
   "category": "crab_walkers",
-  "crab_ratio": 6.06,
-  "description": "Evolved crab champion (verified). |DY|=40.64, crab ratio 6.06. Uses both w33 and w44 self-feedback. Heading -99\u00b0.",
-  "dx": -6.71,
-  "dy": -40.64,
-  "evolution": {
-    "fitness": "|DY| with tilt penalty",
-    "method": "(mu+lambda) ES, pop=40, children=30, 80 generations",
-    "note": "Weights stored at full float64 precision. These solutions are sensitivity-dependent: rounding to 6 decimal places changes behavior significantly.",
-    "seeded_from": [
-      "52_curie_crab",
-      "53_rucker_landcrab",
-      "54_rucker_sidewinder",
-      "55_skew_crab"
-    ]
-  },
-  "heading": -99.4,
-  "id": "56_evolved_crab_v2",
-  "max_tilt": 13,
-  "origin": "evolved",
-  "physics": {
-    "dt": 0.004167,
-    "friction": 2.5,
-    "gravity_z": -9.8,
-    "max_force": 150.0,
-    "sim_steps": 4000
-  },
-  "telemetry": {
-    "attractor_type": "limit_cycle",
-    "duty_cycle": 0.265,
-    "efficiency": 0.5085,
-    "mean_speed": 2.588,
-    "mean_torque": 80.83,
-    "pareto_optimal": false,
-    "speed_cv": 0.247,
-    "stride_freq_hz": 5.17,
-    "transient_frac": 0.808
-  },
-  "true_distance": 41.19,
-  "verified": true,
+  "type": "synapse",
+  "architecture": "crosswired_10",
   "weights": {
     "w03": 0.2515753101143031,
-    "w04": 0.9733372173225151,
     "w13": -1.4976902964989567,
-    "w14": 1.5824646682114387,
     "w23": -0.6410900845427805,
+    "w04": 0.9733372173225151,
+    "w14": 1.5824646682114387,
     "w24": 1.2083292616061312,
-    "w33": -0.24636848771593106,
     "w34": 0.7254521057740698,
     "w43": 1.1328779669631484,
+    "w33": -0.24636848771593106,
     "w44": 0.8480271198639224
   },
-  "yaw_degrees": -89.7
+  "SIM_STEPS": 4000,
+  "MAX_FORCE": 150.0,
+  "DT": 0.004167,
+  "GRAVITY_Z": -9.8,
+  "ROBOT_FRICTION": 2.5,
+  "dx": -6.71,
+  "dy": -40.64,
+  "true_distance": 41.19,
+  "heading": -99.4,
+  "yaw_degrees": -89.7,
+  "max_tilt": 13,
+  "description": "Evolved crab champion (verified). |DY|=40.64, crab ratio 6.06. Uses both w33 and w44 self-feedback. Heading -99\u00b0.",
+  "telemetry": {
+    "stride_freq_hz": 5.17,
+    "duty_cycle": 0.265,
+    "mean_torque": 80.83,
+    "transient_frac": 0.808,
+    "mean_speed": 2.588,
+    "speed_cv": 0.247,
+    "attractor_type": "limit_cycle",
+    "efficiency": 0.5085,
+    "pareto_optimal": false
+  }
 }

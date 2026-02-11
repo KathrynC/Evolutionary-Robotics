@@ -1,50 +1,48 @@
 {
-  "architecture": "crosswired_10",
+  "name": "23_hodgkin_huxley",
   "category": "cross_wired_cpg",
-  "description": "Hodgkin-Huxley \u2014 ion channel dynamics: Noether base + sodium/potassium channel cross-wiring (strong self-feedback).",
+  "type": "synapse",
+  "architecture": "crosswired_10",
+  "weights": {
+    "w03": -0.7,
+    "w13": -0.5,
+    "w23": -0.3,
+    "w04": 0.3,
+    "w14": 0.5,
+    "w24": 0.7,
+    "w34": 0.4,
+    "w43": -0.4,
+    "w33": 0.6,
+    "w44": -0.6
+  },
+  "SIM_STEPS": 4000,
+  "MAX_FORCE": 150.0,
+  "DT": 0.004167,
+  "GRAVITY_Z": -9.8,
+  "ROBOT_FRICTION": 2.5,
   "dx": -29.79,
   "dy": -7.2,
+  "true_distance": 30.65,
   "heading": -166.4,
-  "id": "23_hodgkin_huxley",
+  "yaw_degrees": 41.9,
   "max_tilt": 36,
-  "n_synapses": 10,
-  "physics": {
-    "dt": 0.004167,
-    "friction": 2.5,
-    "gravity_z": -9.8,
-    "max_force": 150.0,
-    "sim_steps": 4000
+  "description": "Hodgkin-Huxley \u2014 ion channel dynamics: Noether base + sodium/potassium channel cross-wiring (strong self-feedback).",
+  "telemetry": {
+    "stride_freq_hz": 4.36,
+    "duty_cycle": 0.43,
+    "mean_torque": 77.82,
+    "transient_frac": 0.805,
+    "mean_speed": 2.325,
+    "speed_cv": 0.465,
+    "attractor_type": "limit_cycle",
+    "efficiency": 0.3938,
+    "pareto_optimal": false
   },
   "sensitivity": {
     "dx_total": 254.01,
+    "yaw_total": 2255.53,
     "hottest_dx_weight": "w33",
-    "hottest_yaw_weight": "w14",
-    "yaw_total": 2255.53
+    "hottest_yaw_weight": "w14"
   },
-  "telemetry": {
-    "attractor_type": "limit_cycle",
-    "duty_cycle": 0.43,
-    "efficiency": 0.3938,
-    "mean_speed": 2.325,
-    "mean_torque": 77.82,
-    "pareto_optimal": false,
-    "speed_cv": 0.465,
-    "stride_freq_hz": 4.36,
-    "transient_frac": 0.805
-  },
-  "true_distance": 30.65,
-  "video": "23_hodgkin_huxley.mp4",
-  "weights": {
-    "w03": -0.7,
-    "w04": 0.3,
-    "w13": -0.5,
-    "w14": 0.5,
-    "w23": -0.3,
-    "w24": 0.7,
-    "w33": 0.6,
-    "w34": 0.4,
-    "w43": -0.4,
-    "w44": -0.6
-  },
-  "yaw_degrees": 41.9
+  "video": "23_hodgkin_huxley.mp4"
 }

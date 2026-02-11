@@ -1,45 +1,44 @@
 {
-  "architecture": "standard_6",
+  "name": "5_gallop",
   "category": "homework",
-  "description": "Asymmetric mixed weights \u2014 creates an irregular galloping gait.",
+  "type": "synapse",
+  "architecture": "standard_6",
+  "weights": {
+    "w03": 0.5,
+    "w13": -1.0,
+    "w23": 1.0,
+    "w04": -0.5,
+    "w14": 1.0,
+    "w24": -1.0
+  },
+  "SIM_STEPS": 4000,
+  "MAX_FORCE": 150.0,
+  "DT": 0.004167,
+  "GRAVITY_Z": -9.8,
+  "ROBOT_FRICTION": 2.5,
   "dx": -4.44,
   "dy": -0.46,
+  "true_distance": 4.46,
   "heading": -174.1,
-  "id": "5_gallop",
+  "yaw_degrees": 120.5,
   "max_tilt": 242,
-  "physics": {
-    "dt": 0.004167,
-    "friction": 2.5,
-    "gravity_z": -9.8,
-    "max_force": 150.0,
-    "sim_steps": 4000
+  "description": "Asymmetric mixed weights \u2014 creates an irregular galloping gait.",
+  "telemetry": {
+    "stride_freq_hz": 5.5,
+    "duty_cycle": 0.298,
+    "mean_torque": 98.69,
+    "transient_frac": 0.108,
+    "mean_speed": 0.603,
+    "speed_cv": 1.633,
+    "attractor_type": "chaotic/fallen",
+    "efficiency": 0.0452,
+    "pareto_optimal": false
   },
   "sensitivity": {
     "dx_total": 298.57,
+    "yaw_total": 9165.89,
     "hottest_dx_weight": "w13",
-    "hottest_yaw_weight": "w14",
-    "yaw_total": 9165.89
+    "hottest_yaw_weight": "w14"
   },
-  "telemetry": {
-    "attractor_type": "chaotic/fallen",
-    "duty_cycle": 0.298,
-    "efficiency": 0.0452,
-    "mean_speed": 0.603,
-    "mean_torque": 98.69,
-    "pareto_optimal": false,
-    "speed_cv": 1.633,
-    "stride_freq_hz": 5.5,
-    "transient_frac": 0.108
-  },
-  "true_distance": 4.46,
-  "video": "5_gallop.mp4",
-  "weights": {
-    "w03": 0.5,
-    "w04": -0.5,
-    "w13": -1.0,
-    "w14": 1.0,
-    "w23": 1.0,
-    "w24": -1.0
-  },
-  "yaw_degrees": 120.5
+  "video": "5_gallop.mp4"
 }

@@ -1,48 +1,45 @@
 {
-  "architecture": "standard_6",
+  "name": "47_spinner_6synapse",
   "category": "spinners",
-  "description": "6-synapse twist \u2014 minimal wiring spinner. Same base pattern as cross-wired but without motor\u2192motor connections. FrontLeg sensor reversal (w23=+1.0, w24=-0.7) creates the torque. 0.53 rotations (-190\u00b0) at 35\u00b0 tilt.",
+  "type": "synapse",
+  "architecture": "standard_6",
+  "weights": {
+    "w03": -0.5,
+    "w13": -0.7,
+    "w23": 1.0,
+    "w04": 0.5,
+    "w14": -0.7,
+    "w24": -0.7
+  },
+  "SIM_STEPS": 4000,
+  "MAX_FORCE": 150.0,
+  "DT": 0.004167,
+  "GRAVITY_Z": -9.8,
+  "ROBOT_FRICTION": 2.5,
   "dx": -2.15,
   "dy": -1.87,
+  "true_distance": 2.85,
   "heading": -139.0,
-  "id": "47_spinner_6synapse",
+  "yaw_degrees": -190.1,
   "max_tilt": 35,
-  "n_synapses": 6,
-  "physics": {
-    "dt": 0.004167,
-    "friction": 2.5,
-    "gravity_z": -9.8,
-    "max_force": 150.0,
-    "sim_steps": 4000
+  "description": "6-synapse twist \u2014 minimal wiring spinner. Same base pattern as cross-wired but without motor\u2192motor connections. FrontLeg sensor reversal (w23=+1.0, w24=-0.7) creates the torque. 0.53 rotations (-190\u00b0) at 35\u00b0 tilt.",
+  "telemetry": {
+    "stride_freq_hz": 4.96,
+    "duty_cycle": 0.29,
+    "mean_torque": 96.71,
+    "transient_frac": 0.908,
+    "mean_speed": 0.776,
+    "speed_cv": 0.524,
+    "attractor_type": "complex",
+    "attractor_subtype": "multi_frequency",
+    "efficiency": 0.0295,
+    "pareto_optimal": false
   },
   "sensitivity": {
     "dx_total": 97.09,
+    "yaw_total": 6057.28,
     "hottest_dx_weight": "w03",
-    "hottest_yaw_weight": "w24",
-    "yaw_total": 6057.28
+    "hottest_yaw_weight": "w24"
   },
-  "telemetry": {
-    "attractor_subtype": "multi_frequency",
-    "attractor_type": "complex",
-    "duty_cycle": 0.29,
-    "efficiency": 0.0295,
-    "mean_speed": 0.776,
-    "mean_torque": 96.71,
-    "pareto_optimal": false,
-    "speed_cv": 0.524,
-    "stride_freq_hz": 4.96,
-    "transient_frac": 0.908
-  },
-  "true_distance": 2.85,
-  "turns": -0.53,
-  "video": "47_spinner_6synapse.mp4",
-  "weights": {
-    "w03": -0.5,
-    "w04": 0.5,
-    "w13": -0.7,
-    "w14": -0.7,
-    "w23": 1.0,
-    "w24": -0.7
-  },
-  "yaw_degrees": -190.1
+  "video": "47_spinner_6synapse.mp4"
 }

@@ -1,47 +1,45 @@
 {
-  "architecture": "standard_6",
+  "name": "19_haraway",
   "category": "persona_gaits",
-  "description": "Donna Haraway \u2014 maximum entanglement: ALL SIX weights identical at -0.5. No boundaries, no categories. Both motors receive the same negative drive from all sensors.",
+  "type": "synapse",
+  "architecture": "standard_6",
+  "weights": {
+    "w03": -0.5,
+    "w13": -0.5,
+    "w23": -0.5,
+    "w04": -0.5,
+    "w14": -0.5,
+    "w24": -0.5
+  },
+  "SIM_STEPS": 4000,
+  "MAX_FORCE": 150.0,
+  "DT": 0.004167,
+  "GRAVITY_Z": -9.8,
+  "ROBOT_FRICTION": 2.5,
   "dx": 3.89,
   "dy": 0.39,
+  "true_distance": 3.91,
   "heading": 5.7,
-  "id": "19_haraway",
+  "yaw_degrees": 4.7,
   "max_tilt": 56,
-  "note": "Non-standard topology: all weights identical, both motors receive same drive.",
-  "physics": {
-    "dt": 0.004167,
-    "friction": 2.5,
-    "gravity_z": -9.8,
-    "max_force": 150.0,
-    "sim_steps": 4000
+  "description": "Donna Haraway \u2014 maximum entanglement: ALL SIX weights identical at -0.5. No boundaries, no categories. Both motors receive the same negative drive from all sensors.",
+  "telemetry": {
+    "stride_freq_hz": 3.58,
+    "duty_cycle": 0.18,
+    "mean_torque": 55.65,
+    "transient_frac": 0.8,
+    "mean_speed": 0.527,
+    "speed_cv": 0.858,
+    "attractor_type": "complex",
+    "attractor_subtype": "multi_frequency",
+    "efficiency": 0.0703,
+    "pareto_optimal": false
   },
   "sensitivity": {
     "dx_total": 31.79,
+    "yaw_total": 942.36,
     "hottest_dx_weight": "w03",
-    "hottest_yaw_weight": "w04",
-    "yaw_total": 942.36
+    "hottest_yaw_weight": "w04"
   },
-  "telemetry": {
-    "attractor_subtype": "multi_frequency",
-    "attractor_type": "complex",
-    "duty_cycle": 0.18,
-    "efficiency": 0.0703,
-    "mean_speed": 0.527,
-    "mean_torque": 55.65,
-    "pareto_optimal": false,
-    "speed_cv": 0.858,
-    "stride_freq_hz": 3.58,
-    "transient_frac": 0.8
-  },
-  "true_distance": 3.91,
-  "video": "19_haraway.mp4",
-  "weights": {
-    "w03": -0.5,
-    "w04": -0.5,
-    "w13": -0.5,
-    "w14": -0.5,
-    "w23": -0.5,
-    "w24": -0.5
-  },
-  "yaw_degrees": 4.7
+  "video": "19_haraway.mp4"
 }

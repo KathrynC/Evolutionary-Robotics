@@ -1,14 +1,36 @@
 """
 twine/server.py
 
-FastAPI bridge between the SugarCube interactive story and the PyBullet simulation.
+FastAPI bridge between the Twine interactive story (experiment.html) and the
+PyBullet simulation engine.
+
+Architecture:
+    experiment.html (browser)  →  POST /simulate  →  server.py  →  simulate.py (headless)
+                                                                  ↓
+                                                     artifacts/telemetry/twine_<id>/
+
+The story presents gait parameters through 36 interpretive lenses (personas).
+When the user commits an experiment, the browser POSTs sine-wave parameters to
+/simulate. This server:
+
+    1. Writes a temporary gait variant JSON to gaits/
+    2. Spawns a headless PyBullet simulation via simulate.py (subprocess)
+    3. Reads the telemetry summary (displacement, stability metrics)
+    4. Returns results as JSON to the browser for narrative interpretation
 
 Endpoints:
-    GET  /          — serves experiment.html
-    POST /simulate  — accepts gait parameters, runs headless simulation, returns results
+    GET  /          — serves experiment.html (the SugarCube story)
+    POST /simulate  — accepts GaitParams, runs headless simulation, returns summary
+
+Dependencies (not in base conda env, install with pip):
+    pip install fastapi uvicorn pydantic
 
 Usage:
     python3 twine/server.py
+    # → http://127.0.0.1:8000
+
+Telemetry output:
+    artifacts/telemetry/twine_<8-char-hex>/<run_id>/summary.json + telemetry.jsonl
 """
 
 from __future__ import annotations
@@ -36,6 +58,16 @@ app = FastAPI(title="Twine Experiment Designer")
 
 
 class GaitParams(BaseModel):
+    """Sine-wave gait parameters submitted by the Twine story.
+
+    These map directly to the gait variant JSON format used by simulate.py
+    and motor.py. The ranges match those used by optimize_gait.py's random
+    search, ensuring the story can only request physically plausible gaits.
+
+    The story computes: target = offset + amplitude * sin(2π * frequency * t + phase)
+    Phase values (phi_back=0, phi_front=π) are fixed server-side for anti-phase walking.
+    """
+
     amplitude: float = Field(..., ge=0.3, le=1.8, description="Joint amplitude (rad)")
     frequency: float = Field(..., ge=0.6, le=5.0, description="Oscillation frequency (Hz)")
     back_offset: float = Field(..., ge=-0.7, le=0.7, description="Back leg DC offset (rad)")
@@ -55,7 +87,18 @@ async def serve_story():
 
 @app.post("/simulate")
 async def run_simulation(params: GaitParams):
-    """Run a headless PyBullet simulation with the given gait parameters."""
+    """Run a headless PyBullet simulation with the given gait parameters.
+
+    Flow:
+        1. Generate a unique variant_id (twine_<hex>) and run_id (web_<timestamp>)
+        2. Write a gait variant JSON to gaits/variant_<id>.json
+        3. Launch simulate.py as a subprocess with HEADLESS=1 and telemetry enabled
+        4. Read artifacts/telemetry/<variant_id>/<run_id>/summary.json
+        5. Return {status, params, summary} as JSON; clean up the temp variant file
+
+    The subprocess inherits the same env-var contract as tools/zoo/run_zoo.py.
+    Timeout: 120 seconds.
+    """
     variant_id = f"twine_{uuid.uuid4().hex[:8]}"
     run_id = f"web_{time.strftime('%Y%m%d_%H%M%S')}"
 

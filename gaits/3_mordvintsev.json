@@ -1,46 +1,44 @@
 {
-  "architecture": "standard_6",
+  "name": "3_mordvintsev",
   "category": "persona_gaits",
-  "description": "Alexander Mordvintsev \u2014 emergence from minimal signal: tiny uniform weights, BOTH motors receive identical drive. Motion emerges from pure sensor feedback despite near-zero initial signal.",
+  "type": "synapse",
+  "architecture": "standard_6",
+  "weights": {
+    "w03": -0.1,
+    "w13": -0.4,
+    "w23": -0.1,
+    "w04": -0.1,
+    "w14": -0.4,
+    "w24": -0.1
+  },
+  "SIM_STEPS": 4000,
+  "MAX_FORCE": 150.0,
+  "DT": 0.004167,
+  "GRAVITY_Z": -9.8,
+  "ROBOT_FRICTION": 2.5,
   "dx": 9.47,
   "dy": -0.07,
+  "true_distance": 9.47,
   "heading": -0.4,
-  "id": "3_mordvintsev",
+  "yaw_degrees": -1.4,
   "max_tilt": 21,
-  "note": "Non-standard topology: w_i3 = w_i4 (same drive to both motors, not antisymmetric).",
-  "physics": {
-    "dt": 0.004167,
-    "friction": 2.5,
-    "gravity_z": -9.8,
-    "max_force": 150.0,
-    "sim_steps": 4000
+  "description": "Alexander Mordvintsev \u2014 emergence from minimal signal: tiny uniform weights, BOTH motors receive identical drive. Motion emerges from pure sensor feedback despite near-zero initial signal.",
+  "telemetry": {
+    "stride_freq_hz": 4.78,
+    "duty_cycle": 0.232,
+    "mean_torque": 58.99,
+    "transient_frac": 0.802,
+    "mean_speed": 0.578,
+    "speed_cv": 0.16,
+    "attractor_type": "limit_cycle",
+    "efficiency": 0.1605,
+    "pareto_optimal": false
   },
   "sensitivity": {
     "dx_total": 159.67,
+    "yaw_total": 417.3,
     "hottest_dx_weight": "w23",
-    "hottest_yaw_weight": "w23",
-    "yaw_total": 417.3
+    "hottest_yaw_weight": "w23"
   },
-  "telemetry": {
-    "attractor_type": "limit_cycle",
-    "duty_cycle": 0.232,
-    "efficiency": 0.1605,
-    "mean_speed": 0.578,
-    "mean_torque": 58.99,
-    "pareto_optimal": false,
-    "speed_cv": 0.16,
-    "stride_freq_hz": 4.78,
-    "transient_frac": 0.802
-  },
-  "true_distance": 9.47,
-  "video": "3_mordvintsev.mp4",
-  "weights": {
-    "w03": -0.1,
-    "w04": -0.1,
-    "w13": -0.4,
-    "w14": -0.4,
-    "w23": -0.1,
-    "w24": -0.1
-  },
-  "yaw_degrees": -1.4
+  "video": "3_mordvintsev.mp4"
 }

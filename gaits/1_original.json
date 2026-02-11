@@ -1,45 +1,44 @@
 {
-  "architecture": "standard_6",
+  "name": "1_original",
   "category": "homework",
-  "description": "The student's original default configuration \u2014 all sensors excite BackLeg motor and inhibit FrontLeg motor equally.",
+  "type": "synapse",
+  "architecture": "standard_6",
+  "weights": {
+    "w03": 1.0,
+    "w13": 1.0,
+    "w23": 1.0,
+    "w04": -1.0,
+    "w14": -1.0,
+    "w24": -1.0
+  },
+  "SIM_STEPS": 4000,
+  "MAX_FORCE": 150.0,
+  "DT": 0.004167,
+  "GRAVITY_Z": -9.8,
+  "ROBOT_FRICTION": 2.5,
   "dx": -0.75,
   "dy": -2.02,
+  "true_distance": 2.15,
   "heading": -110.5,
-  "id": "1_original",
+  "yaw_degrees": 299.2,
   "max_tilt": 248,
-  "physics": {
-    "dt": 0.004167,
-    "friction": 2.5,
-    "gravity_z": -9.8,
-    "max_force": 150.0,
-    "sim_steps": 4000
+  "description": "The student's original default configuration \u2014 all sensors excite BackLeg motor and inhibit FrontLeg motor equally.",
+  "telemetry": {
+    "stride_freq_hz": 5.41,
+    "duty_cycle": 0.732,
+    "mean_torque": 66.5,
+    "transient_frac": 0.1,
+    "mean_speed": 0.219,
+    "speed_cv": 1.808,
+    "attractor_type": "chaotic/fallen",
+    "efficiency": 0.0324,
+    "pareto_optimal": false
   },
   "sensitivity": {
     "dx_total": 63.97,
+    "yaw_total": 17149.39,
     "hottest_dx_weight": "w23",
-    "hottest_yaw_weight": "w23",
-    "yaw_total": 17149.39
+    "hottest_yaw_weight": "w23"
   },
-  "telemetry": {
-    "attractor_type": "chaotic/fallen",
-    "duty_cycle": 0.732,
-    "efficiency": 0.0324,
-    "mean_speed": 0.219,
-    "mean_torque": 66.5,
-    "pareto_optimal": false,
-    "speed_cv": 1.808,
-    "stride_freq_hz": 5.41,
-    "transient_frac": 0.1
-  },
-  "true_distance": 2.15,
-  "video": "1_original.mp4",
-  "weights": {
-    "w03": 1.0,
-    "w04": -1.0,
-    "w13": 1.0,
-    "w14": -1.0,
-    "w23": 1.0,
-    "w24": -1.0
-  },
-  "yaw_degrees": 299.2
+  "video": "1_original.mp4"
 }

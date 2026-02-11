@@ -1,46 +1,45 @@
 {
-  "architecture": "standard_6",
+  "name": "2_flipped",
   "category": "homework",
-  "description": "Sign-flipped original \u2014 all signs reversed, walks in opposite direction. The simplest demonstration that synapse signs control direction.",
+  "type": "synapse",
+  "architecture": "standard_6",
+  "weights": {
+    "w03": -1.0,
+    "w13": -1.0,
+    "w23": -1.0,
+    "w04": 1.0,
+    "w14": 1.0,
+    "w24": 1.0
+  },
+  "SIM_STEPS": 4000,
+  "MAX_FORCE": 150.0,
+  "DT": 0.004167,
+  "GRAVITY_Z": -9.8,
+  "ROBOT_FRICTION": 2.5,
   "dx": -8.27,
   "dy": 2.92,
+  "true_distance": 8.77,
   "heading": 160.6,
-  "id": "2_flipped",
+  "yaw_degrees": 214.7,
   "max_tilt": 37,
-  "physics": {
-    "dt": 0.004167,
-    "friction": 2.5,
-    "gravity_z": -9.8,
-    "max_force": 150.0,
-    "sim_steps": 4000
+  "description": "Sign-flipped original \u2014 all signs reversed, walks in opposite direction. The simplest demonstration that synapse signs control direction.",
+  "telemetry": {
+    "stride_freq_hz": 3.76,
+    "duty_cycle": 0.558,
+    "mean_torque": 47.54,
+    "transient_frac": 0.75,
+    "mean_speed": 1.046,
+    "speed_cv": 0.751,
+    "attractor_type": "complex",
+    "attractor_subtype": "multi_frequency",
+    "efficiency": 0.1845,
+    "pareto_optimal": false
   },
   "sensitivity": {
     "dx_total": 119.64,
+    "yaw_total": 3120.21,
     "hottest_dx_weight": "w23",
-    "hottest_yaw_weight": "w03",
-    "yaw_total": 3120.21
+    "hottest_yaw_weight": "w03"
   },
-  "telemetry": {
-    "attractor_subtype": "multi_frequency",
-    "attractor_type": "complex",
-    "duty_cycle": 0.558,
-    "efficiency": 0.1845,
-    "mean_speed": 1.046,
-    "mean_torque": 47.54,
-    "pareto_optimal": false,
-    "speed_cv": 0.751,
-    "stride_freq_hz": 3.76,
-    "transient_frac": 0.75
-  },
-  "true_distance": 8.77,
-  "video": "2_flipped.mp4",
-  "weights": {
-    "w03": -1.0,
-    "w04": 1.0,
-    "w13": -1.0,
-    "w14": 1.0,
-    "w23": -1.0,
-    "w24": 1.0
-  },
-  "yaw_degrees": 214.7
+  "video": "2_flipped.mp4"
 }
