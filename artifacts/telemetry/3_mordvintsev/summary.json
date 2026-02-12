@@ -1,14 +1,14 @@
 {
   "variant_id": "3_mordvintsev",
-  "run_id": "persona_telemetry_20260210_115159_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 0.00031127901439747656,
-  "max_abs_pitch": 0.36135708314038545,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 0.0010109112431812973,
+  "max_abs_pitch": 0.36372698341875714,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": 9.465662654772837,
-    "dy": -0.0656715289167159,
-    "dz": 0.07516478081612021
+    "dx": 9.46566251156696,
+    "dy": -0.06567063418502829,
+    "dz": 0.07517478517645948
   },
   "final_rpy": {
     "r": -2.4884520121756822e-05,

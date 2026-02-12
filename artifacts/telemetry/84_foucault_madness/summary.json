@@ -1,14 +1,14 @@
 {
   "variant_id": "84_foucault_madness",
-  "run_id": "persona_telemetry_20260210_115201_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 0.06266858575072849,
-  "max_abs_pitch": 0.40740612408732074,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 0.06268231710240604,
+  "max_abs_pitch": 0.4075898081807281,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": -14.116638514881279,
-    "dy": 2.2161408562276557,
-    "dz": 0.05067925300024423
+    "dx": -14.116638658087156,
+    "dy": 2.216141750959343,
+    "dz": 0.050689257360583495
   },
   "final_rpy": {
     "r": -0.019002014289711995,

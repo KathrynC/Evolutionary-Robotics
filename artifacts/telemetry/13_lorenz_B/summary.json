@@ -1,14 +1,14 @@
 {
   "variant_id": "13_lorenz_B",
-  "run_id": "persona_telemetry_20260210_115158_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 0.13495264636605525,
-  "max_abs_pitch": 0.7058980647440424,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 0.13628596897307038,
+  "max_abs_pitch": 0.707270446116725,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": -0.5613209275960765,
-    "dy": -2.576563016262488,
-    "dz": -0.11790392478009548
+    "dx": -0.5613210708019545,
+    "dy": -2.5765621215308006,
+    "dz": -0.11789392041975622
   },
   "final_rpy": {
     "r": 1.784180897765577e-05,

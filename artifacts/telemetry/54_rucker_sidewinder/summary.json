@@ -1,14 +1,14 @@
 {
   "variant_id": "54_rucker_sidewinder",
-  "run_id": "all_telemetry_20260210_121608_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 0.2497669861742157,
-  "max_abs_pitch": 0.651268147586923,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 0.25113121013416645,
+  "max_abs_pitch": 0.6519515955485036,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": 5.703859752068413,
-    "dy": 15.19114081659161,
-    "dz": -0.2841440492231866
+    "dx": 5.703859608862535,
+    "dy": 15.191141711323297,
+    "dz": -0.2841340448628473
   },
   "final_rpy": {
     "r": -0.0002346147277324571,

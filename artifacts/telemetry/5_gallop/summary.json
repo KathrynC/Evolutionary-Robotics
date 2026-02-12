@@ -1,14 +1,14 @@
 {
   "variant_id": "5_gallop",
-  "run_id": "all_telemetry_20260210_121607_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 3.141588644997488,
-  "max_abs_pitch": 1.501766748006878,
-  "upright_fraction": 0.0325,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 3.141592331421386,
+  "max_abs_pitch": 1.5189004325814761,
+  "upright_fraction": 0.03200000000000003,
   "delta": {
-    "dx": -4.440806473695193,
-    "dy": -0.4561746111721733,
-    "dz": -0.7826254241161986
+    "dx": -4.440806616901071,
+    "dy": -0.45617371644048565,
+    "dz": -0.7826154197558594
   },
   "final_rpy": {
     "r": -3.0961730271132897,

@@ -1,14 +1,14 @@
 {
   "variant_id": "6_fuller_trimtab",
-  "run_id": "persona_telemetry_20260210_115200_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 0.004194487770219259,
-  "max_abs_pitch": 0.1764158544625392,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 0.004460445791536217,
+  "max_abs_pitch": 0.18503380905994338,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": 5.214007594159593,
-    "dy": -0.048076355072476165,
-    "dz": 0.004146380920440729
+    "dx": 5.214007450953715,
+    "dy": -0.04807546034078855,
+    "dz": 0.004156385280779995
   },
   "final_rpy": {
     "r": 4.225320388277152e-05,

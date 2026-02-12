@@ -1,14 +1,14 @@
 {
   "variant_id": "58_evolved_crab_positive_v2",
-  "run_id": "all_telemetry_20260210_121608_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 0.3074159355888039,
-  "max_abs_pitch": 0.7875341082783158,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 0.3110375686307657,
+  "max_abs_pitch": 0.7920327301000584,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": -1.1725686747115223,
-    "dy": 38.08330669335157,
-    "dz": -0.14462124542085109
+    "dx": -1.1725688179174003,
+    "dy": 38.08330758808325,
+    "dz": -0.14461124106051182
   },
   "final_rpy": {
     "r": 9.501678938959351e-05,

@@ -1,14 +1,14 @@
 {
   "variant_id": "5_pelton",
-  "run_id": "persona_telemetry_20260210_115159_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 0.3244939378330738,
-  "max_abs_pitch": 0.4586863567000303,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 0.32952304306050895,
+  "max_abs_pitch": 0.4601086465841525,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": 34.698090402166244,
-    "dy": 6.317288937644027,
-    "dz": -0.0465075447846337
+    "dx": 34.69809025896036,
+    "dy": 6.317289832375715,
+    "dz": -0.04649754042429444
   },
   "final_rpy": {
     "r": 0.24705394623071644,

@@ -1,14 +1,14 @@
 {
   "variant_id": "9_mandelbrot",
-  "run_id": "persona_telemetry_20260210_115202_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 0.13799643873315304,
-  "max_abs_pitch": 0.7881019479453638,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 0.1380751632600072,
+  "max_abs_pitch": 0.7965641715293234,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": -2.413539197451195,
-    "dy": -0.4027109845494241,
-    "dz": 0.17614657671689926
+    "dx": -2.413539340657073,
+    "dy": -0.4027100898177365,
+    "dz": 0.17615658107723853
   },
   "final_rpy": {
     "r": 0.0001445153395628906,

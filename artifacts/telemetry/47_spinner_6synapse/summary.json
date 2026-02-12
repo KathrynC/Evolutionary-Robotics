@@ -1,14 +1,14 @@
 {
   "variant_id": "47_spinner_6synapse",
-  "run_id": "all_telemetry_20260210_121607_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 0.3166914290032235,
-  "max_abs_pitch": 0.45389764789402254,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 0.3199281139383873,
+  "max_abs_pitch": 0.5043944172244854,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": -2.1479539473626263,
-    "dy": -1.8673902624576793,
-    "dz": 0.21729543203999246
+    "dx": -2.147954090568504,
+    "dy": -1.8673893677259916,
+    "dz": 0.21730543640033173
   },
   "final_rpy": {
     "r": 0.0003902397055339941,

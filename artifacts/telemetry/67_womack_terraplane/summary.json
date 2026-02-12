@@ -1,14 +1,14 @@
 {
   "variant_id": "67_womack_terraplane",
-  "run_id": "persona_telemetry_20260210_115200_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 0.10384627223877142,
-  "max_abs_pitch": 0.4635363136170236,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 0.10623052557768652,
+  "max_abs_pitch": 0.4650702439048807,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": 4.409266136615692,
-    "dy": -1.9056681409774872,
-    "dz": 0.01307661770433044
+    "dx": 4.4092659934098135,
+    "dy": -1.9056672462457995,
+    "dz": 0.013086622064669706
   },
   "final_rpy": {
     "r": -4.970284775513014e-07,

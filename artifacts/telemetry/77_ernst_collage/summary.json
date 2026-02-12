@@ -1,14 +1,14 @@
 {
   "variant_id": "77_ernst_collage",
-  "run_id": "persona_telemetry_20260210_115201_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 0.0737585111081039,
-  "max_abs_pitch": 0.6741111312980725,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 0.07604318678428766,
+  "max_abs_pitch": 0.6784483322026201,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": 14.888046229299604,
-    "dy": -5.816154053096787,
-    "dz": 0.15051291877733108
+    "dx": 14.888046086093727,
+    "dy": -5.816153158365099,
+    "dz": 0.15052292313767035
   },
   "final_rpy": {
     "r": 0.00012495550750822915,

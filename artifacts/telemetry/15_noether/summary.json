@@ -1,14 +1,14 @@
 {
   "variant_id": "15_noether",
-  "run_id": "persona_telemetry_20260210_115159_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 0.2522118662003356,
-  "max_abs_pitch": 0.571827128794763,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 0.2542661200571454,
+  "max_abs_pitch": 0.5725303416108577,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": -21.64739701328838,
-    "dy": -0.4791242251710612,
-    "dz": 0.052620601329246286
+    "dx": -21.647397156494257,
+    "dy": -0.47912333043937355,
+    "dz": 0.05263060568958555
   },
   "final_rpy": {
     "r": -9.987399786942035e-06,

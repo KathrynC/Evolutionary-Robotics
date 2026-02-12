@@ -1,14 +1,14 @@
 {
   "variant_id": "8_conway_glider",
-  "run_id": "persona_telemetry_20260210_115202_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 0.1780690106400259,
-  "max_abs_pitch": 0.3520153132426831,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 0.1784582769593853,
+  "max_abs_pitch": 0.36490894587108014,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": 1.454410239407121,
-    "dy": -0.3248414265879933,
-    "dz": 0.034904467521932325
+    "dx": 1.454410096201243,
+    "dy": -0.3248405318563057,
+    "dz": 0.03491447188227159
   },
   "final_rpy": {
     "r": 0.04196355728543486,

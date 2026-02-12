@@ -1,14 +1,14 @@
 {
   "variant_id": "35_evolved_curie",
-  "run_id": "all_telemetry_20260210_121607_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 0.3693183541427547,
-  "max_abs_pitch": 0.5735935185812336,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 0.3705278640982449,
+  "max_abs_pitch": 0.5757317864987925,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": 24.282868481880616,
-    "dy": -17.50380945658441,
-    "dz": -0.14724779043310887
+    "dx": 24.28286833867474,
+    "dy": -17.503808561852722,
+    "dz": -0.1472377860727696
   },
   "final_rpy": {
     "r": -0.023303579527807244,

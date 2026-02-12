@@ -1,14 +1,14 @@
 {
   "variant_id": "101_jgcramer_transactional",
-  "run_id": "persona_telemetry_20260210_112013_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 2.2093123265116072,
-  "max_abs_pitch": 0.8657889233255796,
-  "upright_fraction": 0.09,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 2.2353549950097094,
+  "max_abs_pitch": 0.8823452043695027,
+  "upright_fraction": 0.11024999999999996,
   "delta": {
-    "dx": 4.9045222044986,
-    "dy": -1.2835769002645638,
-    "dz": -1.0000104242933092
+    "dx": 4.904522061292722,
+    "dy": -1.2835760055328762,
+    "dz": -1.00000041993297
   },
   "final_rpy": {
     "r": -1.5707965673682895,

@@ -1,14 +1,14 @@
 {
   "variant_id": "82_deleuze_rhizome",
-  "run_id": "persona_telemetry_20260210_115201_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 0.1261400128249902,
-  "max_abs_pitch": 0.5885244018070658,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 0.1263665071395456,
+  "max_abs_pitch": 0.5909905820873971,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": -9.563281658455855,
-    "dy": 2.016404329183552,
-    "dz": -0.09592398015532488
+    "dx": -9.563281801661732,
+    "dy": 2.0164052239152395,
+    "dz": -0.09591397579498562
   },
   "final_rpy": {
     "r": -1.914480056151503e-05,

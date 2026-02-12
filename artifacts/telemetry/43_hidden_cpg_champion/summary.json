@@ -1,14 +1,14 @@
 {
   "variant_id": "43_hidden_cpg_champion",
-  "run_id": "all_telemetry_20260210_121607_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 0.360073173427263,
-  "max_abs_pitch": 0.6447312589888584,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 0.36077710188425155,
+  "max_abs_pitch": 0.6477027902812049,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": 50.110221570504294,
-    "dy": -0.13807709888508127,
-    "dz": 0.22180917415848267
+    "dx": 50.11022142729841,
+    "dy": -0.13807620415339364,
+    "dz": 0.22181917851882194
   },
   "final_rpy": {
     "r": 0.03769344253277103,

@@ -1,14 +1,14 @@
 {
   "variant_id": "73_gallagher_sieve",
-  "run_id": "persona_telemetry_20260210_115200_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 1.6124869730196512,
-  "max_abs_pitch": 0.9254120412784587,
-  "upright_fraction": 0.25,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 1.6496253380610824,
+  "max_abs_pitch": 0.9254575514942331,
+  "upright_fraction": 0.28574999999999995,
   "delta": {
-    "dx": 1.0952128636725131,
-    "dy": -2.1721097964289893,
-    "dz": -1.000010838899009
+    "dx": 1.095212720466635,
+    "dy": -2.172108901697302,
+    "dz": -1.0000008345386697
   },
   "final_rpy": {
     "r": -1.570796408603385,

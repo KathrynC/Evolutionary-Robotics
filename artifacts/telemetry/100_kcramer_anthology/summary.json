@@ -1,14 +1,14 @@
 {
   "variant_id": "100_kcramer_anthology",
-  "run_id": "persona_telemetry_20260210_112013_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 0.3846470723231875,
-  "max_abs_pitch": 0.5480882478183431,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 0.3847781340655597,
+  "max_abs_pitch": 0.5483361576406248,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": 32.320778942031446,
-    "dy": -7.253959969024378,
-    "dz": -0.07385497998850221
+    "dx": 32.320778798825565,
+    "dy": -7.25395907429269,
+    "dz": -0.07384497562816295
   },
   "final_rpy": {
     "r": 0.05437676809283452,

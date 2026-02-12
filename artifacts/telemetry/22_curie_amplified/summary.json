@@ -1,14 +1,14 @@
 {
   "variant_id": "22_curie_amplified",
-  "run_id": "all_telemetry_20260210_121606_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 0.22974360503521762,
-  "max_abs_pitch": 0.32130126824101257,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 0.23043094275049655,
+  "max_abs_pitch": 0.32301330721969373,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": 37.139175301564926,
-    "dy": -1.6007746132780005,
-    "dz": -0.08667781747103143
+    "dx": 37.139175158359045,
+    "dy": -1.600773718546313,
+    "dz": -0.08666781311069216
   },
   "final_rpy": {
     "r": -0.05991264373366569,

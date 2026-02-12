@@ -1,14 +1,14 @@
 {
   "variant_id": "53_rucker_landcrab",
-  "run_id": "all_telemetry_20260210_121608_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 0.1962190286962002,
-  "max_abs_pitch": 0.6372377706349697,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 0.19887715981058313,
+  "max_abs_pitch": 0.6416868218831553,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": 11.461350112585064,
-    "dy": 27.052684186686747,
-    "dz": -0.10328939462804887
+    "dx": 11.461349969379187,
+    "dy": 27.052685081418435,
+    "dz": -0.1032793902677096
   },
   "final_rpy": {
     "r": -0.016270954681413943,

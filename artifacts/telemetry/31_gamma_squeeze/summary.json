@@ -1,14 +1,14 @@
 {
   "variant_id": "31_gamma_squeeze",
-  "run_id": "all_telemetry_20260210_121606_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 1.8589292081204387,
-  "max_abs_pitch": 0.8916639647746822,
-  "upright_fraction": 0.495,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 1.8916365940970954,
+  "max_abs_pitch": 0.8946215610630914,
+  "upright_fraction": 0.5065,
   "delta": {
-    "dx": 3.9674052317022244,
-    "dy": 1.4084776512001649,
-    "dz": -1.0000131574429867
+    "dx": 3.9674050884963465,
+    "dy": 1.4084785459318525,
+    "dz": -1.0000031530826474
   },
   "final_rpy": {
     "r": 1.5707995399828407,

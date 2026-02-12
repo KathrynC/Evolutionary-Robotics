@@ -1,14 +1,14 @@
 {
   "variant_id": "112_biles_floor",
-  "run_id": "persona_telemetry_20260210_114030_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 0.18208612131045115,
-  "max_abs_pitch": 0.627641591517438,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 0.18220377591241899,
+  "max_abs_pitch": 0.6282619670767846,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": 10.176770572347118,
-    "dy": -5.301516150266596,
-    "dz": -0.11740051762151915
+    "dx": 10.176770429141241,
+    "dy": -5.301515255534908,
+    "dz": -0.11739051326117989
   },
   "final_rpy": {
     "r": -0.04180548115652811,

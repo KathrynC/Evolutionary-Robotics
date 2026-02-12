@@ -1,14 +1,14 @@
 {
   "variant_id": "95_jackson_lottery",
-  "run_id": "persona_telemetry_20260210_115202_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 0.25325550480514797,
-  "max_abs_pitch": 0.47423311580420646,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 0.2542618932286829,
+  "max_abs_pitch": 0.4779808225718004,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": -4.3777071534074,
-    "dy": -2.4650377943559816,
-    "dz": -0.09995507303486839
+    "dx": -4.377707296613278,
+    "dy": -2.465036899624294,
+    "dz": -0.09994506867452913
   },
   "final_rpy": {
     "r": 0.00014420944211307338,

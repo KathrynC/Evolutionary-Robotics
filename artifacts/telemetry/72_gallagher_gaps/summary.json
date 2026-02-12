@@ -1,14 +1,14 @@
 {
   "variant_id": "72_gallagher_gaps",
-  "run_id": "persona_telemetry_20260210_115200_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 0.006047451208893491,
-  "max_abs_pitch": 0.42720460828843626,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 0.0061963094449508345,
+  "max_abs_pitch": 0.43100185582219563,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": 4.665345618202429,
-    "dy": -3.5558202856144554,
-    "dz": -0.17118390669781913
+    "dx": 4.665345474996551,
+    "dy": -3.555819390882768,
+    "dz": -0.17117390233747987
   },
   "final_rpy": {
     "r": -2.1692209303462724e-06,

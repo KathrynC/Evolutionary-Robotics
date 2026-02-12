@@ -1,14 +1,14 @@
 {
   "variant_id": "7_fuller_dymaxion",
-  "run_id": "persona_telemetry_20260210_115201_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 3.4007798125965615e-05,
-  "max_abs_pitch": 0.03484376787569168,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 4.0449086345113776e-05,
+  "max_abs_pitch": 0.0445879747046019,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": 2.4575183501436486,
-    "dy": -0.03140318685736462,
-    "dz": 0.01901110740432399
+    "dx": 2.457518206937771,
+    "dy": -0.03140229212567701,
+    "dz": 0.019021111764663257
   },
   "final_rpy": {
     "r": 2.674905749640694e-05,

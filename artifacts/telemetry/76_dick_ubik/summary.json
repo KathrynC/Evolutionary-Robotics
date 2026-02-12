@@ -1,14 +1,14 @@
 {
   "variant_id": "76_dick_ubik",
-  "run_id": "persona_telemetry_20260210_115201_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 3.141591822589967,
-  "max_abs_pitch": 1.0709288138897095,
-  "upright_fraction": 0.1025,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 3.1415923501311216,
+  "max_abs_pitch": 1.0709897636642494,
+  "upright_fraction": 0.11124999999999996,
   "delta": {
-    "dx": 0.8849745044471842,
-    "dy": -4.048151292419039,
-    "dz": -1.0000104732699864
+    "dx": 0.8849743612413062,
+    "dy": -4.048150397687351,
+    "dz": -1.0000004689096471
   },
   "final_rpy": {
     "r": 3.14159142703028,

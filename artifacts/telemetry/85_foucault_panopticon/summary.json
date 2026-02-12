@@ -1,14 +1,14 @@
 {
   "variant_id": "85_foucault_panopticon",
-  "run_id": "persona_telemetry_20260210_115201_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 0.1441581446952199,
-  "max_abs_pitch": 0.249857805259562,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 0.14442102795485398,
+  "max_abs_pitch": 0.25127853302086284,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": -1.9256354739588355,
-    "dy": 0.6525162903669448,
-    "dz": -0.10106282895833463
+    "dx": -1.9256356171647135,
+    "dy": 0.6525171850986324,
+    "dz": -0.10105282459799536
   },
   "final_rpy": {
     "r": -3.28233065574553e-06,

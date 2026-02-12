@@ -1,14 +1,14 @@
 {
   "variant_id": "102_jgcramer_handshake",
-  "run_id": "persona_telemetry_20260210_112014_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 0.13324170251402673,
-  "max_abs_pitch": 0.6618514853779728,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 0.13350223757643967,
+  "max_abs_pitch": 0.6737015058545308,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": 10.606446827319484,
-    "dy": -7.736498561913474,
-    "dz": -0.04642622638237648
+    "dx": 10.606446684113607,
+    "dy": -7.736497667181786,
+    "dz": -0.04641622202203721
   },
   "final_rpy": {
     "r": 0.0001795615405257509,

@@ -1,14 +1,14 @@
 {
   "variant_id": "68_grunbaum_penrose",
-  "run_id": "persona_telemetry_20260210_115200_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 0.2454125300908711,
-  "max_abs_pitch": 0.6077069067259966,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 0.25088898240316976,
+  "max_abs_pitch": 0.6113092570053902,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": -22.703779234448973,
-    "dy": 3.9041228344269516,
-    "dz": -0.00547037436571296
+    "dx": -22.70377937765485,
+    "dy": 3.904123729158639,
+    "dz": -0.005460370005373694
   },
   "final_rpy": {
     "r": 0.003908032483697326,

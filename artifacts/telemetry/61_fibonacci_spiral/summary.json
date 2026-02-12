@@ -1,14 +1,14 @@
 {
   "variant_id": "61_fibonacci_spiral",
-  "run_id": "persona_telemetry_20260210_115200_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 1.594556037977211,
-  "max_abs_pitch": 0.5863525479334578,
-  "upright_fraction": 0.2275,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 1.5953216457125678,
+  "max_abs_pitch": 0.5864747428901809,
+  "upright_fraction": 0.23975000000000002,
   "delta": {
-    "dx": 2.814044928426004,
-    "dy": 5.731336546790973,
-    "dz": -1.000010741281445
+    "dx": 2.8140447852201262,
+    "dy": 5.731337441522661,
+    "dz": -1.0000007369211057
   },
   "final_rpy": {
     "r": -1.5707966526410255,

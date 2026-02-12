@@ -1,14 +1,14 @@
 {
   "variant_id": "55_skew_crab",
-  "run_id": "all_telemetry_20260210_121608_r00",
-  "steps_logged": 400,
+  "run_id": "definitive",
+  "steps_logged": 4000,
   "max_abs_roll": 0.16021101204557775,
-  "max_abs_pitch": 0.5689237636022872,
+  "max_abs_pitch": 0.571178910299057,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": 9.78350888645472,
-    "dy": -13.711764228538502,
-    "dz": -0.06262388823159548
+    "dx": 9.783508743248843,
+    "dy": -13.711763333806815,
+    "dz": -0.06261388387125622
   },
   "final_rpy": {
     "r": 2.7188263685333498e-05,

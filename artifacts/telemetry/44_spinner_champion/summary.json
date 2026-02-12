@@ -1,14 +1,14 @@
 {
   "variant_id": "44_spinner_champion",
-  "run_id": "all_telemetry_20260210_121607_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 0.5815962942216703,
-  "max_abs_pitch": 0.7529762362008197,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 0.5839967002801685,
+  "max_abs_pitch": 0.7551300672224207,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": 0.24536263171187023,
-    "dy": 0.8495524902200732,
-    "dz": 0.24804349775451318
+    "dx": 0.2453624885059923,
+    "dy": 0.8495533849517608,
+    "dz": 0.24805350211485244
   },
   "final_rpy": {
     "r": 0.5839967002801685,

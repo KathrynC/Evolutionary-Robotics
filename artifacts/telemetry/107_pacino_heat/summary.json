@@ -1,14 +1,14 @@
 {
   "variant_id": "107_pacino_heat",
-  "run_id": "persona_telemetry_20260210_112014_r00",
-  "steps_logged": 400,
+  "run_id": "definitive",
+  "steps_logged": 4000,
   "max_abs_roll": 0.34706634163720557,
-  "max_abs_pitch": 0.5245592566396654,
+  "max_abs_pitch": 0.5322304646134493,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": 23.70852015511473,
-    "dy": -11.442788807234997,
-    "dz": -0.04809564726912585
+    "dx": 23.708520011908853,
+    "dy": -11.44278791250331,
+    "dz": -0.048085642908786586
   },
   "final_rpy": {
     "r": -0.01947546529009599,

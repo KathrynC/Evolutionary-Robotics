@@ -1,14 +1,14 @@
 {
   "variant_id": "50_noether_cyclone",
-  "run_id": "all_telemetry_20260210_121608_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 0.1945803655023881,
-  "max_abs_pitch": 0.6393025868014482,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 0.19766057804688866,
+  "max_abs_pitch": 0.6402012239176796,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": -30.15818779516489,
-    "dy": -13.51306009669439,
-    "dz": 0.1248731628151627
+    "dx": -30.158187938370766,
+    "dy": -13.513059201962703,
+    "dz": 0.12488316717550196
   },
   "final_rpy": {
     "r": -0.061955863151871494,

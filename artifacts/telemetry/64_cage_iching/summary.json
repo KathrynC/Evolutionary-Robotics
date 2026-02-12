@@ -1,14 +1,14 @@
 {
   "variant_id": "64_cage_iching",
-  "run_id": "persona_telemetry_20260210_115200_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 3.1400278544134705,
-  "max_abs_pitch": 1.519601591254015,
-  "upright_fraction": 0.0725,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 3.1409917348889436,
+  "max_abs_pitch": 1.5380779873380037,
+  "upright_fraction": 0.08099999999999996,
   "delta": {
-    "dx": 5.564627585411798,
-    "dy": -4.739293499683069,
-    "dz": -1.000009883456726
+    "dx": 5.56462744220592,
+    "dy": -4.739292604951381,
+    "dz": -0.9999998790963868
   },
   "final_rpy": {
     "r": -1.5707957746762156,

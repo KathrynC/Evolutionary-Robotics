@@ -1,14 +1,14 @@
 {
   "variant_id": "46_spinner_crosswired",
-  "run_id": "all_telemetry_20260210_121607_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 0.13805287703785077,
-  "max_abs_pitch": 0.2996178863635115,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 0.1422179122716827,
+  "max_abs_pitch": 0.3097315326607693,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": 0.5251942569571229,
-    "dy": -0.16342796921853264,
-    "dz": 0.16587500856536086
+    "dx": 0.5251941137512449,
+    "dy": -0.16342707448684501,
+    "dz": 0.16588501292570013
   },
   "final_rpy": {
     "r": 0.09445656684107809,

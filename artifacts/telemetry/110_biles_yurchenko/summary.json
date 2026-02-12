@@ -1,14 +1,14 @@
 {
   "variant_id": "110_biles_yurchenko",
-  "run_id": "persona_telemetry_20260210_114030_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 0.3163554898790505,
-  "max_abs_pitch": 0.9100526065634994,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 0.3188780192727965,
+  "max_abs_pitch": 0.9189999132842084,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": -4.323836539784435,
-    "dy": 4.001589649647947,
-    "dz": -0.20245596740787408
+    "dx": -4.323836682990313,
+    "dy": 4.001590544379635,
+    "dz": -0.20244596304753482
   },
   "final_rpy": {
     "r": 0.0024876869325661287,

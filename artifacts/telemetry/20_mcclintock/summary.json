@@ -1,14 +1,14 @@
 {
   "variant_id": "20_mcclintock",
-  "run_id": "persona_telemetry_20260210_115159_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 0.018052970927915808,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 0.01852943994251384,
   "max_abs_pitch": 0.2443391165482748,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": 5.546824756623512,
-    "dy": -1.0147642939353019,
-    "dz": 0.07564983272999815
+    "dx": 5.546824613417634,
+    "dy": -1.0147633992036142,
+    "dz": 0.07565983709033741
   },
   "final_rpy": {
     "r": 1.776884707824746e-05,

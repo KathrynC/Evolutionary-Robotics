@@ -1,14 +1,14 @@
 {
   "variant_id": "42_polyrhythm",
-  "run_id": "all_telemetry_20260210_121607_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 0.15786188566999282,
-  "max_abs_pitch": 0.2805225911314177,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 0.15829092348597673,
+  "max_abs_pitch": 0.2809541254541224,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": 10.222068352606343,
-    "dy": -5.110518284187258,
-    "dz": -0.174396312832521
+    "dx": 10.222068209400465,
+    "dy": -5.11051738945557,
+    "dz": -0.17438630847218173
   },
   "final_rpy": {
     "r": -0.00018037637450493246,

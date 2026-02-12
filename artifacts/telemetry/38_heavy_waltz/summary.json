@@ -1,14 +1,14 @@
 {
   "variant_id": "38_heavy_waltz",
-  "run_id": "all_telemetry_20260210_121607_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 0.11871488089221854,
-  "max_abs_pitch": 0.5955417149135753,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 0.12284390865807003,
+  "max_abs_pitch": 0.5968875310741785,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": -19.30869743971565,
-    "dy": -4.990706757580947,
-    "dz": -0.10477492943313393
+    "dx": -19.30869758292153,
+    "dy": -4.990705862849259,
+    "dz": -0.10476492507279467
   },
   "final_rpy": {
     "r": 6.365073109270014e-07,

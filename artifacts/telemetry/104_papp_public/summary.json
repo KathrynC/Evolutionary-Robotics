@@ -1,14 +1,14 @@
 {
   "variant_id": "104_papp_public",
-  "run_id": "persona_telemetry_20260210_112014_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 0.024944460907421834,
-  "max_abs_pitch": 0.34124019214667156,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 0.027789907363986625,
+  "max_abs_pitch": 0.3474954227841502,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": -19.396148801271803,
-    "dy": -0.3452754402838202,
-    "dz": -0.13759969598076371
+    "dx": -19.39614894447768,
+    "dy": -0.34527454555213255,
+    "dz": -0.13758969162042445
   },
   "final_rpy": {
     "r": 3.1927547629824654e-05,

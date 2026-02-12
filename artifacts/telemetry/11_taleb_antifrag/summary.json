@@ -1,14 +1,14 @@
 {
   "variant_id": "11_taleb_antifrag",
-  "run_id": "persona_telemetry_20260210_115158_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 0.035937111094455916,
-  "max_abs_pitch": 0.3384997178186566,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 0.03621494707295168,
+  "max_abs_pitch": 0.33871924601982506,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": 4.787739458198617,
-    "dy": -0.12394213353914822,
-    "dz": -0.03931876367610476
+    "dx": 4.787739314992739,
+    "dy": -0.12394123880746061,
+    "dz": -0.039308759315765496
   },
   "final_rpy": {
     "r": 9.976823330510877e-07,

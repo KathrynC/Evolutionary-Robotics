@@ -1,14 +1,14 @@
 {
   "variant_id": "17_lamarr",
-  "run_id": "persona_telemetry_20260210_115159_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 1.6243634898041024,
-  "max_abs_pitch": 0.9796945255248943,
-  "upright_fraction": 0.2375,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 1.6275646014724927,
+  "max_abs_pitch": 0.9814731747839592,
+  "upright_fraction": 0.27525,
   "delta": {
-    "dx": -4.8626148810389145,
-    "dy": 1.3054838047000261,
-    "dz": -1.0000113699744309
+    "dx": -4.862615024244793,
+    "dy": 1.3054846994317137,
+    "dz": -1.0000013656140916
   },
   "final_rpy": {
     "r": 1.5707978252978907,

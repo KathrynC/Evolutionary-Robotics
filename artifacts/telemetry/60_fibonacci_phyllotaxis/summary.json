@@ -1,14 +1,14 @@
 {
   "variant_id": "60_fibonacci_phyllotaxis",
-  "run_id": "persona_telemetry_20260210_115159_r00",
-  "steps_logged": 400,
+  "run_id": "definitive",
+  "steps_logged": 4000,
   "max_abs_roll": 3.140239050244182,
-  "max_abs_pitch": 1.5291831997502434,
-  "upright_fraction": 0.0925,
+  "max_abs_pitch": 1.5338973518388406,
+  "upright_fraction": 0.10999999999999999,
   "delta": {
-    "dx": 9.723601744985203,
-    "dy": 13.337870469948962,
-    "dz": -1.0000100369582892
+    "dx": 9.723601601779325,
+    "dy": 13.33787136468065,
+    "dz": -1.00000003259795
   },
   "final_rpy": {
     "r": -1.5707963560029057,

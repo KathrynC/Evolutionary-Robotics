@@ -1,14 +1,14 @@
 {
   "variant_id": "92_borges_labyrinth",
-  "run_id": "persona_telemetry_20260210_115202_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 0.022312801248916023,
-  "max_abs_pitch": 0.2936573089030765,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 0.022553794580526823,
+  "max_abs_pitch": 0.2970258938036915,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": 11.174915959864832,
-    "dy": 2.4709853935177697,
-    "dz": 0.019730182192340795
+    "dx": 11.174915816658954,
+    "dy": 2.470986288249457,
+    "dz": 0.01974018655268006
   },
   "final_rpy": {
     "r": 4.1376801027121135e-06,

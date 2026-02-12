@@ -1,14 +1,14 @@
 {
   "variant_id": "57_evolved_sidewinder",
-  "run_id": "all_telemetry_20260210_121608_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 0.32275855268037695,
-  "max_abs_pitch": 0.41818034999802933,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 0.3286365648793245,
+  "max_abs_pitch": 0.4224098006827269,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": -3.9887751193620575,
-    "dy": -39.32331125969033,
-    "dz": -0.09523762103079525
+    "dx": -3.9887752625679354,
+    "dy": -39.323310364958644,
+    "dz": -0.09522761667045598
   },
   "final_rpy": {
     "r": -0.00687783813404186,

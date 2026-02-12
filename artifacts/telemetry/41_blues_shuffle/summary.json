@@ -1,14 +1,14 @@
 {
   "variant_id": "41_blues_shuffle",
-  "run_id": "all_telemetry_20260210_121607_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 0.35353228702816725,
-  "max_abs_pitch": 1.0256517906054423,
-  "upright_fraction": 0.9875,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 0.36338715009150324,
+  "max_abs_pitch": 1.0317075394975224,
+  "upright_fraction": 0.99575,
   "delta": {
-    "dx": 10.825332885767455,
-    "dy": 5.71049763480716,
-    "dz": 0.03387984140171518
+    "dx": 10.825332742561578,
+    "dy": 5.710498529538848,
+    "dz": 0.03388984576205445
   },
   "final_rpy": {
     "r": -9.260428832767305e-05,

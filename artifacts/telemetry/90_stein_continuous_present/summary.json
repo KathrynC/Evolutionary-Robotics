@@ -1,14 +1,14 @@
 {
   "variant_id": "90_stein_continuous_present",
-  "run_id": "persona_telemetry_20260210_115202_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 0.25673700281824946,
-  "max_abs_pitch": 0.6707972787333565,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 0.2581791382730946,
+  "max_abs_pitch": 0.6715331235298726,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": -0.6451031425599411,
-    "dy": 5.969166677706132,
-    "dz": -0.036685825681563866
+    "dx": -0.645103285765819,
+    "dy": 5.9691675724378195,
+    "dz": -0.0366758213212246
   },
   "final_rpy": {
     "r": 0.0005155200607582913,

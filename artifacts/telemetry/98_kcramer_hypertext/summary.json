@@ -1,14 +1,14 @@
 {
   "variant_id": "98_kcramer_hypertext",
-  "run_id": "persona_telemetry_20260210_112013_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 0.10309490431981148,
-  "max_abs_pitch": 0.6814414012522266,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 0.10313422027676689,
+  "max_abs_pitch": 0.6843567995528308,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": -18.724504105775047,
-    "dy": -4.657081137386261,
-    "dz": -0.18333167081180823
+    "dx": -18.724504248980924,
+    "dy": -4.657080242654573,
+    "dz": -0.18332166645146897
   },
   "final_rpy": {
     "r": -0.002382707772179046,

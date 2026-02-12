@@ -1,14 +1,14 @@
 {
   "variant_id": "74_dick_valis",
-  "run_id": "persona_telemetry_20260210_115201_r00",
-  "steps_logged": 400,
+  "run_id": "definitive",
+  "steps_logged": 4000,
   "max_abs_roll": 0.3771168422652263,
-  "max_abs_pitch": 0.643658099101142,
+  "max_abs_pitch": 0.6502026225096441,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": 23.742699480707973,
-    "dy": 15.190059421868229,
-    "dz": -0.3137892360747878
+    "dx": 23.742699337502096,
+    "dy": 15.190060316599917,
+    "dz": -0.31377923171444855
   },
   "final_rpy": {
     "r": 0.029280835398646295,

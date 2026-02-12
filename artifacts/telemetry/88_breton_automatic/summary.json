@@ -1,14 +1,14 @@
 {
   "variant_id": "88_breton_automatic",
-  "run_id": "persona_telemetry_20260210_115202_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 2.840596751157373,
-  "max_abs_pitch": 1.5106762855031521,
-  "upright_fraction": 0.0525,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 2.840653859834859,
+  "max_abs_pitch": 1.5577900844541308,
+  "upright_fraction": 0.06899999999999995,
   "delta": {
-    "dx": -2.8520964301124656,
-    "dy": -2.9883204004889627,
-    "dz": -1.0000100820852882
+    "dx": -2.8520965733183434,
+    "dy": -2.9883195057572753,
+    "dz": -1.000000077724949
   },
   "final_rpy": {
     "r": 1.5707959831763747,

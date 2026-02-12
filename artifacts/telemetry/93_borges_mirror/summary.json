@@ -1,14 +1,14 @@
 {
   "variant_id": "93_borges_mirror",
-  "run_id": "persona_telemetry_20260210_115202_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 0.0650616911400011,
-  "max_abs_pitch": 0.523066402991719,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 0.0651031833356802,
+  "max_abs_pitch": 0.5252725827161135,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": -21.6141848704407,
-    "dy": 3.0020291219105912,
-    "dz": -0.11709691143346257
+    "dx": -21.614185013646576,
+    "dy": 3.0020300166422786,
+    "dz": -0.1170869070731233
   },
   "final_rpy": {
     "r": -8.128433586736451e-05,

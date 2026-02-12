@@ -1,14 +1,14 @@
 {
   "variant_id": "108_pacino_godfather",
-  "run_id": "persona_telemetry_20260210_112014_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 0.1806124717544147,
-  "max_abs_pitch": 0.7391858263409076,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 0.18260862416852608,
+  "max_abs_pitch": 0.7470885883365845,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": 3.4045652280982464,
-    "dy": 2.2152809615610454,
-    "dz": 0.07250085311985566
+    "dx": 3.4045650848923685,
+    "dy": 2.2152818562927328,
+    "dz": 0.07251085748019492
   },
   "final_rpy": {
     "r": -0.002339939973041992,

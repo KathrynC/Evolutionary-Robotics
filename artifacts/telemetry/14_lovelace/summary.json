@@ -1,14 +1,14 @@
 {
   "variant_id": "14_lovelace",
-  "run_id": "persona_telemetry_20260210_115159_r00",
-  "steps_logged": 400,
+  "run_id": "definitive",
+  "steps_logged": 4000,
   "max_abs_roll": 0.08049712998220573,
-  "max_abs_pitch": 0.20762671172550787,
+  "max_abs_pitch": 0.2100701510923527,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": 3.9421916559113326,
-    "dy": 1.5112623056622352,
-    "dz": 0.3203337850438188
+    "dx": 3.9421915127054548,
+    "dy": 1.5112632003939228,
+    "dz": 0.3203437894041581
   },
   "final_rpy": {
     "r": 0.00956264814129531,

@@ -1,14 +1,14 @@
 {
   "variant_id": "59_fibonacci_self",
-  "run_id": "persona_telemetry_20260210_115159_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 0.04763058681805938,
-  "max_abs_pitch": 0.764641123969647,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 0.05027928593382629,
+  "max_abs_pitch": 0.7652397181680574,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": 7.184708629175795,
-    "dy": 2.4342613680558784,
-    "dz": -0.15507982138793475
+    "dx": 7.184708485969916,
+    "dy": 2.434262262787566,
+    "dz": -0.15506981702759548
   },
   "final_rpy": {
     "r": 0.007699344106317266,

@@ -1,14 +1,14 @@
 {
   "variant_id": "71_gallagher_multiplicative",
-  "run_id": "persona_telemetry_20260210_115200_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 0.2603136516692586,
-  "max_abs_pitch": 0.7548162150594402,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 0.26560055356667117,
+  "max_abs_pitch": 0.7610492222740949,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": -9.786158617416978,
-    "dy": -2.8958472134006668,
-    "dz": -0.11889543298345773
+    "dx": -9.786158760622856,
+    "dy": -2.8958463186689793,
+    "dz": -0.11888542862311846
   },
   "final_rpy": {
     "r": 0.0824973479676753,

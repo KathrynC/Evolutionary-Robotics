@@ -1,14 +1,14 @@
 {
   "variant_id": "45_spinner_stable",
-  "run_id": "all_telemetry_20260210_121607_r00",
-  "steps_logged": 400,
+  "run_id": "definitive",
+  "steps_logged": 4000,
   "max_abs_roll": 0.14895727500050093,
-  "max_abs_pitch": 0.49883742659144065,
+  "max_abs_pitch": 0.5060910697025149,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": -4.303587459999515,
-    "dy": 1.0793992190285264,
-    "dz": 0.047344053917366624
+    "dx": -4.3035876032053935,
+    "dy": 1.079400113760214,
+    "dz": 0.04735405827770589
   },
   "final_rpy": {
     "r": -0.13423802402632257,

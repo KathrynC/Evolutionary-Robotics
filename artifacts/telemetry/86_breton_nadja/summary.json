@@ -1,14 +1,14 @@
 {
   "variant_id": "86_breton_nadja",
-  "run_id": "persona_telemetry_20260210_115201_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 0.01627688323759102,
-  "max_abs_pitch": 0.32854919373320424,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 0.016781870685885585,
+  "max_abs_pitch": 0.3298403816421957,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": 12.300531076889008,
-    "dy": -2.7030181660391226,
-    "dz": 0.12162450782929168
+    "dx": 12.300530933683131,
+    "dy": -2.703017271307435,
+    "dz": 0.12163451218963095
   },
   "final_rpy": {
     "r": -6.650658984581835e-06,

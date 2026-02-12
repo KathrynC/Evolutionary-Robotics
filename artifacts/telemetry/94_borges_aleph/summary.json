@@ -1,14 +1,14 @@
 {
   "variant_id": "94_borges_aleph",
-  "run_id": "persona_telemetry_20260210_115202_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 0.19569529868603447,
-  "max_abs_pitch": 0.584340295862001,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 0.20464242034308558,
+  "max_abs_pitch": 0.5957953252851925,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": 3.414056434976229,
-    "dy": 8.276038601050187,
-    "dz": -0.3035800643618163
+    "dx": 3.414056291770351,
+    "dy": 8.276039495781875,
+    "dz": -0.303570060001477
   },
   "final_rpy": {
     "r": -0.03590470402926651,

@@ -1,14 +1,14 @@
 {
   "variant_id": "12_lorenz_A",
-  "run_id": "persona_telemetry_20260210_115158_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 0.0745330554899757,
-  "max_abs_pitch": 0.6642563902016944,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 0.07468888955293962,
+  "max_abs_pitch": 0.6679893071059038,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": -7.922887021220049,
-    "dy": -2.0859462216313602,
-    "dz": -0.13040749149827557
+    "dx": -7.922887164425927,
+    "dy": -2.085945326899673,
+    "dz": -0.1303974871379363
   },
   "final_rpy": {
     "r": -0.0133204284753316,

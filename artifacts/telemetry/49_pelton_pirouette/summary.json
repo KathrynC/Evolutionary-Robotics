@@ -1,14 +1,14 @@
 {
   "variant_id": "49_pelton_pirouette",
-  "run_id": "all_telemetry_20260210_121607_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 0.259623106240799,
-  "max_abs_pitch": 0.690262683765335,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 0.2708346703930964,
+  "max_abs_pitch": 0.7066585303601871,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": 11.117155865456844,
-    "dy": 1.054528232423501,
-    "dz": -0.19268679466748462
+    "dx": 11.117155722250967,
+    "dy": 1.0545291271551887,
+    "dz": -0.19267679030714535
   },
   "final_rpy": {
     "r": 0.07673271312794296,

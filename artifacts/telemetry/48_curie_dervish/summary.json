@@ -1,14 +1,14 @@
 {
   "variant_id": "48_curie_dervish",
-  "run_id": "all_telemetry_20260210_121607_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 0.33652156449292814,
-  "max_abs_pitch": 0.610602152040385,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 0.33721478839263874,
+  "max_abs_pitch": 0.6179061711328357,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": 24.073188832069953,
-    "dy": -20.162262667341054,
-    "dz": -0.20913667082198417
+    "dx": 24.073188688864075,
+    "dy": -20.162261772609366,
+    "dz": -0.2091266664616449
   },
   "final_rpy": {
     "r": 0.05870555256368963,

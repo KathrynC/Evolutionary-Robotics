@@ -1,14 +1,14 @@
 {
   "variant_id": "19_haraway",
-  "run_id": "persona_telemetry_20260210_115159_r00",
-  "steps_logged": 400,
+  "run_id": "definitive",
+  "steps_logged": 4000,
   "max_abs_roll": 0.21590340638018746,
-  "max_abs_pitch": 0.9598800793743203,
+  "max_abs_pitch": 0.9649907614870079,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": 3.891052923393122,
-    "dy": 0.3862542509597646,
-    "dz": 0.08821820676665304
+    "dx": 3.8910527801872443,
+    "dy": 0.38625514569145225,
+    "dz": 0.0882282111269923
   },
   "final_rpy": {
     "r": 4.380475680817648e-05,

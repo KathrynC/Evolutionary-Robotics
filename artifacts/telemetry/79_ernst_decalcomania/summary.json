@@ -1,14 +1,14 @@
 {
   "variant_id": "79_ernst_decalcomania",
-  "run_id": "persona_telemetry_20260210_115201_r00",
-  "steps_logged": 400,
+  "run_id": "definitive",
+  "steps_logged": 4000,
   "max_abs_roll": 0.07928548195143911,
-  "max_abs_pitch": 0.45989291512103564,
+  "max_abs_pitch": 0.46223852307807944,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": 0.7927831379747559,
-    "dy": -2.7034098421803128,
-    "dz": -0.00957001521975931
+    "dx": 0.7927829947688779,
+    "dy": -2.7034089474486254,
+    "dz": -0.009560010859420043
   },
   "final_rpy": {
     "r": 6.847770798731205e-05,

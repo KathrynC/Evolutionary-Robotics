@@ -1,14 +1,14 @@
 {
   "variant_id": "81_deleuze_bwo",
-  "run_id": "persona_telemetry_20260210_115201_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 0.05051577477887383,
-  "max_abs_pitch": 0.5378784183276692,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 0.05081783010593471,
+  "max_abs_pitch": 0.5381762952514352,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": -21.610560629597455,
-    "dy": 2.3960334756312087,
-    "dz": -0.016326132696014906
+    "dx": -21.610560772803332,
+    "dy": 2.396034370362896,
+    "dz": -0.01631612833567564
   },
   "final_rpy": {
     "r": 8.834935880839983e-05,

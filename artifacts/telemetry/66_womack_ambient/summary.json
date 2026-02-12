@@ -1,14 +1,14 @@
 {
   "variant_id": "66_womack_ambient",
-  "run_id": "persona_telemetry_20260210_115200_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 0.3069574184441522,
-  "max_abs_pitch": 0.5470199798468088,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 0.3070853330521752,
+  "max_abs_pitch": 0.5554814052170933,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": 3.2522356616420485,
-    "dy": 4.057859903094919,
-    "dz": -0.0008957540455341029
+    "dx": 3.2522355184361706,
+    "dy": 4.057860797826607,
+    "dz": -0.0008857496851948365
   },
   "final_rpy": {
     "r": 0.00016025351453889263,

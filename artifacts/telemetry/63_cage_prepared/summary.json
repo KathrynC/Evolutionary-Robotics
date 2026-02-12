@@ -1,14 +1,14 @@
 {
   "variant_id": "63_cage_prepared",
-  "run_id": "persona_telemetry_20260210_115200_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 0.3487563725908639,
-  "max_abs_pitch": 0.6267889876674515,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 0.35037824626778813,
+  "max_abs_pitch": 0.6438589971809623,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": -9.968721668205728,
-    "dy": 15.38730827859589,
-    "dz": 0.11546049953282056
+    "dx": -9.968721811411605,
+    "dy": 15.387309173327578,
+    "dz": 0.11547050389315983
   },
   "final_rpy": {
     "r": -0.05926036605813757,

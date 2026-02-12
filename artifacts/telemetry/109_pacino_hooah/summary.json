@@ -1,14 +1,14 @@
 {
   "variant_id": "109_pacino_hooah",
-  "run_id": "persona_telemetry_20260210_112014_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 0.20666222581883414,
-  "max_abs_pitch": 0.8334034054313086,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 0.20899811501573798,
+  "max_abs_pitch": 0.8388217714723454,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": 5.153502570914607,
-    "dy": -1.191517668009583,
-    "dz": -0.13356509469023048
+    "dx": 5.1535024277087285,
+    "dy": -1.1915167732778953,
+    "dz": -0.1335550903298912
   },
   "final_rpy": {
     "r": 0.02667347186729884,

@@ -1,14 +1,14 @@
 {
   "variant_id": "78_ernst_celebes",
-  "run_id": "persona_telemetry_20260210_115201_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 0.009278062443559238,
-  "max_abs_pitch": 0.27886693205189694,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 0.011279484133884462,
+  "max_abs_pitch": 0.284207886465289,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": 3.4749182837091883,
-    "dy": 5.986464874570101,
-    "dz": -0.21400898999139417
+    "dx": 3.4749181405033105,
+    "dy": 5.986465769301788,
+    "dz": -0.2139989856310549
   },
   "final_rpy": {
     "r": -2.2114681797908236e-05,

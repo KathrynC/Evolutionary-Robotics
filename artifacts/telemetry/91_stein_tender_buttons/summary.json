@@ -1,14 +1,14 @@
 {
   "variant_id": "91_stein_tender_buttons",
-  "run_id": "persona_telemetry_20260210_115202_r00",
-  "steps_logged": 400,
+  "run_id": "definitive",
+  "steps_logged": 4000,
   "max_abs_roll": 0.18310892969804282,
-  "max_abs_pitch": 0.6469751121434313,
+  "max_abs_pitch": 0.6481053459725011,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": -10.776893563363426,
-    "dy": -4.195158924102618,
-    "dz": -0.15704426392408988
+    "dx": -10.776893706569304,
+    "dy": -4.19515802937093,
+    "dz": -0.1570342595637506
   },
   "final_rpy": {
     "r": -0.007901123712173379,

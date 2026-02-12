@@ -1,14 +1,14 @@
 {
   "variant_id": "75_dick_replicant",
-  "run_id": "persona_telemetry_20260210_115201_r00",
-  "steps_logged": 400,
+  "run_id": "definitive",
+  "steps_logged": 4000,
   "max_abs_roll": 0.3774369583462258,
-  "max_abs_pitch": 0.6058035206195518,
+  "max_abs_pitch": 0.6159127049672922,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": -3.467173520918292,
-    "dy": -2.0039788183359106,
-    "dz": 0.10156572730447544
+    "dx": -3.4671736641241697,
+    "dy": -2.003977923604223,
+    "dz": 0.1015757316648147
   },
   "final_rpy": {
     "r": 0.3628474643192569,

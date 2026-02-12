@@ -1,14 +1,14 @@
 {
   "variant_id": "18_curie",
-  "run_id": "persona_telemetry_20260210_115159_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 0.26369345588072923,
-  "max_abs_pitch": 0.647377207416602,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 0.2639521647367813,
+  "max_abs_pitch": 0.6538896923306566,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": 23.72768763061255,
-    "dy": 0.04522795471042208,
-    "dz": -0.0775437928187761
+    "dx": 23.727687487406673,
+    "dy": 0.0452288494421097,
+    "dz": -0.07753378845843684
   },
   "final_rpy": {
     "r": 0.05793595013884905,

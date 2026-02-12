@@ -1,14 +1,14 @@
 {
   "variant_id": "83_foucault_heterotopia",
-  "run_id": "persona_telemetry_20260210_115201_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 0.03826514912410001,
-  "max_abs_pitch": 0.2571947654621081,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 0.038670079210319175,
+  "max_abs_pitch": 0.26320664181561276,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": 15.134163809497043,
-    "dy": 0.6100720428060447,
-    "dz": -0.018393592617733212
+    "dx": 15.134163666291165,
+    "dy": 0.6100729375377323,
+    "dz": -0.018383588257393946
   },
   "final_rpy": {
     "r": 0.003531903108775073,

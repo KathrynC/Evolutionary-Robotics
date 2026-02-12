@@ -1,14 +1,14 @@
 {
   "variant_id": "10_tesla_3phase",
-  "run_id": "persona_telemetry_20260210_115158_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 3.1325484860729422,
-  "max_abs_pitch": 1.3624894006307124,
-  "upright_fraction": 0.77,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 3.1414764422268813,
+  "max_abs_pitch": 1.3749579239381546,
+  "upright_fraction": 0.783,
   "delta": {
-    "dx": -18.328515101273805,
-    "dy": 15.485500218768312,
-    "dz": -0.5397880772974837
+    "dx": -18.328515244479682,
+    "dy": 15.4855011135,
+    "dz": -0.5397780729371444
   },
   "final_rpy": {
     "r": -1.3375758092063974,

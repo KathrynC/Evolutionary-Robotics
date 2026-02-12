@@ -1,14 +1,14 @@
 {
   "variant_id": "2_rucker",
-  "run_id": "persona_telemetry_20260210_115159_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 0.18368089515171537,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 0.19217472426636106,
   "max_abs_pitch": 0.4200140706445938,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": -6.936004950003745,
-    "dy": 9.414204958175814,
-    "dz": 0.4105077379044917
+    "dx": -6.936005093209623,
+    "dy": 9.414205852907502,
+    "dz": 0.41051774226483095
   },
   "final_rpy": {
     "r": -0.0005762603840049122,

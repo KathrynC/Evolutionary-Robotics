@@ -1,14 +1,14 @@
 {
   "variant_id": "24_wolfram_flipped",
-  "run_id": "all_telemetry_20260210_121606_r00",
-  "steps_logged": 400,
-  "max_abs_roll": 0.12147160318364378,
-  "max_abs_pitch": 0.7366054332157687,
+  "run_id": "definitive",
+  "steps_logged": 4000,
+  "max_abs_roll": 0.12163723849868119,
+  "max_abs_pitch": 0.7385138538804924,
   "upright_fraction": 1.0,
   "delta": {
-    "dx": -3.687956518598774,
-    "dy": 0.04144598320525076,
-    "dz": -0.1748233414751701
+    "dx": -3.6879566618046518,
+    "dy": 0.041446877936938374,
+    "dz": -0.17481333711483082
   },
   "final_rpy": {
     "r": -0.00010798810915293723,
