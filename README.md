@@ -454,6 +454,52 @@ Gaits fall into three sensitivity classes based on how their behavior changes wi
 | Knife-edge | 32_carry_trade | 1340 | High performance, high fragility |
 | Yaw powder keg | 1_original | 17149 (yaw) | Tiny changes cause massive rotation changes |
 
+## What Gaitspace Tells Us
+
+The 116-gait atlas, read as a whole, raises questions that reach beyond robotics into philosophy of mind, dynamical systems theory, and the epistemology of biological modeling.
+
+### The body speaks louder than the brain
+
+Every gait in the zoo — regardless of topology, synapse count, or category — is dominated by roll-axis rotation. The PCA of angular velocity covariance puts the first principal component firmly on the roll axis across all 116 gaits. This is not a property of any particular neural network; it is a property of the body. A three-link robot with lateral hinge joints and no active roll control simply *must* rock side to side whenever it moves. The brain can choose how fast, how far, and in what direction — but the fundamental rotational signature is dictated by morphology before a single synapse fires.
+
+This is embodied cognition in miniature. The body is not a passive vessel that the controller fills with behavior; it is a filter that constrains the space of possible behaviors before the controller acts. The neural network explores the behavioral landscape, but the landscape itself is carved by link lengths, joint axes, mass distribution, and ground friction. Any theory of locomotion in this system that treats the controller in isolation is incomplete — the body is the first and most powerful "synapse."
+
+### Behavior space is not a space
+
+Classical intuition suggests that small changes to parameters produce small changes in behavior — that gaitspace should be a smooth manifold one could traverse continuously. The zoo provides a sharp counterexample. Gaits 43 and 44 share identical topology (hidden-layer half-center oscillator, same neuron layout) and differ only in the learned weight values. Yet 43 is the CPG Champion — the fastest, most efficient gait in the entire zoo — while 44 is the Spinner Champion, a gait that rotates in place and barely translates at all. Same architecture, opposite behavioral regimes.
+
+This is bifurcation, not interpolation. The mapping from weight space to behavior space is riddled with cliffs, folds, and discontinuities. There is no smooth path from "fastest forward walker" to "rotates in place" — there is a critical boundary in parameter space where the attractor type itself changes. This means that any search through weight space (evolutionary, gradient-based, or random) must contend with a landscape that is fundamentally non-convex and potentially fractal in its sensitivity structure. Gaitspace is less a rolling landscape and more a shattered mirror, each shard reflecting a qualitatively different dynamical regime.
+
+### Phase locking as a phase transition
+
+The distribution of phase lock scores across all 116 gaits is strikingly bimodal: gaits cluster near 0 (unlocked, phase drifts freely) or near 1 (tightly locked, legs maintain fixed phase relationship), with very few in between. This is the signature of a critical phenomenon. Phase locking is not a quantity that gaits accumulate gradually; it is a regime that a gait either falls into or does not, much like a physical phase transition between disordered and ordered states.
+
+The bimodality suggests that the 6-weight (or 10-weight) parameter space contains a critical surface — a boundary where the system transitions between phase-locked and phase-free dynamics. Most randomly sampled weight configurations land clearly on one side or the other. The rarity of intermediate phase lock scores means the transition is sharp, not gradual. This is reminiscent of synchronization transitions in coupled oscillator theory (Kuramoto models), but here it emerges from a minimal neural network driving a physical body through intermittent ground contact. The physics of foot strikes may itself act as a coupling mechanism that either reinforces or disrupts inter-joint phase coherence.
+
+### Entropy is orthogonal to function
+
+Contact entropy — the Shannon entropy of the 8-state contact pattern distribution (each state a 3-bit vector of which links touch the ground) — shows near-zero correlation with speed, phase lock, and efficiency. A gait can be fast with high entropy or fast with low entropy. It can be phase-locked and high-entropy or phase-locked and low-entropy. This independence is surprising because one might expect that "better" gaits would have more structured (lower entropy) contact patterns.
+
+What this reveals is that contact entropy measures something genuinely orthogonal to performance: the *complexity of the ground interaction strategy*, not its quality. A gait that uses all 8 contact states roughly equally (high entropy) is not better or worse than one that concentrates on 2 or 3 states (low entropy) — it is *different in kind*. This suggests that locomotion performance is determined more by the temporal coordination of contacts (captured by phase locking and transition structure) than by the diversity of contact states visited. The alphabet size does not determine the meaning of the sentence.
+
+### The speed–efficiency frontier and the CPG question
+
+The Pareto frontier between speed and efficiency is thin and telling. At one end sits Fuller Dymaxion (gait 7): a minimal 6-synapse network achieving moderate speed at very low energy cost — the hybrid car of the zoo. At the other end sits the CPG Champion (gait 43): a hidden-layer half-center oscillator that generates its own clock signal (a Central Pattern Generator, or CPG) through reciprocal inhibition between hidden neurons, achieving the highest speed and the best efficiency simultaneously.
+
+A CPG is a neural circuit that produces rhythmic output without requiring rhythmic input. In biological organisms, CPGs in the spinal cord generate the basic locomotion rhythm; sensory feedback modulates but does not create the pattern. In gait 43, the hidden neurons form exactly this kind of circuit: they oscillate autonomously, and the motor neurons are driven by this internal clock rather than by raw sensor values. The result is a gait that is both fast and efficient — the internal oscillator finds a resonant frequency that matches the body's natural dynamics, extracting maximum displacement per unit of work.
+
+That the most efficient gait in the zoo is also the one that has *internalized its own timing* is a deep result. It suggests that the transition from reactive control (sensor-driven) to generative control (CPG-driven) is not merely an architectural choice but a performance boundary. The body has a natural frequency; a controller that discovers and exploits that frequency — rather than fighting it with moment-to-moment sensor corrections — achieves qualitatively superior locomotion.
+
+### Naming and legibility
+
+That so many gaits have persona names — Curie, Haraway, Fuller, Borges, Lamarr, Grünbaum — is not mere whimsy. It reflects something real about the structure of gaitspace: many of these gaits are legible. They have recognizable character. When a human watches gait 17 (Lamarr) tumble chaotically across the ground, or gait 7 (Fuller) glide with minimal effort, or gait 43 (CPG Champion) stride with metronomic precision, the behavioral differences are immediately apparent and nameable. The naming convention is an implicit claim that the gaits are not interchangeable points in a continuous space but distinct behavioral individuals — and the analytics bear this out.
+
+### Cartography before theory
+
+The Synapse Gait Zoo is, at this stage, an empirical atlas. It maps the territory of what a minimal body-brain system can do, and the Beer-framework analytics provide coordinates for that map. But an atlas is not a theory. The findings — roll dominance, phase lock bimodality, entropy independence, bifurcation sensitivity, CPG superiority — are empirical regularities waiting for theoretical unification.
+
+The situation is not unlike Tycho Brahe's star catalogs before Kepler: meticulous observations that clearly contain deep structure, but whose governing laws have not yet been written down. The zoo tells us *what* gaitspace looks like. The next question is *why* it looks that way — what minimal dynamical model predicts the bimodal phase lock distribution, what property of the body-ground interaction makes entropy orthogonal to performance, what theorem connects CPG resonance to Pareto optimality. The data is rich enough to constrain such a theory. The theory itself remains ahead.
+
 ## Setup
 
 ```bash
