@@ -16,7 +16,8 @@ Design goals:
 Recorded signals (per sampled step):
     - base position (x, y, z)
     - base orientation (roll, pitch, yaw)
-    - contact count
+    - contact count (aggregate) + per-link contact booleans [Torso, BackLeg, FrontLeg]
+    - base linear velocity (vx, vy, vz) and angular velocity (wx, wy, wz)
     - joint states: position, velocity, and applied torque estimate (tau)
 
 tools/telemetry/logger.py
@@ -187,10 +188,30 @@ class TelemetryLogger:
         except Exception:
             pass
 
-        # Contact count
+        # Per-link contacts: [Torso(-1), BackLeg(0), FrontLeg(1)]
         contact_n = 0
+        link_contacts = [False, False, False]
         try:
-            contact_n = len(p.getContactPoints(bodyA=self.robot_id))
+            contacts = p.getContactPoints(bodyA=self.robot_id)
+            contact_n = len(contacts)
+            for cp in contacts:
+                link_idx = cp[3]  # linkIndexA on our robot
+                if link_idx == -1:
+                    link_contacts[0] = True   # Torso
+                elif link_idx == 0:
+                    link_contacts[1] = True   # BackLeg
+                elif link_idx == 1:
+                    link_contacts[2] = True   # FrontLeg
+        except Exception:
+            pass
+
+        # Base velocity (linear + angular)
+        lin_vel = [0.0, 0.0, 0.0]
+        ang_vel = [0.0, 0.0, 0.0]
+        try:
+            lv, av = p.getBaseVelocity(self.robot_id)
+            lin_vel = [float(lv[0]), float(lv[1]), float(lv[2])]
+            ang_vel = [float(av[0]), float(av[1]), float(av[2])]
         except Exception:
             pass
 
@@ -199,6 +220,9 @@ class TelemetryLogger:
             "base": {"x": pos[0], "y": pos[1], "z": pos[2]},
             "rpy": {"r": float(roll), "p": float(pitch), "y": float(yaw)},
             "contacts": contact_n,
+            "link_contacts": link_contacts,
+            "vel": {"vx": lin_vel[0], "vy": lin_vel[1], "vz": lin_vel[2]},
+            "ang_vel": {"wx": ang_vel[0], "wy": ang_vel[1], "wz": ang_vel[2]},
             "joints": joints,
         }
         self._fp.write(json.dumps(rec) + "\n")
