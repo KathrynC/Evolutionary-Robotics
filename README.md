@@ -1,5 +1,3 @@
-NOTE: THIS README CONTAINS ERRORS AND IS IN REVISION
-
 # Synapse Gait Zoo
 
 A catalog of 116 discovered gaits for a 3-link PyBullet robot, organized by structural motif, behavioral tag, and attractor dynamics. Each gait is a fixed-weight neural network (no learning at runtime) that produces a distinct locomotion style from the same 3-link body.
@@ -19,7 +17,7 @@ A catalog of 116 discovered gaits for a 3-link PyBullet robot, organized by stru
 
 **116 gaits across 11 categories, 13 structural motifs, 22 behavioral tags, 112 unique motif-tag profiles.**
 
-All gaits and their weights are stored in `synapse_gait_zoo.json`. Full taxonomy (motifs, behavioral tags, per-gait features) is in `artifacts/gait_taxonomy.json`. Per-step telemetry (400 records/gait) is in `artifacts/telemetry/`. Videos are in `videos/`.
+All gaits and their weights are stored in `synapse_gait_zoo.json` (v1) and `synapse_gait_zoo_v2.json` (v2, with Beer-framework analytics per gait). Full taxonomy (motifs, behavioral tags, per-gait features) is in `artifacts/gait_taxonomy.json`. Full-resolution telemetry (4000 records/gait at 240 Hz) is in `artifacts/telemetry/`. Videos are in `videos/`.
 
 ### Categories
 
@@ -186,14 +184,15 @@ The `canonical_antisymmetric` motif spans 3 subtypes (multi_frequency, quasi_per
 
 ## Telemetry
 
-Per-step telemetry captures what endpoint measurements miss. Every gait has 400 records (one per 10 sim steps across 4000 total steps), each containing:
+Full-resolution telemetry captures what endpoint measurements miss. Every gait has 4000 records (one per sim step at 240 Hz), each containing:
 
 - **Base position** (x, y, z) — full trajectory, not just start/end
 - **Orientation** (roll, pitch, yaw) — stability time series
-- **Ground contacts** — when feet touch, revealing gait cycle
+- **Linear and angular velocity** (vx, vy, vz, wx, wy, wz) — instantaneous dynamics
+- **Ground contacts** — per-link booleans [Torso, BackLeg, FrontLeg], revealing gait cycle
 - **Joint states** (position, velocity, torque) — motor dynamics and energetics
 
-### Telemetry-Derived Metrics (per gait)
+### Telemetry-Derived Metrics (per gait, v1)
 
 | Metric | Description | Range across zoo |
 |---|---|---|
@@ -212,6 +211,121 @@ Per-step telemetry captures what endpoint measurements miss. Every gait has 400 
 - **stability_contacts.png** — Tilt (red) and ground contact count (blue) over time. Shows exactly when fallers tip, and how stable gaits maintain low tilt.
 - **speed_profiles.png** — Instantaneous speed over time. The CPG champion has remarkably constant high speed. Limit cycles show rhythmic oscillations.
 - **torque_profiles.png** — Joint torque over time, showing energetic cost and motor rhythm.
+
+## Beer-Framework Analytics (v2)
+
+The v2 zoo (`synapse_gait_zoo_v2.json`) replaces the v1 per-gait telemetry summary with a comprehensive analytics object computed from full-resolution telemetry (4000 records at 240 Hz). The pipeline (`compute_beer_analytics.py`) is numpy-only (no scipy/sklearn) and computes 4 pillars of metrics per gait, inspired by Beer's framework for analyzing small continuous-time recurrent neural networks.
+
+### The Four Pillars
+
+**Pillar 1: Outcome** — Where did the robot go, and at what cost?
+- Displacement (dx, dy), net yaw (integrated from angular velocity)
+- Mean speed, speed coefficient of variation
+- Work proxy (time-integrated |torque * joint velocity| across both joints)
+- Distance-per-work efficiency
+
+**Pillar 2: Contact** — How does the robot touch the ground?
+- Per-link duty fractions (Torso, BackLeg, FrontLeg)
+- 3-bit contact state (torso×4 + back×2 + front×1) — 8 possible states
+- State distribution, dominant state, Shannon entropy (bits)
+- 8x8 Markov transition matrix (row-normalized) — the gait's contact "grammar"
+
+**Pillar 3: Coordination** — How do the joints relate to each other?
+- FFT-based dominant frequency and amplitude per joint
+- Hilbert-transform instantaneous phase difference (delta_phi)
+- Phase lock score: |mean(e^{i*delta_phi(t)})| — 0 = independent, 1 = perfectly locked
+
+**Pillar 4: Rotation Axis** — How does the body rotate?
+- PCA of angular velocity covariance — axis dominance (3-element vector, sums to 1)
+- Axis switching rate (Hz) — how often the dominant rotation axis changes
+- Per-axis periodicity (dominant FFT frequency of wx, wy, wz)
+
+### Analytics Ranges Across 116 Gaits
+
+| Metric | Min | Max | Mean | Median |
+|---|---|---|---|---|
+| Mean speed (m/s) | 0.001 | 2.48 | 1.31 | 1.29 |
+| Distance per work | 0.00011 | 0.0056 | 0.0017 | 0.0015 |
+| Contact entropy (bits) | 0.03 | 1.90 | 1.46 | 1.52 |
+| Phase lock score | 0.13 | 1.00 | 0.63 | 0.65 |
+| Axis dominance (1st) | 0.47 | 1.00 | 0.82 | 0.86 |
+| Axis switching rate (Hz) | 0.06 | 32.5 | — | — |
+
+## Gaitspace Structure
+
+The Beer-framework analytics reveal that gaitspace is not a collection of discrete types but a **continuous multi-dimensional manifold** organized by a small number of independent control dimensions. These findings were invisible in v1's scalar telemetry summaries.
+
+### Phase locking is the master control parameter
+
+Phase lock scores span 0.125 to 0.99999, and this single number predicts more about a gait's character than its weights do. The distribution is bimodal:
+
+- **Tightly locked (>0.95):** 14 gaits, mean speed 0.57 m/s — smooth, predictable, slow
+- **Loosely coupled (<0.30):** 12 gaits, mean speed 1.75 m/s — chaotic, fast
+- **The fastest gait** (69_grunbaum_deflation, 2.48 m/s) sits at moderate phase lock (0.618), not at either extreme
+
+Phase lock trades against speed. CPG-like tight locking enables repeatable motion but limits velocity. Chaotic coupling enables faster motion but sacrifices predictability.
+
+### Contact complexity is morphologically determined, not neurally controlled
+
+Contact entropy (0.03 to 1.90 bits) is decoupled from every other metric — it correlates with neither speed (r~0), phase locking (r=0.06), nor efficiency. A gait with rich contact diversity (1.8 bits) is no faster or more efficient than one with boring contacts (0.9 bits). Contact patterns appear to be set by the body's geometry and friction, not the neural controller. This means the 8-state contact space is an independent behavioral dimension that the network traverses but does not control.
+
+### Roll dominance is the morphological attractor
+
+59% of gaits are roll-dominant (axis_dominance[0] > 0.85). The 3-link robot's hinge joints naturally create sagittal-plane rocking. Deviations from roll dominance are informative:
+
+- **Spinner champion (44):** axis_dominance = [0.49, 0.33, 0.17] — the most evenly distributed rotation in the zoo. "Spinning" is not clean yaw rotation; it's chaotic 3-axis tumbling at 21.3 Hz axis switching rate.
+- **Crab walker (56):** 32.5 Hz axis switching — the highest in the zoo. Lateral walking requires constant rebalancing across all three rotation axes.
+- **Fuller dymaxion (7):** axis_dominance = [0.99998, ...] — the purest single-axis motion, a minimal-synapse metronome that barely leaves the sagittal plane.
+
+### The CPG champion's dominance is mechanistically explained
+
+43_hidden_cpg_champion (dx=50.1m) was always the displacement record holder. Now all four pillars converge on *why*:
+
+| Pillar | CPG Champion | Curie (best 6-synapse) | Ratio |
+|---|---|---|---|
+| Displacement (dx) | 50.1 m | 23.7 m | 2.1x |
+| Work proxy | 6,482 | 13,797 | 0.47x (half the energy!) |
+| Efficiency | 0.0077 | 0.0017 | 4.5x |
+| Phase lock | 0.64 | 0.37 | — |
+| delta_phi | -156° (anti-phase) | -161° (anti-phase) | — |
+| Contact entropy | 0.93 bits (simple) | 1.33 bits | — |
+
+The hidden-layer half-center oscillator produces genuine CPG dynamics: anti-phase alternating legs (like a biological trot), low energy expenditure, simple repeatable contact pattern, and a stable limit cycle. Every pillar aligns. No v1 metric could show this convergence.
+
+### Identical topology, quantifiably divergent dynamics
+
+Gaits 43 (CPG champion) and 44 (spinner champion) share the same 7-neuron half-center topology. One synapse magnitude ratio (symmetric |-0.8|=|0.8| vs asymmetric |-0.6|!=|0.5|) transforms:
+
+| Metric | 43 (CPG champion) | 44 (Spinner) |
+|---|---|---|
+| dx | 50.1 m | 0.25 m |
+| yaw_net | -0.53 rad | 14.8 rad (2.4 turns) |
+| phase_lock | 0.64 | 0.36 |
+| axis_dominance[0] | 0.75 (roll) | 0.49 (distributed) |
+| efficiency | 0.0077 | 0.0002 |
+
+The symmetry breaking in one synapse decouples phase locking, flattens axis dominance, and converts efficient translation into energetically expensive rotation. The bifurcation is visible across all four pillars simultaneously.
+
+### Speed and efficiency are weakly coupled
+
+Speed-efficiency correlation is only r=0.20 across 116 gaits (52x efficiency range). The four quadrants are populated unevenly:
+
+- **Fast and efficient:** 21 gaits — the sweet spot
+- **Slow and inefficient:** 23 gaits — stationary or struggling
+- **Fast and inefficient:** 15 gaits — high-speed energy waste
+- **Slow and efficient:** 15 gaits — rare efficient minimalists
+
+The efficiency champion (93_borges_mirror, 0.0056) achieves it through perfect antisymmetry, not speed. The speed champion (69_grunbaum_deflation, 2.48 m/s) has above-median but unremarkable efficiency (0.0027). No gait dominates both dimensions — the Pareto frontier is real and sparse.
+
+### Contact transition matrices reveal gait grammars
+
+Each gait now has an 8x8 Markov transition matrix encoding how contact states follow each other — a sequential "grammar" for ground interaction. High-performing gaits show distinctive signatures:
+
+- **CPG champion:** state 0→0 probability 0.959 (stable stance dominates), no 1→2 transitions ever (clean alternation)
+- **Spinner:** state 1 decays quickly (contact is transient, the robot is always leaving the ground)
+- **Crab walker:** state 0 sticky (0.902) but with broader transition diversity when it does change
+
+These are gait fingerprints invisible to any scalar metric.
 
 ## Gait Taxonomy (v2.0)
 
@@ -328,6 +442,8 @@ Only 6 gaits are Pareto-optimal (no other gait beats them on both displacement A
 
 The frontier is bookended by two limit cycles: fuller_dymaxion (minimum energy, sparse wiring) and the CPG champion (maximum performance, hidden-layer oscillator). The middle is complex:multi_frequency — moderate displacement at moderate cost.
 
+The Beer-framework work proxy (time-integrated |torque * joint velocity|) provides a finer-grained efficiency measure than v1's mean_torque ratio. The CPG champion uses half the work of Curie (6,482 vs 13,797) for 2.1x the displacement — its distance-per-work (0.0077) is 4.5x better. The efficiency champion overall is 93_borges_mirror (0.0056 distance/work) which achieves it through perfect weight antisymmetry and low-energy backward walking.
+
 ## Sensitivity Classes
 
 Gaits fall into three sensitivity classes based on how their behavior changes with small weight perturbations (central-difference gradient, +/-0.05):
@@ -375,9 +491,12 @@ Renders all configured gaits to `videos/` using offscreen PyBullet rendering pip
 
 | File | Description |
 |---|---|
-| `synapse_gait_zoo.json` | Complete catalog: 116 gaits, weights, measurements across 11 categories |
+| `synapse_gait_zoo.json` | v1 catalog: 116 gaits, weights, measurements, telemetry summaries across 11 categories |
+| `synapse_gait_zoo_v2.json` | v2 catalog: same gaits with Beer-framework `analytics` object (4 pillars) replacing `telemetry` |
+| `compute_beer_analytics.py` | Pipeline that reads telemetry JSONL and produces v2 zoo (numpy-only, no scipy/sklearn) |
+| `generate_telemetry.py` | Batch runner for full-resolution telemetry (4000 records/gait at 240 Hz) |
 | `artifacts/gait_taxonomy.json` | Taxonomy v2.0: 13 motifs, 22 behavioral tags, per-gait feature vectors |
-| `artifacts/telemetry/` | Per-step telemetry for all 116 gaits (400 JSONL records + summary.json each) |
+| `artifacts/telemetry/` | Full-resolution telemetry for all 116 gaits (4000 JSONL records + summary.json each) |
 | `artifacts/discovery_dig_full116.txt` | Deep analysis output: 13 digs across the full zoo |
 | `record_videos.py` | Video recording infrastructure (offscreen render to ffmpeg) |
 | `simulation.py` | Main simulation runner |

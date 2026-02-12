@@ -28,6 +28,14 @@ HEADLESS=1 python3 simulate.py
 # Run with telemetry
 HEADLESS=1 TELEMETRY=1 TELEMETRY_VARIANT_ID=my_gait TELEMETRY_RUN_ID=run0 python3 simulate.py
 
+# Generate full-resolution telemetry for all 116 zoo gaits (4000 records each @ 240 Hz)
+python3 generate_telemetry.py              # all gaits
+python3 generate_telemetry.py --gait 18_curie  # single gait
+python3 generate_telemetry.py --dry-run    # preview without running
+
+# Compute Beer-framework analytics from telemetry → synapse_gait_zoo_v2.json
+python3 compute_beer_analytics.py
+
 # Record videos for configured gaits (offscreen render via ffmpeg)
 python3 record_videos.py
 
@@ -76,12 +84,26 @@ Synapse weight naming convention: `wXY` means source neuron X -> target neuron Y
 
 `tools/telemetry/logger.py` records per-step JSONL data (position, orientation, contacts, joint states) sampled every N steps. Produces `telemetry.jsonl` + `summary.json` per run. Controlled by env vars: `TELEMETRY=1`, `TELEMETRY_EVERY`, `TELEMETRY_OUT`, `TELEMETRY_VARIANT_ID`, `TELEMETRY_RUN_ID`.
 
+`generate_telemetry.py` is the batch runner that produces full-resolution telemetry (every=1, 4000 records per gait at 240 Hz) for all 116 zoo gaits. It writes brain.nndf per gait, runs a headless simulation, and saves to `artifacts/telemetry/<gait_name>/`. Backs up and restores brain.nndf.
+
+### Beer-Framework Analytics Pipeline
+
+`compute_beer_analytics.py` reads all 116 telemetry JSONL files and computes 4 pillars of metrics per gait:
+
+1. **Outcome** — displacement (dx, dy), yaw, speed stats, work proxy, distance-per-work efficiency
+2. **Contact** — per-link duty fractions, 3-bit contact state distribution (8 states), Shannon entropy, 8×8 transition matrix
+3. **Coordination** — FFT-based dominant frequency/amplitude per joint, Hilbert-transform phase difference, phase-lock score
+4. **Rotation axis** — PCA of angular velocity covariance (axis dominance), axis switching rate, per-axis periodicity
+
+Output: `synapse_gait_zoo_v2.json` — preserves all v1 gait fields but replaces `telemetry` with a comprehensive `analytics` object. Constraint: numpy-only (no scipy/sklearn). Uses FFT-based Hilbert transform instead of `scipy.signal.hilbert`.
+
 ### Key Data Files
 
-- `synapse_gait_zoo.json` — all 116 gaits with weights, measurements, and category metadata
+- `synapse_gait_zoo.json` — v1 zoo: all 116 gaits with weights, measurements, category metadata, and telemetry summaries
+- `synapse_gait_zoo_v2.json` — v2 zoo: same gait data but with Beer-framework `analytics` object replacing `telemetry` per gait
 - `artifacts/gait_taxonomy.json` — structural motifs, behavioral tags, per-gait feature vectors
-- `artifacts/telemetry/` — per-step telemetry for all gaits (400 JSONL records + summary each)
-- `body.urdf` / `brain.nndf` — robot body and current neural network (brain.nndf is overwritten by scripts like `record_videos.py`)
+- `artifacts/telemetry/<gait_name>/telemetry.jsonl` — full-resolution telemetry (4000 records at 240 Hz per gait, all 116 gaits)
+- `body.urdf` / `brain.nndf` — robot body and current neural network (brain.nndf is overwritten by scripts like `record_videos.py` and `generate_telemetry.py`)
 - `constants.py` — central config: SIM_STEPS=4000, DT=1/240, MAX_FORCE=150, gravity, friction, gait defaults
 
 ## Important Environment Variables
@@ -99,6 +121,8 @@ Synapse weight naming convention: `wXY` means source neuron X -> target neuron Y
 ## Conventions
 
 - Joint names are exact strings: `"Torso_BackLeg"`, `"Torso_FrontLeg"`. pyrosim may use bytes (`b"Torso_BackLeg"`); code handles both.
-- `brain.nndf` is a shared file overwritten by multiple scripts. `record_videos.py` backs it up and restores it.
+- `brain.nndf` is a shared file overwritten by multiple scripts. `record_videos.py` and `generate_telemetry.py` back it up and restore it.
 - Simulations are deterministic — identical weights produce identical trajectories. Float64 precision matters for evolved gaits (rounding to 6 decimal places can shift behavior by 30%).
 - Units: angles in radians, time in seconds, frequency in Hz, force in Newtons.
+- **numpy 2.x compatibility**: `np.trapz` does not exist in numpy 2.x; use `np.trapezoid` instead. The conda env has numpy 2.4.1.
+- Analytics pipeline is numpy-only by design (no scipy, no sklearn). Signal processing (Hilbert transform, FFT) is implemented from scratch via `np.fft`.
