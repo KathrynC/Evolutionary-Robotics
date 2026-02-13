@@ -114,6 +114,20 @@ High-budget simulation campaigns (hundreds to thousands of sims each) that inves
 - **analyze_dark_matter.py** — Studies "dead" gaits (|DX| < 1m) from 500 random trials; classifies as spinners, rockers, vibrators, circlers, or inert
 - **random_search_500.py** / **random_search_cliffs.py** — Large-scale random weight sampling and cliff detection
 
+### Categorical Structure & Formal Validation Scripts
+
+Scripts that empirically validate the categorical structure of the Sem→Wt→Beh pipeline (LLM-generated weights → robot behavior):
+
+- **categorical_structure.py** — Core validation: functor F (Sem→Wt), map G (Wt→Beh), composition G∘F, sheaf structure, information geometry. Produces 8 figures + JSON results. Pure computation on existing data (~5 sec).
+- **structured_random_compare.py** — Statistical comparison of LLM conditions (verbs, theorems, bible, places) vs baseline. Mann-Whitney U tests, PCA, behavioral clustering.
+- **structured_random_common.py** — Shared utilities: `ask_ollama()` (Ollama REST API), `run_trial_inmemory()` (headless PyBullet sim → Beer analytics), `write_brain()`, `compute_all()`.
+- **structured_random_{verbs,theorems,bible,places,baseline}.py** — Per-condition LLM weight generation scripts (100 trials each via Ollama).
+- **fisher_metric.py** — Calls Ollama 10× per seed to measure LLM output variance. Builds statistical manifold. Interruptible (saves after each seed). Requires Ollama running locally.
+- **perturbation_probing.py** — Directly measures cliffiness at LLM-generated weight vectors using 6-direction perturbation protocol (~259 PyBullet sims). Compares to atlas-interpolated values.
+- **yoneda_crosswired.py** — Tests whether 10-synapse (crosswired) topology increases functor faithfulness for collapsed seed clusters. Calls Ollama for motor-to-motor weights.
+- **hilbert_formalization.py** — Hilbert space analysis: L² Gram matrix of 121 zoo gait trajectories, RKHS kernel regression of cliffiness, behavioral spectral gaps. Pure computation.
+- **llm_seeded_evolution.py** — Tests whether LLM weights are a launchpad or trap for evolution. Hill climber from LLM seeds vs random seeds, 500 evals each.
+
 These scripts produce JSON artifacts in `artifacts/` and matplotlib visualizations. Each is self-contained (defines its own simulation harness, typically using headless PyBullet).
 
 ### Twine Interactive Server
@@ -137,8 +151,19 @@ These scripts produce JSON artifacts in `artifacts/` and matplotlib visualizatio
 - `synapse_gait_zoo_v2.json` — v2 zoo: same gait data but with Beer-framework `analytics` object replacing `telemetry` per gait
 - `artifacts/gait_taxonomy.json` — structural motifs, behavioral tags, per-gait feature vectors
 - `artifacts/telemetry/<gait_name>/telemetry.jsonl` — full-resolution telemetry (4000 records at 240 Hz per gait, all 116 gaits)
+- `artifacts/categorical_structure_results.json` — formal categorical validation: functor F, map G, composition, sheaf, info geometry
+- `artifacts/fisher_metric_results.json` — LLM output variance: 30 seeds × 10 repeats, covariance matrices
+- `artifacts/perturbation_probing_results.json` — directly measured cliffiness at 37 LLM weight vectors
+- `artifacts/yoneda_crosswired_results.json` — 10-synapse faithfulness test across 4 collapsed clusters
+- `artifacts/hilbert_formalization_results.json` — L² Gram matrix, RKHS regression, spectral analysis
+- `artifacts/llm_seeded_evolution_results.json` — evolution from LLM seeds vs random
+- `artifacts/structured_random_{verbs,theorems,bible,places,baseline}.json` — 495 trials with weights + behavioral metrics
+- `artifacts/atlas_cliffiness.json` — 500 probe points with cliffiness/gradient data
+- `artifacts/cliff_taxonomy.json` — 50 cliff profiles with type classification
 - `body.urdf` / `brain.nndf` — robot body and current neural network (brain.nndf is overwritten by scripts like `record_videos.py` and `generate_telemetry.py`)
 - `constants.py` — central config: SIM_STEPS=4000, DT=1/240, MAX_FORCE=150, gravity, friction, gait defaults
+- `artifacts/unified_framework_synthesis.md` — unified categorical framework connecting all 3 projects (Spot a Cat, Gait Zoo, AI Seances)
+- `CONTINUATION_PLAN.md` — comprehensive research continuation plan with Parts A-F, all results tables
 
 ## Important Environment Variables
 
