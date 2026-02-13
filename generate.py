@@ -34,6 +34,7 @@ Beyond Ludobots (this repo):
   - (Fill in any variant-parameterized morphology/world generation you added.)
 """
 
+import random
 import pyrosim.pyrosim as pyrosim
 
 
@@ -110,30 +111,30 @@ def Generate_Brain():
             4: Torso_FrontLeg joint
 
     Synapses:
-        - Sensors excite/drive the back leg motor neuron (positive weights).
-        - Sensors inhibit/drive the front leg motor neuron (negative weights).
+        Fully connected: each of the 3 sensor neurons connects to each of the 2 motor
+        neurons (6 synapses total), with random weights in [-1, 1].
 
-    This produces a simple, asymmetric baseline controller that can be replaced later.
+    Each call produces a different random brain.
     """
     pyrosim.Start_NeuralNetwork("brain.nndf")
 
-    # Sensors (touch/contact-style sensors in pyrosim)
-    pyrosim.Send_Sensor_Neuron(name=0, linkName="Torso")
-    pyrosim.Send_Sensor_Neuron(name=1, linkName="BackLeg")
-    pyrosim.Send_Sensor_Neuron(name=2, linkName="FrontLeg")
+    sensorNeurons = [0, 1, 2]
+    sensorLinks   = ["Torso", "BackLeg", "FrontLeg"]
+    motorNeurons  = [3, 4]
+    motorJoints   = ["Torso_BackLeg", "Torso_FrontLeg"]
 
-    # Motors
-    pyrosim.Send_Motor_Neuron(name=3, jointName="Torso_BackLeg")
-    pyrosim.Send_Motor_Neuron(name=4, jointName="Torso_FrontLeg")
+    for name, link in zip(sensorNeurons, sensorLinks):
+        pyrosim.Send_Sensor_Neuron(name=name, linkName=link)
 
-    # Simple fixed synapses (starter scaffold)
-    pyrosim.Send_Synapse(sourceNeuronName=0, targetNeuronName=3, weight=1.0)
-    pyrosim.Send_Synapse(sourceNeuronName=1, targetNeuronName=3, weight=1.0)
-    pyrosim.Send_Synapse(sourceNeuronName=2, targetNeuronName=3, weight=1.0)
+    for name, joint in zip(motorNeurons, motorJoints):
+        pyrosim.Send_Motor_Neuron(name=name, jointName=joint)
 
-    pyrosim.Send_Synapse(sourceNeuronName=0, targetNeuronName=4, weight=-1.0)
-    pyrosim.Send_Synapse(sourceNeuronName=1, targetNeuronName=4, weight=-1.0)
-    pyrosim.Send_Synapse(sourceNeuronName=2, targetNeuronName=4, weight=-1.0)
+    for sensorName in sensorNeurons:
+        for motorName in motorNeurons:
+            weight = random.uniform(-1, 1)
+            pyrosim.Send_Synapse(sourceNeuronName=sensorName,
+                                 targetNeuronName=motorName,
+                                 weight=weight)
 
     pyrosim.End()
 
