@@ -128,7 +128,84 @@ All gaits and their weights are stored in `synapse_gait_zoo.json` (v1) and `syna
 | 4 | 52_curie_crab | -28.79 | +24.44 | -50 | 1.18 | hand-designed |
 | 5 | 53_rucker_landcrab | +27.05 | +11.46 | +67 | 2.36 | hand-designed |
 
-Crab ratio = |DY|/|DX|. Values > 1.0 mean the robot walks more sideways than forward. The top 3 are evolved solutions that require full float64 weight precision — rounding to 6 decimal places shifts them to different attractors (see knife-edge sensitivity below).
+Crab ratio = |DY|/|DX|. Values > 1.0 mean the robot walks more sideways than forward. The top 3 are evolved solutions that require full float64 weight precision — rounding to 6 decimal places shifts them to different attractors.
+
+## The Weight-Space Landscape: Behavioral Cliffs and Fractal Sensitivity
+
+Three research campaigns (~12,000 headless simulations total) mapped the structure of the 6-dimensional weight space. The central finding: the fitness landscape is **riddled with behavioral cliffs** — regions where a tiny weight change causes the robot to shift to a completely different locomotion regime.
+
+### Cliff Prevalence
+
+At a perturbation radius of r=0.05 (a 5% nudge to one weight):
+
+| Threshold | % of random points with a cliff nearby |
+|---|---|
+| >5m displacement shift | **80%** |
+| >10m shift | **42%** |
+| >20m shift | **12%** |
+
+Median cliffiness: **2.88m**. Maximum observed: **43.4m** — the robot's entire behavioral character changes from a 0.05 weight perturbation. Cliffs are not rare anomalies; they are the topology of this landscape.
+
+### Per-Weight Sensitivity
+
+Not all synapses matter equally. Mean |dDX/dw| across 500 random base points:
+
+| Weight | Sensitivity | Role |
+|---|---|---|
+| w04 (torso→front motor) | **356** | Most sensitive — small changes here reshape the gait |
+| w23 (front sensor→back motor) | 178 | Cross-body coupling, high leverage |
+| w13 (back sensor→back motor) | 134 | Local feedback |
+| w03 (torso→back motor) | 102 | |
+| w14 (back sensor→front motor) | 96 | |
+| w24 (front sensor→front motor) | **7.6** | Least sensitive — barely matters |
+
+The torso sensor's output to the front leg (w04) dominates behavioral sensitivity by 50x over the least important synapse (w24).
+
+### Cliff Taxonomy
+
+Adaptive probing of the 50 cliffiest points classifies five cliff types:
+
+- **Canyon (38%)** — sharp two-sided drop that recovers on the far side
+- **Step (30%)** — sharp one-sided drop, no recovery (regime change)
+- **Precipice (26%)** — sharp one-sided, partial recovery
+- **Slope (6%)** — gentle gradient, no abrupt discontinuity
+- **Fractal** — jagged multi-scale roughness
+
+### The Fractal Verdict
+
+Deep-resolution probing of the 10 most chaotic Step-type cliffs down to r=0.00003 reveals the landscape is **formally non-differentiable**:
+
+| Scale (r) | Mean |dDX/dr| |
+|---|---|
+| 0.01 | 9,140 |
+| 0.001 | 94,027 |
+| 0.0001 | 892,470 |
+| 0.00003 | **3,020,839** |
+
+The derivative diverges as ~1/r with no smoothness floor. The fractal dimension is near zero (log-log slope = 0.011), confirming scale-invariant structure. Directional fan analysis shows the chaos is **isotropic** — equally rough in all directions, not a navigable ridge. This is **Wolfram Class III (Chaotic)**: gradient descent is impossible at any scale.
+
+The non-differentiability comes from **contact dynamics**: the binary event of foot strikes turns smooth weight changes into fractal behavioral changes. The neural network is smooth. The physics ODEs are smooth. But ground contact is a discrete event whose timing shifts by fractions of a timestep with each weight perturbation, and those timing shifts cascade through the trajectory.
+
+### Sensitivity Classes
+
+Three empirically-observed classes among zoo gaits:
+
+| Class | Example | DX Sensitivity | Character |
+|---|---|---|---|
+| Antifragile | 19_haraway | ~32 | Robust; small weight changes → small behavior changes |
+| Knife-edge | 32_carry_trade | ~1,340 | High performance but high fragility |
+| Yaw powder keg | 1_original | **17,149** (yaw) | Tiny weight change → massive rotation change |
+
+The CPG Champion (gait 43, DX=+50.11) clusters with knife-edge gaits — record displacement at the cost of extreme sensitivity. It shares a hidden-layer topology with gait 44 (Spinner Champion), differing only in one synapse magnitude ratio. One walks 50m; the other spins in place. The boundary between these behaviors is a bifurcation, not a gradient.
+
+### Implications for Optimization
+
+- **Gradient descent is impossible**: the landscape is non-differentiable. Backpropagation through the simulator would fail because the derivative diverges.
+- **Evolutionary algorithms work**: they sample, compare, and select without assuming a local slope exists.
+- **Small mutations are dangerous**: 42% of random points have a >10m cliff at r=0.05. Evolution cannot fine-tune within a regime for long before hitting a boundary.
+- **The body is a chaos amplifier**: smooth weight inputs → smooth NN outputs → fractal behavioral outputs, because ground contact discretizes the dynamics.
+
+See [FINDINGS.md](FINDINGS.md) for the full analysis, and `artifacts/cliff_taxonomy_commentary.md` for the philosophical implications.
 
 ## Structured Random Search: The LLM as Weight-Space Sampler
 
