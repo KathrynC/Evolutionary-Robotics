@@ -1,0 +1,45 @@
+{
+  "exp1_timestep_halving": {
+    "dx_dt240": 60.19439455376641,
+    "dx_dt480": 24.841667552071012,
+    "dx_dt960": 3.2452418108261094,
+    "pct_change_480": -58.73092879124797,
+    "pct_change_960": -94.60873087123184,
+    "verdict": "FAIL \u2014 gait is a simulation artifact (> 15% change at half DT)"
+  },
+  "exp2_signal_path": {
+    "dx_original": 60.19439455376641,
+    "dx_clamped_w03": 14.561343829301661,
+    "pct_change_clamped": -75.80946874331416,
+    "sensor_duty_torso": 0.0,
+    "sensor_duty_back": 0.2045,
+    "sensor_duty_front": 0.037,
+    "pre_tanh_3_range": [
+      0.43820894288596635,
+      2.1784244884621287
+    ],
+    "pre_tanh_3_mean": 0.8501686289038962,
+    "post_tanh_3_range": [
+      0.4121587389233998,
+      0.9746870472589935
+    ],
+    "tanh_at_actual_w03": -0.8638488746274797,
+    "tanh_at_clamped_w03": -0.7615941559557649,
+    "extra_drive_from_oor": 0.10225471867171487,
+    "saturation_frac": 0.2045,
+    "verdict": "The out-of-range weight is significant (-75.8% DX change when clamped)"
+  },
+  "exp3_random_walk": {
+    "novelty_seeker_dx": 60.19,
+    "random_walk_best_dx": -46.07686563071189,
+    "random_walk_best_abs_dx": 46.07686563071189,
+    "random_walk_mean_abs_dx": 23.064496594244492,
+    "pure_random_best_abs_dx": 55.670810103040054,
+    "pure_random_mean_abs_dx": 7.578331851700474,
+    "walk_vs_novelty_pct": 76.55236024374796,
+    "random_vs_novelty_pct": 92.4917928277788,
+    "n_evals": 1000,
+    "step_size": 0.2,
+    "verdict": "Step size helps, but novelty mechanism provides additional benefit"
+  }
+}
