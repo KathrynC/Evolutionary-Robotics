@@ -207,6 +207,62 @@ The CPG Champion (gait 43, DX=+50.11) clusters with knife-edge gaits — record 
 
 See [FINDINGS.md](FINDINGS.md) for the full analysis, and `artifacts/cliff_taxonomy_commentary.md` for the philosophical implications.
 
+## Resonance Mapping: The Body's Mechanical Transfer Function
+
+What happens if we bypass the neural network entirely and drive the joints with pure sine waves? The resonance mapping campaign (~2,150 sims) sweeps frequency, phase, and amplitude to map the body's intrinsic mechanical response — independent of any controller.
+
+### The Body Has Broad Mechanical Resonance
+
+50 frequencies (0.1–5 Hz) × 12 phase offsets, both joints at the same frequency:
+
+| Frequency | Max |DX| | Best Phase Offset |
+|---|---|---|
+| **3.3 Hz** | **22.7m** | 164° |
+| 4.0 Hz | 22.6m | 131° |
+| 1.3 Hz | 19.8m | 82° |
+| 2.0 Hz | 19.4m | 66° |
+| 1.9 Hz | 19.3m | 66° |
+
+The body is not a tuning fork — it has **multiple resonant modes** across a broad 1–4 Hz band. Anti-phase relationships (high phase offsets, 60°–164°) dominate high-displacement configurations: the legs must work against each other to walk.
+
+### Amplitude Reveals the Chaos Gateway
+
+Amplitude sweeps at the 6 best frequencies show two distinct regimes:
+
+- **Below 0.8 rad**: smooth, predictable, displacement scales linearly with amplitude. Peak: **32.7m** at 3.3 Hz, 0.85 rad amplitude.
+- **Above 0.8 rad**: fractal chaos returns. Displacement becomes wildly unpredictable, std dev 7–13m.
+
+The threshold is not gradual — it's a bifurcation. The cause: larger joint swings produce harder foot strikes, and contact force magnitude is the chaos gateway. **Frequency and phase are smooth parameters; amplitude is fractal.** This connects directly to the cliff findings: contact dynamics turn smooth inputs into fractal behavioral outputs.
+
+### The Polyrhythmic Landscape
+
+A 30×30 grid of independent back/front leg frequencies reveals that the two legs need not oscillate at the same frequency:
+
+| f_back | f_front | |DX| | Ratio |
+|---|---|---|---|
+| 0.94 Hz | 4.83 Hz | 20.4m | 5.1:1 |
+| 1.11 Hz | 4.66 Hz | 20.0m | 4.2:1 |
+| 4.49 Hz | 0.78 Hz | 19.4m | 0.17:1 |
+| 1.62 Hz | 1.62 Hz | 18.8m | 1:1 |
+
+Extreme ratios (one slow leg, one fast leg) can outperform matched frequencies. Musically significant ratios (2:1, 3:2) are **not** special — the body responds to physics, not harmony. The polyrhythmic grid is ~25 m/Hz in cliffiness — smooth gradients with visible structure, **120,000× smoother than the weight space** (~3,000,000 m/unit).
+
+### Neural Networks Far Exceed the Open-Loop Ceiling
+
+The most striking finding: **evolved neural networks vastly exceed what any open-loop sine wave can achieve.**
+
+| Controller | |DX| |
+|---|---|
+| Best open-loop (3.3 Hz, 0.85 rad, optimized phase) | **32.7m** |
+| Curie Amplified (NN) | 37.1m |
+| Noether CPG (NN) | 43.2m |
+| Hidden CPG Champion (NN) | 50.1m |
+| Novelty Champion (NN) | **60.2m** |
+
+The Novelty Champion nearly **doubles** the open-loop ceiling. If the NN merely selected good oscillation parameters, evolved gaits would cluster near 32.7m. Instead, the top gaits transcend it by 1.5–2×. The neural network is not driving predetermined oscillations — it is **sensing contact events in real time and adjusting timing** to extract maximum mechanical advantage. Closed-loop feedback control is worth +27.5m of displacement over the best possible open-loop drive.
+
+See `artifacts/resonance_mapping_summary.md` for the full analysis.
+
 ## Structured Random Search: The LLM as Weight-Space Sampler
 
 Can an LLM serve as a structured sampler of neural network weight space? Instead of drawing 6 synapse weights uniformly at random from [-1, 1]^6, we give a local LLM (Ollama, qwen3-coder:30b) a semantic "seed" — a verb, a mathematical theorem, a Bible verse, or a place name — and ask it to translate the seed's character into 6 specific synapse weights. We then run a full headless simulation and compute Beer-framework analytics.
