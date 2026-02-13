@@ -130,6 +130,46 @@ All gaits and their weights are stored in `synapse_gait_zoo.json` (v1) and `syna
 
 Crab ratio = |DY|/|DX|. Values > 1.0 mean the robot walks more sideways than forward. The top 3 are evolved solutions that require full float64 weight precision — rounding to 6 decimal places shifts them to different attractors (see knife-edge sensitivity below).
 
+## Structured Random Search: The LLM as Weight-Space Sampler
+
+Can an LLM serve as a structured sampler of neural network weight space? Instead of drawing 6 synapse weights uniformly at random from [-1, 1]^6, we give a local LLM (Ollama, qwen3-coder:30b) a semantic "seed" — a verb, a mathematical theorem, a Bible verse, or a place name — and ask it to translate the seed's character into 6 specific synapse weights. We then run a full headless simulation and compute Beer-framework analytics.
+
+Five conditions, 100 trials each (495 total):
+
+| Condition | Dead% | Median |DX| | Max |DX| | Phase Lock | Description |
+|---|---|---|---|---|---|
+| **baseline** | 8% | **6.64m** | 27.79m | 0.613 | Uniform random U[-1,1]^6, no LLM |
+| **verbs** | 5% | 1.55m | 25.12m | 0.850 | 150 verbs across 15+ languages |
+| **theorems** | 8% | 2.79m | 9.55m | **0.904** | 108 mathematical theorems |
+| **bible** | **0%** | 1.55m | **29.17m** | 0.908 | 100+ KJV Bible verses |
+| **places** | **0%** | 1.18m | 5.64m | 0.884 | 114 global place names |
+
+All structured conditions are significantly lower than baseline on median displacement (Mann-Whitney U, all p < 0.001). But the LLM virtually eliminates dead gaits (Bible and places: zero deaths) and produces dramatically higher phase lock (0.85-0.91 vs 0.61). The LLM is a *conservative* sampler: it avoids both death and greatness, clustering in a tight behavioral subspace with high coordination but modest displacement.
+
+### The Triptych
+
+Three gaits from the experiment reveal what happens when meaning transfers across substrates. All three share anti-phase sign structure — every sensor drives the two motors in opposite directions — but the magnitudes differ, and magnitude is everything.
+
+**The Pale Horse** — Revelation 6:8: *"And I looked, and behold a pale horse: and his name that sat on him was Death."*
+
+Weights: w03=-0.8, w04=+0.6, w13=+0.2, w14=-0.9, w23=+0.5, w24=-0.4. **DX = +29.17m** — the overall champion of the entire 495-gait pool. Asymmetric anti-phase: unequal magnitudes mean one leg always overpowers the other. Speed 3.11, work proxy 15,877. The horse does not trot. It charges.
+
+[Watch the Pale Horse](https://youtu.be/3EGbo0WgTNk)
+
+**The Whirling Wind** — Ecclesiastes 1:6: *"The wind goeth toward the south, and turneth about unto the north; it whirleth about continually."*
+
+Weights: w03=+0.6, w04=-0.5, w13=-0.4, w14=+0.8, w23=+0.2, w24=-0.9. **Efficiency = 0.00495** — the most efficient gait in the entire pool. DX = -5.43m, work proxy only 1,096. Phase lock 0.995. The wind cycles with almost zero wasted energy.
+
+[Watch the Whirling Wind](https://youtu.be/3ZVG3UYp6vw)
+
+**The Conservation Law** — Noether's Theorem on symmetry and conservation.
+
+Weights: w03=+0.5, w04=-0.5, w13=+0.3, w14=-0.3, w23=+0.7, w24=-0.7. **DX = 0.031m** — the deadest gait in the pool. Every weight pair is exactly equal and opposite: perfect anti-symmetry. Work proxy 9,865 — it burns as much energy as a mid-range walker, but every Newton is cancelled by its mirror. The theorem about conservation laws conserves position.
+
+[Watch Noether's Theorem](https://youtu.be/2CBeT-d3Igw)
+
+The same anti-phase sign pattern produces 29 meters, 5 meters, or 3 centimeters depending on whether the magnitudes are *unequal* (asymmetric power → locomotion), *carefully distributed* (efficient oscillation), or *exactly equal* (perfect cancellation → stasis). The meaning of each text is legible in the robot's behavior: Death rides fast, the eternal wind cycles with minimal waste, and a conservation law conserves. See [artifacts/structured_random_triptych.md](artifacts/structured_random_triptych.md) for the full analysis.
+
 ## Files
 
 ### Data and Artifacts
@@ -186,6 +226,12 @@ Self-contained simulation campaigns (hundreds to thousands of headless sims each
 | `random_search_cliffs.py` | Pairwise cliff detection between random-search base points. Identifies which random gaits sit near behavioral discontinuities by measuring DX changes between nearby weight vectors. |
 | `random_search_analytics.py` | Post-hoc analysis of random search data: fitness distributions, weight-performance correlations, cliff frequency statistics, and landscape roughness metrics. |
 | `timestep_atlas.py` | Timestep Atlas: sweeps all 116 zoo gaits across 7 DT values in coupled and decoupled modes to separate physics-resolution artifacts from controller-sampling-rate artifacts. Adds DT as a 7th gaitspace dimension. |
+| `structured_random_common.py` | Shared infrastructure for the structured random search experiment: Ollama LLM integration, weight parsing, headless simulation with in-memory telemetry, Beer-framework analytics, condition runner. |
+| `structured_random_verbs.py` | Structured random search condition #1: 150 multilingual verbs → LLM → synapse weights. Tests whether action qualities (stumble, glide, oscillate) map to locomotion. |
+| `structured_random_theorems.py` | Condition #2: 108 mathematical theorems → LLM → weights. Tests structural principle transfer (symmetry, fixed points, convergence). |
+| `structured_random_bible.py` | Condition #3: 100+ KJV Bible verses → LLM → weights. Tests imagery/narrative transfer. Produced the overall displacement champion (Revelation 6:8, +29.17m). |
+| `structured_random_places.py` | Condition #4: 114 global place names → LLM → weights. Tests weakest structural transfer (name only, no action or narrative). |
+| `structured_random_compare.py` | Comparison analysis: loads all 5 conditions, computes summary statistics, Mann-Whitney U tests, and generates 6 diagnostic plots. Use `--run-all` to execute all conditions. |
 
 ### Analysis and Visualization
 
@@ -229,6 +275,8 @@ Self-contained simulation campaigns (hundreds to thousands of headless sims each
 - [FINDINGS.md](FINDINGS.md) — Scientific analysis and key discoveries
 - [PERSONAS.md](PERSONAS.md) — The 18 persona gait themes
 - [REFERENCES.md](REFERENCES.md) — Annotated bibliography
+- [artifacts/structured_random_triptych.md](artifacts/structured_random_triptych.md) — The Triptych: Revelation, Ecclesiastes, Noether
+- [artifacts/persona_effectiveness_theory.md](artifacts/persona_effectiveness_theory.md) — Theory of persona-to-weight structural transfer
 
 ## Key References
 
