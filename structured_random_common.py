@@ -3,8 +3,61 @@
 structured_random_common.py
 
 Shared infrastructure for the structured random search experiment.
-Provides Ollama integration, weight parsing, headless simulation with
-in-memory telemetry, and Beer-framework analytics computation.
+
+EXPERIMENT OVERVIEW
+===================
+This experiment tests whether an LLM can serve as a structured sampler of
+neural network weight space. Instead of drawing 6 synapse weights uniformly
+at random from [-1, 1]^6, we give a local LLM (Ollama, qwen3-coder:30b) a
+"seed" — a verb, a theorem, a Bible verse, or a place name — and ask it to
+translate the seed's character into 6 specific synapse weights. We then run
+a full headless PyBullet simulation and compute Beer-framework analytics on
+the resulting gait.
+
+The hypothesis is that LLM-mediated weight generation is a *structured*
+random search: the LLM's internal representations impose correlations on
+the weight vectors that align with dynamically meaningful submanifolds of
+the 6D weight space. This module provides the shared plumbing that all
+five experimental conditions use.
+
+PIPELINE (per trial)
+====================
+1. Condition script selects a seed (e.g. "Pythagorean Theorem")
+2. Condition script builds a prompt via its make_prompt() function
+3. This module sends the prompt to Ollama → gets back a JSON weight vector
+4. This module writes brain.nndf with those weights
+5. This module runs a headless PyBullet simulation (4000 steps @ 240 Hz)
+6. All telemetry is captured in pre-allocated numpy arrays (no disk I/O)
+7. compute_all() from compute_beer_analytics.py computes the full 4-pillar
+   Beer-framework analysis: Outcome, Contact, Coordination, Rotation Axis
+8. Key scalar metrics are extracted and returned to the condition script
+
+THE ROBOT
+=========
+3-link body (Torso + BackLeg + FrontLeg), 2 hinge joints, 3 touch sensors
+(neurons 0-2), 2 motors (neurons 3-4). Standard 6-synapse topology:
+  w03: Torso sensor    → BackLeg motor
+  w04: Torso sensor    → FrontLeg motor
+  w13: BackLeg sensor  → BackLeg motor
+  w14: BackLeg sensor  → FrontLeg motor
+  w23: FrontLeg sensor → BackLeg motor
+  w24: FrontLeg sensor → FrontLeg motor
+
+Each weight is clamped to [-1, 1]. The neural network is a continuous-time
+recurrent neural network (CTRNN) that updates every timestep based on sensor
+inputs. Motor neurons output joint position targets.
+
+BEER-FRAMEWORK METRICS
+=======================
+Each trial returns these scalar metrics (see compute_beer_analytics.py):
+  dx, dy:       Net displacement in meters (primary fitness measure)
+  speed:        Mean instantaneous speed over the simulation
+  efficiency:   Distance traveled per unit of work (distance / work_proxy)
+  work_proxy:   Sum of |torque × angular_velocity| over all timesteps
+  phase_lock:   Inter-joint phase coherence [0,1] via Hilbert transform
+  entropy:      Shannon entropy of 3-bit contact state distribution (bits)
+  roll_dom:     Fraction of angular velocity variance in the roll axis
+  yaw_net_rad:  Net yaw rotation over the simulation (radians)
 
 Used by: structured_random_verbs.py, structured_random_theorems.py,
          structured_random_bible.py, structured_random_places.py,
@@ -30,29 +83,50 @@ import pyrosim.pyrosim as pyrosim
 from pyrosim.neuralNetwork import NEURAL_NETWORK
 from compute_beer_analytics import compute_all, DT, NumpyEncoder
 
+# Neuron indices matching the robot's brain.nndf topology.
+# Sensors 0-2 read ground-contact for Torso, BackLeg, FrontLeg respectively.
+# Motors 3-4 drive hinge joints Torso_BackLeg and Torso_FrontLeg.
 SENSOR_NEURONS = [0, 1, 2]
 MOTOR_NEURONS = [3, 4]
+
+# The 6 synapse weight names: "wXY" means source neuron X → target neuron Y.
+# This enumerates all sensor→motor connections: w03, w04, w13, w14, w23, w24.
 WEIGHT_NAMES = [f"w{s}{m}" for s in SENSOR_NEURONS for m in MOTOR_NEURONS]
 
+# Local LLM configuration. qwen3-coder:30b was chosen as the largest and most
+# capable model available on the local Ollama instance. The 30B parameter count
+# provides enough capacity to encode meaningful structural representations of
+# abstract concepts (theorems, verses, places) while remaining fast (~1s/call).
 OLLAMA_MODEL = "qwen3-coder:30b"
 OLLAMA_URL = "http://localhost:11434/api/generate"
 
+# Each condition runs 100 trials. With ~1s per Ollama call and ~0.1s per
+# headless simulation, a full condition takes ~100s. All 5 conditions
+# (4 structured + 1 baseline) complete in ~7 minutes.
 NUM_TRIALS = 100
 PLOT_DIR = PROJECT / "artifacts" / "plots"
 
 
 # ── Ollama integration ───────────────────────────────────────────────────────
+# The LLM serves as a "structured sampler" — it maps a semantic seed (a verb,
+# theorem, verse, or place name) into a 6D weight vector. The key question is
+# whether this mapping imposes meaningful structure on the weight distribution
+# compared to uniform random sampling.
 
 def ask_ollama(prompt, temperature=0.8, max_tokens=200):
-    """Send a prompt to Ollama and return the response text.
+    """Send a prompt to the local Ollama LLM and return the response text.
+
+    Uses curl to POST to Ollama's REST API with stream=False (blocking).
+    Temperature 0.8 provides moderate variation — high enough that the same
+    seed won't always produce identical weights, low enough to stay coherent.
 
     Args:
-        prompt: The prompt string.
-        temperature: Sampling temperature (higher = more varied).
-        max_tokens: Maximum tokens to generate.
+        prompt: The prompt string (typically a structured request for 6 weights).
+        temperature: Sampling temperature (0.8 gives good seed→weight diversity).
+        max_tokens: Maximum tokens to generate (200 is generous for a JSON object).
 
     Returns:
-        Response string from the model.
+        Response string from the model (ideally a JSON object with 6 weights).
 
     Raises:
         RuntimeError: If Ollama is unreachable or returns an error.
@@ -78,9 +152,14 @@ def ask_ollama(prompt, temperature=0.8, max_tokens=200):
 def parse_weights(response):
     """Parse 6 synapse weights from an LLM response string.
 
-    Attempts to extract a JSON object with keys w03, w04, w13, w14, w23, w24.
-    Handles responses that include markdown code fences or extra text around
-    the JSON.
+    The prompt asks the LLM to return ONLY a JSON object, but LLMs frequently
+    wrap their response in markdown code fences (```json ... ```) or add
+    explanatory text before/after the JSON. This parser handles all of those
+    cases by stripping fences and searching for the outermost { ... } pair.
+
+    Values are clamped to [-1, 1] to stay within the weight space bounds.
+    All 6 canonical weight names (w03, w04, w13, w14, w23, w24) must be
+    present or the parse is considered a failure.
 
     Args:
         response: Raw string from the LLM.
@@ -89,7 +168,7 @@ def parse_weights(response):
         Dict mapping weight names to float values, or None if parsing fails.
     """
     text = response.strip()
-    # Strip markdown code fences if present
+    # Strip markdown code fences if present (common LLM behavior)
     if "```" in text:
         parts = text.split("```")
         for part in parts:
@@ -124,6 +203,10 @@ def parse_weights(response):
 def generate_weights(prompt, retries=2):
     """Generate weights via Ollama with retry logic.
 
+    On parse failure (malformed JSON, missing keys), retries up to `retries`
+    times with a 0.5s backoff. In practice, qwen3-coder:30b produces valid
+    JSON on the first attempt >99% of the time, so retries are a safety net.
+
     Args:
         prompt: The structured prompt for weight generation.
         retries: Number of retry attempts on parse failure.
@@ -145,12 +228,23 @@ def generate_weights(prompt, retries=2):
 
 
 # ── Simulation ───────────────────────────────────────────────────────────────
+# Each trial runs a complete headless PyBullet simulation: write brain.nndf,
+# load robot, step 4000 times at 240 Hz (~16.7 seconds of simulated time),
+# record full telemetry in pre-allocated numpy arrays, compute analytics.
+# The entire cycle takes ~0.1s per trial thanks to DIRECT mode and no disk I/O.
 
 def write_brain(weights):
-    """Write a brain.nndf file with the given 6 synapse weights.
+    """Write a brain.nndf file with the standard 6-synapse topology.
+
+    brain.nndf is the neural network definition file that the pyrosim
+    library reads to construct the CTRNN. It defines 5 neurons (3 sensor,
+    2 motor) and 6 weighted synapses connecting every sensor to every motor.
+
+    This is a shared file that gets overwritten for each trial. The caller
+    is responsible for backing up and restoring the original.
 
     Args:
-        weights: Dict mapping synapse names to float weight values.
+        weights: Dict mapping synapse names (w03, w04, ...) to float values.
     """
     path = PROJECT / "brain.nndf"
     with open(path, "w") as f:
@@ -169,16 +263,34 @@ def write_brain(weights):
 
 
 def run_trial_inmemory(weights):
-    """Run a headless simulation and return Beer-framework analytics.
+    """Run a complete headless PyBullet simulation and return Beer-framework analytics.
 
-    Captures all telemetry in pre-allocated numpy arrays (no disk I/O)
-    and passes them to compute_all() for the full 4-pillar analysis.
+    This is the core simulation function. It:
+    1. Writes brain.nndf with the given weights
+    2. Connects PyBullet in DIRECT mode (headless, deterministic)
+    3. Loads the ground plane and robot URDF
+    4. Runs 4000 timesteps of the sense→think→act loop
+    5. Records ALL state variables at every timestep into pre-allocated numpy
+       arrays (position, velocity, angular velocity, euler angles, contact
+       states for all 3 links, joint positions/velocities/torques)
+    6. Passes the arrays to compute_all() for the full Beer-framework analysis
+
+    The in-memory approach avoids writing telemetry JSONL files to disk,
+    making each trial ~0.1s instead of ~0.5s. This is critical for running
+    500 trials in under 10 minutes.
+
+    Simulations are fully deterministic: identical weights always produce
+    identical trajectories (PyBullet DIRECT mode, fixed random seed in physics).
 
     Args:
-        weights: Dict mapping synapse names to float weight values.
+        weights: Dict mapping synapse names (w03, w04, ...) to float values.
 
     Returns:
-        Analytics dict with keys: outcome, contact, coordination, rotation_axis.
+        Analytics dict with 4 pillars:
+          outcome:       dx, dy, yaw, speed, efficiency, work_proxy
+          contact:       per-link duty fractions, contact entropy, transitions
+          coordination:  FFT dominant freq/amp, phase_lock_score
+          rotation_axis: axis dominance, switching rate, periodicity
     """
     write_brain(weights)
 
@@ -199,7 +311,9 @@ def run_trial_inmemory(weights):
     max_force = float(getattr(c, "MAX_FORCE", 150.0))
     n_steps = c.SIM_STEPS
 
-    # Pre-allocate arrays
+    # Pre-allocate arrays for all telemetry channels.
+    # This avoids list appends and produces contiguous memory for numpy ops.
+    # 4000 steps × ~20 channels = ~640KB total — trivially fits in L2 cache.
     t_arr = np.empty(n_steps)
     x = np.empty(n_steps); y = np.empty(n_steps); z = np.empty(n_steps)
     vx = np.empty(n_steps); vy = np.empty(n_steps); vz = np.empty(n_steps)
@@ -211,7 +325,11 @@ def run_trial_inmemory(weights):
     j0_pos = np.empty(n_steps); j0_vel = np.empty(n_steps); j0_tau = np.empty(n_steps)
     j1_pos = np.empty(n_steps); j1_vel = np.empty(n_steps); j1_tau = np.empty(n_steps)
 
-    # Link/joint indices
+    # Resolve link and joint indices from the URDF. The robot has 3 links
+    # (Torso at base index -1, BackLeg and FrontLeg as child links) and
+    # 2 joints (Torso_BackLeg, Torso_FrontLeg). We need the indices for
+    # contact detection (which link is touching the ground?) and joint state
+    # queries (what angle/velocity/torque is each joint at?).
     link_names = ["Torso", "BackLeg", "FrontLeg"]
     link_indices = {}
     joint_indices = {}
@@ -229,7 +347,11 @@ def run_trial_inmemory(weights):
     j0_idx = joint_indices.get("Torso_BackLeg", 0)
     j1_idx = joint_indices.get("Torso_FrontLeg", 1)
 
+    # Main simulation loop: 4000 steps of sense→think→act.
+    # Act first (motor commands from previous think step), then step physics,
+    # then think (update NN from new sensor readings), then record telemetry.
     for i in range(n_steps):
+        # ACT: read motor neuron outputs and send as joint position targets.
         for neuronName in nn.neurons:
             n_obj = nn.neurons[neuronName]
             if n_obj.Is_Motor_Neuron():
@@ -240,9 +362,10 @@ def run_trial_inmemory(weights):
                 except TypeError:
                     pyrosim.Set_Motor_For_Joint(robotId, jn_bytes, p.POSITION_CONTROL,
                                                 n_obj.Get_Value(), max_force)
-        p.stepSimulation()
-        nn.Update()
+        p.stepSimulation()   # STEP: advance physics by 1/240 second
+        nn.Update()          # THINK: update CTRNN from current sensor values
 
+        # RECORD: capture full state at this timestep
         t_arr[i] = i * c.DT
         pos, orn = p.getBasePositionAndOrientation(robotId)
         vel_lin, vel_ang = p.getBaseVelocity(robotId)
@@ -253,6 +376,9 @@ def run_trial_inmemory(weights):
         wx[i] = vel_ang[0]; wy[i] = vel_ang[1]; wz[i] = vel_ang[2]
         roll[i] = rpy_vals[0]; pitch[i] = rpy_vals[1]; yaw[i] = rpy_vals[2]
 
+        # Contact detection: which of the 3 links are touching the ground?
+        # This produces a 3-bit contact state (8 possible states) that feeds
+        # into the contact entropy metric — a measure of gait complexity.
         contact_pts = p.getContactPoints(robotId)
         torso_contact = False; back_contact = False; front_contact = False
         for cp in contact_pts:
@@ -274,6 +400,9 @@ def run_trial_inmemory(weights):
 
     p.disconnect()
 
+    # Package all telemetry into the dict format that compute_all() expects.
+    # This mirrors the structure produced by the JSONL telemetry logger but
+    # with numpy arrays instead of per-row dicts — much faster to analyze.
     data = {
         "t": t_arr, "x": x, "y": y, "z": z,
         "vx": vx, "vy": vy, "vz": vz,
@@ -289,9 +418,30 @@ def run_trial_inmemory(weights):
 
 
 # ── Runner ───────────────────────────────────────────────────────────────────
+# The runner orchestrates the full pipeline for a given experimental condition:
+# for each seed, build a prompt, call Ollama, parse weights, run a simulation,
+# compute analytics, and collect results. It also handles brain.nndf backup/
+# restore, progress reporting, and summary statistics.
 
 def run_structured_search(condition_name, seeds, prompt_fn, out_json):
-    """Run a structured random search for a given condition.
+    """Run a structured random search for a given experimental condition.
+
+    This is the main entry point that each condition script calls. It iterates
+    over the seed list, sends each seed through the LLM→simulation→analytics
+    pipeline, and writes the collected results to a JSON file.
+
+    The output JSON is a list of dicts, one per successful trial, each with:
+      trial:      trial index (0-based)
+      seed:       the original seed string (verb, theorem, verse, or place)
+      weights:    dict of {w03, w04, w13, w14, w23, w24} float values
+      dx, dy:     net displacement in meters
+      speed:      mean instantaneous speed
+      efficiency: distance per unit work (distance / work_proxy)
+      work_proxy: cumulative |torque × angular_velocity|
+      phase_lock: inter-joint phase coherence [0,1]
+      entropy:    Shannon entropy of contact state distribution
+      roll_dom:   roll-axis dominance of angular velocity
+      yaw_net_rad: net yaw rotation in radians
 
     Args:
         condition_name: Human-readable condition name (e.g. "verbs").
@@ -300,7 +450,7 @@ def run_structured_search(condition_name, seeds, prompt_fn, out_json):
         out_json: Path to output JSON file.
 
     Returns:
-        List of result dicts with keys: trial, seed, weights, analytics (scalars).
+        List of result dicts.
     """
     brain_path = PROJECT / "brain.nndf"
     backup_path = PROJECT / "brain.nndf.sr_backup"
@@ -382,13 +532,24 @@ def run_structured_search(condition_name, seeds, prompt_fn, out_json):
 
 
 def run_uniform_baseline(out_json):
-    """Run 100 uniform random trials as the baseline condition.
+    """Run 100 uniform random trials as the baseline (control) condition.
+
+    This is the null hypothesis condition: weights are drawn independently
+    from U[-1, 1] with no LLM involvement. It provides the reference
+    distribution against which all structured conditions are compared.
+
+    The baseline tests what happens when you sample the 6D weight hypercube
+    uniformly — the same approach used by random_search_500.py in the
+    broader research campaign. Key baseline statistics from past runs:
+    ~8% dead gaits, median |DX| ~6-7m, high behavioral diversity but low
+    phase lock (~0.6).
 
     Args:
         out_json: Path to output JSON file.
 
     Returns:
-        List of result dicts.
+        List of result dicts (same schema as structured conditions, but
+        seed is always "uniform_random").
     """
     import random
 

@@ -2,11 +2,51 @@
 """
 structured_random_verbs.py
 
-Structured random search condition #1: Random verbs from multiple languages.
+Structured random search — Condition #1: Multilingual Verbs
+============================================================
 
-Selects 100 random verbs (spanning 15+ languages), asks a local LLM to
-translate each verb's action quality into 6 synapse weights, then runs
-headless simulations with Beer-framework analytics.
+HYPOTHESIS
+----------
+Verbs encode action qualities — speed, direction, stability, rhythm — that
+may map naturally onto locomotion parameters. A verb like "stumble" implies
+asymmetric, unstable motion; "glide" implies smooth, effortless motion;
+"oscillate" implies periodic, back-and-forth motion. The LLM should be able
+to extract these kinematic qualities and encode them as weight patterns.
+
+SEED DESIGN
+-----------
+150 verbs spanning 15+ languages (English, Spanish, French, German, Japanese,
+Arabic, Mandarin, Russian, Hindi, Swahili, Portuguese, Korean, Turkish, Latin,
+Greek). Each verb includes its language and English meaning to give the LLM
+full context: "stolpern (German, to stumble)".
+
+Two categories of English verbs are included:
+  - Motion verbs: stumble, sprint, crawl, glide, lurch, waddle, stride, etc.
+  - Non-motion verbs: shatter, bloom, ignite, dissolve, oscillate, cascade, etc.
+
+The non-motion verbs test whether abstract action qualities (breaking apart,
+coming together, vibrating) translate into locomotion as effectively as
+explicit movement descriptions.
+
+PROMPT STRATEGY
+--------------
+The prompt asks the LLM to translate "the action quality, intensity, and
+movement character" of the verb into weight magnitudes, signs, and symmetry
+patterns. This gives the LLM three orthogonal dimensions to encode:
+  - Action quality → which sensors drive which motors (sign pattern)
+  - Intensity → weight magnitudes
+  - Movement character → symmetry/asymmetry between the two motors
+
+KEY RESULTS (from 100-trial run)
+---------------------------------
+  Dead: 5% (vs 8% baseline)
+  Median |DX|: 1.55m (vs 6.64m baseline — significantly lower)
+  Max |DX|: 25.12m (from "fracture")
+  Mean phase lock: 0.850 (vs 0.613 baseline — much more coordinated)
+
+Notable: Stumble-synonyms across 4 languages (English, German, Portuguese,
+Spanish) all mapped to identical weights → identical speed (2.010). The LLM
+treats cross-linguistic synonyms as the same structural concept.
 
 Usage:
     python3 structured_random_verbs.py
@@ -24,10 +64,15 @@ from structured_random_common import run_structured_search
 OUT_JSON = PROJECT / "artifacts" / "structured_random_verbs.json"
 
 # ── Seed list: verbs across languages ────────────────────────────────────────
-# Format: "verb (language, meaning)" to give the LLM context
+# Format: "verb (language, meaning)" to give the LLM context.
+# Each entry provides the romanized verb, its source language, and an English
+# gloss. The LLM uses all three to construct its weight mapping.
+#
+# The list is deliberately over-provisioned (150 verbs) so that random.shuffle
+# + [:100] gives a different sample each run while maintaining language diversity.
 
 VERBS = [
-    # English - motion
+    # English - motion verbs (explicit locomotion descriptions)
     "stumble (English, to trip and nearly fall)",
     "sprint (English, to run at full speed)",
     "crawl (English, to move on hands and knees)",
@@ -43,7 +88,9 @@ VERBS = [
     "dash (English, to move suddenly and quickly)",
     "wobble (English, to move unsteadily from side to side)",
     "skid (English, to slide sideways uncontrollably)",
-    # English - non-motion
+    # English - non-motion verbs (abstract actions without explicit locomotion;
+    # tests whether the LLM can map breaking, growing, vibrating, etc. into
+    # locomotion parameters as effectively as explicit motion descriptions)
     "shatter (English, to break into many pieces)",
     "whisper (English, to speak very softly)",
     "bloom (English, to produce flowers)",
@@ -151,6 +198,18 @@ VERBS = [
 
 
 def make_prompt(verb):
+    """Build the LLM prompt for a given verb seed.
+
+    The prompt explicitly names the 6 weights and their range [-1, 1], provides
+    a concrete JSON example to anchor the output format, and asks the LLM to
+    translate three aspects of the verb into weight properties:
+      - Action quality → sign patterns (which sensors excite/inhibit which motors)
+      - Intensity → magnitudes (how strongly each connection fires)
+      - Movement character → symmetry patterns (are the two motors driven alike?)
+
+    The instruction "Return ONLY a JSON object ... with no other text" minimizes
+    parsing failures, though parse_weights() handles violations robustly.
+    """
     return (
         f"Generate 6 synapse weights for a 3-link walking robot given the verb: "
         f"{verb}. The weights are w03, w04, w13, w14, w23, w24, each in [-1, 1]. "
@@ -163,6 +222,8 @@ def make_prompt(verb):
 
 
 def main():
+    # Shuffle and take 100 to get a random sample from the full 150-verb pool.
+    # Different runs get different samples, providing some run-to-run variance.
     random.shuffle(VERBS)
     seeds = VERBS[:100]
     run_structured_search("verbs", seeds, make_prompt, OUT_JSON)

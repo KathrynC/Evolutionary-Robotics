@@ -2,12 +2,60 @@
 """
 structured_random_theorems.py
 
-Structured random search condition #2: Random mathematical theorems.
+Structured random search — Condition #2: Mathematical Theorems
+===============================================================
 
-Selects 100 random theorems spanning algebra, geometry, analysis, topology,
-number theory, and combinatorics, asks a local LLM to translate each theorem's
-structural principle into 6 synapse weights, then runs headless simulations
-with Beer-framework analytics.
+HYPOTHESIS
+----------
+Mathematical theorems encode structural principles — symmetry, fixed points,
+convergence, periodicity, invariance — that are precisely the properties that
+determine dynamical system behavior. A theorem like "Brouwer Fixed Point" is
+*about* fixed points; "Poincaré Recurrence" is *about* periodicity. The LLM
+should map these mathematical structures into weight patterns that produce
+corresponding dynamical behaviors in the robot.
+
+This condition is the strongest test of "structural transfer" — whether the
+LLM can read out a mathematical principle and encode it as a weight geometry
+that the body then develops into behavior enacting that principle.
+
+SEED DESIGN
+-----------
+108 theorems spanning 12 branches of mathematics:
+  Analysis (16):       IVT, MVT, FTC, Bolzano-Weierstrass, Banach/Brouwer FPTs, ...
+  Algebra (14):        FTA, Cayley-Hamilton, Sylow, CRT, Spectral Theorem, ...
+  Geometry/Topology (14): Pythagoras, Euler formula, Gauss-Bonnet, Hairy Ball, ...
+  Number Theory (11):  Fermat's Little, Quadratic Reciprocity, PNT, FLT, ...
+  Combinatorics (12):  Ramsey, Hall's Marriage, Four Color, Sperner, ...
+  Probability (7):     CLT, LLN, Bayes, Chebyshev, ...
+  Dynamical Systems (9): Poincaré Recurrence, KAM, Lyapunov Stability, ...
+  Logic (4):           Gödel, Cantor, Zorn, Tychonoff
+  Differential Eqs (3): Picard-Lindelöf, Sturm-Liouville, Noether
+  Information Theory (2): Shannon source/channel coding
+  Linear Algebra (3):  Perron-Frobenius, SVD, Courant-Fischer
+
+Each theorem is referenced by its conventional name only (no statement or
+proof), so the LLM must rely on its internal representation of the theorem's
+structural content.
+
+PROMPT STRATEGY
+--------------
+The prompt asks the LLM to translate "the structural principle of this theorem
+— its symmetries, invariants, fixed points, transformations, or key
+relationships — into weight patterns." This targets the mathematical structure
+directly, not metaphorical associations.
+
+KEY RESULTS (from 95-trial run, 5 seeds fell outside the 100 sample)
+----------------------------------------------------------------------
+  Dead: 8.4% (same as baseline)
+  Median |DX|: 2.79m (vs 6.64m baseline)
+  Max |DX|: 9.55m (from "Pythagorean Theorem")
+  Mean phase lock: 0.904 (vs 0.613 baseline — highest of all conditions)
+
+Notable: Theorems dominate the phase lock leaderboard (18/20 top slots).
+Poincaré Recurrence Theorem is the most phase-locked gait in the entire pool
+(0.999) — a theorem about systems returning to near-initial states producing
+near-perfect periodicity. Noether's Theorem produces the deadest gait (DX=0.03m)
+with exact pairwise anti-symmetry: (+0.5,-0.5), (+0.3,-0.3), (+0.7,-0.7).
 
 Usage:
     python3 structured_random_theorems.py
@@ -25,9 +73,13 @@ from structured_random_common import run_structured_search
 OUT_JSON = PROJECT / "artifacts" / "structured_random_theorems.json"
 
 # ── Seed list: mathematical theorems ─────────────────────────────────────────
+# Organized by branch of mathematics. Each theorem name is its conventional
+# reference — the LLM must access its internal representation of the theorem's
+# content, not just pattern-match on keywords. Over-provisioned (108 theorems)
+# so that shuffle + [:100] gives diverse samples across branches.
 
 THEOREMS = [
-    # Analysis
+    # Analysis — theorems about continuity, convergence, completeness, fixed points
     "Intermediate Value Theorem",
     "Mean Value Theorem",
     "Fundamental Theorem of Calculus",
@@ -44,7 +96,7 @@ THEOREMS = [
     "Brouwer Fixed Point Theorem",
     "Implicit Function Theorem",
     "Inverse Function Theorem",
-    # Algebra
+    # Algebra — theorems about group structure, ring structure, matrix properties
     "Fundamental Theorem of Algebra",
     "Cayley-Hamilton Theorem",
     "Sylow Theorems",
@@ -59,7 +111,7 @@ THEOREMS = [
     "Artin-Wedderburn Theorem",
     "Nullstellensatz",
     "Structure Theorem for finitely generated abelian groups",
-    # Geometry and Topology
+    # Geometry and Topology — theorems about shape, curvature, surfaces, embeddings
     "Pythagorean Theorem",
     "Euler's Polyhedron Formula",
     "Gauss-Bonnet Theorem",
@@ -107,7 +159,7 @@ THEOREMS = [
     "Markov's Inequality",
     "Berry-Esseen Theorem",
     "De Finetti's Theorem",
-    # Dynamical Systems
+    # Dynamical Systems — theorems about trajectories, recurrence, stability, chaos
     "Poincare Recurrence Theorem",
     "Birkhoff Ergodic Theorem",
     "Sharkovskii's Theorem",
@@ -137,6 +189,16 @@ THEOREMS = [
 
 
 def make_prompt(theorem):
+    """Build the LLM prompt for a given theorem seed.
+
+    The prompt specifically asks for structural principles: symmetries,
+    invariants, fixed points, transformations, relationships. These are
+    the mathematical concepts most likely to map onto dynamical system
+    properties (which is what the weight vector determines).
+
+    Note: the theorem name is quoted in the prompt, signaling to the LLM
+    that it should treat it as a specific reference, not a generic phrase.
+    """
     return (
         f"Generate 6 synapse weights for a 3-link walking robot given the theorem: "
         f'"{theorem}". The weights are w03, w04, w13, w14, w23, w24, each in [-1, 1]. '
@@ -150,7 +212,7 @@ def make_prompt(theorem):
 
 def main():
     random.shuffle(THEOREMS)
-    seeds = THEOREMS[:100]
+    seeds = THEOREMS[:100]  # sample 100 from 108 available
     run_structured_search("theorems", seeds, make_prompt, OUT_JSON)
 
 

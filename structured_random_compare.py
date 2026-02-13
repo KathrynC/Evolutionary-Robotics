@@ -2,13 +2,66 @@
 """
 structured_random_compare.py
 
-Comparison analysis for the structured random search experiment.
+Comparative Analysis for the Structured Random Search Experiment
+=================================================================
 
-Loads results from all 5 conditions (verbs, theorems, bible, places, baseline),
-computes comparative statistics, runs significance tests, and generates
-diagnostic plots.
+This script is the analysis hub for the experiment. It loads results from all
+5 conditions (4 LLM-mediated + 1 baseline), computes cross-condition statistics,
+runs significance tests, and generates 6 diagnostic plots.
 
-Can also run all 5 conditions sequentially if result files don't exist yet.
+EXPERIMENTAL DESIGN
+-------------------
+The experiment asks: does an LLM function as a *structured* sampler of neural
+network weight space? We compare 5 conditions, each generating 100 weight
+vectors for a 3-link walking robot:
+
+  1. VERBS:    Multilingual verbs → LLM → weights (action qualities)
+  2. THEOREMS: Mathematical theorems → LLM → weights (structural principles)
+  3. BIBLE:    KJV Bible verses → LLM → weights (imagery, emotion)
+  4. PLACES:   Global place names → LLM → weights (terrain, climate, energy)
+  5. BASELINE: Uniform random U[-1,1]^6 → weights (no LLM involvement)
+
+All conditions use the same robot, simulation parameters, and Beer-framework
+analytics. The only variable is how the 6 synapse weights are generated.
+
+ANALYSIS OUTPUTS
+-----------------
+Console:
+  - Summary table: N, dead fraction, median/max |DX|, mean speed/efficiency/phase lock
+  - Mann-Whitney U tests vs baseline (all conditions)
+  - Pairwise Mann-Whitney U tests between structured conditions
+  - Best gait per condition
+
+JSON:
+  - artifacts/structured_random_comparison.json: summary statistics per condition
+
+Plots (artifacts/plots/sr_fig01-06):
+  1. Box plot of |DX| by condition — shows distribution shape and outliers
+  2. Dead fraction bar chart — what % of gaits are immobile (<1m)?
+  3. Phase lock distributions — coordination quality histograms
+  4. Speed vs efficiency scatter — Pareto frontier exploration
+  5. Best-of-N discovery curves — how quickly does each condition find its best?
+  6. PCA behavioral diversity — 2D projection of (speed, efficiency, phase_lock,
+     entropy) showing which behavioral subspace each condition occupies
+
+KEY FINDINGS (from initial run)
+---------------------------------
+  - Baseline dominates on median |DX| (6.64m vs 1.18-2.79m for structured)
+  - ALL structured conditions significantly lower than baseline (p < 0.001)
+  - Bible: 0% dead, produced the overall champion (Revelation 6:8, DX=+29.17m)
+  - Places: 0% dead but only 5.64m max — most conservative condition
+  - Theorems: highest phase lock (0.904), 18/20 top phase-lock slots
+  - The LLM is a conservative sampler: it avoids extremes (both death and
+    greatness) and clusters in a tight behavioral subspace with high coordination
+  - PCA shows structured conditions occupy a small submanifold of the full
+    behavioral space that baseline explores
+
+STATISTICAL TESTS
+------------------
+Mann-Whitney U test (implemented without scipy to maintain numpy-only constraint):
+  - Non-parametric rank-based test suitable for non-normal distributions
+  - Uses normal approximation for z-score (valid for n ≥ 20)
+  - Significance: * p<0.10, ** p<0.05, *** p<0.01
 
 Usage:
     python3 structured_random_compare.py              # analyze existing results
@@ -33,6 +86,8 @@ from compute_beer_analytics import NumpyEncoder
 PLOT_DIR = PROJECT / "artifacts" / "plots"
 PLOT_DIR.mkdir(parents=True, exist_ok=True)
 
+# Result files for each condition. Each is a JSON list of per-trial dicts
+# produced by run_structured_search() or run_uniform_baseline().
 CONDITIONS = {
     "verbs":    PROJECT / "artifacts" / "structured_random_verbs.json",
     "theorems": PROJECT / "artifacts" / "structured_random_theorems.json",
@@ -41,6 +96,8 @@ CONDITIONS = {
     "baseline": PROJECT / "artifacts" / "structured_random_baseline.json",
 }
 
+# Color scheme for plots: warm red for verbs, cool blue for theorems,
+# muted purple for bible, green for places, gray for baseline.
 COLORS = {
     "verbs":    "#E24A33",
     "theorems": "#348ABD",
@@ -76,9 +133,21 @@ def load_results():
 
 
 def mann_whitney_u(x, y):
-    """Simple Mann-Whitney U test (no scipy dependency).
+    """Mann-Whitney U test implemented from scratch (no scipy dependency).
 
-    Returns U statistic and approximate z-score for large samples.
+    This is a non-parametric rank-sum test that compares two independent
+    samples without assuming normality. It works by:
+    1. Combining both samples and ranking all values
+    2. Handling ties by assigning the mean rank to tied values
+    3. Computing U1 = sum of ranks in sample x minus the minimum possible
+    4. Using the normal approximation z = (U1 - μ) / σ for the p-value
+
+    The normal approximation is valid for sample sizes ≥ 20, which all our
+    conditions satisfy (n = 95-100 per condition).
+
+    Returns:
+        Tuple of (U statistic, z-score). |z| > 1.96 → p < 0.05,
+        |z| > 2.58 → p < 0.01.
     """
     x, y = np.array(x), np.array(y)
     nx, ny = len(x), len(y)
@@ -113,6 +182,8 @@ def main():
         return
 
     # ── Extract metrics per condition ────────────────────────────────────────
+    # For each condition, compute both per-trial arrays (for plotting and
+    # statistical tests) and scalar summaries (for the summary table).
     metrics = {}
     for name, trials in data.items():
         abs_dx = [abs(r["dx"]) for r in trials]
@@ -184,10 +255,14 @@ def main():
     print(f"\nWROTE {comp_path}")
 
     # ── FIGURES ──────────────────────────────────────────────────────────────
+    # Six diagnostic plots, each highlighting a different aspect of the
+    # structured vs. random comparison.
     print("\nGenerating comparison plots...")
     cond_order = [n for n in ["verbs", "theorems", "bible", "places", "baseline"] if n in metrics]
 
-    # Fig 1: Box/violin plot of |DX| by condition
+    # Fig 1: Box plot of |DX| by condition — shows the full distribution shape.
+    # Key visual: baseline's box is wide (high variance) while structured
+    # conditions are compressed near zero with occasional high outliers.
     fig, ax = plt.subplots(figsize=(10, 6))
     box_data = [metrics[n]["abs_dx"] for n in cond_order]
     bp = ax.boxplot(box_data, labels=cond_order, patch_artist=True, showfliers=True,
@@ -201,7 +276,9 @@ def main():
     fig.tight_layout()
     save_fig(fig, "sr_fig01_dx_by_condition.png")
 
-    # Fig 2: Dead fraction bar chart
+    # Fig 2: Dead fraction bar chart — what % of gaits are immobile?
+    # Key visual: bible and places at 0%, baseline at 8%. The LLM avoids
+    # the dead zone of weight space entirely for these conditions.
     fig, ax = plt.subplots(figsize=(8, 5))
     dead_fracs = [metrics[n]["dead_frac"] * 100 for n in cond_order]
     bars = ax.bar(cond_order, dead_fracs,
@@ -215,7 +292,10 @@ def main():
     fig.tight_layout()
     save_fig(fig, "sr_fig02_dead_fraction.png")
 
-    # Fig 3: Phase lock distributions
+    # Fig 3: Phase lock distributions — inter-joint coordination quality.
+    # Phase lock ∈ [0,1] measures how consistently the two joints maintain a
+    # fixed phase relationship (via Hilbert transform). Higher = more periodic.
+    # Key visual: baseline peaks around 0.5-0.7, structured conditions peak 0.9+.
     fig, ax = plt.subplots(figsize=(10, 6))
     for name in cond_order:
         ax.hist(metrics[name]["phase_lock"], bins=25, alpha=0.5,
@@ -228,7 +308,12 @@ def main():
     fig.tight_layout()
     save_fig(fig, "sr_fig03_phase_lock_by_condition.png")
 
-    # Fig 4: Speed vs efficiency scatter
+    # Fig 4: Speed vs efficiency scatter — the Pareto frontier.
+    # Efficiency = distance / work_proxy. Fast gaits tend to be inefficient
+    # (high energy for moderate distance); efficient gaits tend to be slow
+    # (low energy for modest distance). The Pareto frontier shows the best
+    # achievable tradeoff. Key visual: structured conditions cluster in the
+    # low-speed, moderate-efficiency region.
     fig, ax = plt.subplots(figsize=(10, 7))
     for name in cond_order:
         trials = data[name]
@@ -244,7 +329,11 @@ def main():
     fig.tight_layout()
     save_fig(fig, "sr_fig04_speed_efficiency.png")
 
-    # Fig 5: Best-of-N curves
+    # Fig 5: Best-of-N discovery curves — how quickly does each condition
+    # find its best gait? Plots the running maximum of |DX| as trials
+    # accumulate. Steeper initial slope = faster discovery. A flat plateau
+    # means the condition has exhausted its diversity. Key visual: baseline
+    # rises steadily throughout; Bible jumps early (Revelation 6:8 at trial ~30).
     fig, ax = plt.subplots(figsize=(10, 6))
     for name in cond_order:
         abs_dx = np.array(metrics[name]["abs_dx"])
@@ -259,7 +348,12 @@ def main():
     fig.tight_layout()
     save_fig(fig, "sr_fig05_best_of_n.png")
 
-    # Fig 6: Behavioral diversity — 2D PCA of (speed, efficiency, phase_lock, entropy)
+    # Fig 6: Behavioral diversity — 2D PCA of (speed, efficiency, phase_lock, entropy).
+    # Projects each gait from 4D behavioral space into 2D via SVD on the
+    # standardized feature matrix. This shows which behavioral subspace each
+    # condition explores. Key visual: baseline (gray) fills the entire space;
+    # structured conditions cluster tightly in the low-PC1 region, occupying
+    # a tiny submanifold of the full behavioral repertoire.
     fig, ax = plt.subplots(figsize=(10, 8))
     all_vecs = []
     all_labels = []
@@ -298,7 +392,14 @@ def main():
 
 
 def run_all_conditions():
-    """Run all 5 conditions sequentially."""
+    """Run all 5 conditions sequentially: baseline first, then structured.
+
+    Baseline runs first because it requires no LLM (just uniform random
+    sampling), so it can verify the simulation pipeline before committing
+    to the ~6 minutes of Ollama calls. Each structured condition imports
+    its own module and calls main(), which handles seed selection, prompt
+    construction, and the full LLM→simulation→analytics pipeline.
+    """
     from structured_random_common import run_uniform_baseline
 
     # Run baseline

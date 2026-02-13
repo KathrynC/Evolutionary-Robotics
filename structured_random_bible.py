@@ -2,12 +2,63 @@
 """
 structured_random_bible.py
 
-Structured random search condition #3: Random Bible verses (KJV).
+Structured random search — Condition #3: KJV Bible Verses
+===========================================================
 
-Selects 100 random Bible verses spanning narrative, poetry, prophecy,
-and epistle, asks a local LLM to translate each verse's imagery and
-emotional quality into 6 synapse weights, then runs headless simulations
-with Beer-framework analytics.
+HYPOTHESIS
+----------
+Biblical text is among the most heavily represented in LLM training corpora.
+The KJV in particular, being public domain and foundational to English
+literature, appears in countless contexts: sermons, literary criticism,
+cultural commentary, devotional writing. By the Arturo Ui Effect (Cramer
+et al. 2025), this textual redundancy creates deep attractor basins in the
+LLM's weight space — each verse activating a rich cluster of associated
+imagery, rhythm, and emotional quality.
+
+This condition tests whether that deep encoding translates into distinctive
+weight vectors. Unlike verbs (which describe actions) or theorems (which
+describe structures), verses encode *scenes*: a pale horse, a whirling wind,
+a still small voice, dry bones, a burning bush. The LLM must translate
+narrative imagery into mechanism.
+
+SEED DESIGN
+-----------
+100+ verses from 35 books, curated for maximum diversity across:
+  - Genre: narrative (Genesis, Exodus, Samuel), poetry (Psalms, Song of
+    Solomon), wisdom (Proverbs, Ecclesiastes, Job), prophecy (Isaiah,
+    Ezekiel, Daniel), epistle (Romans, Corinthians, Hebrews), apocalyptic
+    (Revelation)
+  - Action quality: stillness ("Be still and know"), violence ("the wall
+    fell down flat"), motion ("walking on the sea"), stasis ("Jesus wept")
+  - Imagery: fire, water, wind, stone, bone, horse, eagle, serpent, wheel,
+    lion, lamb, stars, mountains, rivers
+  - Emotional register: awe, grief, triumph, terror, peace, wonder
+
+Each verse is given in full KJV text with book/chapter/verse reference,
+providing the LLM with both the precise wording and its canonical location
+(which activates the verse's interpretive tradition in the LLM's weights).
+
+PROMPT STRATEGY
+--------------
+The prompt asks the LLM to translate "the imagery, action, and emotional
+quality" of the verse into weight patterns. Three channels:
+  - Imagery → which connections fire and how (the scene's visual/physical quality)
+  - Action → magnitude and sign (is the verse about motion or stillness?)
+  - Emotional quality → symmetry patterns (tension, resolution, balance)
+
+KEY RESULTS (from 100-trial run)
+---------------------------------
+  Dead: 0% (ZERO dead gaits — every verse produced a walking robot)
+  Median |DX|: 1.55m (vs 6.64m baseline — lower median but no deaths)
+  Max |DX|: 29.17m — OVERALL CHAMPION OF THE ENTIRE 495-GAIT POOL
+  Mean phase lock: 0.908 (vs 0.613 baseline)
+
+Notable: The overall champion is Revelation 6:8 ("behold a pale horse: and
+his name that sat on him was Death") at DX=+29.17m. The most efficient gait
+in the pool is Ecclesiastes 1:6 ("The wind goeth toward the south, and turneth
+about unto the north; it whirleth about continually") at efficiency=0.00495.
+These two gaits, together with Noether's Theorem, form "The Triptych" — see
+artifacts/structured_random_triptych.md.
 
 Usage:
     python3 structured_random_bible.py
@@ -25,11 +76,23 @@ from structured_random_common import run_structured_search
 OUT_JSON = PROJECT / "artifacts" / "structured_random_bible.json"
 
 # ── Seed list: Bible verses (KJV, public domain) ────────────────────────────
-# Curated for diversity: action, stillness, repetition, enumeration, metaphor,
-# narrative, prophecy, wisdom, poetry, apocalyptic
+# All texts are from the King James Version (1611), which is in the public
+# domain. Each entry includes book, chapter:verse, and the full verse text.
+#
+# Curated for maximum diversity along multiple axes:
+#   Genre: narrative, poetry, wisdom, prophecy, epistle, apocalyptic
+#   Action: stillness, violence, motion, stasis, creation, destruction
+#   Imagery: fire, water, wind, stone, bone, horse, eagle, wheel
+#   Emotion: awe, grief, triumph, terror, peace, wonder
+#
+# Over-provisioned (100+ verses) so that shuffle + [:100] samples diversely.
+# Many verses were chosen specifically for their kinematic or dynamic imagery
+# (walking, leaping, running, falling, flying) but others were chosen for
+# their abstract or emotional content to test whether non-kinematic text
+# still produces viable gaits.
 
 VERSES = [
-    # Genesis - beginnings and action
+    # Genesis — beginnings, creation, action, transformation
     "Genesis 1:3 — And God said, Let there be light: and there was light.",
     "Genesis 1:2 — And the earth was without form, and void; and darkness was upon the face of the deep.",
     "Genesis 3:19 — In the sweat of thy face shalt thou eat bread, till thou return unto the ground.",
@@ -162,6 +225,20 @@ VERSES = [
 
 
 def make_prompt(verse):
+    """Build the LLM prompt for a given Bible verse seed.
+
+    The full verse text (not just a reference) is included in the prompt so
+    the LLM can respond to the specific imagery and language, not just the
+    verse's canonical associations. The prompt asks for three dimensions:
+      - Imagery → the scene's physical quality (fire, water, stillness, storm)
+      - Action → what is happening (walking, falling, burning, calming)
+      - Emotional quality → the verse's affective register (awe, peace, terror)
+
+    The KJV's archaic English may itself influence the LLM's response — its
+    formal, rhythmic cadences activate different weight-space regions than
+    modern English would. This is a feature, not a bug: the KJV's textual
+    distinctiveness is part of what makes its attractor basins unique.
+    """
     return (
         f"Generate 6 synapse weights for a 3-link walking robot given the verse: "
         f'"{verse}". The weights are w03, w04, w13, w14, w23, w24, each in [-1, 1]. '
@@ -175,7 +252,7 @@ def make_prompt(verse):
 
 def main():
     random.shuffle(VERSES)
-    seeds = VERSES[:100]
+    seeds = VERSES[:100]  # sample 100 from the full verse pool
     run_structured_search("bible", seeds, make_prompt, OUT_JSON)
 
 
