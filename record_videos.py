@@ -1,12 +1,39 @@
 #!/usr/bin/env python3
-"""Record gait videos using PyBullet offscreen rendering.
+"""
+record_videos.py
+
+Role:
+    Record gait videos for the Synapse Gait Zoo using PyBullet offscreen rendering
+    (DIRECT mode + ER_TINY_RENDERER) piped to ffmpeg. No GUI or screen recording needed.
 
 Supports:
-  - Standard 6-synapse sensor→motor configs
-  - Extended 10-synapse configs with motor→motor cross-wiring
-  - Arbitrary neuron/synapse configs (hidden neurons, any topology)
+    - Standard 6-synapse sensor-to-motor configs (via `configs` list)
+    - Extended 10-synapse configs with motor-to-motor cross-wiring (w34, w43, w33, w44)
+    - Arbitrary neuron/synapse configs including hidden neurons (via `hidden_configs` list)
 
-Videos saved to videos/ directory.  No GUI or screen recording needed.
+Pipeline:
+    1. Back up brain.nndf
+    2. For each gait configuration, write a custom brain.nndf
+    3. Run a headless PyBullet simulation (c.SIM_STEPS steps)
+    4. Pipe raw RGB frames to ffmpeg to produce H.264 MP4
+    5. Report DX displacement for each gait
+    6. Restore the original brain.nndf
+
+Outputs:
+    videos/<gait_name>.mp4 for each configured gait
+
+Notes:
+    - FRAME_EVERY_N controls temporal downsampling (default 4: ~1000 frames from 4000 steps).
+    - Camera follows the robot with fixed yaw/pitch/distance.
+    - brain.nndf is a shared file: this script backs it up and restores it afterward.
+    - Requires ffmpeg to be installed and available on PATH.
+
+Ludobots role:
+    - Video recording of NN-driven locomotion for visual evaluation.
+
+Beyond Ludobots (this repo):
+    - Supports cross-wired CPG topologies and hidden neuron architectures for the
+      full gait zoo catalog. Musical time-signature metaphors map to synapse topology.
 """
 import subprocess, sys, os, struct, shutil
 import numpy as np
@@ -98,7 +125,19 @@ configs = [
 
 def write_brain_crosswired(w03, w13, w23, w04, w14, w24,
                             w34=0.0, w43=0.0, w33=0.0, w44=0.0):
-    """Write brain.nndf with standard + optional recurrent motor→motor synapses."""
+    """Write brain.nndf with standard 6-synapse topology plus optional cross-wiring.
+
+    Args:
+        w03, w13, w23: Sensor-to-BackLeg-motor weights (neurons 0,1,2 -> 3).
+        w04, w14, w24: Sensor-to-FrontLeg-motor weights (neurons 0,1,2 -> 4).
+        w34: Motor 3 -> Motor 4 cross-wiring weight (default 0 = absent).
+        w43: Motor 4 -> Motor 3 cross-wiring weight (default 0 = absent).
+        w33: Motor 3 self-feedback weight (default 0 = absent).
+        w44: Motor 4 self-feedback weight (default 0 = absent).
+
+    Side effects:
+        Overwrites brain.nndf in the project directory.
+    """
     path = os.path.join(PROJECT, "brain.nndf")
     with open(path, "w") as f:
         f.write('<neuralNetwork>\n')
@@ -127,7 +166,17 @@ def write_brain_crosswired(w03, w13, w23, w04, w14, w24,
 
 
 def write_brain_full(neurons, synapses):
-    """Write brain.nndf with arbitrary neurons (including hidden) and synapses."""
+    """Write brain.nndf with arbitrary neurons (including hidden) and synapses.
+
+    Args:
+        neurons: List of (name, type, ref) tuples. type is "sensor", "motor",
+            or "hidden". ref is the link/joint name (None for hidden neurons).
+        synapses: List of (source_name, target_name, weight) tuples.
+            Zero-weight synapses are omitted from the output.
+
+    Side effects:
+        Overwrites brain.nndf in the project directory.
+    """
     path = os.path.join(PROJECT, "brain.nndf")
     with open(path, "w") as f:
         f.write('<neuralNetwork>\n')
@@ -145,6 +194,15 @@ def write_brain_full(neurons, synapses):
 
 
 def safe_get_base_pose(body_id):
+    """Return (position, orientation) for a body, with a safe fallback on error.
+
+    Args:
+        body_id: PyBullet body ID.
+
+    Returns:
+        Tuple of (position_xyz, quaternion_xyzw). Falls back to origin/identity
+        if the query fails (e.g., body was already removed).
+    """
     try:
         return p.getBasePositionAndOrientation(body_id)
     except Exception:
@@ -152,7 +210,14 @@ def safe_get_base_pose(body_id):
 
 
 def render_frame(robot_pos):
-    """Render one frame with camera following the robot.  Returns RGB bytes."""
+    """Render one frame with camera following the robot.
+
+    Args:
+        robot_pos: (x, y, z) position of the robot base.
+
+    Returns:
+        Raw RGB bytes (HEIGHT x WIDTH x 3) suitable for piping to ffmpeg.
+    """
     target = [robot_pos[0], robot_pos[1], robot_pos[2] + CAMERA_TARGET_Z_OFFSET]
     view = p.computeViewMatrixFromYawPitchRoll(
         cameraTargetPosition=target,
@@ -172,7 +237,24 @@ def render_frame(robot_pos):
 
 
 def run_one(name, w03, w13, w23, w04, w14, w24, w34, w43, w33, w44, desc, vid_dir):
-    """Run one simulation and produce a video."""
+    """Run one simulation with cross-wired topology and produce a video.
+
+    Args:
+        name: Gait identifier (used as the video filename stem).
+        w03..w24: Six standard sensor-to-motor synapse weights.
+        w34, w43, w33, w44: Four optional motor cross-wiring weights.
+        desc: Human-readable description (for console logging only).
+        vid_dir: Directory to write the output MP4 file.
+
+    Returns:
+        Tuple of (dx, video_path) where dx is the X-axis displacement in meters
+        and video_path is the absolute path to the saved MP4.
+
+    Side effects:
+        - Overwrites brain.nndf via write_brain_crosswired.
+        - Creates/overwrites vid_dir/<name>.mp4.
+        - Spawns an ffmpeg subprocess for video encoding.
+    """
     write_brain_crosswired(w03, w13, w23, w04, w14, w24, w34, w43, w33, w44)
 
     # Connect headless
@@ -251,7 +333,24 @@ def run_one(name, w03, w13, w23, w04, w14, w24, w34, w43, w33, w44, desc, vid_di
 
 
 def run_one_full(name, neurons, synapses, desc, vid_dir):
-    """Run one simulation with arbitrary neuron/synapse config and produce a video."""
+    """Run one simulation with arbitrary neuron/synapse topology and produce a video.
+
+    Args:
+        name: Gait identifier (used as the video filename stem).
+        neurons: List of (name, type, ref) tuples defining the network architecture.
+        synapses: List of (source, target, weight) tuples defining connectivity.
+        desc: Human-readable description (for console logging only).
+        vid_dir: Directory to write the output MP4 file.
+
+    Returns:
+        Tuple of (dx, video_path) where dx is the X-axis displacement in meters
+        and video_path is the absolute path to the saved MP4.
+
+    Side effects:
+        - Overwrites brain.nndf via write_brain_full.
+        - Creates/overwrites vid_dir/<name>.mp4.
+        - Spawns an ffmpeg subprocess for video encoding.
+    """
     write_brain_full(neurons, synapses)
 
     cid = p.connect(p.DIRECT)
@@ -322,6 +421,13 @@ def run_one_full(name, neurons, synapses, desc, vid_dir):
 
 
 def main():
+    """Record videos for all configured gaits (standard + hidden topologies).
+
+    Side effects:
+        - Backs up and restores brain.nndf.
+        - Writes MP4 files to videos/ directory.
+        - Prints DX displacement and file paths to stdout.
+    """
     vid_dir = os.path.join(PROJECT, "videos")
     os.makedirs(vid_dir, exist_ok=True)
 

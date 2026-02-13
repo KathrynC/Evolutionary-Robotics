@@ -2,18 +2,33 @@
 """
 causal_surgery_interpolation.py
 
-Two-part analysis of the Synapse Gait Zoo champions:
+Role:
+    Two-part analysis of the Synapse Gait Zoo champions: static ablation
+    (causal surgery) and linear interpolation through 6D weight space.
+    Characterizes synapse importance and landscape smoothness.
 
-Part 1 — Causal Surgery (Ablation Study)
+Part 1 -- Causal Surgery (Ablation Study):
     For each of 3 champions (Novelty Champion, CPG Champion, Trial 3),
     systematically ablate each synapse (zero / half / negate) and measure
     the effect on locomotion metrics.
-    63 simulations total.
+    63 simulations total (3 champions x 6-8 synapses x 3 modes + baselines).
 
-Part 2 — Gait Interpolation
+Part 2 -- Gait Interpolation:
     Linearly interpolate between pairs of 6-synapse gaits and track how
-    metrics change across the landscape.
-    153 simulations total (51 points × 3 pairs).
+    metrics change across the landscape. Reveals cliffs, smooth gradients,
+    and intermediate super-gaits.
+    153 simulations total (51 points x 3 pairs).
+
+Notes:
+    - Unlike causal_surgery.py (which modifies weights mid-simulation), this
+      script performs static ablation: each simulation starts with the modified
+      weights and runs to completion.
+    - Supports both standard 6-synapse and CPG 7-neuron/8-synapse topologies.
+    - brain.nndf is backed up before the run and restored afterward.
+    - Full telemetry is collected and Beer-framework analytics are computed
+      via compute_all() for every simulation.
+    - Phase portrait and XY trajectory data are stored only at quartile
+      points (t=0, 0.25, 0.5, 0.75, 1.0) to limit memory usage.
 
 Outputs:
     artifacts/causal_surgery_interpolation.json
@@ -104,7 +119,18 @@ CPG_CHAMPION = {
 # ── Shared simulation infrastructure ─────────────────────────────────────────
 
 def write_brain_standard(weights):
-    """Write brain.nndf for the standard 6-synapse topology."""
+    """Write brain.nndf for the standard 6-synapse topology.
+
+    Defines 3 sensor neurons (Torso, BackLeg, FrontLeg), 2 motor neurons
+    (Torso_BackLeg, Torso_FrontLeg), and 6 fully-connected synapses.
+
+    Args:
+        weights: dict with keys "w03","w04","w13","w14","w23","w24"
+                 mapping synapse names to float values.
+
+    Side effects:
+        Overwrites brain.nndf in the project directory.
+    """
     path = PROJECT / "brain.nndf"
     with open(path, "w") as f:
         f.write('<neuralNetwork>\n')
@@ -122,7 +148,20 @@ def write_brain_standard(weights):
 
 
 def write_brain_cpg(synapses):
-    """Write brain.nndf for the CPG hidden-layer topology (7 neurons, 8 synapses)."""
+    """Write brain.nndf for the CPG hidden-layer topology (7 neurons, 8 synapses).
+
+    Defines 3 sensor neurons, 2 motor neurons, and 2 hidden neurons (5, 6)
+    forming a half-center oscillator. Synapses are specified as a list of
+    dicts rather than a weight-name dict.
+
+    Args:
+        synapses: list of dicts, each with keys "src", "tgt", "w" (and
+                  optionally "label"). Example:
+                  {"src": "5", "tgt": "6", "w": 0.7, "label": "Hidden5->Hidden6"}
+
+    Side effects:
+        Overwrites brain.nndf in the project directory.
+    """
     path = PROJECT / "brain.nndf"
     with open(path, "w") as f:
         f.write('<neuralNetwork>\n')
@@ -140,7 +179,26 @@ def write_brain_cpg(synapses):
 
 
 def simulate_full(architecture="standard", weights=None, synapses=None):
-    """Run simulation, return full telemetry data dict."""
+    """Run a full headless simulation and return per-step telemetry data.
+
+    Supports both the standard 6-synapse topology and the CPG hidden-layer
+    topology. Collects position, velocity, angular velocity, orientation,
+    ground contact, and joint state at every timestep.
+
+    Args:
+        architecture: "standard" for 6-synapse or "cpg" for hidden-layer.
+        weights: dict of synapse weights (required when architecture="standard").
+        synapses: list of synapse dicts (required when architecture="cpg").
+
+    Returns:
+        dict of numpy arrays with keys: t, x, y, z, vx, vy, vz,
+        wx, wy, wz, roll, pitch, yaw, contact_torso, contact_back,
+        contact_front, j0_pos, j0_vel, j0_tau, j1_pos, j1_vel, j1_tau.
+
+    Side effects:
+        - Overwrites brain.nndf via write_brain_standard() or write_brain_cpg().
+        - Creates and destroys a PyBullet physics connection.
+    """
     if architecture == "standard":
         write_brain_standard(weights)
     else:
@@ -243,7 +301,19 @@ def simulate_full(architecture="standard", weights=None, synapses=None):
 
 
 def compute_metrics(data):
-    """Run compute_all and extract a flat dict of key metrics."""
+    """Run Beer-framework analytics and extract a flat dict of key metrics.
+
+    Computes the full analytics pipeline via compute_all(), then extracts
+    13 scalar metrics plus FFT-based joint frequencies.
+
+    Args:
+        data: dict of numpy arrays from simulate_full().
+
+    Returns:
+        dict with keys: dx, dy, net_distance, mean_speed, speed_cv,
+        work_proxy, distance_per_work, path_straightness,
+        heading_consistency, phase_lock, contact_entropy, j0_freq, j1_freq.
+    """
     a = compute_all(data, DT)
     x, y = data["x"], data["y"]
     dx = float(x[-1] - x[0])
@@ -286,7 +356,18 @@ SYNAPSE_LABELS_6 = {
 
 
 def ablate_standard(weights, synapse_key, mode):
-    """Return a new weight dict with one synapse ablated."""
+    """Return a new weight dict with one synapse ablated.
+
+    Args:
+        weights: dict mapping synapse names to float values.
+        synapse_key: which synapse to ablate (e.g., "w03").
+        mode: ablation type -- "zero" (set to 0), "half" (multiply by 0.5),
+              or "negate" (flip sign).
+
+    Returns:
+        New weight dict with the specified synapse modified. The original
+        dict is not mutated.
+    """
     w = dict(weights)
     orig = w[synapse_key]
     if mode == "zero":
@@ -299,7 +380,17 @@ def ablate_standard(weights, synapse_key, mode):
 
 
 def ablate_cpg(synapses, syn_idx, mode):
-    """Return a new synapse list with one synapse ablated."""
+    """Return a new synapse list with one synapse ablated.
+
+    Args:
+        synapses: list of synapse dicts (each with "src", "tgt", "w").
+        syn_idx: index of the synapse to ablate.
+        mode: ablation type -- "zero", "half", or "negate".
+
+    Returns:
+        New list of synapse dicts (deep-copied) with the specified synapse
+        modified. The original list is not mutated.
+    """
     new_syns = [dict(s) for s in synapses]
     orig = new_syns[syn_idx]["w"]
     if mode == "zero":
@@ -312,7 +403,25 @@ def ablate_cpg(synapses, syn_idx, mode):
 
 
 def run_surgery(champion):
-    """Run baseline + all ablations for a champion. Returns results dict."""
+    """Run baseline + all ablation combinations for a single champion.
+
+    For each synapse in the champion's topology, runs 3 ablation modes
+    (zero, half, negate) and computes absolute and percentage deltas
+    vs the unablated baseline for every metric.
+
+    Args:
+        champion: dict with keys "name", "architecture", and either
+                  "weights" (standard) or "synapses" (CPG).
+
+    Returns:
+        dict with keys:
+            name: champion name string.
+            architecture: "standard" or "cpg".
+            baseline: metrics dict from the unablated simulation.
+            ablations: list of dicts, each containing synapse_key,
+                synapse_label, synapse_idx, original_weight,
+                ablated_weight, mode, metrics, deltas, pct_deltas.
+    """
     name = champion["name"]
     arch = champion["architecture"]
     print(f"\n  Surgery: {name} ({arch})")
@@ -406,12 +515,40 @@ def run_surgery(champion):
 # ── Part 2: Gait Interpolation ───────────────────────────────────────────────
 
 def interpolate_weights(w_a, w_b, t):
-    """Linear interpolation: w(t) = (1-t) * w_A + t * w_B."""
+    """Linear interpolation between two weight dicts: w(t) = (1-t)*w_A + t*w_B.
+
+    Args:
+        w_a: weight dict for gait A (t=0 endpoint).
+        w_b: weight dict for gait B (t=1 endpoint).
+        t: interpolation parameter in [0, 1].
+
+    Returns:
+        New weight dict with linearly interpolated values.
+    """
     return {k: (1.0 - t) * w_a[k] + t * w_b[k] for k in w_a}
 
 
 def run_interpolation(pair_name, w_a, w_b, n_steps=51):
-    """Run interpolation between two 6-synapse gaits. Returns list of results."""
+    """Run interpolation between two 6-synapse gaits along a linear transect.
+
+    Simulates n_steps evenly spaced points from gait A (t=0) to gait B
+    (t=1) in 6D weight space. Full XY trajectory and phase portrait data
+    are stored only at quartile points to limit memory.
+
+    Args:
+        pair_name: descriptive label for the pair (e.g., "Nov<->T3").
+        w_a: weight dict for gait A (t=0 endpoint).
+        w_b: weight dict for gait B (t=1 endpoint).
+        n_steps: number of interpolation points. Defaults to 51.
+
+    Returns:
+        list of result dicts, one per interpolation point, each with:
+            t: interpolation parameter (float 0..1).
+            weights: interpolated weight dict.
+            metrics: full metrics dict from compute_metrics().
+            xy_trajectory: dict with "x","y" lists, or None if not a quartile.
+            phase_data: dict with "j0_pos","j1_pos" lists, or None.
+    """
     print(f"\n  Interpolation: {pair_name} ({n_steps} points)")
     t_values = np.linspace(0.0, 1.0, n_steps)
     results = []
@@ -447,13 +584,26 @@ def run_interpolation(pair_name, w_a, w_b, n_steps=51):
 # ── Plotting helpers ──────────────────────────────────────────────────────────
 
 def clean_ax(ax):
-    """Remove top and right spines for a cleaner plot appearance."""
+    """Remove top and right spines for a cleaner plot appearance.
+
+    Args:
+        ax: matplotlib Axes instance.
+    """
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
 
 
 def save_fig(fig, name):
-    """Save figure to PLOT_DIR as PNG at 100 dpi and close it."""
+    """Save figure to PLOT_DIR as PNG at 100 dpi and close it.
+
+    Args:
+        fig: matplotlib Figure instance.
+        name: filename (e.g., "surg_fig01_heatmap.png").
+
+    Side effects:
+        Creates PLOT_DIR if it does not exist.
+        Writes the PNG file and closes the figure.
+    """
     PLOT_DIR.mkdir(parents=True, exist_ok=True)
     path = PLOT_DIR / name
     fig.savefig(path, dpi=100, bbox_inches="tight")
@@ -477,7 +627,18 @@ PAIR_COLORS = {
 # ── Surgery figures ───────────────────────────────────────────────────────────
 
 def plot_surgery_heatmap(surgery_results):
-    """Fig 1: 3-panel heatmap of metric change (%) per synapse per ablation type."""
+    """Fig 1: 3-panel heatmap of metric change (%) per synapse per ablation type.
+
+    One panel per champion. Rows are grouped by synapse with 3 sub-rows
+    per ablation mode (zero, half, negate). Columns are 6 key metrics.
+    Color scale is diverging RdBu_r, capped at +/-100%.
+
+    Args:
+        surgery_results: list of 3 result dicts from run_surgery().
+
+    Side effects:
+        Writes surg_fig01_heatmap.png to PLOT_DIR.
+    """
     heatmap_metrics = ["dx", "mean_speed", "work_proxy", "phase_lock",
                        "heading_consistency", "contact_entropy"]
 
@@ -537,7 +698,18 @@ def plot_surgery_heatmap(surgery_results):
 
 
 def plot_surgery_waterfall(surgery_results):
-    """Fig 2: Waterfall chart — baseline DX → ablated DX for each synapse (zero mode)."""
+    """Fig 2: Waterfall chart showing baseline DX vs ablated DX (zero mode only).
+
+    One panel per champion. Bars show the ablated DX for each synapse,
+    colored green (improvement) or red (degradation). A dashed baseline
+    line shows the unablated DX. Delta labels are placed on each bar.
+
+    Args:
+        surgery_results: list of 3 result dicts from run_surgery().
+
+    Side effects:
+        Writes surg_fig02_dx_waterfall.png to PLOT_DIR.
+    """
     fig, axes = plt.subplots(1, 3, figsize=(18, 6))
 
     for col, sr in enumerate(surgery_results):
@@ -578,7 +750,18 @@ def plot_surgery_waterfall(surgery_results):
 
 
 def plot_surgery_critical_path(surgery_results):
-    """Fig 3: Bar chart — rank synapses by |ΔDX| when zeroed."""
+    """Fig 3: Horizontal bar chart ranking synapses by |delta-DX| when zeroed.
+
+    One panel per champion. Synapses are sorted from most to least
+    impactful. This identifies the critical path: the synapses whose
+    removal most disrupts locomotion.
+
+    Args:
+        surgery_results: list of 3 result dicts from run_surgery().
+
+    Side effects:
+        Writes surg_fig03_critical_path.png to PLOT_DIR.
+    """
     fig, axes = plt.subplots(1, 3, figsize=(18, 6))
 
     for col, sr in enumerate(surgery_results):
@@ -614,7 +797,18 @@ def plot_surgery_critical_path(surgery_results):
 
 
 def plot_surgery_sign_flip(surgery_results):
-    """Fig 4: Scatter — original DX vs sign-flipped DX per synapse."""
+    """Fig 4: Scatter of baseline DX vs sign-flipped (negated) DX per synapse.
+
+    All 3 champions are overlaid. Points on the y=x diagonal indicate
+    sign-flips that had no effect; points far below indicate catastrophic
+    flips that destroyed locomotion.
+
+    Args:
+        surgery_results: list of 3 result dicts from run_surgery().
+
+    Side effects:
+        Writes surg_fig04_sign_flip.png to PLOT_DIR.
+    """
     fig, ax = plt.subplots(figsize=(10, 8))
 
     for sr in surgery_results:
@@ -654,7 +848,19 @@ def plot_surgery_sign_flip(surgery_results):
 # ── Interpolation figures ─────────────────────────────────────────────────────
 
 def plot_interp_dx(interp_results):
-    """Fig 5: DX vs t for all 3 pairs."""
+    """Fig 5: DX vs interpolation parameter t for all 3 gait pairs.
+
+    Shows how displacement changes along the linear transect between
+    two gaits. Horizontal dotted lines mark the pure endpoint DX values.
+    Cliffs (sudden jumps) and smooth gradients are visually apparent.
+
+    Args:
+        interp_results: dict keyed by pair name (e.g., "Nov<->T3"), each
+            value a list of result dicts from run_interpolation().
+
+    Side effects:
+        Writes surg_fig05_interp_dx.png to PLOT_DIR.
+    """
     fig, ax = plt.subplots(figsize=(12, 6))
 
     for pair_name, results in interp_results.items():
@@ -678,7 +884,19 @@ def plot_interp_dx(interp_results):
 
 
 def plot_interp_multi(interp_results):
-    """Fig 6: 2×3 grid of metrics vs t for all pairs."""
+    """Fig 6: 2x3 grid of 6 metrics vs interpolation parameter t.
+
+    Shows DX, mean speed, work proxy, phase lock, heading consistency,
+    and contact entropy landscapes for all 3 gait pairs overlaid.
+    Reveals which metrics change smoothly vs abruptly.
+
+    Args:
+        interp_results: dict keyed by pair name, each value a list of
+            result dicts from run_interpolation().
+
+    Side effects:
+        Writes surg_fig06_interp_multi.png to PLOT_DIR.
+    """
     metric_keys = ["dx", "mean_speed", "work_proxy",
                    "phase_lock", "heading_consistency", "contact_entropy"]
     metric_labels = ["DX (m)", "Mean Speed (m/s)", "Work Proxy",
@@ -708,7 +926,20 @@ def plot_interp_multi(interp_results):
 
 
 def plot_interp_phase(primary_results):
-    """Fig 7: Phase portraits at t=0.0, 0.25, 0.50, 0.75, 1.0 for primary pair."""
+    """Fig 7: Phase portraits (BackLeg vs FrontLeg joint angle) at 5 quartile points.
+
+    Shows how the joint-angle limit cycle morphs as the interpolation
+    parameter moves from gait A to gait B. Points are colored by time
+    (viridis) to indicate phase portrait direction.
+
+    Args:
+        primary_results: list of result dicts from run_interpolation()
+            for the primary pair (Nov<->T3). Only entries with non-None
+            phase_data are plotted.
+
+    Side effects:
+        Writes surg_fig07_interp_phase.png to PLOT_DIR.
+    """
     t_targets = [0.0, 0.25, 0.50, 0.75, 1.0]
     fig, axes = plt.subplots(1, 5, figsize=(19, 4))
 
@@ -751,7 +982,20 @@ def plot_interp_phase(primary_results):
 
 
 def plot_interp_xy(primary_results):
-    """Fig 8: XY trajectory gallery at t=0.0, 0.25, 0.50, 0.75, 1.0."""
+    """Fig 8: XY trajectory gallery at 5 quartile interpolation points.
+
+    Shows the robot's ground-plane path (X vs Y) at t=0, 0.25, 0.5,
+    0.75, 1.0. Start is marked with a green triangle, end with a red
+    star. Equal aspect ratio preserves trajectory shape.
+
+    Args:
+        primary_results: list of result dicts from run_interpolation()
+            for the primary pair (Nov<->T3). Only entries with non-None
+            xy_trajectory are plotted.
+
+    Side effects:
+        Writes surg_fig08_interp_xy.png to PLOT_DIR.
+    """
     t_targets = [0.0, 0.25, 0.50, 0.75, 1.0]
     fig, axes = plt.subplots(1, 5, figsize=(19, 4))
 
@@ -791,7 +1035,18 @@ def plot_interp_xy(primary_results):
 # ── Console tables ────────────────────────────────────────────────────────────
 
 def print_surgery_table(sr):
-    """Print a surgery results table for one champion."""
+    """Print a formatted surgery results table for one champion to stdout.
+
+    Displays baseline metrics followed by one row per ablation, showing
+    DX, delta-DX, percentage change, speed, phase lock, heading
+    consistency, and contact entropy.
+
+    Args:
+        sr: surgery result dict from run_surgery().
+
+    Side effects:
+        Prints to stdout.
+    """
     name = sr["name"]
     baseline = sr["baseline"]
 
@@ -816,7 +1071,19 @@ def print_surgery_table(sr):
 
 
 def print_interpolation_summary(pair_name, results):
-    """Print interpolation summary for one pair."""
+    """Print interpolation summary statistics for one gait pair to stdout.
+
+    Reports endpoint DX values, max/min DX with their t values, DX range,
+    detected cliffs (>20% jump between adjacent points), and a sampled
+    table of metrics at every 5th interpolation point.
+
+    Args:
+        pair_name: descriptive label for the pair.
+        results: list of result dicts from run_interpolation().
+
+    Side effects:
+        Prints to stdout.
+    """
     print(f"\n{'='*70}")
     print(f"  INTERPOLATION: {pair_name}")
     print(f"{'='*70}")
@@ -861,7 +1128,22 @@ def print_interpolation_summary(pair_name, results):
 # ── Main ─────────────────────────────────────────────────────────────────────
 
 def main():
-    """Run the full causal-surgery + gait-interpolation pipeline and emit plots/JSON."""
+    """Run the full causal-surgery + gait-interpolation pipeline.
+
+    Pipeline:
+        1. Back up brain.nndf (restored at end).
+        2. Load a "dead" gait (high path_length but near-zero DX) from
+           dark_matter.json as an interpolation endpoint.
+        3. Part 1: Run surgery (ablation) on 3 champions (~63 sims).
+        4. Part 2: Run interpolation on 3 gait pairs (~153 sims).
+        5. Save structured results to artifacts/causal_surgery_interpolation.json.
+        6. Generate 8 figures (4 surgery + 4 interpolation) to artifacts/plots/.
+
+    Side effects:
+        - Overwrites and restores brain.nndf.
+        - Writes JSON and PNG artifacts to artifacts/.
+        - Prints progress and summary tables to stdout.
+    """
     brain_path = PROJECT / "brain.nndf"
     backup_path = PROJECT / "brain.nndf.backup"
     if brain_path.exists():

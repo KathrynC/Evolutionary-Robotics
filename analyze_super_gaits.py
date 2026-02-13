@@ -2,24 +2,38 @@
 """
 analyze_super_gaits.py
 
-Deep comparison of the two super-gaits discovered by causal surgery +
-interpolation analysis, compared against the Novelty Champion baseline
-and the cliff-collapse point.
+Role:
+    Deep comparison of super-gaits discovered by causal surgery + interpolation
+    analysis, compared against the Novelty Champion baseline and the cliff-collapse
+    point. Includes local sensitivity probing (+/- 1% perturbation per synapse).
 
 4 gaits compared:
-    1. Novelty Champion (NC)          — DX≈60.2m baseline
-    2. Interpolation Super (t=0.52)   — DX≈68.2m, 35% less work
-    3. w23-Half Variant               — DX≈68.4m, same work as NC
-    4. Cliff Collapse (t=0.54)        — catastrophic collapse to DX≈-1.1m
+    1. Novelty Champion (NC)          -- DX~60.2m baseline
+    2. Interpolation Super (t=0.52)   -- DX~68.2m, 35% less work
+    3. w23-Half Variant               -- DX~68.4m, same work as NC
+    4. Cliff Collapse (t=0.54)        -- catastrophic collapse to DX~-1.1m
+
+Pipeline:
+    Part 1: Simulate all 4 gaits, compute metrics via Beer-framework analytics.
+    Part 2: Print full metrics table + weight structure analysis.
+    Part 3: Sensitivity probes -- perturb each synapse by +/- 1% for 3 viable
+            gaits (6 synapses x 2 directions x 3 gaits = 36 additional sims).
+    Part 4: Save JSON artifact and generate 6 figures.
 
 Outputs:
     artifacts/super_gaits_analysis.json
-    artifacts/plots/super_fig01_trajectory.png
-    artifacts/plots/super_fig02_joints.png
-    artifacts/plots/super_fig03_phase.png
-    artifacts/plots/super_fig04_energy.png
-    artifacts/plots/super_fig05_contacts.png
-    artifacts/plots/super_fig06_sensitivity.png
+    artifacts/plots/super_fig01_trajectory.png   -- XY path, X vs time, Z bounce
+    artifacts/plots/super_fig02_joints.png       -- Joint positions and velocities (2x4)
+    artifacts/plots/super_fig03_phase.png        -- Phase portraits (j0 vs j1, 4 panels)
+    artifacts/plots/super_fig04_energy.png       -- Instantaneous power + cumulative work
+    artifacts/plots/super_fig05_contacts.png     -- Contact rasters (4 stacked panels)
+    artifacts/plots/super_fig06_sensitivity.png  -- Bar chart of |dDX/dw| per synapse
+
+Notes:
+    - Total simulation count: 4 (gaits) + 36 (sensitivity) = 40 sims.
+    - brain.nndf is backed up and restored around the simulation block.
+    - The t=0.52 to t=0.54 cliff is the sharpest known discontinuity in the
+      interpolation landscape (69m drop in DX over a 0.02 change in t).
 
 Usage:
     python3 analyze_super_gaits.py
@@ -81,7 +95,16 @@ _T3 = {
 }
 
 def _interp(w_a, w_b, t):
-    """Linearly interpolate two weight dicts at parameter t in [0, 1]."""
+    """Linearly interpolate two weight dicts at parameter t in [0, 1].
+
+    Args:
+        w_a: Starting weight dict (returned when t=0).
+        w_b: Ending weight dict (returned when t=1).
+        t: Interpolation parameter in [0, 1].
+
+    Returns:
+        New dict with the same keys, values linearly blended.
+    """
     # t=0 gives w_a, t=1 gives w_b
     return {k: (1.0 - t) * w_a[k] + t * w_b[k] for k in w_a}
 
@@ -115,7 +138,14 @@ GAIT_SHORT = {
 # ── Simulation infrastructure (reused from causal_surgery_interpolation.py) ──
 
 def write_brain_standard(weights):
-    """Write a brain.nndf file with the given 6-synapse weight dict."""
+    """Write a brain.nndf file with the given 6-synapse weight dict.
+
+    Args:
+        weights: Dict with keys "w03","w13","w23","w04","w14","w24".
+
+    Side effects:
+        Overwrites brain.nndf in the project directory.
+    """
     path = PROJECT / "brain.nndf"
     with open(path, "w") as f:
         f.write('<neuralNetwork>\n')
@@ -135,8 +165,18 @@ def write_brain_standard(weights):
 def simulate_full(weights):
     """Run a full headless PyBullet simulation and return time-series data dict.
 
-    Returns dict with arrays for position, velocity, orientation, contacts,
-    and joint states at each of the c.SIM_STEPS timesteps.
+    Args:
+        weights: Dict of 6-synapse weights (w03..w24).
+
+    Returns:
+        Dict with numpy arrays for position (x, y, z), velocity (vx, vy, vz),
+        angular velocity (wx, wy, wz), orientation (roll, pitch, yaw),
+        ground contacts (contact_torso, contact_back, contact_front), and
+        joint states (j0_pos, j0_vel, j0_tau, j1_pos, j1_vel, j1_tau)
+        at each of the c.SIM_STEPS timesteps.
+
+    Side effects:
+        Overwrites brain.nndf via write_brain_standard.
     """
     write_brain_standard(weights)
 
@@ -237,8 +277,15 @@ def simulate_full(weights):
 def compute_metrics(data):
     """Compute a flat dict of locomotion metrics from simulation time-series data.
 
-    Returns dict with displacement, speed, work, coordination, contact, and
-    frequency metrics for a single gait run.
+    Wraps compute_all() from the Beer analytics pipeline and extracts commonly
+    compared scalar metrics into a single flat dictionary.
+
+    Args:
+        data: Telemetry dict from simulate_full().
+
+    Returns:
+        Dict with displacement, speed, work, coordination, contact, and
+        frequency metrics for a single gait run.
     """
     a = compute_all(data, DT)
     x, y = data["x"], data["y"]
@@ -303,7 +350,11 @@ def save_fig(fig, name):
 # ── Console tables ────────────────────────────────────────────────────────────
 
 def print_metrics_table(all_metrics):
-    """Print a formatted console table comparing all locomotion metrics across gaits."""
+    """Print a formatted console table comparing all locomotion metrics across 4 gaits.
+
+    Args:
+        all_metrics: Dict mapping gait name to its metrics dict (from compute_metrics).
+    """
     print(f"\n{'='*100}")
     print("FULL METRICS COMPARISON: 4 GAITS")
     print(f"{'='*100}")
@@ -349,7 +400,15 @@ def print_metrics_table(all_metrics):
 
 
 def print_weight_analysis(all_metrics):
-    """Print per-sensor weight decomposition and inter-gait weight deltas."""
+    """Print per-sensor weight decomposition and inter-gait weight deltas.
+
+    Shows sensor-to-motor weight pairs (sum, diff), total drive to each motor,
+    total weight magnitude, and the critical delta between t=0.52 and t=0.54
+    (the cliff boundary).
+
+    Args:
+        all_metrics: Dict mapping gait name to metrics (unused but kept for API consistency).
+    """
     print(f"\n{'='*100}")
     print("WEIGHT STRUCTURE ANALYSIS")
     print(f"{'='*100}")
@@ -383,7 +442,13 @@ def print_weight_analysis(all_metrics):
 
 
 def print_sensitivity_table(sensitivity, all_metrics):
-    """Print local sensitivity (|dDX/dw|) and fragility ratios for the 3 viable gaits."""
+    """Print local sensitivity (|dDX/dw|) and fragility ratios for the 3 viable gaits.
+
+    Args:
+        sensitivity: Dict mapping gait name to per-synapse sensitivity results
+            (each with "abs_gradient" key).
+        all_metrics: Dict mapping gait name to metrics (unused but kept for API consistency).
+    """
     print(f"\n{'='*100}")
     print("LOCAL SENSITIVITY: |dDX/dw| per synapse (1% perturbation)")
     print(f"{'='*100}")
@@ -421,7 +486,11 @@ def print_sensitivity_table(sensitivity, all_metrics):
 # ── Figures ───────────────────────────────────────────────────────────────────
 
 def plot_fig01_trajectory(all_data):
-    """3-panel: XY trajectory, X vs time, Z bounce. All 4 gaits overlaid."""
+    """Generate Fig 1: 3-panel trajectory comparison (XY path, X vs time, Z bounce).
+
+    Args:
+        all_data: Dict mapping gait name to telemetry data dict.
+    """
     fig, axes = plt.subplots(1, 3, figsize=(18, 5))
 
     # XY trajectory
@@ -466,7 +535,11 @@ def plot_fig01_trajectory(all_data):
 
 
 def plot_fig02_joints(all_data):
-    """2x4 grid: joint positions (top row) and velocities (bottom row)."""
+    """Generate Fig 2: 2x4 grid of joint positions (top row) and velocities (bottom row).
+
+    Args:
+        all_data: Dict mapping gait name to telemetry data dict.
+    """
     fig, axes = plt.subplots(2, 4, figsize=(19, 8))
 
     for col, name in enumerate(GAIT_ORDER):
@@ -498,7 +571,12 @@ def plot_fig02_joints(all_data):
 
 
 def plot_fig03_phase(all_data, all_metrics):
-    """4-panel phase portraits (j0 vs j1, colored by time)."""
+    """Generate Fig 3: 4-panel phase portraits (j0 vs j1, colored by time).
+
+    Args:
+        all_data: Dict mapping gait name to telemetry data dict.
+        all_metrics: Dict mapping gait name to computed metrics (for DX/PL labels).
+    """
     fig, axes = plt.subplots(1, 4, figsize=(19, 5))
 
     for col, name in enumerate(GAIT_ORDER):
@@ -529,7 +607,11 @@ def plot_fig03_phase(all_data, all_metrics):
 
 
 def plot_fig04_energy(all_data):
-    """2x4 grid: instantaneous power (top) and cumulative work (bottom)."""
+    """Generate Fig 4: 2x4 grid of instantaneous power (top) and cumulative work (bottom).
+
+    Args:
+        all_data: Dict mapping gait name to telemetry data dict.
+    """
     fig, axes = plt.subplots(2, 4, figsize=(19, 8))
 
     for col, name in enumerate(GAIT_ORDER):
@@ -566,7 +648,11 @@ def plot_fig04_energy(all_data):
 
 
 def plot_fig05_contacts(all_data):
-    """4-panel contact raster (torso/back/front over time)."""
+    """Generate Fig 5: 4-panel stacked contact rasters (torso/back/front over time).
+
+    Args:
+        all_data: Dict mapping gait name to telemetry data dict.
+    """
     fig, axes = plt.subplots(4, 1, figsize=(16, 10), sharex=True)
 
     for ax, name in zip(axes, GAIT_ORDER):
@@ -596,7 +682,14 @@ def plot_fig05_contacts(all_data):
 
 
 def plot_fig06_sensitivity(sensitivity):
-    """Bar chart: local |dDX/dw| for each synapse, 3 gaits side-by-side."""
+    """Generate Fig 6: grouped bar chart of local |dDX/dw| for each synapse.
+
+    Shows 3 viable gaits (NC, InterpS, w23Half) side-by-side for each of the
+    6 synapses.
+
+    Args:
+        sensitivity: Dict mapping gait name to per-synapse sensitivity results.
+    """
     fig, ax = plt.subplots(figsize=(14, 6))
 
     names_with_sens = GAIT_ORDER[:3]  # NC, InterpS, w23Half

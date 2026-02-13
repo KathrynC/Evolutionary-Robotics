@@ -1,7 +1,33 @@
 #!/usr/bin/env python3
-"""plot_gaitspace.py — Publication-quality figures for Synapse Gait Zoo v2.
+"""
+plot_gaitspace.py
 
-Reads synapse_gait_zoo_v2.json, produces 7 PNG figures in artifacts/plots/.
+Role:
+    Generate publication-quality figures that visualize the Synapse Gait Zoo's
+    116-gait behavioral landscape. Reads the v2 analytics JSON and produces 7
+    PNG figures exploring different projections of gaitspace.
+
+Inputs:
+    synapse_gait_zoo_v2.json -- v2 zoo with Beer-framework analytics per gait.
+
+Outputs (artifacts/plots/):
+    fig01_phase_lock_bimodal.png       -- Phase lock histogram + speed scatter.
+    fig02_contact_entropy_independence.png -- Entropy vs speed/phase/efficiency.
+    fig03_axis_dominance.png           -- Ternary simplex + bar chart of rotation axes.
+    fig04_speed_efficiency.png         -- Speed-efficiency landscape with Pareto front.
+    fig05_champion_comparison.png      -- Normalized bar chart: CPG vs Curie vs Spinner.
+    fig06_topology_bifurcation.png     -- Radar chart: gait 43 vs 44 (same topology, opposite behavior).
+    fig07_category_overview.png        -- 2x2 scatter grid of 4 gaitspace projections.
+
+Notes:
+    - Category color scheme: persona_gaits in neutral gray (background), 10 other
+      categories via matplotlib tab10 qualitative palette.
+    - Notable gaits (CPG Champion, Curie, Spinner, etc.) are annotated with arrows.
+    - Efficiency outliers are clipped using IQR fencing to avoid axis compression.
+    - Uses Agg backend (no display required).
+
+Usage:
+    python3 plot_gaitspace.py
 """
 
 import json
@@ -46,7 +72,16 @@ for _i, _cat in enumerate(_OTHER_CATS):
 
 # ── data loading ───────────────────────────────────────────────────────────
 def load_zoo(path=ZOO_PATH):
-    """Flatten the nested JSON into a list of dicts with all analytics at top level."""
+    """Load and flatten the nested zoo JSON into a list of per-gait dicts.
+
+    Args:
+        path: Path to synapse_gait_zoo_v2.json.
+
+    Returns:
+        List of dicts, one per gait, with all analytics metrics promoted to
+        top-level keys (e.g., "dx", "mean_speed", "phase_lock_score") plus
+        "name" and "category" fields for identification.
+    """
     with open(path) as f:
         zoo = json.load(f)
     # Flatten the two-level hierarchy (category -> gait -> analytics) into a
@@ -97,7 +132,14 @@ def load_zoo(path=ZOO_PATH):
 
 # ── helpers ────────────────────────────────────────────────────────────────
 def correlation_r(x, y):
-    """Pearson r, numpy-only."""
+    """Compute Pearson correlation coefficient r (numpy-only, no scipy).
+
+    Args:
+        x, y: Array-like sequences of equal length.
+
+    Returns:
+        Float in [-1, 1], or 0.0 if variance is zero.
+    """
     x, y = np.asarray(x, float), np.asarray(y, float)
     mx, my = x.mean(), y.mean()
     num = ((x - mx) * (y - my)).sum()
@@ -106,9 +148,18 @@ def correlation_r(x, y):
 
 
 def ternary_to_cartesian(a, b, c):
-    """Barycentric (a=top, b=bottom-left, c=bottom-right) → 2D Cartesian.
+    """Convert barycentric coordinates to 2D Cartesian for ternary plot rendering.
 
-    Vertices: top=(0.5, √3/2), bottom-left=(0,0), bottom-right=(1,0).
+    Triangle vertices: top=(0.5, sqrt(3)/2), bottom-left=(0,0), bottom-right=(1,0).
+    Coordinates are normalized so a+b+c=1 before conversion.
+
+    Args:
+        a: Top vertex weight (e.g., roll dominance).
+        b: Bottom-left vertex weight (e.g., pitch dominance).
+        c: Bottom-right vertex weight (e.g., yaw dominance).
+
+    Returns:
+        Tuple of (x_array, y_array) in 2D Cartesian coordinates.
     """
     s = np.asarray(a, float) + np.asarray(b, float) + np.asarray(c, float)
     a, b, c = np.asarray(a, float) / s, np.asarray(b, float) / s, np.asarray(c, float) / s
@@ -124,7 +175,18 @@ def clean_ax(ax):
 
 
 def category_scatter(ax, gaits, x_key, y_key, s=20, alpha=0.7):
-    """Scatter color-coded by category. Draws persona_gaits first (background)."""
+    """Draw a scatter plot color-coded by gait category.
+
+    Draws persona_gaits first (zorder=1, gray background) so other categories
+    render on top (zorder=2).
+
+    Args:
+        ax: Matplotlib Axes to draw on.
+        gaits: List of gait dicts (from load_zoo).
+        x_key, y_key: Dict keys for the X and Y axis values.
+        s: Marker size.
+        alpha: Marker transparency.
+    """
     for cat in ["persona_gaits"] + _OTHER_CATS:
         pts = [g for g in gaits if g["category"] == cat]
         if not pts:
@@ -138,7 +200,14 @@ def category_scatter(ax, gaits, x_key, y_key, s=20, alpha=0.7):
 
 
 def label_notable(ax, gaits, x_key, y_key, fontsize=7):
-    """Annotate notable gaits with arrows."""
+    """Annotate notable gaits (from NOTABLE dict) with italic text and connector arrows.
+
+    Args:
+        ax: Matplotlib Axes to annotate on.
+        gaits: List of gait dicts.
+        x_key, y_key: Dict keys for positioning annotations.
+        fontsize: Annotation text size.
+    """
     for g in gaits:
         label = NOTABLE.get(g["name"])
         if label:
@@ -160,7 +229,12 @@ def save_fig(fig, name):
 
 
 def _get(gaits, name):
-    """Get a single gait dict by name."""
+    """Look up a single gait dict by its "name" field, or None if not found.
+
+    Args:
+        gaits: List of gait dicts.
+        name: Gait identifier string (e.g., "43_hidden_cpg_champion").
+    """
     for g in gaits:
         if g["name"] == name:
             return g
@@ -169,7 +243,14 @@ def _get(gaits, name):
 
 # ── Figure 1: Phase Lock Bimodality ───────────────────────────────────────
 def fig01(gaits):
-    """Plot phase-lock bimodality: histogram and phase-lock vs speed scatter."""
+    """Plot phase-lock bimodality: histogram and phase-lock vs speed scatter.
+
+    Args:
+        gaits: List of gait dicts from load_zoo.
+
+    Side effects:
+        Saves fig01_phase_lock_bimodal.png to PLOT_DIR.
+    """
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 4))
 
     scores = np.array([g["phase_lock_score"] for g in gaits])
@@ -195,7 +276,17 @@ def fig01(gaits):
 
 # ── Figure 2: Contact Entropy Independence ────────────────────────────────
 def fig02(gaits):
-    """Plot contact entropy vs three performance metrics, showing independence."""
+    """Plot contact entropy vs three performance metrics, showing independence.
+
+    Three scatter panels: entropy vs speed, phase lock, and efficiency.
+    Pearson r is computed and displayed in each title.
+
+    Args:
+        gaits: List of gait dicts from load_zoo.
+
+    Side effects:
+        Saves fig02_contact_entropy_independence.png to PLOT_DIR.
+    """
     fig, axes = plt.subplots(1, 3, figsize=(14, 4))
     pairs = [
         ("mean_speed",        "Speed"),
@@ -226,7 +317,17 @@ def fig02(gaits):
 
 # ── Figure 3: Axis Dominance ──────────────────────────────────────────────
 def fig03(gaits):
-    """Plot rotation axis dominance: ternary simplex and bar chart of dominant axis."""
+    """Plot rotation axis dominance: ternary simplex and bar chart of dominant axis.
+
+    Left panel: each gait plotted on a Roll/Pitch/Yaw ternary simplex.
+    Right panel: bar chart counting how many gaits are dominated by each axis.
+
+    Args:
+        gaits: List of gait dicts from load_zoo.
+
+    Side effects:
+        Saves fig03_axis_dominance.png to PLOT_DIR.
+    """
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 5))
 
     # -- Left: ternary simplex --
@@ -299,7 +400,17 @@ def fig03(gaits):
 
 # ── Figure 4: Speed vs Efficiency ─────────────────────────────────────────
 def fig04(gaits):
-    """Plot speed vs efficiency landscape with Pareto-optimal gaits starred."""
+    """Plot speed vs efficiency landscape with Pareto-optimal gaits starred.
+
+    Uses IQR-based fencing to exclude extreme efficiency outliers from the Y axis
+    (annotated at top of plot instead). Median lines divide the plot into quadrants.
+
+    Args:
+        gaits: List of gait dicts from load_zoo.
+
+    Side effects:
+        Saves fig04_speed_efficiency.png to PLOT_DIR.
+    """
     fig, ax = plt.subplots(figsize=(8, 6))
 
     speeds = np.array([g["mean_speed"] for g in gaits])
@@ -361,7 +472,18 @@ def fig04(gaits):
 
 # ── Figure 5: Champion Comparison ─────────────────────────────────────────
 def fig05(gaits):
-    """Bar chart comparing three champions across six normalized metrics."""
+    """Bar chart comparing three champions across six normalized metrics.
+
+    Compares CPG Champion, Curie, and Spinner across speed, efficiency, phase lock,
+    contact entropy, roll dominance, and axis switching rate. Metrics are normalized
+    to [0, 1] using the 2nd-98th percentile range across all gaits.
+
+    Args:
+        gaits: List of gait dicts from load_zoo.
+
+    Side effects:
+        Saves fig05_champion_comparison.png to PLOT_DIR.
+    """
     trio = {
         "CPG Champion": _get(gaits, "43_hidden_cpg_champion"),
         "Curie":        _get(gaits, "18_curie"),
@@ -415,7 +537,18 @@ def fig05(gaits):
 
 # ── Figure 6: Topology Bifurcation (Radar) ────────────────────────────────
 def fig06(gaits):
-    """Radar chart comparing gait 43 (CPG Champion) and gait 44 (Spinner)."""
+    """Radar chart comparing gait 43 (CPG Champion) and gait 44 (Spinner).
+
+    Demonstrates how the same network topology can produce opposite behaviors.
+    Six axes normalized to max-of-pair: Speed, |DX|, Phase Lock, Roll Dominance,
+    Entropy, |Yaw|.
+
+    Args:
+        gaits: List of gait dicts from load_zoo.
+
+    Side effects:
+        Saves fig06_topology_bifurcation.png to PLOT_DIR.
+    """
     g43 = _get(gaits, "43_hidden_cpg_champion")
     g44 = _get(gaits, "44_spinner_champion")
 
@@ -468,7 +601,17 @@ def fig06(gaits):
 
 # ── Figure 7: Category Overview (2×2) ─────────────────────────────────────
 def fig07(gaits):
-    """2x2 category-colored scatter grid showing four gaitspace projections."""
+    """Generate a 2x2 category-colored scatter grid showing four gaitspace projections.
+
+    Four projections: speed vs phase lock, speed vs contact entropy,
+    roll vs pitch dominance, DX vs yaw. Shared legend at bottom.
+
+    Args:
+        gaits: List of gait dicts from load_zoo.
+
+    Side effects:
+        Saves fig07_category_overview.png to PLOT_DIR.
+    """
     fig, axes = plt.subplots(2, 2, figsize=(12, 10))
     projections = [
         ("mean_speed", "phase_lock_score",      "Speed",          "Phase Lock"),

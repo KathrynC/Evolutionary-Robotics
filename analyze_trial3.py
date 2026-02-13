@@ -2,19 +2,35 @@
 """
 analyze_trial3.py
 
-Deep analysis of random search Trial 3 ("The Accidental Masterpiece")
-vs the CPG Champion (gait 43). Side-by-side comparison of trajectories,
-joint dynamics, contact patterns, and efficiency breakdown.
+Role:
+    Deep analysis of random search Trial 3 ("The Accidental Masterpiece")
+    vs the CPG Champion (gait 43). Side-by-side comparison of trajectories,
+    joint dynamics, contact patterns, energy expenditure, phase relationships,
+    angular velocity, and FFT spectra.
+
+Pipeline:
+    1. Simulate Trial 3 with full in-memory telemetry (motor neuron outputs included).
+    2. Load CPG Champion from saved telemetry (different topology).
+    3. Compute Beer-framework analytics for both.
+    4. Print an 18-metric comparison table with ratios.
+    5. Analyze Trial 3's weight structure and energy breakdown.
+    6. Generate 7 publication-quality figures.
 
 Outputs:
-    artifacts/telemetry/trial3_masterpiece/  (full telemetry)
-    artifacts/plots/trial3_fig01_trajectory.png
-    artifacts/plots/trial3_fig02_joints.png
-    artifacts/plots/trial3_fig03_contacts.png
-    artifacts/plots/trial3_fig04_energy.png
-    artifacts/plots/trial3_fig05_phase.png
-    artifacts/plots/trial3_fig06_rotation.png
-    artifacts/plots/trial3_fig07_radar.png
+    artifacts/plots/trial3_fig01_trajectory.png  -- XY path, X vs time, Z bounce
+    artifacts/plots/trial3_fig02_joints.png      -- Joint positions, motor outputs, velocities
+    artifacts/plots/trial3_fig03_contacts.png    -- Contact rasters (2 gaits stacked)
+    artifacts/plots/trial3_fig04_energy.png      -- Power and cumulative work (2x2)
+    artifacts/plots/trial3_fig05_phase.png       -- Phase portrait + Hilbert phase difference
+    artifacts/plots/trial3_fig06_rotation.png    -- Angular velocity components (2x3)
+    artifacts/plots/trial3_fig07_fft.png         -- FFT spectra of joint angles
+
+Notes:
+    - brain.nndf is backed up before simulation and restored afterward.
+    - CPG Champion motor neuron outputs are not available in saved telemetry,
+      so motor-specific plots are only shown for Trial 3.
+    - The Hilbert-transform phase difference is computed via numpy FFT
+      (no scipy dependency).
 """
 
 import json
@@ -55,7 +71,15 @@ TRIAL3_WEIGHTS = {
 
 
 def write_brain_6syn(weights):
-    """Write a 6-synapse brain.nndf file (3 sensors -> 2 motors) from a weight dict."""
+    """Write a 6-synapse brain.nndf file (3 sensors -> 2 motors) from a weight dict.
+
+    Args:
+        weights: Dict with keys "w03","w13","w23","w04","w14","w24" mapping to
+            float synapse weights.
+
+    Side effects:
+        Overwrites brain.nndf in the project directory.
+    """
     path = PROJECT / "brain.nndf"
     with open(path, "w") as f:
         f.write('<neuralNetwork>\n')
@@ -74,7 +98,24 @@ def write_brain_6syn(weights):
 
 
 def run_with_telemetry(name, write_brain_fn, out_dir):
-    """Run simulation, save full telemetry, return data dict."""
+    """Run a headless simulation with full in-memory telemetry collection.
+
+    Captures position, velocity, orientation, ground contacts, joint states,
+    and motor neuron outputs at every timestep.
+
+    Args:
+        name: Identifier string for this run (used for logging/output naming).
+        write_brain_fn: Callable that writes brain.nndf (called before simulation).
+        out_dir: Output directory path (reserved for future telemetry file export).
+
+    Returns:
+        Dict of numpy arrays keyed by signal name (t, x, y, z, vx, vy, vz,
+        wx, wy, wz, roll, pitch, yaw, contact_torso, contact_back, contact_front,
+        j0_pos, j0_vel, j0_tau, j1_pos, j1_vel, j1_tau, m3_out, m4_out).
+
+    Side effects:
+        Calls write_brain_fn() which overwrites brain.nndf.
+    """
     write_brain_fn()
 
     cid = p.connect(p.DIRECT)
@@ -203,7 +244,16 @@ def save_fig(fig, name):
 
 
 def main():
-    """Run Trial 3 vs CPG Champion comparison: simulate, compute analytics, and plot."""
+    """Run Trial 3 vs CPG Champion comparison: simulate, compute analytics, and plot.
+
+    Side effects:
+        - Backs up and restores brain.nndf.
+        - Runs 1 headless simulation (Trial 3).
+        - Loads CPG Champion from saved telemetry.
+        - Writes 7 PNG figures to artifacts/plots/.
+        - Prints detailed comparison table, weight analysis, and energy breakdown
+          to stdout.
+    """
     # Backup brain.nndf since write_brain_6syn will overwrite it
     brain_path = PROJECT / "brain.nndf"
     backup_path = PROJECT / "brain.nndf.backup"

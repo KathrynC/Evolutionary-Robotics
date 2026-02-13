@@ -2,25 +2,32 @@
 """
 atlas_cliffiness.py
 
-Atlas of Cliffiness in Gaitspace — comprehensive spatial atlas showing
-where cliffs are, what predicts them, and which weight dimensions are
-the cliffiest in the 6D fitness landscape of the 3-link walker.
+Role:
+    Comprehensive spatial atlas of cliffiness in the 6D fitness landscape of the
+    3-link walker. Maps where cliffs are, what predicts them, and which weight
+    dimensions produce the steepest gradients.
 
-Simulation budget: ~6,400 sims (~10 minutes)
+Pipeline (3 parts, ~6,400 sims total, ~10 minutes):
+    Part 1 — Cliffiness Probing (3,000 sims):
+        Load 500 base points from random_search_500.json, probe 6 random
+        directions at r=0.05 each. Reconstruct full gradient vector via
+        np.linalg.solve (6 probes in 6D = unique solution).
+    Part 2 — 2D Slice Heatmaps (3,200 sims):
+        Two 40x40 grids through Novelty Champion:
+        Slice 1: w23 vs w13 (cliffiest synapse + key back-leg input)
+        Slice 2: w03 vs w24 (largest weight + cross-leg synapse)
+    Part 3 — Cliff Anatomy (200 sims):
+        Top 10 cliffiest points: 20-point DX profile along worst cliff
+        direction (radii -0.2 to +0.2).
 
-Part 1: Cliffiness Probing (3,000 sims)
-    Load 500 base points from random_search_500.json, probe 6 random
-    directions at r=0.05 each. Reconstruct full gradient vector via
-    np.linalg.solve (6 probes in 6D = unique solution).
+Notes:
+    - Simulations are headless (PyBullet DIRECT mode) and deterministic.
+    - brain.nndf is backed up before and restored after all simulations.
+    - Depends on artifacts/random_search_500.json (produced by random_search_500.py).
+    - Uses manual PCA (eigendecomposition of covariance) to avoid sklearn dependency.
 
-Part 2: 2D Slice Heatmaps (3,200 sims)
-    Two 40x40 grids through Novelty Champion:
-    Slice 1: w23 vs w13 (cliffiest synapse + key back-leg input)
-    Slice 2: w03 vs w24 (largest weight + cross-leg synapse)
-
-Part 3: Cliff Anatomy (200 sims)
-    Top 10 cliffiest points: 20-point DX profile along worst cliff
-    direction (radii -0.2 to +0.2).
+Inputs:
+    artifacts/random_search_500.json — 500 random weight points with DX and metrics.
 
 Outputs:
     artifacts/atlas_cliffiness.json
@@ -101,7 +108,15 @@ PLOT_DIR = PROJECT / "artifacts" / "plots"
 # ── Simulation ───────────────────────────────────────────────────────────────
 
 def write_brain_standard(weights):
-    """Write a 3-sensor, 2-motor brain.nndf file with the given synapse weights."""
+    """Write a 3-sensor, 2-motor brain.nndf file with the given synapse weights.
+
+    Args:
+        weights: dict mapping synapse names (e.g. "w03") to float weight values.
+            Must contain all 6 keys: w03, w04, w13, w14, w23, w24.
+
+    Side effects:
+        Overwrites PROJECT / "brain.nndf" on disk.
+    """
     path = PROJECT / "brain.nndf"
     with open(path, "w") as f:
         f.write('<neuralNetwork>\n')
@@ -119,7 +134,22 @@ def write_brain_standard(weights):
 
 
 def simulate_dx_only(weights):
-    """Minimal sim loop — skips all telemetry recording, only returns DX."""
+    """Run a headless PyBullet simulation and return the robot's x-displacement.
+
+    Minimal sim loop that skips all telemetry recording. Writes brain.nndf,
+    connects a DIRECT (headless) PyBullet instance, runs the full episode,
+    and returns the net horizontal distance traveled.
+
+    Args:
+        weights: dict mapping synapse names to float weight values (6 keys).
+
+    Returns:
+        float: Net x-displacement in meters (x_last - x_first).
+
+    Side effects:
+        Overwrites brain.nndf on disk. Creates and disconnects a PyBullet
+        physics client.
+    """
     write_brain_standard(weights)
 
     cid = p.connect(p.DIRECT)
@@ -169,7 +199,12 @@ def simulate_dx_only(weights):
 # ── Helpers ──────────────────────────────────────────────────────────────────
 
 def random_direction_6d():
-    """Return a random unit vector in 6D."""
+    """Return a random unit vector in 6D weight space.
+
+    Returns:
+        numpy array of shape (6,) with unit L2 norm. Falls back to
+        a uniform direction if the random draw is degenerate (near-zero norm).
+    """
     v = np.random.randn(6)
     norm = np.linalg.norm(v)
     if norm < 1e-12:
@@ -179,7 +214,19 @@ def random_direction_6d():
 
 
 def perturb_weights(base_weights, direction, radius):
-    """Return new weight dict = base + radius * direction."""
+    """Create a perturbed weight dict by offsetting base weights along a direction.
+
+    Computes: w_new[i] = base_weights[i] + radius * direction[i] for each
+    of the 6 synapse weights.
+
+    Args:
+        base_weights: dict mapping weight names to float values (6 keys).
+        direction: numpy array of shape (6,) specifying the perturbation direction.
+        radius: float scalar controlling the magnitude of the perturbation.
+
+    Returns:
+        dict: New weight dict with the same keys as base_weights.
+    """
     w = {}
     for i, wn in enumerate(WEIGHT_NAMES):
         w[wn] = base_weights[wn] + radius * direction[i]
@@ -187,7 +234,15 @@ def perturb_weights(base_weights, direction, radius):
 
 
 def correlation_r(x, y):
-    """Pearson correlation coefficient."""
+    """Compute the Pearson correlation coefficient between two arrays.
+
+    Args:
+        x: array-like of numeric values.
+        y: array-like of numeric values (same length as x).
+
+    Returns:
+        float: Pearson r in [-1, 1], or 0.0 if either array has zero variance.
+    """
     x, y = np.asarray(x, dtype=float), np.asarray(y, dtype=float)
     mx, my = np.mean(x), np.mean(y)
     num = np.sum((x - mx) * (y - my))
@@ -196,13 +251,29 @@ def correlation_r(x, y):
 
 
 def clean_ax(ax):
-    """Remove top and right spines from a matplotlib axis for cleaner plots."""
+    """Remove top and right spines from a matplotlib Axes for cleaner plots.
+
+    Args:
+        ax: matplotlib Axes object to modify.
+
+    Side effects:
+        Hides the top and right spine elements on the given Axes.
+    """
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
 
 
 def save_fig(fig, name):
-    """Save a matplotlib figure to PLOT_DIR and close it to free memory."""
+    """Save a matplotlib figure to PLOT_DIR and close it to free memory.
+
+    Args:
+        fig: matplotlib Figure to save.
+        name: filename (e.g. "atlas_fig01_scatter_pca.png") within PLOT_DIR.
+
+    Side effects:
+        Creates PLOT_DIR if it does not exist. Writes the figure to disk
+        at PLOT_DIR/name. Closes the figure to release memory.
+    """
     PLOT_DIR.mkdir(parents=True, exist_ok=True)
     path = PLOT_DIR / name
     fig.savefig(path, dpi=100, bbox_inches="tight")
@@ -211,7 +282,23 @@ def save_fig(fig, name):
 
 
 def probe_gradient(weights, base_dx):
-    """Probe 6 random directions at R_PROBE, reconstruct gradient via linalg.solve."""
+    """Reconstruct the 6D fitness gradient at a point by probing 6 random directions.
+
+    Perturbs the weight vector along 6 random unit directions at radius R_PROBE,
+    measures the DX change for each, then solves the resulting 6x6 linear system
+    to recover the unique gradient vector (each probe yields one linear equation
+    in the 6 unknown partial derivatives).
+
+    Args:
+        weights: dict of base synapse weights (6 keys).
+        base_dx: float, the DX value at the unperturbed base point.
+
+    Returns:
+        tuple of (grad, delta_dxs, directions):
+            grad: numpy array (6,) of estimated partial derivatives dDX/dw_i.
+            delta_dxs: numpy array (6,) of raw DX changes for each probe.
+            directions: numpy array (6, 6) of the random probe directions used.
+    """
     directions = np.array([random_direction_6d() for _ in range(6)])  # 6x6
     delta_dxs = np.empty(6)
     for k in range(6):
@@ -230,7 +317,21 @@ def probe_gradient(weights, base_dx):
 # ── Part 1: Cliffiness Probing ──────────────────────────────────────────────
 
 def probe_cliffiness(base_points):
-    """For each base point, probe 6 directions and reconstruct gradient."""
+    """Probe cliffiness for all base points by reconstructing local gradients.
+
+    For each of the 500 base points, probes 6 random directions at radius
+    R_PROBE and reconstructs the full 6D gradient vector. Computes cliffiness
+    (max |delta DX|), gradient magnitude, and per-weight partial derivatives.
+
+    Args:
+        base_points: list of dicts, each with "weights" (dict), "dx" (float),
+            and optional behavioral metrics (speed, work_proxy, phase_lock,
+            entropy, yaw_net_rad).
+
+    Returns:
+        list of result dicts, one per base point, each containing cliffiness,
+        gradient info, per-weight partials, and the original behavioral metrics.
+    """
     n = len(base_points)
     total_sims = n * 6
     print(f"\n{'='*80}")
@@ -290,7 +391,27 @@ def probe_cliffiness(base_points):
 
 def compute_slice(vary_keys, center_weights, x_range=(-1, 1), y_range=(-1, 1),
                   n_grid=N_GRID):
-    """Compute a 2D grid of DX values, varying two weights."""
+    """Compute a 2D heatmap of DX values by sweeping two weights over a grid.
+
+    Holds all weights fixed at center_weights except for the two specified by
+    vary_keys, which are swept across the given ranges. Also computes a local
+    cliffiness grid via finite-difference gradient magnitudes.
+
+    Args:
+        vary_keys: list of 2 weight names (e.g. ["w23", "w13"]) to sweep.
+        center_weights: dict of all 6 weights defining the slice center.
+        x_range: (min, max) tuple for the first weight axis.
+        y_range: (min, max) tuple for the second weight axis.
+        n_grid: number of grid points per axis (total sims = n_grid^2).
+
+    Returns:
+        dict containing:
+            vary_keys: the two swept weight names.
+            x_vals, y_vals: lists of grid coordinate values.
+            dx_grid: 2D list of DX values (n_grid x n_grid).
+            cliff_grid: 2D list of gradient magnitudes (cliffiness).
+            center_pos: (x, y) position of the center weights in the grid.
+    """
     k0, k1 = vary_keys
     x_vals = np.linspace(x_range[0], x_range[1], n_grid)
     y_vals = np.linspace(y_range[0], y_range[1], n_grid)
@@ -357,7 +478,15 @@ def compute_slice(vary_keys, center_weights, x_range=(-1, 1), y_range=(-1, 1),
 
 
 def compute_slices():
-    """Compute both 2D slices through the Novelty Champion."""
+    """Compute both 2D slice heatmaps through the Novelty Champion.
+
+    Slice 1: w23 vs w13 (cliffiest synapse + key back-leg input).
+    Slice 2: w03 vs w24 (largest weight + cross-leg synapse), with extended
+    w03 range to include the Novelty Champion at w03=-1.308.
+
+    Returns:
+        list of 2 slice dicts (see compute_slice for format).
+    """
     total = 2 * N_GRID * N_GRID
     print(f"\n{'='*80}")
     print(f"PART 2: 2D Slice Heatmaps (2 x {N_GRID}x{N_GRID} = {total} sims)")
@@ -376,7 +505,22 @@ def compute_slices():
 # ── Part 3: Cliff Anatomy ──────────────────────────────────────────────────
 
 def cliff_anatomy(probe_results, n_top=N_TOP_CLIFFS, n_points=N_ANATOMY_POINTS):
-    """Profile DX along worst cliff direction for top N cliffiest points."""
+    """Profile DX along the steepest cliff direction for the top N cliffiest points.
+
+    For each of the N most cliff-prone points, samples DX at n_points radii
+    from -0.2 to +0.2 along the normalized gradient direction (the direction
+    of maximum DX change). This reveals the shape of each cliff: step, slope,
+    or canyon.
+
+    Args:
+        probe_results: list of probe result dicts from probe_cliffiness().
+        n_top: number of top cliffiest points to profile.
+        n_points: number of radii to sample per profile.
+
+    Returns:
+        list of profile dicts, each containing radii, DX values, cliff
+        direction, and base-point metadata.
+    """
     total_sims = n_top * n_points
     print(f"\n{'='*80}")
     print(f"PART 3: Cliff Anatomy ({n_top} points x {n_points} radii = {total_sims} sims)")
@@ -433,7 +577,27 @@ def cliff_anatomy(probe_results, n_top=N_TOP_CLIFFS, n_points=N_ANATOMY_POINTS):
 # ── Figures ──────────────────────────────────────────────────────────────────
 
 def make_figures(probe_results, slices, anatomy, champion_probe):
-    """Generate all 7 figures."""
+    """Generate all 7 atlas figures and save them to PLOT_DIR.
+
+    Figures produced:
+        1. PCA scatter of 500 points colored by cliffiness and DX.
+        2. Cliffiness vs 6 behavioral metrics (scatter + correlation).
+        3. 2D slice DX heatmaps through the Novelty Champion.
+        4. 2D slice cliffiness heatmaps through the Novelty Champion.
+        5. Per-weight sensitivity box plots and champion comparison bars.
+        6. Zoomed champion neighborhood detail (DX + cliffiness).
+        7. Cliff anatomy: DX profiles along worst direction (top 10).
+
+    Args:
+        probe_results: list of probe result dicts from probe_cliffiness().
+        slices: list of 2 slice dicts from compute_slices().
+        anatomy: list of anatomy profile dicts from cliff_anatomy().
+        champion_probe: dict with "nc" and "t3" sub-dicts containing
+            gradient info for the Novelty Champion and Trial 3.
+
+    Side effects:
+        Writes 7 PNG files to PLOT_DIR.
+    """
     print(f"\n{'='*80}")
     print("GENERATING FIGURES")
     print(f"{'='*80}")
@@ -719,7 +883,20 @@ def make_figures(probe_results, slices, anatomy, champion_probe):
 # ── Console Output ──────────────────────────────────────────────────────────
 
 def print_analysis(probe_results, slices, champion_probe):
-    """Print summary tables to console."""
+    """Print comprehensive analysis summary tables to console.
+
+    Outputs cliffiness statistics, cliff prevalence thresholds, gradient
+    magnitudes, per-weight sensitivity ranking, metric correlations,
+    champion local cliffiness comparison, and slice summaries.
+
+    Args:
+        probe_results: list of probe result dicts from probe_cliffiness().
+        slices: list of 2 slice dicts from compute_slices().
+        champion_probe: dict with "nc" and "t3" sub-dicts for champion analysis.
+
+    Side effects:
+        Prints formatted text to stdout.
+    """
     cliffiness = np.array([r["cliffiness"] for r in probe_results])
     grad_mag = np.array([r["gradient_magnitude"] for r in probe_results])
     dx = np.array([r["base_dx"] for r in probe_results])
@@ -817,7 +994,21 @@ def print_analysis(probe_results, slices, champion_probe):
 # ── Main ─────────────────────────────────────────────────────────────────────
 
 def main():
-    """Run all three parts of the cliffiness atlas, generate figures, and save results."""
+    """Run all three parts of the cliffiness atlas, generate figures, and save results.
+
+    Pipeline:
+        1. Load 500 random base points from random_search_500.json.
+        2. Determinism check: re-simulate 5 points and verify DX matches.
+        3. Part 1: Probe cliffiness at all 500 points (3,000 sims).
+        4. Probe both champions (Novelty Champion + Trial 3, 14 sims).
+        5. Part 2: Compute two 40x40 2D slice heatmaps (3,200 sims).
+        6. Part 3: Profile cliff anatomy for top 10 cliffiest points (200 sims).
+        7. Print analysis, generate 7 figures, and save atlas JSON.
+
+    Side effects:
+        Backs up and restores brain.nndf. Writes atlas_cliffiness.json
+        and 7 PNG plots to artifacts/.
+    """
     t_start = time.perf_counter()
     np.random.seed(42)
 

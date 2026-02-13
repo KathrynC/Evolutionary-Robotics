@@ -1,13 +1,27 @@
 #!/usr/bin/env python3
-"""Generate full-resolution telemetry (4000 records) for all 116 zoo gaits.
+"""
+generate_telemetry.py
 
-Reads gait definitions from synapse_gait_zoo.json, writes the appropriate
-brain.nndf for each, runs a headless simulation, and saves telemetry to
-artifacts/telemetry/<gait_name>/.
+Role:
+    Batch telemetry generator for all 116 zoo gaits. Runs each gait as a
+    headless PyBullet simulation at full resolution (every=1, 4000 records
+    at 240 Hz) and writes per-step telemetry to disk.
 
-Output per gait:
-    telemetry.jsonl  — 4000 JSONL records (every sim step)
-    summary.json     — displacement, stability metrics
+    For each gait, the script writes the appropriate brain.nndf (handling
+    standard, crosswired, and hidden architectures), runs the simulation
+    loop matching the canonical control path (Act -> Step -> Think), and
+    delegates recording to TelemetryLogger.
+
+Output per gait (in artifacts/telemetry/<gait_name>/):
+    telemetry.jsonl  -- 4000 JSONL records (one per sim step)
+    summary.json     -- displacement, stability metrics
+
+Notes:
+    - brain.nndf is a shared file overwritten per gait. The script backs up
+      the original before the batch and restores it afterward.
+    - Motor commands are sent as raw NN tanh outputs (no scaling/offset) to
+      match the control path used in walker_competition.py and record_videos.py.
+    - Estimated disk usage: ~1.5 MB per gait (~175 MB total for 116 gaits).
 
 Usage:
     python3 generate_telemetry.py              # all 116 gaits
@@ -38,7 +52,28 @@ from tools.telemetry.logger import TelemetryLogger
 
 def write_brain_crosswired(w03, w13, w23, w04, w14, w24,
                            w34=0.0, w43=0.0, w33=0.0, w44=0.0):
-    """Write brain.nndf with standard sensor->motor + optional motor->motor synapses."""
+    """Write brain.nndf for a standard or crosswired topology.
+
+    Creates an NNDF file with 3 sensor neurons (Torso, BackLeg, FrontLeg)
+    and 2 motor neurons (Torso_BackLeg, Torso_FrontLeg). The 6 sensor-to-motor
+    weights are always included; the 4 motor-to-motor weights (crosswired) are
+    only written when non-zero.
+
+    Args:
+        w03: Sensor 0 (Torso) -> Motor 3 (BackLeg) weight.
+        w13: Sensor 1 (BackLeg) -> Motor 3 (BackLeg) weight.
+        w23: Sensor 2 (FrontLeg) -> Motor 3 (BackLeg) weight.
+        w04: Sensor 0 (Torso) -> Motor 4 (FrontLeg) weight.
+        w14: Sensor 1 (BackLeg) -> Motor 4 (FrontLeg) weight.
+        w24: Sensor 2 (FrontLeg) -> Motor 4 (FrontLeg) weight.
+        w34: Motor 3 -> Motor 4 cross-connection weight.
+        w43: Motor 4 -> Motor 3 cross-connection weight.
+        w33: Motor 3 self-feedback weight.
+        w44: Motor 4 self-feedback weight.
+
+    Side effects:
+        Overwrites PROJECT/brain.nndf.
+    """
     path = PROJECT / "brain.nndf"
     with open(path, "w") as f:
         f.write('<neuralNetwork>\n')
@@ -56,7 +91,22 @@ def write_brain_crosswired(w03, w13, w23, w04, w14, w24,
 
 
 def write_brain_full(neurons, synapses):
-    """Write brain.nndf with arbitrary neurons (including hidden) and synapses."""
+    """Write brain.nndf for an arbitrary topology (including hidden neurons).
+
+    Supports any combination of sensor, motor, and hidden neurons with
+    arbitrary synapse connectivity, as used by the 'hidden' architecture
+    gaits in the zoo.
+
+    Args:
+        neurons: List of dicts, each with keys 'id', 'type' ('sensor'/'motor'/'hidden'),
+            and 'ref' (linkName for sensors, jointName for motors; absent for hidden).
+        synapses: List of dicts, each with keys 'src' (source neuron id),
+            'tgt' (target neuron id), and 'w' (weight). Zero-weight synapses
+            are skipped.
+
+    Side effects:
+        Overwrites PROJECT/brain.nndf.
+    """
     path = PROJECT / "brain.nndf"
     with open(path, "w") as f:
         f.write('<neuralNetwork>\n')
@@ -76,6 +126,19 @@ def write_brain_full(neurons, synapses):
 
 
 def safe_get_base_pose(body_id):
+    """Retrieve the robot's base position and orientation, with a safe fallback.
+
+    Guards against PyBullet errors (e.g., disconnected session or invalid body id)
+    by returning an identity pose at the origin.
+
+    Args:
+        body_id: PyBullet body unique id.
+
+    Returns:
+        Tuple of (position, orientation) where position is (x, y, z) and
+        orientation is a quaternion (x, y, z, w). Falls back to origin with
+        identity rotation on any error.
+    """
     try:
         return p.getBasePositionAndOrientation(body_id)
     except Exception:
@@ -83,7 +146,27 @@ def safe_get_base_pose(body_id):
 
 
 def run_gait(gait_name, gait_data, out_dir):
-    """Run one gait headless and write full-resolution telemetry."""
+    """Run one gait in headless mode and write full-resolution telemetry.
+
+    Sets up a complete PyBullet simulation from scratch: writes brain.nndf
+    for the gait's architecture, loads the robot body, initializes friction
+    and the neural network, then runs the canonical Act -> Step -> Think
+    loop for SIM_STEPS iterations with telemetry recording at every step.
+
+    Args:
+        gait_name: Human-readable gait identifier (e.g., '18_curie').
+        gait_data: Gait definition dict from synapse_gait_zoo.json containing
+            weights/neurons/synapses and architecture metadata.
+        out_dir: Path where telemetry.jsonl and summary.json will be written.
+
+    Returns:
+        Tuple of (x, y, z) final base position of the robot.
+
+    Side effects:
+        Overwrites brain.nndf.
+        Creates out_dir if needed and writes telemetry files.
+        Creates and destroys a PyBullet DIRECT-mode physics session.
+    """
     # Write brain.nndf
     arch = gait_data.get("architecture", "standard_6")
     if arch == "hidden":
@@ -150,6 +233,18 @@ def run_gait(gait_name, gait_data, out_dir):
 
 
 def main():
+    """Entry point: parse arguments and run telemetry generation for selected gaits.
+
+    Supports three modes:
+        Default: Generate telemetry for all 116 gaits in the zoo.
+        --gait NAME: Generate telemetry for a single named gait.
+        --dry-run: List gaits that would be processed without running simulations.
+
+    Side effects:
+        Backs up and restores brain.nndf around the batch run.
+        Creates telemetry output directories and files under --out path.
+        Prints per-gait progress and displacement to stdout.
+    """
     ap = argparse.ArgumentParser(description="Generate full-resolution telemetry for zoo gaits.")
     ap.add_argument("--gait", type=str, default=None, help="Run a single gait by name")
     ap.add_argument("--dry-run", action="store_true", help="List gaits without running")

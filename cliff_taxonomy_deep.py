@@ -2,28 +2,39 @@
 """
 cliff_taxonomy_deep.py
 
-Step Zone Deep Resolution — probing the richest Type 3 (Wolfram) zones
-of the fitness landscape at ultra-fine scales.
+Role:
+    Deep resolution probing of the richest Type 3 (Wolfram) zones in the fitness
+    landscape. Targets the 10 most chaotic Step-type cliff profiles from
+    cliff_taxonomy.py with three complementary strategies to determine whether
+    the landscape has a smoothness floor or is fractal at all scales.
 
-Builds on cliff_taxonomy.py results. Targets the 10 most chaotic Step-type
-cliff profiles with three complementary probing strategies.
+Pipeline (3 phases, ~2,420 sims total, ~3 minutes):
+    Phase 1 — Logarithmic Zoom Cascade (1,200 sims):
+        10 Steps x 6 zoom levels x 20 points.
+        Scales: r = +/-{0.01, 0.003, 0.001, 0.0003, 0.0001, 0.00003}
+        Centered on each profile's primary step location.
+        Measures fractal dimension across 2.5 extra decades.
+    Phase 2 — Directional Fan (720 sims):
+        10 Steps x 8 directions x 9 points at r = +/-0.005.
+        Directions evenly spaced in the plane perpendicular to gradient.
+        Tests isotropy of the chaos.
+    Phase 3 — 2D Micro-Grid (500 sims):
+        5 Steps x 10x10 grid in gradient + perpendicular plane.
+        Extent r = +/-0.005. Direct visualization of local cliff texture.
 
-Simulation budget: ~2,420 sims (~3 min)
+Notes:
+    - Simulations are headless (PyBullet DIRECT mode) and deterministic.
+    - brain.nndf is backed up before and restored after all simulations.
+    - Depends on artifacts/cliff_taxonomy.json (produced by cliff_taxonomy.py).
+    - Chaos score combines sign-change rate, spectral ratio, and autocorrelation.
+    - Fractal dimension is estimated via log-log slope of DX range vs scale:
+      slope near 0 = fractal (scale-invariant), slope near 1 = smooth (differentiable).
+    - Wolfram classification: Type 3 = chaotic/isotropic (global search needed),
+      Type 3/4 boundary = chaotic/anisotropic (directional search may help),
+      Type 2->3 transition = partial smoothness (local gradient descent viable).
 
-Phase 1: Logarithmic Zoom Cascade (1,200 sims)
-    10 Steps x 6 zoom levels x 20 points.
-    Scales: r = ±{0.01, 0.003, 0.001, 0.0003, 0.0001, 0.00003}
-    Centered on each profile's primary step location.
-    Measures fractal dimension across 2.5 extra decades.
-
-Phase 2: Directional Fan (720 sims)
-    10 Steps x 8 directions x 9 points at r = ±0.005.
-    Directions evenly spaced in the plane perpendicular to gradient.
-    Tests isotropy of the chaos.
-
-Phase 3: 2D Micro-Grid (500 sims)
-    5 Steps x 10x10 grid in gradient + perpendicular plane.
-    Extent r = ±0.005. Direct visualization of local cliff texture.
+Inputs:
+    artifacts/cliff_taxonomy.json — classified profiles with shape features.
 
 Outputs:
     artifacts/cliff_taxonomy_deep.json
@@ -85,7 +96,15 @@ GRID_RADIUS = 0.005
 # ── Simulation (reused from atlas/taxonomy) ──────────────────────────────────
 
 def write_brain_standard(weights):
-    """Write a 3-sensor, 2-motor brain.nndf file from a weight dict."""
+    """Write a 3-sensor, 2-motor brain.nndf file from a weight dict.
+
+    Args:
+        weights: dict mapping synapse names (e.g. "w03") to float weight values.
+            Must contain all 6 keys: w03, w04, w13, w14, w23, w24.
+
+    Side effects:
+        Overwrites PROJECT / "brain.nndf" on disk.
+    """
     path = PROJECT / "brain.nndf"
     with open(path, "w") as f:
         f.write('<neuralNetwork>\n')
@@ -103,7 +122,22 @@ def write_brain_standard(weights):
 
 
 def simulate_dx_only(weights):
-    """Run a headless PyBullet sim and return the robot's x-displacement."""
+    """Run a headless PyBullet simulation and return the robot's x-displacement.
+
+    Minimal sim loop that skips all telemetry recording. Writes brain.nndf,
+    connects a DIRECT (headless) PyBullet instance, runs the full episode,
+    and returns the net horizontal distance traveled.
+
+    Args:
+        weights: dict mapping synapse names to float weight values (6 keys).
+
+    Returns:
+        float: Net x-displacement in meters (x_last - x_first).
+
+    Side effects:
+        Overwrites brain.nndf on disk. Creates and disconnects a PyBullet
+        physics client.
+    """
     write_brain_standard(weights)
     cid = p.connect(p.DIRECT)
     p.setAdditionalSearchPath(pybullet_data.getDataPath())
@@ -146,7 +180,16 @@ def simulate_dx_only(weights):
 # ── Helpers ──────────────────────────────────────────────────────────────────
 
 def perturb_weights(base_weights, direction, radius):
-    """Offset base_weights along a 6D direction vector scaled by radius. Returns new weight dict."""
+    """Create a perturbed weight dict by offsetting base weights along a direction.
+
+    Args:
+        base_weights: dict mapping weight names to float values (6 keys).
+        direction: numpy array of shape (6,) specifying the perturbation direction.
+        radius: float scalar controlling the magnitude of the perturbation.
+
+    Returns:
+        dict: New weight dict with the same keys as base_weights.
+    """
     w = {}
     for i, wn in enumerate(WEIGHT_NAMES):
         w[wn] = base_weights[wn] + radius * direction[i]
@@ -154,13 +197,29 @@ def perturb_weights(base_weights, direction, radius):
 
 
 def clean_ax(ax):
-    """Remove top and right spines from a matplotlib axis."""
+    """Remove top and right spines from a matplotlib Axes for cleaner plots.
+
+    Args:
+        ax: matplotlib Axes object to modify.
+
+    Side effects:
+        Hides the top and right spine elements on the given Axes.
+    """
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
 
 
 def save_fig(fig, name):
-    """Save a matplotlib figure to PLOT_DIR and close it."""
+    """Save a matplotlib figure to PLOT_DIR and close it to free memory.
+
+    Args:
+        fig: matplotlib Figure to save.
+        name: filename (e.g. "deep_fig01_zoom_cascade.png") within PLOT_DIR.
+
+    Side effects:
+        Creates PLOT_DIR if it does not exist. Writes the figure to disk
+        at PLOT_DIR/name. Closes the figure to release memory.
+    """
     PLOT_DIR.mkdir(parents=True, exist_ok=True)
     path = PLOT_DIR / name
     fig.savefig(path, dpi=100, bbox_inches="tight")
@@ -171,7 +230,18 @@ def save_fig(fig, name):
 def perpendicular_basis(grad):
     """Build an orthonormal 2D basis for the plane perpendicular to grad.
 
-    Returns (e1, e2) — two 6D unit vectors orthogonal to grad and each other.
+    Uses iterated Gram-Schmidt: generates two random vectors, projects out
+    the grad component (and each other), and normalizes. This yields a
+    coordinate system for probing the landscape in directions orthogonal
+    to the steepest gradient.
+
+    Args:
+        grad: numpy array of shape (6,), the gradient vector to build the
+            perpendicular plane for.
+
+    Returns:
+        tuple of (e1, e2): two numpy arrays of shape (6,), each with unit
+        norm, mutually orthogonal and both orthogonal to grad.
     """
     g_hat = grad / max(np.linalg.norm(grad), 1e-12)
 
@@ -197,7 +267,22 @@ def perpendicular_basis(grad):
 
 
 def compute_chaos_score(dxs):
-    """Chaos score: sign_change_rate * spectral_ratio / (1 + autocorr)."""
+    """Compute a composite chaos score for a DX profile.
+
+    Combines three indicators of chaotic (Wolfram Type 3) behavior:
+    - Sign-change rate in the first derivative (high = oscillatory).
+    - Spectral ratio of high-frequency to low-frequency FFT power
+      (high = energy spread to fine scales).
+    - Lag-1 autocorrelation (low/negative = uncorrelated).
+
+    Formula: sign_change_rate * spectral_ratio / (1 + max(autocorr, 0))
+
+    Args:
+        dxs: array-like of DX values sampled along a profile.
+
+    Returns:
+        float: Non-negative chaos score. Higher = more chaotic.
+    """
     dxs = np.asarray(dxs)
     dxs_c = dxs - np.mean(dxs)
     var = np.var(dxs_c)
@@ -229,7 +314,22 @@ def compute_chaos_score(dxs):
 # ── Select Target Steps ─────────────────────────────────────────────────────
 
 def select_targets(tax_data):
-    """Select the 10 most chaotic Step profiles, return sorted list."""
+    """Select the 10 most chaotic Step-type cliff profiles as deep-probing targets.
+
+    Filters for Step-classified profiles from the taxonomy data, ranks them
+    by chaos score (highest first), and returns the top 10 with all metadata
+    needed for the three deep-probing phases.
+
+    Args:
+        tax_data: dict loaded from cliff_taxonomy.json, must contain a
+            "profiles" list where each entry has "type", "dxs", "features",
+            "gradient_vector", "cliff_direction", and "weights" keys.
+
+    Returns:
+        list of 10 target dicts, sorted by chaos score (descending), each
+        containing select_rank, chaos_score, weights, gradient info, and
+        the step_location from shape features.
+    """
     profiles = tax_data["profiles"]
     steps = [p for p in profiles if p["type"] == "Step"]
 
@@ -268,7 +368,21 @@ def select_targets(tax_data):
 # ── Phase 1: Logarithmic Zoom Cascade ────────────────────────────────────────
 
 def phase1_zoom_cascade(targets):
-    """20-point profiles at 6 geometrically spaced scales, centered on step location."""
+    """Generate multi-scale DX profiles centered on each target's step location.
+
+    For each of the 10 targets, samples 20-point profiles at 6 geometrically
+    spaced scales (r = 0.01 down to 0.00003), all centered on the radius
+    where the cliff's primary step was detected. Measures DX range, max step,
+    chaos score, and mean derivative at each scale. The key output for
+    fractal dimension estimation.
+
+    Args:
+        targets: list of target dicts from select_targets().
+
+    Returns:
+        list of zoom result dicts, each containing scale_profiles (one per
+        zoom level with radii, dxs, and derived metrics) and center_r.
+    """
     n_targets = len(targets)
     n_scales = len(ZOOM_SCALES)
     total_sims = n_targets * n_scales * N_ZOOM_PTS
@@ -342,7 +456,22 @@ def phase1_zoom_cascade(targets):
 # ── Phase 2: Directional Fan ─────────────────────────────────────────────────
 
 def phase2_directional_fan(targets):
-    """8 evenly-spaced directions in the perp plane, 9-point profile at r=±0.005."""
+    """Probe DX profiles along 8 evenly-spaced perpendicular directions plus gradient.
+
+    For each target, constructs a 2D orthonormal basis in the plane
+    perpendicular to the gradient, then sweeps 8 directions (0 to 180
+    degrees) in that plane. Also probes the gradient direction for
+    comparison. Tests whether the chaos is isotropic (uniform in all
+    directions) or concentrated along specific axes.
+
+    Args:
+        targets: list of target dicts from select_targets().
+
+    Returns:
+        list of fan result dicts, each containing fan_profiles (one per
+        angle with DX values, dx_range, chaos_score), a gradient_profile,
+        and the basis vectors (e1, e2).
+    """
     n_targets = len(targets)
     total_sims = n_targets * N_FAN_DIRS * N_FAN_PTS
     print(f"\n{'='*80}")
@@ -428,7 +557,21 @@ def phase2_directional_fan(targets):
 # ── Phase 3: 2D Micro-Grid ──────────────────────────────────────────────────
 
 def phase3_micro_grid(targets):
-    """10x10 grid in gradient + perpendicular plane for top 5 targets."""
+    """Compute 10x10 DX and cliffiness grids in the gradient-perpendicular plane.
+
+    For the top 5 targets, builds a 2D grid spanning r = +/-0.005 in both
+    the gradient direction and a perpendicular direction. Provides direct
+    visualization of the local fitness landscape texture: smooth regions
+    appear as gradual color gradients, cliff edges as sharp color boundaries.
+
+    Args:
+        targets: list of target dicts from select_targets() (uses first 5).
+
+    Returns:
+        list of grid result dicts, each containing grid_coords, dx_grid
+        (10x10 DX values), cliff_grid (10x10 gradient magnitudes), and
+        the direction vectors used.
+    """
     n_targets = min(5, len(targets))
     total_sims = n_targets * GRID_N * GRID_N
     print(f"\n{'='*80}")
@@ -512,7 +655,19 @@ def phase3_micro_grid(targets):
 # ── Figures ──────────────────────────────────────────────────────────────────
 
 def fig01_zoom_cascade(zoom_results, targets):
-    """2x5 grid: each target gets one panel showing all 6 zoom levels overlaid."""
+    """Generate a 2x5 grid showing all 6 zoom levels overlaid per target.
+
+    Each panel displays the DX profile at all 6 scales, with both radii
+    and DX normalized to [0, 1] / [-1, 1] so the shapes are directly
+    comparable. Self-similar profiles across scales indicate fractal structure.
+
+    Args:
+        zoom_results: list of zoom result dicts from phase1_zoom_cascade().
+        targets: list of target dicts for labeling.
+
+    Side effects:
+        Writes deep_fig01_zoom_cascade.png to PLOT_DIR.
+    """
     n = len(zoom_results)
     n_cols = 5
     n_rows = (n + n_cols - 1) // n_cols
@@ -563,7 +718,23 @@ def fig01_zoom_cascade(zoom_results, targets):
 
 
 def fig02_fractal_dimension(zoom_results, targets):
-    """1x2: log-log dx_range vs scale (left), fractal dimension summary (right)."""
+    """Generate fractal scaling analysis: log-log plot and slope bar chart.
+
+    Left panel: DX range vs probe scale on log-log axes for each target,
+    with reference lines for slope=0 (fractal) and slope=1 (smooth).
+    Right panel: bar chart of per-target log-log slopes (the fractal
+    dimension proxy). Red = fractal-like, blue = intermediate, green = smooth.
+
+    Args:
+        zoom_results: list of zoom result dicts from phase1_zoom_cascade().
+        targets: list of target dicts for labeling.
+
+    Returns:
+        list of float: log-log slopes for each target (0 = fractal, 1 = smooth).
+
+    Side effects:
+        Writes deep_fig02_fractal_dimension.png to PLOT_DIR.
+    """
     fig, axes = plt.subplots(1, 2, figsize=(16, 7))
 
     # Left: log-log for each target
@@ -626,7 +797,19 @@ def fig02_fractal_dimension(zoom_results, targets):
 
 
 def fig03_directional_fan(fan_results, targets):
-    """2x5 grid: polar-style visualization of DX range and chaos by angle."""
+    """Generate a 2x5 grid of directional fan profiles per target.
+
+    Each panel overlays 8 perpendicular-direction DX profiles (colored by
+    angle) plus the gradient-direction profile in black, showing how the
+    landscape varies across different directions at each cliff point.
+
+    Args:
+        fan_results: list of fan result dicts from phase2_directional_fan().
+        targets: list of target dicts for labeling.
+
+    Side effects:
+        Writes deep_fig03_directional_fan.png to PLOT_DIR.
+    """
     n = len(fan_results)
     n_cols = 5
     n_rows = (n + n_cols - 1) // n_cols
@@ -672,7 +855,24 @@ def fig03_directional_fan(fan_results, targets):
 
 
 def fig04_isotropy(fan_results, targets):
-    """1x2: isotropy analysis — range by angle (left), chaos by angle (right)."""
+    """Generate isotropy analysis: DX range by angle and isotropy ratios.
+
+    Left panel: DX range vs angle in the perpendicular plane for each target,
+    with horizontal dashed lines marking the gradient-direction range.
+    Right panel: paired bar chart of isotropy ratio (std/mean of perpendicular
+    ranges) and gradient dominance ratio (grad range / mean perp range).
+
+    Args:
+        fan_results: list of fan result dicts from phase2_directional_fan().
+        targets: list of target dicts for labeling.
+
+    Returns:
+        tuple of (isotropy_ratios, grad_vs_perp): two lists of floats,
+        one per target.
+
+    Side effects:
+        Writes deep_fig04_isotropy.png to PLOT_DIR.
+    """
     fig, axes = plt.subplots(1, 2, figsize=(16, 7))
 
     # Left: DX range by angle for each target
@@ -741,7 +941,19 @@ def fig04_isotropy(fan_results, targets):
 
 
 def fig05_micro_grids(grid_results, targets):
-    """2x5: DX (top) and cliffiness (bottom) micro-grids for top 5 targets."""
+    """Generate 2D heatmap micro-grids: DX (top row) and cliffiness (bottom row).
+
+    Each column corresponds to one of the top 5 targets. The DX heatmap
+    uses a diverging RdBu colormap (red = forward, blue = backward), while
+    the cliffiness heatmap uses inferno (bright = steep gradient).
+
+    Args:
+        grid_results: list of grid result dicts from phase3_micro_grid().
+        targets: list of target dicts for labeling.
+
+    Side effects:
+        Writes deep_fig05_micro_grids.png to PLOT_DIR.
+    """
     n = len(grid_results)
     fig, axes = plt.subplots(2, n, figsize=(5 * n, 9))
     if n == 1:
@@ -784,7 +996,33 @@ def fig05_micro_grids(grid_results, targets):
 
 def fig06_smoothness_verdict(zoom_results, fan_results, grid_results,
                               targets, slopes, isotropy_ratios, grad_vs_perp):
-    """Summary figure: the verdict on smoothness, isotropy, and Wolfram class."""
+    """Generate the final 2x3 summary figure with verdicts on landscape structure.
+
+    Panels:
+        (0,0) Mean derivative magnitude vs scale -- flat = smooth, rising = fractal.
+        (0,1) Chaos score vs scale -- persistent chaos = true Type 3.
+        (0,2) Population-level fractal scaling (all targets pooled) with fit line.
+        (1,0) Histogram of per-target fractal slopes.
+        (1,1) Scatter of isotropy ratio vs gradient dominance.
+        (1,2) Text verdict panel: smoothness, isotropy, and Wolfram classification.
+
+    Args:
+        zoom_results: list of zoom result dicts from phase1.
+        fan_results: list of fan result dicts from phase2.
+        grid_results: list of grid result dicts from phase3.
+        targets: list of target dicts for labeling.
+        slopes: list of per-target fractal slopes from fig02.
+        isotropy_ratios: list of per-target isotropy ratios from fig04.
+        grad_vs_perp: list of per-target gradient dominance ratios from fig04.
+
+    Returns:
+        dict: Verdict summary with mean_fractal_slope, mean_isotropy,
+        mean_grad_vs_perp, and string verdicts for smoothness, isotropy,
+        and Wolfram class.
+
+    Side effects:
+        Writes deep_fig06_smoothness_verdict.png to PLOT_DIR.
+    """
     fig, axes = plt.subplots(2, 3, figsize=(19, 12))
 
     # (0,0): Mean derivative magnitude vs scale
@@ -972,7 +1210,23 @@ def fig06_smoothness_verdict(zoom_results, fan_results, grid_results,
 # ── Console Output ──────────────────────────────────────────────────────────
 
 def print_analysis(zoom_results, fan_results, grid_results, targets, verdicts):
-    """Print a formatted console summary of all three phases and final verdicts."""
+    """Print a formatted console summary of all three phases and final verdicts.
+
+    Outputs Phase 1 fractal scaling table (per-target slopes and DX ranges),
+    derivative magnitude by scale, Phase 2 directional isotropy statistics,
+    Phase 3 micro-grid DX/cliffiness ranges, and the final smoothness,
+    isotropy, and Wolfram classification verdicts.
+
+    Args:
+        zoom_results: list of zoom result dicts from phase1.
+        fan_results: list of fan result dicts from phase2.
+        grid_results: list of grid result dicts from phase3.
+        targets: list of target dicts for labeling.
+        verdicts: dict of verdict strings from fig06_smoothness_verdict().
+
+    Side effects:
+        Prints formatted text to stdout.
+    """
     print(f"\n{'='*80}")
     print("DEEP RESOLUTION — RESULTS")
     print(f"{'='*80}")
@@ -1037,7 +1291,21 @@ def print_analysis(zoom_results, fan_results, grid_results, targets, verdicts):
 # ── Main ─────────────────────────────────────────────────────────────────────
 
 def main():
-    """Run all three deep-probing phases, generate figures, and save results."""
+    """Run all three deep-probing phases, generate figures, and save results.
+
+    Pipeline:
+        1. Load taxonomy data from cliff_taxonomy.json.
+        2. Select 10 most chaotic Step-type profiles as targets.
+        3. Phase 1: Logarithmic zoom cascade at 6 scales (1,200 sims).
+        4. Phase 2: Directional fan with 8 perpendicular directions (720 sims).
+        5. Phase 3: 2D micro-grids for top 5 targets (500 sims).
+        6. Generate 6 figures including fractal dimension and verdict panels.
+        7. Print analysis and save cliff_taxonomy_deep.json.
+
+    Side effects:
+        Backs up and restores brain.nndf. Writes cliff_taxonomy_deep.json
+        and 6 PNG plots to artifacts/.
+    """
     t_start = time.perf_counter()
     np.random.seed(123)
 

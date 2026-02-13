@@ -2,10 +2,27 @@
 """
 analyze_dark_matter.py
 
-Deep analysis of "dead" gaits — trials with |DX| < 1m from the 500
-random-search trials. These gaits don't go anywhere, but they're not
-doing nothing. Full telemetry reveals what they actually are: spinners,
-rockers, vibrators, circlers, and the truly inert.
+Role:
+    Deep analysis of "dead" gaits -- trials with |DX| < 1m from the 500
+    random-search trials (random_search_500.json). These gaits produce
+    negligible net displacement but exhibit rich internal dynamics. Full
+    telemetry re-simulation reveals what they actually are: spinners,
+    rockers, vibrators, circlers, and the truly inert.
+
+Pipeline:
+    1. Load the 500-trial random search results and filter to dead gaits.
+    2. Re-simulate each dead gait with full telemetry capture (in-memory).
+    3. Compute extended behavioral descriptors (rotation, oscillation,
+       path shape, contact patterns, phase coordination).
+    4. Classify each gait into a behavioral type via heuristic rules.
+    5. Run k-means clustering and PCA for unsupervised comparison.
+    6. Generate 6 diagnostic figures and a JSON artifact.
+
+Notes:
+    - Backs up and restores brain.nndf since each trial overwrites it.
+    - All simulations run headless (PyBullet DIRECT mode).
+    - Classification is priority-ordered: first matching rule wins.
+    - PCA and k-means are implemented with numpy only (no sklearn).
 
 Outputs:
     artifacts/dark_matter.json
@@ -53,7 +70,16 @@ DEAD_THRESHOLD = 1.0  # meters
 # ── Simulation ───────────────────────────────────────────────────────────────
 
 def write_brain(weights):
-    """Write a brain.nndf file from a weight dict (w03, w04, w13, etc.)."""
+    """Write a brain.nndf file from a weight dict (w03, w04, w13, etc.).
+
+    Args:
+        weights: Dict mapping synapse names ("w03", "w04", ..., "w24") to
+            float weight values.
+
+    Side effects:
+        Overwrites PROJECT/brain.nndf with a 3-sensor, 2-motor, 6-synapse
+        neural network definition.
+    """
     path = PROJECT / "brain.nndf"
     with open(path, "w") as f:
         f.write('<neuralNetwork>\n')
@@ -72,7 +98,25 @@ def write_brain(weights):
 
 
 def simulate_full(weights):
-    """Run simulation, return full telemetry data dict."""
+    """Run a full headless simulation and return all telemetry channels as numpy arrays.
+
+    Connects a headless PyBullet instance, loads the robot with the given
+    synapse weights, steps the simulation for c.SIM_STEPS, and captures
+    position, velocity, orientation, contacts, and joint states every step.
+
+    Args:
+        weights: Dict mapping synapse names to float weight values.
+
+    Returns:
+        Dict of 1-D numpy arrays keyed by channel name (same schema as
+        compute_beer_analytics.load_telemetry output): t, x, y, z, vx, vy,
+        vz, wx, wy, wz, roll, pitch, yaw, contact_torso, contact_back,
+        contact_front, j0_pos, j0_vel, j0_tau, j1_pos, j1_vel, j1_tau.
+
+    Side effects:
+        Overwrites brain.nndf via write_brain(). Connects and disconnects
+        a PyBullet physics server.
+    """
     write_brain(weights)
 
     cid = p.connect(p.DIRECT)
@@ -176,7 +220,20 @@ def simulate_full(weights):
 # ── Extended behavioral descriptors ─────────────────────────────────────────
 
 def compute_dark_descriptors(data):
-    """Compute extended behavioral descriptors for dead-gait analysis."""
+    """Compute extended behavioral descriptors tailored for dead-gait analysis.
+
+    Goes beyond the standard Beer-framework pillars by adding metrics that
+    distinguish between different types of non-locomotion: spinning, rocking,
+    vibrating, circling, and path cancellation.
+
+    Args:
+        data: Telemetry dict of numpy arrays (same schema as simulate_full
+            output or compute_beer_analytics.load_telemetry).
+
+    Returns:
+        Dict with ~30 scalar descriptors including displacement, path shape,
+        rotation, oscillation, energy, contact, and phase coordination metrics.
+    """
     x, y, z = data["x"], data["y"], data["z"]
     vx, vy = data["vx"], data["vy"]
     wx, wy, wz = data["wx"], data["wy"], data["wz"]
@@ -339,7 +396,19 @@ def classify_dark_gait(desc):
 # ── Clustering (numpy k-means) ──────────────────────────────────────────────
 
 def kmeans(data, k=6, max_iter=50):
-    """Simple k-means. Returns labels array."""
+    """Simple k-means clustering (numpy-only, no sklearn).
+
+    Min-max normalizes features before clustering so that each dimension
+    contributes equally regardless of scale.
+
+    Args:
+        data: 2-D numpy array of shape (n_samples, n_features).
+        k: Number of clusters.
+        max_iter: Maximum number of Lloyd's algorithm iterations.
+
+    Returns:
+        1-D numpy array of integer cluster labels, shape (n_samples,).
+    """
     n = len(data)
     if n <= k:
         return np.arange(n)
@@ -378,13 +447,26 @@ def kmeans(data, k=6, max_iter=50):
 # ── Plot helpers ─────────────────────────────────────────────────────────────
 
 def clean_ax(ax):
-    """Remove top and right spines from a matplotlib axis."""
+    """Remove top and right spines from a matplotlib Axes for cleaner plots.
+
+    Args:
+        ax: matplotlib Axes instance.
+    """
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
 
 
 def save_fig(fig, name):
-    """Save a figure to PLOT_DIR and close it to free memory."""
+    """Save a figure to PLOT_DIR and close it to free memory.
+
+    Args:
+        fig: matplotlib Figure instance.
+        name: Filename (e.g. "dark_fig01_overview.png").
+
+    Side effects:
+        Creates PLOT_DIR if it does not exist. Writes the figure to disk
+        at 100 DPI. Closes the figure to free memory.
+    """
     PLOT_DIR.mkdir(parents=True, exist_ok=True)
     path = PLOT_DIR / name
     fig.savefig(path, dpi=100, bbox_inches="tight")
@@ -392,6 +474,7 @@ def save_fig(fig, name):
     print(f"  WROTE {path}")
 
 
+# Consistent color palette for dark-matter gait types across all figures
 TYPE_COLORS = {
     "Frozen": "#999999",
     "Spinner": "#C44E52",
@@ -407,7 +490,16 @@ TYPE_COLORS = {
 # ── Main ─────────────────────────────────────────────────────────────────────
 
 def main():
-    """Re-simulate dead gaits, classify them, write JSON results, and generate figures."""
+    """Re-simulate dead gaits, classify them, write JSON results, and generate figures.
+
+    Side effects:
+        - Reads artifacts/random_search_500.json for the 500-trial dataset.
+        - Backs up and restores brain.nndf.
+        - Writes artifacts/dark_matter.json with per-gait classification
+          and descriptors.
+        - Generates 6 PNG figures under artifacts/plots/.
+        - Prints census, summary stats, and progress to stdout.
+    """
     brain_path = PROJECT / "brain.nndf"
     backup_path = PROJECT / "brain.nndf.backup"
     if brain_path.exists():

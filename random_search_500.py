@@ -2,12 +2,28 @@
 """
 random_search_500.py
 
-Run 500 random-search trials with in-memory Beer-framework analytics.
-No telemetry files written to disk — data is captured during simulation
-and analyzed on the fly.
+Role:
+    Large-scale random sampling of the 6-D synapse weight space. Runs 500
+    independent headless simulations, each with uniformly random weights in
+    [-1, 1], and computes full Beer-framework analytics on every trial
+    without writing telemetry to disk.
+
+    The results characterize the statistical landscape of the weight space:
+    what fraction of random brains are "dead" (|DX| < 1m), how displacement,
+    speed, phase lock, and efficiency are distributed, and how individual
+    synapse weights correlate with behavioral metrics.
+
+Notes:
+    - All telemetry is captured in-memory (numpy arrays) and passed directly
+      to compute_all(). No JSONL files are written -- this is the fast path
+      for high-volume sampling.
+    - Zoo context (synapse_gait_zoo_v2.json) is loaded for overlay plots
+      comparing random search to the curated 116-gait zoo.
+    - Backs up and restores brain.nndf since each trial overwrites it.
+    - Expected runtime: ~50 seconds (500 trials x ~0.1s/trial).
 
 Outputs:
-    artifacts/random_search_500.json         — all 500 trial results
+    artifacts/random_search_500.json         -- per-trial weights + scalar metrics
     artifacts/plots/rs_fig01_dx_histogram.png
     artifacts/plots/rs_fig02_phase_lock_histogram.png
     artifacts/plots/rs_fig03_best_of_n.png
@@ -54,7 +70,16 @@ PLOT_DIR = PROJECT / "artifacts" / "plots"
 # ── Simulation with in-memory telemetry ──────────────────────────────────────
 
 def write_brain(weights):
-    """Write a brain.nndf file with the given synapse weights."""
+    """Write a brain.nndf file with the given synapse weights.
+
+    Args:
+        weights: Dict mapping synapse names ("w03", "w04", ..., "w24") to
+            float weight values.
+
+    Side effects:
+        Overwrites PROJECT/brain.nndf with a 3-sensor, 2-motor, 6-synapse
+        neural network definition.
+    """
     path = PROJECT / "brain.nndf"
     with open(path, "w") as f:
         f.write('<neuralNetwork>\n')
@@ -72,7 +97,23 @@ def write_brain(weights):
 
 
 def run_trial_inmemory(weights):
-    """Run simulation, capture telemetry arrays in memory, return analytics dict."""
+    """Run a headless simulation and compute Beer-framework analytics in-memory.
+
+    Instead of writing telemetry to disk, this function captures every channel
+    into pre-allocated numpy arrays and passes them directly to compute_all()
+    at the end. This avoids disk I/O and makes high-volume random search fast.
+
+    Args:
+        weights: Dict mapping synapse names to float weight values.
+
+    Returns:
+        Analytics dict with keys "outcome", "contact", "coordination",
+        "rotation_axis" (same structure as compute_beer_analytics.compute_all).
+
+    Side effects:
+        Overwrites brain.nndf via write_brain(). Connects and disconnects
+        a headless PyBullet physics server.
+    """
     write_brain(weights)
 
     # Headless PyBullet — no GUI, no disk telemetry
@@ -199,12 +240,25 @@ def run_trial_inmemory(weights):
 # ── Plotting helpers ─────────────────────────────────────────────────────────
 
 def clean_ax(ax):
-    """Remove top and right spines from an axes for cleaner plots."""
+    """Remove top and right spines from a matplotlib Axes for cleaner plots.
+
+    Args:
+        ax: matplotlib Axes instance.
+    """
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
 
 def save_fig(fig, name):
-    """Save a matplotlib figure to PLOT_DIR and close it."""
+    """Save a matplotlib figure to PLOT_DIR and close it.
+
+    Args:
+        fig: matplotlib Figure instance.
+        name: Filename (e.g. "rs_fig01_dx_histogram.png").
+
+    Side effects:
+        Creates PLOT_DIR if needed. Writes the figure at 100 DPI. Closes
+        the figure to free memory.
+    """
     PLOT_DIR.mkdir(parents=True, exist_ok=True)
     path = PLOT_DIR / name
     fig.savefig(path, dpi=100, bbox_inches="tight")
@@ -212,7 +266,15 @@ def save_fig(fig, name):
     print(f"  WROTE {path}")
 
 def correlation_r(x, y):
-    """Compute Pearson correlation coefficient between x and y. Returns 0 if degenerate."""
+    """Compute Pearson correlation coefficient between x and y.
+
+    Args:
+        x: 1-D array-like of values.
+        y: 1-D array-like of values (same length as x).
+
+    Returns:
+        Float in [-1, 1], or 0.0 if either input has zero variance.
+    """
     x, y = np.array(x), np.array(y)
     mx, my = np.mean(x), np.mean(y)
     num = np.sum((x - mx) * (y - my))
@@ -224,7 +286,15 @@ def correlation_r(x, y):
 # ── Load zoo for context ─────────────────────────────────────────────────────
 
 def load_zoo_summary():
-    """Load key metrics from the 116-gait zoo for contextual comparison. Returns a list of dicts."""
+    """Load key metrics from the 116-gait zoo for contextual comparison.
+
+    Reads synapse_gait_zoo_v2.json and extracts a flat list of per-gait
+    summary dicts used as reference points in overlay plots.
+
+    Returns:
+        List of dicts, each with keys: name, dx, speed, efficiency,
+        phase_lock, entropy, roll_dom, work_proxy.
+    """
     with open(PROJECT / "synapse_gait_zoo_v2.json") as f:
         zoo = json.load(f)
     gaits = []
@@ -251,7 +321,16 @@ def load_zoo_summary():
 # ── Main ─────────────────────────────────────────────────────────────────────
 
 def main():
-    """Run 500 random-search trials, compute streaming analytics, and generate plots."""
+    """Run 500 random-search trials, compute streaming analytics, and generate plots.
+
+    Side effects:
+        - Backs up and restores brain.nndf.
+        - Writes artifacts/random_search_500.json with per-trial weights
+          and scalar analytics metrics.
+        - Generates 7 PNG figures under artifacts/plots/.
+        - Prints summary statistics, weight-metric correlations, and
+          best-mover details to stdout.
+    """
     # Back up brain.nndf
     brain_path = PROJECT / "brain.nndf"
     backup_path = PROJECT / "brain.nndf.backup"

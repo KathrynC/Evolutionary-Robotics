@@ -2,24 +2,33 @@
 """
 cliff_taxonomy.py
 
-Cliff Taxonomy — Adaptive Probing & Shape Classification
+Role:
+    Adaptive probing and shape classification of the cliffiest weight-space points
+    discovered by atlas_cliffiness.py. Extracts quantitative shape features from
+    DX profiles and assigns each cliff a taxonomy type (Step, Precipice, Canyon,
+    Slope, or Fractal) via rule-based classification.
 
-Deeper probing of the cliffiest weight-space points discovered by atlas_cliffiness.py,
-with quantitative shape features and rule-based cliff type classification.
+Pipeline (4 parts, ~3,300 sims total, ~4 minutes):
+    Part A — Extended Cliff Profiles (1,500 sims):
+        Top 50 cliffiest points, 30-point DX profile along gradient direction.
+    Part B — Perpendicular Profiles (600 sims):
+        Top 30 cliffiest points, 20-point DX profile perpendicular to gradient.
+    Part C — Fine-Grained Cliff Edges (800 sims):
+        Top 20 cliffiest points, 40-point DX profile along gradient (r=+/-0.05).
+    Part D — Multi-Scale Probing (360 sims):
+        Top 20 cliffiest points, 6 random probes at 3 radii (0.01, 0.005, 0.001).
 
-Simulation budget: ~3,300 sims (~4 min)
+Notes:
+    - Simulations are headless (PyBullet DIRECT mode) and deterministic.
+    - brain.nndf is backed up before and restored after all simulations.
+    - Depends on artifacts/atlas_cliffiness.json (produced by atlas_cliffiness.py).
+    - Shape features include sharpness, asymmetry, recovery ratio, roughness,
+      and transition width. See compute_cliff_features() for definitions.
+    - Classification rules are tuned for the 3-link walker landscape. Different
+      robot morphologies may need threshold recalibration.
 
-Part A: Extended Cliff Profiles (1,500 sims)
-    Top 50 cliffiest points, 30-point DX profile along gradient direction.
-
-Part B: Perpendicular Profiles (600 sims)
-    Top 30 cliffiest points, 20-point DX profile perpendicular to gradient.
-
-Part C: Fine-Grained Cliff Edges (800 sims)
-    Top 20 cliffiest points, 40-point DX profile along gradient (r=±0.05).
-
-Part D: Multi-Scale Probing (360 sims)
-    Top 20 cliffiest points, 6 random probes at 3 radii (0.01, 0.005, 0.001).
+Inputs:
+    artifacts/atlas_cliffiness.json — probe results with gradients from atlas step.
 
 Outputs:
     artifacts/cliff_taxonomy.json
@@ -85,7 +94,15 @@ TYPE_COLORS = {
 # ── Simulation (reused from atlas_cliffiness.py) ────────────────────────────
 
 def write_brain_standard(weights):
-    """Write a standard 6-synapse brain.nndf file from a weight dict."""
+    """Write a standard 6-synapse brain.nndf file from a weight dict.
+
+    Args:
+        weights: dict mapping synapse names (e.g. "w03") to float weight values.
+            Must contain all 6 keys: w03, w04, w13, w14, w23, w24.
+
+    Side effects:
+        Overwrites PROJECT / "brain.nndf" on disk.
+    """
     path = PROJECT / "brain.nndf"
     with open(path, "w") as f:
         f.write('<neuralNetwork>\n')
@@ -103,7 +120,22 @@ def write_brain_standard(weights):
 
 
 def simulate_dx_only(weights):
-    """Minimal sim loop — skips all telemetry recording, only returns DX."""
+    """Run a headless PyBullet simulation and return the robot's x-displacement.
+
+    Minimal sim loop that skips all telemetry recording. Writes brain.nndf,
+    connects a DIRECT (headless) PyBullet instance, runs the full episode,
+    and returns the net horizontal distance traveled.
+
+    Args:
+        weights: dict mapping synapse names to float weight values (6 keys).
+
+    Returns:
+        float: Net x-displacement in meters (x_last - x_first).
+
+    Side effects:
+        Overwrites brain.nndf on disk. Creates and disconnects a PyBullet
+        physics client.
+    """
     write_brain_standard(weights)
 
     cid = p.connect(p.DIRECT)
@@ -153,7 +185,12 @@ def simulate_dx_only(weights):
 # ── Helpers (reused from atlas_cliffiness.py) ────────────────────────────────
 
 def random_direction_6d():
-    """Return a random unit vector in 6D."""
+    """Return a random unit vector in 6D weight space.
+
+    Returns:
+        numpy array of shape (6,) with unit L2 norm. Falls back to
+        a uniform direction if the random draw is degenerate (near-zero norm).
+    """
     v = np.random.randn(6)
     norm = np.linalg.norm(v)
     if norm < 1e-12:
@@ -163,7 +200,16 @@ def random_direction_6d():
 
 
 def perturb_weights(base_weights, direction, radius):
-    """Return new weight dict = base + radius * direction."""
+    """Create a perturbed weight dict by offsetting base weights along a direction.
+
+    Args:
+        base_weights: dict mapping weight names to float values (6 keys).
+        direction: numpy array of shape (6,) specifying the perturbation direction.
+        radius: float scalar controlling the magnitude of the perturbation.
+
+    Returns:
+        dict: New weight dict with the same keys as base_weights.
+    """
     w = {}
     for i, wn in enumerate(WEIGHT_NAMES):
         w[wn] = base_weights[wn] + radius * direction[i]
@@ -171,13 +217,29 @@ def perturb_weights(base_weights, direction, radius):
 
 
 def clean_ax(ax):
-    """Remove top and right spines from a matplotlib axes."""
+    """Remove top and right spines from a matplotlib Axes for cleaner plots.
+
+    Args:
+        ax: matplotlib Axes object to modify.
+
+    Side effects:
+        Hides the top and right spine elements on the given Axes.
+    """
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
 
 
 def save_fig(fig, name):
-    """Save a figure to PLOT_DIR and close it."""
+    """Save a matplotlib figure to PLOT_DIR and close it to free memory.
+
+    Args:
+        fig: matplotlib Figure to save.
+        name: filename (e.g. "tax_fig01_profile_gallery.png") within PLOT_DIR.
+
+    Side effects:
+        Creates PLOT_DIR if it does not exist. Writes the figure to disk
+        at PLOT_DIR/name. Closes the figure to release memory.
+    """
     PLOT_DIR.mkdir(parents=True, exist_ok=True)
     path = PLOT_DIR / name
     fig.savefig(path, dpi=100, bbox_inches="tight")
@@ -188,7 +250,19 @@ def save_fig(fig, name):
 # ── New Helpers ──────────────────────────────────────────────────────────────
 
 def perpendicular_direction(grad):
-    """Gram-Schmidt: random vector orthogonalized against grad, normalized."""
+    """Generate a random unit vector orthogonal to grad via Gram-Schmidt.
+
+    Produces a random 6D vector, projects out the component along grad,
+    and normalizes. Useful for probing the landscape perpendicular to the
+    steepest cliff direction.
+
+    Args:
+        grad: numpy array of shape (6,), the gradient vector to orthogonalize against.
+
+    Returns:
+        numpy array of shape (6,) with unit norm, orthogonal to grad.
+        Falls back to a random direction if grad is near-zero.
+    """
     v = np.random.randn(6)
     grad_norm = np.linalg.norm(grad)
     if grad_norm < 1e-12:
@@ -321,14 +395,22 @@ def compute_cliff_features(radii, dxs, base_dx):
 
 
 def classify_cliff(features):
-    """Rule-based taxonomy assignment.
+    """Assign a cliff type label using rule-based taxonomy on shape features.
 
-    Types:
-        Step:      sharp + one-sided + no recovery
-        Precipice: sharp + one-sided + partial recovery
-        Canyon:    sharp + two-sided + recovery
-        Slope:     gradual (no discontinuity)
-        Fractal:   ragged + multiple comparable steps
+    Classification hierarchy (evaluated in priority order):
+        Fractal:   High normalized roughness + no single dominant step.
+        Slope:     Low sharpness (< 0.3) -- no abrupt discontinuity.
+        Step:      Sharp + one-sided + no recovery (DX drops and stays).
+        Precipice: Sharp + one-sided + partial recovery.
+        Canyon:    Sharp + two-sided or full recovery (DX drops and returns).
+
+    Args:
+        features: dict of shape descriptors from compute_cliff_features(),
+            must include sharpness, asymmetry_index, recovery_ratio,
+            roughness, and dx_range.
+
+    Returns:
+        str: One of "Step", "Precipice", "Canyon", "Slope", or "Fractal".
     """
     sharpness = features["sharpness"]
     asym = features["asymmetry_index"]
@@ -372,7 +454,21 @@ def classify_cliff(features):
 # ── Part A: Extended Cliff Profiles ──────────────────────────────────────────
 
 def part_a_extended_profiles(sorted_probes, n_top=50, n_points=30):
-    """30-point DX profile along gradient direction for top 50 cliffiest points."""
+    """Generate extended DX profiles along the gradient direction.
+
+    Samples 30 radii from -0.2 to +0.2 along each point's gradient (steepest
+    DX change) direction. These profiles are the primary input for shape
+    feature extraction and cliff type classification.
+
+    Args:
+        sorted_probes: list of probe dicts sorted by cliffiness (descending).
+        n_top: number of top cliffiest points to profile.
+        n_points: number of radii to sample per profile.
+
+    Returns:
+        list of profile dicts, each containing radii, DX values, gradient
+        info, weights, and base-point metadata.
+    """
     total_sims = n_top * n_points
     print(f"\n{'='*80}")
     print(f"PART A: Extended Cliff Profiles ({n_top} points x {n_points} radii = {total_sims} sims)")
@@ -431,7 +527,21 @@ def part_a_extended_profiles(sorted_probes, n_top=50, n_points=30):
 # ── Part B: Perpendicular Profiles ──────────────────────────────────────────
 
 def part_b_perpendicular(sorted_probes, n_top=30, n_points=20):
-    """20-point DX profile perpendicular to gradient for top 30 cliffiest points."""
+    """Generate DX profiles perpendicular to the gradient direction.
+
+    Tests cliff dimensionality: if DX varies substantially perpendicular to
+    the gradient, the cliff is a "ridge" (extends in multiple directions);
+    if perpendicular variation is low, the cliff is a "face" (flat wall).
+
+    Args:
+        sorted_probes: list of probe dicts sorted by cliffiness (descending).
+        n_top: number of top cliffiest points to profile.
+        n_points: number of radii to sample per profile.
+
+    Returns:
+        list of perpendicular profile dicts, each containing radii, DX values,
+        perpendicular direction, and base-point metadata.
+    """
     total_sims = n_top * n_points
     print(f"\n{'='*80}")
     print(f"PART B: Perpendicular Profiles ({n_top} points x {n_points} radii = {total_sims} sims)")
@@ -481,7 +591,22 @@ def part_b_perpendicular(sorted_probes, n_top=30, n_points=20):
 # ── Part C: Fine-Grained Cliff Edges ────────────────────────────────────────
 
 def part_c_fine_grained(sorted_probes, n_top=20, n_points=40):
-    """40-point DX profile along gradient, zoomed to r=±0.05."""
+    """Generate fine-grained DX profiles zoomed to the immediate cliff edge.
+
+    Samples 40 points in a narrow radius window (r = +/-0.05) along the
+    gradient direction. The 4x finer resolution compared to Part A reveals
+    the true sharpness of cliff transitions that appear as single-step jumps
+    at coarser resolution.
+
+    Args:
+        sorted_probes: list of probe dicts sorted by cliffiness (descending).
+        n_top: number of top cliffiest points to profile.
+        n_points: number of radii to sample per profile.
+
+    Returns:
+        list of fine-grained profile dicts, each containing radii, DX values,
+        cliff direction, and base-point metadata.
+    """
     total_sims = n_top * n_points
     print(f"\n{'='*80}")
     print(f"PART C: Fine-Grained Cliff Edges ({n_top} points x {n_points} radii = {total_sims} sims)")
@@ -535,7 +660,22 @@ def part_c_fine_grained(sorted_probes, n_top=20, n_points=40):
 # ── Part D: Multi-Scale Probing ──────────────────────────────────────────────
 
 def part_d_multiscale(sorted_probes, n_top=20, n_probes_per_radius=6):
-    """6 random probes at 3 radii for top 20 cliffiest points."""
+    """Probe cliffiness at multiple decreasing scales to test for fractal structure.
+
+    For each target, fires 6 random-direction probes at 3 geometrically
+    decreasing radii (0.01, 0.005, 0.001). If |delta DX| / radius grows
+    as radius shrinks, the landscape is fractal (no smoothness floor).
+    If it saturates, the cliff is smooth at fine scales.
+
+    Args:
+        sorted_probes: list of probe dicts sorted by cliffiness (descending).
+        n_top: number of top cliffiest points to probe.
+        n_probes_per_radius: number of random-direction probes per scale.
+
+    Returns:
+        list of multiscale result dicts, each containing per-scale statistics
+        (max_abs_delta, mean_abs_delta, raw delta_dxs) and base-point metadata.
+    """
     radii_scales = [0.01, 0.005, 0.001]
     total_sims = n_top * n_probes_per_radius * len(radii_scales)
     print(f"\n{'='*80}")
@@ -595,7 +735,26 @@ def part_d_multiscale(sorted_probes, n_top=20, n_probes_per_radius=6):
 # ── Feature Extraction & Classification ──────────────────────────────────────
 
 def extract_all_features(profiles, perp_profiles):
-    """Compute cliff features for all profiled points and assign taxonomy types."""
+    """Compute shape features for all profiles and assign taxonomy type labels.
+
+    For each profile, extracts shape descriptors (sharpness, asymmetry,
+    recovery ratio, roughness, etc.), identifies the dominant weight,
+    computes the perpendicular ratio (if perpendicular data is available),
+    and runs the rule-based classifier to assign a cliff type.
+
+    Args:
+        profiles: list of profile dicts from part_a_extended_profiles().
+            Each is mutated in-place to add "features" and "type" keys.
+        perp_profiles: list of perpendicular profile dicts from
+            part_b_perpendicular(), used for ridge/face classification.
+
+    Returns:
+        list of profile dicts (same objects, now with added keys).
+
+    Side effects:
+        Mutates each profile dict in-place. Prints classification summary
+        to stdout.
+    """
     print(f"\n{'='*80}")
     print("FEATURE EXTRACTION & CLASSIFICATION")
     print(f"{'='*80}")
@@ -651,7 +810,17 @@ def extract_all_features(profiles, perp_profiles):
 # ── Figures ──────────────────────────────────────────────────────────────────
 
 def fig01_profile_gallery(profiles):
-    """5x10 grid: all 50 cliff profiles, border colored by taxonomy type."""
+    """Generate a 5x10 gallery of all 50 cliff profiles, border colored by type.
+
+    Each panel shows a DX-vs-radius profile for one cliffiest point, with
+    the subplot border colored according to its taxonomy classification.
+
+    Args:
+        profiles: list of 50 profile dicts with "type", "radii", "dxs" keys.
+
+    Side effects:
+        Writes tax_fig01_profile_gallery.png to PLOT_DIR.
+    """
     n_rows, n_cols = 5, 10
     fig, axes = plt.subplots(n_rows, n_cols, figsize=(19, 9))
 
@@ -689,7 +858,19 @@ def fig01_profile_gallery(profiles):
 
 
 def fig02_taxonomy_summary(profiles):
-    """1x3: type distribution, prototypical profile per type, feature radar per type."""
+    """Generate a 1x3 taxonomy summary: distribution, prototypes, and features.
+
+    Left panel: bar chart of cliff type counts.
+    Center panel: prototypical (median cliffiness) DX profile per type,
+    z-score normalized so different DX scales overlay cleanly.
+    Right panel: grouped bar chart of mean shape features by type.
+
+    Args:
+        profiles: list of classified profile dicts with "type" and "features".
+
+    Side effects:
+        Writes tax_fig02_taxonomy_summary.png to PLOT_DIR.
+    """
     fig, axes = plt.subplots(1, 3, figsize=(19, 6))
 
     # Count types
@@ -774,7 +955,19 @@ def fig02_taxonomy_summary(profiles):
 
 
 def fig03_perpendicular(profiles, perp_profiles):
-    """3x5: gradient vs perpendicular profiles for top 15 points."""
+    """Generate a 3x5 comparison of gradient vs perpendicular DX profiles.
+
+    Overlays the gradient-direction profile (red) and perpendicular-direction
+    profile (blue) for the top 15 cliffiest points. Labels each with the
+    perpendicular ratio and ridge/face classification.
+
+    Args:
+        profiles: list of classified profile dicts from extract_all_features().
+        perp_profiles: list of perpendicular profile dicts from part_b.
+
+    Side effects:
+        Writes tax_fig03_perpendicular.png to PLOT_DIR.
+    """
     n_show = min(15, len(perp_profiles))
     n_rows, n_cols = 3, 5
     fig, axes = plt.subplots(n_rows, n_cols, figsize=(19, 9))
@@ -839,7 +1032,17 @@ def fig03_perpendicular(profiles, perp_profiles):
 
 
 def fig04_cliff_edges(fine_profiles):
-    """4x5: fine-grained cliff profiles for top 20."""
+    """Generate a 4x5 grid of fine-grained cliff edge profiles.
+
+    Shows 40-point DX profiles at r = +/-0.05 resolution for the top 20
+    cliffiest points, annotated with transition width and sharpness metrics.
+
+    Args:
+        fine_profiles: list of fine-grained profile dicts from part_c.
+
+    Side effects:
+        Writes tax_fig04_cliff_edges.png to PLOT_DIR.
+    """
     n_show = min(20, len(fine_profiles))
     n_rows, n_cols = 4, 5
     fig, axes = plt.subplots(n_rows, n_cols, figsize=(19, 13))
@@ -881,7 +1084,18 @@ def fig04_cliff_edges(fine_profiles):
 
 
 def fig05_feature_space(profiles):
-    """2x2 scatter plots of shape features, colored by type."""
+    """Generate 2x2 scatter plots of shape feature pairs, colored by cliff type.
+
+    Plots: asymmetry vs sharpness, recovery vs roughness, transition width
+    vs max step, and sharpness vs recovery. Reveals the feature-space
+    separability of the taxonomy classification.
+
+    Args:
+        profiles: list of classified profile dicts with "type" and "features".
+
+    Side effects:
+        Writes tax_fig05_feature_space.png to PLOT_DIR.
+    """
     fig, axes = plt.subplots(2, 2, figsize=(14, 12))
 
     pairs = [
@@ -918,7 +1132,20 @@ def fig05_feature_space(profiles):
 
 
 def fig06_multiscale(multiscale, profiles):
-    """1x2: multi-scale cliffiness (left); dominant weight by type (right)."""
+    """Generate a 1x2 figure: multi-scale cliffiness and weight attribution.
+
+    Left panel: max |delta DX| vs probe radius on log-x axis, showing
+    how sensitivity changes across scales (individual lines + mean).
+    Right panel: stacked bar chart of which synapse weight is dominant
+    for each cliff type.
+
+    Args:
+        multiscale: list of multiscale result dicts from part_d.
+        profiles: list of classified profile dicts with "type" and "features".
+
+    Side effects:
+        Writes tax_fig06_multiscale.png to PLOT_DIR.
+    """
     fig, axes = plt.subplots(1, 2, figsize=(16, 6))
 
     # Left: multi-scale cliffiness — how sensitivity changes with probe radius.
@@ -980,7 +1207,21 @@ def fig06_multiscale(multiscale, profiles):
 # ── Console Output ──────────────────────────────────────────────────────────
 
 def print_analysis(profiles, perp_profiles, fine_profiles, multiscale):
-    """Print taxonomy tables and statistics."""
+    """Print comprehensive taxonomy analysis tables to console.
+
+    Outputs taxonomy distribution, per-type feature statistics, multi-scale
+    roughness and fractal test results, cliff dimensionality (ridge vs face),
+    per-weight cliff creation frequency, and the top 5 most extreme cliffs.
+
+    Args:
+        profiles: list of classified profile dicts.
+        perp_profiles: list of perpendicular profile dicts.
+        fine_profiles: list of fine-grained profile dicts.
+        multiscale: list of multiscale result dicts.
+
+    Side effects:
+        Prints formatted text to stdout.
+    """
     print(f"\n{'='*80}")
     print("CLIFF TAXONOMY — RESULTS")
     print(f"{'='*80}")
@@ -1105,7 +1346,23 @@ def print_analysis(profiles, perp_profiles, fine_profiles, multiscale):
 # ── Main ─────────────────────────────────────────────────────────────────────
 
 def main():
-    """Run the full cliff taxonomy pipeline: probe, classify, plot, and save."""
+    """Run the full cliff taxonomy pipeline: probe, classify, plot, and save.
+
+    Pipeline:
+        1. Load atlas results from atlas_cliffiness.json.
+        2. Sort probe results by cliffiness (descending).
+        3. Determinism check on 3 atlas anatomy profiles.
+        4. Part A: Extended 30-point profiles for top 50 (1,500 sims).
+        5. Part B: Perpendicular 20-point profiles for top 30 (600 sims).
+        6. Part C: Fine-grained 40-point profiles for top 20 (800 sims).
+        7. Part D: Multi-scale probing at 3 radii for top 20 (360 sims).
+        8. Feature extraction and rule-based cliff type classification.
+        9. Print analysis, generate 6 figures, and save taxonomy JSON.
+
+    Side effects:
+        Backs up and restores brain.nndf. Writes cliff_taxonomy.json
+        and 6 PNG plots to artifacts/.
+    """
     t_start = time.perf_counter()
     np.random.seed(42)
 

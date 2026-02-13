@@ -2,16 +2,27 @@
 """
 random_search_cliffs.py
 
-Explore the local neighborhood of random points in weight space to
-characterize the "cliffiness" of the fitness landscape.
+Role:
+    Characterize the "cliffiness" of the 6-D synapse weight-space fitness
+    landscape by probing the local neighborhood around random base points.
 
-For each of 50 random base points:
-  - Simulate to get base DX
-  - Perturb in 10 random directions at each of 3 radii (0.05, 0.1, 0.2)
-  - Measure |delta_DX| for each perturbation
+    For each of 50 random base points in [-1,1]^6:
+      1. Simulate the base point to get its DX (displacement).
+      2. Generate 10 random unit directions in 6-D.
+      3. For each direction, perturb at 3 radii (0.05, 0.1, 0.2) and simulate.
+      4. Measure |delta_DX| = |perturbed_DX - base_DX| for each perturbation.
 
-A "cliff" is defined as a perturbation where |delta_DX| exceeds a
-threshold relative to the perturbation radius.
+    A "cliff" is a perturbation where |delta_DX| exceeds a threshold (5, 10,
+    or 20 meters) -- meaning a tiny weight change causes a large behavioral
+    shift. The script computes cliff probabilities, gradient magnitude scaling,
+    and worst-cliff-per-base statistics.
+
+Notes:
+    - Total simulations: 50 * (1 + 3*10) = 1,550.
+    - Same random direction is reused across all 3 radii per base point, so
+      we can compare how the same direction behaves at different step sizes.
+    - Backs up and restores brain.nndf.
+    - Expected runtime: ~2-3 minutes.
 
 Outputs:
     artifacts/random_search_cliffs.json
@@ -20,7 +31,6 @@ Outputs:
     artifacts/plots/cliff_fig03_landscape_profiles.png
     artifacts/plots/cliff_fig04_cliff_vs_base_dx.png
     artifacts/plots/cliff_fig05_worst_cliff_histogram.png
-    artifacts/random_search_cliffs_analysis.md
 
 Usage:
     python3 random_search_cliffs.py
@@ -58,7 +68,16 @@ OUT_JSON = PROJECT / "artifacts" / "random_search_cliffs.json"
 
 
 def write_brain(weights):
-    """Write a brain.nndf file with the given synapse weights."""
+    """Write a brain.nndf file with the given synapse weights.
+
+    Args:
+        weights: Dict mapping synapse names ("w03", "w04", ..., "w24") to
+            float weight values.
+
+    Side effects:
+        Overwrites PROJECT/brain.nndf with a 3-sensor, 2-motor, 6-synapse
+        neural network definition.
+    """
     path = PROJECT / "brain.nndf"
     with open(path, "w") as f:
         f.write('<neuralNetwork>\n')
@@ -76,7 +95,22 @@ def write_brain(weights):
 
 
 def simulate_weights(weights):
-    """Run one headless simulation, return (dx, analytics_dict)."""
+    """Run one headless simulation with in-memory telemetry capture.
+
+    Sets up a headless PyBullet instance, loads the robot with the given
+    weights, steps for c.SIM_STEPS, captures all telemetry channels, and
+    computes the full Beer-framework analytics.
+
+    Args:
+        weights: Dict mapping synapse names to float weight values.
+
+    Returns:
+        Tuple of (dx, analytics_dict) where dx is the net X displacement
+        (float, meters) and analytics_dict contains all four Beer pillars.
+
+    Side effects:
+        Overwrites brain.nndf. Connects and disconnects a PyBullet server.
+    """
     write_brain(weights)
 
     cid = p.connect(p.DIRECT)
@@ -181,7 +215,14 @@ def simulate_weights(weights):
 
 
 def random_direction_6d():
-    """Return a random unit vector in 6D."""
+    """Return a random unit vector in 6-D weight space.
+
+    Samples from a standard normal distribution and normalizes, which
+    produces a uniformly distributed direction on the 5-sphere.
+
+    Returns:
+        1-D numpy array of shape (6,) with unit L2 norm.
+    """
     v = np.random.randn(6)
     norm = np.linalg.norm(v)
     if norm < 1e-12:
@@ -191,7 +232,17 @@ def random_direction_6d():
 
 
 def perturb_weights(base_weights, direction, radius):
-    """Return a new weight dict = base + radius * direction."""
+    """Return a new weight dict offset from the base by radius along direction.
+
+    Args:
+        base_weights: Dict mapping synapse names to float base weight values.
+        direction: 1-D numpy array of shape (6,), typically a unit vector.
+        radius: Scalar step size (float).
+
+    Returns:
+        New weight dict: base_weights[i] + radius * direction[i] for each
+        of the 6 synapse weights.
+    """
     w = {}
     for i, wn in enumerate(WEIGHT_NAMES):
         w[wn] = base_weights[wn] + radius * direction[i]
@@ -199,12 +250,25 @@ def perturb_weights(base_weights, direction, radius):
 
 
 def clean_ax(ax):
-    """Remove top and right spines from an axes for cleaner plots."""
+    """Remove top and right spines from a matplotlib Axes for cleaner plots.
+
+    Args:
+        ax: matplotlib Axes instance.
+    """
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
 
 def save_fig(fig, name):
-    """Save a matplotlib figure to PLOT_DIR and close it."""
+    """Save a matplotlib figure to PLOT_DIR and close it.
+
+    Args:
+        fig: matplotlib Figure instance.
+        name: Filename (e.g. "cliff_fig01_delta_dx_by_radius.png").
+
+    Side effects:
+        Creates PLOT_DIR if needed. Writes the figure at 100 DPI. Closes
+        the figure to free memory.
+    """
     PLOT_DIR.mkdir(parents=True, exist_ok=True)
     path = PLOT_DIR / name
     fig.savefig(path, dpi=100, bbox_inches="tight")
@@ -213,7 +277,20 @@ def save_fig(fig, name):
 
 
 def main():
-    """Explore cliff structure of the fitness landscape via perturbation analysis."""
+    """Explore cliff structure of the fitness landscape via perturbation analysis.
+
+    For each of NUM_BASE random base points, simulates the base and all
+    perturbations, computes cliff statistics, generates 5 diagnostic figures,
+    and writes the full results to JSON.
+
+    Side effects:
+        - Backs up and restores brain.nndf.
+        - Writes artifacts/random_search_cliffs.json with per-base-point
+          results including all perturbation deltas.
+        - Generates 5 PNG figures under artifacts/plots/.
+        - Prints cliff statistics, gradient magnitude scaling, and progress
+          to stdout.
+    """
     brain_path = PROJECT / "brain.nndf"
     backup_path = PROJECT / "brain.nndf.backup"
     if brain_path.exists():

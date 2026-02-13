@@ -1,7 +1,10 @@
 """
 optimize_gait.py
 
-Random-search optimizer for a simple 2-joint sine gait in PyBullet.
+Role:
+    Random-search optimizer for a simple 2-joint sine gait in PyBullet.
+    Independent of the pyrosim/ROBOT/neural-network pipeline -- uses raw
+    PyBullet motor controls for fast parameter exploration.
 
 What it does:
     - Runs many short headless (DIRECT) simulations.
@@ -10,11 +13,11 @@ What it does:
     - Applies a penalty for "catapult flips" (large roll/pitch or flying too high).
 
 What it does NOT do:
-    - It does not use your pyrosim/ROBOT/neural-network pipeline.
-      This is an independent, minimal optimizer using raw PyBullet motor controls.
+    - Does not use the pyrosim/ROBOT/neural-network pipeline.
+    - Does not write brain.nndf or interact with the gait zoo.
 
 Outputs:
-    - Prints the best Params found and a “copy/paste” snippet for simulate_video_move.py.
+    - Prints the best Params found and a "copy/paste" snippet for simulate_video_maxdist.py.
 
 Requirements:
     - body.urdf must exist in the current directory.
@@ -24,11 +27,11 @@ Usage:
     python3 optimize_gait.py --trials 800 --seconds 10 --dt 0.0041666667 --seed 2
 
 Ludobots role:
-  - Tooling aligned with later search modules (random search / hill climber),
-    used here to tune open-loop gait parameters.
+    - Tooling aligned with later search modules (random search / hill climber),
+      used here to tune open-loop gait parameters.
 
 Beyond Ludobots (this repo):
-  - Variant + telemetry integration to archive best gaits (verify).
+    - Best parameters are consumed by simulate_video_maxdist.py for demo recording.
 """
 
 import argparse
@@ -186,7 +189,15 @@ def run_trial(params: Params, seconds: float, dt: float) -> float:
 
 
 def sample(rng: random.Random) -> Params:
-    """Draw a random parameter set from broad, hand-tuned ranges."""
+    """Draw a random parameter set from broad, hand-tuned ranges.
+
+    Args:
+        rng: Seeded Random instance for reproducibility.
+
+    Returns:
+        A Params dataclass with all fields sampled uniformly from empirically
+        chosen ranges (amp: 0.3-1.8 rad, freq: 0.6-5.0 Hz, etc.).
+    """
     return Params(
         amp=rng.uniform(0.3, 1.8),
         freq=rng.uniform(0.6, 5.0),
@@ -202,7 +213,16 @@ def sample(rng: random.Random) -> Params:
 
 
 def main():
-    """CLI: run random search and print the best gait found."""
+    """CLI entry point: run random search and print the best gait found.
+
+    Parses --trials, --seconds, --dt, --seed from the command line.
+    Samples random Params for each trial, runs a headless simulation, and
+    tracks the best-scoring configuration. Prints progress on each new best,
+    then a final summary with copy/paste-ready parameters.
+
+    Side effects:
+        Prints to stdout. No files are written.
+    """
     ap = argparse.ArgumentParser()
     ap.add_argument("--trials", type=int, default=800)
     ap.add_argument("--seconds", type=float, default=10.0)

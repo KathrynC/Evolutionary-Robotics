@@ -2,31 +2,37 @@
 """
 causal_surgery.py
 
-Causal Surgery — Mid-Simulation Weight Switching
+Role:
+    Mid-simulation causal intervention experiments. Modifies neural network
+    synapse weights DURING a running simulation (not before), then observes
+    how the robot's locomotion responds. Tests causal necessity, timing
+    dependence, and physical state memory.
 
-Change neural network weights DURING simulation to test causal effects.
-Unlike static ablation (which changes weights before the sim starts),
-this script modifies the live neural network at a specific timestep,
-then observes how the robot responds.
+Key questions:
+    1. If you transplant champion A's brain into champion B's body mid-sim,
+       how quickly does the gait change? Is there a transient?
+    2. Does it matter WHEN you switch? (early vs late)
+    3. Which individual synapses are causally necessary for locomotion?
+       (ablate one synapse mid-sim, see if gait survives)
+    4. Can you rescue a random gait by transplanting champion weights?
 
-Questions:
-  1. If you transplant champion A's brain into champion B's body mid-sim,
-     how quickly does the gait change? Is there a transient?
-  2. Does it matter WHEN you switch? (early vs late)
-  3. Which individual synapses are causally necessary for locomotion?
-     (ablate one synapse mid-sim, see if gait survives)
-  4. Can you rescue a random gait by transplanting champion weights?
+Experimental design (~600 simulations):
+    Part 1: Brain Transplants -- switch all 6 weights at t_switch
+        6 donor-host pairs x 4 switch times = 24 sims (+ baselines)
+    Part 2: Single-Synapse Ablation -- zero one synapse at step 2000
+        5 champions x 6 synapses = 30 sims
+    Part 3: Switch Timing Sweep -- DX vs switch time for 3 key pairs
+        3 pairs x 40 switch times = 120 sims
+    Part 4: Rescue Experiments -- transplant champion into random gaits
+        3 champions x 10 random hosts = 30 sims
 
-Simulation budget: ~600 sims (~2 min)
-
-Part 1: Brain Transplants — switch all weights at t_switch (180 sims)
-    6 donor→host pairs × 5 switch times + baselines
-Part 2: Single-Synapse Ablation — zero one synapse at step 2000 (30 sims)
-    5 champions × 6 synapses
-Part 3: Switch Timing Sweep — DX vs switch time for 3 key pairs (120 sims)
-    3 pairs × 40 switch times
-Part 4: Rescue Experiments — transplant champion into random mid-sim (120 sims)
-    3 champions × 10 random hosts × 1 switch time + baselines
+Notes:
+    - Unlike causal_surgery_interpolation.py (which does static ablation),
+      this script modifies the neural network in-place during the simulation
+      loop via direct manipulation of nn.synapses[key].weight.
+    - The simulation harness tracks only x-position (lightweight telemetry).
+    - brain.nndf is overwritten per simulation; no backup/restore since
+      the final state is not meaningful.
 
 Outputs:
     artifacts/causal_surgery.json
@@ -119,13 +125,16 @@ RNG_SEED = 42
 def write_brain_standard(weights):
     """Write a standard 6-synapse brain.nndf file from a weights dict.
 
+    Defines 3 sensor neurons (Torso, BackLeg, FrontLeg) and 2 motor
+    neurons (Torso_BackLeg, Torso_FrontLeg) with full sensor-to-motor
+    connectivity (6 synapses).
+
     Args:
         weights: dict with keys "w03","w04","w13","w14","w23","w24" mapping
-                 source→target neuron pairs to float synapse weights.
+                 source-target neuron pairs to float synapse weights.
 
-    The file defines 3 sensor neurons (Torso, BackLeg, FrontLeg) and
-    2 motor neurons (Torso_BackLeg, Torso_FrontLeg) with full sensor→motor
-    connectivity (6 synapses).
+    Side effects:
+        Overwrites brain.nndf in the project directory.
     """
     path = PROJECT / "brain.nndf"
     with open(path, "w") as f:
@@ -145,7 +154,19 @@ def write_brain_standard(weights):
 
 
 def set_nn_weights(nn, weights):
-    """Modify synapse weights of a live NEURAL_NETWORK object."""
+    """Modify synapse weights of a live NEURAL_NETWORK object in-place.
+
+    Iterates over all 6 sensor-to-motor synapse pairs and updates
+    their weight attribute directly. This is the core "surgery"
+    operation that enables mid-simulation brain transplants.
+
+    Args:
+        nn: NEURAL_NETWORK instance with an active synapses dict.
+        weights: dict mapping "wXY" keys to new float weight values.
+
+    Side effects:
+        Mutates nn.synapses[key].weight for each matching synapse.
+    """
     for s in [0, 1, 2]:
         for m in [3, 4]:
             key = (str(s), str(m))
@@ -154,12 +175,29 @@ def set_nn_weights(nn, weights):
 
 
 def simulate_with_surgery(initial_weights, surgery_list=None):
-    """
-    Run simulation with optional mid-sim weight changes.
+    """Run a full simulation with optional mid-sim weight changes.
 
-    surgery_list: list of (timestep, new_weights_dict) or
-                  (timestep, synapse_key, new_value) for single-synapse ops.
-    Returns per-step x trajectory and final DX.
+    Starts with initial_weights, then applies scheduled interventions at
+    specified timesteps. Supports two surgery types:
+        - Full transplant: replace all 6 weights at once.
+        - Single-synapse ablation: change one synapse to a new value.
+
+    Args:
+        initial_weights: dict mapping "wXY" to float (the starting brain).
+        surgery_list: list of surgery tuples, or None for a baseline run.
+            Each tuple is either:
+                (timestep, new_weights_dict) for full weight swap, or
+                (timestep, synapse_key, new_value) for single-synapse ops
+                where synapse_key is e.g. "w03".
+
+    Returns:
+        tuple of (x_arr, dx) where:
+            x_arr: numpy array of per-step x-positions (shape: (SIM_STEPS,)).
+            dx: float, net x-displacement (x_arr[-1] - x_arr[0]).
+
+    Side effects:
+        - Overwrites brain.nndf via write_brain_standard().
+        - Creates and destroys a PyBullet physics connection.
     """
     write_brain_standard(initial_weights)
 
@@ -236,14 +274,26 @@ def simulate_with_surgery(initial_weights, surgery_list=None):
 # ── Plotting helpers ────────────────────────────────────────────────────────
 
 def clean_ax(ax):
-    """Remove top/right spines and shrink tick labels for cleaner plots."""
+    """Remove top/right spines and shrink tick labels for cleaner plots.
+
+    Args:
+        ax: matplotlib Axes instance.
+    """
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
     ax.tick_params(labelsize=8)
 
 
 def save_fig(fig, name):
-    """Save a matplotlib figure to PLOT_DIR and close it."""
+    """Save a matplotlib figure to PLOT_DIR and close it.
+
+    Args:
+        fig: matplotlib Figure instance.
+        name: filename (e.g., "cs_fig01_transplant_trajectories.png").
+
+    Side effects:
+        Writes the PNG file to PLOT_DIR and closes the figure.
+    """
     path = PLOT_DIR / name
     fig.savefig(path, dpi=100, bbox_inches="tight", facecolor="white")
     plt.close(fig)
@@ -264,7 +314,21 @@ SWITCH_COLORS = {500: "#E24A33", 1000: "#348ABD", 2000: "#55A868", 3000: "#FBC15
 # ── Figures ─────────────────────────────────────────────────────────────────
 
 def fig01_transplant_trajectories(transplant_results, baselines):
-    """x(t) trajectories showing the effect of brain transplants."""
+    """Fig 1: x(t) trajectories showing the effect of brain transplants.
+
+    One subplot per donor-host pair. Shows pure donor and host baselines
+    as dashed/dotted lines, with transplant trajectories at each switch
+    time overlaid. Vertical lines mark switch points.
+
+    Args:
+        transplant_results: dict keyed by (donor, host, t_switch) tuples,
+            each value a dict with "x" (numpy array) and "dx" (float).
+        baselines: dict keyed by champion name, each value a dict with
+            "x" (numpy array) and "dx" (float).
+
+    Side effects:
+        Writes cs_fig01_transplant_trajectories.png to PLOT_DIR.
+    """
     n_pairs = len(TRANSPLANT_PAIRS)
     n_cols = 3
     n_rows = (n_pairs + n_cols - 1) // n_cols
@@ -311,7 +375,21 @@ def fig01_transplant_trajectories(transplant_results, baselines):
 
 
 def fig02_timing_sweep(timing_results, baselines):
-    """DX vs switch time for key pairs."""
+    """Fig 2: DX vs switch time for 3 key transplant pairs.
+
+    Shows how final displacement depends on when the brain transplant
+    occurs. Horizontal baselines show the pure donor and host DX for
+    reference.
+
+    Args:
+        timing_results: dict keyed by "donor -> host" strings, each value
+            a dict with "switch_steps" (list of ints) and "dx_values"
+            (list of floats).
+        baselines: dict keyed by champion name with "dx" values.
+
+    Side effects:
+        Writes cs_fig02_timing_sweep.png to PLOT_DIR.
+    """
     fig, axes = plt.subplots(1, 3, figsize=(16, 5))
     fig.suptitle("Transplant Timing: When Does the Switch Happen?",
                  fontsize=14, fontweight="bold")
@@ -345,7 +423,20 @@ def fig02_timing_sweep(timing_results, baselines):
 
 
 def fig03_ablation_heatmap(ablation_results, baselines):
-    """Heatmap: DX change when each synapse is zeroed at step 2000."""
+    """Fig 3: Heatmap of DX change when each synapse is zeroed at step 2000.
+
+    Left panel: diverging heatmap (RdBu_r) of DX change per champion
+    per synapse. Right panel: bar chart of the most critical synapse
+    for each champion.
+
+    Args:
+        ablation_results: dict keyed by (champion, synapse_name) tuples,
+            each value a dict with "x" and "dx".
+        baselines: dict keyed by champion name with "dx" values.
+
+    Side effects:
+        Writes cs_fig03_ablation_heatmap.png to PLOT_DIR.
+    """
     champions = ABLATION_TARGETS
     n_champ = len(champions)
 
@@ -407,7 +498,21 @@ def fig03_ablation_heatmap(ablation_results, baselines):
 
 
 def fig04_rescue(rescue_results, baselines):
-    """Can you rescue a random gait by transplanting champion weights?"""
+    """Fig 4: Rescue experiment -- transplant champion weights into random gaits.
+
+    Shows x(t) trajectories for 10 random-to-champion transplants per
+    champion. The champion baseline is shown as a dashed line, with the
+    switch point at step 2000 marked by a vertical red line.
+
+    Args:
+        rescue_results: dict keyed by champion name, each value a list of
+            dicts with "x" (numpy array) and "dx" (float), one per
+            random host.
+        baselines: dict keyed by champion name with "x" and "dx".
+
+    Side effects:
+        Writes cs_fig04_rescue.png to PLOT_DIR.
+    """
     fig, axes = plt.subplots(1, 3, figsize=(16, 5))
     fig.suptitle("Rescue Experiment: Transplant Champion into Random Gait at Step 2000",
                  fontsize=14, fontweight="bold")
@@ -446,7 +551,20 @@ def fig04_rescue(rescue_results, baselines):
 
 
 def fig05_recovery_dynamics(transplant_results, baselines):
-    """How quickly does the gait transition after a transplant?"""
+    """Fig 5: Post-transplant recovery dynamics.
+
+    Left panel: instantaneous speed time series for the NC-to-Trial3
+    transplant at switch times 1000 and 2000, overlaid on pure baselines.
+    Right panel: bar chart of DX accumulated from step 2000 onward for
+    all transplant pairs and pure baselines, sorted by magnitude.
+
+    Args:
+        transplant_results: dict keyed by (donor, host, t_switch) tuples.
+        baselines: dict keyed by champion name.
+
+    Side effects:
+        Writes cs_fig05_recovery_dynamics.png to PLOT_DIR.
+    """
     fig, axes = plt.subplots(1, 2, figsize=(14, 5))
     fig.suptitle("Post-Transplant Recovery Dynamics", fontsize=14, fontweight="bold")
 
@@ -527,7 +645,26 @@ def fig05_recovery_dynamics(transplant_results, baselines):
 
 def fig06_verdict(transplant_results, baselines, ablation_results,
                   timing_results, rescue_results):
-    """Summary verdict panel."""
+    """Fig 6: Summary verdict panel combining all four experiment results.
+
+    Layout (2x3 grid):
+        Top-left: transplant DX shift at step 2000 (actual vs pure host).
+        Top-center: synapse importance ranking (mean |DX change| per synapse).
+        Top-right: timing sensitivity (DX std across switch times per pair).
+        Bottom-left: rescue success rate (% of champion DX recovered).
+        Bottom-right (spans 2 cols): monospace text block with quantitative
+            verdicts and the key finding about physical state memory.
+
+    Args:
+        transplant_results: dict keyed by (donor, host, t_switch) tuples.
+        baselines: dict keyed by champion name.
+        ablation_results: dict keyed by (champion, synapse_name) tuples.
+        timing_results: dict keyed by "donor -> host" strings.
+        rescue_results: dict keyed by champion name.
+
+    Side effects:
+        Writes cs_fig06_verdict.png to PLOT_DIR.
+    """
     fig = plt.figure(figsize=(14, 9))
     fig.suptitle("Causal Surgery Verdict", fontsize=14, fontweight="bold")
     gs = fig.add_gridspec(2, 3, hspace=0.35, wspace=0.3)
@@ -677,8 +814,22 @@ def fig06_verdict(transplant_results, baselines, ablation_results,
 # ── JSON encoder ────────────────────────────────────────────────────────────
 
 class NumpyEncoder(json.JSONEncoder):
-    """JSON encoder that handles numpy scalars and arrays."""
+    """JSON encoder that handles numpy scalars and arrays.
+
+    Converts numpy integers, floats, booleans, and ndarrays to their
+    Python equivalents for JSON serialization. Floats are rounded to
+    6 decimal places to keep output compact.
+    """
+
     def default(self, obj):
+        """Serialize numpy types to JSON-compatible Python types.
+
+        Args:
+            obj: object to serialize.
+
+        Returns:
+            JSON-serializable Python type.
+        """
         if isinstance(obj, np.integer):
             return int(obj)
         if isinstance(obj, np.floating):
@@ -695,12 +846,23 @@ class NumpyEncoder(json.JSONEncoder):
 def main():
     """Run all four causal surgery experiments and produce figures + JSON.
 
-    Experiment structure:
-        1. Baselines — run each champion with no surgery
-        2. Brain transplants — swap all 6 weights at t_switch
-        3. Single-synapse ablation — zero one weight at step 2000
-        4. Timing sweep — vary switch time across full sim for 3 key pairs
-        5. Rescue — transplant champion weights into random gaits
+    Pipeline:
+        1. Baselines -- run each champion with no surgery (5 sims).
+        2. Brain transplants -- swap all 6 weights at t_switch for 6
+           donor-host pairs x 4 switch times (24 sims).
+        3. Single-synapse ablation -- zero one weight at step 2000 for
+           5 champions x 6 synapses (30 sims).
+        4. Timing sweep -- vary switch time in steps of 100 across the
+           full sim for 3 key pairs (120 sims).
+        5. Rescue -- transplant champion weights into 10 random gaits
+           at step 2000 for 3 champions (30 sims).
+
+    Side effects:
+        - Overwrites brain.nndf many times (not restored -- no meaningful
+          final state).
+        - Writes artifacts/causal_surgery.json.
+        - Writes 6 PNG figures to artifacts/plots/.
+        - Prints progress and analysis to stdout.
     """
     total_sims = 0
     t_global = time.time()

@@ -2,19 +2,35 @@
 """
 analyze_novelty_champion.py
 
-Deep analysis of the Novelty Seeker's champion gait (DX = +60.2m) —
-the new record-holder that surpassed the CPG Champion (50.1m) using
-a standard 6-synapse topology. Side-by-side comparison against the
-CPG Champion and Trial 3 ("The Accidental Masterpiece").
+Role:
+    Deep analysis of the Novelty Seeker's champion gait (DX = +60.2m) --
+    the record-holder that surpassed the CPG Champion (50.1m) using a standard
+    6-synapse topology. Produces a 3-way comparison against the CPG Champion
+    and Trial 3 ("The Accidental Masterpiece").
+
+Pipeline:
+    1. Simulate Novelty Champion and Trial 3 (write temporary brain.nndf for each).
+    2. Load CPG Champion from saved telemetry (different topology, not re-simulated).
+    3. Compute Beer-framework analytics for all three.
+    4. Print a 19-metric comparison table with NC/CPG ratio.
+    5. Analyze the Novelty Champion's weight structure (why w03 exceeds [-1,1]).
+    6. Generate 7 publication-quality figures.
 
 Outputs:
-    artifacts/plots/champ_fig01_trajectory.png
-    artifacts/plots/champ_fig02_joints.png
-    artifacts/plots/champ_fig03_contacts.png
-    artifacts/plots/champ_fig04_energy.png
-    artifacts/plots/champ_fig05_phase.png
-    artifacts/plots/champ_fig06_rotation.png
-    artifacts/plots/champ_fig07_fft.png
+    artifacts/plots/champ_fig01_trajectory.png  -- XY path, X vs time, Z bounce
+    artifacts/plots/champ_fig02_joints.png      -- Joint positions and velocities
+    artifacts/plots/champ_fig03_contacts.png    -- Contact raster (3 stacked lanes)
+    artifacts/plots/champ_fig04_energy.png      -- Instantaneous power + cumulative work
+    artifacts/plots/champ_fig05_phase.png       -- Phase portraits (j0 vs j1)
+    artifacts/plots/champ_fig06_rotation.png    -- Angular velocity components (3x3)
+    artifacts/plots/champ_fig07_fft.png         -- FFT spectra of joint angles
+
+Notes:
+    - brain.nndf is backed up before simulation and restored afterward.
+    - CPG Champion uses a hidden-layer topology (7 neurons), so its data comes
+      from pre-recorded telemetry rather than live simulation.
+    - The Novelty Champion's w03=-1.308 is outside [-1,1], having emerged from
+      unclamped perturbation in the Novelty Seeker optimization.
 
 Usage:
     python3 analyze_novelty_champion.py
@@ -73,7 +89,15 @@ GAIT_LABELS = {
 # ── Simulation ───────────────────────────────────────────────────────────────
 
 def write_brain_6syn(weights):
-    """Write a 6-synapse brain.nndf file from a weights dict (3 sensors x 2 motors)."""
+    """Write a 6-synapse brain.nndf file from a weights dict (3 sensors x 2 motors).
+
+    Args:
+        weights: Dict with keys "w03","w13","w23","w04","w14","w24" mapping to
+            float synapse weights.
+
+    Side effects:
+        Overwrites brain.nndf in the project directory.
+    """
     path = PROJECT / "brain.nndf"
     with open(path, "w") as f:
         f.write('<neuralNetwork>\n')
@@ -92,7 +116,22 @@ def write_brain_6syn(weights):
 
 
 def run_with_telemetry(weights):
-    """Run simulation with full in-memory telemetry, including motor neuron outputs."""
+    """Run a headless simulation and return full in-memory telemetry arrays.
+
+    Captures position, velocity, orientation, ground contacts, joint states, and
+    motor neuron outputs at every timestep for downstream Beer-framework analysis.
+
+    Args:
+        weights: Dict of 6-synapse weights (w03..w24).
+
+    Returns:
+        Dict of numpy arrays keyed by signal name (t, x, y, z, vx, vy, vz,
+        wx, wy, wz, roll, pitch, yaw, contact_torso, contact_back, contact_front,
+        j0_pos, j0_vel, j0_tau, j1_pos, j1_vel, j1_tau, m3_out, m4_out).
+
+    Side effects:
+        Overwrites brain.nndf via write_brain_6syn.
+    """
     write_brain_6syn(weights)
 
     cid = p.connect(p.DIRECT)
@@ -222,7 +261,15 @@ def save_fig(fig, name):
 
 
 def work_by_joint(data):
-    """Return (work_j0, work_j1, power_j0_array, power_j1_array)."""
+    """Compute per-joint mechanical work from torque and velocity time series.
+
+    Args:
+        data: Telemetry dict with "j0_tau", "j0_vel", "j1_tau", "j1_vel" arrays.
+
+    Returns:
+        Tuple of (work_j0, work_j1, power_j0_array, power_j1_array) where work
+        values are scalar floats (Joule-like units) and power arrays are per-timestep.
+    """
     # Instantaneous mechanical power = |torque * angular_velocity| per joint;
     # total work is the time-integral of power (sum * DT approximation)
     pj0 = np.abs(data["j0_tau"] * data["j0_vel"])
@@ -233,7 +280,15 @@ def work_by_joint(data):
 # ── Main ─────────────────────────────────────────────────────────────────────
 
 def main():
-    """Run 3-way gait comparison, print metrics table, and generate all figures."""
+    """Run 3-way gait comparison, print metrics table, and generate all 7 figures.
+
+    Side effects:
+        - Backs up and restores brain.nndf.
+        - Runs 2 headless simulations (Novelty Champion, Trial 3).
+        - Loads CPG Champion from saved telemetry.
+        - Writes 7 PNG figures to artifacts/plots/.
+        - Prints a detailed comparison table to stdout.
+    """
     # Backup brain.nndf since run_with_telemetry overwrites it for each gait
     brain_path = PROJECT / "brain.nndf"
     backup_path = PROJECT / "brain.nndf.backup"

@@ -2,32 +2,39 @@
 """
 behavioral_embryology.py
 
-Behavioral Embryology — How Do Gaits Develop?
+Role:
+    Research campaign script that tracks the emergence of locomotion behavior
+    during the first ~500 simulation steps and beyond. Compares developmental
+    trajectories of high-performing evolved gaits vs random-weight controls.
 
-Track the emergence of locomotion behavior during the first ~500 simulation
-steps and beyond. Compare developmental trajectories of high-performing
-evolved gaits vs random-weight controls.
-
-Questions:
-  1. When does organized locomotion "start"?
-  2. Is there a transient (stumbling phase) before stable gait?
-  3. When do coordination metrics (phase lock, contact entropy) reach
-     steady state?
-  4. Does the Novelty Champion develop faster, slower, or differently
-     from other gaits?
+    Answers four key questions:
+      1. When does organized locomotion "start"?
+      2. Is there a transient (stumbling phase) before stable gait?
+      3. When do coordination metrics (phase lock, contact entropy) reach
+         steady state?
+      4. Does the Novelty Champion develop faster, slower, or differently
+         from other gaits?
 
 Approach:
-  Run full 4000-step sims with per-step trajectory capture. Compute Beer
-  analytics at 8 cumulative time windows. Plot developmental curves.
+    Run full 4000-step sims with per-step trajectory capture. Compute Beer
+    analytics at 9 cumulative time windows. Plot developmental curves.
 
-Simulation budget: ~25 sims (NC, Trial 3, Hidden CPG Champ, Curie Amplified,
-  Pelton, + 10 random-weight controls + 5 existing zoo gaits from telemetry)
-  ~25 sims x ~2s = ~50s total
+    Part 1: Simulate named gaits with full trajectory capture.
+    Part 2: Load existing telemetry for zoo gaits (no new sims).
+    Part 3: Simulate random-weight controls as baseline.
+    Part 4: Compute windowed analytics and generate 6 figures.
 
-Part 1: Simulate gaits with full trajectory capture
-Part 2: Load existing telemetry for zoo gaits (no new sims)
-Part 3: Compute windowed analytics at 8 time windows
-Part 4: Generate 6 figures
+Simulation budget:
+    ~25 sims (NC, Trial 3, + 7 zoo gaits from telemetry, + 10 random controls)
+    ~25 sims x ~2s = ~50s total
+
+Notes:
+    - This script is self-contained: it defines its own simulation harness
+      rather than importing from simulate.py.
+    - Simulations run in PyBullet DIRECT mode (headless, deterministic).
+    - Zoo gaits are loaded from pre-existing per-step telemetry JSONL files
+      rather than re-simulated.
+    - All analytics use numpy-only signal processing (no scipy).
 
 Outputs:
     artifacts/behavioral_embryology.json
@@ -121,7 +128,19 @@ RNG_SEED = 42
 # ── Simulation ──────────────────────────────────────────────────────────────
 
 def write_brain_standard(weights):
-    """Write a standard 3-sensor/2-motor brain.nndf file from a weight dict."""
+    """Write a standard 3-sensor/2-motor brain.nndf file from a weight dict.
+
+    Creates the standard topology: 3 sensor neurons (Torso, BackLeg, FrontLeg)
+    and 2 motor neurons (Torso_BackLeg, Torso_FrontLeg) with 6 synapses
+    connecting every sensor to every motor.
+
+    Args:
+        weights: Dict mapping synapse names (e.g., "w03") to float weights.
+            Must contain keys w03, w04, w13, w14, w23, w24.
+
+    Side effects:
+        Overwrites PROJECT / "brain.nndf" on disk.
+    """
     path = PROJECT / "brain.nndf"
     with open(path, "w") as f:
         f.write('<neuralNetwork>\n')
@@ -139,8 +158,25 @@ def write_brain_standard(weights):
 
 
 def simulate_full_trajectory(weights):
-    """
-    Run full sim, return per-step data dict (same format as load_telemetry).
+    """Run a full simulation with per-step trajectory capture.
+
+    Sets up a headless PyBullet environment, loads the robot with the given
+    brain weights, and records position, velocity, orientation, contact,
+    and joint state at every timestep.
+
+    Args:
+        weights: Dict mapping synapse names (e.g., "w03") to float weights.
+
+    Returns:
+        Dict of numpy arrays keyed by channel name, with one entry per
+        timestep. Keys include: t, x, y, z, vx, vy, vz, wx, wy, wz,
+        roll, pitch, yaw, contact_torso, contact_back, contact_front,
+        j0_pos, j0_vel, j0_tau, j1_pos, j1_vel, j1_tau.
+        Format matches load_telemetry() output for uniform downstream use.
+
+    Side effects:
+        Writes brain.nndf to disk (via write_brain_standard).
+        Connects and disconnects a PyBullet physics client.
     """
     write_brain_standard(weights)
 
@@ -268,7 +304,20 @@ def simulate_full_trajectory(weights):
 # ── Telemetry loader ────────────────────────────────────────────────────────
 
 def load_telemetry(gait_name):
-    """Load telemetry JSONL for a zoo gait."""
+    """Load per-step telemetry from a JSONL file for a zoo gait.
+
+    Reads the JSONL telemetry file and unpacks each record into numpy arrays
+    matching the format returned by simulate_full_trajectory().
+
+    Args:
+        gait_name: Directory name under TELEMETRY_DIR (e.g., "5_pelton").
+
+    Returns:
+        Dict of numpy arrays with the same keys as simulate_full_trajectory().
+
+    Raises:
+        FileNotFoundError: If the telemetry JSONL file does not exist.
+    """
     path = TELEMETRY_DIR / gait_name / "telemetry.jsonl"
     if not path.exists():
         raise FileNotFoundError(f"No telemetry for {gait_name}: {path}")
@@ -364,7 +413,16 @@ def _fft_peak(signal, dt):
 # ── Windowed analytics ──────────────────────────────────────────────────────
 
 def window_data(data, end_step):
-    """Slice data dict to first end_step timesteps."""
+    """Slice a trajectory data dict to the first end_step timesteps.
+
+    Args:
+        data: Dict of numpy arrays (trajectory data from simulation or telemetry).
+        end_step: Number of timesteps to keep from the start.
+
+    Returns:
+        New dict with each numpy array truncated to [:end_step].
+        Non-array values are passed through unchanged.
+    """
     sliced = {}
     for k, v in data.items():
         if isinstance(v, np.ndarray):
@@ -375,7 +433,24 @@ def window_data(data, end_step):
 
 
 def compute_windowed_analytics(data, end_step):
-    """Compute lightweight Beer analytics for a time window."""
+    """Compute lightweight Beer-framework analytics for a cumulative time window.
+
+    Computes outcome metrics (displacement, speed, efficiency), contact
+    pattern metrics (entropy, duty cycles), and coordination metrics
+    (FFT frequencies, Hilbert phase lock) over the first end_step timesteps.
+
+    Args:
+        data: Dict of numpy arrays from simulate_full_trajectory() or
+            load_telemetry().
+        end_step: Number of timesteps to include in the analysis window.
+
+    Returns:
+        Dict of rounded metric values, or None if fewer than 10 timesteps.
+        Keys include: window_steps, window_seconds, dx, dy, mean_speed,
+        work_proxy, efficiency, heading_consistency, contact_entropy_bits,
+        dominant_state, duty_torso, duty_back, duty_front, freq0_hz,
+        freq1_hz, amp0, amp1, phase_lock_score, delta_phi_rad, z_mean, z_std.
+    """
     d = window_data(data, end_step)
     n = len(d["x"])
     if n < 10:
@@ -473,9 +548,23 @@ def compute_windowed_analytics(data, end_step):
 
 
 def compute_onset_time(analytics_series, metric_key, threshold_frac=0.8):
-    """
-    Find the first window where metric reaches threshold_frac of its final value.
-    Returns (onset_steps, onset_seconds) or (None, None).
+    """Find the earliest window where a metric reaches a fraction of its final value.
+
+    Walks the analytics windows chronologically and returns the first window
+    where the metric crosses threshold_frac of the final-window value.
+    Direction-aware: handles both positive and negative metric trajectories.
+
+    Args:
+        analytics_series: List of analytics dicts (one per window), as
+            returned by compute_windowed_analytics(). May contain None entries.
+        metric_key: String key into the analytics dict (e.g., "mean_speed").
+        threshold_frac: Fraction of the final value to use as the onset
+            threshold. Default 0.8 (80%).
+
+    Returns:
+        Tuple (onset_steps, onset_seconds) for the first qualifying window,
+        or (None, None) if the metric never reaches the threshold or the
+        final value is near zero.
     """
     values = [a[metric_key] for a in analytics_series if a is not None]
     if not values or abs(values[-1]) < EPS:
@@ -551,7 +640,20 @@ def short_name(name):
 # ── Figures ─────────────────────────────────────────────────────────────────
 
 def fig01_displacement_curves(all_results):
-    """DX trajectories over time for all gaits."""
+    """Plot displacement development over time for all gaits (2-panel figure).
+
+    Left panel: continuous x(t) position trajectories.
+    Right panel: cumulative DX at each analysis window.
+    Named and zoo gaits are drawn with thick colored lines; random controls
+    are drawn as thin gray lines in the background.
+
+    Args:
+        all_results: Dict mapping gait name to result dict containing
+            "data" (trajectory arrays) and "analytics" (windowed metrics).
+
+    Side effects:
+        Saves emb_fig01_displacement_curves.png to PLOT_DIR.
+    """
     fig, axes = plt.subplots(1, 2, figsize=(14, 5))
     fig.suptitle("Displacement Development Over Time", fontsize=13, fontweight="bold")
 
@@ -596,7 +698,17 @@ def fig01_displacement_curves(all_results):
 
 
 def fig02_speed_emergence(all_results):
-    """Speed and efficiency over time."""
+    """Plot speed, heading consistency, and efficiency emergence (3-panel figure).
+
+    Tracks how locomotion quality metrics develop across cumulative time
+    windows, comparing evolved gaits to random controls.
+
+    Args:
+        all_results: Dict mapping gait name to result dict.
+
+    Side effects:
+        Saves emb_fig02_speed_emergence.png to PLOT_DIR.
+    """
     fig, axes = plt.subplots(1, 3, figsize=(16, 4.5))
     fig.suptitle("Speed & Efficiency Emergence", fontsize=13, fontweight="bold")
 
@@ -626,7 +738,17 @@ def fig02_speed_emergence(all_results):
 
 
 def fig03_contact_entropy(all_results):
-    """Contact entropy and duty cycle emergence."""
+    """Plot contact pattern development over time (3-panel figure).
+
+    Shows contact entropy (Shannon entropy over 8 contact states) and
+    per-leg duty cycle emergence across cumulative time windows.
+
+    Args:
+        all_results: Dict mapping gait name to result dict.
+
+    Side effects:
+        Saves emb_fig03_contact_entropy.png to PLOT_DIR.
+    """
     fig, axes = plt.subplots(1, 3, figsize=(16, 4.5))
     fig.suptitle("Contact Pattern Development", fontsize=13, fontweight="bold")
 
@@ -656,7 +778,18 @@ def fig03_contact_entropy(all_results):
 
 
 def fig04_phase_lock(all_results):
-    """Phase lock and frequency emergence."""
+    """Plot coordination development over time (3-panel figure).
+
+    Shows phase lock score, back-leg frequency, and front-leg frequency
+    emergence across cumulative time windows. Phase lock measures how
+    consistently the two joints maintain a fixed phase relationship.
+
+    Args:
+        all_results: Dict mapping gait name to result dict.
+
+    Side effects:
+        Saves emb_fig04_phase_lock.png to PLOT_DIR.
+    """
     fig, axes = plt.subplots(1, 3, figsize=(16, 4.5))
     fig.suptitle("Coordination Development", fontsize=13, fontweight="bold")
 
@@ -686,9 +819,20 @@ def fig04_phase_lock(all_results):
 
 
 def fig05_developmental_fingerprints(all_results):
-    """
-    Radar/fingerprint plot: metrics at 3 time windows for key gaits.
-    Shows how the behavioral profile fills in over time.
+    """Plot radar/fingerprint charts showing behavioral profiles at 3 time windows.
+
+    For each key gait, draws a polar (radar) chart with 6 normalized metrics.
+    Three overlaid polygons show the early, mid, and final developmental
+    stages, revealing how the behavioral profile "fills in" over time.
+
+    Metrics shown: speed, heading consistency, contact entropy, phase lock,
+    back-leg duty cycle, and front-leg duty cycle.
+
+    Args:
+        all_results: Dict mapping gait name to result dict.
+
+    Side effects:
+        Saves emb_fig05_developmental_fingerprints.png to PLOT_DIR.
     """
     # Select key gaits only
     key_gaits = ["Novelty Champion", "Trial 3", "43_hidden_cpg_champion",
@@ -774,8 +918,18 @@ def fig05_developmental_fingerprints(all_results):
 
 
 def fig06_onset_summary(all_results):
-    """
-    Summary panel: onset times for key metrics, comparing gaits.
+    """Plot a 4-panel summary of gait onset and maturation.
+
+    Top-left: DX accumulation rate over time (finite-difference speed).
+    Top-right: Phase lock onset times as horizontal bar chart.
+    Bottom-left: Contact entropy onset times as horizontal bar chart.
+    Bottom-right: Box plots comparing evolved vs random |DX| at 3 windows.
+
+    Args:
+        all_results: Dict mapping gait name to result dict.
+
+    Side effects:
+        Saves emb_fig06_onset_summary.png to PLOT_DIR.
     """
     fig, axes = plt.subplots(2, 2, figsize=(12, 9))
     fig.suptitle("Gait Onset & Maturation Summary", fontsize=13, fontweight="bold")
@@ -896,9 +1050,22 @@ def fig06_onset_summary(all_results):
 # ── JSON encoder ────────────────────────────────────────────────────────────
 
 class NumpyEncoder(json.JSONEncoder):
-    """JSON encoder that handles numpy scalar types and ndarrays."""
+    """JSON encoder that handles numpy scalar types and ndarrays.
+
+    Converts numpy integers, floats, booleans, and ndarrays to their
+    Python equivalents so json.dump() can serialize analytics dicts
+    that contain numpy values.
+    """
 
     def default(self, obj):
+        """Convert numpy types to JSON-serializable Python types.
+
+        Args:
+            obj: Object that the default encoder cannot handle.
+
+        Returns:
+            Python-native equivalent of the numpy type.
+        """
         if isinstance(obj, np.integer):
             return int(obj)
         if isinstance(obj, np.floating):
@@ -913,7 +1080,20 @@ class NumpyEncoder(json.JSONEncoder):
 # ── Main ────────────────────────────────────────────────────────────────────
 
 def main():
-    """Run the full behavioral embryology pipeline: simulate, analyze, plot."""
+    """Run the full behavioral embryology pipeline: simulate, analyze, plot.
+
+    Executes all four parts in sequence:
+      Part 1 - Simulate named gaits with per-step trajectory capture.
+      Part 2 - Load zoo gaits from existing telemetry JSONL files.
+      Part 3 - Simulate random-weight controls as a baseline.
+      Analysis - Print onset times, DX comparisons, and evolved vs random stats.
+      Figures - Generate 6 publication-quality figures.
+      JSON - Save all windowed analytics to artifacts/behavioral_embryology.json.
+
+    Side effects:
+        Writes brain.nndf (overwritten per gait), 6 PNG figures, and 1 JSON file.
+        Prints a detailed console summary of developmental analysis results.
+    """
     print("Behavioral Embryology — Gait Development Analysis")
     print(f"  Time windows: {WINDOWS}")
     print(f"  Named gaits: {list(NAMED_GAITS.keys())}")

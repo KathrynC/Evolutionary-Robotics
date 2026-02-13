@@ -1,11 +1,33 @@
 """
 simulate_openloop_legal.py
 
+Role:
+    Run a GUI simulation with open-loop sinusoidal motor commands using "legal"
+    gait parameters (amplitude, frequency, phase offset per joint). The robot is
+    driven without any neural network -- joint targets are precomputed sine waves.
+
+Design constraints:
+    - MOTOR_MAX_FORCE is fixed at 50N (assignment rule, do not tune).
+    - Amplitude is pi/4 rad (45 deg) by default -- the "legal" range.
+    - Supports --dump-only to export target angle arrays without running a sim.
+    - Supports --video to record the GUI session to an MP4 via PyBullet state logging.
+
+Usage:
+    python3 simulate_openloop_legal.py                          # GUI, 1000 steps
+    python3 simulate_openloop_legal.py --steps 2000 --video     # record MP4
+    python3 simulate_openloop_legal.py --dump-only              # export target angles
+
+Outputs:
+    - Console: final XY distance from origin.
+    - Optional: motor_back.txt, motor_front.txt (--dump-only).
+    - Optional: motors_run.mp4 (--video).
+
 Ludobots role:
-  - Simulation runner specialized for open-loop 'legal' gait expressions.
+    - Simulation runner specialized for open-loop "legal" gait expressions.
+    - Demonstrates direct motor control without neural network involvement.
 
 Beyond Ludobots (this repo):
-  - (Document telemetry, logging, or video capture hooks if present.)
+    - Used for parameter tuning and comparison with NN-driven gaits.
 """
 
 import argparse
@@ -22,6 +44,15 @@ import os
 MOTOR_MAX_FORCE = 50
 
 def find_joint(robot_id: int, needle: str):
+    """Return the index of the first joint whose name contains needle, or None.
+
+    Args:
+        robot_id: PyBullet body ID.
+        needle: Substring to search for in joint names (e.g., "BackLeg").
+
+    Returns:
+        Integer joint index, or None if no matching joint is found.
+    """
     for j in range(p.getNumJoints(robot_id)):
         name = p.getJointInfo(robot_id, j)[1].decode("utf-8", errors="replace")
         if needle in name:
@@ -29,6 +60,16 @@ def find_joint(robot_id: int, needle: str):
     return None
 
 def main():
+    """Run an open-loop legal gait simulation in GUI mode.
+
+    Precomputes sinusoidal target angle arrays for both joints, then steps
+    the simulation in real-time. Reports the final XY distance from origin.
+
+    Side effects:
+        - Opens a PyBullet GUI window.
+        - Optionally writes motor_back.txt / motor_front.txt (--dump-only).
+        - Optionally records motors_run.mp4 (--video).
+    """
     ap = argparse.ArgumentParser()
     ap.add_argument("--steps", type=int, default=1000)
     ap.add_argument("--dt", type=float, default=1.0 / 240.0)
@@ -48,6 +89,8 @@ def main():
     frequencyFront = 4.4
     phaseOffsetFront = numpy.pi/2
 
+    # x spans one full period [0, 2*pi); freq multiplies it so higher freq values
+    # produce more oscillation cycles within the same step count.
     x = numpy.linspace(0.0, 2.0 * numpy.pi, steps, endpoint=False)
     targetAnglesBack  = amplitudeBack  * numpy.sin(frequencyBack  * x + phaseOffsetBack)
     targetAnglesFront = amplitudeFront * numpy.sin(frequencyFront * x + phaseOffsetFront)
@@ -74,6 +117,7 @@ def main():
     back_joint = find_joint(robot_id, "BackLeg")
     front_joint = find_joint(robot_id, "FrontLeg")
 
+    # Fallback: if named joints aren't found, use the first two revolute joints
     if back_joint is None or front_joint is None:
         rev = [j for j in range(p.getNumJoints(robot_id)) if p.getJointInfo(robot_id, j)[2] == p.JOINT_REVOLUTE]
         if len(rev) < 2:

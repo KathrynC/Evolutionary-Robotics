@@ -2,23 +2,37 @@
 """
 validation_experiments.py
 
-Three validation experiments from the project roadmap:
+Role:
+    Three validation experiments that probe the robustness and legitimacy of
+    the novelty champion gait (DX ~60m) discovered by walker_competition.py.
 
-1. Timestep Halving Test — Run the novelty champion at DT=1/480 (double resolution)
-   with SIM_STEPS=8000 (same wall-clock duration). If DX changes significantly,
-   the 60m result may be a simulation artifact.
+Experiments:
+    1. Timestep Halving Test
+        Run the novelty champion at DT=1/480 and DT=1/960 (double and
+        quadruple resolution) with proportionally more steps to maintain the
+        same wall-clock duration. If DX changes significantly, the 60m result
+        may be a simulation artifact rather than genuine locomotion.
 
-2. Signal Path Tracing for w03=-1.31 — Instrument the NN to record pre-tanh
-   activations and post-tanh motor values for motor neuron 3. Determines whether
-   the out-of-[-1,1] weight saturates the tanh and how much extra drive it provides.
+    2. Signal Path Tracing for w03=-1.31
+        Instrument the NN to record pre-tanh activations and post-tanh motor
+        values for motor neuron 3. Determines whether the out-of-[-1,1] weight
+        saturates the tanh and how much extra drive it provides compared to a
+        clamped w03=-1.0 version.
 
-3. Random Walk at r=0.2 vs Novelty Seeker — Run 1000 random walk evaluations
-   with the same step size (r=0.2) that the novelty seeker uses. Tests whether
-   the novelty mechanism matters or if the step size alone is sufficient.
+    3. Random Walk at r=0.2 vs Novelty Seeker
+        Run 1000 random walk evaluations with the same step size (r=0.2) that
+        the novelty seeker uses, plus 1000 purely random samples. Tests whether
+        the novelty mechanism is the key driver or if the step size alone is
+        sufficient to reach high-displacement gaits.
+
+Notes:
+    All experiments use the same simulation harness (simulate_dx) which
+    matches the canonical Act -> Step -> Think loop from walker_competition.py.
+    Motor commands are raw tanh outputs with no scaling or offset.
 
 Outputs:
-    artifacts/validation_experiments.json
-    Console summary of all three experiments
+    artifacts/validation_experiments.json -- results from all three experiments
+    Console summary printed to stdout
 
 Usage:
     python3 validation_experiments.py
@@ -42,6 +56,8 @@ import pyrosim.pyrosim as pyrosim
 from pyrosim.neuralNetwork import NEURAL_NETWORK
 
 # ── Novelty Champion weights ─────────────────────────────────────────────────
+# These are the exact float64 weights from the novelty seeker's champion gait.
+# Rounding these values can shift DX by up to 30%, so full precision is critical.
 
 NC_WEIGHTS = {
     "w03": -1.3083167156740476,
@@ -58,7 +74,19 @@ WEIGHT_NAMES = ["w03", "w04", "w13", "w14", "w23", "w24"]
 # ── Shared simulation harness ────────────────────────────────────────────────
 
 def write_brain_6syn(weights, path=None):
-    """Write a 6-synapse brain.nndf file from a weight dict."""
+    """Write a standard 6-synapse brain.nndf file from a weight dict.
+
+    Creates the canonical 3-sensor, 2-motor topology with 6 fully-connected
+    sensor-to-motor synapses (no crosswiring or hidden neurons).
+
+    Args:
+        weights: Dict with keys 'w03', 'w04', 'w13', 'w14', 'w23', 'w24',
+            each mapping to a float synapse weight.
+        path: Optional Path for the output file. Defaults to PROJECT/brain.nndf.
+
+    Side effects:
+        Writes (overwrites) the brain.nndf file at the specified path.
+    """
     if path is None:
         path = PROJECT / "brain.nndf"
     with open(path, "w") as f:
@@ -145,7 +173,9 @@ def simulate_dx(weights, dt=1/240, sim_steps=4000, record_nn=False):
         # 3. Update NN (sensor reads + recompute motor neurons)
         # For record_nn mode, we intercept the Update to capture pre-tanh values
         if record_nn:
-            # Manual NN update to capture pre-tanh activations
+            # Manual NN update (mirrors NEURAL_NETWORK.Update internals) to
+            # capture the pre-tanh weighted sum before it passes through tanh.
+            # Step 1: Update sensor neurons from PyBullet contact data.
             for neuronName in nn.neurons:
                 if nn.neurons[neuronName].Is_Sensor_Neuron():
                     nn.neurons[neuronName].Update_Sensor_Neuron()
@@ -153,6 +183,8 @@ def simulate_dx(weights, dt=1/240, sim_steps=4000, record_nn=False):
             for si, sname in enumerate(["0", "1", "2"]):
                 sensor_vals[i, si] = nn.neurons[sname].Get_Value()
 
+            # Step 2: Recompute non-sensor neurons (motors/hidden) by summing
+            # weighted inputs and applying tanh, capturing the intermediate values.
             for targetName in nn.neurons:
                 if not nn.neurons[targetName].Is_Sensor_Neuron():
                     total = 0.0
@@ -165,6 +197,7 @@ def simulate_dx(weights, dt=1/240, sim_steps=4000, record_nn=False):
                     try:
                         nn.neurons[targetName].Set_Value(val)
                     except AttributeError:
+                        # Fallback for pyrosim versions without Set_Value
                         nn.neurons[targetName].value = val
 
                     if targetName == "3":
@@ -192,14 +225,36 @@ def simulate_dx(weights, dt=1/240, sim_steps=4000, record_nn=False):
 
 
 def simulate_dx_only(weights):
-    """Lightweight sim returning just DX (standard DT and steps)."""
+    """Convenience wrapper for simulate_dx with default DT and step count.
+
+    Args:
+        weights: Dict of 6 synapse weights.
+
+    Returns:
+        Float displacement along the x-axis in meters.
+    """
     return simulate_dx(weights, dt=1/240, sim_steps=4000)
 
 
 # ── Experiment 1: Timestep Halving ───────────────────────────────────────────
 
 def experiment_1_timestep_halving():
-    """Run NC at DT=1/240 and DT=1/480, compare DX."""
+    """Timestep halving test: measure DX stability across 3 physics resolutions.
+
+    Runs the novelty champion at DT=1/240 (baseline), DT=1/480 (2x finer),
+    and DT=1/960 (4x finer), scaling sim_steps proportionally to maintain the
+    same wall-clock simulation duration. Reports percentage change in DX and
+    classifies the result as PASS (<5%), MARGINAL (5-15%), or FAIL (>15%).
+
+    Returns:
+        Dict with DX values at each resolution, percentage changes, and a
+        verdict string indicating whether the gait is a simulation artifact.
+
+    Side effects:
+        Writes brain.nndf three times (once per resolution).
+        Creates and destroys 3 PyBullet DIRECT-mode sessions.
+        Prints results to stdout.
+    """
     print("=" * 80)
     print("EXPERIMENT 1: Timestep Halving Test")
     print("=" * 80)
@@ -250,7 +305,23 @@ def experiment_1_timestep_halving():
 # ── Experiment 2: Signal Path Tracing ────────────────────────────────────────
 
 def experiment_2_signal_path():
-    """Trace how w03=-1.31 flows through the NN. Record pre/post-tanh values."""
+    """Signal path tracing: analyze how the out-of-range weight w03=-1.31 affects motor output.
+
+    Runs the novelty champion with NN instrumentation enabled to capture
+    pre-tanh activation sums and post-tanh motor outputs at every timestep.
+    Analyzes sensor duty cycles, motor saturation, and the practical impact
+    of the out-of-[-1,1] weight by comparing against a clamped w03=-1.0 variant.
+
+    Returns:
+        Dict with DX for original and clamped versions, sensor duty cycles,
+        pre/post-tanh statistics, extra drive from the out-of-range weight,
+        saturation fraction, and a verdict string.
+
+    Side effects:
+        Writes brain.nndf twice (original and clamped variant).
+        Creates and destroys 2 PyBullet DIRECT-mode sessions.
+        Prints detailed analysis to stdout.
+    """
     print("\n" + "=" * 80)
     print("EXPERIMENT 2: Signal Path Tracing for w03=-1.31")
     print("=" * 80)
@@ -337,7 +408,28 @@ def experiment_2_signal_path():
 # ── Experiment 3: Random Walk vs Novelty ─────────────────────────────────────
 
 def experiment_3_random_walk_vs_novelty():
-    """Run 1000 random walks with r=0.2 step size, compare to novelty seeker."""
+    """Random walk vs novelty: test whether the novelty mechanism or the step size drives results.
+
+    Runs two baselines, each with 1000 evaluations:
+        1. Random walk (r=0.2): Start from a random point in 6D weight space,
+           each trial perturbs the current best by 0.2 along a random unit
+           direction, greedily keeping improvements. This mimics the novelty
+           seeker's step size without its archive-based novelty pressure.
+        2. Pure random: 1000 independent uniform samples from [-1,1]^6, with
+           no walk structure at all.
+
+    Compares both baselines to the novelty seeker's known champion (DX=60.19m).
+
+    Returns:
+        Dict with best/mean |DX| for both baselines, the novelty seeker's
+        known result, percentage comparisons, and a verdict string indicating
+        how important the novelty mechanism is relative to step size alone.
+
+    Side effects:
+        Writes brain.nndf 2000 times (once per evaluation).
+        Creates and destroys 2000 PyBullet DIRECT-mode sessions.
+        Prints progress every 100 evaluations.
+    """
     print("\n" + "=" * 80)
     print("EXPERIMENT 3: Random Walk at r=0.2 vs Novelty Seeker")
     print("=" * 80)
@@ -357,10 +449,13 @@ def experiment_3_random_walk_vs_novelty():
 
     t0 = time.time()
     for trial in range(N_EVALS):
-        # Random direction on 6D unit sphere
+        # Random direction on 6D unit sphere via normalized Gaussian vector.
+        # Standard normal samples projected onto the unit sphere give a uniform
+        # distribution of directions in any dimension.
         direction = rng.standard_normal(6)
         norm = np.linalg.norm(direction)
         if norm < 1e-12:
+            # Extremely unlikely edge case: degenerate zero vector, fall back to e1
             direction = np.zeros(6)
             direction[0] = 1.0
         else:
@@ -399,7 +494,8 @@ def experiment_3_random_walk_vs_novelty():
             print(f"  [{trial+1:4d}/{N_EVALS}] best random |DX|={max(pure_random_dx):.2f}m  "
                   f"mean={np.mean(pure_random_dx):.2f}m  ({elapsed2:.1f}s)")
 
-    novelty_dx = 60.19  # from walker_competition.py results
+    # Known best result from the novelty seeker algorithm in walker_competition.py
+    novelty_dx = 60.19
 
     print(f"\n  Results ({N_EVALS} evals each):")
     print(f"    Novelty Seeker:     best |DX| = {novelty_dx:.2f}m")
@@ -441,7 +537,12 @@ def experiment_3_random_walk_vs_novelty():
 # ── Main ─────────────────────────────────────────────────────────────────────
 
 def main():
-    """Run all three validation experiments and save results."""
+    """Run all three validation experiments sequentially and save results to JSON.
+
+    Side effects:
+        Creates artifacts/validation_experiments.json.
+        Prints experiment results and total runtime to stdout.
+    """
     t_start = time.time()
 
     results = {}

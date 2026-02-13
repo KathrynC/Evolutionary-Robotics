@@ -1,7 +1,34 @@
 #!/usr/bin/env python3
-"""apply_step2_commentary.py
+"""
+apply_step2_commentary.py
 
-One-off utility for applying or regenerating commentary for the Step 2 materials.
+Role:
+    One-off utility that reads a CSV of docstring additions and applies them
+    to Python source files. Used for batch-applying or regenerating module-level
+    commentary (e.g., "Ludobots role" and "Beyond Ludobots" sections) across the
+    codebase from a spreadsheet-driven workflow.
+
+Pipeline:
+    1. Read a CSV with columns "path" and "doc_header_to_add".
+    2. For each listed file, parse the AST to find or insert a module docstring.
+    3. Combine the existing docstring with the addition (skip if "Ludobots role:"
+       already present to avoid duplication).
+    4. Either write the files in-place (--write) or produce a unified diff patch.
+
+Outputs:
+    - A .patch file (default: step2_docstrings.patch) with all proposed changes.
+    - When --write is passed, modified Python files are written in-place.
+
+Usage:
+    python3 apply_step2_commentary.py --csv step2_docs.csv                  # dry-run
+    python3 apply_step2_commentary.py --csv step2_docs.csv --write          # apply
+    python3 apply_step2_commentary.py --csv step2_docs.csv --patch out.patch
+
+Notes:
+    - Files with syntax errors are skipped (reported in the skip count).
+    - The script preserves the original newline style (LF vs CRLF) of each file.
+    - Shebang lines, encoding declarations, and leading comments are preserved
+      above the inserted docstring.
 """
 
 from __future__ import annotations
@@ -16,6 +43,17 @@ TRIPLE = '"""'
 
 
 def _inner_doc_from_csv(cell: str) -> str:
+    """Extract the inner docstring text from a CSV cell value.
+
+    Strips surrounding triple-quotes if present (CSV export artifacts),
+    then trims leading/trailing newlines.
+
+    Args:
+        cell: Raw CSV cell content (may be None, empty, or triple-quoted).
+
+    Returns:
+        Cleaned docstring body text, or empty string if nothing to add.
+    """
     s = (cell or "").strip()
     if not s:
         return ""
@@ -25,14 +63,29 @@ def _inner_doc_from_csv(cell: str) -> str:
 
 
 def _detect_newline(text: str) -> str:
+    """Detect the dominant line-ending style in text (CRLF or LF)."""
     return "\r\n" if "\r\n" in text else "\n"
 
 
 def _split_lines_keep(text: str):
+    """Split text into lines while preserving line-ending characters."""
     return text.splitlines(True)
 
 
 def _combine_docstrings(existing: str, addition: str, filename: str) -> str:
+    """Merge an existing module docstring with new commentary text.
+
+    Args:
+        existing: Current docstring content (may be empty or None).
+        addition: New text to append (e.g., Ludobots role section).
+        filename: The source file's basename, used to deduplicate the first line
+            if it just repeats the filename.
+
+    Returns:
+        Combined docstring. Returns existing unchanged if:
+        - addition is empty, or
+        - "Ludobots role:" is already present (idempotent guard).
+    """
     existing = (existing or "").rstrip()
     addition = (addition or "").strip()
     if not addition:
@@ -55,10 +108,28 @@ def _combine_docstrings(existing: str, addition: str, filename: str) -> str:
 
 
 def _render_module_doc(doc_text: str) -> str:
+    """Wrap raw docstring text in triple-quote delimiters for module-level insertion."""
     return f'{TRIPLE}\n{doc_text.rstrip()}\n{TRIPLE}\n'
 
 
 def _apply_to_file(path: Path, addition_inner: str) -> tuple[str, str, str]:
+    """Apply a docstring addition to a single Python source file.
+
+    Handles two cases:
+        1. File already has a module docstring: append the addition inside it.
+        2. File has no module docstring: insert a new one after shebang/comments.
+
+    Args:
+        path: Path to the Python source file.
+        addition_inner: The docstring body text to add.
+
+    Returns:
+        Tuple of (old_text, new_text, action_tag) where action_tag is one of:
+        - "skip:syntax_error" -- file could not be parsed
+        - "noop:doc_present"  -- docstring already contains the addition
+        - "update:doc_appended" -- existing docstring was extended
+        - "insert:doc_added"  -- new docstring was inserted
+    """
     old = path.read_text(encoding="utf-8", errors="replace")
     nl = _detect_newline(old)
 
@@ -104,6 +175,13 @@ def _apply_to_file(path: Path, addition_inner: str) -> tuple[str, str, str]:
 
 
 def main():
+    """CLI entry point: read CSV, apply docstring additions, write patch and/or files.
+
+    Side effects:
+        - Reads the CSV file specified by --csv.
+        - When --write is set, modifies Python files in-place.
+        - Always writes a unified diff patch file (--patch, default step2_docstrings.patch).
+    """
     ap = argparse.ArgumentParser()
     ap.add_argument("--csv", required=True)
     ap.add_argument("--patch", default="step2_docstrings.patch")

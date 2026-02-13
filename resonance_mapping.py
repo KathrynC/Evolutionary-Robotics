@@ -2,31 +2,46 @@
 """
 resonance_mapping.py
 
-Resonance Mapping — What Frequencies Does the Body Want?
+Role:
+    Research campaign script that bypasses the neural network entirely and
+    drives robot joints with pure sinusoidal position targets. Sweeps across
+    frequency, phase offset, amplitude, and frequency ratio to map the body's
+    mechanical transfer function -- discovering which oscillation parameters
+    the physical body converts most efficiently into displacement.
 
-Bypass the neural network entirely. Drive joints with pure sinusoidal
-position targets, sweep frequency/phase/ratio to find the body's
-mechanical transfer function.
+    This is the "body wants what the body wants" experiment: it reveals
+    the robot's inherent mechanical resonance independently of any learned
+    neural controller.
+
+Approach:
+    Part 1: Frequency x Phase Sweep (600 sims)
+        50 frequencies (0.1-5 Hz) x 12 phase offsets (0-pi).
+        Both joints at the same frequency, varying relative phase.
+        Maps which frequencies produce locomotion.
+
+    Part 2: Amplitude Sweep (300 sims)
+        Top 6 resonant frequencies x 50 amplitudes (0.05-1.5 rad).
+        Maps whether the body saturates or whether more amplitude = more DX.
+
+    Part 3: Polyrhythmic Grid (900 sims)
+        30 x 30 grid of (f_back, f_front) from 0.1 to 5 Hz.
+        Fixed amplitude and phase. Maps the frequency-ratio landscape.
+        Tests whether musically significant ratios (5:3, 3:2, 2:1) are special.
+
+    Part 4: Evolved Overlay (no new sims)
+        Plots known evolved gait frequencies on the resonance maps to
+        determine whether evolution discovered and exploits mechanical resonance.
 
 Simulation budget: ~2,150 sims (~3 min)
 
-Part 1: Frequency × Phase Sweep (600 sims)
-    50 frequencies (0.1–5 Hz) × 12 phase offsets (0–pi).
-    Both joints at same frequency, varying relative phase.
-    Maps: which frequencies produce locomotion?
-
-Part 2: Amplitude Sweep (300 sims)
-    Top 6 resonant frequencies × 50 amplitudes (0.05–1.5 rad).
-    Maps: does the body saturate, or does more amplitude = more DX?
-
-Part 3: Polyrhythmic Grid (900 sims)
-    30 × 30 grid of (f_back, f_front) from 0.1 to 5 Hz.
-    Fixed amplitude and phase. Maps frequency-ratio landscape.
-    Tests whether 5:3, 3:2, 2:1 ratios are special.
-
-Part 4: Overlay (no sims)
-    Plot evolved gait frequencies on the resonance map.
-    Do evolved gaits exploit resonance?
+Notes:
+    - This script is self-contained: defines its own open-loop simulation
+      harness using headless PyBullet DIRECT mode.
+    - No neural network is loaded; joints are driven directly via
+      p.setJointMotorControl2 with sinusoidal position targets.
+    - Evolved gait frequency data is hardcoded from synapse_gait_zoo_v2.json
+      and cliff analysis results.
+    - Contact is sampled every 10 timesteps (not every step) for performance.
 
 Outputs:
     artifacts/resonance_mapping.json
@@ -95,7 +110,16 @@ T3_GAIT = {"name": "Trial 3", "dx": 10.0, "f_back": 0.24, "f_front": 0.24}
 # ── Simulation ───────────────────────────────────────────────────────────────
 
 def find_joint(robot_id, needle):
-    """Return the joint index whose name contains `needle`, or None."""
+    """Find a joint index by substring matching against joint names.
+
+    Args:
+        robot_id: PyBullet body ID.
+        needle: Substring to search for in joint names (e.g., "BackLeg").
+
+    Returns:
+        Integer joint index if found, or None if no joint name contains
+        the needle.
+    """
     for j in range(p.getNumJoints(robot_id)):
         name = p.getJointInfo(robot_id, j)[1].decode("utf-8", errors="replace")
         if needle in name:
@@ -105,7 +129,28 @@ def find_joint(robot_id, needle):
 
 def simulate_openloop(freq_back, freq_front, phase_back, phase_front,
                       amp_back, amp_front):
-    """Drive both joints with sine waves, return metrics dict."""
+    """Drive both joints with sinusoidal position targets and return metrics.
+
+    Runs a full headless simulation with no neural network. Each joint follows
+    A * sin(2*pi*f*t + phi) as its position target at every timestep. Records
+    final displacement, orientation, and contact duty cycles.
+
+    Args:
+        freq_back: Oscillation frequency for the back-leg joint (Hz).
+        freq_front: Oscillation frequency for the front-leg joint (Hz).
+        phase_back: Phase offset for the back-leg joint (radians).
+        phase_front: Phase offset for the front-leg joint (radians).
+        amp_back: Amplitude for the back-leg joint (radians).
+        amp_front: Amplitude for the front-leg joint (radians).
+
+    Returns:
+        Dict with keys: dx (signed displacement), abs_dx, final_z,
+        roll, pitch, yaw (final orientation), duty_torso, duty_back,
+        duty_front (fraction of sampled steps with ground contact).
+
+    Side effects:
+        Connects and disconnects a PyBullet physics client.
+    """
     cid = p.connect(p.DIRECT)
     p.setAdditionalSearchPath(pybullet_data.getDataPath())
     p.setGravity(0, 0, c.GRAVITY_Z)
@@ -204,7 +249,24 @@ def save_fig(fig, name):
 # ── Part 1: Frequency × Phase Sweep ─────────────────────────────────────────
 
 def part1_freq_phase(n_freq=50, n_phase=12):
-    """Sweep frequency and phase offset with equal frequencies on both joints."""
+    """Sweep frequency and phase offset with equal frequencies on both joints.
+
+    Both joints oscillate at the same frequency but with a variable phase
+    offset between them. This maps which frequencies the body converts
+    into displacement and how inter-joint phase affects locomotion.
+
+    Args:
+        n_freq: Number of frequency values to sweep (0.1 to 5.0 Hz).
+        n_phase: Number of phase offset values to sweep (0 to pi radians).
+
+    Returns:
+        Dict containing:
+            freqs: List of frequency values (Hz).
+            phases: List of phase offset values (radians).
+            amplitude: The fixed amplitude used (radians).
+            dx_grid: 2D list [n_freq x n_phase] of signed DX values.
+            abs_dx_grid: 2D list [n_freq x n_phase] of |DX| values.
+    """
     total = n_freq * n_phase
     print(f"\n{'='*80}")
     print(f"PART 1: Frequency x Phase Sweep ({n_freq} freqs x {n_phase} phases = {total} sims)")
@@ -251,7 +313,21 @@ def part1_freq_phase(n_freq=50, n_phase=12):
 # ── Part 2: Amplitude Sweep ─────────────────────────────────────────────────
 
 def part2_amplitude(freq_phase_data, n_top=6, n_amp=50):
-    """Sweep amplitude at the top resonant frequencies."""
+    """Sweep amplitude at the top resonant frequencies from Part 1.
+
+    For each of the n_top frequencies that produced the largest |DX| in
+    the frequency-phase sweep, vary the joint amplitude from 0.05 to 1.5
+    radians while holding the optimal phase offset fixed.
+
+    Args:
+        freq_phase_data: Output dict from part1_freq_phase().
+        n_top: Number of top frequencies to probe. Default 6.
+        n_amp: Number of amplitude values to sweep per frequency. Default 50.
+
+    Returns:
+        List of dicts, one per top frequency, each containing: freq (Hz),
+        phase (radians), amps (list), dxs (list), max_dx, peak_amp.
+    """
     freqs = np.array(freq_phase_data["freqs"])
     abs_dx = np.array(freq_phase_data["abs_dx_grid"])
 
@@ -308,7 +384,25 @@ def part2_amplitude(freq_phase_data, n_top=6, n_amp=50):
 # ── Part 3: Polyrhythmic Grid ────────────────────────────────────────────────
 
 def part3_polyrhythm(n_grid=30):
-    """2D grid of independent back/front frequencies."""
+    """Simulate a 2D grid of independent back/front frequencies.
+
+    Unlike Part 1 where both joints share a frequency, here f_back and
+    f_front vary independently over a square grid. This maps the full
+    frequency-ratio landscape and tests whether musically significant
+    ratios (2:1, 3:2, 5:3) produce special locomotion behavior.
+
+    Args:
+        n_grid: Grid resolution per axis (total sims = n_grid^2). Default 30.
+
+    Returns:
+        Dict containing:
+            freqs: List of frequency values (Hz), shared by both axes.
+            phase: The fixed inter-joint phase offset used (radians).
+            amplitude: The fixed amplitude used (radians).
+            dx_grid: 2D list [n_grid x n_grid] of signed DX values.
+                Rows = f_back, columns = f_front.
+            abs_dx_grid: 2D list [n_grid x n_grid] of |DX| values.
+    """
     total = n_grid * n_grid
     print(f"\n{'='*80}")
     print(f"PART 3: Polyrhythmic Grid ({n_grid}x{n_grid} = {total} sims)")
@@ -353,7 +447,18 @@ def part3_polyrhythm(n_grid=30):
 # ── Figures ──────────────────────────────────────────────────────────────────
 
 def fig01_freq_phase(fp_data):
-    """Heatmap of DX across frequency and phase."""
+    """Plot dual heatmaps of DX across frequency and phase (2-panel figure).
+
+    Left: signed DX with diverging colormap (red = positive, blue = negative),
+        clamped at the 95th percentile to avoid outlier wash-out.
+    Right: |DX| with inferno colormap highlighting resonance peaks.
+
+    Args:
+        fp_data: Output dict from part1_freq_phase().
+
+    Side effects:
+        Saves res_fig01_freq_phase.png to PLOT_DIR.
+    """
     fig, axes = plt.subplots(1, 2, figsize=(18, 7))
     freqs = np.array(fp_data["freqs"])
     phases = np.array(fp_data["phases"])
@@ -391,7 +496,25 @@ def fig01_freq_phase(fp_data):
 
 
 def fig02_transfer_function(fp_data):
-    """1D transfer function: max |DX| vs frequency (marginalized over phase)."""
+    """Plot the body's 1D mechanical transfer function (2-panel figure).
+
+    Left: max and mean |DX| vs frequency (marginalized over phase), with
+        the top 3 peaks annotated. This reveals which frequencies the body
+        converts most efficiently into displacement.
+    Right: scatter plot of the optimal phase offset vs frequency, colored
+        by |DX|, showing whether the best inter-joint phase relationship
+        changes across the frequency spectrum.
+
+    Args:
+        fp_data: Output dict from part1_freq_phase().
+
+    Returns:
+        1D numpy array of max |DX| per frequency (the transfer function
+        envelope), used by downstream figures.
+
+    Side effects:
+        Saves res_fig02_transfer_function.png to PLOT_DIR.
+    """
     fig, axes = plt.subplots(1, 2, figsize=(18, 7))
     freqs = np.array(fp_data["freqs"])
     abs_g = np.array(fp_data["abs_dx_grid"])
@@ -448,7 +571,18 @@ def fig02_transfer_function(fp_data):
 
 
 def fig03_amplitude(amp_results):
-    """Amplitude sweep curves for top resonant frequencies."""
+    """Plot DX vs amplitude curves for the top resonant frequencies.
+
+    Each curve shows how displacement changes as joint amplitude increases
+    from 0.05 to 1.5 radians at a fixed resonant frequency and optimal
+    phase offset. Reveals saturation, reversal, and nonlinear behavior.
+
+    Args:
+        amp_results: List of amplitude sweep dicts from part2_amplitude().
+
+    Side effects:
+        Saves res_fig03_amplitude.png to PLOT_DIR.
+    """
     fig, ax = plt.subplots(figsize=(12, 7))
 
     for ar in amp_results:
@@ -469,7 +603,21 @@ def fig03_amplitude(amp_results):
 
 
 def fig04_polyrhythm(poly_data):
-    """2D heatmap of polyrhythmic grid."""
+    """Plot dual heatmaps of the polyrhythmic frequency grid (2-panel figure).
+
+    Left: signed DX with the 1:1 diagonal and musically significant ratio
+        lines (2:1, 3:2, 5:3) overlaid.
+    Right: |DX| with the same ratio overlays.
+
+    The grid axes are f_back (Hz) vs f_front (Hz), revealing whether
+    certain frequency ratios produce especially strong or weak locomotion.
+
+    Args:
+        poly_data: Output dict from part3_polyrhythm().
+
+    Side effects:
+        Saves res_fig04_polyrhythm.png to PLOT_DIR.
+    """
     fig, axes = plt.subplots(1, 2, figsize=(18, 8))
     freqs = np.array(poly_data["freqs"])
 
@@ -515,7 +663,22 @@ def fig04_polyrhythm(poly_data):
 
 
 def fig05_evolved_overlay(fp_data, poly_data):
-    """Overlay evolved gait frequencies on the resonance maps."""
+    """Overlay evolved gait frequencies on the open-loop resonance maps (2-panel figure).
+
+    Left: evolved gait |DX| values scatter-plotted on the 1D transfer
+        function (using average of f_back and f_front as the representative
+        frequency). Tests whether evolved gaits cluster near resonance peaks.
+    Right: evolved gait (f_back, f_front) coordinates scatter-plotted on
+        the polyrhythmic |DX| heatmap. Novelty Champion and Trial 3 are
+        highlighted with star markers.
+
+    Args:
+        fp_data: Output dict from part1_freq_phase().
+        poly_data: Output dict from part3_polyrhythm().
+
+    Side effects:
+        Saves res_fig05_evolved_overlay.png to PLOT_DIR.
+    """
     fig, axes = plt.subplots(1, 2, figsize=(18, 8))
 
     # Left: transfer function with evolved gaits marked
@@ -585,7 +748,35 @@ def fig05_evolved_overlay(fp_data, poly_data):
 
 
 def fig06_verdict(fp_data, poly_data, amp_results, transfer_fn):
-    """Summary verdict figure."""
+    """Generate the 6-panel summary verdict figure for resonance mapping.
+
+    Panel (0,0): Transfer function with its derivative overlay, showing
+        how abruptly |DX| changes with frequency.
+    Panel (0,1): Histogram of consecutive DX differences (frequency-space
+        roughness measure).
+    Panel (0,2): |DX| extracted along constant frequency-ratio diagonals
+        (1:1, 3:2, 2:1, 5:3, 3:1) from the polyrhythmic grid.
+    Panel (1,0): Amplitude response curves for the top 4 resonant
+        frequencies (saturation analysis).
+    Panel (1,1): Gradient magnitude heatmap (|grad DX| in m/Hz) across
+        the polyrhythmic grid, identifying "cliffs" in frequency space.
+    Panel (1,2): Monospace verdict text summarizing resonance strength,
+        evolved gait comparison, and the key finding classification.
+
+    Args:
+        fp_data: Output dict from part1_freq_phase().
+        poly_data: Output dict from part3_polyrhythm().
+        amp_results: List of amplitude sweep dicts from part2_amplitude().
+        transfer_fn: 1D numpy array of max |DX| per frequency (from
+            fig02_transfer_function).
+
+    Returns:
+        Dict of verdict values: peak_openloop_dx, peak_frequency,
+        mean_freq_roughness, mean_poly_cliffiness, nc_exceeds_openloop.
+
+    Side effects:
+        Saves res_fig06_verdict.png to PLOT_DIR.
+    """
     fig, axes = plt.subplots(2, 3, figsize=(19, 12))
 
     freqs = np.array(fp_data["freqs"])
@@ -773,7 +964,21 @@ def fig06_verdict(fp_data, poly_data, amp_results, transfer_fn):
 # ── Console Output ──────────────────────────────────────────────────────────
 
 def print_analysis(fp_data, amp_results, poly_data, verdicts):
-    """Print a formatted console summary of all resonance mapping results."""
+    """Print a formatted console summary of all resonance mapping results.
+
+    Outputs transfer function peaks (top 5 frequencies), amplitude sweep
+    results, polyrhythmic grid top-10 frequency pairs, evolved gait vs
+    open-loop comparisons, and frequency-space vs weight-space roughness.
+
+    Args:
+        fp_data: Output dict from part1_freq_phase().
+        amp_results: List of amplitude sweep dicts from part2_amplitude().
+        poly_data: Output dict from part3_polyrhythm().
+        verdicts: Dict of verdict values from fig06_verdict().
+
+    Side effects:
+        Prints multi-section analysis to stdout.
+    """
     freqs = np.array(fp_data["freqs"])
     abs_g = np.array(fp_data["abs_dx_grid"])
     dx_g = np.array(fp_data["dx_grid"])
@@ -831,7 +1036,21 @@ def print_analysis(fp_data, amp_results, poly_data, verdicts):
 # ── Main ─────────────────────────────────────────────────────────────────────
 
 def main():
-    """Run all four parts of the resonance mapping campaign and save outputs."""
+    """Run all four parts of the resonance mapping campaign and save outputs.
+
+    Executes the full pipeline in sequence:
+      Part 1 - Frequency x phase sweep (both joints at same frequency).
+      Part 2 - Amplitude sweep at top resonant frequencies.
+      Part 3 - Polyrhythmic grid (independent back/front frequencies).
+      Figures - Generate 6 publication-quality figures including evolved
+          gait overlay and verdict summary.
+      Console - Print detailed analysis of resonance structure.
+      JSON - Save all sweep data, evolved gait references, and verdicts.
+
+    Side effects:
+        Creates 6 PNG figures and 1 JSON file in artifacts/.
+        Prints detailed console analysis and timing information.
+    """
     t_start = time.perf_counter()
     np.random.seed(42)
 

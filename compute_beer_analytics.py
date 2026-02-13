@@ -2,14 +2,29 @@
 """
 compute_beer_analytics.py
 
-Beer-Framework Analytics Pipeline for Synapse Gait Zoo v2.
+Role:
+    Beer-Framework Analytics Pipeline for Synapse Gait Zoo v2. Reads all 116
+    telemetry JSONL files produced by generate_telemetry.py and computes four
+    pillars of behavioral metrics per gait:
 
-Reads all 116 telemetry JSONL files, computes 4 pillars of metrics
-(outcome, contact, coordination, rotation_axis), and writes
-synapse_gait_zoo_v2.json preserving all existing gait fields but
-replacing the old `telemetry` object with a comprehensive `analytics` object.
+    1. Outcome    -- displacement, speed, efficiency, path quality
+    2. Contact    -- duty fractions, 8-state distribution, Shannon entropy,
+                     Markov transition matrix
+    3. Coordination -- FFT-based dominant frequency/amplitude per joint,
+                       Hilbert-transform phase difference and phase-lock score
+    4. Rotation axis -- PCA of angular velocity covariance, axis switching rate,
+                        per-axis periodicity
 
-Constraint: numpy-only (no scipy, no sklearn).
+Notes:
+    - Constraint: numpy-only (no scipy, no sklearn). Signal processing
+      (Hilbert transform, FFT) is implemented from scratch via np.fft.
+    - Output: synapse_gait_zoo_v2.json -- preserves all v1 gait fields but
+      replaces the old ``telemetry`` object with a comprehensive ``analytics``
+      object per gait.
+    - Selected keys from the old telemetry (attractor_type, pareto_optimal,
+      etc.) are preserved under analytics["preserved"].
+    - Floats are rounded to 6 decimal places in the JSON output via
+      NumpyEncoder.
 
 Usage:
     python compute_beer_analytics.py
@@ -42,9 +57,24 @@ PRESERVE_KEYS = ("attractor_type", "attractor_subtype", "pareto_optimal")
 # ── JSON encoder for numpy types ─────────────────────────────────────────────
 
 class NumpyEncoder(json.JSONEncoder):
-    """Serialize numpy scalars/arrays; round floats to 6 decimals."""
+    """Custom JSON encoder that handles numpy types.
+
+    Converts numpy integers, floats, booleans, and arrays to their
+    Python equivalents. All floats are rounded to 6 decimal places
+    to keep output compact and avoid float64 precision noise.
+    """
 
     def default(self, obj):
+        """Encode a single non-standard object.
+
+        Args:
+            obj: The object to serialize. Handles np.integer, np.floating,
+                np.bool_, and np.ndarray; delegates everything else to the
+                parent encoder.
+
+        Returns:
+            A JSON-serializable Python object.
+        """
         if isinstance(obj, np.integer):
             return int(obj)
         if isinstance(obj, np.floating):
@@ -72,7 +102,19 @@ class NumpyEncoder(json.JSONEncoder):
 # ── Data loading ─────────────────────────────────────────────────────────────
 
 def load_telemetry(gait_name):
-    """Load telemetry JSONL for a gait → dict of numpy arrays."""
+    """Load telemetry JSONL for a gait and return a dict of numpy arrays.
+
+    Args:
+        gait_name: Name of the gait (must match a subdirectory under
+            TELEMETRY_DIR, e.g. "18_curie").
+
+    Returns:
+        Dict mapping channel names (e.g. "x", "vx", "contact_torso",
+        "j0_pos") to 1-D numpy arrays of length n_records.
+
+    Raises:
+        FileNotFoundError: If no telemetry.jsonl exists for the given gait.
+    """
     path = TELEMETRY_DIR / gait_name / "telemetry.jsonl"
     if not path.exists():
         raise FileNotFoundError(f"No telemetry for {gait_name}: {path}")
@@ -203,7 +245,13 @@ def _fft_peak(signal, dt):
 def compute_outcome(data, dt):
     """Compute Pillar 1 (Outcome): displacement, speed, efficiency, and path metrics.
 
-    Returns a dict with dx, dy, yaw_net_rad, speed stats, work proxy, and path quality.
+    Args:
+        data: Telemetry dict from load_telemetry() or equivalent in-memory capture.
+        dt: Timestep duration in seconds (typically 1/240).
+
+    Returns:
+        Dict with keys: dx, dy, yaw_net_rad, mean_speed, speed_cv, work_proxy,
+        distance_per_work, path_length, path_straightness, heading_consistency.
     """
     x, y = data["x"], data["y"]
     vx, vy = data["vx"], data["vy"]
@@ -269,8 +317,14 @@ def compute_outcome(data, dt):
 def compute_contact(data):
     """Compute Pillar 2 (Contact): duty fractions, state distribution, entropy, transitions.
 
-    Returns a dict with per-link duty cycles, 8-state distribution, Shannon entropy,
-    and an 8x8 row-normalized transition matrix.
+    Args:
+        data: Telemetry dict containing boolean arrays "contact_torso",
+            "contact_back", "contact_front".
+
+    Returns:
+        Dict with keys: duty_torso, duty_back, duty_front, support_count_frac
+        (list[4]), state_distribution (list[8]), dominant_state, contact_entropy_bits,
+        transition_matrix (8x8 nested list, row-normalized).
     """
     torso = data["contact_torso"].astype(int)
     back = data["contact_back"].astype(int)
@@ -335,7 +389,18 @@ def compute_contact(data):
 def compute_coordination(data, dt):
     """Compute Pillar 3 (Coordination): joint frequency, phase difference, and phase locking.
 
-    Returns per-joint FFT peaks and the inter-joint phase relationship.
+    Uses FFT to find each joint's dominant oscillation frequency and amplitude,
+    then applies a Hilbert-transform-based analytic signal to extract
+    instantaneous phase and measure inter-joint phase locking.
+
+    Args:
+        data: Telemetry dict containing "j0_pos" and "j1_pos" arrays.
+        dt: Timestep duration in seconds.
+
+    Returns:
+        Dict with keys: joint_0 (dict with dominant_freq_hz, dominant_amplitude),
+        joint_1 (same), delta_phi_rad (circular mean of phase difference),
+        phase_lock_score (mean resultant length, 0.0-1.0).
     """
     j0_pos = data["j0_pos"]
     j1_pos = data["j1_pos"]
@@ -382,7 +447,19 @@ def compute_coordination(data, dt):
 def compute_rotation_axis(data, dt):
     """Compute Pillar 4 (Rotation Axis): axis dominance, switching rate, and periodicity.
 
-    Returns PCA-derived variance ratios, axis switching frequency, and per-axis FFT peaks.
+    Performs PCA via eigendecomposition of the 3x3 angular-velocity covariance
+    matrix to determine which rotation axis dominates. Also tracks how often
+    the instantaneously dominant axis switches and the FFT peak frequency of
+    each angular velocity component.
+
+    Args:
+        data: Telemetry dict containing "wx", "wy", "wz" arrays.
+        dt: Timestep duration in seconds.
+
+    Returns:
+        Dict with keys: axis_dominance (list[3] of variance ratios summing
+        to 1.0), axis_switching_rate_hz (float), periodicity (dict with
+        roll_freq_hz, pitch_freq_hz, yaw_freq_hz).
     """
     wx = data["wx"]
     wy = data["wy"]
@@ -440,7 +517,16 @@ def compute_rotation_axis(data, dt):
 # ── Orchestrator ─────────────────────────────────────────────────────────────
 
 def compute_all(data, dt):
-    """Compute all 4 Beer pillars and return them as a single analytics dict."""
+    """Compute all 4 Beer pillars and return them as a single analytics dict.
+
+    Args:
+        data: Telemetry dict of numpy arrays (from load_telemetry or in-memory).
+        dt: Timestep duration in seconds.
+
+    Returns:
+        Dict with keys "outcome", "contact", "coordination", "rotation_axis",
+        each containing the corresponding pillar's metrics dict.
+    """
     return {
         "outcome": compute_outcome(data, dt),
         "contact": compute_contact(data),
@@ -452,7 +538,14 @@ def compute_all(data, dt):
 # ── Main ─────────────────────────────────────────────────────────────────────
 
 def main():
-    """Entry point: load zoo JSON, compute analytics for all gaits, write v2 output."""
+    """Entry point: load zoo JSON, compute analytics for all gaits, write v2 output.
+
+    Side effects:
+        - Reads synapse_gait_zoo.json and all telemetry JSONL files under
+          artifacts/telemetry/.
+        - Writes synapse_gait_zoo_v2.json with analytics replacing telemetry.
+        - Prints progress, error summary, and spot-check stats to stdout/stderr.
+    """
     t_start = time.time()
 
     # Load zoo JSON

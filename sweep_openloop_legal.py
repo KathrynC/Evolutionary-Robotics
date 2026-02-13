@@ -1,12 +1,34 @@
 """
 sweep_openloop_legal.py
 
+Role:
+    Batch sweep of open-loop sinusoidal gait parameters in headless (DIRECT) mode.
+    Runs a grid of frequency/phase combinations for the front leg while keeping
+    back leg parameters fixed, ranks results by horizontal displacement, and
+    optionally exports to CSV.
+
+Design constraints:
+    - MOTOR_MAX_FORCE is fixed at 50N (must match simulate_openloop_legal.py).
+    - Amplitudes are clamped to [0, pi/4] (the "legal" range). The script rejects
+      illegal amplitudes immediately.
+    - Phase/frequency arguments accept simple math expressions (e.g., "pi/3", "0.45*pi")
+      via a sandboxed eval.
+
+Usage:
+    python3 sweep_openloop_legal.py
+    python3 sweep_openloop_legal.py --freq-front 3.0 4.0 5.0 --phase-front "pi/3" "pi/2"
+    python3 sweep_openloop_legal.py --csv results.csv --top 20
+
+Outputs:
+    - Console: sorted top-N results by XY distance.
+    - Optional CSV file with all results (--csv flag).
+
 Ludobots role:
-  - Experiment harness: sweep open-loop gait definitions to find movement.
+    - Experiment harness: sweep open-loop gait definitions to find movement.
 
 Beyond Ludobots (this repo):
-  - Uses a restricted expression grammar for defining trajectories compactly.
-  - Often paired with telemetry summaries for ranking.
+    - Uses a restricted expression grammar for defining trajectories compactly.
+    - Often paired with telemetry summaries for ranking.
 """
 
 import argparse
@@ -26,6 +48,16 @@ MOTOR_MAX_FORCE = 50
 
 @dataclass
 class Result:
+    """Container for a single sweep trial's outcome and input parameters.
+
+    Fields:
+        dist_xy: Horizontal displacement from origin (meters).
+        freq_front, phase_front: Front leg frequency (Hz) and phase offset (rad).
+        freq_back, phase_back: Back leg frequency (Hz) and phase offset (rad).
+        amp_back, amp_front: Joint amplitude (rad) for each leg.
+        z: Final Z (height) position of the robot base.
+        roll, pitch: Final orientation angles (rad) from Euler decomposition.
+    """
     dist_xy: float
     freq_front: float
     phase_front: float
@@ -39,9 +71,16 @@ class Result:
 
 
 def parse_expr(s: str) -> float:
-    """
-    Accept simple expressions like:
-      pi/3, 0.45*pi, 1.2, 2*pi/3
+    """Parse a simple math expression string into a float.
+
+    Accepts expressions like: "pi/3", "0.45*pi", "1.2", "2*pi/3".
+
+    Args:
+        s: Expression string. Only "pi" is available as a name; all other
+            builtins are blocked to prevent arbitrary code execution.
+
+    Returns:
+        The evaluated float value.
     """
     # Sandbox eval: __builtins__ is blanked so only "pi" is resolvable,
     # preventing arbitrary code execution from CLI input.

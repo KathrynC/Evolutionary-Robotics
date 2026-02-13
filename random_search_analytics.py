@@ -2,19 +2,28 @@
 """
 random_search_analytics.py
 
-Generate 5 random brains and analyze each with the full Beer-framework
-analytics pipeline (outcome, contact, coordination, rotation_axis).
+Role:
+    Small-scale random search with disk-based telemetry for detailed
+    inspection. Generates 5 random brains, runs each through a full
+    4000-step headless simulation with per-step JSONL telemetry written
+    to disk, then computes the complete Beer-framework analytics pipeline
+    (outcome, contact, coordination, rotation_axis) from the saved data.
 
-For each trial:
-  1. Sample 6 random synaptic weights in [-1, 1]
-  2. Write brain.nndf
-  3. Run a headless 4000-step simulation with full-resolution telemetry
-  4. Compute all 4 analytics pillars from the telemetry
+    Unlike random_search_500.py (which captures telemetry in-memory for
+    speed), this script writes full-resolution JSONL so individual trials
+    can be inspected, replayed, or fed to other tools after the fact.
+
+Notes:
+    - Uses TelemetryLogger from tools/telemetry/logger.py at every=1
+      (full 240 Hz resolution, 4000 records per trial).
+    - Two-phase pipeline: simulate + write JSONL, then reload + analyze.
+    - Backs up and restores brain.nndf.
+    - Expected runtime: ~1-2 seconds (5 trials).
 
 Outputs:
-  artifacts/telemetry/random_trial_0/ .. random_trial_4/  (telemetry JSONL)
-  artifacts/random_search_analytics.json                   (combined results)
-  stdout: summary table
+    artifacts/telemetry/random_trial_0/ .. random_trial_4/  (telemetry JSONL)
+    artifacts/random_search_analytics.json                   (combined results)
+    stdout: summary table
 
 Usage:
     python3 random_search_analytics.py
@@ -48,7 +57,11 @@ OUT_JSON = PROJECT / "artifacts" / "random_search_analytics.json"
 
 
 def generate_random_weights():
-    """Return a dict of 6 random weights in [-1, 1]."""
+    """Return a dict of 6 random synapse weights sampled uniformly from [-1, 1].
+
+    Returns:
+        Dict mapping synapse names ("w03", "w04", ..., "w24") to float values.
+    """
     weights = {}
     for s in SENSOR_NEURONS:
         for m in MOTOR_NEURONS:
@@ -57,7 +70,16 @@ def generate_random_weights():
 
 
 def write_brain(weights):
-    """Write brain.nndf with the given 6-synapse weights."""
+    """Write brain.nndf with the given 6-synapse weights.
+
+    Args:
+        weights: Dict mapping synapse names ("w03", "w04", ..., "w24") to
+            float weight values.
+
+    Side effects:
+        Overwrites PROJECT/brain.nndf with a 3-sensor, 2-motor, 6-synapse
+        neural network definition.
+    """
     path = PROJECT / "brain.nndf"
     with open(path, "w") as f:
         f.write('<neuralNetwork>\n')
@@ -75,7 +97,16 @@ def write_brain(weights):
 
 
 def safe_get_base_pose(body_id):
-    """Get robot base position and orientation, returning zeros on failure."""
+    """Get robot base position and orientation, returning zeros on failure.
+
+    Args:
+        body_id: PyBullet body ID of the robot.
+
+    Returns:
+        Tuple of (position, orientation) where position is a 3-tuple of
+        floats and orientation is a 4-tuple quaternion. Returns zeroed
+        defaults if the PyBullet query fails (e.g., after disconnect).
+    """
     try:
         return p.getBasePositionAndOrientation(body_id)
     except Exception:
@@ -83,7 +114,26 @@ def safe_get_base_pose(body_id):
 
 
 def run_trial(trial_name, weights, out_dir):
-    """Run one headless simulation with full telemetry. Returns final position."""
+    """Run one headless simulation with full-resolution disk telemetry.
+
+    Sets up a headless PyBullet instance, writes brain.nndf with the given
+    weights, runs c.SIM_STEPS of NN-driven simulation, and logs every
+    timestep to a JSONL file via TelemetryLogger.
+
+    Args:
+        trial_name: Identifier string used in the telemetry logger's
+            variant_id (e.g. "random_trial_0").
+        weights: Dict mapping synapse names to float weight values.
+        out_dir: Path to the directory where telemetry.jsonl will be written.
+
+    Returns:
+        Final base position as a 3-tuple of floats (x, y, z) in meters.
+
+    Side effects:
+        Overwrites brain.nndf. Creates out_dir and writes telemetry.jsonl
+        and summary.json inside it. Connects and disconnects a PyBullet
+        physics server.
+    """
     write_brain(weights)
 
     cid = p.connect(p.DIRECT)
@@ -135,7 +185,16 @@ def run_trial(trial_name, weights, out_dir):
 
 
 def main():
-    """Run 5 random trials with disk telemetry, then compute and display analytics."""
+    """Run 5 random trials with disk telemetry, then compute and display analytics.
+
+    Side effects:
+        - Backs up and restores brain.nndf.
+        - Writes telemetry JSONL files under artifacts/telemetry/random_trial_N/.
+        - Writes artifacts/random_search_analytics.json with per-trial weights
+          and full analytics dicts.
+        - Prints a summary comparison table of all four Beer-framework pillars
+          to stdout.
+    """
     # Back up brain.nndf
     brain_path = PROJECT / "brain.nndf"
     backup_path = PROJECT / "brain.nndf.backup"

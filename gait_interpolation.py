@@ -2,27 +2,40 @@
 """
 gait_interpolation.py
 
-Gait Interpolation — What Lies Between Champions?
+Role:
+    Research campaign script that linearly interpolates in 6D weight space
+    between pairs of high-performing gaits and simulates at each point.
+    Maps the fitness landscape along champion-to-champion transects and
+    compares their roughness to random-direction baselines.
 
-Linearly interpolate in 6D weight space between pairs of high-performing
-gaits and simulate at each point. Map the fitness landscape along these
-privileged transects — are champion-to-champion corridors smoother than
-random directions?
+    Answers four key questions:
+      1. Is the landscape between two champions a smooth valley, a cliff,
+         or fractal noise?
+      2. Are there intermediate gaits that outperform the endpoints?
+      3. Do champion transects show any smoothness floor, or is the fractal
+         structure universal?
+      4. Is the interpolation path special compared to random directions?
 
-Questions:
-  1. Is the landscape between two champions a smooth valley, a cliff,
-     or fractal noise?
-  2. Are there intermediate gaits that outperform the endpoints?
-  3. Do champion transects show any smoothness floor, or is the fractal
-     structure universal?
-  4. Is the interpolation path special compared to random directions?
+Approach:
+    Part 1: Pairwise Transects (6 pairs x 80 points = 480 sims)
+        Walk a straight line between each champion pair in 6D weight space.
+    Part 2: Grand Tour (200 points through 6 champions in sequence)
+        Piecewise-linear path visiting all champions.
+    Part 3: Midpoint Probing (6 midpoints x 8 directions x 20 points = 960 sims)
+        At each transect midpoint, probe perpendicular directions to test
+        local landscape isotropy.
+    Part 4: Random Baseline (6 pairs x 20 dirs x 40 pts = 4800 sims)
+        Walk random directions from each pair's start point (same Euclidean
+        distance as the transect) to establish a roughness baseline.
 
 Simulation budget: ~2,400 sims (~3 min)
 
-Part 1: Pairwise Transects (6 pairs x 80 points = 480 sims)
-Part 2: Grand Tour (200 points through 6 champions in sequence)
-Part 3: Midpoint Probing (6 midpoints x 8 directions x 20 points = 960 sims)
-Part 4: Transect Roughness vs Random Baseline (6 pairs x ~120 pts = 720 sims)
+Notes:
+    - This script is self-contained: defines its own simulation harness
+      using headless PyBullet DIRECT mode.
+    - All simulations are deterministic (identical weights produce identical DX).
+    - Roughness is quantified via mean |second difference| of the DX profile,
+      sign change rate, and maximum single step.
 
 Outputs:
     artifacts/gait_interpolation.json
@@ -122,7 +135,18 @@ RNG_SEED = 123
 # ── Simulation ──────────────────────────────────────────────────────────────
 
 def write_brain_standard(weights):
-    """Write a 3-sensor, 2-motor brain.nndf file from a weight dict."""
+    """Write a standard 3-sensor/2-motor brain.nndf file from a weight dict.
+
+    Creates the standard topology: 3 sensor neurons (Torso, BackLeg, FrontLeg)
+    and 2 motor neurons (Torso_BackLeg, Torso_FrontLeg) with 6 synapses.
+
+    Args:
+        weights: Dict mapping synapse names (e.g., "w03") to float weights.
+            Must contain keys w03, w04, w13, w14, w23, w24.
+
+    Side effects:
+        Overwrites PROJECT / "brain.nndf" on disk.
+    """
     path = PROJECT / "brain.nndf"
     with open(path, "w") as f:
         f.write('<neuralNetwork>\n')
@@ -140,7 +164,21 @@ def write_brain_standard(weights):
 
 
 def simulate_dx_only(weights):
-    """Minimal sim — returns DX."""
+    """Run a minimal headless simulation and return only the net X displacement.
+
+    This is the lightweight simulation function used for landscape mapping
+    where only the final DX metric is needed (no per-step trajectory capture).
+
+    Args:
+        weights: Dict mapping synapse names to float weights.
+
+    Returns:
+        Float: net X displacement (x_last - x_first) in meters.
+
+    Side effects:
+        Writes brain.nndf to disk (via write_brain_standard).
+        Connects and disconnects a PyBullet physics client.
+    """
     write_brain_standard(weights)
 
     cid = p.connect(p.DIRECT)
@@ -200,7 +238,17 @@ def vec_to_weights(v):
 
 
 def interpolate_weights(w1, w2, t):
-    """Linear interpolation: t=0 → w1, t=1 → w2."""
+    """Linearly interpolate between two weight dicts in 6D weight space.
+
+    Args:
+        w1: Starting weight dict (returned at t=0).
+        w2: Ending weight dict (returned at t=1).
+        t: Interpolation parameter in [0, 1]. Values outside this range
+            extrapolate beyond the endpoints.
+
+    Returns:
+        Dict of interpolated weights keyed by synapse name.
+    """
     # Lift weight dicts into 6D vectors so we can interpolate component-wise
     v1 = weights_to_vec(w1)
     v2 = weights_to_vec(w2)
@@ -210,9 +258,25 @@ def interpolate_weights(w1, w2, t):
 
 
 def compute_roughness(dx_values, t_values):
-    """
-    Roughness = mean |second difference| of DX profile.
-    Also returns max_step and sign_change_rate.
+    """Compute roughness statistics for a DX profile along a transect.
+
+    Roughness is defined as the mean absolute second difference (curvature
+    proxy) of the DX sequence. Additional metrics capture the maximum
+    single-step jump and how often the slope reverses direction.
+
+    Args:
+        dx_values: List or array of DX measurements along the transect.
+        t_values: List or array of corresponding parameter values (e.g.,
+            interpolation t in [0, 1]).
+
+    Returns:
+        Dict with keys:
+            roughness: Mean absolute second difference.
+            max_step: Largest absolute first difference.
+            sign_change_rate: Fraction of consecutive pairs where slope
+                reverses (0 = monotone, 1 = every step reverses).
+            mean_gradient: Mean |DX change per unit t|.
+        Returns zeros for all metrics if fewer than 3 data points.
     """
     dxs = np.array(dx_values)
     n = len(dxs)
@@ -247,9 +311,22 @@ def compute_roughness(dx_values, t_values):
 
 
 def perpendicular_basis(direction, rng, n_dirs=8):
-    """
-    Generate n_dirs evenly-spaced directions in the plane
-    perpendicular to `direction` (6D).
+    """Generate evenly-spaced probe directions in the hyperplane perpendicular to a 6D vector.
+
+    Finds two orthonormal vectors in the 5D hyperplane perpendicular to the
+    given direction (via Gram-Schmidt rejection of random candidates), then
+    sweeps a circle in that 2D subspace to produce n_dirs uniformly-spaced
+    unit vectors.
+
+    Args:
+        direction: 6D numpy array defining the reference direction (e.g.,
+            the transect vector between two champions).
+        rng: numpy RandomState instance for reproducible random vector generation.
+        n_dirs: Number of evenly-spaced directions to generate. Default 8.
+
+    Returns:
+        List of n_dirs unit-length 6D numpy arrays, each perpendicular to
+        the input direction.
     """
     # Normalize the transect direction to a unit vector in 6D
     d = direction / (np.linalg.norm(direction) + EPS)
@@ -317,7 +394,20 @@ PAIR_COLORS = ["#E24A33", "#348ABD", "#988ED5", "#55A868", "#FBC15E", "#777777"]
 # ── Figures ─────────────────────────────────────────────────────────────────
 
 def fig01_pairwise_transects(transect_data):
-    """6-panel gallery: DX profile along each pairwise interpolation."""
+    """Plot a multi-panel gallery of DX profiles along each pairwise interpolation.
+
+    Each panel shows the DX landscape as a function of interpolation parameter t
+    (0 = champion A, 1 = champion B). Endpoints are marked with circles/squares,
+    and the global max/min along each transect are indicated with triangles.
+    Panel titles include roughness statistics.
+
+    Args:
+        transect_data: Dict mapping "A -> B" pair keys to dicts containing
+            t_values, dx_values, and roughness statistics.
+
+    Side effects:
+        Saves interp_fig01_pairwise_transects.png to PLOT_DIR.
+    """
     n_pairs = len(transect_data)
     n_cols = 3
     n_rows = (n_pairs + n_cols - 1) // n_cols
@@ -371,7 +461,19 @@ def fig01_pairwise_transects(transect_data):
 
 
 def fig02_grand_tour(tour_data):
-    """Grand tour: DX along the path visiting all champions."""
+    """Plot the grand tour: DX and weight trajectories along a path visiting all champions.
+
+    Left panel: DX profile with champion positions marked along the tour.
+    Right panel: all 6 synapse weights plotted as continuous curves along
+    the tour path.
+
+    Args:
+        tour_data: Dict containing cumulative_t, dx_values, weight_vectors,
+            and the champion visit order.
+
+    Side effects:
+        Saves interp_fig02_grand_tour.png to PLOT_DIR.
+    """
     fig, axes = plt.subplots(1, 2, figsize=(14, 5))
     fig.suptitle("Grand Tour Through Champion Space", fontsize=14, fontweight="bold")
 
@@ -415,7 +517,22 @@ def fig02_grand_tour(tour_data):
 
 
 def fig03_midpoint_landscape(midpoint_data, transect_data):
-    """Midpoint probes: 2x3 grid showing local landscape at transect midpoints."""
+    """Plot local landscape probes at each transect midpoint (multi-panel grid).
+
+    For each champion pair, shows the transect DX profile in the background
+    and overlays perpendicular probe curves centered at the midpoint. Each
+    colored curve is a different direction in the 5D hyperplane perpendicular
+    to the transect. Panel titles compare perpendicular vs transect roughness.
+
+    Args:
+        midpoint_data: Dict mapping pair keys to midpoint probe results,
+            including directions, r_values, dx_values, and mean_perp_roughness.
+        transect_data: Dict mapping pair keys to transect results (used for
+            background DX curves and roughness comparison).
+
+    Side effects:
+        Saves interp_fig03_midpoint_landscape.png to PLOT_DIR.
+    """
     n_mid = len(midpoint_data)
     n_cols = 3
     n_rows = (n_mid + n_cols - 1) // n_cols
@@ -465,7 +582,20 @@ def fig03_midpoint_landscape(midpoint_data, transect_data):
 
 
 def fig04_roughness_comparison(transect_data, random_roughness):
-    """Compare transect roughness to random-direction roughness."""
+    """Compare champion transect roughness to random-direction roughness (3-panel figure).
+
+    Left: absolute roughness (mean |2nd diff|) as horizontal bars per transect,
+        with random-direction mean/median as vertical reference lines.
+    Center: sign change rate comparison.
+    Right: maximum single step comparison.
+
+    Args:
+        transect_data: Dict mapping pair keys to transect results with roughness.
+        random_roughness: List of roughness dicts from random-direction probes.
+
+    Side effects:
+        Saves interp_fig04_roughness_comparison.png to PLOT_DIR.
+    """
     fig, axes = plt.subplots(1, 3, figsize=(15, 5))
     fig.suptitle("Are Champion Transects Smoother Than Random?",
                  fontsize=14, fontweight="bold")
@@ -537,7 +667,20 @@ def fig04_roughness_comparison(transect_data, random_roughness):
 
 
 def fig05_weight_trajectories(transect_data):
-    """Weight-space distance vs DX for all transects."""
+    """Plot weight-space geometry of interpolation (2-panel figure).
+
+    Left: |DX| plotted against Euclidean weight distance from the starting
+        champion, revealing how displacement varies with distance traveled
+        through weight space.
+    Right: box plots of the DX distribution along each transect.
+
+    Args:
+        transect_data: Dict mapping pair keys to transect results containing
+            t_values, dx_values, and weight_vectors.
+
+    Side effects:
+        Saves interp_fig05_weight_trajectories.png to PLOT_DIR.
+    """
     fig, axes = plt.subplots(1, 2, figsize=(14, 5))
     fig.suptitle("Weight-Space Geometry of Interpolation",
                  fontsize=14, fontweight="bold")
@@ -583,7 +726,27 @@ def fig05_weight_trajectories(transect_data):
 
 
 def fig06_verdict(transect_data, random_roughness, midpoint_data):
-    """Summary verdict panel."""
+    """Generate the summary verdict figure with 5 subplots and a text panel.
+
+    Top-left: all transects overlaid on a single axis.
+    Top-center: roughness histogram for random directions with transect
+        roughness values marked as vertical lines.
+    Top-right: bar chart of excess |DX| that intermediate gaits achieve
+        beyond both endpoints (positive = super-gaits discovered).
+    Bottom-left: grouped bars comparing perpendicular vs transect roughness
+        at each midpoint.
+    Bottom-right: monospace verdict text summarizing key findings and
+        classifying the landscape (smooth corridors, cliff edges, or
+        universal fractal).
+
+    Args:
+        transect_data: Dict mapping pair keys to transect results.
+        random_roughness: List of roughness dicts from random-direction probes.
+        midpoint_data: Dict mapping pair keys to midpoint probe results.
+
+    Side effects:
+        Saves interp_fig06_verdict.png to PLOT_DIR.
+    """
     fig = plt.figure(figsize=(14, 8))
     fig.suptitle("Gait Interpolation Verdict", fontsize=14, fontweight="bold")
 
@@ -724,8 +887,21 @@ def fig06_verdict(transect_data, random_roughness, midpoint_data):
 # ── JSON encoder ────────────────────────────────────────────────────────────
 
 class NumpyEncoder(json.JSONEncoder):
-    """JSON encoder that handles numpy scalars and arrays."""
+    """JSON encoder that handles numpy scalar types and ndarrays.
+
+    Converts numpy integers, floats, booleans, and ndarrays to their
+    Python equivalents so json.dump() can serialize results dicts.
+    """
+
     def default(self, obj):
+        """Convert numpy types to JSON-serializable Python types.
+
+        Args:
+            obj: Object that the default encoder cannot handle.
+
+        Returns:
+            Python-native equivalent of the numpy type.
+        """
         if isinstance(obj, np.integer):
             return int(obj)
         if isinstance(obj, np.floating):
@@ -740,7 +916,22 @@ class NumpyEncoder(json.JSONEncoder):
 # ── Main ────────────────────────────────────────────────────────────────────
 
 def main():
-    """Run all four interpolation experiments, generate plots, and save JSON."""
+    """Run all four interpolation experiments, generate plots, and save JSON.
+
+    Executes the full pipeline in sequence:
+      - Champion verification: simulate each champion's DX for sanity checking.
+      - Part 1: Pairwise transects between 6 champion pairs.
+      - Part 2: Grand tour through all 6 champions in a single path.
+      - Part 3: Midpoint probing in perpendicular directions.
+      - Part 4: Random-direction baseline for roughness comparison.
+      - Analysis: Print roughness ratios, intermediate discoveries, sign rates.
+      - Figures: Generate 6 publication-quality figures.
+      - JSON: Save all transect data, roughness stats, and verdicts.
+
+    Side effects:
+        Writes brain.nndf (overwritten per simulation), 6 PNG figures, and
+        1 JSON file. Prints detailed console analysis of interpolation results.
+    """
     rng = np.random.RandomState(RNG_SEED)
 
     total_sims = 0

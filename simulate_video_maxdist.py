@@ -1,11 +1,35 @@
 """
 simulate_video_maxdist.py
 
+Role:
+    Run a GUI simulation using the best parameters found by optimize_gait.py,
+    record an MP4 video via PyBullet state logging, and track distance traveled.
+    Designed for visual evaluation and demo recording of the optimized sine gait.
+
+Pipeline:
+    1. Set up physics with the optimized friction split (slippery torso, grippy legs).
+    2. Settle the robot for 1 second to let it rest on the ground plane.
+    3. Record 10 seconds of locomotion, following the robot with a chase camera.
+    4. Print periodic position updates and the final XY distance.
+
+Hardcoded parameters:
+    - Best gait found by optimize_gait.py (seed=2, 800 trials, 10s each).
+    - Friction split: torso_friction=0.22, foot_friction=9.68.
+    - Solver: 350 iterations for high-fidelity contact resolution.
+
+Outputs:
+    - motors_run.mp4: recorded video of the GUI simulation.
+    - Console: periodic position/distance updates and final distance.
+
+Requirements:
+    - body.urdf must exist (run `python3 generate.py` first).
+    - Requires a display for PyBullet GUI mode.
+
 Ludobots role:
-  - Video capture plus distance-tracking to evaluate/compare gaits.
+    - Video capture plus distance-tracking to evaluate/compare gaits.
 
 Beyond Ludobots (this repo):
-  - (Document how max distance is computed and reported.)
+    - Companion to optimize_gait.py; uses its best-found parameters for demo recording.
 """
 
 import math
@@ -23,7 +47,18 @@ def dist_xy(pos) -> float:
 
 
 def main():
-    """Run a GUI simulation with optimized gait parameters, recording video and tracking max distance."""
+    """Run a GUI simulation with optimized gait parameters, recording video and tracking distance.
+
+    The gait parameters are hardcoded from the best result of optimize_gait.py
+    (seed=2, 800 trials). Uses a friction split strategy (slippery torso, grippy
+    feet) and dual-joint sine control with amplitude, frequency, phase offset,
+    and per-joint biases.
+
+    Side effects:
+        - Opens a PyBullet GUI window with chase camera.
+        - Records motors_run.mp4 via PyBullet state logging.
+        - Prints position and distance to stdout every 120 steps.
+    """
     # Best parameters found by optimize_gait.py (seed=2, trials=800, 10 seconds)
     amp = 1.349812021807046
     freq = 3.7746450934703417
@@ -76,7 +111,8 @@ def main():
     p.changeDynamics(robot_id, j0, lateralFriction=foot_friction, spinningFriction=0.05, rollingFriction=0.05)
     p.changeDynamics(robot_id, j1, lateralFriction=foot_friction, spinningFriction=0.05, rollingFriction=0.05)
 
-    # Settle before recording
+    # Settle before recording: let the robot come to rest on the ground plane,
+    # then zero out any residual velocity so the recording starts cleanly.
     for _ in range(int(settle_seconds / dt)):
         p.stepSimulation()
         time.sleep(dt)

@@ -2,15 +2,29 @@
 """
 walker_competition.py
 
-Head-to-head competition of 5 gaitspace walker algorithms, each with a
-1,000-evaluation budget on the 6D synapse weight space.
+Role:
+    Head-to-head competition of 5 gaitspace walker algorithms, each with a
+    1,000-evaluation budget on the 6D synapse weight space. Compares
+    optimization strategies across multiple performance dimensions and
+    produces a ranked leaderboard with supporting visualizations.
 
 Walkers:
-  1. Hill Climber        — accept perturbation if |DX| improves
-  2. Ridge Walker        — Pareto-non-dominated moves on (|DX|, efficiency)
-  3. Cliff Mapper        — probe 10 directions, walk toward steepest cliff
-  4. Novelty Seeker      — pick most behaviorally novel candidate from 5
-  5. Ensemble Explorer   — 20 parallel hill climbers with teleportation
+    1. Hill Climber        -- accept perturbation if |DX| improves
+    2. Ridge Walker        -- Pareto-non-dominated moves on (|DX|, efficiency)
+    3. Cliff Mapper        -- probe 10 directions, walk toward steepest cliff
+    4. Novelty Seeker      -- pick most behaviorally novel candidate from 5
+    5. Ensemble Explorer   -- 20 parallel hill climbers with teleportation
+
+Scoring dimensions (6 metrics, all higher-is-better):
+    best_dx, best_efficiency, best_speed, pareto_size, diversity, unique_regimes
+
+Notes:
+    - Each walker gets exactly 1,000 simulation evaluations (budget-matched).
+    - All walkers share the same evaluate() function (headless PyBullet, DIRECT mode).
+    - The simulation harness is self-contained: writes brain.nndf, runs PyBullet,
+      extracts metrics via compute_beer_analytics.
+    - brain.nndf is backed up before the run and restored afterward.
+    - PCA projections (behavioral space + weight space) are computed with numpy only.
 
 Outputs:
     artifacts/walker_competition.json
@@ -75,7 +89,18 @@ WALKER_COLORS = ["#4C72B0", "#55A868", "#C44E52", "#8172B2", "#CCB974"]
 # ── Simulation (shared from random_search_500.py pattern) ───────────────────
 
 def write_brain(weights):
-    """Write a brain.nndf file from a weight dict mapping 'wXY' to float values."""
+    """Write a brain.nndf file from a weight dict mapping 'wXY' to float values.
+
+    Defines the standard 3-sensor, 2-motor topology with full connectivity
+    (6 synapses). Overwrites PROJECT/brain.nndf.
+
+    Args:
+        weights: dict with keys like "w03", "w04", ... "w24" mapping
+                 source-target neuron pairs to float synapse weights.
+
+    Side effects:
+        Overwrites brain.nndf in the project directory.
+    """
     path = PROJECT / "brain.nndf"
     with open(path, "w") as f:
         f.write('<neuralNetwork>\n')
@@ -93,7 +118,22 @@ def write_brain(weights):
 
 
 def evaluate(weights):
-    """Run one headless simulation → compact metrics dict."""
+    """Run one headless simulation and return a compact metrics dict.
+
+    Writes brain.nndf, runs a full PyBullet simulation in DIRECT mode,
+    records per-step telemetry, and computes Beer-framework analytics.
+
+    Args:
+        weights: dict mapping synapse names ("wXY") to float values.
+
+    Returns:
+        dict with keys: dx, abs_dx, speed, efficiency, work_proxy,
+        phase_lock, entropy, roll_dom.
+
+    Side effects:
+        - Overwrites brain.nndf via write_brain().
+        - Creates and destroys a PyBullet physics connection.
+    """
     write_brain(weights)
 
     cid = p.connect(p.DIRECT)
@@ -214,22 +254,52 @@ def evaluate(weights):
 # ── Shared helpers ───────────────────────────────────────────────────────────
 
 def random_weights():
-    """Random weight dict, each in [-1, 1]."""
+    """Generate a random weight dict with each value sampled uniformly from [-1, 1].
+
+    Returns:
+        dict mapping each synapse name in WEIGHT_NAMES to a random float.
+    """
     return {wn: random.uniform(-1, 1) for wn in WEIGHT_NAMES}
 
 
 def weights_to_vec(weights):
-    """Convert weight dict to numpy array."""
+    """Convert weight dict to a numpy array, ordered by WEIGHT_NAMES.
+
+    Args:
+        weights: dict mapping synapse names to float values.
+
+    Returns:
+        numpy array of shape (N_WEIGHTS,).
+    """
     return np.array([weights[wn] for wn in WEIGHT_NAMES])
 
 
 def vec_to_weights(vec):
-    """Convert numpy array to weight dict."""
+    """Convert a numpy array back to a weight dict, keyed by WEIGHT_NAMES.
+
+    Args:
+        vec: numpy array of shape (N_WEIGHTS,).
+
+    Returns:
+        dict mapping synapse names to float values.
+    """
     return {wn: float(vec[i]) for i, wn in enumerate(WEIGHT_NAMES)}
 
 
 def perturb(weights, radius):
-    """Perturb weights along a random 6D unit vector at given radius."""
+    """Perturb weights along a random 6D unit vector at given radius.
+
+    Generates a uniformly random direction on the N_WEIGHTS-dimensional
+    unit sphere and moves the weight vector by exactly `radius` in that
+    direction. The result is not clamped, so weights may exceed [-1, 1].
+
+    Args:
+        weights: dict mapping synapse names to float values.
+        radius: step size (Euclidean distance in weight space).
+
+    Returns:
+        New weight dict with the perturbation applied.
+    """
     direction = np.random.randn(N_WEIGHTS)
     norm = np.linalg.norm(direction)
     if norm < 1e-12:  # guard against near-zero random vector (astronomically rare)
@@ -243,7 +313,19 @@ def perturb(weights, radius):
 
 
 def behavioral_vec(metrics):
-    """6D behavioral descriptor from metrics dict (raw, unnormalized)."""
+    """Extract a 6D behavioral descriptor from a metrics dict (raw, unnormalized).
+
+    The descriptor captures six orthogonal aspects of gait behavior:
+    displacement, speed, efficiency, coordination, contact complexity,
+    and rotation axis dominance.
+
+    Args:
+        metrics: dict returned by evaluate().
+
+    Returns:
+        numpy array of shape (6,): [abs_dx, speed, efficiency,
+        phase_lock, entropy, roll_dom].
+    """
     return np.array([
         metrics["abs_dx"],
         metrics["speed"],
@@ -255,7 +337,17 @@ def behavioral_vec(metrics):
 
 
 def normalize_behavioral_vecs(vecs):
-    """Normalize behavioral vectors to [0, 1] per dimension."""
+    """Min-max normalize behavioral vectors to [0, 1] per dimension.
+
+    Constant dimensions (range < 1e-12) are set to range 1.0 to avoid
+    division by zero, effectively zeroing those dimensions.
+
+    Args:
+        vecs: list of behavioral vectors (each a numpy array or list).
+
+    Returns:
+        numpy array of shape (len(vecs), 6) with values in [0, 1].
+    """
     arr = np.array(vecs)
     if len(arr) == 0:
         return arr
@@ -267,12 +359,31 @@ def normalize_behavioral_vecs(vecs):
 
 
 def behavioral_distance(bv1, bv2):
-    """Euclidean distance between two behavioral vectors."""
+    """Compute the Euclidean distance between two behavioral vectors.
+
+    Args:
+        bv1: first behavioral vector (array-like).
+        bv2: second behavioral vector (array-like).
+
+    Returns:
+        float: L2 distance between the two vectors.
+    """
     return np.linalg.norm(np.array(bv1) - np.array(bv2))
 
 
 def novelty(bvec, archive_bvecs, k=15):
-    """Mean distance to k nearest neighbors in archive."""
+    """Compute the novelty score as mean distance to k nearest neighbors.
+
+    Args:
+        bvec: behavioral vector to score (array-like).
+        archive_bvecs: list of archived behavioral vectors to compare against.
+        k: number of nearest neighbors to average over. If the archive
+           has fewer than k entries, all entries are used.
+
+    Returns:
+        float: mean Euclidean distance to the k nearest archive entries.
+        Returns inf if the archive is empty.
+    """
     if len(archive_bvecs) == 0:
         return float('inf')
     dists = [behavioral_distance(bvec, a) for a in archive_bvecs]
@@ -282,14 +393,34 @@ def novelty(bvec, archive_bvecs, k=15):
 
 
 def is_dominated(a_metrics, b_metrics):
-    """True if b dominates a on (|DX|, efficiency) — b >= a on both, b > a on at least one."""
+    """Test Pareto dominance: True if b dominates a on (|DX|, efficiency).
+
+    Dominance means b >= a on both objectives and b > a on at least one.
+
+    Args:
+        a_metrics: metrics dict for the candidate being tested.
+        b_metrics: metrics dict for the potential dominator.
+
+    Returns:
+        bool: True if b Pareto-dominates a.
+    """
     a_dx, a_eff = a_metrics["abs_dx"], a_metrics["efficiency"]
     b_dx, b_eff = b_metrics["abs_dx"], b_metrics["efficiency"]
     return (b_dx >= a_dx and b_eff >= a_eff) and (b_dx > a_dx or b_eff > a_eff)
 
 
 def pareto_front(archive):
-    """Return list of non-dominated points from archive (list of metrics dicts)."""
+    """Extract the Pareto front from an archive of metrics dicts.
+
+    Uses brute-force O(n^2) pairwise dominance checks. Suitable for
+    archives up to ~1000 points.
+
+    Args:
+        archive: list of metrics dicts, each with "abs_dx" and "efficiency".
+
+    Returns:
+        list of non-dominated metrics dicts (the Pareto front).
+    """
     front = []
     for i, a in enumerate(archive):
         dominated = False
@@ -305,7 +436,17 @@ def pareto_front(archive):
 # ── Walker implementations ──────────────────────────────────────────────────
 
 def run_hill_climber():
-    """Walker 1: Simple hill climber maximizing |DX|. 1 eval/step, 999 steps."""
+    """Walker 1: Simple hill climber maximizing |DX|.
+
+    Strategy: greedy local search with radius-0.1 perturbations.
+    Accepts a candidate only if it strictly improves |DX|.
+    Budget: 1 initial + 999 steps = 1,000 evaluations.
+
+    Returns:
+        tuple of (archive, weight_history) where:
+            archive: list of dicts with "weights" and "metrics" for every evaluation.
+            weight_history: list of numpy weight vectors (one per evaluation).
+    """
     print("\n[1/5] Hill Climber (999 steps)...")
     archive = []
     weight_history = []
@@ -337,7 +478,19 @@ def run_hill_climber():
 
 
 def run_ridge_walker():
-    """Walker 2: Pareto-non-dominated moves on (|DX|, efficiency). 3 evals/step, 333 steps."""
+    """Walker 2: Pareto-non-dominated moves on (|DX|, efficiency).
+
+    Strategy: multi-objective search. Each step generates 3 candidates,
+    filters to those not dominated by the current point, and picks the
+    one farthest in 2D objective space (encouraging Pareto front
+    exploration rather than stagnation).
+    Budget: 1 initial + 3 * 333 = 1,000 evaluations.
+
+    Returns:
+        tuple of (archive, weight_history) where:
+            archive: list of dicts with "weights" and "metrics" for every evaluation.
+            weight_history: list of numpy weight vectors (one per evaluation).
+    """
     print("\n[2/5] Ridge Walker (333 steps, 3 candidates/step)...")
     archive = []
     weight_history = []
@@ -385,7 +538,19 @@ def run_ridge_walker():
 
 
 def run_cliff_mapper():
-    """Walker 3: Probe 10 directions, walk toward steepest cliff. 10 evals/step, 99 steps."""
+    """Walker 3: Probe 10 directions, walk toward steepest cliff.
+
+    Strategy: gradient-like exploration. Each step probes 10 nearby points
+    (radius 0.05) and moves to whichever shows the largest absolute change
+    in |DX|, regardless of sign. This deliberately seeks "cliffs" in the
+    fitness landscape -- regions of high sensitivity.
+    Budget: 1 initial + 10 * 99 + 9 remainder = 1,000 evaluations.
+
+    Returns:
+        tuple of (archive, weight_history) where:
+            archive: list of dicts with "weights" and "metrics" for every evaluation.
+            weight_history: list of numpy weight vectors (one per evaluation).
+    """
     print("\n[3/5] Cliff Mapper (99 steps, 10 probes/step)...")
     archive = []
     weight_history = []
@@ -431,7 +596,20 @@ def run_cliff_mapper():
 
 
 def run_novelty_seeker():
-    """Walker 4: Pick most behaviorally novel candidate from 5. 5 evals/step, 199 steps."""
+    """Walker 4: Pick most behaviorally novel candidate from 5.
+
+    Strategy: novelty-driven search. Each step generates 5 candidates
+    (radius 0.2), normalizes all behavioral vectors together, and moves
+    to whichever candidate has the highest k-NN novelty score -- regardless
+    of its fitness. This maximizes behavioral diversity rather than
+    optimizing any single metric.
+    Budget: 1 initial + 5 * 199 + 4 remainder = 1,000 evaluations.
+
+    Returns:
+        tuple of (archive, weight_history) where:
+            archive: list of dicts with "weights" and "metrics" for every evaluation.
+            weight_history: list of numpy weight vectors (one per evaluation).
+    """
     print("\n[4/5] Novelty Seeker (199 steps, 5 candidates/step)...")
     archive = []
     weight_history = []
@@ -497,7 +675,19 @@ def run_novelty_seeker():
 
 
 def run_ensemble_explorer():
-    """Walker 5: 20 parallel hill climbers with teleportation. 1 eval/walker/step, 49 steps."""
+    """Walker 5: 20 parallel hill climbers with teleportation.
+
+    Strategy: island-model search. 20 walkers hill-climb independently.
+    Every 10 steps, walkers that have converged behaviorally (normalized
+    distance < 0.3) are "teleported" -- the worse walker is reset to a
+    random location to maintain population diversity.
+    Budget: 20 initial + 20 * 49 = 1,000 evaluations.
+
+    Returns:
+        tuple of (archive, weight_history) where:
+            archive: list of dicts with "weights" and "metrics" for every evaluation.
+            weight_history: list of numpy weight vectors (one per evaluation).
+    """
     print("\n[5/5] Ensemble Explorer (20 walkers x 49 steps)...")
     n_walkers = 20
     n_steps = 49
@@ -562,7 +752,23 @@ def run_ensemble_explorer():
 # ── Scoring ──────────────────────────────────────────────────────────────────
 
 def score_walkers(all_archives):
-    """Compute 6 competition metrics for each walker → leaderboard."""
+    """Compute 6 competition metrics for each walker to build the leaderboard.
+
+    Metrics computed per walker:
+        best_dx: highest |DX| found in the archive.
+        best_efficiency: highest efficiency among gaits with |DX| > 2m.
+        best_speed: highest mean speed found.
+        pareto_size: number of Pareto-non-dominated points on (|DX|, efficiency).
+        diversity: mean pairwise behavioral distance (sampled, 200 pairs).
+        unique_regimes: number of non-empty clusters from k-means (k=10).
+
+    Args:
+        all_archives: list of 5 archives, one per walker. Each archive is a
+                      list of dicts with "weights" and "metrics".
+
+    Returns:
+        dict mapping walker name to a dict of the 6 metric values.
+    """
     scores = {}
 
     for wi, name in enumerate(WALKER_NAMES):
@@ -611,7 +817,20 @@ def score_walkers(all_archives):
 
 
 def count_unique_regimes(norm_bvecs, k=10, max_iter=50):
-    """Simple k-means clustering, return count of non-empty clusters. Numpy-only."""
+    """Count unique behavioral regimes via k-means clustering (numpy-only).
+
+    Runs Lloyd's algorithm with random initialization and returns the number
+    of clusters that contain at least one point. Convergence is detected
+    when centroids stop moving (within floating point tolerance).
+
+    Args:
+        norm_bvecs: list or array of normalized behavioral vectors.
+        k: number of clusters to initialize. Defaults to 10.
+        max_iter: maximum Lloyd iterations. Defaults to 50.
+
+    Returns:
+        int: number of non-empty clusters (between 1 and k).
+    """
     if len(norm_bvecs) < k:
         return len(norm_bvecs)
 
@@ -649,7 +868,22 @@ def count_unique_regimes(norm_bvecs, k=10, max_iter=50):
 
 
 def compute_ranks(scores):
-    """Rank walkers 1-5 on each metric. Lower rank = better. Return ranks dict + overall."""
+    """Rank walkers 1--5 on each metric (lower rank = better).
+
+    All metrics are treated as higher-is-better. The overall rank is the
+    sum of per-metric ranks, with ties broken by the best_dx rank
+    (displacement as tiebreaker).
+
+    Args:
+        scores: dict mapping walker name to a dict of 6 metric values
+                (as returned by score_walkers).
+
+    Returns:
+        dict mapping walker name to a dict containing:
+            - per-metric ranks (int 1--5 for each of the 6 metrics)
+            - "total": sum of the 6 ranks
+            - "overall": final ranking (1 = winner)
+    """
     metric_keys = ["best_dx", "best_efficiency", "best_speed",
                    "pareto_size", "diversity", "unique_regimes"]
     # All metrics: higher is better
@@ -677,7 +911,16 @@ def compute_ranks(scores):
 # ── Zoo context ──────────────────────────────────────────────────────────────
 
 def load_zoo_summary():
-    """Load gait metrics from the v2 zoo JSON for context plotting. Returns list of metric dicts."""
+    """Load gait metrics from the v2 zoo JSON for context plotting.
+
+    Extracts key metrics from each gait in synapse_gait_zoo_v2.json to
+    overlay zoo data on competition plots (e.g., Pareto front).
+
+    Returns:
+        list of metric dicts, one per zoo gait, with keys: name, dx,
+        abs_dx, speed, efficiency, phase_lock, entropy, roll_dom.
+        Returns an empty list if the zoo file does not exist.
+    """
     zoo_path = PROJECT / "synapse_gait_zoo_v2.json"
     if not zoo_path.exists():
         return []
@@ -707,13 +950,26 @@ def load_zoo_summary():
 # ── Plotting helpers ─────────────────────────────────────────────────────────
 
 def clean_ax(ax):
-    """Remove top and right spines from a matplotlib Axes for a cleaner look."""
+    """Remove top and right spines from a matplotlib Axes for a cleaner look.
+
+    Args:
+        ax: matplotlib Axes instance.
+    """
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
 
 
 def save_fig(fig, name):
-    """Save a matplotlib figure to PLOT_DIR and close it to free memory."""
+    """Save a matplotlib figure to PLOT_DIR and close it to free memory.
+
+    Args:
+        fig: matplotlib Figure instance.
+        name: filename (e.g., "comp_fig01_leaderboard.png").
+
+    Side effects:
+        Creates PLOT_DIR if it does not exist.
+        Writes the PNG file and closes the figure.
+    """
     PLOT_DIR.mkdir(parents=True, exist_ok=True)
     path = PLOT_DIR / name
     fig.savefig(path, dpi=100, bbox_inches="tight")
@@ -724,7 +980,17 @@ def save_fig(fig, name):
 # ── Figure generation ────────────────────────────────────────────────────────
 
 def plot_leaderboard(scores, ranks):
-    """Fig 1: Leaderboard table as figure."""
+    """Fig 1: Render the competition leaderboard as a color-coded table figure.
+
+    Cells are colored by rank: green (#1), blue (#2), red (#5), gold (overall winner).
+
+    Args:
+        scores: dict from score_walkers().
+        ranks: dict from compute_ranks().
+
+    Side effects:
+        Writes comp_fig01_leaderboard.png to PLOT_DIR.
+    """
     metric_labels = {
         "best_dx": "Best |DX|",
         "best_efficiency": "Best Efficiency",
@@ -798,7 +1064,17 @@ def plot_leaderboard(scores, ranks):
 
 
 def plot_best_of_n(all_archives):
-    """Fig 2: Best |DX| vs evaluation count, all 5 walkers overlaid."""
+    """Fig 2: Best |DX| found so far vs evaluation count for all 5 walkers.
+
+    Shows the cumulative maximum |DX| curve (best-of-N) to compare
+    convergence speed and final performance across strategies.
+
+    Args:
+        all_archives: list of 5 archives (one per walker).
+
+    Side effects:
+        Writes comp_fig02_best_of_n.png to PLOT_DIR.
+    """
     fig, ax = plt.subplots(figsize=(10, 6))
 
     for wi, name in enumerate(WALKER_NAMES):
@@ -818,7 +1094,18 @@ def plot_best_of_n(all_archives):
 
 
 def plot_pareto(all_archives, zoo):
-    """Fig 3: |DX| vs efficiency scatter, all walkers + zoo context."""
+    """Fig 3: |DX| vs efficiency scatter for all walkers with zoo context.
+
+    Overlays the global Pareto front (across all walkers) as a dashed line,
+    and shows zoo gaits as gray background points for context.
+
+    Args:
+        all_archives: list of 5 archives (one per walker).
+        zoo: list of zoo gait metric dicts from load_zoo_summary().
+
+    Side effects:
+        Writes comp_fig03_pareto.png to PLOT_DIR.
+    """
     fig, ax = plt.subplots(figsize=(10, 7))
 
     # Zoo background
@@ -857,7 +1144,18 @@ def plot_pareto(all_archives, zoo):
 
 
 def plot_diversity(all_archives):
-    """Fig 4: PCA of behavioral space, all archived points by walker."""
+    """Fig 4: PCA projection of behavioral space, colored by walker.
+
+    Computes numpy-only PCA (eigh on covariance matrix) on all 5,000
+    behavioral vectors and projects to 2D. Variance explained is shown
+    on axis labels.
+
+    Args:
+        all_archives: list of 5 archives (one per walker).
+
+    Side effects:
+        Writes comp_fig04_diversity.png to PLOT_DIR.
+    """
     fig, ax = plt.subplots(figsize=(10, 7))
 
     # Collect all behavioral vectors
@@ -900,7 +1198,18 @@ def plot_diversity(all_archives):
 
 
 def plot_trajectories(all_weight_histories):
-    """Fig 5: Weight-space PCA trajectory for each walker (5 subplots)."""
+    """Fig 5: Weight-space PCA trajectory for each walker (5 subplots).
+
+    Computes a shared PCA across all weight vectors from all walkers,
+    then plots each walker's trajectory in 2D weight-PC space. Points
+    are colored by evaluation order (viridis), with start/end markers.
+
+    Args:
+        all_weight_histories: list of 5 lists of numpy weight vectors.
+
+    Side effects:
+        Writes comp_fig05_trajectories.png to PLOT_DIR.
+    """
     # Collect all weight vectors for shared PCA
     all_vecs = []
     for wh in all_weight_histories:
@@ -945,7 +1254,18 @@ def plot_trajectories(all_weight_histories):
 
 
 def plot_radar(scores):
-    """Fig 6: Radar chart with 6 normalized metrics per walker."""
+    """Fig 6: Radar chart with 6 normalized metrics per walker.
+
+    Each metric is min-max normalized to [0, 1] across walkers so all
+    axes are comparable. The radar polygon area gives a visual sense
+    of overall performance breadth.
+
+    Args:
+        scores: dict from score_walkers().
+
+    Side effects:
+        Writes comp_fig06_radar.png to PLOT_DIR.
+    """
     metric_keys = ["best_dx", "best_efficiency", "best_speed",
                    "pareto_size", "diversity", "unique_regimes"]
     metric_labels = ["Best |DX|", "Best Eff.", "Best Speed",
@@ -985,7 +1305,21 @@ def plot_radar(scores):
 # ── Main ─────────────────────────────────────────────────────────────────────
 
 def main():
-    """Run all 5 walkers, score them, save JSON results, and generate comparison figures."""
+    """Run all 5 walkers, score them, save JSON results, and generate comparison figures.
+
+    Pipeline:
+        1. Back up brain.nndf (restored at end).
+        2. Run all 5 walker algorithms sequentially (1,000 evals each).
+        3. Compute scores and ranks across 6 performance dimensions.
+        4. Print leaderboard to console.
+        5. Save structured results to artifacts/walker_competition.json.
+        6. Generate 6 comparison figures to artifacts/plots/.
+
+    Side effects:
+        - Overwrites and restores brain.nndf.
+        - Writes JSON and PNG artifacts to artifacts/.
+        - Prints progress and leaderboard to stdout.
+    """
     # Backup brain.nndf
     brain_path = PROJECT / "brain.nndf"
     backup_path = PROJECT / "brain.nndf.backup"
