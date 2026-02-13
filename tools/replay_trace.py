@@ -22,6 +22,7 @@ TRACE_DIR_DEFAULT = Path("artifacts/traces")
 TYPE_INT_MAP = {0: "sensor", 1: "motor", 2: "hidden"}
 
 def norm_type(t: object) -> str:
+    """Normalize a neuron type to a lowercase string ('sensor', 'motor', 'hidden')."""
     if t is None:
         return ""
     # pyrosim often stores neuron types as ints
@@ -34,10 +35,12 @@ def norm_type(t: object) -> str:
             pass
     return str(t).lower()
 def eprint(*args, **kwargs):
+    """Print to stderr (for warnings that shouldn't mix with data output)."""
     print(*args, file=sys.stderr, **kwargs)
 
 
 def latest_trace_file(trace_dir: Path) -> Path:
+    """Return the most recently modified run_*.jsonl file in trace_dir."""
     files = sorted(trace_dir.glob("run_*.jsonl"), key=lambda p: p.stat().st_mtime, reverse=True)
     if not files:
         raise FileNotFoundError(f"No run_*.jsonl files found in {trace_dir}")
@@ -45,6 +48,7 @@ def latest_trace_file(trace_dir: Path) -> Path:
 
 
 def iter_events(path: Path) -> Iterable[Dict[str, Any]]:
+    """Yield parsed JSON events from a JSONL trace file, skipping malformed lines."""
     with path.open("r", encoding="utf-8") as f:
         for ln, line in enumerate(f, start=1):
             line = line.strip()

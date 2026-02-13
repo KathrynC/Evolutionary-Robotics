@@ -18,10 +18,12 @@ import pybullet_data
 
 import os
 def dist_xy(pos) -> float:
+    """Return the XY-plane distance of a 3D position from the origin."""
     return math.hypot(pos[0], pos[1])
 
 
 def main():
+    """Run a GUI simulation with optimized gait parameters, recording video and tracking max distance."""
     # Best parameters found by optimize_gait.py (seed=2, trials=800, 10 seconds)
     amp = 1.349812021807046
     freq = 3.7746450934703417

@@ -16,6 +16,7 @@ from pathlib import Path
 
 import os
 def main():
+    """Aggregate summary.json files from telemetry runs into a single TSV."""
     ap = argparse.ArgumentParser()
     ap.add_argument("--telemetry_root", default="artifacts/telemetry", help="root dir: <variant>/<run>/summary.json")
     ap.add_argument("--out", default="artifacts/rules/zoo_scores.tsv", help="output TSV")

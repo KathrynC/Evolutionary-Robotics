@@ -9,6 +9,7 @@ from typing import Any, Dict, Optional
 
 
 def _safe(fn, default=None):
+    """Call fn() and return its result, or default on any exception."""
     try:
         return fn()
     except Exception:

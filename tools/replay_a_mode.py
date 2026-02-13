@@ -8,12 +8,14 @@ import argparse, glob, json, os
 from pathlib import Path
 
 def latest_trace():
+    """Return the path to the most recent trace file in artifacts/traces/."""
     paths = sorted(glob.glob("artifacts/traces/run*.jsonl"))
     if not paths:
         raise SystemExit("No traces found in artifacts/traces (run simulation.py first).")
     return paths[-1]
 
 def fmt_cmd(mt):
+    """Format a motor_targets dict into a compact string for display."""
     if not isinstance(mt, dict) or not mt:
         return ""
     # Prefer these two if present, otherwise show up to 2 keys
@@ -31,6 +33,7 @@ def fmt_cmd(mt):
     return "  ".join(out)
 
 def get_neuron(ev, nid):
+    """Extract a neuron's value from a trace event dict, or None if absent."""
     nn = (ev.get("nn") or {})
     neurons = (nn.get("neurons") or {})
     nd = neurons.get(str(nid)) or neurons.get(nid)
@@ -39,6 +42,7 @@ def get_neuron(ev, nid):
     return None
 
 def main():
+    """Replay a trace file, printing sampled steps with neuron values and motor commands."""
     ap = argparse.ArgumentParser()
     ap.add_argument("--path", default=None, help="Trace path (default: latest)")
     ap.add_argument("--every", type=int, default=25)

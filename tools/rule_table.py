@@ -8,12 +8,14 @@ import argparse, glob, json, math
 from collections import defaultdict
 
 def latest_trace():
+    """Return the path to the most recent trace file in artifacts/traces/."""
     paths = sorted(glob.glob("artifacts/traces/run*.jsonl"))
     if not paths:
         raise SystemExit("No traces found in artifacts/traces (run simulation.py first).")
     return paths[-1]
 
 def get_neuron(ev, nid):
+    """Extract a neuron's value from a trace event dict, or None if absent."""
     nn = (ev.get("nn") or {})
     neurons = (nn.get("neurons") or {})
     nd = neurons.get(str(nid)) or neurons.get(nid)
@@ -22,6 +24,7 @@ def get_neuron(ev, nid):
     return None
 
 def main():
+    """Build a phase-bin x contact-state rule table from a trace file."""
     ap = argparse.ArgumentParser()
     ap.add_argument("--path", default=None, help="Trace path (default: latest)")
     ap.add_argument("--bins", type=int, default=16, help="Phase bins over 0..2π")

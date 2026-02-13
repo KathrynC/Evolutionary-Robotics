@@ -20,6 +20,7 @@ SCORE_KEYS = ("score", "fitness", "total_score", "reward")
 
 
 def find_score(d: Any) -> Optional[float]:
+    """Recursively search a nested dict/list for a score-like field and return it as float."""
     if isinstance(d, dict):
         for k in SCORE_KEYS:
             if k in d:
@@ -45,6 +46,7 @@ def find_score(d: Any) -> Optional[float]:
 
 
 def main():
+    """Extract scores from variant JSON files and write a TSV summary."""
     ap = argparse.ArgumentParser()
     ap.add_argument("--variants", default="artifacts/rules/zoo", help="dir containing variant_*.json")
     ap.add_argument("--out", default="artifacts/rules/zoo_scores.tsv", help="output TSV path")

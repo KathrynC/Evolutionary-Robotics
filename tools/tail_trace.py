@@ -8,6 +8,7 @@ import sys
 from pathlib import Path
 
 def main():
+    """Print all lines of a telemetry JSONL file to stdout."""
     if len(sys.argv) < 2:
         print("Usage: tail_trace.py path/to/trace.jsonl")
         sys.exit(2)
