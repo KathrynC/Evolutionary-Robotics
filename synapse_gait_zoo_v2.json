@@ -422,7 +422,7 @@
       "coordination",
       "rotation_axis"
     ],
-    "analytics_computed": "2026-02-12T20:51:16Z"
+    "analytics_computed": "2026-02-13T03:24:26Z"
   },
   "categories": {
     "persona_gaits": {
@@ -461,7 +461,10 @@
               "mean_speed": 0.6966521185925437,
               "speed_cv": 0.883750507096092,
               "work_proxy": 2262.180522743082,
-              "distance_per_work": 0.0011904512692491177
+              "distance_per_work": 0.0011904512692491177,
+              "path_length": 11.610867737089471,
+              "path_straightness": 0.23193922586574914,
+              "heading_consistency": 0.08489394943969525
             },
             "contact": {
               "duty_torso": 0.0,
@@ -632,7 +635,10 @@
               "mean_speed": 0.9718732408748112,
               "speed_cv": 0.6421420707917321,
               "work_proxy": 15282.99314716248,
-              "distance_per_work": 0.0007651245295547778
+              "distance_per_work": 0.0007651245295547778,
+              "path_length": 16.197886441793905,
+              "path_straightness": 0.7219085640543946,
+              "heading_consistency": 0.6485826822880533
             },
             "contact": {
               "duty_torso": 0.0,
@@ -804,7 +810,10 @@
               "mean_speed": 0.5777095585197363,
               "speed_cv": 0.27440886980797236,
               "work_proxy": 10991.086333426318,
-              "distance_per_work": 0.0008612333690866541
+              "distance_per_work": 0.0008612333690866541,
+              "path_length": 9.628491735875997,
+              "path_straightness": 0.9831124720800131,
+              "heading_consistency": 0.9708442323652494
             },
             "contact": {
               "duty_torso": 0.0,
@@ -974,7 +983,10 @@
               "mean_speed": 1.4764951218733353,
               "speed_cv": 0.6718706924380989,
               "work_proxy": 5657.366915672705,
-              "distance_per_work": 0.0026988374073340865
+              "distance_per_work": 0.0026988374073340865,
+              "path_length": 24.608251125102683,
+              "path_straightness": 0.6204550409296122,
+              "heading_consistency": 0.5389219961260483
             },
             "contact": {
               "duty_torso": 0.0,
@@ -1145,7 +1157,10 @@
               "mean_speed": 2.4621163822863554,
               "speed_cv": 0.5013509214110642,
               "work_proxy": 13407.259054335307,
-              "distance_per_work": 0.0026305510293338132
+              "distance_per_work": 0.0026305510293338132,
+              "path_length": 41.03527213198629,
+              "path_straightness": 0.8594674111698082,
+              "heading_consistency": 0.7391757726404
             },
             "contact": {
               "duty_torso": 0.0,
@@ -1316,7 +1331,10 @@
               "mean_speed": 0.6332481503270092,
               "speed_cv": 0.6524923975627234,
               "work_proxy": 1925.3883678462798,
-              "distance_per_work": 0.002708144066853961
+              "distance_per_work": 0.002708144066853961,
+              "path_length": 10.554134932663896,
+              "path_straightness": 0.4940460888589803,
+              "heading_consistency": 0.3256534527155532
             },
             "contact": {
               "duty_torso": 0.0,
@@ -1489,7 +1507,10 @@
               "mean_speed": 0.15113475038286275,
               "speed_cv": 0.6428534415768674,
               "work_proxy": 1604.97121742772,
-              "distance_per_work": 0.0015313164510996325
+              "distance_per_work": 0.0015313164510996325,
+              "path_length": 2.51891160026146,
+              "path_straightness": 0.975706661771443,
+              "heading_consistency": 0.986030909041677
             },
             "contact": {
               "duty_torso": 0.0,
@@ -1659,7 +1680,10 @@
               "mean_speed": 1.656079272371503,
               "speed_cv": 0.4991590780020153,
               "work_proxy": 13789.408387794727,
-              "distance_per_work": 0.00010807171255202693
+              "distance_per_work": 0.00010807171255202693,
+              "path_length": 27.60132030007213,
+              "path_straightness": 0.05399180051341118,
+              "heading_consistency": 0.09539241400482647
             },
             "contact": {
               "duty_torso": 0.0,
@@ -1830,7 +1854,10 @@
               "mean_speed": 0.7672689554459472,
               "speed_cv": 0.5906749631241662,
               "work_proxy": 9100.192368182039,
-              "distance_per_work": 0.0002688850535674551
+              "distance_per_work": 0.0002688850535674551,
+              "path_length": 12.787815017979518,
+              "path_straightness": 0.19134666156434488,
+              "heading_consistency": 0.07748434307128768
             },
             "contact": {
               "duty_torso": 0.0,
@@ -2001,7 +2028,10 @@
               "mean_speed": 2.450304874871602,
               "speed_cv": 0.5252903699259616,
               "work_proxy": 9731.109416577916,
-              "distance_per_work": 0.002465749998411159
+              "distance_per_work": 0.002465749998411159,
+              "path_length": 40.838413675073724,
+              "path_straightness": 0.5875468919869228,
+              "heading_consistency": 0.4911867934868683
             },
             "contact": {
               "duty_torso": 0.0225,
@@ -2171,7 +2201,10 @@
               "mean_speed": 0.5245035962649919,
               "speed_cv": 1.4808053467105997,
               "work_proxy": 2405.285654243578,
-              "distance_per_work": 0.001991174430626913
+              "distance_per_work": 0.001991174430626913,
+              "path_length": 8.741725698296936,
+              "path_straightness": 0.547871605490504,
+              "heading_consistency": 0.205118730961104
             },
             "contact": {
               "duty_torso": 0.0,
@@ -2342,7 +2375,10 @@
               "mean_speed": 0.9120418940961311,
               "speed_cv": 0.814823780401074,
               "work_proxy": 5388.865707108386,
-              "distance_per_work": 0.0015203350846420246
+              "distance_per_work": 0.0015203350846420246,
+              "path_length": 15.200697328815915,
+              "path_straightness": 0.5389806417242393,
+              "heading_consistency": 0.453566298581387
             },
             "contact": {
               "duty_torso": 0.0,
@@ -2514,7 +2550,10 @@
               "mean_speed": 0.9959016414753394,
               "speed_cv": 0.8904765004496655,
               "work_proxy": 6334.317069287037,
-              "distance_per_work": 0.0004163033002842003
+              "distance_per_work": 0.0004163033002842003,
+              "path_length": 16.59835978513607,
+              "path_straightness": 0.15887094478770028,
+              "heading_consistency": 0.09701539056265752
             },
             "contact": {
               "duty_torso": 0.0,
@@ -2685,7 +2724,10 @@
               "mean_speed": 0.6350990367335014,
               "speed_cv": 0.8217455130825798,
               "work_proxy": 4004.865884653688,
-              "distance_per_work": 0.0010542029779664428
+              "distance_per_work": 0.0010542029779664428,
+              "path_length": 10.584983039438757,
+              "path_straightness": 0.3988614366435479,
+              "heading_consistency": 0.23682869751154895
             },
             "contact": {
               "duty_torso": 0.0,
@@ -2856,7 +2898,10 @@
               "mean_speed": 2.0783858777521127,
               "speed_cv": 0.5783933123610773,
               "work_proxy": 9261.293328189095,
-              "distance_per_work": 0.002337977858471346
+              "distance_per_work": 0.002337977858471346,
+              "path_length": 34.639763723082346,
+              "path_straightness": 0.6250821718996351,
+              "heading_consistency": 0.4956261886988646
             },
             "contact": {
               "duty_torso": 0.0,
@@ -3027,7 +3072,10 @@
               "mean_speed": 1.8162420892364193,
               "speed_cv": 0.6524056431812371,
               "work_proxy": 5048.26159930983,
-              "distance_per_work": 0.004015170594390703
+              "distance_per_work": 0.004015170594390703,
+              "path_length": 30.270700581154014,
+              "path_straightness": 0.6696122368228277,
+              "heading_consistency": 0.5632984011568015
             },
             "contact": {
               "duty_torso": 0.0,
@@ -3198,7 +3246,10 @@
               "mean_speed": 0.7982366680862163,
               "speed_cv": 1.7357229187862977,
               "work_proxy": 3461.938551306354,
-              "distance_per_work": 0.0014543326713754143
+              "distance_per_work": 0.0014543326713754143,
+              "path_length": 13.303943561984012,
+              "path_straightness": 0.37844495641471754,
+              "heading_consistency": 0.31273793271602723
             },
             "contact": {
               "duty_torso": 0.691,
@@ -3368,7 +3419,10 @@
               "mean_speed": 2.291696726440884,
               "speed_cv": 0.4730462177482872,
               "work_proxy": 13797.438957775217,
-              "distance_per_work": 0.0017197199180783492
+              "distance_per_work": 0.0017197199180783492,
+              "path_length": 38.19494453456183,
+              "path_straightness": 0.6212269943915085,
+              "heading_consistency": 0.5213846334997653
             },
             "contact": {
               "duty_torso": 0.0,
@@ -3539,7 +3593,10 @@
               "mean_speed": 0.5506028590979966,
               "speed_cv": 0.8458379738470628,
               "work_proxy": 7410.097311097753,
-              "distance_per_work": 0.0005276822844735691
+              "distance_per_work": 0.0005276822844735691,
+              "path_length": 9.176713412180352,
+              "path_straightness": 0.4260977652523717,
+              "heading_consistency": 0.3532991078682496
             },
             "contact": {
               "duty_torso": 0.0,
@@ -3711,7 +3768,10 @@
               "mean_speed": 0.3928358586944985,
               "speed_cv": 0.5980183909244214,
               "work_proxy": 5562.221613269519,
-              "distance_per_work": 0.0010137826166947798
+              "distance_per_work": 0.0010137826166947798,
+              "path_length": 6.547263405455384,
+              "path_straightness": 0.8612580909816672,
+              "heading_consistency": 0.9034151464268104
             },
             "contact": {
               "duty_torso": 0.0,
@@ -3878,7 +3938,10 @@
               "mean_speed": 1.36266776924287,
               "speed_cv": 0.8044600801067991,
               "work_proxy": 8918.809648765628,
-              "distance_per_work": 0.0008505491714814388
+              "distance_per_work": 0.0008505491714814388,
+              "path_length": 22.711128581261583,
+              "path_straightness": 0.3340162568414677,
+              "heading_consistency": 0.40205832763149224
             },
             "contact": {
               "duty_torso": 0.0,
@@ -4045,7 +4108,10 @@
               "mean_speed": 1.3239698097449355,
               "speed_cv": 1.5169921325011095,
               "work_proxy": 4438.330686880416,
-              "distance_per_work": 0.00371896036409512
+              "distance_per_work": 0.00371896036409512,
+              "path_length": 22.066162589629357,
+              "path_straightness": 0.7480220378242297,
+              "heading_consistency": 0.652038524443238
             },
             "contact": {
               "duty_torso": 0.657,
@@ -4212,7 +4278,10 @@
               "mean_speed": 0.8459871307191037,
               "speed_cv": 1.799704152727145,
               "work_proxy": 4239.143525346154,
-              "distance_per_work": 0.0015061792687297434
+              "distance_per_work": 0.0015061792687297434,
+              "path_length": 14.099784605865459,
+              "path_straightness": 0.4528374208206129,
+              "heading_consistency": 0.37126636001594054
             },
             "contact": {
               "duty_torso": 0.7145,
@@ -4379,7 +4448,10 @@
               "mean_speed": 0.0006057597887274532,
               "speed_cv": 3.261461382201676,
               "work_proxy": 3.6597079698993586,
-              "distance_per_work": 0.00220544349669182
+              "distance_per_work": 0.00220544349669182,
+              "path_length": 0.010095090359198183,
+              "path_straightness": 0.7995252003516328,
+              "heading_consistency": 0.0
             },
             "contact": {
               "duty_torso": 0.0,
@@ -4546,7 +4618,10 @@
               "mean_speed": 2.1731565869947906,
               "speed_cv": 0.48800214112644363,
               "work_proxy": 5839.830892960469,
-              "distance_per_work": 0.0031395171635316436
+              "distance_per_work": 0.0031395171635316436,
+              "path_length": 36.219275543793614,
+              "path_straightness": 0.5062014368123771,
+              "heading_consistency": 0.4467536886959437
             },
             "contact": {
               "duty_torso": 0.0,
@@ -4713,7 +4788,10 @@
               "mean_speed": 1.0505411662684636,
               "speed_cv": 1.131402166671531,
               "work_proxy": 5833.103896032019,
-              "distance_per_work": 0.001253073391776748
+              "distance_per_work": 0.001253073391776748,
+              "path_length": 17.509018531688138,
+              "path_straightness": 0.41745956635767384,
+              "heading_consistency": 0.37310914617181096
             },
             "contact": {
               "duty_torso": 0.46875,
@@ -4880,7 +4958,10 @@
               "mean_speed": 1.029786998175534,
               "speed_cv": 0.7253574778798672,
               "work_proxy": 3909.8620018962597,
-              "distance_per_work": 0.0031444694011691903
+              "distance_per_work": 0.0031444694011691903,
+              "path_length": 17.163115730139303,
+              "path_straightness": 0.716329227225756,
+              "heading_consistency": 0.38504646497849915
             },
             "contact": {
               "duty_torso": 0.0,
@@ -5047,7 +5128,10 @@
               "mean_speed": 1.9519061909896738,
               "speed_cv": 0.5117616049811883,
               "work_proxy": 10190.519701167636,
-              "distance_per_work": 0.0005103090497629533
+              "distance_per_work": 0.0005103090497629533,
+              "path_length": 32.531768943708315,
+              "path_straightness": 0.15985341695657343,
+              "heading_consistency": 0.1275820314834269
             },
             "contact": {
               "duty_torso": 0.0,
@@ -5214,7 +5298,10 @@
               "mean_speed": 1.2440422498438217,
               "speed_cv": 0.6382582558762997,
               "work_proxy": 5234.287779431342,
-              "distance_per_work": 0.0009176905612946913
+              "distance_per_work": 0.0009176905612946913,
+              "path_length": 20.73403659127743,
+              "path_straightness": 0.23167010770614005,
+              "heading_consistency": 0.17441181944493558
             },
             "contact": {
               "duty_torso": 0.0,
@@ -5381,7 +5468,10 @@
               "mean_speed": 2.1890427799748533,
               "speed_cv": 0.6141889393817442,
               "work_proxy": 12022.616214884809,
-              "distance_per_work": 0.001916139425173777
+              "distance_per_work": 0.001916139425173777,
+              "path_length": 36.48404542679461,
+              "path_straightness": 0.6314269334330855,
+              "heading_consistency": 0.47340341810821507
             },
             "contact": {
               "duty_torso": 0.0,
@@ -5548,7 +5638,10 @@
               "mean_speed": 2.4778154801522843,
               "speed_cv": 0.5123159481069997,
               "work_proxy": 11403.357286667637,
-              "distance_per_work": 0.0027423663699263734
+              "distance_per_work": 0.0027423663699263734,
+              "path_length": 41.296923763085125,
+              "path_straightness": 0.7572521310937463,
+              "heading_consistency": 0.7008469209360244
             },
             "contact": {
               "duty_torso": 0.0,
@@ -5715,7 +5808,10 @@
               "mean_speed": 0.265722937780465,
               "speed_cv": 1.5585115881355733,
               "work_proxy": 1736.8671365155478,
-              "distance_per_work": 0.00011924118981236441
+              "distance_per_work": 0.00011924118981236441,
+              "path_length": 4.428714723554825,
+              "path_straightness": 0.046764381278067306,
+              "heading_consistency": 0.2643905601871895
             },
             "contact": {
               "duty_torso": 0.0,
@@ -5882,7 +5978,10 @@
               "mean_speed": 1.9975885926031618,
               "speed_cv": 0.6369748704916997,
               "work_proxy": 10116.27911451951,
-              "distance_per_work": 0.0010088321223653035
+              "distance_per_work": 0.0010088321223653035,
+              "path_length": 33.293142303933095,
+              "path_straightness": 0.30653842272902143,
+              "heading_consistency": 0.19589323574677867
             },
             "contact": {
               "duty_torso": 0.0,
@@ -6049,7 +6148,10 @@
               "mean_speed": 0.8133632162728555,
               "speed_cv": 0.6940173672065887,
               "work_proxy": 3094.3702472244795,
-              "distance_per_work": 0.0018956826787538867
+              "distance_per_work": 0.0018956826787538867,
+              "path_length": 13.556052698428001,
+              "path_straightness": 0.43271770992709846,
+              "heading_consistency": 0.3385169122329608
             },
             "contact": {
               "duty_torso": 0.0,
@@ -6216,7 +6318,10 @@
               "mean_speed": 0.757275589434817,
               "speed_cv": 1.4559454572132466,
               "work_proxy": 5321.629328160752,
-              "distance_per_work": 0.00045711584248374435
+              "distance_per_work": 0.00045711584248374435,
+              "path_length": 12.621258917794034,
+              "path_straightness": 0.19273838604949395,
+              "heading_consistency": 0.3027471714479712
             },
             "contact": {
               "duty_torso": 0.6485,
@@ -6383,7 +6488,10 @@
               "mean_speed": 2.152040074738015,
               "speed_cv": 0.5306791957084716,
               "work_proxy": 13078.627115035537,
-              "distance_per_work": 0.00215512338491434
+              "distance_per_work": 0.00215512338491434,
+              "path_length": 35.86733367284728,
+              "path_straightness": 0.7858419417311079,
+              "heading_consistency": 0.6028826579626511
             },
             "contact": {
               "duty_torso": 0.0,
@@ -6550,7 +6658,10 @@
               "mean_speed": 2.2785832608225776,
               "speed_cv": 0.4874376626394506,
               "work_proxy": 13801.28666423887,
-              "distance_per_work": 0.00029016496698304467
+              "distance_per_work": 0.00029016496698304467,
+              "path_length": 37.97638677425669,
+              "path_straightness": 0.10545105075575714,
+              "heading_consistency": 0.023632857496686165
             },
             "contact": {
               "duty_torso": 0.0,
@@ -6717,7 +6828,10 @@
               "mean_speed": 0.45117945799463144,
               "speed_cv": 1.7521498999218261,
               "work_proxy": 3002.4557920830157,
-              "distance_per_work": 0.0013801217322145895
+              "distance_per_work": 0.0013801217322145895,
+              "path_length": 7.51965672712427,
+              "path_straightness": 0.5510563366171143,
+              "heading_consistency": 0.33273375692865725
             },
             "contact": {
               "duty_torso": 0.7415,
@@ -6884,7 +6998,10 @@
               "mean_speed": 1.0982993598352944,
               "speed_cv": 0.5802109341371998,
               "work_proxy": 5379.850854818697,
-              "distance_per_work": 0.0029710471121390156
+              "distance_per_work": 0.0029710471121390156,
+              "path_length": 18.30498842446862,
+              "path_straightness": 0.873193141416133,
+              "heading_consistency": 0.7542854237575469
             },
             "contact": {
               "duty_torso": 0.0,
@@ -7051,7 +7168,10 @@
               "mean_speed": 0.6479265899974851,
               "speed_cv": 0.8863274472310905,
               "work_proxy": 3373.459168046544,
-              "distance_per_work": 0.0020518728595136895
+              "distance_per_work": 0.0020518728595136895,
+              "path_length": 10.798775593838474,
+              "path_straightness": 0.6409901983278375,
+              "heading_consistency": 0.6498628686978891
             },
             "contact": {
               "duty_torso": 0.0,
@@ -7218,7 +7338,10 @@
               "mean_speed": 0.8713893932932055,
               "speed_cv": 0.8335035166317166,
               "work_proxy": 5116.916578694063,
-              "distance_per_work": 0.000550576659439491
+              "distance_per_work": 0.000550576659439491,
+              "path_length": 14.52315564876716,
+              "path_straightness": 0.1939836564904596,
+              "heading_consistency": 0.15548158300188816
             },
             "contact": {
               "duty_torso": 0.0,
@@ -7385,7 +7508,10 @@
               "mean_speed": 1.7997525087238957,
               "speed_cv": 0.637360551317356,
               "work_proxy": 5110.980392912922,
-              "distance_per_work": 0.004600499313155227
+              "distance_per_work": 0.004600499313155227,
+              "path_length": 29.995874239278653,
+              "path_straightness": 0.7838765291380011,
+              "heading_consistency": 0.54912247080813
             },
             "contact": {
               "duty_torso": 0.0,
@@ -7552,7 +7678,10 @@
               "mean_speed": 1.86349045633482,
               "speed_cv": 0.5911888993921013,
               "work_proxy": 8256.807222059731,
-              "distance_per_work": 0.0026333402968562888
+              "distance_per_work": 0.0026333402968562888,
+              "path_length": 31.058173366127434,
+              "path_straightness": 0.7000728254333588,
+              "heading_consistency": 0.48499603924945933
             },
             "contact": {
               "duty_torso": 0.0,
@@ -7719,7 +7848,10 @@
               "mean_speed": 1.579579263169838,
               "speed_cv": 0.6970558881699326,
               "work_proxy": 7593.635237613358,
-              "distance_per_work": 0.00128707109581497
+              "distance_per_work": 0.00128707109581497,
+              "path_length": 26.326320146711033,
+              "path_straightness": 0.37124628022557915,
+              "heading_consistency": 0.2828479182445168
             },
             "contact": {
               "duty_torso": 0.0,
@@ -7886,7 +8018,10 @@
               "mean_speed": 0.9273646270296585,
               "speed_cv": 0.37439354093277394,
               "work_proxy": 4025.7965328668397,
-              "distance_per_work": 0.0037623498529414344
+              "distance_per_work": 0.0037623498529414344,
+              "path_length": 15.456076211041392,
+              "path_straightness": 0.979967670098798,
+              "heading_consistency": 0.9715035240725691
             },
             "contact": {
               "duty_torso": 0.0,
@@ -8053,7 +8188,10 @@
               "mean_speed": 1.2371278191044466,
               "speed_cv": 0.4689516292283761,
               "work_proxy": 6378.808735460396,
-              "distance_per_work": 0.002240157091884515
+              "distance_per_work": 0.002240157091884515,
+              "path_length": 20.618796078954553,
+              "path_straightness": 0.6930343348757264,
+              "heading_consistency": 0.55072024006991
             },
             "contact": {
               "duty_torso": 0.0,
@@ -8220,7 +8358,10 @@
               "mean_speed": 0.255924450940476,
               "speed_cv": 2.187110312839883,
               "work_proxy": 1079.6165675079694,
-              "distance_per_work": 0.0018832495825058563
+              "distance_per_work": 0.0018832495825058563,
+              "path_length": 4.265406609555011,
+              "path_straightness": 0.4766690813183462,
+              "heading_consistency": 0.061833807190321825
             },
             "contact": {
               "duty_torso": 0.0,
@@ -8387,7 +8528,10 @@
               "mean_speed": 1.337905690702014,
               "speed_cv": 0.6856045813411069,
               "work_proxy": 4675.969567638251,
-              "distance_per_work": 0.0026933496390566776
+              "distance_per_work": 0.0026933496390566776,
+              "path_length": 22.298427272247302,
+              "path_straightness": 0.5647941351860744,
+              "heading_consistency": 0.36415056439726806
             },
             "contact": {
               "duty_torso": 0.0,
@@ -8554,7 +8698,10 @@
               "mean_speed": 1.8656582508994837,
               "speed_cv": 0.6283386858119556,
               "work_proxy": 8820.213468575026,
-              "distance_per_work": 0.0013729147901301074
+              "distance_per_work": 0.0013729147901301074,
+              "path_length": 31.0943032755385,
+              "path_straightness": 0.3894411595527771,
+              "heading_consistency": 0.19312560118395067
             },
             "contact": {
               "duty_torso": 0.0,
@@ -8721,7 +8868,10 @@
               "mean_speed": 0.8329664387367084,
               "speed_cv": 1.8269317383183825,
               "work_proxy": 5682.050327437271,
-              "distance_per_work": 0.0007270123925040538
+              "distance_per_work": 0.0007270123925040538,
+              "path_length": 13.882773072825554,
+              "path_straightness": 0.2975573382355841,
+              "heading_consistency": 0.21108066718047205
             },
             "contact": {
               "duty_torso": 0.763,
@@ -8888,7 +9038,10 @@
               "mean_speed": 0.45035901472591633,
               "speed_cv": 1.5255146431758426,
               "work_proxy": 2159.5834182290732,
-              "distance_per_work": 0.0010585349540624183
+              "distance_per_work": 0.0010585349540624183,
+              "path_length": 7.505982672645681,
+              "path_straightness": 0.3045563298114187,
+              "heading_consistency": 0.2907110179461384
             },
             "contact": {
               "duty_torso": 0.0,
@@ -9051,7 +9204,10 @@
               "mean_speed": 1.3373179542753684,
               "speed_cv": 0.7140076952174192,
               "work_proxy": 5842.830648751622,
-              "distance_per_work": 0.0010275713474038014
+              "distance_per_work": 0.0010275713474038014,
+              "path_length": 22.28863166513655,
+              "path_straightness": 0.26937164436976885,
+              "heading_consistency": 0.21970441847970912
             },
             "contact": {
               "duty_torso": 0.0,
@@ -9214,7 +9370,10 @@
               "mean_speed": 1.4241899480147777,
               "speed_cv": 0.6140733226263054,
               "work_proxy": 9771.279556977312,
-              "distance_per_work": 0.0011835333539854562
+              "distance_per_work": 0.0011835333539854562,
+              "path_length": 23.73649822746004,
+              "path_straightness": 0.4872089874411257,
+              "heading_consistency": 0.3644846723731872
             },
             "contact": {
               "duty_torso": 0.0,
@@ -9377,7 +9536,10 @@
               "mean_speed": 1.290481153115073,
               "speed_cv": 0.6044007762419816,
               "work_proxy": 6902.757456612851,
-              "distance_per_work": 0.001658010846407821
+              "distance_per_work": 0.001658010846407821,
+              "path_length": 21.508018312464962,
+              "path_straightness": 0.5321200013370694,
+              "heading_consistency": 0.31579426579348957
             },
             "contact": {
               "duty_torso": 0.0,
@@ -9540,7 +9702,10 @@
               "mean_speed": 1.765815003879892,
               "speed_cv": 0.5955907094694967,
               "work_proxy": 3900.05295029365,
-              "distance_per_work": 0.005595223425209149
+              "distance_per_work": 0.005595223425209149,
+              "path_length": 29.43024915854529,
+              "path_straightness": 0.7414707061935628,
+              "heading_consistency": 0.6023333487882488
             },
             "contact": {
               "duty_torso": 0.0,
@@ -9703,7 +9868,10 @@
               "mean_speed": 2.3799051034022094,
               "speed_cv": 0.4338045323479645,
               "work_proxy": 11198.040503566264,
-              "distance_per_work": 0.0007994769807929853
+              "distance_per_work": 0.0007994769807929853,
+              "path_length": 39.665084150583894,
+              "path_straightness": 0.2257041880612506,
+              "heading_consistency": 0.18906532184171881
             },
             "contact": {
               "duty_torso": 0.0,
@@ -9866,7 +10034,10 @@
               "mean_speed": 1.9153871610121964,
               "speed_cv": 0.5373679437560127,
               "work_proxy": 13650.750930064482,
-              "distance_per_work": 0.0003680394699305689
+              "distance_per_work": 0.0003680394699305689,
+              "path_length": 31.923118444083677,
+              "path_straightness": 0.1573785827113095,
+              "heading_consistency": 0.10881359781414415
             },
             "contact": {
               "duty_torso": 0.0,
@@ -10029,7 +10200,10 @@
               "mean_speed": 1.380900699208741,
               "speed_cv": 0.6969974377443197,
               "work_proxy": 7853.180005284223,
-              "distance_per_work": 0.0006185902408885271
+              "distance_per_work": 0.0006185902408885271,
+              "path_length": 23.01501074735942,
+              "path_straightness": 0.21107530926385049,
+              "heading_consistency": 0.30505802068726995
             },
             "contact": {
               "duty_torso": 0.0,
@@ -10192,7 +10366,10 @@
               "mean_speed": 1.6590976358988336,
               "speed_cv": 0.5494936612567859,
               "work_proxy": 10661.468755333435,
-              "distance_per_work": 0.0005548092670344658
+              "distance_per_work": 0.0005548092670344658,
+              "path_length": 27.651626358860984,
+              "path_straightness": 0.21391442184600146,
+              "heading_consistency": 0.21909598558759544
             },
             "contact": {
               "duty_torso": 0.0,
@@ -10355,7 +10532,10 @@
               "mean_speed": 2.1802932352591458,
               "speed_cv": 0.5613171979152066,
               "work_proxy": 9777.687533594415,
-              "distance_per_work": 0.001973366327074255
+              "distance_per_work": 0.001973366327074255,
+              "path_length": 36.338219681532806,
+              "path_straightness": 0.5309825166050912,
+              "heading_consistency": 0.4667336218933903
             },
             "contact": {
               "duty_torso": 0.0,
@@ -10518,7 +10698,10 @@
               "mean_speed": 0.9303608234133303,
               "speed_cv": 0.9312978846428965,
               "work_proxy": 6784.077714324461,
-              "distance_per_work": 0.0003593660642567377
+              "distance_per_work": 0.0003593660642567377,
+              "path_length": 15.506012817435906,
+              "path_straightness": 0.15722722124073235,
+              "heading_consistency": 0.18019333637967166
             },
             "contact": {
               "duty_torso": 0.0,
@@ -10681,7 +10864,10 @@
               "mean_speed": 2.2921138721772607,
               "speed_cv": 0.518953201425097,
               "work_proxy": 12164.76504042532,
-              "distance_per_work": 0.0027230122618775434
+              "distance_per_work": 0.0027230122618775434,
+              "path_length": 38.20189696350137,
+              "path_straightness": 0.8670984165939539,
+              "heading_consistency": 0.6848031058952907
             },
             "contact": {
               "duty_torso": 0.0,
@@ -10844,7 +11030,10 @@
               "mean_speed": 0.44218999078906296,
               "speed_cv": 2.3982276597749146,
               "work_proxy": 2299.8266745933265,
-              "distance_per_work": 0.0022043854804529492
+              "distance_per_work": 0.0022043854804529492,
+              "path_length": 7.369832273698145,
+              "path_straightness": 0.6878995804456709,
+              "heading_consistency": 0.5280986586153849
             },
             "contact": {
               "duty_torso": 0.80725,
@@ -11007,7 +11196,10 @@
               "mean_speed": 1.7174660840731018,
               "speed_cv": 0.6150024070574518,
               "work_proxy": 7507.5832800268645,
-              "distance_per_work": 0.0017486609863169053
+              "distance_per_work": 0.0017486609863169053,
+              "path_length": 28.624433828432124,
+              "path_straightness": 0.45863677381342877,
+              "heading_consistency": 0.32143816503024225
             },
             "contact": {
               "duty_torso": 0.0,
@@ -11170,7 +11362,10 @@
               "mean_speed": 1.1701098509301764,
               "speed_cv": 0.5520209597242375,
               "work_proxy": 4881.5313050519035,
-              "distance_per_work": 0.003284228123957934
+              "distance_per_work": 0.003284228123957934,
+              "path_length": 19.501829942716697,
+              "path_straightness": 0.8220798995337355,
+              "heading_consistency": 0.5989993678276275
             },
             "contact": {
               "duty_torso": 0.0,
@@ -11333,7 +11528,10 @@
               "mean_speed": 1.3202438835920807,
               "speed_cv": 0.6846545658690152,
               "work_proxy": 4643.541189071749,
-              "distance_per_work": 0.004177678426913291
+              "distance_per_work": 0.004177678426913291,
+              "path_length": 22.004063820415077,
+              "path_straightness": 0.8816199593126974,
+              "heading_consistency": 0.6229286450843902
             },
             "contact": {
               "duty_torso": 0.0,
@@ -11496,7 +11694,10 @@
               "mean_speed": 2.0339681066985467,
               "speed_cv": 0.5184326246269082,
               "work_proxy": 12124.87105918323,
-              "distance_per_work": 0.0003626677992075709
+              "distance_per_work": 0.0003626677992075709,
+              "path_length": 33.89946753885617,
+              "path_straightness": 0.12971591066052254,
+              "heading_consistency": 0.0886108398246512
             },
             "contact": {
               "duty_torso": 0.0,
@@ -11659,7 +11860,10 @@
               "mean_speed": 1.1347912014229316,
               "speed_cv": 0.8676037418891047,
               "work_proxy": 6787.453356381117,
-              "distance_per_work": 0.0009396961055009644
+              "distance_per_work": 0.0009396961055009644,
+              "path_length": 18.91318578426261,
+              "path_straightness": 0.3372326353695498,
+              "heading_consistency": 0.293656230469767
             },
             "contact": {
               "duty_torso": 0.0,
@@ -11822,7 +12026,10 @@
               "mean_speed": 2.316619530175828,
               "speed_cv": 0.5679711783311513,
               "work_proxy": 12124.164923939607,
-              "distance_per_work": 0.0021713238087561646
+              "distance_per_work": 0.0021713238087561646,
+              "path_length": 38.61032459681091,
+              "path_straightness": 0.6818250878629195,
+              "heading_consistency": 0.5661719531249173
             },
             "contact": {
               "duty_torso": 0.0,
@@ -11985,7 +12192,10 @@
               "mean_speed": 1.5468754319927684,
               "speed_cv": 0.709771301561362,
               "work_proxy": 9300.843307433875,
-              "distance_per_work": 0.00043671729498018995
+              "distance_per_work": 0.00043671729498018995,
+              "path_length": 25.781256293759895,
+              "path_straightness": 0.15755008537889809,
+              "heading_consistency": 0.08149099612042902
             },
             "contact": {
               "duty_torso": 0.0,
@@ -12148,7 +12358,10 @@
               "mean_speed": 1.2065928003785629,
               "speed_cv": 0.8907754338980117,
               "work_proxy": 6311.80878161373,
-              "distance_per_work": 0.0008380247093279503
+              "distance_per_work": 0.0008380247093279503,
+              "path_length": 20.109879100189787,
+              "path_straightness": 0.2630275245909127,
+              "heading_consistency": 0.250777316675145
             },
             "contact": {
               "duty_torso": 0.0,
@@ -12311,7 +12524,10 @@
               "mean_speed": 1.1941526637322464,
               "speed_cv": 0.8444786931455632,
               "work_proxy": 7438.306564696103,
-              "distance_per_work": 0.0007920316537265917
+              "distance_per_work": 0.0007920316537265917,
+              "path_length": 19.902543489417866,
+              "path_straightness": 0.29601112302525795,
+              "heading_consistency": 0.09891130280020813
             },
             "contact": {
               "duty_torso": 0.0,
@@ -12474,7 +12690,10 @@
               "mean_speed": 1.3350264343582277,
               "speed_cv": 0.6529497806522964,
               "work_proxy": 4691.885788315847,
-              "distance_per_work": 0.001662223804904065
+              "distance_per_work": 0.001662223804904065,
+              "path_length": 22.250439666517536,
+              "path_straightness": 0.350508320919409,
+              "heading_consistency": 0.31079295749813485
             },
             "contact": {
               "duty_torso": 0.0,
@@ -12637,7 +12856,10 @@
               "mean_speed": 1.198171558578929,
               "speed_cv": 0.8275073755044625,
               "work_proxy": 8007.613729948489,
-              "distance_per_work": 0.0014329953745245425
+              "distance_per_work": 0.0014329953745245425,
+              "path_length": 19.96952507019588,
+              "path_straightness": 0.5746192458588525,
+              "heading_consistency": 0.4453320638178929
             },
             "contact": {
               "duty_torso": 0.0,
@@ -12814,7 +13036,10 @@
               "mean_speed": 3.0636723944107938,
               "speed_cv": 0.34297745310362016,
               "work_proxy": 11186.123854441516,
-              "distance_per_work": 0.003916194039513501
+              "distance_per_work": 0.003916194039513501,
+              "path_length": 51.061205667393594,
+              "path_straightness": 0.8579317897304907,
+              "heading_consistency": 0.7969101066035218
             },
             "contact": {
               "duty_torso": 0.0,
@@ -12989,7 +13214,10 @@
               "mean_speed": 2.5211287147924404,
               "speed_cv": 0.5004657348906651,
               "work_proxy": 11843.974393742927,
-              "distance_per_work": 0.003138613459517838
+              "distance_per_work": 0.003138613459517838,
+              "path_length": 42.01881100708769,
+              "path_straightness": 0.8846908457289702,
+              "heading_consistency": 0.7116536511759284
             },
             "contact": {
               "duty_torso": 0.0,
@@ -13165,7 +13393,10 @@
               "mean_speed": 2.3370882505372728,
               "speed_cv": 0.4689145506794741,
               "work_proxy": 8195.15219091048,
-              "distance_per_work": 0.00374037677834315
+              "distance_per_work": 0.00374037677834315,
+              "path_length": 38.951469936168266,
+              "path_straightness": 0.7869525078283847,
+              "heading_consistency": 0.7103403477198234
             },
             "contact": {
               "duty_torso": 0.0,
@@ -13340,7 +13571,10 @@
               "mean_speed": 0.5108311861909841,
               "speed_cv": 1.711103055951428,
               "work_proxy": 2184.024951701995,
-              "distance_per_work": 0.0016887121874192522
+              "distance_per_work": 0.0016887121874192522,
+              "path_length": 8.513852197063473,
+              "path_straightness": 0.4331986823589682,
+              "heading_consistency": 0.4634335849853695
             },
             "contact": {
               "duty_torso": 0.0,
@@ -13516,7 +13750,10 @@
               "mean_speed": 1.794747949925531,
               "speed_cv": 0.6696407959935468,
               "work_proxy": 8151.929515819779,
-              "distance_per_work": 0.002668737491761417
+              "distance_per_work": 0.002668737491761417,
+              "path_length": 29.91246492597257,
+              "path_straightness": 0.7273008086396408,
+              "heading_consistency": 0.532537975472075
             },
             "contact": {
               "duty_torso": 0.0,
@@ -13692,7 +13929,10 @@
               "mean_speed": 2.278959314440285,
               "speed_cv": 0.521635490741768,
               "work_proxy": 11268.145319537934,
-              "distance_per_work": 0.001536042304644687
+              "distance_per_work": 0.001536042304644687,
+              "path_length": 37.982654334551796,
+              "path_straightness": 0.45569084649119307,
+              "heading_consistency": 0.290997124817072
             },
             "contact": {
               "duty_torso": 0.0,
@@ -13868,7 +14108,10 @@
               "mean_speed": 1.3677049087519522,
               "speed_cv": 0.6699635389921613,
               "work_proxy": 6242.162369301255,
-              "distance_per_work": 0.0022677764678570495
+              "distance_per_work": 0.0022677764678570495,
+              "path_length": 22.79508090641294,
+              "path_straightness": 0.6210036712640811,
+              "heading_consistency": 0.42967853997061234
             },
             "contact": {
               "duty_torso": 0.0,
@@ -14051,7 +14294,10 @@
               "mean_speed": 1.2908968034468846,
               "speed_cv": 0.8391317264089506,
               "work_proxy": 4629.977671831572,
-              "distance_per_work": 0.0031236441888545102
+              "distance_per_work": 0.0031236441888545102,
+              "path_length": 21.514945817995148,
+              "path_straightness": 0.6722026154045174,
+              "heading_consistency": 0.3759287377734739
             },
             "contact": {
               "duty_torso": 0.0,
@@ -14228,7 +14474,10 @@
               "mean_speed": 1.5743929417453346,
               "speed_cv": 0.5902601549337708,
               "work_proxy": 5850.54720972408,
-              "distance_per_work": 0.0022786743715359184
+              "distance_per_work": 0.0022786743715359184,
+              "path_length": 26.23988145630264,
+              "path_straightness": 0.50806220327101,
+              "heading_consistency": 0.4370816687462769
             },
             "contact": {
               "duty_torso": 0.0,
@@ -14404,7 +14653,10 @@
               "mean_speed": 1.904008931389717,
               "speed_cv": 0.5892018964954328,
               "work_proxy": 5418.399679683824,
-              "distance_per_work": 0.004542897469612131
+              "distance_per_work": 0.004542897469612131,
+              "path_length": 31.73348128370901,
+              "path_straightness": 0.7756865366933292,
+              "heading_consistency": 0.5778568268626499
             },
             "contact": {
               "duty_torso": 0.0,
@@ -14581,7 +14833,10 @@
               "mean_speed": 1.4982306825368235,
               "speed_cv": 1.0120175854269617,
               "work_proxy": 7011.995249078332,
-              "distance_per_work": 0.0006003999754785865
+              "distance_per_work": 0.0006003999754785865,
+              "path_length": 24.970510469494133,
+              "path_straightness": 0.1685989471759439,
+              "heading_consistency": 0.13737820730565428
             },
             "contact": {
               "duty_torso": 0.41675,
@@ -14756,7 +15011,10 @@
               "mean_speed": 2.4060200837024683,
               "speed_cv": 0.4837976494985729,
               "work_proxy": 11587.120109119036,
-              "distance_per_work": 0.002786575780864454
+              "distance_per_work": 0.002786575780864454,
+              "path_length": 40.100333822254825,
+              "path_straightness": 0.8051900118626751,
+              "heading_consistency": 0.6793425010695835
             },
             "contact": {
               "duty_torso": 0.0,
@@ -14931,7 +15189,10 @@
               "mean_speed": 1.8886688032811734,
               "speed_cv": 0.5482047893028088,
               "work_proxy": 7669.746573532971,
-              "distance_per_work": 0.00039425526567918415
+              "distance_per_work": 0.00039425526567918415,
+              "path_length": 31.477812481899964,
+              "path_straightness": 0.09606251942630983,
+              "heading_consistency": 0.09053289684853842
             },
             "contact": {
               "duty_torso": 0.0,
@@ -15107,7 +15368,10 @@
               "mean_speed": 1.7968203147047865,
               "speed_cv": 0.5394231165586294,
               "work_proxy": 6039.390453709546,
-              "distance_per_work": 0.003783233178563348
+              "distance_per_work": 0.003783233178563348,
+              "path_length": 29.947004338960177,
+              "path_straightness": 0.7629618670421595,
+              "heading_consistency": 0.6425680980010554
             },
             "contact": {
               "duty_torso": 0.0,
@@ -15291,7 +15555,10 @@
               "mean_speed": 2.4466723189862956,
               "speed_cv": 0.5482046609109581,
               "work_proxy": 11628.805142846853,
-              "distance_per_work": 0.002574120361003222
+              "distance_per_work": 0.002574120361003222,
+              "path_length": 40.777871076985306,
+              "path_straightness": 0.7340732436921048,
+              "heading_consistency": 0.5791326640328703
             },
             "contact": {
               "duty_torso": 0.0,
@@ -15473,7 +15740,10 @@
               "mean_speed": 2.276922764405155,
               "speed_cv": 0.5568632907754713,
               "work_proxy": 9338.465745913876,
-              "distance_per_work": 0.0030149013453550696
+              "distance_per_work": 0.0030149013453550696,
+              "path_length": 37.94871183396633,
+              "path_straightness": 0.7419106362316098,
+              "heading_consistency": 0.5717863088590374
             },
             "contact": {
               "duty_torso": 0.0,
@@ -15649,7 +15919,10 @@
               "mean_speed": 1.94799240613976,
               "speed_cv": 0.6292072219673969,
               "work_proxy": 11423.907410285108,
-              "distance_per_work": 0.0021463784271011344
+              "distance_per_work": 0.0021463784271011344,
+              "path_length": 32.466539196209716,
+              "path_straightness": 0.7552399801670059,
+              "heading_consistency": 0.6416827464550695
             },
             "contact": {
               "duty_torso": 0.0,
@@ -15825,7 +16098,10 @@
               "mean_speed": 1.648486437325593,
               "speed_cv": 0.7538232857613674,
               "work_proxy": 7871.463822677702,
-              "distance_per_work": 0.002533613010200106
+              "distance_per_work": 0.002533613010200106,
+              "path_length": 27.474773049306975,
+              "path_straightness": 0.7258747184067726,
+              "heading_consistency": 0.3514402479098828
             },
             "contact": {
               "duty_torso": 0.0,
@@ -16001,7 +16277,10 @@
               "mean_speed": 1.504734020763253,
               "speed_cv": 0.5655503656329701,
               "work_proxy": 5315.5259591778795,
-              "distance_per_work": 0.0032798379913922134
+              "distance_per_work": 0.0032798379913922134,
+              "path_length": 25.078899439934588,
+              "path_straightness": 0.6951686228057469,
+              "heading_consistency": 0.6898958834347362
             },
             "contact": {
               "duty_torso": 0.0,
@@ -16177,7 +16456,10 @@
               "mean_speed": 0.9617505433816905,
               "speed_cv": 0.45665667875420585,
               "work_proxy": 4450.156849808551,
-              "distance_per_work": 0.0035157062446121907
+              "distance_per_work": 0.0035157062446121907,
+              "path_length": 16.0291748169086,
+              "path_straightness": 0.9760604900179777,
+              "heading_consistency": 0.9377126372871523
             },
             "contact": {
               "duty_torso": 0.0,
@@ -16352,7 +16634,10 @@
               "mean_speed": 1.452352664556731,
               "speed_cv": 0.644535711047636,
               "work_proxy": 4727.996237535451,
-              "distance_per_work": 0.0025886619365204488
+              "distance_per_work": 0.0025886619365204488,
+              "path_length": 24.205876836492592,
+              "path_straightness": 0.5056286115472677,
+              "heading_consistency": 0.4523305624018698
             },
             "contact": {
               "duty_torso": 0.0,
@@ -16527,7 +16812,10 @@
               "mean_speed": 0.9519863031245401,
               "speed_cv": 0.5330417890971382,
               "work_proxy": 3386.60703723919,
-              "distance_per_work": 0.0033745836157030576
+              "distance_per_work": 0.0033745836157030576,
+              "path_length": 15.866437479289395,
+              "path_straightness": 0.7202869979861343,
+              "heading_consistency": 0.8149359604708405
             },
             "contact": {
               "duty_torso": 0.0,
@@ -16771,7 +17059,10 @@
               "mean_speed": 3.3320799390980866,
               "speed_cv": 0.42061804107197004,
               "work_proxy": 6482.45005544797,
-              "distance_per_work": 0.007730165482085657
+              "distance_per_work": 0.007730165482085657,
+              "path_length": 55.53466474551514,
+              "path_straightness": 0.9023267158917163,
+              "heading_consistency": 0.8183740235391951
             },
             "contact": {
               "duty_torso": 0.0,
@@ -17014,7 +17305,10 @@
               "mean_speed": 2.0501890053196767,
               "speed_cv": 0.6475230366838464,
               "work_proxy": 4066.478961527638,
-              "distance_per_work": 0.00021745490789099815
+              "distance_per_work": 0.00021745490789099815,
+              "path_length": 34.169815849208355,
+              "path_straightness": 0.02587885787626102,
+              "heading_consistency": 0.009140362437248683
             },
             "contact": {
               "duty_torso": 0.0,
@@ -17253,7 +17547,10 @@
               "mean_speed": 1.8525506290856364,
               "speed_cv": 0.5894895453332717,
               "work_proxy": 2931.497173466154,
-              "distance_per_work": 0.0015135227009725708
+              "distance_per_work": 0.0015135227009725708,
+              "path_length": 30.875842911974328,
+              "path_straightness": 0.14370093579395782,
+              "heading_consistency": 0.10644147577725649
             },
             "contact": {
               "duty_torso": 0.0,
@@ -17430,7 +17727,10 @@
               "mean_speed": 0.7886597531665797,
               "speed_cv": 0.5368604952864013,
               "work_proxy": 16755.33475975443,
-              "distance_per_work": 3.282738810284141e-05
+              "distance_per_work": 3.282738810284141e-05,
+              "path_length": 13.1443283133234,
+              "path_straightness": 0.04184571960165971,
+              "heading_consistency": 0.0449125425923474
             },
             "contact": {
               "duty_torso": 0.0,
@@ -17602,7 +17902,10 @@
               "mean_speed": 0.8113719692247178,
               "speed_cv": 0.5608753154949703,
               "work_proxy": 17275.446517906694,
-              "distance_per_work": 0.0001647540158499083
+              "distance_per_work": 0.0001647540158499083,
+              "path_length": 13.522865247625699,
+              "path_straightness": 0.210473086679997,
+              "heading_consistency": 0.20960950226072717
             },
             "contact": {
               "duty_torso": 0.0,
@@ -17779,7 +18082,10 @@
               "mean_speed": 0.23151151808515652,
               "speed_cv": 1.7166758470858914,
               "work_proxy": 4213.568553630508,
-              "distance_per_work": 0.0005115358226426449
+              "distance_per_work": 0.0005115358226426449,
+              "path_length": 3.8585243952996837,
+              "path_straightness": 0.5586050612944632,
+              "heading_consistency": 0.668820046070608
             },
             "contact": {
               "duty_torso": 0.593,
@@ -17949,7 +18255,10 @@
               "mean_speed": 1.0730178711889211,
               "speed_cv": 0.7392123440306028,
               "work_proxy": 5642.683595517711,
-              "distance_per_work": 0.0015543615026387316
+              "distance_per_work": 0.0015543615026387316,
+              "path_length": 17.883630280362404,
+              "path_straightness": 0.49043566742009914,
+              "heading_consistency": 0.3212011811637431
             },
             "contact": {
               "duty_torso": 0.0,
@@ -18120,7 +18429,10 @@
               "mean_speed": 0.6244141459995654,
               "speed_cv": 1.5972078812621313,
               "work_proxy": 4190.576198828748,
-              "distance_per_work": 0.0010652890498122685
+              "distance_per_work": 0.0010652890498122685,
+              "path_length": 10.406901527206491,
+              "path_straightness": 0.4289629267025933,
+              "heading_consistency": 0.20785342747134083
             },
             "contact": {
               "duty_torso": 0.26775,
@@ -18290,7 +18602,10 @@
               "mean_speed": 2.4413599060084872e-05,
               "speed_cv": 0.6610754368280837,
               "work_proxy": 1.0878101602586221e-05,
-              "distance_per_work": 35.47377545907796
+              "distance_per_work": 35.47377545907796,
+              "path_length": 0.0004059871980753659,
+              "path_straightness": 0.9504913837198018,
+              "heading_consistency": 0.0
             },
             "contact": {
               "duty_torso": 0.0,
@@ -18464,7 +18779,10 @@
               "mean_speed": 2.880842464955053,
               "speed_cv": 0.4589404006870859,
               "work_proxy": 14006.57694295966,
-              "distance_per_work": 0.002241889490289491
+              "distance_per_work": 0.002241889490289491,
+              "path_length": 48.01404017646457,
+              "path_straightness": 0.654000320071889,
+              "heading_consistency": 0.563398426053503
             },
             "contact": {
               "duty_torso": 0.0,
@@ -18633,7 +18951,10 @@
               "mean_speed": 2.082799959761264,
               "speed_cv": 0.5082073584766076,
               "work_proxy": 12442.90678427872,
-              "distance_per_work": 0.0008974637625668308
+              "distance_per_work": 0.0008974637625668308,
+              "path_length": 34.71333175656815,
+              "path_straightness": 0.3216936368481597,
+              "heading_consistency": 0.2314739943813362
             },
             "contact": {
               "duty_torso": 0.0,
@@ -18803,7 +19124,10 @@
               "mean_speed": 2.6709739207915573,
               "speed_cv": 0.3824174720248916,
               "work_proxy": 9228.60141651555,
-              "distance_per_work": 0.003580956998227932
+              "distance_per_work": 0.003580956998227932,
+              "path_length": 44.516231107073054,
+              "path_straightness": 0.7423634931456897,
+              "heading_consistency": 0.711790923836803
             },
             "contact": {
               "duty_torso": 0.0,
@@ -18974,7 +19298,10 @@
               "mean_speed": 0.873693617206726,
               "speed_cv": 1.501908084090124,
               "work_proxy": 5946.113041258196,
-              "distance_per_work": 0.0013498140668463236
+              "distance_per_work": 0.0013498140668463236,
+              "path_length": 14.561559380659169,
+              "path_straightness": 0.5511873293466844,
+              "heading_consistency": 0.055020860531453795
             },
             "contact": {
               "duty_torso": 0.0,
@@ -19150,7 +19477,10 @@
               "mean_speed": 2.5249888102830362,
               "speed_cv": 0.501636979544865,
               "work_proxy": 12424.664265567448,
-              "distance_per_work": 0.0030393526304513183
+              "distance_per_work": 0.0030393526304513183,
+              "path_length": 42.083145931931,
+              "path_straightness": 0.8973410894496345,
+              "heading_consistency": 0.7738432082093393
             },
             "contact": {
               "duty_torso": 0.0,
@@ -19319,7 +19649,10 @@
               "mean_speed": 2.4265141860409156,
               "speed_cv": 0.5309285766536338,
               "work_proxy": 10637.463748692737,
-              "distance_per_work": 0.0027619780139393735
+              "distance_per_work": 0.0027619780139393735,
+              "path_length": 40.44190219456236,
+              "path_straightness": 0.7264851405015468,
+              "heading_consistency": 0.6115832937302689
             },
             "contact": {
               "duty_torso": 0.0,
@@ -19489,7 +19822,10 @@
               "mean_speed": 1.4515528209052735,
               "speed_cv": 0.764581878352323,
               "work_proxy": 8104.784090475257,
-              "distance_per_work": 0.0020021100196120807
+              "distance_per_work": 0.0020021100196120807,
+              "path_length": 24.192546108968276,
+              "path_straightness": 0.6707301232885862,
+              "heading_consistency": 0.5828008486009278
             },
             "contact": {
               "duty_torso": 0.0,
@@ -19659,7 +19995,10 @@
               "mean_speed": 2.054341906290475,
               "speed_cv": 0.5876347327829481,
               "work_proxy": 9406.057500445406,
-              "distance_per_work": 0.0017907898112606974
+              "distance_per_work": 0.0017907898112606974,
+              "path_length": 34.23903086538832,
+              "path_straightness": 0.4919611189391898,
+              "heading_consistency": 0.35712603902528467
             },
             "contact": {
               "duty_torso": 0.0,
@@ -19841,7 +20180,10 @@
               "mean_speed": 2.5922383563874942,
               "speed_cv": 0.2596739101957357,
               "work_proxy": 8509.79827733364,
-              "distance_per_work": 0.004840554635276986
+              "distance_per_work": 0.004840554635276986,
+              "path_length": 43.2039717003386,
+              "path_straightness": 0.9534341838367753,
+              "heading_consistency": 0.9243903422086857
             },
             "contact": {
               "duty_torso": 0.0,
@@ -20022,7 +20364,10 @@
               "mean_speed": 2.6947005925470884,
               "speed_cv": 0.4607042957299178,
               "work_proxy": 10419.037926193181,
-              "distance_per_work": 0.0037935454705246867
+              "distance_per_work": 0.0037935454705246867,
+              "path_length": 44.91167563633184,
+              "path_straightness": 0.8800627803822302,
+              "heading_consistency": 0.7519668944863295
             },
             "contact": {
               "duty_torso": 0.0,
@@ -20203,7 +20548,10 @@
               "mean_speed": 2.669492044954976,
               "speed_cv": 0.4078392630617414,
               "work_proxy": 12378.398334231484,
-              "distance_per_work": 0.0030780520815658977
+              "distance_per_work": 0.0030780520815658977,
+              "path_length": 44.49153317646335,
+              "path_straightness": 0.8563731577424987,
+              "heading_consistency": 0.8381534965061301
             },
             "contact": {
               "duty_torso": 0.0,

@@ -177,7 +177,7 @@ def clean_ax(ax):
 def save_fig(fig, name):
     PLOT_DIR.mkdir(parents=True, exist_ok=True)
     path = PLOT_DIR / name
-    fig.savefig(path, dpi=200, bbox_inches="tight")
+    fig.savefig(path, dpi=100, bbox_inches="tight")
     plt.close(fig)
     print(f"  WROTE {path}")
 
@@ -635,7 +635,7 @@ def extract_all_features(profiles, perp_profiles):
 def fig01_profile_gallery(profiles):
     """5x10 grid: all 50 cliff profiles, border colored by taxonomy type."""
     n_rows, n_cols = 5, 10
-    fig, axes = plt.subplots(n_rows, n_cols, figsize=(28, 14))
+    fig, axes = plt.subplots(n_rows, n_cols, figsize=(19, 9))
 
     for i, prof in enumerate(profiles):
         row, col = i // n_cols, i % n_cols
@@ -672,7 +672,7 @@ def fig01_profile_gallery(profiles):
 
 def fig02_taxonomy_summary(profiles):
     """1x3: type distribution, prototypical profile per type, feature radar per type."""
-    fig, axes = plt.subplots(1, 3, figsize=(20, 6))
+    fig, axes = plt.subplots(1, 3, figsize=(19, 6))
 
     # Count types
     type_counts = {}
@@ -759,7 +759,7 @@ def fig03_perpendicular(profiles, perp_profiles):
     """3x5: gradient vs perpendicular profiles for top 15 points."""
     n_show = min(15, len(perp_profiles))
     n_rows, n_cols = 3, 5
-    fig, axes = plt.subplots(n_rows, n_cols, figsize=(24, 12))
+    fig, axes = plt.subplots(n_rows, n_cols, figsize=(19, 9))
 
     # Build profile lookup by idx
     prof_by_idx = {p["idx"]: p for p in profiles}
@@ -822,7 +822,7 @@ def fig04_cliff_edges(fine_profiles):
     """4x5: fine-grained cliff profiles for top 20."""
     n_show = min(20, len(fine_profiles))
     n_rows, n_cols = 4, 5
-    fig, axes = plt.subplots(n_rows, n_cols, figsize=(24, 16))
+    fig, axes = plt.subplots(n_rows, n_cols, figsize=(19, 13))
 
     for i in range(n_show):
         row, col = i // n_cols, i % n_cols

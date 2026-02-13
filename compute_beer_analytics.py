@@ -221,6 +221,21 @@ def compute_outcome(data, dt):
     net_dist = np.sqrt(dx**2 + dy**2)
     distance_per_work = float(net_dist / work_proxy) if work_proxy > EPS else 0.0
 
+    # Path straightness: net_displacement / path_length  (1.0 = perfectly straight)
+    ds = np.sqrt(np.diff(x)**2 + np.diff(y)**2)
+    path_length = float(np.sum(ds))
+    path_straightness = float(net_dist / path_length) if path_length > EPS else 0.0
+
+    # Heading consistency: |mean(e^{iθ})| where θ = atan2(vy, vx)
+    # Only count timesteps where the robot is actually moving (speed > threshold)
+    speed_thresh = 0.1  # m/s — ignore near-stationary frames
+    moving = speed > speed_thresh
+    if np.sum(moving) > 10:
+        theta = np.arctan2(vy[moving], vx[moving])
+        heading_consistency = float(np.abs(np.mean(np.exp(1j * theta))))
+    else:
+        heading_consistency = 0.0
+
     return {
         "dx": dx,
         "dy": dy,
@@ -229,6 +244,9 @@ def compute_outcome(data, dt):
         "speed_cv": speed_cv,
         "work_proxy": work_proxy,
         "distance_per_work": distance_per_work,
+        "path_length": path_length,
+        "path_straightness": path_straightness,
+        "heading_consistency": heading_consistency,
     }
 
 

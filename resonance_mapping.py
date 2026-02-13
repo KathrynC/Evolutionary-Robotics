@@ -190,7 +190,7 @@ def clean_ax(ax):
 def save_fig(fig, name):
     PLOT_DIR.mkdir(parents=True, exist_ok=True)
     path = PLOT_DIR / name
-    fig.savefig(path, dpi=200, bbox_inches="tight")
+    fig.savefig(path, dpi=100, bbox_inches="tight")
     plt.close(fig)
     print(f"  WROTE {path}")
 
@@ -571,7 +571,7 @@ def fig05_evolved_overlay(fp_data, poly_data):
 
 def fig06_verdict(fp_data, poly_data, amp_results, transfer_fn):
     """Summary verdict figure."""
-    fig, axes = plt.subplots(2, 3, figsize=(20, 12))
+    fig, axes = plt.subplots(2, 3, figsize=(19, 12))
 
     freqs = np.array(fp_data["freqs"])
     abs_g = np.array(fp_data["abs_dx_grid"])

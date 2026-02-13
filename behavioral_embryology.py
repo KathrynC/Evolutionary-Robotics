@@ -481,7 +481,7 @@ def clean_ax(ax):
 
 def save_fig(fig, name):
     path = PLOT_DIR / name
-    fig.savefig(path, dpi=180, bbox_inches="tight", facecolor="white")
+    fig.savefig(path, dpi=100, bbox_inches="tight", facecolor="white")
     plt.close(fig)
     print(f"  WROTE {path}")
 

@@ -47,6 +47,9 @@ python3 tools/zoo/run_zoo.py --variants_dir artifacts/rules/zoo --headless 1
 
 # Plot sensor traces
 python3 analyze.py
+
+# Launch Twine interactive story server
+cd twine && uvicorn server:app --reload
 ```
 
 ## Architecture
@@ -97,6 +100,37 @@ Synapse weight naming convention: `wXY` means source neuron X -> target neuron Y
 
 Output: `synapse_gait_zoo_v2.json` — preserves all v1 gait fields but replaces `telemetry` with a comprehensive `analytics` object. Constraint: numpy-only (no scipy/sklearn). Uses FFT-based Hilbert transform instead of `scipy.signal.hilbert`.
 
+### Research Campaign Scripts
+
+High-budget simulation campaigns (hundreds to thousands of sims each) that investigate the weight-space landscape and behavioral dynamics:
+
+- **walker_competition.py** — 5 optimization algorithms (Hill Climber, Ridge Walker, Cliff Mapper, Novelty Seeker, Ensemble Explorer) compete with 1,000-evaluation budget each
+- **causal_surgery.py** — Mid-simulation brain transplants (weight switching at specific timesteps), single-synapse ablation, rescue experiments (~600 sims)
+- **behavioral_embryology.py** — Tracks gait emergence during the first 500+ steps: when does locomotion start? When do coordination metrics stabilize?
+- **gait_interpolation.py** — Linear interpolation in 6D weight space between champion pairs; maps fitness landscape smoothness and intermediate super-gaits
+- **resonance_mapping.py** — Bypasses NN entirely, drives joints with sinusoidal sweeps across frequency/phase/amplitude to find the body's mechanical transfer function (~2,150 sims)
+- **atlas_cliffiness.py** — Spatial atlas of cliffiness: gradient reconstruction from 500 base points, 2D slice heatmaps, cliff anatomy profiles (~6,400 sims)
+- **cliff_taxonomy.py** — Adaptive probing of top 50 cliffiest points with gradient/perpendicular profiles and multi-scale classification
+- **analyze_dark_matter.py** — Studies "dead" gaits (|DX| < 1m) from 500 random trials; classifies as spinners, rockers, vibrators, circlers, or inert
+- **random_search_500.py** / **random_search_cliffs.py** — Large-scale random weight sampling and cliff detection
+
+These scripts produce JSON artifacts in `artifacts/` and matplotlib visualizations. Each is self-contained (defines its own simulation harness, typically using headless PyBullet).
+
+### Twine Interactive Server
+
+`twine/server.py` is a FastAPI bridge between a browser-based SugarCube story (`twine/experiment.html`) and the PyBullet simulation. Users commit gait parameters through 36 interpretive personas/lenses. The server writes variant JSON, spawns a headless simulation, reads the telemetry summary, and returns results for narrative interpretation.
+
+- `GET /` serves the interactive story
+- `POST /simulate` accepts gait parameters, runs a sim, returns the summary
+
+### Tools Directory
+
+- `tools/telemetry/logger.py` — Core telemetry logger (JSONL per-step recording)
+- `tools/gait_zoo.py` — Utilities for enumerating/expanding gait variants, rotating bins, swapping motors
+- `tools/replay_trace.py` — Load and inspect telemetry traces (neuron values, motor outputs)
+- `tools/zoo/run_zoo.py` — Batch runner for gait variants with summary metric collection
+- `tools/zoo/collect_summaries.py` / `regen_scores.py` — Aggregate and regenerate gait scores
+
 ### Key Data Files
 
 - `synapse_gait_zoo.json` — v1 zoo: all 116 gaits with weights, measurements, category metadata, and telemetry summaries
@@ -117,6 +151,11 @@ Output: `synapse_gait_zoo_v2.json` — preserves all v1 gait fields but replaces
 | `MAX_FORCE` | Motor force limit override (default 150N) |
 | `USE_NN` | `0` to skip neural network motor control |
 | `SIM_DEBUG` | `1` for debug prints at startup |
+| `TELEMETRY` | `1` to enable per-step telemetry recording |
+| `TELEMETRY_EVERY` | Sampling interval for telemetry (default 10; use 1 for full-resolution) |
+| `TELEMETRY_OUT` | Base output directory for telemetry (default `artifacts/telemetry`) |
+| `TELEMETRY_VARIANT_ID` | Gait name used in telemetry output path |
+| `TELEMETRY_RUN_ID` | Run identifier used in telemetry output path |
 
 ## Conventions
 
@@ -124,5 +163,6 @@ Output: `synapse_gait_zoo_v2.json` — preserves all v1 gait fields but replaces
 - `brain.nndf` is a shared file overwritten by multiple scripts. `record_videos.py` and `generate_telemetry.py` back it up and restore it.
 - Simulations are deterministic — identical weights produce identical trajectories. Float64 precision matters for evolved gaits (rounding to 6 decimal places can shift behavior by 30%).
 - Units: angles in radians, time in seconds, frequency in Hz, force in Newtons.
-- **numpy 2.x compatibility**: `np.trapz` does not exist in numpy 2.x; use `np.trapezoid` instead. The conda env has numpy 2.4.1.
+- **numpy compatibility**: environment.yml pins numpy 1.26.4; some analysis scripts use `np.trapezoid` (numpy 2.x). Check installed version if you encounter `np.trapz` vs `np.trapezoid` errors.
 - Analytics pipeline is numpy-only by design (no scipy, no sklearn). Signal processing (Hilbert transform, FFT) is implemented from scratch via `np.fft`.
+- Research campaign scripts are self-contained — each defines its own simulation harness and writes outputs to `artifacts/`. They can take minutes to run (hundreds/thousands of headless sims).

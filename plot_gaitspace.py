@@ -147,7 +147,7 @@ def save_fig(fig, name):
     """Save figure to artifacts/plots/ with consistent settings."""
     os.makedirs(OUT_DIR, exist_ok=True)
     path = os.path.join(OUT_DIR, name)
-    fig.savefig(path, dpi=200, bbox_inches="tight", facecolor="white")
+    fig.savefig(path, dpi=100, bbox_inches="tight", facecolor="white")
     plt.close(fig)
     print(f"WROTE {path}")
 

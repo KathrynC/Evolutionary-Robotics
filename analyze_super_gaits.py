@@ -272,7 +272,7 @@ def clean_ax(ax):
 def save_fig(fig, name):
     PLOT_DIR.mkdir(parents=True, exist_ok=True)
     path = PLOT_DIR / name
-    fig.savefig(path, dpi=200, bbox_inches="tight")
+    fig.savefig(path, dpi=100, bbox_inches="tight")
     plt.close(fig)
     print(f"  WROTE {path}")
 
@@ -438,7 +438,7 @@ def plot_fig01_trajectory(all_data):
 
 def plot_fig02_joints(all_data):
     """2x4 grid: joint positions (top row) and velocities (bottom row)."""
-    fig, axes = plt.subplots(2, 4, figsize=(20, 8))
+    fig, axes = plt.subplots(2, 4, figsize=(19, 8))
 
     for col, name in enumerate(GAIT_ORDER):
         d = all_data[name]
@@ -470,7 +470,7 @@ def plot_fig02_joints(all_data):
 
 def plot_fig03_phase(all_data, all_metrics):
     """4-panel phase portraits (j0 vs j1, colored by time)."""
-    fig, axes = plt.subplots(1, 4, figsize=(20, 5))
+    fig, axes = plt.subplots(1, 4, figsize=(19, 5))
 
     for col, name in enumerate(GAIT_ORDER):
         ax = axes[col]
@@ -500,7 +500,7 @@ def plot_fig03_phase(all_data, all_metrics):
 
 def plot_fig04_energy(all_data):
     """2x4 grid: instantaneous power (top) and cumulative work (bottom)."""
-    fig, axes = plt.subplots(2, 4, figsize=(20, 8))
+    fig, axes = plt.subplots(2, 4, figsize=(19, 8))
 
     for col, name in enumerate(GAIT_ORDER):
         d = all_data[name]

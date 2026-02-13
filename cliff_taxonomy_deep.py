@@ -158,7 +158,7 @@ def clean_ax(ax):
 def save_fig(fig, name):
     PLOT_DIR.mkdir(parents=True, exist_ok=True)
     path = PLOT_DIR / name
-    fig.savefig(path, dpi=200, bbox_inches="tight")
+    fig.savefig(path, dpi=100, bbox_inches="tight")
     plt.close(fig)
     print(f"  WROTE {path}")
 
@@ -495,7 +495,7 @@ def fig01_zoom_cascade(zoom_results, targets):
     n = len(zoom_results)
     n_cols = 5
     n_rows = (n + n_cols - 1) // n_cols
-    fig, axes = plt.subplots(n_rows, n_cols, figsize=(26, 5 * n_rows))
+    fig, axes = plt.subplots(n_rows, n_cols, figsize=(19, 4 * n_rows))
     if n_rows == 1:
         axes = [axes]
 
@@ -608,7 +608,7 @@ def fig03_directional_fan(fan_results, targets):
     n = len(fan_results)
     n_cols = 5
     n_rows = (n + n_cols - 1) // n_cols
-    fig, axes = plt.subplots(n_rows, n_cols, figsize=(26, 5 * n_rows))
+    fig, axes = plt.subplots(n_rows, n_cols, figsize=(19, 4 * n_rows))
     if n_rows == 1:
         axes = [axes]
 
@@ -760,7 +760,7 @@ def fig05_micro_grids(grid_results, targets):
 def fig06_smoothness_verdict(zoom_results, fan_results, grid_results,
                               targets, slopes, isotropy_ratios, grad_vs_perp):
     """Summary figure: the verdict on smoothness, isotropy, and Wolfram class."""
-    fig, axes = plt.subplots(2, 3, figsize=(20, 12))
+    fig, axes = plt.subplots(2, 3, figsize=(19, 12))
 
     # (0,0): Mean derivative magnitude vs scale
     ax = axes[0][0]
