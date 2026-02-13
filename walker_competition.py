@@ -75,6 +75,7 @@ WALKER_COLORS = ["#4C72B0", "#55A868", "#C44E52", "#8172B2", "#CCB974"]
 # ── Simulation (shared from random_search_500.py pattern) ───────────────────
 
 def write_brain(weights):
+    """Write a brain.nndf file from a weight dict mapping 'wXY' to float values."""
     path = PROJECT / "brain.nndf"
     with open(path, "w") as f:
         f.write('<neuralNetwork>\n')
@@ -164,6 +165,8 @@ def evaluate(weights):
         wx[i] = vel_ang[0]; wy[i] = vel_ang[1]; wz[i] = vel_ang[2]
         roll_a[i] = rpy_vals[0]; pitch_a[i] = rpy_vals[1]; yaw_a[i] = rpy_vals[2]
 
+        # Detect ground contact per link: cp[3] is the link index on bodyA.
+        # link index -1 is the base link (Torso).
         contact_pts = p.getContactPoints(robotId)
         tc = False; bc = False; fc = False
         for cp in contact_pts:
@@ -229,7 +232,7 @@ def perturb(weights, radius):
     """Perturb weights along a random 6D unit vector at given radius."""
     direction = np.random.randn(N_WEIGHTS)
     norm = np.linalg.norm(direction)
-    if norm < 1e-12:
+    if norm < 1e-12:  # guard against near-zero random vector (astronomically rare)
         direction = np.ones(N_WEIGHTS)
         norm = np.linalg.norm(direction)
     direction = direction / norm
@@ -259,7 +262,7 @@ def normalize_behavioral_vecs(vecs):
     mins = arr.min(axis=0)
     maxs = arr.max(axis=0)
     ranges = maxs - mins
-    ranges[ranges < 1e-12] = 1.0
+    ranges[ranges < 1e-12] = 1.0  # avoid division by zero for constant dimensions
     return (arr - mins) / ranges
 
 
@@ -313,12 +316,14 @@ def run_hill_climber():
     archive.append({"weights": w, "metrics": m})
     weight_history.append(weights_to_vec(w))
 
+    # Greedy local search: each step perturbs and keeps only strict improvements
     for step in range(999):
         w_new = perturb(w, radius=0.1)
         m_new = evaluate(w_new)
         archive.append({"weights": w_new, "metrics": m_new})
         weight_history.append(weights_to_vec(w_new))
 
+        # Accept only if strictly better -- classic hill climbing acceptance rule
         if m_new["abs_dx"] > m["abs_dx"]:
             w = w_new
             m = m_new
@@ -342,7 +347,9 @@ def run_ridge_walker():
     archive.append({"weights": w, "metrics": m})
     weight_history.append(weights_to_vec(w))
 
+    # Multi-objective search: walk along the Pareto ridge of (|DX|, efficiency)
     for step in range(333):
+        # Generate 3 candidate perturbations per step (budget: 3 * 333 = 999 + 1 init = 1000)
         candidates = []
         for _ in range(3):
             w_c = perturb(w, radius=0.1)
@@ -352,10 +359,12 @@ def run_ridge_walker():
             candidates.append((w_c, m_c))
 
         # Filter to non-dominated candidates (not dominated by current point)
+        # A candidate passes if it is at least as good as current on both objectives
         non_dominated = [(wc, mc) for wc, mc in candidates if not is_dominated(mc, m)]
 
         if non_dominated:
-            # Pick the one farthest from current in objective space
+            # Among non-dominated, pick the one farthest from current in 2D objective space.
+            # This encourages exploration along the Pareto front rather than staying put.
             best_dist = -1
             best_wc, best_mc = None, None
             for wc, mc in non_dominated:
@@ -386,17 +395,22 @@ def run_cliff_mapper():
     archive.append({"weights": w, "metrics": m})
     weight_history.append(weights_to_vec(w))
 
+    # Gradient-based exploration: probe multiple directions, follow steepest change
     for step in range(99):
+        # Sample 10 nearby points to estimate the local gradient landscape
+        # Uses a smaller radius (0.05) than other walkers for finer gradient resolution
         probes = []
         for _ in range(10):
             w_p = perturb(w, radius=0.05)
             m_p = evaluate(w_p)
             archive.append({"weights": w_p, "metrics": m_p})
             weight_history.append(weights_to_vec(w_p))
+            # Track absolute change in |DX| -- both improvements and drops count
             delta_dx = abs(m_p["abs_dx"] - m["abs_dx"])
             probes.append((w_p, m_p, delta_dx))
 
-        # Move to probe with largest |delta_DX| — seek disruption
+        # Move to probe with largest |delta_DX| — seek disruption, not necessarily improvement.
+        # This deliberately walks toward "cliffs" in the fitness landscape.
         best_probe = max(probes, key=lambda x: x[2])
         w, m = best_probe[0], best_probe[1]
 
@@ -404,7 +418,7 @@ def run_cliff_mapper():
             print(f"    step {step+1}/99  |DX|={m['abs_dx']:.3f}  "
                   f"max delta={best_probe[2]:.3f}  evals={len(archive)}")
 
-    # Remaining budget: 1000 - 1 - 99*10 = 9
+    # Remaining budget: 1000 - 1 - 99*10 = 9; spend on random perturbations
     remaining = EVAL_BUDGET - len(archive)
     for _ in range(remaining):
         w_r = perturb(w, radius=0.1)
@@ -429,7 +443,10 @@ def run_novelty_seeker():
     weight_history.append(weights_to_vec(w))
     behavior_archive.append(behavioral_vec(m))
 
+    # Novelty-driven search: prioritize behavioral diversity over fitness
+    # Uses a larger perturbation radius (0.2) to encourage exploration
     for step in range(199):
+        # Generate 5 candidates per step (budget: 5 * 199 = 995 + 1 init = 996)
         candidates = []
         for _ in range(5):
             w_c = perturb(w, radius=0.2)
@@ -439,13 +456,14 @@ def run_novelty_seeker():
             bv = behavioral_vec(m_c)
             candidates.append((w_c, m_c, bv))
 
-        # Normalize archive + candidates together for fair distance computation
+        # Normalize archive + candidates together so distances are scale-invariant.
+        # Must include candidates in normalization to avoid biased distance comparisons.
         all_bvecs = behavior_archive + [c[2] for c in candidates]
         normalized = normalize_behavioral_vecs(all_bvecs)
         n_archive = len(behavior_archive)
         norm_archive = normalized[:n_archive]
 
-        # Pick most novel candidate
+        # Pick the candidate most distant from existing archive (k-NN novelty score)
         best_nov = -1
         best_idx = 0
         for ci, (wc, mc, bv) in enumerate(candidates):
@@ -455,8 +473,10 @@ def run_novelty_seeker():
                 best_nov = nov
                 best_idx = ci
 
+        # Move to the most novel candidate regardless of its fitness
         w, m = candidates[best_idx][0], candidates[best_idx][1]
-        # Add all candidates to behavior archive
+        # Add all candidates to behavior archive (not just the winner)
+        # to build a denser archive for better novelty estimates
         for _, _, bv in candidates:
             behavior_archive.append(bv)
 
@@ -497,7 +517,7 @@ def run_ensemble_explorer():
 
     # 20 init evals done. Budget: 1000 - 20 = 980 for steps. 980 / 20 = 49 steps.
     for step in range(n_steps):
-        # Each walker does one hill climbing step
+        # Independent hill climbing: each walker perturbs and accepts improvements
         for wi in range(n_walkers):
             w_new = perturb(walkers_w[wi], radius=0.1)
             m_new = evaluate(w_new)
@@ -508,22 +528,24 @@ def run_ensemble_explorer():
                 walkers_w[wi] = w_new
                 walkers_m[wi] = m_new
 
-        # Every 10 steps: teleportation — deduplicate crowded walkers
+        # Every 10 steps: teleportation to prevent convergence to the same basin.
+        # Walkers that have become behaviorally similar are "teleported" to random
+        # positions in weight space, maintaining population diversity.
         if (step + 1) % 10 == 0:
             # Compute behavioral vectors for all walkers
             bvecs = [behavioral_vec(walkers_m[wi]) for wi in range(n_walkers)]
             norm_bvecs = normalize_behavioral_vecs(bvecs)
 
-            # Find pairs within threshold
+            # Find pairs within threshold (0.3 in normalized behavioral space)
             for wi in range(n_walkers):
                 for wj in range(wi + 1, n_walkers):
                     dist = np.linalg.norm(norm_bvecs[wi] - norm_bvecs[wj])
                     if dist < 0.3:
-                        # Teleport the worse one
+                        # Teleport the worse one to a random location
                         worse = wi if walkers_m[wi]["abs_dx"] < walkers_m[wj]["abs_dx"] else wj
                         walkers_w[worse] = random_weights()
-                        # Don't evaluate here — it'll be evaluated on next step
-                        # Reset metrics to trigger re-evaluation
+                        # Don't evaluate here — it'll be evaluated on next step.
+                        # Zero metrics so the walker won't be incorrectly treated as high-fitness.
                         walkers_m[worse] = {"abs_dx": 0, "dx": 0, "speed": 0,
                                             "efficiency": 0, "work_proxy": 0,
                                             "phase_lock": 0, "entropy": 0, "roll_dom": 0}
@@ -550,7 +572,8 @@ def score_walkers(all_archives):
         # Best |DX|
         best_dx = max(m["abs_dx"] for m in metrics_list)
 
-        # Best efficiency (among evals with |DX| > 2m)
+        # Best efficiency (among evals with |DX| > 2m) -- filter out near-stationary
+        # gaits where efficiency is meaningless (tiny work -> inflated ratio)
         efficient = [m["efficiency"] for m in metrics_list if m["abs_dx"] > 2.0]
         best_eff = max(efficient) if efficient else 0.0
 
@@ -561,7 +584,8 @@ def score_walkers(all_archives):
         pf = pareto_front(metrics_list)
         pareto_size = len(pf)
 
-        # Diversity: mean pairwise behavioral distance (sample 200 pairs)
+        # Diversity: mean pairwise behavioral distance (sample 200 pairs).
+        # Sampling avoids O(n^2) cost for archives of 1000 points.
         bvecs = [behavioral_vec(m) for m in metrics_list]
         norm_bvecs = normalize_behavioral_vecs(bvecs)
         n_samples = min(200, len(norm_bvecs) * (len(norm_bvecs) - 1) // 2)
@@ -614,11 +638,12 @@ def count_unique_regimes(norm_bvecs, k=10, max_iter=50):
             else:
                 new_centroids[ci] = centroids[ci]
 
+        # Converge when centroids stop moving (within floating point tolerance)
         if np.allclose(centroids, new_centroids, atol=1e-8):
             break
         centroids = new_centroids
 
-    # Count non-empty clusters
+    # Count non-empty clusters -- some of the k=10 clusters may be empty
     unique_labels = len(set(labels.tolist()))
     return unique_labels
 
@@ -636,13 +661,13 @@ def compute_ranks(scores):
         for rank, (name, _) in enumerate(vals, 1):
             ranks[name][mk] = rank
 
-    # Overall: sum of ranks
+    # Overall: sum of ranks (lower total = better overall performance)
     for name in WALKER_NAMES:
         ranks[name]["total"] = sum(ranks[name][mk] for mk in metric_keys)
 
-    # Overall rank
+    # Overall rank -- ties broken by best_dx rank (displacement as tiebreaker)
     totals = [(name, ranks[name]["total"]) for name in WALKER_NAMES]
-    totals.sort(key=lambda x: (x[1], ranks[x[0]]["best_dx"]))  # tie-break on best_dx rank
+    totals.sort(key=lambda x: (x[1], ranks[x[0]]["best_dx"]))
     for rank, (name, _) in enumerate(totals, 1):
         ranks[name]["overall"] = rank
 
@@ -652,6 +677,7 @@ def compute_ranks(scores):
 # ── Zoo context ──────────────────────────────────────────────────────────────
 
 def load_zoo_summary():
+    """Load gait metrics from the v2 zoo JSON for context plotting. Returns list of metric dicts."""
     zoo_path = PROJECT / "synapse_gait_zoo_v2.json"
     if not zoo_path.exists():
         return []
@@ -681,11 +707,13 @@ def load_zoo_summary():
 # ── Plotting helpers ─────────────────────────────────────────────────────────
 
 def clean_ax(ax):
+    """Remove top and right spines from a matplotlib Axes for a cleaner look."""
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
 
 
 def save_fig(fig, name):
+    """Save a matplotlib figure to PLOT_DIR and close it to free memory."""
     PLOT_DIR.mkdir(parents=True, exist_ok=True)
     path = PLOT_DIR / name
     fig.savefig(path, dpi=100, bbox_inches="tight")
@@ -844,12 +872,13 @@ def plot_diversity(all_archives):
     all_bvecs = np.array(all_bvecs)
     all_labels = np.array(all_labels)
 
-    # PCA (numpy-only): center, covariance, eigenvectors
+    # PCA (numpy-only, no sklearn): center, covariance, eigenvectors.
+    # eigh returns eigenvalues in ascending order; reverse for descending variance.
     mean = all_bvecs.mean(axis=0)
     centered = all_bvecs - mean
     cov = np.dot(centered.T, centered) / max(len(centered) - 1, 1)
     eigvals, eigvecs = np.linalg.eigh(cov)
-    # Sort descending
+    # Sort descending so PC1 captures the most variance
     idx = eigvals.argsort()[::-1]
     eigvecs = eigvecs[:, idx]
     projected = centered @ eigvecs[:, :2]
@@ -922,7 +951,7 @@ def plot_radar(scores):
     metric_labels = ["Best |DX|", "Best Eff.", "Best Speed",
                      "Pareto Size", "Diversity", "Unique Regimes"]
 
-    # Normalize each metric to [0, 1] across walkers
+    # Normalize each metric to [0, 1] across walkers so all axes are comparable
     norm_scores = {}
     for mk in metric_keys:
         vals = [scores[name][mk] for name in WALKER_NAMES]
@@ -932,7 +961,7 @@ def plot_radar(scores):
 
     n_metrics = len(metric_keys)
     angles = np.linspace(0, 2 * np.pi, n_metrics, endpoint=False).tolist()
-    angles += angles[:1]  # close the polygon
+    angles += angles[:1]  # duplicate first angle to close the radar polygon
 
     fig, ax = plt.subplots(figsize=(8, 8), subplot_kw=dict(polar=True))
 
@@ -956,6 +985,7 @@ def plot_radar(scores):
 # ── Main ─────────────────────────────────────────────────────────────────────
 
 def main():
+    """Run all 5 walkers, score them, save JSON results, and generate comparison figures."""
     # Backup brain.nndf
     brain_path = PROJECT / "brain.nndf"
     backup_path = PROJECT / "brain.nndf.backup"

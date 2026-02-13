@@ -155,6 +155,8 @@ def simulate_full(architecture="standard", weights=None, synapses=None):
     robotId = p.loadURDF("body.urdf")
     pyrosim.Prepare_To_Simulate(robotId)
 
+    # Apply uniform friction to every link (including base at index -1)
+    # to match the friction model used during evolution
     mu = float(getattr(c, "ROBOT_FRICTION", 2.0))
     for link in range(-1, p.getNumJoints(robotId)):
         p.changeDynamics(robotId, link, lateralFriction=mu, restitution=0.0)
@@ -212,6 +214,7 @@ def simulate_full(architecture="standard", weights=None, synapses=None):
         wx[i] = vel_ang[0]; wy[i] = vel_ang[1]; wz[i] = vel_ang[2]
         roll_arr[i] = rpy_vals[0]; pitch_arr[i] = rpy_vals[1]; yaw_arr[i] = rpy_vals[2]
 
+        # Determine ground contact per link: cp[3] is the link index on bodyA
         contact_pts = p.getContactPoints(robotId)
         tc = bc = fc = False
         for cp in contact_pts:
@@ -333,13 +336,14 @@ def run_surgery(champion):
                 data = simulate_full(architecture="standard", weights=w_abl)
                 metrics = compute_metrics(data)
 
-                # Compute deltas
+                # Compute absolute and percentage deltas vs the un-ablated baseline
                 deltas = {}
                 pct_deltas = {}
                 for mk in baseline:
                     if isinstance(baseline[mk], (int, float)):
                         d = metrics[mk] - baseline[mk]
                         deltas[mk] = d
+                        # Guard against near-zero baselines to avoid division blow-up
                         if abs(baseline[mk]) > 1e-12:
                             pct_deltas[mk] = d / abs(baseline[mk]) * 100.0
                         else:
@@ -413,10 +417,13 @@ def run_interpolation(pair_name, w_a, w_b, n_steps=51):
     results = []
 
     for i, t in enumerate(t_values):
+        # Walk along the linear transect in 6D weight space from gait A to gait B
         w_interp = interpolate_weights(w_a, w_b, t)
         data = simulate_full(architecture="standard", weights=w_interp)
         metrics = compute_metrics(data)
 
+        # Only store full trajectory/phase data at quartile points (t=0, 0.25, 0.5, 0.75, 1.0)
+        # to keep memory usage reasonable while capturing phase portrait evolution
         results.append({
             "t": float(t),
             "weights": w_interp,
@@ -440,11 +447,13 @@ def run_interpolation(pair_name, w_a, w_b, n_steps=51):
 # ── Plotting helpers ──────────────────────────────────────────────────────────
 
 def clean_ax(ax):
+    """Remove top and right spines for a cleaner plot appearance."""
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
 
 
 def save_fig(fig, name):
+    """Save figure to PLOT_DIR as PNG at 100 dpi and close it."""
     PLOT_DIR.mkdir(parents=True, exist_ok=True)
     path = PLOT_DIR / name
     fig.savefig(path, dpi=100, bbox_inches="tight")
@@ -492,7 +501,8 @@ def plot_surgery_heatmap(surgery_results):
         n_modes = len(ABLATION_MODES)
         n_metrics = len(heatmap_metrics)
 
-        # Build matrix: rows = synapses × modes, cols = metrics
+        # Build matrix: rows = synapses × modes (grouped by synapse), cols = metrics
+        # Each synapse gets 3 consecutive rows (zero, half, negate)
         n_rows = n_syn * n_modes
         matrix = np.zeros((n_rows, n_metrics))
         row_labels = []
@@ -500,12 +510,13 @@ def plot_surgery_heatmap(surgery_results):
         for abl in ablations:
             si = abl["synapse_idx"]
             mi = ABLATION_MODES.index(abl["mode"])
+            # Interleave modes within each synapse group
             row_idx = si * n_modes + mi
             for ci, mk in enumerate(heatmap_metrics):
                 matrix[row_idx, ci] = abl["pct_deltas"].get(mk, 0.0)
             row_labels.append(f"{abl['synapse_label']}|{abl['mode']}")
 
-        # Cap at ±100% for display
+        # Cap colour scale at ±100% so extreme outliers don't wash out detail
         vmax = min(100, np.max(np.abs(matrix)) * 1.1) if np.max(np.abs(matrix)) > 0 else 100
         im = ax.imshow(matrix, aspect="auto", cmap="RdBu_r", vmin=-vmax, vmax=vmax)
 
@@ -620,7 +631,7 @@ def plot_surgery_sign_flip(surgery_results):
                         fontsize=6, ha="left", va="bottom",
                         xytext=(5, 3), textcoords="offset points")
 
-    # Reference lines
+    # Diagonal = sign flip had no effect; points below = flip hurt locomotion
     lims = ax.get_xlim()
     ax.plot([-100, 100], [-100, 100], "k--", lw=0.5, alpha=0.3, label="No change")
     ax.axhline(0, color="gray", lw=0.5, alpha=0.3)
@@ -652,7 +663,7 @@ def plot_interp_dx(interp_results):
         color = PAIR_COLORS.get(pair_name, "#333333")
         ax.plot(ts, dxs, color=color, lw=2, label=pair_name, alpha=0.9)
 
-        # Horizontal dashed lines at endpoints
+        # Horizontal dashed lines mark DX of the two pure endpoints (t=0, t=1)
         ax.axhline(dxs[0], color=color, ls=":", lw=0.8, alpha=0.4)
         ax.axhline(dxs[-1], color=color, ls=":", lw=0.8, alpha=0.4)
 
@@ -717,6 +728,8 @@ def plot_interp_phase(primary_results):
             j0 = np.array(best["phase_data"]["j0_pos"])
             j1 = np.array(best["phase_data"]["j1_pos"])
             n = len(j0)
+            # Subsample to 500 evenly-spaced points for the scatter overlay;
+            # colour by time (viridis) to show phase portrait evolution direction
             scatter_idx = np.linspace(0, n - 1, 500, dtype=int)
             ax.plot(j0, j1, color="#8B5CF6", lw=0.3, alpha=0.3)
             ax.scatter(j0[scatter_idx], j1[scatter_idx], c=scatter_idx,
@@ -819,7 +832,8 @@ def print_interpolation_summary(pair_name, results):
     print(f"  Min DX:     t={results[min_dx_idx]['t']:.2f} DX={dxs[min_dx_idx]:.2f}m")
     print(f"  DX range:   {max(dxs) - min(dxs):.2f}m")
 
-    # Detect cliffs (>20% DX change between adjacent points)
+    # Detect cliffs: adjacent interpolation points where DX jumps by >20%
+    # relative to the larger magnitude (clamped to 1.0 to avoid false positives near zero)
     cliffs = []
     for i in range(1, len(dxs)):
         delta = abs(dxs[i] - dxs[i - 1])
@@ -847,6 +861,7 @@ def print_interpolation_summary(pair_name, results):
 # ── Main ─────────────────────────────────────────────────────────────────────
 
 def main():
+    """Run the full causal-surgery + gait-interpolation pipeline and emit plots/JSON."""
     brain_path = PROJECT / "brain.nndf"
     backup_path = PROJECT / "brain.nndf.backup"
     if brain_path.exists():
@@ -854,7 +869,9 @@ def main():
 
     t_start = time.perf_counter()
 
-    # Load dead gait for interpolation
+    # Load a "dead" gait (near-zero net displacement) for interpolation.
+    # Pick the Canceller with the longest path_length -- it moves a lot but
+    # goes nowhere, making it an interesting interpolation endpoint.
     with open(PROJECT / "artifacts" / "dark_matter.json") as f:
         dm = json.load(f)
     cancellers = [g for g in dm["gaits"] if g["type"] == "Canceller"]
@@ -924,7 +941,8 @@ def main():
     print("\nSaving JSON...")
     OUT_JSON.parent.mkdir(parents=True, exist_ok=True)
 
-    # Strip large trajectory/phase data from JSON output to keep file manageable
+    # Strip xy_trajectory and phase_data arrays from JSON output to keep
+    # the artifact file small; only scalar metrics and weights are persisted.
     interp_json = {}
     for pair_name, results in interp_results.items():
         interp_json[pair_name] = [{

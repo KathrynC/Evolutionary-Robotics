@@ -54,6 +54,7 @@ PLOT_DIR = PROJECT / "artifacts" / "plots"
 # ── Simulation with in-memory telemetry ──────────────────────────────────────
 
 def write_brain(weights):
+    """Write a brain.nndf file with the given synapse weights."""
     path = PROJECT / "brain.nndf"
     with open(path, "w") as f:
         f.write('<neuralNetwork>\n')
@@ -74,6 +75,7 @@ def run_trial_inmemory(weights):
     """Run simulation, capture telemetry arrays in memory, return analytics dict."""
     write_brain(weights)
 
+    # Headless PyBullet — no GUI, no disk telemetry
     cid = p.connect(p.DIRECT)
     p.setAdditionalSearchPath(pybullet_data.getDataPath())
     p.setGravity(0, 0, c.GRAVITY_Z)
@@ -91,7 +93,9 @@ def run_trial_inmemory(weights):
     max_force = float(getattr(c, "MAX_FORCE", 150.0))
     n_steps = c.SIM_STEPS
 
-    # Pre-allocate arrays
+    # Pre-allocate numpy arrays for in-memory telemetry capture.
+    # Instead of writing JSONL to disk, we store every channel into a
+    # contiguous array and pass it directly to compute_all() at the end.
     t_arr = np.empty(n_steps)
     x = np.empty(n_steps); y = np.empty(n_steps); z = np.empty(n_steps)
     vx = np.empty(n_steps); vy = np.empty(n_steps); vz = np.empty(n_steps)
@@ -138,7 +142,8 @@ def run_trial_inmemory(weights):
         p.stepSimulation()
         nn.Update()
 
-        # Record telemetry in-memory
+        # Stream telemetry directly into pre-allocated arrays (no disk I/O).
+        # Each field is indexed by simulation step i.
         t_arr[i] = i * c.DT
         pos, orn = p.getBasePositionAndOrientation(robotId)
         vel_lin, vel_ang = p.getBaseVelocity(robotId)
@@ -172,6 +177,8 @@ def run_trial_inmemory(weights):
 
     p.disconnect()
 
+    # Bundle all in-memory arrays into a dict matching the schema
+    # expected by compute_all() (same keys as disk-based telemetry).
     data = {
         "t": t_arr, "x": x, "y": y, "z": z,
         "vx": vx, "vy": vy, "vz": vz,
@@ -184,6 +191,7 @@ def run_trial_inmemory(weights):
         "j1_pos": j1_pos, "j1_vel": j1_vel, "j1_tau": j1_tau,
     }
 
+    # Run all four Beer-framework analytics pillars on the captured data
     analytics = compute_all(data, DT)
     return analytics
 
@@ -191,10 +199,12 @@ def run_trial_inmemory(weights):
 # ── Plotting helpers ─────────────────────────────────────────────────────────
 
 def clean_ax(ax):
+    """Remove top and right spines from an axes for cleaner plots."""
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
 
 def save_fig(fig, name):
+    """Save a matplotlib figure to PLOT_DIR and close it."""
     PLOT_DIR.mkdir(parents=True, exist_ok=True)
     path = PLOT_DIR / name
     fig.savefig(path, dpi=100, bbox_inches="tight")
@@ -202,16 +212,19 @@ def save_fig(fig, name):
     print(f"  WROTE {path}")
 
 def correlation_r(x, y):
+    """Compute Pearson correlation coefficient between x and y. Returns 0 if degenerate."""
     x, y = np.array(x), np.array(y)
     mx, my = np.mean(x), np.mean(y)
     num = np.sum((x - mx) * (y - my))
     den = np.sqrt(np.sum((x - mx)**2) * np.sum((y - my)**2))
+    # Guard against zero-variance inputs (e.g., all-identical weights)
     return num / den if den > 1e-12 else 0.0
 
 
 # ── Load zoo for context ─────────────────────────────────────────────────────
 
 def load_zoo_summary():
+    """Load key metrics from the 116-gait zoo for contextual comparison. Returns a list of dicts."""
     with open(PROJECT / "synapse_gait_zoo_v2.json") as f:
         zoo = json.load(f)
     gaits = []
@@ -238,6 +251,7 @@ def load_zoo_summary():
 # ── Main ─────────────────────────────────────────────────────────────────────
 
 def main():
+    """Run 500 random-search trials, compute streaming analytics, and generate plots."""
     # Back up brain.nndf
     brain_path = PROJECT / "brain.nndf"
     backup_path = PROJECT / "brain.nndf.backup"
@@ -270,7 +284,8 @@ def main():
         shutil.copy2(backup_path, brain_path)
 
     # ── Extract flat arrays ──────────────────────────────────────────────────
-
+    # Flatten nested analytics dicts into parallel numpy arrays for
+    # vectorized stats, correlation analysis, and plotting.
     dx = np.array([r["analytics"]["outcome"]["dx"] for r in results])
     speed = np.array([r["analytics"]["outcome"]["mean_speed"] for r in results])
     efficiency = np.array([r["analytics"]["outcome"]["distance_per_work"] for r in results])
@@ -281,12 +296,14 @@ def main():
     yaw_net = np.array([r["analytics"]["outcome"]["yaw_net_rad"] for r in results])
     abs_dx = np.abs(dx)
 
+    # N x 6 weight matrix: each row is one trial's 6 synapse weights
     W = np.array([[r["weights"][wn] for wn in WEIGHT_NAMES] for r in results])
 
     # ── Save JSON ────────────────────────────────────────────────────────────
 
     OUT_JSON.parent.mkdir(parents=True, exist_ok=True)
-    # Save compact: weights + key metrics only (not full analytics)
+    # Save compact: weights + key scalar metrics only (drop large arrays
+    # like time-series data to keep the JSON small and readable).
     compact = []
     for i, r in enumerate(results):
         o = r["analytics"]["outcome"]
@@ -322,6 +339,7 @@ def main():
     print("SUMMARY STATISTICS")
     print("=" * 80)
 
+    # "Dead" = robot moved less than 1 meter in absolute displacement
     dead_thresh = 1.0
     n_dead = np.sum(abs_dx < dead_thresh)
     n_forward = np.sum(dx > dead_thresh)
@@ -404,7 +422,8 @@ def main():
     fig.tight_layout()
     save_fig(fig, "rs_fig02_phase_lock_histogram.png")
 
-    # Fig 3: Best-of-N curve
+    # Fig 3: Best-of-N curve — running maximum of |DX| over sequential trials,
+    # showing how quickly random search discovers high-performing gaits.
     fig, ax = plt.subplots(figsize=(8, 5))
     best_so_far = np.maximum.accumulate(abs_dx)
     ax.plot(np.arange(1, NUM_TRIALS + 1), best_so_far, color="#4C72B0", lw=1.5)
@@ -420,7 +439,8 @@ def main():
     fig.tight_layout()
     save_fig(fig, "rs_fig03_best_of_n.png")
 
-    # Fig 4: Weight correlations heatmap
+    # Fig 4: Weight correlations heatmap — Pearson r between each of the 6
+    # synapse weights and each behavioral metric across all 500 trials.
     metrics_arr = np.column_stack([dx, abs_dx, speed, phase_lock, entropy, roll_dom])
     metric_labels = ["DX", "|DX|", "Speed", "Phase Lock", "Entropy", "Roll Dom"]
     corr = np.zeros((len(WEIGHT_NAMES), len(metric_labels)))
@@ -488,9 +508,11 @@ def main():
     fig.tight_layout()
     save_fig(fig, "rs_fig06_dead_fraction.png")
 
-    # Fig 7: Symmetry — |w_s3 + w_s4| (antisymmetry score) vs |DX|
-    # For each sensor s, compute how antisymmetric the pair (w_s3, w_s4) is
-    # Perfect antisymmetry: w_s3 = -w_s4, so w_s3 + w_s4 = 0
+    # Fig 7: Symmetry — |w_s3 + w_s4| (antisymmetry score) vs |DX|.
+    # For each sensor s, compute how antisymmetric the pair (w_s3, w_s4) is.
+    # Perfect antisymmetry: w_s3 = -w_s4, so w_s3 + w_s4 = 0.
+    # This tests whether locomotion requires opposing motor commands from
+    # each sensor (a common feature of alternating-leg gaits).
     fig, axes = plt.subplots(1, 3, figsize=(14, 4.5))
     sensor_names = ["Torso (s0)", "BackLeg (s1)", "FrontLeg (s2)"]
     for idx, (s, label) in enumerate(zip(SENSOR_NEURONS, sensor_names)):

@@ -75,6 +75,7 @@ def write_brain(weights):
 
 
 def safe_get_base_pose(body_id):
+    """Get robot base position and orientation, returning zeros on failure."""
     try:
         return p.getBasePositionAndOrientation(body_id)
     except Exception:
@@ -100,6 +101,8 @@ def run_trial(trial_name, weights, out_dir):
 
     nn = NEURAL_NETWORK("brain.nndf")
 
+    # Write telemetry to disk (JSONL) — every=1 captures every simulation
+    # step at full 240 Hz resolution for later analytics computation.
     out_dir.mkdir(parents=True, exist_ok=True)
     telemetry = TelemetryLogger(
         robotId, out_dir, every=1,
@@ -122,6 +125,7 @@ def run_trial(trial_name, weights, out_dir):
                                                 n.Get_Value(), max_force)
         p.stepSimulation()
         nn.Update()
+        # Append one row of telemetry (position, contacts, joints) to the JSONL log
         telemetry.log_step(i)
 
     telemetry.finalize()
@@ -131,6 +135,7 @@ def run_trial(trial_name, weights, out_dir):
 
 
 def main():
+    """Run 5 random trials with disk telemetry, then compute and display analytics."""
     # Back up brain.nndf
     brain_path = PROJECT / "brain.nndf"
     backup_path = PROJECT / "brain.nndf.backup"
@@ -150,7 +155,9 @@ def main():
         pos = run_trial(trial_name, weights, out_dir)
         elapsed = time.perf_counter() - t0
 
-        # Compute Beer analytics from the telemetry we just wrote
+        # Two-phase analytics pipeline: first write telemetry to disk during
+        # simulation, then reload it and run all four Beer-framework pillars
+        # (outcome, contact, coordination, rotation_axis).
         data = load_telemetry(trial_name)
         analytics = compute_all(data, DT)
 
@@ -182,7 +189,7 @@ def main():
         json.dump(results, f, indent=2, cls=NumpyEncoder)
     print(f"\nWROTE {OUT_JSON}")
 
-    # Summary comparison
+    # Summary comparison — tabulate all four analytics pillars side by side
     print(f"\n{'='*80}")
     print(f"RANDOM SEARCH SUMMARY ({NUM_TRIALS} trials, {total_elapsed:.1f}s)")
     print(f"{'='*80}")
@@ -190,6 +197,7 @@ def main():
           f"{'PhaseLock':>10} {'Entropy':>8} {'RollDom':>8}")
     print("-" * 80)
 
+    # Track the trial with the largest absolute displacement
     best_dx = None
     best_idx = -1
     for i, r in enumerate(results):

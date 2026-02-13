@@ -58,6 +58,7 @@ OUT_JSON = PROJECT / "artifacts" / "random_search_cliffs.json"
 
 
 def write_brain(weights):
+    """Write a brain.nndf file with the given synapse weights."""
     path = PROJECT / "brain.nndf"
     with open(path, "w") as f:
         f.write('<neuralNetwork>\n')
@@ -198,10 +199,12 @@ def perturb_weights(base_weights, direction, radius):
 
 
 def clean_ax(ax):
+    """Remove top and right spines from an axes for cleaner plots."""
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
 
 def save_fig(fig, name):
+    """Save a matplotlib figure to PLOT_DIR and close it."""
     PLOT_DIR.mkdir(parents=True, exist_ok=True)
     path = PLOT_DIR / name
     fig.savefig(path, dpi=100, bbox_inches="tight")
@@ -210,6 +213,7 @@ def save_fig(fig, name):
 
 
 def main():
+    """Explore cliff structure of the fitness landscape via perturbation analysis."""
     brain_path = PROJECT / "brain.nndf"
     backup_path = PROJECT / "brain.nndf.backup"
     if brain_path.exists():
@@ -238,7 +242,8 @@ def main():
             "perturbations": {},
         }
 
-        # Generate random directions (shared across radii for comparison)
+        # Generate random directions once and reuse across all radii, so we
+        # can compare how the same direction behaves at different step sizes.
         directions = [random_direction_6d() for _ in range(NUM_PERTURBATIONS)]
 
         for radius in RADII:
@@ -246,8 +251,10 @@ def main():
             perturbs = []
 
             for d_idx, direction in enumerate(directions):
+                # Perturb: new_weights = base + radius * unit_direction
                 pw = perturb_weights(base_w, direction, radius)
                 p_dx, p_analytics = simulate_weights(pw)
+                # delta_dx captures how much the behavioral outcome shifted
                 delta_dx = p_dx - base_dx
                 delta_pl = (p_analytics["coordination"]["phase_lock_score"]
                             - base_result["base_phase_lock"])
@@ -289,7 +296,9 @@ def main():
 
     # ── Analysis ─────────────────────────────────────────────────────────────
 
-    # Collect delta_dx arrays by radius
+    # Collect delta_dx arrays by radius for aggregate cliff statistics.
+    # max_delta_by_base tracks the worst cliff seen at each base point,
+    # answering: "if I'm standing here, how bad could a tiny step be?"
     deltas_by_radius = {r: [] for r in RADII}
     delta_pl_by_radius = {r: [] for r in RADII}
     delta_speed_by_radius = {r: [] for r in RADII}
@@ -313,7 +322,9 @@ def main():
     base_dxs = np.array(base_dxs)
     base_pls = np.array(base_pls)
 
-    # Define cliff thresholds
+    # A "cliff" is a perturbation where |delta_DX| exceeds one of these
+    # thresholds (in meters). Larger thresholds indicate more catastrophic
+    # behavioral shifts from small weight changes.
     CLIFF_THRESHOLDS = [5, 10, 20]  # meters of DX change
 
     print(f"\n{'='*80}")
@@ -337,7 +348,8 @@ def main():
             print(f"    Base points with any cliff >{thresh}m: "
                   f"{frac_base*100:.1f}% ({int(np.sum(md > thresh))}/{NUM_BASE})")
 
-    # Gradient magnitude (|delta_DX|/radius) by radius — does it increase?
+    # Gradient magnitude (|delta_DX|/radius) by radius — if this increases
+    # with radius, the landscape is locally nonlinear (super-linear response).
     print(f"\n  Gradient magnitude scaling:")
     for radius in RADII:
         dd = np.abs(deltas_by_radius[radius])
@@ -381,8 +393,9 @@ def main():
     fig.tight_layout()
     save_fig(fig, "cliff_fig02_cliff_probability.png")
 
-    # Fig 3: Landscape profiles — for 8 selected base points, show DX vs perturbation
-    # Use the directions to create a 1D transect through weight space
+    # Fig 3: Landscape profiles — for 8 selected base points, show DX vs perturbation.
+    # Each line is a 1D transect along one random direction in 6D weight space,
+    # plotting DX at the base point (radius=0) and at each perturbation radius.
     fig, axes = plt.subplots(2, 4, figsize=(16, 8))
     # Pick 8 evenly spaced base points
     profile_indices = np.linspace(0, NUM_BASE - 1, 8, dtype=int)

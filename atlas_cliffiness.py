@@ -101,6 +101,7 @@ PLOT_DIR = PROJECT / "artifacts" / "plots"
 # ── Simulation ───────────────────────────────────────────────────────────────
 
 def write_brain_standard(weights):
+    """Write a 3-sensor, 2-motor brain.nndf file with the given synapse weights."""
     path = PROJECT / "brain.nndf"
     with open(path, "w") as f:
         f.write('<neuralNetwork>\n')
@@ -195,11 +196,13 @@ def correlation_r(x, y):
 
 
 def clean_ax(ax):
+    """Remove top and right spines from a matplotlib axis for cleaner plots."""
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
 
 
 def save_fig(fig, name):
+    """Save a matplotlib figure to PLOT_DIR and close it to free memory."""
     PLOT_DIR.mkdir(parents=True, exist_ok=True)
     path = PLOT_DIR / name
     fig.savefig(path, dpi=100, bbox_inches="tight")
@@ -214,6 +217,9 @@ def probe_gradient(weights, base_dx):
     for k in range(6):
         pw = perturb_weights(weights, directions[k], R_PROBE)
         delta_dxs[k] = simulate_dx_only(pw) - base_dx
+    # With 6 probes in 6D, directions is a 6x6 matrix. Solving
+    # directions @ grad = delta_dxs / R_PROBE recovers the unique gradient
+    # vector (each probe gives one linear equation in the 6 partial derivatives).
     try:
         grad = np.linalg.solve(directions, delta_dxs / R_PROBE)
     except np.linalg.LinAlgError:
@@ -242,8 +248,11 @@ def probe_cliffiness(base_points):
         grad, delta_dxs, directions = probe_gradient(base_w, base_dx)
         sim_count += 6
 
+        # Cliffiness = largest absolute DX change across all 6 probe directions,
+        # measuring the worst-case sensitivity at this point in weight space.
         cliffiness = float(np.max(np.abs(delta_dxs)))
         grad_mag = float(np.linalg.norm(grad))
+        # Per-weight partial derivatives: how sensitive DX is to each synapse individually.
         partials = {wn: float(np.abs(grad[i])) for i, wn in enumerate(WEIGHT_NAMES)}
 
         results.append({
@@ -315,21 +324,25 @@ def compute_slice(vary_keys, center_weights, x_range=(-1, 1), y_range=(-1, 1),
     step_y = (y_range[1] - y_range[0]) / (n_grid - 1)
     cliff_grid = np.zeros((n_grid, n_grid))
 
+    # For each cell, estimate the 2D gradient of DX using finite differences:
+    # - Interior points use central differences: (f[i+1] - f[i-1]) / (2*h)
+    # - Edge points use one-sided (forward/backward) differences: (f[i+1] - f[i]) / h
+    # Cliffiness at each cell = magnitude of the resulting gradient vector.
     for i in range(n_grid):
         for j in range(n_grid):
             if i == 0:
-                gx = (dx_grid[1, j] - dx_grid[0, j]) / step_x
+                gx = (dx_grid[1, j] - dx_grid[0, j]) / step_x           # forward diff
             elif i == n_grid - 1:
-                gx = (dx_grid[-1, j] - dx_grid[-2, j]) / step_x
+                gx = (dx_grid[-1, j] - dx_grid[-2, j]) / step_x         # backward diff
             else:
-                gx = (dx_grid[i+1, j] - dx_grid[i-1, j]) / (2 * step_x)
+                gx = (dx_grid[i+1, j] - dx_grid[i-1, j]) / (2 * step_x) # central diff
 
             if j == 0:
-                gy = (dx_grid[i, 1] - dx_grid[i, 0]) / step_y
+                gy = (dx_grid[i, 1] - dx_grid[i, 0]) / step_y           # forward diff
             elif j == n_grid - 1:
-                gy = (dx_grid[i, -1] - dx_grid[i, -2]) / step_y
+                gy = (dx_grid[i, -1] - dx_grid[i, -2]) / step_y         # backward diff
             else:
-                gy = (dx_grid[i, j+1] - dx_grid[i, j-1]) / (2 * step_y)
+                gy = (dx_grid[i, j+1] - dx_grid[i, j-1]) / (2 * step_y) # central diff
 
             cliff_grid[i, j] = np.sqrt(gx**2 + gy**2)
 
@@ -379,6 +392,8 @@ def cliff_anatomy(probe_results, n_top=N_TOP_CLIFFS, n_points=N_ANATOMY_POINTS):
     sim_count = 0
 
     for rank, pt in enumerate(top):
+        # The steepest cliff direction is the normalized gradient vector.
+        # If the gradient is near-zero (degenerate case), fall back to a random direction.
         grad = np.array(pt["gradient_vector"])
         grad_norm = np.linalg.norm(grad)
         if grad_norm > 1e-12:
@@ -438,15 +453,18 @@ def make_figures(probe_results, slices, anatomy, champion_probe):
     t3_w = np.array([TRIAL3[wn] for wn in WEIGHT_NAMES])
 
     # ── Fig 1: PCA scatter ──────────────────────────────────────────────────
-    # Manual PCA via covariance eigendecomposition
+    # Manual PCA via covariance eigendecomposition (no sklearn dependency).
+    # Center the weight matrix, compute 6x6 covariance, then eigen-decompose.
     W_mean = W.mean(axis=0)
     W_centered = W - W_mean
     cov = np.dot(W_centered.T, W_centered) / max(len(W) - 1, 1)
     eig_vals, eig_vecs = np.linalg.eigh(cov)
+    # eigh returns eigenvalues in ascending order; reverse for descending (PC1 first).
     order = np.argsort(eig_vals)[::-1]
     eig_vals = eig_vals[order]
     eig_vecs = eig_vecs[:, order]
 
+    # Project all 500 points and the two champions onto the first 2 principal components.
     pc = W_centered @ eig_vecs[:, :2]
     var_explained = eig_vals[:2] / eig_vals.sum() * 100
 
@@ -509,6 +527,7 @@ def make_figures(probe_results, slices, anatomy, champion_probe):
         ax.set_xlabel(xlabel)
         ax.set_ylabel("Cliffiness (max |delta DX|)")
         ax.set_title(f"r = {r:+.3f}")
+        # Only overlay a linear regression trend line if the correlation is non-trivial.
         if abs(r) > 0.05:
             z = np.polyfit(metric, cliffiness, 1)
             x_line = np.linspace(metric.min(), metric.max(), 100)
@@ -530,7 +549,10 @@ def make_figures(probe_results, slices, anatomy, champion_probe):
         dx_g = np.array(sl["dx_grid"])
         cx, cy = sl["center_pos"]
 
+        # Clamp colorbar to 95th percentile of |DX| so outliers don't wash out detail.
         vmax_sl = np.percentile(np.abs(dx_g), 95)
+        # Transpose so rows (x-axis weight) map to horizontal and cols (y-axis weight)
+        # map to vertical, matching the extent=[x_min, x_max, y_min, y_max] layout.
         im = ax.imshow(dx_g.T, origin="lower", aspect="auto",
                        extent=[x_vals[0], x_vals[-1], y_vals[0], y_vals[-1]],
                        cmap="RdBu_r", vmin=-vmax_sl, vmax=vmax_sl)
@@ -629,6 +651,9 @@ def make_figures(probe_results, slices, anatomy, champion_probe):
         xi = np.where((x_vals >= cx - zoom) & (x_vals <= cx + zoom))[0]
         yi = np.where((y_vals >= cy - zoom) & (y_vals <= cy + zoom))[0]
 
+        # Fallback: if champion is near the grid edge and fewer than 3 cells
+        # fall within the zoom window, use an 11-cell window centered on the
+        # nearest grid point instead.
         if len(xi) < 3 or len(yi) < 3:
             ci = np.argmin(np.abs(x_vals - cx))
             cj = np.argmin(np.abs(y_vals - cy))
@@ -792,6 +817,7 @@ def print_analysis(probe_results, slices, champion_probe):
 # ── Main ─────────────────────────────────────────────────────────────────────
 
 def main():
+    """Run all three parts of the cliffiness atlas, generate figures, and save results."""
     t_start = time.perf_counter()
     np.random.seed(42)
 
@@ -807,7 +833,8 @@ def main():
         base_points = json.load(f)
     print(f"  Loaded {len(base_points)} base points")
 
-    # Sim budget
+    # Sim budget: 5 determinism checks + 6 probes per base point + 14 champion probes
+    # (7 each for NC and T3) + two 2D slice grids + cliff anatomy profiles.
     n_bp = len(base_points)
     budget = (5 + n_bp * 6 + 14 + 2 * N_GRID * N_GRID + N_TOP_CLIFFS * N_ANATOMY_POINTS)
     print(f"  Total simulation budget: ~{budget} sims")

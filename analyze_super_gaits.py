@@ -81,6 +81,8 @@ _T3 = {
 }
 
 def _interp(w_a, w_b, t):
+    """Linearly interpolate two weight dicts at parameter t in [0, 1]."""
+    # t=0 gives w_a, t=1 gives w_b
     return {k: (1.0 - t) * w_a[k] + t * w_b[k] for k in w_a}
 
 GAITS = {
@@ -113,6 +115,7 @@ GAIT_SHORT = {
 # ── Simulation infrastructure (reused from causal_surgery_interpolation.py) ──
 
 def write_brain_standard(weights):
+    """Write a brain.nndf file with the given 6-synapse weight dict."""
     path = PROJECT / "brain.nndf"
     with open(path, "w") as f:
         f.write('<neuralNetwork>\n')
@@ -130,6 +133,11 @@ def write_brain_standard(weights):
 
 
 def simulate_full(weights):
+    """Run a full headless PyBullet simulation and return time-series data dict.
+
+    Returns dict with arrays for position, velocity, orientation, contacts,
+    and joint states at each of the c.SIM_STEPS timesteps.
+    """
     write_brain_standard(weights)
 
     cid = p.connect(p.DIRECT)
@@ -141,6 +149,7 @@ def simulate_full(weights):
     robotId = p.loadURDF("body.urdf")
     pyrosim.Prepare_To_Simulate(robotId)
 
+    # Set uniform friction on all links (including base at index -1)
     mu = float(getattr(c, "ROBOT_FRICTION", 2.0))
     for link in range(-1, p.getNumJoints(robotId)):
         p.changeDynamics(robotId, link, lateralFriction=mu, restitution=0.0)
@@ -226,10 +235,16 @@ def simulate_full(weights):
 
 
 def compute_metrics(data):
+    """Compute a flat dict of locomotion metrics from simulation time-series data.
+
+    Returns dict with displacement, speed, work, coordination, contact, and
+    frequency metrics for a single gait run.
+    """
     a = compute_all(data, DT)
     x, y = data["x"], data["y"]
     dx = float(x[-1] - x[0])
     dy = float(y[-1] - y[0])
+    # Euclidean displacement ignoring vertical axis
     net_distance = np.sqrt(dx**2 + dy**2)
     j0_freq, _ = _fft_peak(data["j0_pos"], DT)
     j1_freq, _ = _fft_peak(data["j1_pos"], DT)
@@ -257,19 +272,27 @@ def compute_metrics(data):
 
 
 def work_by_joint(data):
+    """Compute mechanical work for each joint as integral of |torque * angular velocity|.
+
+    Returns (work_j0, work_j1, power_j0_array, power_j1_array).
+    """
+    # Instantaneous absolute power: |tau * omega| at each timestep
     pj0 = np.abs(data["j0_tau"] * data["j0_vel"])
     pj1 = np.abs(data["j1_tau"] * data["j1_vel"])
+    # Integrate power over time (rectangular rule) to get total work
     return float(np.sum(pj0) * DT), float(np.sum(pj1) * DT), pj0, pj1
 
 
 # ── Plotting helpers ──────────────────────────────────────────────────────────
 
 def clean_ax(ax):
+    """Remove top and right spines for a cleaner plot appearance."""
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
 
 
 def save_fig(fig, name):
+    """Save a matplotlib figure to PLOT_DIR and close it to free memory."""
     PLOT_DIR.mkdir(parents=True, exist_ok=True)
     path = PLOT_DIR / name
     fig.savefig(path, dpi=100, bbox_inches="tight")
@@ -280,6 +303,7 @@ def save_fig(fig, name):
 # ── Console tables ────────────────────────────────────────────────────────────
 
 def print_metrics_table(all_metrics):
+    """Print a formatted console table comparing all locomotion metrics across gaits."""
     print(f"\n{'='*100}")
     print("FULL METRICS COMPARISON: 4 GAITS")
     print(f"{'='*100}")
@@ -325,6 +349,7 @@ def print_metrics_table(all_metrics):
 
 
 def print_weight_analysis(all_metrics):
+    """Print per-sensor weight decomposition and inter-gait weight deltas."""
     print(f"\n{'='*100}")
     print("WEIGHT STRUCTURE ANALYSIS")
     print(f"{'='*100}")
@@ -335,8 +360,10 @@ def print_weight_analysis(all_metrics):
         for s, sl in [(0, "Torso"), (1, "BackLeg"), (2, "FrontLeg")]:
             w3 = w[f"w{s}3"]
             w4 = w[f"w{s}4"]
+            # sum = net excitation from this sensor; diff = motor selectivity
             print(f"    Sensor {s} ({sl:>8s}):  w{s}3={w3:+.4f}  w{s}4={w4:+.4f}"
                   f"  sum={w3+w4:+.4f}  diff={w3-w4:+.4f}")
+        # Total afferent drive to each motor across all sensors
         tm3 = w["w03"] + w["w13"] + w["w23"]
         tm4 = w["w04"] + w["w14"] + w["w24"]
         print(f"    Total to m3 (BackMotor):  {tm3:+.4f}")
@@ -356,6 +383,7 @@ def print_weight_analysis(all_metrics):
 
 
 def print_sensitivity_table(sensitivity, all_metrics):
+    """Print local sensitivity (|dDX/dw|) and fragility ratios for the 3 viable gaits."""
     print(f"\n{'='*100}")
     print("LOCAL SENSITIVITY: |dDX/dw| per synapse (1% perturbation)")
     print(f"{'='*100}")
@@ -380,7 +408,8 @@ def print_sensitivity_table(sensitivity, all_metrics):
         row += f" {total:10.2f}"
     print(row)
 
-    # Fragility ratio relative to NC
+    # Fragility ratio: how much more/less sensitive each gait is vs NC baseline.
+    # Ratio > 1 means the gait is more fragile (small weight changes cause larger DX shifts).
     nc_total = sum(sensitivity["Novelty Champion"][k]["abs_gradient"] for k in SYNAPSE_KEYS)
     print(f"\n  Fragility ratio (total sensitivity / NC total):")
     for name in GAIT_ORDER[:3]:
@@ -477,6 +506,7 @@ def plot_fig03_phase(all_data, all_metrics):
         d = all_data[name]
         color = GAIT_COLORS[name]
         n = len(d["j0_pos"])
+        # Downsample to 500 evenly-spaced points for scatter overlay (avoids overplotting)
         scatter_idx = np.linspace(0, n - 1, 500, dtype=int)
 
         ax.plot(d["j0_pos"], d["j1_pos"], color=color, lw=0.3, alpha=0.3)
@@ -518,6 +548,7 @@ def plot_fig04_energy(all_data):
         clean_ax(ax)
 
         ax = axes[1][col]
+        # Running integral of instantaneous power -> cumulative work over time
         cum_j0 = np.cumsum(pj0) * DT
         cum_j1 = np.cumsum(pj1) * DT
         ax.plot(t, cum_j0, color="#DD8452", lw=1.5, label=f"j0 ({wj0:.0f})")
@@ -547,6 +578,7 @@ def plot_fig05_contacts(all_data):
         cb_v = d["contact_back"].astype(float)
         cf_v = d["contact_front"].astype(float)
 
+        # Stack contact rasters vertically: torso at y=0, back at y=1, front at y=2
         ax.fill_between(t_plot, 0, ct_v * 0.9, alpha=0.5, color="#999999", label="Torso")
         ax.fill_between(t_plot, 1, 1 + cb_v * 0.9, alpha=0.5, color="#DD8452", label="BackLeg")
         ax.fill_between(t_plot, 2, 2 + cf_v * 0.9, alpha=0.5, color="#8172B2", label="FrontLeg")
@@ -575,6 +607,7 @@ def plot_fig06_sensitivity(sensitivity):
 
     for gi, name in enumerate(names_with_sens):
         vals = [sensitivity[name][k]["abs_gradient"] for k in SYNAPSE_KEYS]
+        # Center the grouped bars around each x tick position
         offset = (gi - (n_gaits - 1) / 2) * bar_width
         ax.bar(x_pos + offset, vals, bar_width, color=GAIT_COLORS[name],
                alpha=0.85, label=GAIT_SHORT[name])
@@ -593,6 +626,9 @@ def plot_fig06_sensitivity(sensitivity):
 # ── Main ─────────────────────────────────────────────────────────────────────
 
 def main():
+    """Run the full analysis pipeline: simulate 4 gaits, compute sensitivity,
+    print tables, save JSON artifacts, and generate all 6 comparison figures.
+    """
     brain_path = PROJECT / "brain.nndf"
     backup_path = PROJECT / "brain.nndf.backup"
     if brain_path.exists():
@@ -642,6 +678,8 @@ def main():
 
         for k in SYNAPSE_KEYS:
             w_val = w_base[k]
+            # Scale perturbation relative to weight magnitude; use a small
+            # fixed epsilon for near-zero weights to avoid division issues
             eps = abs(w_val) * perturbation if abs(w_val) > 1e-6 else perturbation * 0.01
 
             # +perturbation
@@ -661,6 +699,7 @@ def main():
             dx_plus = m_plus["dx"]
             dx_minus = m_minus["dx"]
 
+            # Central-difference approximation: dDX/dw ≈ (f(w+eps) - f(w-eps)) / (2*eps)
             gradient = (dx_plus - dx_minus) / (2 * eps) if eps > 1e-12 else 0.0
 
             sens[k] = {
@@ -711,6 +750,7 @@ def main():
             "work_j0": wj0,
             "work_j1": wj1,
         }
+        # Aggregate input drive per motor neuron and total network magnitude
         tm3 = w["w03"] + w["w13"] + w["w23"]
         tm4 = w["w04"] + w["w14"] + w["w24"]
         mag = sum(abs(w[k]) for k in SYNAPSE_KEYS)

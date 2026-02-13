@@ -121,6 +121,7 @@ RNG_SEED = 42
 # ── Simulation ──────────────────────────────────────────────────────────────
 
 def write_brain_standard(weights):
+    """Write a standard 3-sensor/2-motor brain.nndf file from a weight dict."""
     path = PROJECT / "brain.nndf"
     with open(path, "w") as f:
         f.write('<neuralNetwork>\n')
@@ -324,8 +325,14 @@ def load_telemetry(gait_name):
 # ── Signal processing ───────────────────────────────────────────────────────
 
 def _hilbert_analytic(x):
+    """Compute the analytic signal via FFT-based Hilbert transform (no scipy).
+
+    Returns a complex array whose angle gives instantaneous phase.
+    """
     n = len(x)
     X = np.fft.fft(x)
+    # Build a one-sided frequency mask: keep DC and Nyquist as-is,
+    # double positive frequencies, zero out negative frequencies.
     H = np.zeros(n)
     H[0] = 1.0
     if n % 2 == 0:
@@ -337,6 +344,10 @@ def _hilbert_analytic(x):
 
 
 def _fft_peak(signal, dt):
+    """Find the dominant frequency and amplitude in a signal via FFT.
+
+    Returns (peak_frequency_hz, peak_amplitude). Returns (0, 0) for flat signals.
+    """
     n = len(signal)
     sig = signal - np.mean(signal)
     if np.max(np.abs(sig)) < EPS:
@@ -345,7 +356,7 @@ def _fft_peak(signal, dt):
     spectrum = np.abs(np.fft.rfft(sig)) * (2.0 / n)
     if len(spectrum) < 2:
         return 0.0, 0.0
-    spectrum[0] = 0.0
+    spectrum[0] = 0.0  # ignore DC component
     peak_idx = np.argmax(spectrum)
     return float(freqs[peak_idx]), float(spectrum[peak_idx])
 
@@ -378,13 +389,16 @@ def compute_windowed_analytics(data, end_step):
     speed = np.sqrt(d["vx"]**2 + d["vy"]**2)
     mean_speed = float(np.mean(speed))
 
-    # Work proxy
+    # Work proxy — sum of |torque * angular_velocity| across both joints,
+    # integrated over time. Efficiency = net distance traveled / total work.
     power = np.abs(d["j0_tau"] * d["j0_vel"]) + np.abs(d["j1_tau"] * d["j1_vel"])
     work_proxy = float(np.sum(power) * dt)
     net_dist = np.sqrt(dx**2 + dy**2)
     efficiency = float(net_dist / work_proxy) if work_proxy > EPS else 0.0
 
-    # Heading consistency
+    # Heading consistency — circular mean of velocity heading angles.
+    # Maps each velocity vector to a unit complex number e^(i*theta);
+    # the magnitude of their mean measures directional consistency (0=random, 1=straight).
     speed_thresh = 0.1
     moving = speed > speed_thresh
     if np.sum(moving) > 10:
@@ -393,13 +407,16 @@ def compute_windowed_analytics(data, end_step):
     else:
         heading_consistency = 0.0
 
-    # Contact
+    # Contact — encode 3 binary contacts (torso, back, front) as a 3-bit
+    # integer (0-7), giving 8 possible contact states per timestep.
     torso = d["contact_torso"].astype(int)
     back = d["contact_back"].astype(int)
     front = d["contact_front"].astype(int)
-    state = torso * 4 + back * 2 + front
+    state = torso * 4 + back * 2 + front  # 3-bit: torso|back|front
     state_counts = np.bincount(state, minlength=8)
     probs = state_counts / n
+    # Shannon entropy over the contact-state distribution (bits).
+    # Higher entropy = more varied ground-contact patterns during locomotion.
     nonzero = probs[probs > 0]
     contact_entropy = float(-np.sum(nonzero * np.log2(nonzero)))
     dominant_state = int(np.argmax(state_counts))
@@ -412,9 +429,13 @@ def compute_windowed_analytics(data, end_step):
     if n >= 50:
         freq0, amp0 = _fft_peak(d["j0_pos"], dt)
         freq1, amp1 = _fft_peak(d["j1_pos"], dt)
+        # Extract instantaneous phase of each joint via Hilbert analytic signal,
+        # then compute inter-joint phase difference at each timestep.
         a0 = _hilbert_analytic(d["j0_pos"] - np.mean(d["j0_pos"]))
         a1 = _hilbert_analytic(d["j1_pos"] - np.mean(d["j1_pos"]))
         delta_phi = np.angle(a1) - np.angle(a0)
+        # Phase-lock score: magnitude of the circular mean of e^(i*delta_phi).
+        # 1.0 = perfectly constant phase relationship; 0.0 = no coordination.
         phase_lock = float(np.abs(np.mean(np.exp(1j * delta_phi))))
         mean_delta_phi = float(np.angle(np.mean(np.exp(1j * delta_phi))))
     else:
@@ -461,6 +482,9 @@ def compute_onset_time(analytics_series, metric_key, threshold_frac=0.8):
         return None, None
     final = values[-1]
     target = threshold_frac * final
+    # Walk windows chronologically; return the first that crosses the
+    # threshold fraction of the final value. Direction-aware: for positive
+    # metrics, check >=; for negative metrics (e.g., negative DX), check <=.
     for a in analytics_series:
         if a is None:
             continue
@@ -474,12 +498,14 @@ def compute_onset_time(analytics_series, metric_key, threshold_frac=0.8):
 # ── Plotting helpers ────────────────────────────────────────────────────────
 
 def clean_ax(ax):
+    """Remove top/right spines and shrink tick labels for a cleaner plot."""
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
     ax.tick_params(labelsize=8)
 
 
 def save_fig(fig, name):
+    """Save a matplotlib figure to PLOT_DIR and close it."""
     path = PLOT_DIR / name
     fig.savefig(path, dpi=100, bbox_inches="tight", facecolor="white")
     plt.close(fig)
@@ -501,6 +527,7 @@ COLORS = {
 
 
 def get_color(name):
+    """Return the assigned color for a gait, defaulting to gray for randoms."""
     if name in COLORS:
         return COLORS[name]
     # Random controls get gray
@@ -678,7 +705,8 @@ def fig05_developmental_fingerprints(all_results):
     radar_labels = ["Speed", "Heading\nConsist.", "Contact\nEntropy",
                     "Phase\nLock", "Back\nDuty", "Front\nDuty"]
 
-    # Normalize each metric to [0, 1] across all gaits and windows
+    # Normalize each metric to [0, 1] across all gaits and windows so that
+    # radar axes are comparable. Collect global min/max per metric first.
     all_vals = {m: [] for m in radar_metrics}
     for name in key_gaits:
         for wi in window_idxs:
@@ -690,6 +718,7 @@ def fig05_developmental_fingerprints(all_results):
     for m in radar_metrics:
         v = all_vals[m]
         lo, hi = min(v), max(v)
+        # Guard against zero-span to avoid division by zero
         ranges[m] = (lo, hi - lo if (hi - lo) > EPS else 1.0)
 
     n_gaits = len(key_gaits)
@@ -760,14 +789,15 @@ def fig06_onset_summary(all_results):
         analytics = result["analytics"]
         windows = [a["window_seconds"] for a in analytics]
         dxs = [a["dx"] for a in analytics]
-        # Rate = delta_dx / delta_t between successive windows
+        # Finite-difference DX rate: how much new displacement accrued per
+        # second between consecutive windows (approximates instantaneous speed).
         rates = []
         rate_times = []
         for j in range(1, len(dxs)):
             dt_w = windows[j] - windows[j-1]
             if dt_w > 0:
                 rates.append((dxs[j] - dxs[j-1]) / dt_w)
-                rate_times.append((windows[j] + windows[j-1]) / 2)
+                rate_times.append((windows[j] + windows[j-1]) / 2)  # midpoint
         color = get_color(name)
         ax.plot(rate_times, rates, "o-", color=color, lw=1.5, markersize=4,
                 label=short_name(name))
@@ -828,7 +858,7 @@ def fig06_onset_summary(all_results):
     positions = [0, 1, 2]
 
     for wi_offset, (w_idx, w_label) in enumerate(zip(w_indices, w_labels)):
-        # Evolved DX at this window
+        # Collect |DX| for evolved and random gaits at this time window
         evolved_dxs = []
         for name in evolved_names:
             a = all_results[name]["analytics"][w_idx]
@@ -838,6 +868,7 @@ def fig06_onset_summary(all_results):
             a = all_results[name]["analytics"][w_idx]
             random_dxs.append(abs(a["dx"]))
 
+        # Space box pairs with a gap: evolved at x_pos, random at x_pos+1
         x_pos = wi_offset * 3
         bp1 = ax.boxplot([evolved_dxs], positions=[x_pos], widths=0.8,
                           patch_artist=True, showfliers=False)
@@ -865,6 +896,8 @@ def fig06_onset_summary(all_results):
 # ── JSON encoder ────────────────────────────────────────────────────────────
 
 class NumpyEncoder(json.JSONEncoder):
+    """JSON encoder that handles numpy scalar types and ndarrays."""
+
     def default(self, obj):
         if isinstance(obj, np.integer):
             return int(obj)
@@ -880,6 +913,7 @@ class NumpyEncoder(json.JSONEncoder):
 # ── Main ────────────────────────────────────────────────────────────────────
 
 def main():
+    """Run the full behavioral embryology pipeline: simulate, analyze, plot."""
     print("Behavioral Embryology — Gait Development Analysis")
     print(f"  Time windows: {WINDOWS}")
     print(f"  Named gaits: {list(NAMED_GAITS.keys())}")

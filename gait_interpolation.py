@@ -122,6 +122,7 @@ RNG_SEED = 123
 # ── Simulation ──────────────────────────────────────────────────────────────
 
 def write_brain_standard(weights):
+    """Write a 3-sensor, 2-motor brain.nndf file from a weight dict."""
     path = PROJECT / "brain.nndf"
     with open(path, "w") as f:
         f.write('<neuralNetwork>\n')
@@ -189,17 +190,21 @@ def simulate_dx_only(weights):
 # ── Helpers ─────────────────────────────────────────────────────────────────
 
 def weights_to_vec(w):
+    """Convert a weight dict to a 6D numpy vector in canonical WEIGHT_NAMES order."""
     return np.array([w[k] for k in WEIGHT_NAMES])
 
 
 def vec_to_weights(v):
+    """Convert a 6D numpy vector back to a weight dict keyed by synapse name."""
     return {WEIGHT_NAMES[i]: float(v[i]) for i in range(6)}
 
 
 def interpolate_weights(w1, w2, t):
     """Linear interpolation: t=0 → w1, t=1 → w2."""
+    # Lift weight dicts into 6D vectors so we can interpolate component-wise
     v1 = weights_to_vec(w1)
     v2 = weights_to_vec(w2)
+    # Standard lerp: walks a straight line through 6D weight space
     v = v1 + t * (v2 - v1)
     return vec_to_weights(v)
 
@@ -214,17 +219,21 @@ def compute_roughness(dx_values, t_values):
     if n < 3:
         return {"roughness": 0.0, "max_step": 0.0, "sign_change_rate": 0.0}
 
+    # First differences: DX change between adjacent sample points
     first_diff = np.diff(dxs)
+    # Second differences: curvature proxy — large values indicate abrupt terrain
     second_diff = np.diff(first_diff)
 
+    # Roughness = mean absolute curvature along the transect
     roughness = float(np.mean(np.abs(second_diff)))
     max_step = float(np.max(np.abs(first_diff)))
 
+    # Sign change rate: fraction of consecutive pairs where slope reverses
     signs = np.sign(first_diff)
     sign_changes = np.sum(signs[1:] != signs[:-1])
     sign_change_rate = float(sign_changes / (n - 2))
 
-    # Normalized roughness: divide by mean DX range per step
+    # Normalized roughness: mean |slope| in DX-per-t units, guarding against zero dt
     dt_vals = np.diff(t_values)
     dx_per_t = np.abs(first_diff) / np.where(dt_vals > 0, dt_vals, 1)
     mean_gradient = float(np.mean(dx_per_t))
@@ -242,11 +251,14 @@ def perpendicular_basis(direction, rng, n_dirs=8):
     Generate n_dirs evenly-spaced directions in the plane
     perpendicular to `direction` (6D).
     """
+    # Normalize the transect direction to a unit vector in 6D
     d = direction / (np.linalg.norm(direction) + EPS)
-    # Find a vector not parallel to d
+    # Find two orthonormal vectors in the 5D hyperplane perpendicular to d
+    # by Gram-Schmidt rejection of random candidates
     basis = []
     for _ in range(100):
         v = rng.randn(6)
+        # Project out the component along d to stay in the perpendicular plane
         v = v - np.dot(v, d) * d
         norm = np.linalg.norm(v)
         if norm > 0.1:
@@ -263,7 +275,7 @@ def perpendicular_basis(direction, rng, n_dirs=8):
                     break
 
     if len(basis) < 2:
-        # Fallback
+        # Fallback: explicit Gram-Schmidt if random rejection failed
         basis = [rng.randn(6) for _ in range(2)]
         for i, b in enumerate(basis):
             b = b - np.dot(b, d) * d
@@ -271,6 +283,7 @@ def perpendicular_basis(direction, rng, n_dirs=8):
                 b = b - np.dot(b, basis[j]) * basis[j]
             basis[i] = b / (np.linalg.norm(b) + EPS)
 
+    # Sweep a circle in the 2D perpendicular subspace spanned by e1, e2
     e1, e2 = basis[0], basis[1]
     angles = np.linspace(0, 2 * np.pi, n_dirs, endpoint=False)
     dirs = []
@@ -284,12 +297,14 @@ def perpendicular_basis(direction, rng, n_dirs=8):
 # ── Plotting helpers ────────────────────────────────────────────────────────
 
 def clean_ax(ax):
+    """Remove top/right spines and shrink tick labels for a cleaner look."""
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
     ax.tick_params(labelsize=8)
 
 
 def save_fig(fig, name):
+    """Save figure to PLOT_DIR, close it, and print the output path."""
     path = PLOT_DIR / name
     fig.savefig(path, dpi=100, bbox_inches="tight", facecolor="white")
     plt.close(fig)
@@ -425,7 +440,8 @@ def fig03_midpoint_landscape(midpoint_data, transect_data):
         for di, direction_data in enumerate(mdata["directions"]):
             r_vals = direction_data["r_values"]
             dx_vals = direction_data["dx_values"]
-            # Map r_vals to a local x range around t=0.5
+            # Map perpendicular probe distances to the transect t-axis,
+            # centering at t=0.5 so the probes overlay the midpoint region
             local_t = 0.5 + np.array(r_vals) / MIDPOINT_RADIUS * 0.15
             color = plt.cm.hsv(di / N_MIDPOINT_DIR)
             ax.plot(local_t, dx_vals, color=color, lw=0.8, alpha=0.7)
@@ -602,12 +618,14 @@ def fig06_verdict(transect_data, random_roughness, midpoint_data):
     # Top-right: best intermediate discovery
     ax = fig.add_subplot(gs[0, 2])
     ax.set_title("Best Intermediate Gaits", fontsize=10)
+    # Check whether any interpolated gait outperforms both champion endpoints
     discoveries = []
     for pair_key, pdata in transect_data.items():
         dx_arr = np.array(pdata["dx_values"])
         endpoint_best = max(abs(dx_arr[0]), abs(dx_arr[-1]))
         interp_best_idx = np.argmax(np.abs(dx_arr))
         interp_best = abs(dx_arr[interp_best_idx])
+        # Positive excess = intermediate gait beat both endpoints
         excess = interp_best - endpoint_best
         discoveries.append((pair_key, endpoint_best, interp_best, excess,
                            pdata["t_values"][interp_best_idx]))
@@ -654,6 +672,7 @@ def fig06_verdict(transect_data, random_roughness, midpoint_data):
     # Compute verdict values
     mean_trans_rough = np.mean(trans_r)
     mean_rand_rough = np.mean(rand_r)
+    # ratio < 1 means champion transects are smoother than random directions
     ratio = mean_trans_rough / mean_rand_rough if mean_rand_rough > 0 else 0
     n_smoother = sum(1 for tr in trans_r if tr < mean_rand_rough)
     n_discoveries = sum(1 for _, _, _, ex, _ in discoveries if ex > 1.0)
@@ -705,6 +724,7 @@ def fig06_verdict(transect_data, random_roughness, midpoint_data):
 # ── JSON encoder ────────────────────────────────────────────────────────────
 
 class NumpyEncoder(json.JSONEncoder):
+    """JSON encoder that handles numpy scalars and arrays."""
     def default(self, obj):
         if isinstance(obj, np.integer):
             return int(obj)
@@ -720,6 +740,7 @@ class NumpyEncoder(json.JSONEncoder):
 # ── Main ────────────────────────────────────────────────────────────────────
 
 def main():
+    """Run all four interpolation experiments, generate plots, and save JSON."""
     rng = np.random.RandomState(RNG_SEED)
 
     total_sims = 0
@@ -796,11 +817,13 @@ def main():
         w_b = CHAMPIONS[name_b]
 
         for pi in range(pts_per_seg):
+            # t ranges 0..1 within this segment
             t = pi / max(pts_per_seg - 1, 1)
             w = interpolate_weights(w_a, w_b, t)
             dx = simulate_dx_only(w)
             tour_dx.append(dx)
             tour_weights.append(weights_to_vec(w).tolist())
+            # Map local t into a global cumulative position along the full tour
             tour_t.append(cumulative + t / n_segments)
             total_sims += 1
 
@@ -842,9 +865,11 @@ def main():
         directions = []
         perp_roughnesses = []
         for di, pdir in enumerate(perp_dirs):
+            # Probe along each perpendicular direction, sweeping +/- around the midpoint
             r_vals = np.linspace(-MIDPOINT_RADIUS, MIDPOINT_RADIUS, N_MIDPOINT_PTS)
             dx_vals = []
             for r in r_vals:
+                # Offset the midpoint weight vector by distance r in direction pdir
                 w_vec = mid_vec + r * pdir
                 w = vec_to_weights(w_vec)
                 dx = simulate_dx_only(w)
@@ -892,12 +917,15 @@ def main():
         transect_length = np.linalg.norm(end_vec - start_vec)
 
         for ri in range(n_random_dirs):
+            # Sample a uniformly random direction on the 6D unit sphere
             rand_dir = rng.randn(6)
             rand_dir = rand_dir / (np.linalg.norm(rand_dir) + EPS)
 
             t_vals = np.linspace(0, 1, n_pts_random)
             dx_vals = []
             for t in t_vals:
+                # Walk the same Euclidean distance as the champion transect,
+                # but in the random direction, for a fair roughness comparison
                 w_vec = start_vec + t * transect_length * rand_dir
                 w = vec_to_weights(w_vec)
                 dx = simulate_dx_only(w)

@@ -95,6 +95,7 @@ T3_GAIT = {"name": "Trial 3", "dx": 10.0, "f_back": 0.24, "f_front": 0.24}
 # ── Simulation ───────────────────────────────────────────────────────────────
 
 def find_joint(robot_id, needle):
+    """Return the joint index whose name contains `needle`, or None."""
     for j in range(p.getNumJoints(robot_id)):
         name = p.getJointInfo(robot_id, j)[1].decode("utf-8", errors="replace")
         if needle in name:
@@ -121,7 +122,9 @@ def simulate_openloop(freq_back, freq_front, phase_back, phase_front,
     back_joint = find_joint(robot_id, "BackLeg")
     front_joint = find_joint(robot_id, "FrontLeg")
 
-    # Pre-compute targets
+    # Pre-compute sinusoidal position targets for every timestep.
+    # Each joint follows A * sin(2*pi*f*t + phi), producing a pure-tone
+    # oscillation at the specified frequency, amplitude, and phase offset.
     t_arr = np.arange(SIM_STEPS) * DT
     target_back = amp_back * np.sin(2 * np.pi * freq_back * t_arr + phase_back)
     target_front = amp_front * np.sin(2 * np.pi * freq_front * t_arr + phase_front)
@@ -165,6 +168,7 @@ def simulate_openloop(freq_back, freq_front, phase_back, phase_front,
     p.disconnect()
 
     dx = x_last - x_first
+    # Duty cycle = fraction of sampled steps where each link touches the ground
     n_samples = SIM_STEPS // 10
 
     return {
@@ -183,11 +187,13 @@ def simulate_openloop(freq_back, freq_front, phase_back, phase_front,
 # ── Helpers ──────────────────────────────────────────────────────────────────
 
 def clean_ax(ax):
+    """Remove top and right spines from a matplotlib axes."""
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
 
 
 def save_fig(fig, name):
+    """Save figure to PLOT_DIR and close it."""
     PLOT_DIR.mkdir(parents=True, exist_ok=True)
     path = PLOT_DIR / name
     fig.savefig(path, dpi=100, bbox_inches="tight")
@@ -249,12 +255,14 @@ def part2_amplitude(freq_phase_data, n_top=6, n_amp=50):
     freqs = np.array(freq_phase_data["freqs"])
     abs_dx = np.array(freq_phase_data["abs_dx_grid"])
 
-    # Find top frequencies (max |DX| across all phases)
+    # Find top frequencies: collapse the 2D (freq x phase) grid by taking
+    # the maximum |DX| across all phase offsets for each frequency, then
+    # pick the n_top frequencies with the largest peak displacement.
     max_per_freq = np.max(abs_dx, axis=1)
     top_indices = np.argsort(max_per_freq)[-n_top:][::-1]
     top_freqs = freqs[top_indices]
 
-    # Best phase for each top frequency
+    # For each top frequency, find the phase offset that produced its peak |DX|
     top_phases_idx = np.argmax(abs_dx[top_indices, :], axis=1)
     phases = np.array(freq_phase_data["phases"])
     top_phases = phases[top_phases_idx]
@@ -353,6 +361,7 @@ def fig01_freq_phase(fp_data):
     # Left: signed DX
     ax = axes[0]
     dx_g = np.array(fp_data["dx_grid"])
+    # Clamp colorbar symmetrically at 95th percentile to avoid outlier wash-out
     vmax = np.percentile(np.abs(dx_g), 95)
     im = ax.imshow(dx_g.T, origin="lower", aspect="auto",
                    extent=[freqs[0], freqs[-1], np.degrees(phases[0]), np.degrees(phases[-1])],
@@ -388,7 +397,9 @@ def fig02_transfer_function(fp_data):
     abs_g = np.array(fp_data["abs_dx_grid"])
     dx_g = np.array(fp_data["dx_grid"])
 
-    # Left: max |DX| vs frequency
+    # Left: 1D transfer function — marginalize over phase by taking the
+    # max (envelope) and mean |DX| at each frequency. This reveals which
+    # frequencies the body converts most efficiently into displacement.
     ax = axes[0]
     max_per_freq = np.max(abs_g, axis=1)
     mean_per_freq = np.mean(abs_g, axis=1)
@@ -412,7 +423,9 @@ def fig02_transfer_function(fp_data):
     ax.legend(fontsize=9)
     clean_ax(ax)
 
-    # Right: best phase at each frequency
+    # Right: for each frequency, find the phase offset that maximizes |DX|.
+    # This shows whether the optimal inter-joint phase relationship changes
+    # across the frequency spectrum.
     ax = axes[1]
     phases = np.array(fp_data["phases"])
     best_phase_idx = np.argmax(abs_g, axis=1)
@@ -468,9 +481,10 @@ def fig04_polyrhythm(poly_data):
                    extent=[freqs[0], freqs[-1], freqs[0], freqs[-1]],
                    cmap="RdBu_r", vmin=-vmax, vmax=vmax)
     plt.colorbar(im, ax=ax, label="DX (m)")
-    # Diagonal (equal frequency)
+    # Diagonal (equal frequency, i.e. 1:1 ratio)
     ax.plot([freqs[0], freqs[-1]], [freqs[0], freqs[-1]], "k--", lw=1, alpha=0.5)
-    # Ratio lines
+    # Overlay lines where f_front/f_back equals musically significant ratios.
+    # Each line traces f_front = ratio * f_back across the grid.
     for ratio, label in [(2, "2:1"), (3/2, "3:2"), (5/3, "5:3")]:
         ax.plot([freqs[0], freqs[-1]/ratio], [freqs[0]*ratio, freqs[-1]],
                 "w:", lw=0.8, alpha=0.6)
@@ -519,7 +533,8 @@ def fig05_evolved_overlay(fp_data, poly_data):
         color = "#E24A33" if g == NC_GAIT else "#55A868" if g == T3_GAIT else "#888"
         marker = "*" if g in (NC_GAIT, T3_GAIT) else "o"
         size = 150 if g in (NC_GAIT, T3_GAIT) else 40
-        # Average frequency of both joints
+        # Project the 2D (f_back, f_front) gait onto the 1D transfer function
+        # by averaging both joint frequencies into a single representative value.
         f_avg = (g["f_back"] + g["f_front"]) / 2
         ax.scatter([f_avg], [abs(g["dx"])], c=color, marker=marker, s=size,
                    edgecolors="black", lw=0.5, zorder=5)
@@ -580,7 +595,8 @@ def fig06_verdict(fp_data, poly_data, amp_results, transfer_fn):
     ax = axes[0][0]
     max_pf = transfer_fn
     ax.plot(freqs, max_pf, "o-", color="#4C72B0", lw=2, markersize=4)
-    # Compute local roughness
+    # First derivative of the transfer function: large values indicate
+    # abrupt changes in displacement with small frequency shifts (cliffs).
     derivs = np.abs(np.diff(max_pf) / np.diff(freqs))
     ax.fill_between(freqs[:-1], 0, derivs, alpha=0.3, color="#E24A33")
     ax2 = ax.twinx()
@@ -593,9 +609,10 @@ def fig06_verdict(fp_data, poly_data, amp_results, transfer_fn):
 
     # (0,1): Frequency-space roughness vs weight-space roughness
     ax = axes[0][1]
-    # Roughness in frequency space: std of consecutive differences
+    # Frequency-space roughness: measure how jagged the transfer function
+    # is by looking at the distribution of consecutive DX jumps. A smooth
+    # landscape has small, uniform jumps; a rough one has large outliers.
     freq_roughness = np.std(np.diff(max_pf))
-    # Compare consecutive differences
     consec_diffs = np.abs(np.diff(max_pf))
     ax.hist(consec_diffs, bins=15, color="#4C72B0", edgecolor="black", alpha=0.8)
     ax.axvline(np.mean(consec_diffs), color="#E24A33", lw=2, ls="--",
@@ -610,7 +627,10 @@ def fig06_verdict(fp_data, poly_data, amp_results, transfer_fn):
     ax = axes[0][2]
     poly_freqs = np.array(poly_data["freqs"])
     abs_poly = np.array(poly_data["abs_dx_grid"])
-    # Extract |DX| along ratio lines
+    # Extract |DX| along constant-ratio diagonals in the polyrhythmic grid.
+    # For each ratio r, walk f_back and pick the nearest grid cell where
+    # f_front ~ r * f_back. Only include points within one grid step of
+    # the exact ratio to avoid aliasing from the discrete grid.
     ratios = [1.0, 1.5, 2.0, 5/3, 3.0]
     ratio_labels = ["1:1", "3:2", "2:1", "5:3", "3:1"]
     for ratio, label in zip(ratios, ratio_labels):
@@ -647,18 +667,23 @@ def fig06_verdict(fp_data, poly_data, amp_results, transfer_fn):
     # (1,1): Is the open-loop landscape smooth?
     ax = axes[1][1]
     poly_dx = np.array(poly_data["dx_grid"])
-    # Compute roughness at each grid point (local gradient magnitude)
+    # Compute the gradient magnitude at each grid point using central finite
+    # differences (forward/backward at boundaries). This gives |grad DX| in
+    # units of m/Hz — large values indicate "cliffs" where a small frequency
+    # change causes a large displacement jump.
     step = poly_freqs[1] - poly_freqs[0]
     n = len(poly_freqs)
     cliff_grid = np.zeros((n, n))
     for i in range(n):
         for j in range(n):
+            # Partial derivative along f_back (row direction)
             if i == 0:
                 gx = (poly_dx[1, j] - poly_dx[0, j]) / step
             elif i == n - 1:
                 gx = (poly_dx[-1, j] - poly_dx[-2, j]) / step
             else:
                 gx = (poly_dx[i+1, j] - poly_dx[i-1, j]) / (2 * step)
+            # Partial derivative along f_front (column direction)
             if j == 0:
                 gy = (poly_dx[i, 1] - poly_dx[i, 0]) / step
             elif j == n - 1:
@@ -691,9 +716,9 @@ def fig06_verdict(fp_data, poly_data, amp_results, transfer_fn):
     nc_dx = abs(NC_GAIT["dx"])
     nc_exceeds = nc_dx > peak_dx
 
-    # Smoothness comparison
-    # Weight-space roughness from cliff taxonomy: DX range ~40m over dr=0.01
-    # Frequency-space roughness: mean consecutive diff over df
+    # Convert per-bin roughness to per-Hz by dividing by the frequency step.
+    # This allows direct comparison against weight-space cliffiness (~40m
+    # change over dr=0.01) from the cliff taxonomy experiments.
     df = float(freqs[1] - freqs[0])
 
     verdict_text = (
@@ -748,6 +773,7 @@ def fig06_verdict(fp_data, poly_data, amp_results, transfer_fn):
 # ── Console Output ──────────────────────────────────────────────────────────
 
 def print_analysis(fp_data, amp_results, poly_data, verdicts):
+    """Print a formatted console summary of all resonance mapping results."""
     freqs = np.array(fp_data["freqs"])
     abs_g = np.array(fp_data["abs_dx_grid"])
     dx_g = np.array(fp_data["dx_grid"])
@@ -805,6 +831,7 @@ def print_analysis(fp_data, amp_results, poly_data, verdicts):
 # ── Main ─────────────────────────────────────────────────────────────────────
 
 def main():
+    """Run all four parts of the resonance mapping campaign and save outputs."""
     t_start = time.perf_counter()
     np.random.seed(42)
 

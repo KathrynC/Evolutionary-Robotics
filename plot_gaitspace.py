@@ -36,6 +36,9 @@ _OTHER_CATS = sorted([
     "hidden_neurons", "homework", "market_mathematics", "pareto_walk_spin",
     "spinners", "time_signatures",
 ])
+# Map each category to a unique color: persona_gaits gets neutral gray so it
+# recedes visually; the 10 remaining categories cycle through matplotlib's
+# tab10 qualitative palette (max 10 distinct hues before repeating).
 CAT_COLORS = {"persona_gaits": "#7f7f7f"}
 for _i, _cat in enumerate(_OTHER_CATS):
     CAT_COLORS[_cat] = _TAB10[_i]
@@ -46,6 +49,10 @@ def load_zoo(path=ZOO_PATH):
     """Flatten the nested JSON into a list of dicts with all analytics at top level."""
     with open(path) as f:
         zoo = json.load(f)
+    # Flatten the two-level hierarchy (category -> gait -> analytics) into a
+    # single list of dicts.  Nested sub-objects (outcome, contact, coordination,
+    # rotation_axis, preserved) are unpacked so every metric is a top-level key,
+    # which makes downstream plotting trivial (just index by key name).
     gaits = []
     for cat_name, cat_data in zoo["categories"].items():
         for gait_name, gait_data in cat_data.get("gaits", {}).items():
@@ -162,6 +169,7 @@ def _get(gaits, name):
 
 # ── Figure 1: Phase Lock Bimodality ───────────────────────────────────────
 def fig01(gaits):
+    """Plot phase-lock bimodality: histogram and phase-lock vs speed scatter."""
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 4))
 
     scores = np.array([g["phase_lock_score"] for g in gaits])
@@ -187,6 +195,7 @@ def fig01(gaits):
 
 # ── Figure 2: Contact Entropy Independence ────────────────────────────────
 def fig02(gaits):
+    """Plot contact entropy vs three performance metrics, showing independence."""
     fig, axes = plt.subplots(1, 3, figsize=(14, 4))
     pairs = [
         ("mean_speed",        "Speed"),
@@ -217,6 +226,7 @@ def fig02(gaits):
 
 # ── Figure 3: Axis Dominance ──────────────────────────────────────────────
 def fig03(gaits):
+    """Plot rotation axis dominance: ternary simplex and bar chart of dominant axis."""
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 5))
 
     # -- Left: ternary simplex --
@@ -289,6 +299,7 @@ def fig03(gaits):
 
 # ── Figure 4: Speed vs Efficiency ─────────────────────────────────────────
 def fig04(gaits):
+    """Plot speed vs efficiency landscape with Pareto-optimal gaits starred."""
     fig, ax = plt.subplots(figsize=(8, 6))
 
     speeds = np.array([g["mean_speed"] for g in gaits])
@@ -350,6 +361,7 @@ def fig04(gaits):
 
 # ── Figure 5: Champion Comparison ─────────────────────────────────────────
 def fig05(gaits):
+    """Bar chart comparing three champions across six normalized metrics."""
     trio = {
         "CPG Champion": _get(gaits, "43_hidden_cpg_champion"),
         "Curie":        _get(gaits, "18_curie"),
@@ -364,7 +376,9 @@ def fig05(gaits):
         ("axis_switching_rate", "Axis Switch"),
     ]
 
-    # Normalize each metric to [0, 1] using robust percentile range
+    # Normalize each metric to [0, 1] using the 2nd–98th percentile range
+    # across all gaits.  This is more robust than min/max because it prevents
+    # a single extreme outlier from compressing the rest of the bars.
     ranges = {}
     for key, _ in metrics:
         vals = np.array([g[key] for g in gaits])
@@ -373,6 +387,7 @@ def fig05(gaits):
         ranges[key] = (lo, hi)
 
     def norm(val, key):
+        """Scale val to [0, 1] using the precomputed percentile range for key."""
         lo, hi = ranges[key]
         return np.clip((val - lo) / (hi - lo), 0, 1) if hi > lo else 0.5
 
@@ -400,6 +415,7 @@ def fig05(gaits):
 
 # ── Figure 6: Topology Bifurcation (Radar) ────────────────────────────────
 def fig06(gaits):
+    """Radar chart comparing gait 43 (CPG Champion) and gait 44 (Spinner)."""
     g43 = _get(gaits, "43_hidden_cpg_champion")
     g44 = _get(gaits, "44_spinner_champion")
 
@@ -452,6 +468,7 @@ def fig06(gaits):
 
 # ── Figure 7: Category Overview (2×2) ─────────────────────────────────────
 def fig07(gaits):
+    """2x2 category-colored scatter grid showing four gaitspace projections."""
     fig, axes = plt.subplots(2, 2, figsize=(12, 10))
     projections = [
         ("mean_speed", "phase_lock_score",      "Speed",          "Phase Lock"),

@@ -117,6 +117,16 @@ RNG_SEED = 42
 # ── Simulation with mid-sim weight switching ────────────────────────────────
 
 def write_brain_standard(weights):
+    """Write a standard 6-synapse brain.nndf file from a weights dict.
+
+    Args:
+        weights: dict with keys "w03","w04","w13","w14","w23","w24" mapping
+                 source→target neuron pairs to float synapse weights.
+
+    The file defines 3 sensor neurons (Torso, BackLeg, FrontLeg) and
+    2 motor neurons (Torso_BackLeg, Torso_FrontLeg) with full sensor→motor
+    connectivity (6 synapses).
+    """
     path = PROJECT / "brain.nndf"
     with open(path, "w") as f:
         f.write('<neuralNetwork>\n')
@@ -125,6 +135,7 @@ def write_brain_standard(weights):
         f.write('    <neuron name = "2" type = "sensor" linkName = "FrontLeg" />\n')
         f.write('    <neuron name = "3" type = "motor"  jointName = "Torso_BackLeg" />\n')
         f.write('    <neuron name = "4" type = "motor"  jointName = "Torso_FrontLeg" />\n')
+        # Fully-connected sensor→motor: 3 sensors × 2 motors = 6 synapses
         for s in [0, 1, 2]:
             for m in [3, 4]:
                 w = weights[f"w{s}{m}"]
@@ -225,12 +236,14 @@ def simulate_with_surgery(initial_weights, surgery_list=None):
 # ── Plotting helpers ────────────────────────────────────────────────────────
 
 def clean_ax(ax):
+    """Remove top/right spines and shrink tick labels for cleaner plots."""
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
     ax.tick_params(labelsize=8)
 
 
 def save_fig(fig, name):
+    """Save a matplotlib figure to PLOT_DIR and close it."""
     path = PLOT_DIR / name
     fig.savefig(path, dpi=100, bbox_inches="tight", facecolor="white")
     plt.close(fig)
@@ -664,6 +677,7 @@ def fig06_verdict(transplant_results, baselines, ablation_results,
 # ── JSON encoder ────────────────────────────────────────────────────────────
 
 class NumpyEncoder(json.JSONEncoder):
+    """JSON encoder that handles numpy scalars and arrays."""
     def default(self, obj):
         if isinstance(obj, np.integer):
             return int(obj)
@@ -679,6 +693,15 @@ class NumpyEncoder(json.JSONEncoder):
 # ── Main ────────────────────────────────────────────────────────────────────
 
 def main():
+    """Run all four causal surgery experiments and produce figures + JSON.
+
+    Experiment structure:
+        1. Baselines — run each champion with no surgery
+        2. Brain transplants — swap all 6 weights at t_switch
+        3. Single-synapse ablation — zero one weight at step 2000
+        4. Timing sweep — vary switch time across full sim for 3 key pairs
+        5. Rescue — transplant champion weights into random gaits
+    """
     total_sims = 0
     t_global = time.time()
 

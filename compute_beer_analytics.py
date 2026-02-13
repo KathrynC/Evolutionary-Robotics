@@ -56,10 +56,12 @@ class NumpyEncoder(json.JSONEncoder):
         return super().default(obj)
 
     def _convert_array(self, arr):
+        """Convert a numpy array to a JSON-safe nested list with rounded floats."""
         flat = arr.tolist()
         return self._round_nested(flat)
 
     def _round_nested(self, obj):
+        """Recursively round all floats in a nested list structure to 6 decimals."""
         if isinstance(obj, float):
             return round(obj, 6)
         if isinstance(obj, list):
@@ -159,13 +161,17 @@ def _hilbert_analytic(x):
     """
     n = len(x)
     X = np.fft.fft(x)
+    # Build one-sided spectral mask H: keep DC and Nyquist as-is (×1),
+    # double positive frequencies (×2), zero out negative frequencies.
+    # This is the standard recipe for the analytic signal via FFT.
     H = np.zeros(n)
-    H[0] = 1.0
+    H[0] = 1.0                        # DC component unchanged
     if n % 2 == 0:
-        H[1:n // 2] = 2.0
-        H[n // 2] = 1.0
+        H[1:n // 2] = 2.0             # double positive-frequency bins
+        H[n // 2] = 1.0               # Nyquist bin unchanged
     else:
-        H[1:(n + 1) // 2] = 2.0
+        H[1:(n + 1) // 2] = 2.0       # double positive-frequency bins (odd-length)
+    # Multiply in frequency domain and invert: result is x(t) + i·hilbert(x(t))
     return np.fft.ifft(X * H)
 
 
@@ -175,12 +181,13 @@ def _fft_peak(signal, dt):
     Returns (freq_hz, amplitude). Ignores DC component.
     """
     n = len(signal)
-    # Remove mean
+    # Remove mean so DC doesn't dominate the spectrum
     sig = signal - np.mean(signal)
     if np.max(np.abs(sig)) < EPS:
         return 0.0, 0.0
 
     freqs = np.fft.rfftfreq(n, d=dt)
+    # Real-valued FFT; scale by 2/n to get single-sided amplitude spectrum
     spectrum = np.abs(np.fft.rfft(sig)) * (2.0 / n)
 
     # Ignore DC (index 0)
@@ -194,7 +201,10 @@ def _fft_peak(signal, dt):
 # ── Pillar 1: Outcome ───────────────────────────────────────────────────────
 
 def compute_outcome(data, dt):
-    """Locomotion outcome metrics."""
+    """Compute Pillar 1 (Outcome): displacement, speed, efficiency, and path metrics.
+
+    Returns a dict with dx, dy, yaw_net_rad, speed stats, work proxy, and path quality.
+    """
     x, y = data["x"], data["y"]
     vx, vy = data["vx"], data["vy"]
     wz = data["wz"]
@@ -207,26 +217,30 @@ def compute_outcome(data, dt):
     # Yaw via integration of angular velocity (handles multi-turn)
     yaw_net_rad = float(np.trapezoid(wz, dx=dt))
 
-    # Speed
+    # Speed: 2D ground-plane speed (ignoring vertical component)
     speed = np.sqrt(vx**2 + vy**2)
     mean_speed = float(np.mean(speed))
     speed_std = float(np.std(speed))
+    # Coefficient of variation: higher = more irregular speed profile
     speed_cv = float(speed_std / mean_speed) if mean_speed > EPS else 0.0
 
-    # Work proxy: Σ(|τ₀·q̇₀| + |τ₁·q̇₁|)·dt
+    # Work proxy: sum of absolute joint power (|torque × angular velocity|) over time
     instantaneous_power = np.abs(j0_tau * j0_vel) + np.abs(j1_tau * j1_vel)
     work_proxy = float(np.sum(instantaneous_power) * dt)
 
-    # Distance per work
+    # Distance per work: locomotion efficiency (meters per unit of mechanical work)
     net_dist = np.sqrt(dx**2 + dy**2)
     distance_per_work = float(net_dist / work_proxy) if work_proxy > EPS else 0.0
 
     # Path straightness: net_displacement / path_length  (1.0 = perfectly straight)
+    # Summing infinitesimal arc lengths from consecutive XY positions
     ds = np.sqrt(np.diff(x)**2 + np.diff(y)**2)
     path_length = float(np.sum(ds))
     path_straightness = float(net_dist / path_length) if path_length > EPS else 0.0
 
-    # Heading consistency: |mean(e^{iθ})| where θ = atan2(vy, vx)
+    # Heading consistency: mean resultant length of unit heading vectors.
+    # Maps each velocity to a point on the unit circle e^{iθ}; the magnitude
+    # of their average is 1.0 for perfectly consistent heading, 0.0 for random.
     # Only count timesteps where the robot is actually moving (speed > threshold)
     speed_thresh = 0.1  # m/s — ignore near-stationary frames
     moving = speed > speed_thresh
@@ -253,13 +267,17 @@ def compute_outcome(data, dt):
 # ── Pillar 2: Contact ───────────────────────────────────────────────────────
 
 def compute_contact(data):
-    """Contact pattern metrics."""
+    """Compute Pillar 2 (Contact): duty fractions, state distribution, entropy, transitions.
+
+    Returns a dict with per-link duty cycles, 8-state distribution, Shannon entropy,
+    and an 8x8 row-normalized transition matrix.
+    """
     torso = data["contact_torso"].astype(int)
     back = data["contact_back"].astype(int)
     front = data["contact_front"].astype(int)
     n = len(torso)
 
-    # Duty fractions
+    # Duty fractions: fraction of timesteps each link is in contact with ground
     duty_torso = float(np.mean(torso))
     duty_back = float(np.mean(back))
     duty_front = float(np.mean(front))
@@ -270,20 +288,26 @@ def compute_contact(data):
     for k in range(4):
         support_count_frac[k] = float(np.sum(support == k) / n)
 
-    # 3-bit contact state: torso*4 + back*2 + front*1
+    # Encode 3 binary contact signals into a single integer 0..7.
+    # Bit layout: torso=bit2 (×4), back=bit1 (×2), front=bit0 (×1).
+    # E.g. state 5 = 101 = torso+front touching, back airborne.
     state = torso * 4 + back * 2 + front
+    # Count occurrences of each of the 8 possible contact states
     state_counts = np.bincount(state, minlength=8)
     state_distribution = (state_counts / n).tolist()
 
-    # Dominant state
+    # Dominant state: most frequently occupied contact configuration
     dominant_state = int(np.argmax(state_counts))
 
-    # Shannon entropy (bits)
+    # Shannon entropy (bits): measures diversity of contact patterns.
+    # Max = log2(8) = 3 bits (all states equally likely); min = 0 (single state).
     probs = state_counts / n
     nonzero = probs[probs > 0]
     contact_entropy_bits = float(-np.sum(nonzero * np.log2(nonzero)))
 
-    # Transition matrix: 8×8 row-normalized
+    # Transition matrix: 8×8 row-normalized (Markov chain of contact state changes).
+    # Encodes consecutive state pairs (s_t, s_{t+1}) as a flat index s_t*8 + s_{t+1},
+    # then reshapes to a matrix and normalizes rows to get transition probabilities.
     if n > 1:
         trans_idx = state[:-1] * 8 + state[1:]
         trans_flat = np.bincount(trans_idx, minlength=64)
@@ -309,27 +333,34 @@ def compute_contact(data):
 # ── Pillar 3: Coordination ──────────────────────────────────────────────────
 
 def compute_coordination(data, dt):
-    """Joint coordination / phase-locking metrics."""
+    """Compute Pillar 3 (Coordination): joint frequency, phase difference, and phase locking.
+
+    Returns per-joint FFT peaks and the inter-joint phase relationship.
+    """
     j0_pos = data["j0_pos"]
     j1_pos = data["j1_pos"]
 
-    # FFT peaks for each joint
+    # FFT peaks for each joint: dominant oscillation frequency and amplitude
     freq0, amp0 = _fft_peak(j0_pos, dt)
     freq1, amp1 = _fft_peak(j1_pos, dt)
 
-    # Phase difference at dominant frequency via Hilbert analytic signal
+    # Compute instantaneous phase of each joint via the Hilbert analytic signal.
+    # Mean-subtract first so the Hilbert transform captures oscillation phase,
+    # not a DC offset. np.angle extracts the instantaneous phase from the
+    # complex analytic signal.
     a0 = _hilbert_analytic(j0_pos - np.mean(j0_pos))
     a1 = _hilbert_analytic(j1_pos - np.mean(j1_pos))
     phi0 = np.angle(a0)
     phi1 = np.angle(a1)
     delta_phi = phi1 - phi0
 
-    # Mean phase difference (circular mean at dominant freq)
-    # Use the mean of the instantaneous phase difference
+    # Circular mean of phase difference: maps each delta_phi to a unit-circle
+    # point, averages, then extracts the angle. This correctly handles wrapping.
     mean_delta_phi = float(np.angle(np.mean(np.exp(1j * delta_phi))))
 
-    # Phase lock score: |mean(e^{iΔφ(t)})|
-    # 0 = no phase locking, 1 = perfect phase locking
+    # Phase lock score (mean resultant length): |mean(e^{iΔφ(t)})|
+    # 1.0 = joints maintain a constant phase offset (perfect locking)
+    # 0.0 = phase difference drifts randomly (no coordination)
     phase_lock_score = float(np.abs(np.mean(np.exp(1j * delta_phi))))
 
     return {
@@ -349,29 +380,40 @@ def compute_coordination(data, dt):
 # ── Pillar 4: Rotation Axis ─────────────────────────────────────────────────
 
 def compute_rotation_axis(data, dt):
-    """Rotation axis dominance and angular velocity periodicity."""
+    """Compute Pillar 4 (Rotation Axis): axis dominance, switching rate, and periodicity.
+
+    Returns PCA-derived variance ratios, axis switching frequency, and per-axis FFT peaks.
+    """
     wx = data["wx"]
     wy = data["wy"]
     wz = data["wz"]
     n = len(wx)
 
-    # PCA of angular velocity covariance → axis dominance
+    # PCA of angular velocity via eigendecomposition of the 3×3 covariance matrix.
+    # This reveals which rotation axis carries the most variance (i.e., dominates
+    # the robot's rotational motion). No sklearn needed -- the covariance matrix
+    # is small enough for direct eigh decomposition.
     omega = np.column_stack([wx, wy, wz])  # (n, 3)
     omega_centered = omega - omega.mean(axis=0)
+    # Sample covariance matrix (3×3, symmetric positive semi-definite)
     cov = np.dot(omega_centered.T, omega_centered) / max(n - 1, 1)
 
+    # eigh guarantees real eigenvalues for symmetric matrices
     eig_vals, _ = np.linalg.eigh(cov)
-    # eigh returns sorted ascending; we want descending
+    # eigh returns eigenvalues in ascending order; reverse for descending
     eig_vals = eig_vals[::-1]
     total_var = np.sum(eig_vals)
+    # Axis dominance: fraction of total angular variance along each principal axis.
+    # [1,0,0] = all rotation on one axis; [0.33,0.33,0.33] = isotropic tumbling.
     if total_var > EPS:
         axis_dominance = (eig_vals / total_var).tolist()
     else:
         axis_dominance = [1.0 / 3.0, 1.0 / 3.0, 1.0 / 3.0]
 
-    # Axis switching rate: how often dominant axis changes per second
+    # Axis switching rate: how often the instantaneously dominant rotation axis
+    # changes, measured in transitions per second (Hz).
     abs_omega = np.abs(omega)  # (n, 3)
-    dominant_axis = np.argmax(abs_omega, axis=1)  # (n,)
+    dominant_axis = np.argmax(abs_omega, axis=1)  # per-timestep dominant axis index
     if n > 1:
         switches = np.sum(dominant_axis[1:] != dominant_axis[:-1])
         total_time = (n - 1) * dt
@@ -398,7 +440,7 @@ def compute_rotation_axis(data, dt):
 # ── Orchestrator ─────────────────────────────────────────────────────────────
 
 def compute_all(data, dt):
-    """Compute all 4 pillars of analytics."""
+    """Compute all 4 Beer pillars and return them as a single analytics dict."""
     return {
         "outcome": compute_outcome(data, dt),
         "contact": compute_contact(data),
@@ -410,6 +452,7 @@ def compute_all(data, dt):
 # ── Main ─────────────────────────────────────────────────────────────────────
 
 def main():
+    """Entry point: load zoo JSON, compute analytics for all gaits, write v2 output."""
     t_start = time.time()
 
     # Load zoo JSON

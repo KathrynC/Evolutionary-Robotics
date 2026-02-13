@@ -53,6 +53,7 @@ DEAD_THRESHOLD = 1.0  # meters
 # ── Simulation ───────────────────────────────────────────────────────────────
 
 def write_brain(weights):
+    """Write a brain.nndf file from a weight dict (w03, w04, w13, etc.)."""
     path = PROJECT / "brain.nndf"
     with open(path, "w") as f:
         f.write('<neuralNetwork>\n')
@@ -61,6 +62,7 @@ def write_brain(weights):
         f.write('    <neuron name = "2" type = "sensor" linkName = "FrontLeg" />\n')
         f.write('    <neuron name = "3" type = "motor"  jointName = "Torso_BackLeg" />\n')
         f.write('    <neuron name = "4" type = "motor"  jointName = "Torso_FrontLeg" />\n')
+        # 3 sensors (0,1,2) x 2 motors (3,4) = 6 synapses
         for s in [0, 1, 2]:
             for m in [3, 4]:
                 w = weights[f"w{s}{m}"]
@@ -90,17 +92,19 @@ def simulate_full(weights):
     max_force = float(getattr(c, "MAX_FORCE", 150.0))
     n_steps = c.SIM_STEPS
 
+    # Pre-allocate arrays for every telemetry channel
     t_arr = np.empty(n_steps)
     x = np.empty(n_steps); y = np.empty(n_steps); z = np.empty(n_steps)
     vx = np.empty(n_steps); vy = np.empty(n_steps); vz = np.empty(n_steps)
     wx = np.empty(n_steps); wy = np.empty(n_steps); wz = np.empty(n_steps)
     roll = np.empty(n_steps); pitch = np.empty(n_steps); yaw = np.empty(n_steps)
-    ct = np.empty(n_steps, dtype=bool)
-    cb = np.empty(n_steps, dtype=bool)
-    cf = np.empty(n_steps, dtype=bool)
+    ct = np.empty(n_steps, dtype=bool)   # torso contact
+    cb = np.empty(n_steps, dtype=bool)   # back leg contact
+    cf = np.empty(n_steps, dtype=bool)   # front leg contact
     j0p = np.empty(n_steps); j0v = np.empty(n_steps); j0t = np.empty(n_steps)
     j1p = np.empty(n_steps); j1v = np.empty(n_steps); j1t = np.empty(n_steps)
 
+    # Build name-to-index maps for links and joints (handles bytes vs str)
     link_indices = {}
     joint_indices = {}
     for i_j in range(p.getNumJoints(robotId)):
@@ -139,6 +143,8 @@ def simulate_full(weights):
         wx[i] = vel_ang[0]; wy[i] = vel_ang[1]; wz[i] = vel_ang[2]
         roll[i] = rpy_vals[0]; pitch[i] = rpy_vals[1]; yaw[i] = rpy_vals[2]
 
+        # Determine which links are touching the ground this step.
+        # cp[3] is the link index on body A; -1 means the base link (Torso).
         contact_pts = p.getContactPoints(robotId)
         tc = bc = fc = False
         for cp in contact_pts:
@@ -148,6 +154,7 @@ def simulate_full(weights):
             elif li == front_li: fc = True
         ct[i] = tc; cb[i] = bc; cf[i] = fc
 
+        # Joint state: [0]=position, [1]=velocity, [3]=applied torque
         js0 = p.getJointState(robotId, j0_idx)
         js1 = p.getJointState(robotId, j1_idx)
         j0p[i] = js0[0]; j0v[i] = js0[1]; j0t[i] = js0[3]
@@ -175,7 +182,7 @@ def compute_dark_descriptors(data):
     wx, wy, wz = data["wx"], data["wy"], data["wz"]
     j0p, j1p = data["j0_pos"], data["j1_pos"]
     j0t, j1t = data["j0_tau"], data["j0_vel"]
-    n = len(x)
+    n = len(x)  # number of simulation steps
 
     # Displacement
     dx = float(x[-1] - x[0])
@@ -231,7 +238,9 @@ def compute_dark_descriptors(data):
     duty_back = float(np.mean(cb))
     duty_front = float(np.mean(cf))
 
-    # Contact state entropy
+    # Contact state entropy: encode 3 binary contact channels as a 3-bit
+    # integer (0-7), then compute Shannon entropy over the 8 possible states.
+    # High entropy = many distinct contact patterns; low = stuck in one state.
     state = ct.astype(int) * 4 + cb.astype(int) * 2 + cf.astype(int)
     counts = np.bincount(state.astype(int), minlength=8)
     probs = counts / n
@@ -245,8 +254,9 @@ def compute_dark_descriptors(data):
     path_straightness = analytics["outcome"]["path_straightness"]
     heading_consistency = analytics["outcome"]["heading_consistency"]
 
-    # XY trajectory shape: fit a circle, measure circularity
-    # Compute mean radius and radius variance relative to centroid
+    # XY trajectory shape: measure how circular the path is by computing
+    # the coefficient of variation of radii from the centroid.
+    # Low radius_cv = circular orbit; high = irregular trajectory.
     cx, cy = np.mean(x), np.mean(y)
     radii = np.sqrt((x - cx)**2 + (y - cy)**2)
     mean_radius = float(np.mean(radii))
@@ -276,32 +286,50 @@ def compute_dark_descriptors(data):
 # ── Classification ───────────────────────────────────────────────────────────
 
 def classify_dark_gait(desc):
-    """Heuristic classification of dead gait into behavioral type."""
-    # Truly inert: no joint motion, no speed
+    """Heuristic classification of dead gait into behavioral type.
+
+    Categories are tested in priority order; the first match wins.
+    Returns one of: Frozen, Spinner, Circler, Rocker, Vibrator, Twitcher,
+    Canceller, or Other.
+    """
+    # Frozen (truly inert): both joints barely move and body has near-zero
+    # speed. These gaits do essentially nothing -- the NN outputs settle
+    # to a fixed point immediately.
     if desc["j0_range"] < 0.05 and desc["j1_range"] < 0.05 and desc["mean_speed"] < 0.05:
         return "Frozen"
 
-    # Spinner: large total yaw, small displacement
+    # Spinner: accumulates large yaw rotation (>3 rad total) but goes
+    # nowhere. Caused by asymmetric joint torques creating a net moment
+    # about the vertical axis.
     if desc["total_yaw"] > 3.0 and desc["net_disp"] < 0.5:
         return "Spinner"
 
-    # Circler: significant path length but returns near origin
+    # Circler: travels a significant path (>2m) and wanders far from the
+    # origin (>0.5m excursion) but ends up near where it started. Unlike
+    # Spinners, these actually translate through space in a loop.
     if desc["path_length"] > 2.0 and desc["max_excursion"] > 0.5 and desc["net_disp"] < 1.0:
         return "Circler"
 
-    # Rocker: joints oscillate, body stays put, significant z variation
+    # Rocker: joints oscillate (>0.1 rad range) causing visible body
+    # pitching (z_range > 0.05m) but almost no lateral translation.
+    # The robot tips back and forth without going anywhere.
     if desc["j0_range"] > 0.1 and desc["mean_speed"] < 0.3 and desc["z_range"] > 0.05:
         return "Rocker"
 
-    # Vibrator: joints oscillate at high frequency, minimal macro movement
+    # Vibrator: at least one joint oscillates at high frequency (>2 Hz)
+    # but the vibrations cancel out or are too small to produce movement.
+    # Distinguished from Rockers by frequency rather than amplitude.
     if (desc["j0_freq"] > 2.0 or desc["j1_freq"] > 2.0) and desc["mean_speed"] < 0.2:
         return "Vibrator"
 
-    # Twitcher: some joint motion but minimal translation
+    # Twitcher: joints move (>0.05 rad) but translation is minimal.
+    # Catch-all for gaits with visible motion that don't fit the
+    # more specific categories above.
     if desc["j0_range"] > 0.05 and desc["mean_speed"] < 0.3:
         return "Twitcher"
 
-    # Canceller: walks but comes back (high path length, low net)
+    # Canceller: actually walks but reverses direction, ending near the
+    # origin. Detected by high sinuosity (path_length >> net_displacement).
     if desc["path_length"] > 1.0 and desc["sinuosity"] > 5.0:
         return "Canceller"
 
@@ -350,11 +378,13 @@ def kmeans(data, k=6, max_iter=50):
 # ── Plot helpers ─────────────────────────────────────────────────────────────
 
 def clean_ax(ax):
+    """Remove top and right spines from a matplotlib axis."""
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
 
 
 def save_fig(fig, name):
+    """Save a figure to PLOT_DIR and close it to free memory."""
     PLOT_DIR.mkdir(parents=True, exist_ok=True)
     path = PLOT_DIR / name
     fig.savefig(path, dpi=100, bbox_inches="tight")
@@ -377,6 +407,7 @@ TYPE_COLORS = {
 # ── Main ─────────────────────────────────────────────────────────────────────
 
 def main():
+    """Re-simulate dead gaits, classify them, write JSON results, and generate figures."""
     brain_path = PROJECT / "brain.nndf"
     backup_path = PROJECT / "brain.nndf.backup"
     if brain_path.exists():
@@ -489,7 +520,7 @@ def main():
     for ax, (kx, ky, title) in zip(axes.flat, plot_pairs):
         xs = [r["descriptors"][kx] for r in results]
         ys_raw = [r["descriptors"][ky] for r in results]
-        # Cap sinuosity for display
+        # Cap sinuosity at 100 for display; dead gaits can have infinite sinuosity
         if ky == "sinuosity":
             ys = [min(y, 100) for y in ys_raw]
         else:
@@ -533,7 +564,7 @@ def main():
         ax = axes[idx // cols][idx % cols]
         members = [(i, r) for i, r in enumerate(results) if r["type"] == gtype]
 
-        # Plot up to 8 trajectories per type
+        # Plot up to 8 trajectories per type; fade later ones for legibility
         for mi, (ridx, r) in enumerate(members[:8]):
             data = telemetry_cache[ridx]
             alpha = 0.6 if mi < 4 else 0.3
@@ -555,21 +586,23 @@ def main():
     save_fig(fig, "dark_fig02_xy_trajectories.png")
 
     # ── Fig 3: PCA clustering ────────────────────────────────────────────────
-    # Build feature matrix for PCA
+    # Build feature matrix for PCA from 17 behavioral descriptors
     feature_keys = ["mean_speed", "total_yaw", "yaw_rms", "roll_rms", "pitch_rms",
                     "z_range", "j0_range", "j1_range", "j0_freq", "j1_freq",
                     "work_total", "phase_lock", "contact_entropy", "path_length",
                     "max_excursion", "path_straightness", "heading_consistency"]
     feat_matrix = np.array([[r["descriptors"][k] for k in feature_keys] for r in results])
 
-    # Normalize
+    # Min-max normalize so each feature contributes equally to PCA
     mins = feat_matrix.min(axis=0)
     maxs = feat_matrix.max(axis=0)
     ranges = maxs - mins
-    ranges[ranges < 1e-12] = 1.0
+    ranges[ranges < 1e-12] = 1.0  # avoid division by zero for constant features
     normed = (feat_matrix - mins) / ranges
 
-    # PCA
+    # Manual PCA via eigendecomposition of the covariance matrix.
+    # eigh returns eigenvalues in ascending order, so we reverse to get
+    # largest-variance components first.
     mean = normed.mean(axis=0)
     centered = normed - mean
     cov = np.dot(centered.T, centered) / max(len(centered) - 1, 1)
@@ -577,8 +610,8 @@ def main():
     idx_sorted = eigvals.argsort()[::-1]
     eigvecs = eigvecs[:, idx_sorted]
     eigvals = eigvals[idx_sorted]
-    projected = centered @ eigvecs[:, :2]
-    var_exp = eigvals[:2] / eigvals.sum() * 100
+    projected = centered @ eigvecs[:, :2]  # project onto top 2 principal components
+    var_exp = eigvals[:2] / eigvals.sum() * 100  # % variance explained
 
     fig, axes = plt.subplots(1, 2, figsize=(14, 6))
 
@@ -624,7 +657,7 @@ def main():
 
     for idx, gtype in enumerate(unique_types):
         members = [(i, r) for i, r in enumerate(results) if r["type"] == gtype]
-        # Pick the member with median work
+        # Pick the member with median work as a representative example
         works = [r["descriptors"]["work_total"] for _, r in members]
         med_idx = np.argsort(works)[len(works) // 2]
         ridx, rep = members[med_idx]
@@ -655,12 +688,16 @@ def main():
     save_fig(fig, "dark_fig04_joint_gallery.png")
 
     # ── Fig 5: Contact patterns — one per type ──────────────────────────────
+    # Each row shows a stacked "raster" of ground contact for the 3 links
+    # over time: filled = touching ground, blank = airborne. Rows are offset
+    # vertically (0, 1, 2) so the three channels don't overlap.
     fig, axes = plt.subplots(n_types, 1, figsize=(14, 2 * n_types), sharex=True)
     if n_types == 1:
         axes = [axes]
 
     for idx, gtype in enumerate(unique_types):
         members = [(i, r) for i, r in enumerate(results) if r["type"] == gtype]
+        # Pick the median-energy member as the representative
         works = [r["descriptors"]["work_total"] for _, r in members]
         med_idx = np.argsort(works)[len(works) // 2]
         ridx, rep = members[med_idx]
@@ -671,6 +708,8 @@ def main():
         ct_v = data["contact_torso"].astype(float)
         cb_v = data["contact_back"].astype(float)
         cf_v = data["contact_front"].astype(float)
+        # Each link's contact band is drawn in its own vertical lane
+        # (0-0.9, 1-1.9, 2-2.9) so they stack without overlapping
         ax.fill_between(t_plot, 0, ct_v * 0.9, alpha=0.5, color="#999999")
         ax.fill_between(t_plot, 1, 1 + cb_v * 0.9, alpha=0.5, color="#DD8452")
         ax.fill_between(t_plot, 2, 2 + cf_v * 0.9, alpha=0.5, color="#8172B2")
@@ -686,9 +725,14 @@ def main():
     save_fig(fig, "dark_fig05_contact_patterns.png")
 
     # ── Fig 6: Phase portraits — one per type ────────────────────────────────
+    # Phase portrait: plot joint0 angle vs joint1 angle over time.
+    # A tight ellipse/cycle means phase-locked coordination; a filled blob
+    # means uncorrelated joint motion. Points are colored by time (viridis)
+    # to show trajectory evolution.
     cols_pp = min(n_types, 4)
     rows_pp = (n_types + cols_pp - 1) // cols_pp
     fig, axes = plt.subplots(rows_pp, cols_pp, figsize=(4 * cols_pp, 4 * rows_pp))
+    # Normalize axes to 2D array regardless of grid dimensions
     if rows_pp == 1 and cols_pp == 1:
         axes = np.array([[axes]])
     elif rows_pp == 1:
@@ -699,12 +743,15 @@ def main():
     for idx, gtype in enumerate(unique_types):
         ax = axes[idx // cols_pp][idx % cols_pp]
         members = [(i, r) for i, r in enumerate(results) if r["type"] == gtype]
+        # Pick the median-energy member as the representative
         works = [r["descriptors"]["work_total"] for _, r in members]
         med_idx = np.argsort(works)[len(works) // 2]
         ridx, rep = members[med_idx]
         data = telemetry_cache[ridx]
 
+        # Subsample to 500 points for the scatter overlay to avoid clutter
         scatter_idx = np.linspace(0, len(data["j0_pos"]) - 1, 500, dtype=int)
+        # Faint line shows the full trajectory; scatter points add time coloring
         ax.plot(data["j0_pos"], data["j1_pos"], color=TYPE_COLORS.get(gtype, "#999999"),
                 lw=0.3, alpha=0.3)
         ax.scatter(data["j0_pos"][scatter_idx], data["j1_pos"][scatter_idx],

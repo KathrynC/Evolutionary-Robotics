@@ -85,6 +85,7 @@ GRID_RADIUS = 0.005
 # ── Simulation (reused from atlas/taxonomy) ──────────────────────────────────
 
 def write_brain_standard(weights):
+    """Write a 3-sensor, 2-motor brain.nndf file from a weight dict."""
     path = PROJECT / "brain.nndf"
     with open(path, "w") as f:
         f.write('<neuralNetwork>\n')
@@ -102,6 +103,7 @@ def write_brain_standard(weights):
 
 
 def simulate_dx_only(weights):
+    """Run a headless PyBullet sim and return the robot's x-displacement."""
     write_brain_standard(weights)
     cid = p.connect(p.DIRECT)
     p.setAdditionalSearchPath(pybullet_data.getDataPath())
@@ -144,6 +146,7 @@ def simulate_dx_only(weights):
 # ── Helpers ──────────────────────────────────────────────────────────────────
 
 def perturb_weights(base_weights, direction, radius):
+    """Offset base_weights along a 6D direction vector scaled by radius. Returns new weight dict."""
     w = {}
     for i, wn in enumerate(WEIGHT_NAMES):
         w[wn] = base_weights[wn] + radius * direction[i]
@@ -151,11 +154,13 @@ def perturb_weights(base_weights, direction, radius):
 
 
 def clean_ax(ax):
+    """Remove top and right spines from a matplotlib axis."""
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
 
 
 def save_fig(fig, name):
+    """Save a matplotlib figure to PLOT_DIR and close it."""
     PLOT_DIR.mkdir(parents=True, exist_ok=True)
     path = PLOT_DIR / name
     fig.savefig(path, dpi=100, bbox_inches="tight")
@@ -197,15 +202,19 @@ def compute_chaos_score(dxs):
     dxs_c = dxs - np.mean(dxs)
     var = np.var(dxs_c)
 
+    # Sign-change rate in the first derivative: high = oscillatory/chaotic
     d1 = np.diff(dxs)
     sign_changes = np.sum(np.diff(np.sign(d1)) != 0)
     scr = sign_changes / max(len(d1), 1)
 
+    # Lag-1 autocorrelation: low/negative = uncorrelated = more chaotic
     if var > 1e-12:
         autocorr = np.mean(dxs_c[:-1] * dxs_c[1:]) / var
     else:
         autocorr = 0
 
+    # Spectral ratio: high-frequency power vs low-frequency power
+    # High ratio means energy is spread to small scales (chaotic signature)
     fft = np.fft.rfft(dxs_c)
     power = np.abs(fft) ** 2
     nf = len(power)
@@ -213,6 +222,7 @@ def compute_chaos_score(dxs):
     high = np.sum(power[max(nf // 3, 1):])
     sr = high / max(low, 1e-12)
 
+    # Combine: high sign-change rate * high spectral ratio, penalized by autocorrelation
     return scr * sr / (1 + max(autocorr, 0))
 
 
@@ -277,6 +287,9 @@ def phase1_zoom_cascade(targets):
         base_w = tgt["weights"]
         center_r = tgt["step_location"]
 
+        # Multi-scale probing: sample the same neighborhood at 6 geometrically
+        # decreasing radii. If DX range stays constant across scales, the
+        # landscape is fractal (no smoothness floor); if it shrinks, it's smooth.
         scale_profiles = []
         for scale in ZOOM_SCALES:
             radii = np.linspace(center_r - scale, center_r + scale, N_ZOOM_PTS)
@@ -348,9 +361,13 @@ def phase2_directional_fan(targets):
         base_w = tgt["weights"]
 
         fan_profiles = []
+        # Sweep 8 directions in the plane perpendicular to the gradient.
+        # Tests whether chaos is isotropic or concentrated along specific axes.
         angles = np.linspace(0, np.pi, N_FAN_DIRS, endpoint=False)
 
         for angle in angles:
+            # Linear combination of the two orthonormal basis vectors (e1, e2)
+            # traces out evenly-spaced directions in the perpendicular plane.
             direction = np.cos(angle) * e1 + np.sin(angle) * e2
             dxs = np.empty(N_FAN_PTS)
 
@@ -433,6 +450,8 @@ def phase3_micro_grid(targets):
         e1, _ = perpendicular_basis(grad)
         base_w = tgt["weights"]
 
+        # Build a 2D grid in the plane spanned by (cliff_dir, e1).
+        # rg moves along the gradient/cliff axis, rp moves perpendicular.
         dx_grid = np.empty((GRID_N, GRID_N))
         for i, rg in enumerate(grid_coords):
             for j, rp in enumerate(grid_coords):
@@ -450,7 +469,9 @@ def phase3_micro_grid(targets):
                 print(f"    Target {ti+1}, row {i+1}/{GRID_N}, "
                       f"{elapsed:.1f}s, ~{remaining:.0f}s rem", flush=True)
 
-        # Compute local gradient magnitude (cliffiness)
+        # Compute local gradient magnitude (cliffiness) via finite differences.
+        # Uses forward/backward differences at boundaries, central differences
+        # in the interior. The magnitude |grad DX| reveals cliff edges.
         step = grid_coords[1] - grid_coords[0]
         cliff_grid = np.zeros((GRID_N, GRID_N))
         for i in range(GRID_N):
@@ -510,13 +531,13 @@ def fig01_zoom_cascade(zoom_results, targets):
         for si, sp in enumerate(zr["scale_profiles"]):
             radii = np.array(sp["radii"])
             dxs = np.array(sp["dxs"])
-            # Normalize to [0, 1] for overlay
+            # Normalize DX to [0, 1] and radii to [-1, 1] so all 6 zoom
+            # levels overlay on the same axes for visual self-similarity comparison.
             dmin, dmax = np.min(dxs), np.max(dxs)
             if dmax - dmin > 1e-12:
                 dxs_norm = (dxs - dmin) / (dmax - dmin)
             else:
                 dxs_norm = np.zeros_like(dxs)
-            # Normalize radii to [-1, 1]
             center = zr["center_r"]
             scale = sp["scale"]
             r_norm = (radii - center) / scale
@@ -556,7 +577,8 @@ def fig02_fractal_dimension(zoom_results, targets):
         ax.plot(scales, ranges, "o-", lw=1.5, markersize=5, alpha=0.7,
                 label=f"#{targets[ti]['select_rank']+1}")
 
-        # Fit log-log slope
+        # Fit log-log slope: slope~0 means DX range is scale-invariant (fractal),
+        # slope~1 means DX range shrinks proportionally with scale (smooth/differentiable).
         log_s = np.log10(scales)
         log_r = np.log10(ranges)
         slope, intercept = np.polyfit(log_s, log_r, 1)
@@ -670,7 +692,10 @@ def fig04_isotropy(fan_results, targets):
     ax.legend(fontsize=7, ncol=2)
     clean_ax(ax)
 
-    # Right: isotropy ratio (std/mean of ranges across angles)
+    # Right: isotropy ratio (std/mean of ranges across angles).
+    # Low ratio = chaos is uniform in all perpendicular directions (isotropic).
+    # grad_vs_perp compares gradient-direction roughness to mean perpendicular roughness;
+    # ratio >> 1 means the cliff is concentrated along the gradient axis.
     ax = axes[1]
     isotropy_ratios = []
     grad_vs_perp = []
@@ -862,7 +887,8 @@ def fig06_smoothness_verdict(zoom_results, fan_results, grid_results,
     mean_iso = np.mean(isotropy_ratios)
     mean_gvp = np.mean(grad_vs_perp)
 
-    # Determine verdicts
+    # Smoothness verdict: classify based on fractal slope.
+    # slope < 0.2 = fractal (no smooth floor), 0.2-0.5 = partial, > 0.5 = smooth.
     if mean_slope < 0.2:
         smooth_verdict = "NO smoothness floor detected"
         smooth_detail = (f"Mean slope = {mean_slope:.3f} (near 0)\n"
@@ -879,6 +905,8 @@ def fig06_smoothness_verdict(zoom_results, fan_results, grid_results,
                          f"DX range decays proportionally with scale\n"
                          f"Landscape becomes differentiable")
 
+    # Isotropy verdict: low std/mean ratio + gradient ratio near 1 = isotropic.
+    # Gradient ratio >> 1 means cliff structure is directionally concentrated.
     if mean_iso < 0.4 and abs(mean_gvp - 1) < 0.5:
         iso_verdict = "ISOTROPIC chaos"
         iso_detail = "Comparable variation in all directions\nTrue Type 3: no preferred axis"
@@ -889,7 +917,11 @@ def fig06_smoothness_verdict(zoom_results, fan_results, grid_results,
         iso_verdict = "MIXED isotropy"
         iso_detail = "Some directional preference\nBorderline Type 3/4"
 
-    # Wolfram class
+    # Wolfram class estimation from combined fractal slope and isotropy.
+    # Type 3 = chaotic (scale-invariant, isotropic): no local optimizer works.
+    # Type 3/4 boundary = chaotic but anisotropic: directional search may help.
+    # Type 2->3 transition = some smoothness at fine scales: local gradient
+    # descent becomes viable, suggesting multi-scale optimization strategy.
     if mean_slope < 0.3 and mean_iso < 0.5:
         wolfram = "TYPE 3 (Chaotic)"
         wolfram_detail = ("Scale-invariant + isotropic = pure chaos\n"
@@ -940,6 +972,7 @@ def fig06_smoothness_verdict(zoom_results, fan_results, grid_results,
 # ── Console Output ──────────────────────────────────────────────────────────
 
 def print_analysis(zoom_results, fan_results, grid_results, targets, verdicts):
+    """Print a formatted console summary of all three phases and final verdicts."""
     print(f"\n{'='*80}")
     print("DEEP RESOLUTION — RESULTS")
     print(f"{'='*80}")
@@ -1004,6 +1037,7 @@ def print_analysis(zoom_results, fan_results, grid_results, targets, verdicts):
 # ── Main ─────────────────────────────────────────────────────────────────────
 
 def main():
+    """Run all three deep-probing phases, generate figures, and save results."""
     t_start = time.perf_counter()
     np.random.seed(123)
 
@@ -1025,6 +1059,7 @@ def main():
     print(f"{'='*80}")
     targets = select_targets(tax_data)
 
+    # Budget: Phase1 (10 targets x 6 scales x 20 pts) + Phase2 (10 x (8 dirs + grad) x 9 pts) + Phase3 (5 x 10x10)
     budget = 10 * 6 * N_ZOOM_PTS + 10 * (N_FAN_DIRS + 1) * N_FAN_PTS + 5 * GRID_N * GRID_N
     print(f"\n  Total simulation budget: ~{budget} sims")
 

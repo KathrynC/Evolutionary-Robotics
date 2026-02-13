@@ -43,11 +43,14 @@ def parse_expr(s: str) -> float:
     Accept simple expressions like:
       pi/3, 0.45*pi, 1.2, 2*pi/3
     """
+    # Sandbox eval: __builtins__ is blanked so only "pi" is resolvable,
+    # preventing arbitrary code execution from CLI input.
     allowed = {"pi": math.pi}
     return float(eval(s, {"__builtins__": {}}, allowed))
 
 
 def find_joint(robot_id: int, needle: str):
+    """Return the index of the first joint whose name contains needle, or None."""
     for j in range(p.getNumJoints(robot_id)):
         name = p.getJointInfo(robot_id, j)[1].decode("utf-8", errors="replace")
         if needle in name:
@@ -65,6 +68,10 @@ def run_once(
     freq_front: float,
     phase_front: float,
 ) -> Result:
+    """Run a single headless simulation with the given sine-wave parameters.
+
+    Returns a Result with final XY distance, orientation, and the input params.
+    """
     cid = p.connect(p.DIRECT)
     p.setAdditionalSearchPath(pybullet_data.getDataPath())
     p.setGravity(0, 0, -9.8)
@@ -89,6 +96,8 @@ def run_once(
         back_joint, front_joint = rev[0], rev[1]
 
     # Open-loop motor targets, legal range enforced by caller (amp <= pi/4).
+    # x spans one full period [0, 2*pi); freq multiplies it so higher freq
+    # values produce more oscillation cycles within the same step count.
     x = numpy.linspace(0.0, 2.0 * numpy.pi, steps, endpoint=False)
     target_back = amp_back * numpy.sin(freq_back * x + phase_back)
     target_front = amp_front * numpy.sin(freq_front * x + phase_front)
@@ -109,6 +118,7 @@ def run_once(
     pos, orn = p.getBasePositionAndOrientation(robot_id)
     roll, pitch, _ = p.getEulerFromQuaternion(orn)
 
+    # Euclidean distance from origin in the XY plane (ignoring Z)
     dxy = math.hypot(pos[0], pos[1])
     out = Result(
         dist_xy=dxy,
@@ -128,6 +138,7 @@ def run_once(
 
 
 def main():
+    """Parse CLI args, sweep all freq/phase combos, print top results, optionally write CSV."""
     ap = argparse.ArgumentParser(description="Bulk test legal open-loop gaits (DIRECT mode).")
     ap.add_argument("--steps", type=int, default=1000)
     ap.add_argument("--dt", type=float, default=1.0 / 240.0)
@@ -147,7 +158,9 @@ def main():
     ap.add_argument("--csv", type=str, default="")
     args = ap.parse_args()
 
-    # Legal amplitude clamp
+    # Legal amplitude clamp: pi/4 rad (45 deg) is the hard ceiling.  Beyond
+    # this the robot's links self-collide or leave the joint's physical range,
+    # producing unrealistic motion.  Reject early rather than clamp silently.
     amax = math.pi / 4
     if not (0.0 <= args.amp_back <= amax and 0.0 <= args.amp_front <= amax):
         raise SystemExit("Amplitude must be within [0, pi/4] to stay in the legal zone.")
@@ -187,6 +200,9 @@ def main():
             f"z={r.z:.2f} roll={r.roll:.2f} pitch={r.pitch:.2f}"
         )
 
+    # Write all results (sorted best-first) to CSV for downstream analysis.
+    # Column order is derived from the Result dataclass field annotations so it
+    # stays in sync automatically if new fields are added.
     if args.csv:
         with open(args.csv, "w", newline="") as f:
             w = csv.writer(f)

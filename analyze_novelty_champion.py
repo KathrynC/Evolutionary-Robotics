@@ -73,6 +73,7 @@ GAIT_LABELS = {
 # ── Simulation ───────────────────────────────────────────────────────────────
 
 def write_brain_6syn(weights):
+    """Write a 6-synapse brain.nndf file from a weights dict (3 sensors x 2 motors)."""
     path = PROJECT / "brain.nndf"
     with open(path, "w") as f:
         f.write('<neuralNetwork>\n')
@@ -81,6 +82,7 @@ def write_brain_6syn(weights):
         f.write('    <neuron name = "2" type = "sensor" linkName = "FrontLeg" />\n')
         f.write('    <neuron name = "3" type = "motor"  jointName = "Torso_BackLeg" />\n')
         f.write('    <neuron name = "4" type = "motor"  jointName = "Torso_FrontLeg" />\n')
+        # Full connectivity: each of 3 sensors connects to each of 2 motors
         for s in [0, 1, 2]:
             for m in [3, 4]:
                 w = weights[f"w{s}{m}"]
@@ -102,6 +104,7 @@ def run_with_telemetry(weights):
     robotId = p.loadURDF("body.urdf")
     pyrosim.Prepare_To_Simulate(robotId)
 
+    # -1 is the base link (Torso); iterate all links to apply uniform friction
     mu = float(getattr(c, "ROBOT_FRICTION", 2.0))
     for link in range(-1, p.getNumJoints(robotId)):
         p.changeDynamics(robotId, link, lateralFriction=mu, restitution=0.0)
@@ -136,6 +139,8 @@ def run_with_telemetry(weights):
     j0_idx = joint_indices.get("Torso_BackLeg", 0)
     j1_idx = joint_indices.get("Torso_FrontLeg", 1)
 
+    # Main simulation loop: apply motor commands before stepping physics,
+    # then update the neural network with new sensor readings
     for i in range(n_steps):
         for nName in nn.neurons:
             n_obj = nn.neurons[nName]
@@ -167,6 +172,8 @@ def run_with_telemetry(weights):
         wx[i] = vel_ang[0]; wy[i] = vel_ang[1]; wz[i] = vel_ang[2]
         roll[i] = rpy_vals[0]; pitch[i] = rpy_vals[1]; yaw[i] = rpy_vals[2]
 
+        # Classify ground contacts by link: cp[3] is the link index on bodyA.
+        # -1 = base link (Torso), others matched by their link indices.
         contact_pts = p.getContactPoints(robotId)
         tc = bc = fc = False
         for cp in contact_pts:
@@ -176,6 +183,8 @@ def run_with_telemetry(weights):
             elif li == front_li: fc = True
         ct[i] = tc; cb[i] = bc; cf[i] = fc
 
+        # Joint state tuple: (position, velocity, reactionForces, appliedTorque)
+        # Index [3] is the motor torque actually applied at the joint
         js0 = p.getJointState(robotId, j0_idx)
         js1 = p.getJointState(robotId, j1_idx)
         j0p[i] = js0[0]; j0v[i] = js0[1]; j0t[i] = js0[3]
@@ -198,11 +207,13 @@ def run_with_telemetry(weights):
 # ── Helpers ──────────────────────────────────────────────────────────────────
 
 def clean_ax(ax):
+    """Remove top and right spines from a matplotlib axes for cleaner plots."""
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
 
 
 def save_fig(fig, name):
+    """Save a figure to PLOT_DIR and close it to free memory."""
     PLOT_DIR.mkdir(parents=True, exist_ok=True)
     path = PLOT_DIR / name
     fig.savefig(path, dpi=100, bbox_inches="tight")
@@ -212,6 +223,8 @@ def save_fig(fig, name):
 
 def work_by_joint(data):
     """Return (work_j0, work_j1, power_j0_array, power_j1_array)."""
+    # Instantaneous mechanical power = |torque * angular_velocity| per joint;
+    # total work is the time-integral of power (sum * DT approximation)
     pj0 = np.abs(data["j0_tau"] * data["j0_vel"])
     pj1 = np.abs(data["j1_tau"] * data["j1_vel"])
     return float(np.sum(pj0) * DT), float(np.sum(pj1) * DT), pj0, pj1
@@ -220,6 +233,8 @@ def work_by_joint(data):
 # ── Main ─────────────────────────────────────────────────────────────────────
 
 def main():
+    """Run 3-way gait comparison, print metrics table, and generate all figures."""
+    # Backup brain.nndf since run_with_telemetry overwrites it for each gait
     brain_path = PROJECT / "brain.nndf"
     backup_path = PROJECT / "brain.nndf.backup"
     if brain_path.exists():
@@ -234,6 +249,8 @@ def main():
     t3_data = run_with_telemetry(TRIAL3_WEIGHTS)
     t3_a = compute_all(t3_data, DT)
 
+    # CPG Champion uses a hidden-layer topology, so load from saved telemetry
+    # rather than re-simulating (its brain.nndf format differs from 6-synapse)
     print("Loading CPG Champion telemetry...")
     cpg_data = load_telemetry("43_hidden_cpg_champion")
     cpg_a = compute_all(cpg_data, DT)
@@ -242,6 +259,8 @@ def main():
         shutil.copy2(backup_path, brain_path)
 
     # ── Metrics comparison ───────────────────────────────────────────────────
+    # 3-way comparison: Novelty Champion (nc), CPG Champion (cpg), Trial 3 (t3).
+    # Each row shows the same metric for all three gaits plus the NC/CPG ratio.
     gaits = {
         "nc": (nc_data, nc_a, NOVELTY_CHAMPION_WEIGHTS),
         "cpg": (cpg_data, cpg_a, None),
@@ -319,6 +338,8 @@ def main():
     print(f"\n  {'Metric':<28} {'Nov. Champ':>12} {'CPG Champ':>12} {'Trial 3':>12} {'NC/CPG':>8}")
     print("  " + "-" * 76)
     for label, vnc, vcpg, vt3 in rows:
+        # Ratio shows how the Novelty Champion scales relative to CPG Champion;
+        # guard against division by near-zero CPG values
         ratio = vnc / vcpg if abs(vcpg) > 1e-12 else 0
         print(f"  {label:<28} {vnc:12.4f} {vcpg:12.4f} {vt3:12.4f} {ratio:7.2f}x")
 
@@ -332,6 +353,7 @@ def main():
     print(f"    Sensor 2 (FrontLeg): w23={w['w23']:+.4f}  w24={w['w24']:+.4f}  "
           f"sum={w['w23']+w['w24']:+.4f}  diff={w['w23']-w['w24']:+.4f}")
 
+    # Sum of all sensor-to-motor weights: net excitatory/inhibitory drive per motor
     total_to_m3 = w['w03'] + w['w13'] + w['w23']
     total_to_m4 = w['w04'] + w['w14'] + w['w24']
     print(f"\n    Total drive to BackLeg motor (m3): {total_to_m3:+.4f}")
@@ -427,6 +449,8 @@ def main():
         ct_v = data["contact_torso"].astype(float)
         cb_v = data["contact_back"].astype(float)
         cf_v = data["contact_front"].astype(float)
+        # Stack contact bands vertically (0, 1, 2) with 0.9 height per band;
+        # fill_between shows solid color when contact is True (1.0)
         ax.fill_between(t_plot, 0, ct_v * 0.9, alpha=0.5, color="#999999", label="Torso")
         ax.fill_between(t_plot, 1, 1 + cb_v * 0.9, alpha=0.5, color="#DD8452", label="BackLeg")
         ax.fill_between(t_plot, 2, 2 + cf_v * 0.9, alpha=0.5, color="#8172B2", label="FrontLeg")
@@ -456,6 +480,7 @@ def main():
         ax.legend(fontsize=7); clean_ax(ax)
 
         ax = axes[1][col]
+        # Cumulative work = running integral of |power| over time (Riemann sum)
         cum_j0 = np.cumsum(pj0) * DT
         cum_j1 = np.cumsum(pj1) * DT
         ax.plot(t, cum_j0, color="#DD8452", lw=1.5, label=f"j0 ({wj0:.0f})")
@@ -477,8 +502,9 @@ def main():
             (nc_data, "Novelty Champion", CNC),
             (cpg_data, "CPG Champion", CCPG),
             (t3_data, "Trial 3", CT3)]):
+        # Phase portrait: j0 vs j1 angle. A tight ellipse means strong phase-locking.
         ax.plot(data["j0_pos"], data["j1_pos"], color=color, lw=0.3, alpha=0.5)
-        # Color by time
+        # Color by time: subsample to 500 points for readable scatter overlay
         n = len(data["j0_pos"])
         scatter_idx = np.linspace(0, n - 1, 500, dtype=int)
         sc = ax.scatter(data["j0_pos"][scatter_idx], data["j1_pos"][scatter_idx],
@@ -506,6 +532,7 @@ def main():
         for col, (key, comp_label) in enumerate(components):
             ax = axes[row][col]
             ax.plot(t, data[key], color=color, lw=0.3, alpha=0.7)
+            # RMS quantifies the overall rotational intensity for each axis
             rms = np.sqrt(np.mean(data[key]**2))
             ax.set_title(f"{label} — {comp_label} (RMS={rms:.2f})", fontsize=9)
             if row == 2:
@@ -527,16 +554,18 @@ def main():
             (t3_data, "Trial 3", CT3)]):
         for jkey, jlabel, jcolor in [("j0_pos", "BackLeg", "#DD8452"),
                                       ("j1_pos", "FrontLeg", "#8172B2")]:
+            # Remove DC offset before FFT so the zero-frequency bin doesn't dominate
             sig = data[jkey] - np.mean(data[jkey])
             n = len(sig)
             freqs = np.fft.rfftfreq(n, d=DT)
+            # Normalize to single-sided amplitude spectrum (factor of 2/n)
             spectrum = np.abs(np.fft.rfft(sig)) * (2.0 / n)
             spectrum[0] = 0
             # Show up to 10 Hz
             max_idx = min(len(freqs), int(10 / (freqs[1] - freqs[0])) + 1)
             ax.plot(freqs[:max_idx], spectrum[:max_idx], color=jcolor, lw=1.2, label=jlabel)
 
-            # Mark peak
+            # Mark peak: skip bin 0 (DC) and search within the displayed range
             peak_idx = np.argmax(spectrum[1:max_idx]) + 1
             ax.annotate(f"{freqs[peak_idx]:.2f} Hz",
                         (freqs[peak_idx], spectrum[peak_idx]),

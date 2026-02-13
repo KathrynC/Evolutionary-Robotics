@@ -55,6 +55,7 @@ TRIAL3_WEIGHTS = {
 
 
 def write_brain_6syn(weights):
+    """Write a 6-synapse brain.nndf file (3 sensors -> 2 motors) from a weight dict."""
     path = PROJECT / "brain.nndf"
     with open(path, "w") as f:
         f.write('<neuralNetwork>\n')
@@ -63,6 +64,7 @@ def write_brain_6syn(weights):
         f.write('    <neuron name = "2" type = "sensor" linkName = "FrontLeg" />\n')
         f.write('    <neuron name = "3" type = "motor"  jointName = "Torso_BackLeg" />\n')
         f.write('    <neuron name = "4" type = "motor"  jointName = "Torso_FrontLeg" />\n')
+        # Write all 6 sensor-to-motor synapses (3 sensors x 2 motors)
         for s in [0, 1, 2]:
             for m in [3, 4]:
                 w = weights[f"w{s}{m}"]
@@ -84,6 +86,7 @@ def run_with_telemetry(name, write_brain_fn, out_dir):
     robotId = p.loadURDF("body.urdf")
     pyrosim.Prepare_To_Simulate(robotId)
 
+    # Apply uniform friction to all links (including base link at index -1)
     mu = float(getattr(c, "ROBOT_FRICTION", 2.0))
     for link in range(-1, p.getNumJoints(robotId)):
         p.changeDynamics(robotId, link, lateralFriction=mu, restitution=0.0)
@@ -108,6 +111,7 @@ def run_with_telemetry(name, write_brain_fn, out_dir):
     m3_out = np.empty(n_steps)
     m4_out = np.empty(n_steps)
 
+    # Build lookup dicts mapping link/joint names to PyBullet indices
     link_indices = {}
     joint_indices = {}
     for i_j in range(p.getNumJoints(robotId)):
@@ -154,11 +158,12 @@ def run_with_telemetry(name, write_brain_fn, out_dir):
         wx[i] = vel_ang[0]; wy[i] = vel_ang[1]; wz[i] = vel_ang[2]
         roll[i] = rpy_vals[0]; pitch[i] = rpy_vals[1]; yaw[i] = rpy_vals[2]
 
+        # Classify ground contacts by which link is touching (cp[3] = linkIndexA)
         contact_pts = p.getContactPoints(robotId)
         tc = bc = fc = False
         for cp in contact_pts:
             li = cp[3]
-            if li == -1: tc = True
+            if li == -1: tc = True      # base link (Torso)
             elif li == back_li: bc = True
             elif li == front_li: fc = True
         ct[i] = tc; cb[i] = bc; cf[i] = fc
@@ -184,10 +189,12 @@ def run_with_telemetry(name, write_brain_fn, out_dir):
 
 
 def clean_ax(ax):
+    """Remove top and right spines from an axis for a cleaner look."""
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
 
 def save_fig(fig, name):
+    """Save a matplotlib figure to PLOT_DIR and close it to free memory."""
     PLOT_DIR.mkdir(parents=True, exist_ok=True)
     path = PLOT_DIR / name
     fig.savefig(path, dpi=100, bbox_inches="tight")
@@ -196,6 +203,8 @@ def save_fig(fig, name):
 
 
 def main():
+    """Run Trial 3 vs CPG Champion comparison: simulate, compute analytics, and plot."""
+    # Backup brain.nndf since write_brain_6syn will overwrite it
     brain_path = PROJECT / "brain.nndf"
     backup_path = PROJECT / "brain.nndf.backup"
     if brain_path.exists():
@@ -233,6 +242,7 @@ def main():
     print("TRIAL 3 vs CPG CHAMPION — DETAILED COMPARISON")
     print("=" * 80)
 
+    # Build side-by-side metric table: (label, trial3_value, cpg_value)
     metrics = [
         ("DX (m)", t3a["outcome"]["dx"], cpga["outcome"]["dx"]),
         ("DY (m)", t3a["outcome"]["dy"], cpga["outcome"]["dy"]),
@@ -284,6 +294,7 @@ def main():
           f"sum={TRIAL3_WEIGHTS['w23']+TRIAL3_WEIGHTS['w24']:+.4f}  "
           f"diff={TRIAL3_WEIGHTS['w23']-TRIAL3_WEIGHTS['w24']:+.4f}")
 
+    # Sum of all incoming weights to each motor neuron (net excitatory/inhibitory drive)
     total_to_m3 = TRIAL3_WEIGHTS['w03'] + TRIAL3_WEIGHTS['w13'] + TRIAL3_WEIGHTS['w23']
     total_to_m4 = TRIAL3_WEIGHTS['w04'] + TRIAL3_WEIGHTS['w14'] + TRIAL3_WEIGHTS['w24']
     print(f"\n    Total drive to BackLeg motor (m3): {total_to_m3:+.4f}")
@@ -291,6 +302,7 @@ def main():
     print(f"    Ratio m3/m4: {total_to_m3/total_to_m4:.2f}")
 
     # ── Energy breakdown ─────────────────────────────────────────────────────
+    # Instantaneous power = |torque * angular_velocity|; work = integral of power over time
     t3_power_j0 = np.abs(t3["j0_tau"] * t3["j0_vel"])
     t3_power_j1 = np.abs(t3["j1_tau"] * t3["j1_vel"])
     t3_work_j0 = float(np.sum(t3_power_j0) * DT)
@@ -395,7 +407,8 @@ def main():
         ct_val = data["contact_torso"].astype(float)
         cb_val = data["contact_back"].astype(float)
         cf_val = data["contact_front"].astype(float)
-        # Stacked visualization
+        # Stacked visualization: each link gets its own y-band (0-0.9, 1-1.9, 2-2.9)
+        # so contact events appear as filled bars in separate horizontal lanes
         ax.fill_between(t_plot, 0, ct_val * 0.9, alpha=0.5, color="#999999", label="Torso")
         ax.fill_between(t_plot, 1, 1 + cb_val * 0.9, alpha=0.5, color="#55A868", label="BackLeg")
         ax.fill_between(t_plot, 2, 2 + cf_val * 0.9, alpha=0.5, color="#DD8452", label="FrontLeg")
@@ -466,11 +479,13 @@ def main():
     ax.legend(fontsize=9)
     clean_ax(ax)
 
-    # Instantaneous phase difference
+    # Instantaneous phase difference via Hilbert analytic signal
     for ax, data, label, color in [(axes[1], t3, "Trial 3", C3),
                                      (axes[2], cpg, "CPG Champion", CCPG)]:
+        # Compute analytic signals (complex-valued) from mean-centered joint angles
         a0 = _hilbert_analytic(data["j0_pos"] - np.mean(data["j0_pos"]))
         a1 = _hilbert_analytic(data["j1_pos"] - np.mean(data["j1_pos"]))
+        # Wrap phase difference to [-pi, pi] using complex exponential trick
         dphi = np.angle(np.exp(1j * (np.angle(a1) - np.angle(a0))))
         ax.plot(data["t"], dphi, color=color, lw=0.3, alpha=0.7)
         ax.axhline(np.mean(dphi), color="black", lw=1, ls="--",
@@ -513,11 +528,14 @@ def main():
                                      (axes[1], cpg, "CPG Champion", CCPG)]:
         for jkey, jlabel, jcolor in [("j0_pos", "BackLeg", "#55A868"),
                                        ("j1_pos", "FrontLeg", "#DD8452")]:
+            # Mean-center signal before FFT to remove DC component
             sig = data[jkey] - np.mean(data[jkey])
             n = len(sig)
             freqs = np.fft.rfftfreq(n, d=DT)
+            # Normalize to single-sided amplitude spectrum; zero DC bin explicitly
             spectrum = np.abs(np.fft.rfft(sig)) * (2.0 / n)
             spectrum[0] = 0
+            # Plot only first 100 frequency bins (low-frequency behavior)
             ax.plot(freqs[:100], spectrum[:100], color=jcolor, lw=1.2, label=jlabel)
 
         ax.set_xlabel("Frequency (Hz)")

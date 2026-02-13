@@ -85,6 +85,7 @@ TYPE_COLORS = {
 # ── Simulation (reused from atlas_cliffiness.py) ────────────────────────────
 
 def write_brain_standard(weights):
+    """Write a standard 6-synapse brain.nndf file from a weight dict."""
     path = PROJECT / "brain.nndf"
     with open(path, "w") as f:
         f.write('<neuralNetwork>\n')
@@ -170,11 +171,13 @@ def perturb_weights(base_weights, direction, radius):
 
 
 def clean_ax(ax):
+    """Remove top and right spines from a matplotlib axes."""
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
 
 
 def save_fig(fig, name):
+    """Save a figure to PLOT_DIR and close it."""
     PLOT_DIR.mkdir(parents=True, exist_ok=True)
     path = PLOT_DIR / name
     fig.savefig(path, dpi=100, bbox_inches="tight")
@@ -221,7 +224,8 @@ def compute_cliff_features(radii, dxs, base_dx):
     if dx_range < 1e-12:
         dx_range = 1e-12
 
-    # Asymmetry: range on negative side vs positive side
+    # Asymmetry: ratio of DX variation on negative side vs positive side.
+    # Values far from 1.0 indicate the cliff is one-sided (steeper in one direction).
     neg_mask = radii < -1e-12
     pos_mask = radii > 1e-12
     neg_dxs = dxs[neg_mask] if np.any(neg_mask) else np.array([base_dx])
@@ -242,41 +246,44 @@ def compute_cliff_features(radii, dxs, base_dx):
     else:
         step_location = 0.0
 
-    # Transition width: radius range over which 80% of total DX change occurs
+    # Transition width: radius range covering the middle 80% of total DX change.
+    # Narrow width = sharp cliff (step-like); wide width = gradual slope.
     sorted_dxs = np.sort(dxs)
     dx_min, dx_max = sorted_dxs[0], sorted_dxs[-1]
-    threshold_lo = dx_min + 0.1 * (dx_max - dx_min)
-    threshold_hi = dx_min + 0.9 * (dx_max - dx_min)
+    threshold_lo = dx_min + 0.1 * (dx_max - dx_min)  # 10th percentile of DX range
+    threshold_hi = dx_min + 0.9 * (dx_max - dx_min)  # 90th percentile of DX range
     in_transition = np.where((dxs >= threshold_lo) & (dxs <= threshold_hi))[0]
     if len(in_transition) >= 2:
         # Find the radii span where the transition happens
         transition_radii = radii[in_transition]
         transition_width = float(np.max(transition_radii) - np.min(transition_radii))
     else:
+        # Fewer than 2 points in the band: cliff is extremely sharp or flat
         transition_width = float(np.abs(radii[-1] - radii[0]))
 
-    # Recovery ratio: how much DX recovers from cliff
-    # base = DX at r=0 (or closest), cliff_bottom = min or max DX, far_end = DX at edges
+    # Recovery ratio: measures whether the DX "comes back" on the far side of the cliff.
+    # 0 = one-sided drop with no return (step), 1 = full return to baseline (canyon).
     center_idx = np.argmin(np.abs(radii))
     dx_base = dxs[center_idx]
 
-    # Determine cliff direction: which end has larger deviation from base?
+    # Determine cliff direction: which end deviates more from the center DX?
     dx_first = dxs[0]
     dx_last = dxs[-1]
     dev_first = abs(dx_first - dx_base)
     dev_last = abs(dx_last - dx_base)
 
     if dev_first > dev_last:
-        # Cliff is on negative side
+        # Cliff is on negative side; check how much the positive side recovers
         cliff_extreme = dx_first
         far_end = dx_last
     else:
-        # Cliff is on positive side
+        # Cliff is on positive side; check how much the negative side recovers
         cliff_extreme = dx_last
         far_end = dx_first
 
     cliff_depth = abs(cliff_extreme - dx_base)
     if cliff_depth > 1e-12:
+        # Ratio of far-side deviation to cliff depth: 0 = no recovery, 1 = symmetric
         recovery_ratio = float(abs(far_end - dx_base) / cliff_depth)
     else:
         recovery_ratio = 0.0
@@ -288,14 +295,16 @@ def compute_cliff_features(radii, dxs, base_dx):
     else:
         cliff_polarity = 0.0
 
-    # Roughness: std of second differences
+    # Roughness: std of second differences (discrete curvature).
+    # High roughness = jagged/fractal profile; low roughness = smooth curve.
     if n >= 3:
         second_diffs = np.diff(dxs, n=2)
         roughness = float(np.std(second_diffs))
     else:
         roughness = 0.0
 
-    # Sharpness ratio: max_step / total range
+    # Sharpness ratio: fraction of total DX range captured in a single step.
+    # Close to 1.0 = nearly all change happens at one point (step function).
     sharpness = float(max_step / dx_range) if dx_range > 1e-12 else 0.0
 
     return {
@@ -327,29 +336,31 @@ def classify_cliff(features):
     roughness = features["roughness"]
     dx_range = features["dx_range"]
 
-    # Roughness threshold: scale by range
+    # Normalize roughness by DX range so it's scale-independent
     roughness_norm = roughness / max(dx_range, 1e-6)
 
-    # Check for Fractal first: high roughness with no single dominant step
+    # Fractal: many comparable jumps (high roughness) but no single dominant step.
+    # Detected first because fractal profiles can mimic other types at coarse resolution.
     if roughness_norm > 0.15 and sharpness < 0.5:
         return "Fractal"
 
-    # Slope: gradual change
+    # Slope: no abrupt discontinuity (largest step < 30% of total range)
     if sharpness < 0.3:
         return "Slope"
 
-    # Sharp cliff: sharpness >= 0.3
-    one_sided = asym > 3 or asym < 1 / 3  # asymmetric in either direction
+    # Sharp cliff: sharpness >= 0.3 — classify by symmetry and recovery
+    # One-sided if variation on one side is 3x+ larger than the other
+    one_sided = asym > 3 or asym < 1 / 3
 
     if one_sided:
         if rec < 0.3:
-            return "Step"
+            return "Step"       # Sharp drop, no return
         elif rec < 0.7:
-            return "Precipice"
+            return "Precipice"  # Sharp drop, partial return
         else:
-            return "Canyon"
+            return "Canyon"     # Sharp drop, nearly full return
     else:
-        # Two-sided
+        # Two-sided (roughly symmetric variation on both sides)
         if rec > 0.5:
             return "Canyon"
         elif rec < 0.3:
@@ -375,6 +386,8 @@ def part_a_extended_profiles(sorted_probes, n_top=50, n_points=30):
     for rank, pt in enumerate(sorted_probes[:n_top]):
         grad = np.array(pt["gradient_vector"])
         grad_norm = np.linalg.norm(grad)
+        # Probe along the gradient direction (steepest DX change) discovered by atlas.
+        # Falls back to a random direction if gradient is degenerate (near-zero).
         if grad_norm > 1e-12:
             cliff_dir = grad / grad_norm
         else:
@@ -538,10 +551,13 @@ def part_d_multiscale(sorted_probes, n_top=20, n_probes_per_radius=6):
         base_w = pt["weights"]
         base_dx = pt["base_dx"]
 
+        # Probe at decreasing radii to test if cliffiness persists at finer scales.
+        # If |delta DX| / radius grows as radius shrinks, the landscape is fractal.
         scale_results = {}
         for r_scale in radii_scales:
             delta_dxs = []
             for _ in range(n_probes_per_radius):
+                # Random direction avoids bias toward any single weight axis
                 d = random_direction_6d()
                 pw = perturb_weights(base_w, d, r_scale)
                 dx_probe = simulate_dx_only(pw)
@@ -602,7 +618,9 @@ def extract_all_features(profiles, perp_profiles):
         features["dominant_weight"] = WEIGHT_NAMES[dom_idx]
         features["dominant_weight_idx"] = dom_idx
 
-        # Perpendicular ratio
+        # Perpendicular ratio: DX variation orthogonal to gradient vs along it.
+        # High ratio (>0.5) = ridge (cliff extends in multiple directions);
+        # low ratio = face (cliff is confined to the gradient direction).
         if prof["idx"] in perp_by_idx:
             pp = perp_by_idx[prof["idx"]]
             perp_dxs = np.array(pp["dxs"])
@@ -711,7 +729,7 @@ def fig02_taxonomy_summary(profiles):
         proto = min(tps, key=lambda tp: abs(tp["cliffiness"] - median_cliff))
         radii = np.array(proto["radii"])
         dxs = np.array(proto["dxs"])
-        # Normalize for comparison
+        # Z-score normalize so profiles with different DX scales overlay on the same axes
         dxs_norm = (dxs - np.mean(dxs)) / max(np.std(dxs), 1e-12)
         ax.plot(radii, dxs_norm, "-", color=TYPE_COLORS.get(t, "#333"),
                 lw=2, label=f"{t} (n={type_counts[t]})")
@@ -789,6 +807,8 @@ def fig03_perpendicular(profiles, perp_profiles):
         perp_range = float(np.max(perp_dxs) - np.min(perp_dxs))
         if grad_prof is not None:
             grad_range = float(np.max(grad_dxs) - np.min(grad_dxs))
+            # Ridge: cliff varies substantially in both directions (perp ratio > 0.5).
+            # Face: cliff is a flat wall aligned perpendicular to the gradient.
             ratio = perp_range / max(grad_range, 1e-12)
             structure = "ridge" if ratio > 0.5 else "face"
         else:
@@ -901,7 +921,8 @@ def fig06_multiscale(multiscale, profiles):
     """1x2: multi-scale cliffiness (left); dominant weight by type (right)."""
     fig, axes = plt.subplots(1, 2, figsize=(16, 6))
 
-    # Left: multi-scale cliffiness
+    # Left: multi-scale cliffiness — how sensitivity changes with probe radius.
+    # Each line is one cliff point; log x-axis because radii span an order of magnitude.
     ax = axes[0]
     radii_scales = [0.01, 0.005, 0.001]
     for ms in multiscale:
@@ -1013,13 +1034,16 @@ def print_analysis(profiles, perp_profiles, fine_profiles, multiscale):
         vals = [ms["scales"][str(r)]["max_abs_delta"] for ms in multiscale]
         print(f"    {r:10.4f} {np.mean(vals):12.3f} {np.max(vals):12.3f}")
 
-    # Fractal test: does gradient magnitude (|dDX|/r) increase at smaller scales?
+    # Fractal test: does the scale-normalized gradient (|dDX|/r) grow as r shrinks?
+    # If yes, the landscape has structure at every scale (fractal-like cliffs).
+    # If no, cliffs are smooth at fine scales and gradient saturates.
     print(f"\n    Scale-normalized gradient (|dDX|/r):")
     for r in radii_scales:
         vals = [ms["scales"][str(r)]["max_abs_delta"] / r for ms in multiscale]
         print(f"      r={r:.4f}:  mean grad = {np.mean(vals):.1f}  "
               f"max grad = {np.max(vals):.1f}")
 
+    # Check if mean gradient is monotonically increasing across decreasing radii
     increasing = True
     prev_mean = 0
     for r in radii_scales:
@@ -1081,6 +1105,7 @@ def print_analysis(profiles, perp_profiles, fine_profiles, multiscale):
 # ── Main ─────────────────────────────────────────────────────────────────────
 
 def main():
+    """Run the full cliff taxonomy pipeline: probe, classify, plot, and save."""
     t_start = time.perf_counter()
     np.random.seed(42)
 
@@ -1101,7 +1126,7 @@ def main():
     sorted_probes = sorted(probe_results, key=lambda x: x["cliffiness"],
                            reverse=True)
 
-    # Sim budget
+    # Sim budget: Part A (50*30) + Part B (30*20) + Part C (20*40) + Part D (20*6*3)
     budget = 50 * 30 + 30 * 20 + 20 * 40 + 20 * 6 * 3
     print(f"  Total simulation budget: ~{budget} sims")
 
