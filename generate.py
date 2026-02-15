@@ -139,6 +139,76 @@ def Generate_Brain():
     pyrosim.End()
 
 
+def Generate_Brain_Extended():
+    """Generate a 22-synapse neural controller with touch AND proximity sensors.
+
+    Neurons:
+        - Touch sensor neurons (0-2): Torso, BackLeg, FrontLeg
+        - Motor neurons (3-4): Torso_BackLeg, Torso_FrontLeg
+        - Proximity neurons (5-12): 6 torso faces + 2 leg downward
+
+    Synapses:
+        - 6 touch→motor (unchanged from classic)
+        - 16 proximity→motor (8 proximity sensors × 2 motors)
+        Total: 22 synapses
+    """
+    pyrosim.Start_NeuralNetwork("brain.nndf")
+
+    # Touch sensor neurons (unchanged)
+    sensorNeurons = [0, 1, 2]
+    sensorLinks   = ["Torso", "BackLeg", "FrontLeg"]
+    motorNeurons  = [3, 4]
+    motorJoints   = ["Torso_BackLeg", "Torso_FrontLeg"]
+
+    for name, link in zip(sensorNeurons, sensorLinks):
+        pyrosim.Send_Sensor_Neuron(name=name, linkName=link)
+
+    for name, joint in zip(motorNeurons, motorJoints):
+        pyrosim.Send_Motor_Neuron(name=name, jointName=joint)
+
+    # Proximity neurons
+    proximityNeurons = [
+        (5,  "Torso",    "front"),
+        (6,  "Torso",    "back"),
+        (7,  "Torso",    "left"),
+        (8,  "Torso",    "right"),
+        (9,  "Torso",    "up"),
+        (10, "Torso",    "down"),
+        (11, "BackLeg",  "down"),
+        (12, "FrontLeg", "down"),
+    ]
+
+    for nid, linkName, rayDir in proximityNeurons:
+        pyrosim.Send_Proximity_Neuron(name=nid, linkName=linkName, rayDir=rayDir)
+
+    # Touch→motor synapses (6)
+    for sensorName in sensorNeurons:
+        for motorName in motorNeurons:
+            weight = random.uniform(-1, 1)
+            pyrosim.Send_Synapse(sourceNeuronName=sensorName,
+                                 targetNeuronName=motorName,
+                                 weight=weight)
+
+    # Proximity→motor synapses (16)
+    for nid, _, _ in proximityNeurons:
+        for motorName in motorNeurons:
+            weight = random.uniform(-1, 1)
+            pyrosim.Send_Synapse(sourceNeuronName=nid,
+                                 targetNeuronName=motorName,
+                                 weight=weight)
+
+    pyrosim.End()
+
+
 if __name__ == "__main__":
+    import argparse
+    parser = argparse.ArgumentParser(description="Generate robot body and brain files.")
+    parser.add_argument("--extended", action="store_true",
+                        help="Generate 22-synapse brain with proximity sensors (default: classic 6-synapse)")
+    args = parser.parse_args()
+
     Generate_Body()
-    Generate_Brain()
+    if args.extended:
+        Generate_Brain_Extended()
+    else:
+        Generate_Brain()

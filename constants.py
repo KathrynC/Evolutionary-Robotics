@@ -75,3 +75,28 @@ CAMERA_FOLLOW = True
 CAMERA_DISTANCE = 3.0
 CAMERA_YAW = 60.0
 CAMERA_PITCH = -25.0
+
+# --- Proximity sensor configuration ---
+# Small max range: just enough to smooth the contact discontinuity.
+# The robot's cubes are 1×1×1, so 0.5 gives a smooth ramp over the last
+# half body-width of approach — activates near contact, provides gradient.
+PROXIMITY_MAX_RANGE = 0.5  # meters
+
+# Neuron IDs for the 8 proximity sensors (see plan for full neuron table)
+PROXIMITY_SENSOR_NEURONS = [5, 6, 7, 8, 9, 10, 11, 12]
+
+# Synapse weight names: wpS_M means proximity sensor S → motor M
+PROXIMITY_WEIGHT_NAMES = [f"wp{s}_{m}" for s in [5, 6, 7, 8, 9, 10, 11, 12] for m in [3, 4]]
+
+# Ray configuration: neuron ID → (linkName, local ray direction unit vector)
+# Each ray fires from the face center of the link's cube outward in that direction.
+PROXIMITY_RAY_CONFIG = {
+    5:  ("Torso",    ( 1, 0, 0)),   # front (+x)
+    6:  ("Torso",    (-1, 0, 0)),   # back  (-x)
+    7:  ("Torso",    ( 0, 1, 0)),   # left  (+y)
+    8:  ("Torso",    ( 0,-1, 0)),   # right (-y)
+    9:  ("Torso",    ( 0, 0, 1)),   # up    (+z)
+    10: ("Torso",    ( 0, 0,-1)),   # down  (-z)
+    11: ("BackLeg",  ( 0, 0,-1)),   # down  (-z)
+    12: ("FrontLeg", ( 0, 0,-1)),   # down  (-z)
+}

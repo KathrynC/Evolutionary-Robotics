@@ -93,6 +93,11 @@ MOTOR_NEURONS = [3, 4]
 # This enumerates all sensor→motor connections: w03, w04, w13, w14, w23, w24.
 WEIGHT_NAMES = [f"w{s}{m}" for s in SENSOR_NEURONS for m in MOTOR_NEURONS]
 
+# Extended topology: 8 proximity sensors (neurons 5-12) → 2 motors (3, 4)
+PROXIMITY_SENSOR_NEURONS = [5, 6, 7, 8, 9, 10, 11, 12]
+PROXIMITY_WEIGHT_NAMES = [f"wp{s}_{m}" for s in PROXIMITY_SENSOR_NEURONS for m in MOTOR_NEURONS]
+EXTENDED_WEIGHT_NAMES = WEIGHT_NAMES + PROXIMITY_WEIGHT_NAMES
+
 # Local LLM configuration. qwen3-coder:30b was chosen as the largest and most
 # capable model available on the local Ollama instance. The 30B parameter count
 # provides enough capacity to encode meaningful structural representations of
@@ -263,6 +268,56 @@ def write_brain(weights):
         f.write('</neuralNetwork>\n')
 
 
+def write_brain_extended(weights):
+    """Write a brain.nndf file with the 22-synapse extended topology (touch + proximity).
+
+    Neurons: 3 touch sensors (0-2), 2 motors (3-4), 8 proximity sensors (5-12).
+    Synapses: 6 touch→motor + 16 proximity→motor = 22 total.
+
+    Args:
+        weights: Dict containing both touch weights (w03, ...) and proximity
+                 weights (wp5_3, wp5_4, ..., wp12_3, wp12_4).
+    """
+    # Proximity neuron definitions: (id, linkName, rayDir)
+    proximity_neurons = [
+        (5,  "Torso",    "front"),
+        (6,  "Torso",    "back"),
+        (7,  "Torso",    "left"),
+        (8,  "Torso",    "right"),
+        (9,  "Torso",    "up"),
+        (10, "Torso",    "down"),
+        (11, "BackLeg",  "down"),
+        (12, "FrontLeg", "down"),
+    ]
+
+    path = PROJECT / "brain.nndf"
+    with open(path, "w") as f:
+        f.write('<neuralNetwork>\n')
+        # Touch sensor neurons
+        f.write('    <neuron name = "0" type = "sensor" linkName = "Torso" />\n')
+        f.write('    <neuron name = "1" type = "sensor" linkName = "BackLeg" />\n')
+        f.write('    <neuron name = "2" type = "sensor" linkName = "FrontLeg" />\n')
+        # Motor neurons
+        f.write('    <neuron name = "3" type = "motor"  jointName = "Torso_BackLeg" />\n')
+        f.write('    <neuron name = "4" type = "motor"  jointName = "Torso_FrontLeg" />\n')
+        # Proximity neurons
+        for nid, linkName, rayDir in proximity_neurons:
+            f.write(f'    <neuron name = "{nid}" type = "proximity" linkName = "{linkName}" rayDir = "{rayDir}" />\n')
+        # Touch→motor synapses (6)
+        for s in SENSOR_NEURONS:
+            for m in MOTOR_NEURONS:
+                w = weights[f"w{s}{m}"]
+                f.write(f'    <synapse sourceNeuronName = "{s}" '
+                        f'targetNeuronName = "{m}" weight = "{w}" />\n')
+        # Proximity→motor synapses (16)
+        for nid, _, _ in proximity_neurons:
+            for m in MOTOR_NEURONS:
+                w = weights[f"wp{nid}_{m}"]
+                f.write(f'    <synapse sourceNeuronName = "{nid}" '
+                        f'targetNeuronName = "{m}" weight = "{w}" />\n')
+        f.write('</neuralNetwork>\n')
+
+
 def run_trial_inmemory(weights):
     """Run a complete headless PyBullet simulation and return Beer-framework analytics.
 
@@ -293,7 +348,12 @@ def run_trial_inmemory(weights):
           coordination:  FFT dominant freq/amp, phase_lock_score
           rotation_axis: axis dominance, switching rate, periodicity
     """
-    write_brain(weights)
+    # Auto-detect: if any proximity weights are present, use extended brain
+    has_proximity = any(k.startswith("wp") for k in weights)
+    if has_proximity:
+        write_brain_extended(weights)
+    else:
+        write_brain(weights)
 
     cid = p.connect(p.DIRECT)
     p.setAdditionalSearchPath(pybullet_data.getDataPath())
