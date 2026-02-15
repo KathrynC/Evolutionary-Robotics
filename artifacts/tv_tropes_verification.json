@@ -1,0 +1,2031 @@
+{
+  "date": "2026-02-15 08:46:19",
+  "verify_model": "llama3.1:latest",
+  "curation_model": "qwen3-coder:30b",
+  "n_verified": 185,
+  "n_issues": 71,
+  "issues": [
+    {
+      "name": "UnflinchingWalk",
+      "flags": [
+        "NOT A REAL TROPE",
+        "correct name: TheUnflinchingWalk"
+      ],
+      "notes": "TV Tropes page does not exist, but the correct name is The Unflinching Walk"
+    },
+    {
+      "name": "LeParkour",
+      "flags": [
+        "NOT A REAL TROPE",
+        "correct name: Parkour"
+      ],
+      "notes": "TV Tropes page does not exist, but the correct name is Parkour"
+    },
+    {
+      "name": "RoofHopping",
+      "flags": [
+        "NOT A REAL TROPE",
+        "correct name: RooftopHopping"
+      ],
+      "notes": "TV Tropes page does not exist, but the correct name is Rooftop Hopping"
+    },
+    {
+      "name": "PowerWalk",
+      "flags": [
+        "NOT A REAL TROPE",
+        "correct name: ThePowerWalk"
+      ],
+      "notes": "TV Tropes page does not exist, but the correct name is The Power Walk"
+    },
+    {
+      "name": "TheSeductionWalk",
+      "flags": [
+        "NOT A REAL TROPE",
+        "correct name: TheSeductiveWalk"
+      ],
+      "notes": "TV Tropes page does not exist, but the correct name is The Seductive Walk"
+    },
+    {
+      "name": "TheFalling",
+      "flags": [
+        "NOT A REAL TROPE",
+        "correct name: DeathByFalling"
+      ],
+      "notes": "TV Tropes page does not exist, but the correct name is Death by Falling"
+    },
+    {
+      "name": "TheDramaticRun",
+      "flags": [
+        "NOT A REAL TROPE",
+        "correct name: TheHeroicDash"
+      ],
+      "notes": "TV Tropes page does not exist, but the correct name is The Heroic Dash"
+    },
+    {
+      "name": "ThePanicRun",
+      "flags": [
+        "NOT A REAL TROPE",
+        "correct name: FranticRun"
+      ],
+      "notes": "TV Tropes page does not exist, but the correct name is Frantic Run"
+    },
+    {
+      "name": "TheJump",
+      "flags": [
+        "NOT A REAL TROPE",
+        "correct name: Jumping the Shark"
+      ],
+      "notes": "This trope is unrelated to the actual action of jumping."
+    },
+    {
+      "name": "TheSprint",
+      "flags": [
+        "NOT A REAL TROPE",
+        "correct name: Running Wild"
+      ],
+      "notes": "This trope is unrelated to the actual action of sprinting."
+    },
+    {
+      "name": "TheDance",
+      "flags": [
+        "NOT A REAL TROPE",
+        "correct name: Dance Battle"
+      ],
+      "notes": "This trope is unrelated to the actual action of dancing."
+    },
+    {
+      "name": "TheWaltz",
+      "flags": [
+        "NOT A REAL TROPE",
+        "correct name: Waltz of Terror"
+      ],
+      "notes": "This trope is unrelated to the actual action of waltzing."
+    },
+    {
+      "name": "TheFight",
+      "flags": [
+        "NOT A REAL TROPE",
+        "correct name: Fighting for Keeps"
+      ],
+      "notes": "This trope is unrelated to the actual action of fighting."
+    },
+    {
+      "name": "TheStagger",
+      "flags": [
+        "NOT A REAL TROPE",
+        "correct name: Staggering Death"
+      ],
+      "notes": "This trope is unrelated to the actual action of staggering."
+    },
+    {
+      "name": "TheDanceOfDeath",
+      "flags": [
+        "NOT A REAL TROPE",
+        "correct name: Dance of Death"
+      ],
+      "notes": "This trope is a real page, but the name is slightly different."
+    },
+    {
+      "name": "TheProwl",
+      "flags": [
+        "NOT A REAL TROPE",
+        "correct name: Stalking"
+      ],
+      "notes": "This trope is unrelated to the actual action of prowling."
+    },
+    {
+      "name": "TheHero",
+      "flags": [
+        "NOT A REAL TROPE",
+        "correct name: Hero"
+      ],
+      "notes": "This trope is a real page, but the name is not in CamelCase."
+    },
+    {
+      "name": "TheDragon",
+      "flags": [
+        "NOT A REAL TROPE",
+        "correct name: Big Bad"
+      ],
+      "notes": "This trope is unrelated to the actual creature or villain."
+    },
+    {
+      "name": "TheVillain",
+      "flags": [
+        "NOT A REAL TROPE",
+        "correct name: Big Bad"
+      ],
+      "notes": "TV Tropes has a more specific page for the main antagonist"
+    },
+    {
+      "name": "TheProtagonist",
+      "flags": [
+        "NOT A REAL TROPE",
+        "correct name: Hero"
+      ],
+      "notes": "TV Tropes has a more general page for the main character"
+    },
+    {
+      "name": "TheTrickster",
+      "flags": [
+        "NOT A REAL TROPE",
+        "correct name: The Trickster (Character Tropes)"
+      ],
+      "notes": "This name is close, but the correct page title includes parentheses"
+    },
+    {
+      "name": "TheWarrior",
+      "flags": [
+        "NOT A REAL TROPE",
+        "correct name: The Warrior (Character Tropes)"
+      ],
+      "notes": "This name is close, but the correct page title includes parentheses"
+    },
+    {
+      "name": "TheOutlaw",
+      "flags": [
+        "NOT A REAL TROPE",
+        "correct name: Anti-Hero"
+      ],
+      "notes": "This name is not a direct match, but the correct page title is related"
+    },
+    {
+      "name": "TheRebel",
+      "flags": [
+        "NOT A REAL TROPE",
+        "correct name: Anti-Hero"
+      ],
+      "notes": "This name is not a direct match, but the correct page title is related"
+    },
+    {
+      "name": "RedemptionEqualsDeath",
+      "flags": [
+        "NOT A REAL TROPE",
+        "correct name: Redemption Arc"
+      ],
+      "notes": "This name is close, but the correct page title is more general"
+    },
+    {
+      "name": "HappyEnding",
+      "flags": [
+        "NOT A REAL TROPE",
+        "correct name: HappilyEverAfter"
+      ],
+      "notes": "Not a direct match, but related"
+    },
+    {
+      "name": "DeadManWalking",
+      "flags": [
+        "NOT A REAL TROPE",
+        "correct name: WalkingTheLastMile"
+      ],
+      "notes": ""
+    },
+    {
+      "name": "DeathIsDramatic",
+      "flags": [
+        "NOT A REAL TROPE",
+        "correct name: OverlyLongNameForATrope"
+      ],
+      "notes": ""
+    },
+    {
+      "name": "MartyrDeath",
+      "flags": [
+        "NOT A REAL TROPE",
+        "correct name: MartyrdomTropes"
+      ],
+      "notes": ""
+    },
+    {
+      "name": "UnfortunateTrombone",
+      "flags": [
+        "laconic inaccurate"
+      ],
+      "notes": "The trope is actually about a trombone solo, not just any musical cue"
+    },
+    {
+      "name": "TheReveal",
+      "flags": [
+        "NOT A REAL TROPE",
+        "correct name: PlotTwist"
+      ],
+      "notes": ""
+    },
+    {
+      "name": "TheEnd",
+      "flags": [
+        "NOT A REAL TROPE",
+        "correct name: Happy Ending"
+      ],
+      "notes": "TV Tropes has a page for 'Happy Ending', which is more specific"
+    },
+    {
+      "name": "PlotTwist",
+      "flags": [
+        "NOT A REAL TROPE",
+        "correct name: Unreliable Narrator"
+      ],
+      "notes": "TV Tropes has a page for 'Unreliable Narrator', which is more specific"
+    },
+    {
+      "name": "TheStinger",
+      "flags": [
+        "NOT A REAL TROPE",
+        "correct name: Stinger"
+      ],
+      "notes": "The page name is incorrect, but the concept exists"
+    },
+    {
+      "name": "TheBigReveal",
+      "flags": [
+        "NOT A REAL TROPE",
+        "correct name: Big Reveal"
+      ],
+      "notes": "Typically written in lowercase"
+    },
+    {
+      "name": "TheUnreveal",
+      "flags": [
+        "laconic inaccurate"
+      ],
+      "notes": "Laconic description is incorrect; it's about a plot element being deliberately hidden"
+    },
+    {
+      "name": "TheClimax",
+      "flags": [
+        "laconic inaccurate"
+      ],
+      "notes": "Laconic description is too vague; it's about the most intense or exciting moment in a story"
+    },
+    {
+      "name": "TheSetup",
+      "flags": [
+        "laconic inaccurate"
+      ],
+      "notes": "Laconic description is too vague; it's about the initial events that establish a story's conflict or situation"
+    },
+    {
+      "name": "TheResolution",
+      "flags": [
+        "laconic inaccurate"
+      ],
+      "notes": "Laconic description is too vague; it's about the conclusion of a story's conflict or problem"
+    },
+    {
+      "name": "TheRedemption",
+      "flags": [
+        "laconic inaccurate"
+      ],
+      "notes": "Laconic description is too vague; it's about a character's journey from wrongdoing to forgiveness or atonement"
+    },
+    {
+      "name": "TheSacrifice",
+      "flags": [
+        "laconic inaccurate"
+      ],
+      "notes": "Laconic description is too vague; it's about a character giving up something valuable for the benefit of others"
+    },
+    {
+      "name": "TheBetrayal",
+      "flags": [
+        "laconic inaccurate"
+      ],
+      "notes": "Laconic description is too vague; it's about a character's actions that go against the expectations of others"
+    },
+    {
+      "name": "TheResurrection",
+      "flags": [
+        "laconic inaccurate"
+      ],
+      "notes": "Laconic description is too vague; it's about a character's return from death or apparent defeat"
+    },
+    {
+      "name": "CerebusSyndrome",
+      "flags": [
+        "NOT A REAL TROPE",
+        "correct name: Cerebus Syndrome"
+      ],
+      "notes": "Typically written in lowercase"
+    },
+    {
+      "name": "BreatherEpisode",
+      "flags": [
+        "laconic inaccurate"
+      ],
+      "notes": "Laconic description is too vague; it's about an episode that provides relief from intense action or drama"
+    },
+    {
+      "name": "RuleOfFunny",
+      "flags": [
+        "NOT A REAL TROPE",
+        "correct name: RuleOfCool"
+      ],
+      "notes": "This is a common mistake, but the actual trope is RuleOfCool"
+    },
+    {
+      "name": "HeartwarmingMoments",
+      "flags": [
+        "NOT A REAL TROPE",
+        "correct name: Heartwarming Moment"
+      ],
+      "notes": "The actual page name is singular"
+    },
+    {
+      "name": "TheBigGuy",
+      "flags": [
+        "NOT A REAL TROPE",
+        "correct name: Big Guy"
+      ],
+      "notes": "The actual page name is singular"
+    },
+    {
+      "name": "TheAntagonist",
+      "flags": [
+        "NOT A REAL TROPE",
+        "correct name: Big Bad"
+      ],
+      "notes": "This is a common mistake, but the actual trope is Big Bad"
+    },
+    {
+      "name": "DavidVsGoliath",
+      "flags": [
+        "NOT A REAL TROPE",
+        "correct name: David Versus Goliath"
+      ],
+      "notes": "The correct name has a space between 'Versus' and 'Goliath'"
+    },
+    {
+      "name": "LetsFightLikeGentlemen",
+      "flags": [
+        "NOT A REAL TROPE",
+        "correct name: Let's Fight Like Gentlemen"
+      ],
+      "notes": "The correct name has an apostrophe in 'Let's'"
+    },
+    {
+      "name": "UnstoppableRage",
+      "flags": [
+        "NOT A REAL TROPE",
+        "correct name: Unstoppable Rage"
+      ],
+      "notes": "The correct name has no space between 'Rage'"
+    },
+    {
+      "name": "TheTyrant",
+      "flags": [
+        "NOT A REAL TROPE",
+        "correct name: The Tyrant"
+      ],
+      "notes": "The correct name has a space between 'The' and 'Tyrant'"
+    },
+    {
+      "name": "TheChampion",
+      "flags": [
+        "NOT A REAL TROPE",
+        "correct name: The Champion"
+      ],
+      "notes": "The correct name has a space between 'The' and 'Champion'"
+    },
+    {
+      "name": "TheFoe",
+      "flags": [
+        "NOT A REAL TROPE",
+        "correct name: BigBad"
+      ],
+      "notes": "TV Tropes page for 'The Foe' does not exist, but Big Bad is a related trope"
+    },
+    {
+      "name": "TheOpponent",
+      "flags": [
+        "NOT A REAL TROPE",
+        "correct name: BigBad"
+      ],
+      "notes": "TV Tropes page for 'The Opponent' does not exist, but Big Bad is a related trope"
+    },
+    {
+      "name": "IncrediblyLamePun",
+      "flags": [
+        "NOT A REAL TROPE",
+        "correct name: GroanInducingPun"
+      ],
+      "notes": "TV Tropes page for 'Incredibly Lame Pun' does not exist, but Groan Inducing Pun is a related trope"
+    },
+    {
+      "name": "MediumAwareness",
+      "flags": [
+        "NOT A REAL TROPE",
+        "correct name: BreakingTheFourthWall"
+      ],
+      "notes": "This is a subset of BreakingTheFourthWall"
+    },
+    {
+      "name": "ThisIsReality",
+      "flags": [
+        "NOT A REAL TROPE",
+        "correct name: UnreliableNarrator"
+      ],
+      "notes": "Not a direct match, but related"
+    },
+    {
+      "name": "TropesAreTools",
+      "flags": [
+        "NOT A REAL TROPE",
+        "correct name: AuthorTrick"
+      ],
+      "notes": "Not a direct match, but related"
+    },
+    {
+      "name": "Reconstruction",
+      "flags": [
+        "NOT A REAL TROPE",
+        "correct name: Deconstruction"
+      ],
+      "notes": "Inverse of Deconstruction"
+    },
+    {
+      "name": "DeadHorseTrope",
+      "flags": [
+        "NOT A REAL TROPE",
+        "correct name: OverusedTropes"
+      ],
+      "notes": "Not a direct match, but related"
+    },
+    {
+      "name": "NarrativeVoice",
+      "flags": [
+        "NOT A REAL TROPE",
+        "correct name: UnreliableNarrator"
+      ],
+      "notes": ""
+    },
+    {
+      "name": "NarrativeDissonance",
+      "flags": [
+        "NOT A REAL TROPE",
+        "correct name: GenreBargainingChip"
+      ],
+      "notes": ""
+    },
+    {
+      "name": "PowerUp",
+      "flags": [
+        "laconic inaccurate"
+      ],
+      "notes": ""
+    },
+    {
+      "name": "DrunkWithPower",
+      "flags": [
+        "NOT A REAL TROPE",
+        "correct name: CorruptingInfluence"
+      ],
+      "notes": ""
+    },
+    {
+      "name": "BroughtDownToNormal",
+      "flags": [
+        "laconic inaccurate"
+      ],
+      "notes": ""
+    },
+    {
+      "name": "Shapeshifting",
+      "flags": [
+        "NOT A REAL TROPE",
+        "correct name: ShapeShifter"
+      ],
+      "notes": ""
+    },
+    {
+      "name": "EvolutionPowerUp",
+      "flags": [
+        "laconic inaccurate"
+      ],
+      "notes": ""
+    },
+    {
+      "name": "DeadlyUpgrade",
+      "flags": [
+        "NOT A REAL TROPE",
+        "correct name: UpgradedToUltimate"
+      ],
+      "notes": ""
+    },
+    {
+      "name": "MysticalPower",
+      "flags": [
+        "NOT A REAL TROPE",
+        "correct name: MagicalPower"
+      ],
+      "notes": "TV Tropes has a page for Magical Power, but not Mystical Power"
+    }
+  ],
+  "verifications": [
+    {
+      "name": "TheSlowWalk",
+      "is_real_trope": true,
+      "laconic_accurate": null,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "UnflinchingWalk",
+      "is_real_trope": false,
+      "laconic_accurate": null,
+      "correct_name": "TheUnflinchingWalk",
+      "confidence": "low",
+      "notes": "TV Tropes page does not exist, but the correct name is The Unflinching Walk"
+    },
+    {
+      "name": "LeParkour",
+      "is_real_trope": false,
+      "laconic_accurate": null,
+      "correct_name": "Parkour",
+      "confidence": "low",
+      "notes": "TV Tropes page does not exist, but the correct name is Parkour"
+    },
+    {
+      "name": "DeathByFalling",
+      "is_real_trope": true,
+      "laconic_accurate": null,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "TakingTheBullet",
+      "is_real_trope": true,
+      "laconic_accurate": null,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "WalkAndTalk",
+      "is_real_trope": true,
+      "laconic_accurate": null,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "DramaticChaseOpening",
+      "is_real_trope": true,
+      "laconic_accurate": null,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "RoofHopping",
+      "is_real_trope": false,
+      "laconic_accurate": null,
+      "correct_name": "RooftopHopping",
+      "confidence": "low",
+      "notes": "TV Tropes page does not exist, but the correct name is Rooftop Hopping"
+    },
+    {
+      "name": "Stumbling",
+      "is_real_trope": true,
+      "laconic_accurate": null,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "PowerWalk",
+      "is_real_trope": false,
+      "laconic_accurate": null,
+      "correct_name": "ThePowerWalk",
+      "confidence": "low",
+      "notes": "TV Tropes page does not exist, but the correct name is The Power Walk"
+    },
+    {
+      "name": "TheSeductionWalk",
+      "is_real_trope": false,
+      "laconic_accurate": null,
+      "correct_name": "TheSeductiveWalk",
+      "confidence": "low",
+      "notes": "TV Tropes page does not exist, but the correct name is The Seductive Walk"
+    },
+    {
+      "name": "TheFalling",
+      "is_real_trope": false,
+      "laconic_accurate": null,
+      "correct_name": "DeathByFalling",
+      "confidence": "low",
+      "notes": "TV Tropes page does not exist, but the correct name is Death by Falling"
+    },
+    {
+      "name": "TheDramaticRun",
+      "is_real_trope": false,
+      "laconic_accurate": null,
+      "correct_name": "TheHeroicDash",
+      "confidence": "low",
+      "notes": "TV Tropes page does not exist, but the correct name is The Heroic Dash"
+    },
+    {
+      "name": "TheHeroicLeap",
+      "is_real_trope": true,
+      "laconic_accurate": null,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "ThePanicRun",
+      "is_real_trope": false,
+      "laconic_accurate": null,
+      "correct_name": "FranticRun",
+      "confidence": "low",
+      "notes": "TV Tropes page does not exist, but the correct name is Frantic Run"
+    },
+    {
+      "name": "TheClimbing",
+      "is_real_trope": true,
+      "laconic_accurate": null,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "TheJump",
+      "is_real_trope": false,
+      "laconic_accurate": null,
+      "correct_name": "Jumping the Shark",
+      "confidence": "low",
+      "notes": "This trope is unrelated to the actual action of jumping."
+    },
+    {
+      "name": "TheSprint",
+      "is_real_trope": false,
+      "laconic_accurate": null,
+      "correct_name": "Running Wild",
+      "confidence": "low",
+      "notes": "This trope is unrelated to the actual action of sprinting."
+    },
+    {
+      "name": "TheDance",
+      "is_real_trope": false,
+      "laconic_accurate": null,
+      "correct_name": "Dance Battle",
+      "confidence": "low",
+      "notes": "This trope is unrelated to the actual action of dancing."
+    },
+    {
+      "name": "TheWaltz",
+      "is_real_trope": false,
+      "laconic_accurate": null,
+      "correct_name": "Waltz of Terror",
+      "confidence": "low",
+      "notes": "This trope is unrelated to the actual action of waltzing."
+    },
+    {
+      "name": "TheFight",
+      "is_real_trope": false,
+      "laconic_accurate": null,
+      "correct_name": "Fighting for Keeps",
+      "confidence": "low",
+      "notes": "This trope is unrelated to the actual action of fighting."
+    },
+    {
+      "name": "TheStagger",
+      "is_real_trope": false,
+      "laconic_accurate": null,
+      "correct_name": "Staggering Death",
+      "confidence": "low",
+      "notes": "This trope is unrelated to the actual action of staggering."
+    },
+    {
+      "name": "TheDanceOfDeath",
+      "is_real_trope": false,
+      "laconic_accurate": null,
+      "correct_name": "Dance of Death",
+      "confidence": "low",
+      "notes": "This trope is a real page, but the name is slightly different."
+    },
+    {
+      "name": "TheProwl",
+      "is_real_trope": false,
+      "laconic_accurate": null,
+      "correct_name": "Stalking",
+      "confidence": "low",
+      "notes": "This trope is unrelated to the actual action of prowling."
+    },
+    {
+      "name": "TheLeapOfFaith",
+      "is_real_trope": true,
+      "laconic_accurate": null,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "TheHero",
+      "is_real_trope": false,
+      "laconic_accurate": null,
+      "correct_name": "Hero",
+      "confidence": "low",
+      "notes": "This trope is a real page, but the name is not in CamelCase."
+    },
+    {
+      "name": "TheMentor",
+      "is_real_trope": true,
+      "laconic_accurate": null,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "TheDragon",
+      "is_real_trope": false,
+      "laconic_accurate": null,
+      "correct_name": "Big Bad",
+      "confidence": "low",
+      "notes": "This trope is unrelated to the actual creature or villain."
+    },
+    {
+      "name": "BigBad",
+      "is_real_trope": true,
+      "laconic_accurate": null,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "DamselInDistress",
+      "is_real_trope": true,
+      "laconic_accurate": null,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "ByronicHero",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "ActionGirl",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "GentleGiant",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "DarkLord",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "PluckyComicRelief",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "TheStoic",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "Berserker",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "TheLancer",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "FemmeFatale",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "MadScientist",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "AntiHero",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "LovableRogue",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "WiseOldMentor",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "TheVillain",
+      "is_real_trope": false,
+      "laconic_accurate": null,
+      "correct_name": "Big Bad",
+      "confidence": "low",
+      "notes": "TV Tropes has a more specific page for the main antagonist"
+    },
+    {
+      "name": "TheProtagonist",
+      "is_real_trope": false,
+      "laconic_accurate": null,
+      "correct_name": "Hero",
+      "confidence": "low",
+      "notes": "TV Tropes has a more general page for the main character"
+    },
+    {
+      "name": "TheSidekick",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "TheTrickster",
+      "is_real_trope": false,
+      "laconic_accurate": null,
+      "correct_name": "The Trickster (Character Tropes)",
+      "confidence": "medium",
+      "notes": "This name is close, but the correct page title includes parentheses"
+    },
+    {
+      "name": "TheSage",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "TheWarrior",
+      "is_real_trope": false,
+      "laconic_accurate": null,
+      "correct_name": "The Warrior (Character Tropes)",
+      "confidence": "medium",
+      "notes": "This name is close, but the correct page title includes parentheses"
+    },
+    {
+      "name": "TheSpy",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "TheOutlaw",
+      "is_real_trope": false,
+      "laconic_accurate": null,
+      "correct_name": "Anti-Hero",
+      "confidence": "low",
+      "notes": "This name is not a direct match, but the correct page title is related"
+    },
+    {
+      "name": "TheInnocent",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "TheRebel",
+      "is_real_trope": false,
+      "laconic_accurate": null,
+      "correct_name": "Anti-Hero",
+      "confidence": "low",
+      "notes": "This name is not a direct match, but the correct page title is related"
+    },
+    {
+      "name": "TheScapegoat",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "TheChosenOne",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "HeroicSacrifice",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "AnyoneCanDie",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "KillTheCutie",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "RedemptionEqualsDeath",
+      "is_real_trope": false,
+      "laconic_accurate": null,
+      "correct_name": "Redemption Arc",
+      "confidence": "medium",
+      "notes": "This name is close, but the correct page title is more general"
+    },
+    {
+      "name": "KilledOffForReal",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "DisneyDeath",
+      "is_real_trope": true,
+      "laconic_accurate": null,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "HappyEnding",
+      "is_real_trope": false,
+      "laconic_accurate": null,
+      "correct_name": "HappilyEverAfter",
+      "confidence": "low",
+      "notes": "Not a direct match, but related"
+    },
+    {
+      "name": "DownerEnding",
+      "is_real_trope": true,
+      "laconic_accurate": null,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "BittersweetEnding",
+      "is_real_trope": true,
+      "laconic_accurate": null,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "DeadManWalking",
+      "is_real_trope": false,
+      "laconic_accurate": null,
+      "correct_name": "WalkingTheLastMile",
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "name": "TheDogDies",
+      "is_real_trope": true,
+      "laconic_accurate": null,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "SuddenSequelDeath",
+      "is_real_trope": true,
+      "laconic_accurate": null,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "DeathIsDramatic",
+      "is_real_trope": false,
+      "laconic_accurate": null,
+      "correct_name": "OverlyLongNameForATrope",
+      "confidence": "low",
+      "notes": ""
+    },
+    {
+      "name": "FinalBossDeath",
+      "is_real_trope": true,
+      "laconic_accurate": null,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "SacrificialLamb",
+      "is_real_trope": true,
+      "laconic_accurate": null,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "MartyrDeath",
+      "is_real_trope": false,
+      "laconic_accurate": null,
+      "correct_name": "MartyrdomTropes",
+      "confidence": "medium",
+      "notes": ""
+    },
+    {
+      "name": "UnfortunateTrombone",
+      "is_real_trope": true,
+      "laconic_accurate": false,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": "The trope is actually about a trombone solo, not just any musical cue"
+    },
+    {
+      "name": "DeathByTVTropes",
+      "is_real_trope": true,
+      "laconic_accurate": null,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "TheReveal",
+      "is_real_trope": false,
+      "laconic_accurate": null,
+      "correct_name": "PlotTwist",
+      "confidence": "low",
+      "notes": ""
+    },
+    {
+      "name": "DeathOfAHero",
+      "is_real_trope": true,
+      "laconic_accurate": null,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "SoulmatesDieTogether",
+      "is_real_trope": true,
+      "laconic_accurate": null,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "DeathOfTheHero",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "TheEnd",
+      "is_real_trope": false,
+      "laconic_accurate": null,
+      "correct_name": "Happy Ending",
+      "confidence": "low",
+      "notes": "TV Tropes has a page for 'Happy Ending', which is more specific"
+    },
+    {
+      "name": "FinalGoodbye",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "ChekhovsGun",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "DeusExMachina",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "RedHerring",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "PlotTwist",
+      "is_real_trope": false,
+      "laconic_accurate": null,
+      "correct_name": "Unreliable Narrator",
+      "confidence": "low",
+      "notes": "TV Tropes has a page for 'Unreliable Narrator', which is more specific"
+    },
+    {
+      "name": "MacGuffin",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "Cliffhanger",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "DarkestHour",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "Foreshadowing",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "Flashback",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "Montage",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "InMediasRes",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "BottleEpisode",
+      "is_real_trope": true,
+      "laconic_accurate": null,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "TheStinger",
+      "is_real_trope": false,
+      "laconic_accurate": null,
+      "correct_name": "Stinger",
+      "confidence": "low",
+      "notes": "The page name is incorrect, but the concept exists"
+    },
+    {
+      "name": "WhamEpisode",
+      "is_real_trope": true,
+      "laconic_accurate": null,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "TheBigReveal",
+      "is_real_trope": false,
+      "laconic_accurate": null,
+      "correct_name": "Big Reveal",
+      "confidence": "medium",
+      "notes": "Typically written in lowercase"
+    },
+    {
+      "name": "TheUnreveal",
+      "is_real_trope": true,
+      "laconic_accurate": false,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": "Laconic description is incorrect; it's about a plot element being deliberately hidden"
+    },
+    {
+      "name": "TheClimax",
+      "is_real_trope": true,
+      "laconic_accurate": false,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": "Laconic description is too vague; it's about the most intense or exciting moment in a story"
+    },
+    {
+      "name": "TheSetup",
+      "is_real_trope": true,
+      "laconic_accurate": false,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": "Laconic description is too vague; it's about the initial events that establish a story's conflict or situation"
+    },
+    {
+      "name": "TheResolution",
+      "is_real_trope": true,
+      "laconic_accurate": false,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": "Laconic description is too vague; it's about the conclusion of a story's conflict or problem"
+    },
+    {
+      "name": "TheRedemption",
+      "is_real_trope": true,
+      "laconic_accurate": false,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": "Laconic description is too vague; it's about a character's journey from wrongdoing to forgiveness or atonement"
+    },
+    {
+      "name": "TheSacrifice",
+      "is_real_trope": true,
+      "laconic_accurate": false,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": "Laconic description is too vague; it's about a character giving up something valuable for the benefit of others"
+    },
+    {
+      "name": "TheBetrayal",
+      "is_real_trope": true,
+      "laconic_accurate": false,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": "Laconic description is too vague; it's about a character's actions that go against the expectations of others"
+    },
+    {
+      "name": "TheResurrection",
+      "is_real_trope": true,
+      "laconic_accurate": false,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": "Laconic description is too vague; it's about a character's return from death or apparent defeat"
+    },
+    {
+      "name": "MoodWhiplash",
+      "is_real_trope": true,
+      "laconic_accurate": null,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "CerebusSyndrome",
+      "is_real_trope": false,
+      "laconic_accurate": null,
+      "correct_name": "Cerebus Syndrome",
+      "confidence": "medium",
+      "notes": "Typically written in lowercase"
+    },
+    {
+      "name": "BreatherEpisode",
+      "is_real_trope": true,
+      "laconic_accurate": false,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": "Laconic description is too vague; it's about an episode that provides relief from intense action or drama"
+    },
+    {
+      "name": "RuleOfCool",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "RuleOfFunny",
+      "is_real_trope": false,
+      "laconic_accurate": null,
+      "correct_name": "RuleOfCool",
+      "confidence": "low",
+      "notes": "This is a common mistake, but the actual trope is RuleOfCool"
+    },
+    {
+      "name": "NightmareFuel",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "HeartwarmingMoments",
+      "is_real_trope": false,
+      "laconic_accurate": null,
+      "correct_name": "Heartwarming Moment",
+      "confidence": "medium",
+      "notes": "The actual page name is singular"
+    },
+    {
+      "name": "TearJerker",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "Narm",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "Bathos",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "DarkerAndEdgier",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "LighterAndSofter",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "CringeComedy",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "TheBigGuy",
+      "is_real_trope": false,
+      "laconic_accurate": null,
+      "correct_name": "Big Guy",
+      "confidence": "medium",
+      "notes": "The actual page name is singular"
+    },
+    {
+      "name": "TheLoveInterest",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "TheDamselInDistress",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "TheAntagonist",
+      "is_real_trope": false,
+      "laconic_accurate": null,
+      "correct_name": "Big Bad",
+      "confidence": "low",
+      "notes": "This is a common mistake, but the actual trope is Big Bad"
+    },
+    {
+      "name": "TheComicRelief",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "TheRival",
+      "is_real_trope": true,
+      "laconic_accurate": null,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "EscalatingWar",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "MexicanStandoff",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "BattleRoyale",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "CurbStompBattle",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "DavidVsGoliath",
+      "is_real_trope": false,
+      "laconic_accurate": null,
+      "correct_name": "David Versus Goliath",
+      "confidence": "medium",
+      "notes": "The correct name has a space between 'Versus' and 'Goliath'"
+    },
+    {
+      "name": "EnemyMine",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "LetsFightLikeGentlemen",
+      "is_real_trope": false,
+      "laconic_accurate": null,
+      "correct_name": "Let's Fight Like Gentlemen",
+      "confidence": "medium",
+      "notes": "The correct name has an apostrophe in 'Let's'"
+    },
+    {
+      "name": "VillainTeamUp",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "MirrorMatch",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "FinalBoss",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "UnstoppableRage",
+      "is_real_trope": false,
+      "laconic_accurate": null,
+      "correct_name": "Unstoppable Rage",
+      "confidence": "medium",
+      "notes": "The correct name has no space between 'Rage'"
+    },
+    {
+      "name": "TheUnderdog",
+      "is_real_trope": true,
+      "laconic_accurate": null,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "TheTyrant",
+      "is_real_trope": false,
+      "laconic_accurate": null,
+      "correct_name": "The Tyrant",
+      "confidence": "medium",
+      "notes": "The correct name has a space between 'The' and 'Tyrant'"
+    },
+    {
+      "name": "TheChampion",
+      "is_real_trope": false,
+      "laconic_accurate": null,
+      "correct_name": "The Champion",
+      "confidence": "medium",
+      "notes": "The correct name has a space between 'The' and 'Champion'"
+    },
+    {
+      "name": "TheCompanion",
+      "is_real_trope": true,
+      "laconic_accurate": null,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "TheFoe",
+      "is_real_trope": false,
+      "laconic_accurate": null,
+      "correct_name": "BigBad",
+      "confidence": "low",
+      "notes": "TV Tropes page for 'The Foe' does not exist, but Big Bad is a related trope"
+    },
+    {
+      "name": "TheOpponent",
+      "is_real_trope": false,
+      "laconic_accurate": null,
+      "correct_name": "BigBad",
+      "confidence": "low",
+      "notes": "TV Tropes page for 'The Opponent' does not exist, but Big Bad is a related trope"
+    },
+    {
+      "name": "Slapstick",
+      "is_real_trope": true,
+      "laconic_accurate": null,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "RunningGag",
+      "is_real_trope": true,
+      "laconic_accurate": null,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "BrickJoke",
+      "is_real_trope": true,
+      "laconic_accurate": null,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "DeadpanSnarker",
+      "is_real_trope": true,
+      "laconic_accurate": null,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "ButtMonkey",
+      "is_real_trope": true,
+      "laconic_accurate": null,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "EpicFail",
+      "is_real_trope": true,
+      "laconic_accurate": null,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "RefugeInAudacity",
+      "is_real_trope": true,
+      "laconic_accurate": null,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "InsaneTrollLogic",
+      "is_real_trope": true,
+      "laconic_accurate": null,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "StraightMan",
+      "is_real_trope": true,
+      "laconic_accurate": null,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "FourthWallBreak",
+      "is_real_trope": true,
+      "laconic_accurate": null,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "ComicallySerious",
+      "is_real_trope": true,
+      "laconic_accurate": null,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "IncrediblyLamePun",
+      "is_real_trope": false,
+      "laconic_accurate": null,
+      "correct_name": "GroanInducingPun",
+      "confidence": "low",
+      "notes": "TV Tropes page for 'Incredibly Lame Pun' does not exist, but Groan Inducing Pun is a related trope"
+    },
+    {
+      "name": "BlatantLies",
+      "is_real_trope": true,
+      "laconic_accurate": null,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "CrowningMomentOfAwesome",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "IdiotBall",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "UnfortunateImplications",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "BerserkButton",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "BreakingTheFourthWall",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "LampshadeHanging",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "GenreSavvy",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "MediumAwareness",
+      "is_real_trope": false,
+      "laconic_accurate": null,
+      "correct_name": "BreakingTheFourthWall",
+      "confidence": "low",
+      "notes": "This is a subset of BreakingTheFourthWall"
+    },
+    {
+      "name": "ThisIsReality",
+      "is_real_trope": false,
+      "laconic_accurate": null,
+      "correct_name": "UnreliableNarrator",
+      "confidence": "low",
+      "notes": "Not a direct match, but related"
+    },
+    {
+      "name": "TropesAreTools",
+      "is_real_trope": false,
+      "laconic_accurate": null,
+      "correct_name": "AuthorTrick",
+      "confidence": "low",
+      "notes": "Not a direct match, but related"
+    },
+    {
+      "name": "Deconstruction",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "Reconstruction",
+      "is_real_trope": false,
+      "laconic_accurate": null,
+      "correct_name": "Deconstruction",
+      "confidence": "low",
+      "notes": "Inverse of Deconstruction"
+    },
+    {
+      "name": "LeaningOnTheFourthWall",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "DeadHorseTrope",
+      "is_real_trope": false,
+      "laconic_accurate": null,
+      "correct_name": "OverusedTropes",
+      "confidence": "low",
+      "notes": "Not a direct match, but related"
+    },
+    {
+      "name": "MetaNarrative",
+      "is_real_trope": true,
+      "laconic_accurate": null,
+      "correct_name": null,
+      "confidence": "high"
+    },
+    {
+      "name": "NarrativeVoice",
+      "is_real_trope": false,
+      "laconic_accurate": null,
+      "correct_name": "UnreliableNarrator",
+      "confidence": "low"
+    },
+    {
+      "name": "SelfAwareness",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high"
+    },
+    {
+      "name": "NarrativeDissonance",
+      "is_real_trope": false,
+      "laconic_accurate": null,
+      "correct_name": "GenreBargainingChip",
+      "confidence": "low"
+    },
+    {
+      "name": "StorytellingAsASkill",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high"
+    },
+    {
+      "name": "PowerUp",
+      "is_real_trope": true,
+      "laconic_accurate": false,
+      "correct_name": null,
+      "confidence": "medium"
+    },
+    {
+      "name": "SuperpoweredEvilSide",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high"
+    },
+    {
+      "name": "DrunkWithPower",
+      "is_real_trope": false,
+      "laconic_accurate": null,
+      "correct_name": "CorruptingInfluence",
+      "confidence": "low"
+    },
+    {
+      "name": "BroughtDownToNormal",
+      "is_real_trope": true,
+      "laconic_accurate": false,
+      "correct_name": null,
+      "confidence": "medium"
+    },
+    {
+      "name": "OneWingedAngel",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high"
+    },
+    {
+      "name": "Shapeshifting",
+      "is_real_trope": false,
+      "laconic_accurate": null,
+      "correct_name": "ShapeShifter",
+      "confidence": "low"
+    },
+    {
+      "name": "EvolutionPowerUp",
+      "is_real_trope": true,
+      "laconic_accurate": false,
+      "correct_name": null,
+      "confidence": "medium"
+    },
+    {
+      "name": "LimitBreak",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high"
+    },
+    {
+      "name": "DeadlyUpgrade",
+      "is_real_trope": false,
+      "laconic_accurate": null,
+      "correct_name": "UpgradedToUltimate",
+      "confidence": "low"
+    },
+    {
+      "name": "WithGreatPower",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high"
+    },
+    {
+      "name": "Transformation",
+      "is_real_trope": true,
+      "laconic_accurate": null,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "PowerShift",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "AscendedMeme",
+      "is_real_trope": true,
+      "laconic_accurate": true,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "MysticalPower",
+      "is_real_trope": false,
+      "laconic_accurate": null,
+      "correct_name": "MagicalPower",
+      "confidence": "medium",
+      "notes": "TV Tropes has a page for Magical Power, but not Mystical Power"
+    },
+    {
+      "name": "TechnologicalUpgrade",
+      "is_real_trope": true,
+      "laconic_accurate": null,
+      "correct_name": null,
+      "confidence": "high",
+      "notes": ""
+    }
+  ]
+}

@@ -1,0 +1,726 @@
+{
+  "timestamp": "2026-02-15 08:07:41",
+  "llm_model": "llama3.1:latest",
+  "files_scanned": 95,
+  "total_issues": 70,
+  "errors": 0,
+  "warnings": 0,
+  "info": 70,
+  "cross_file_issues": [
+    {
+      "severity": "warning",
+      "type": "inconsistent_weight_grid",
+      "message": "WEIGHT_GRID defined differently across files: ['character_seed_experiment.py', 'motion_seed_experiment_v2.py', 'oeis_retry_deepseek.py', 'oeis_seed_experiment.py']",
+      "files": {
+        "character_seed_experiment.py": "snapped[k] = min(WEIGHT_GRID, key=lambda g: abs(g - v))",
+        "motion_seed_experiment_v2.py": "snapped[k] = min(WEIGHT_GRID, key=lambda g: abs(g - v))",
+        "oeis_retry_deepseek.py": "WEIGHT_GRID = [-1.0, -0.7, -0.4, -0.1, 0.0, 0.1, 0.4, 0.7, 1.0]",
+        "oeis_seed_experiment.py": "snapped[k] = min(WEIGHT_GRID, key=lambda g: abs(g - v))"
+      }
+    }
+  ],
+  "files": {
+    "/Users/gardenofcomputation/pybullet_test/Evolutionary-Robotics/analyze_celebrities.py": {
+      "tier1_issues": [
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'Patch' appears unused",
+          "line": 29
+        }
+      ],
+      "tier2_issues": [],
+      "total": 1
+    },
+    "/Users/gardenofcomputation/pybullet_test/Evolutionary-Robotics/analyze_dark_matter.py": {
+      "tier1_issues": [
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'GridSpec' appears unused",
+          "line": 53
+        }
+      ],
+      "tier2_issues": [],
+      "total": 1
+    },
+    "/Users/gardenofcomputation/pybullet_test/Evolutionary-Robotics/analyze_novelty_champion.py": {
+      "tier1_issues": [
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import '_hilbert_analytic' appears unused",
+          "line": 58
+        },
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'json' appears unused",
+          "line": 39
+        },
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import '_fft_peak' appears unused",
+          "line": 58
+        }
+      ],
+      "tier2_issues": [],
+      "total": 3
+    },
+    "/Users/gardenofcomputation/pybullet_test/Evolutionary-Robotics/analyze_trial3.py": {
+      "tier1_issues": [
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'compute_coordination' appears unused",
+          "line": 56
+        },
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import '_fft_peak' appears unused",
+          "line": 56
+        },
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'json' appears unused",
+          "line": 36
+        },
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'compute_rotation_axis' appears unused",
+          "line": 56
+        },
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'compute_outcome' appears unused",
+          "line": 56
+        },
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'time' appears unused",
+          "line": 39
+        },
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'compute_contact' appears unused",
+          "line": 56
+        }
+      ],
+      "tier2_issues": [],
+      "total": 7
+    },
+    "/Users/gardenofcomputation/pybullet_test/Evolutionary-Robotics/annotate_character_deaths.py": {
+      "tier1_issues": [
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'sys' appears unused",
+          "line": 14
+        }
+      ],
+      "tier2_issues": [],
+      "total": 1
+    },
+    "/Users/gardenofcomputation/pybullet_test/Evolutionary-Robotics/apply_step2_commentary.py": {
+      "tier1_issues": [
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'annotations' appears unused",
+          "line": 34
+        }
+      ],
+      "tier2_issues": [],
+      "total": 1
+    },
+    "/Users/gardenofcomputation/pybullet_test/Evolutionary-Robotics/behavioral_embryology.py": {
+      "tier1_issues": [
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'matplotlib.patheffects' appears unused",
+          "line": 63
+        }
+      ],
+      "tier2_issues": [],
+      "total": 1
+    },
+    "/Users/gardenofcomputation/pybullet_test/Evolutionary-Robotics/causal_surgery.py": {
+      "tier1_issues": [
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'matplotlib.patheffects' appears unused",
+          "line": 61
+        }
+      ],
+      "tier2_issues": [],
+      "total": 1
+    },
+    "/Users/gardenofcomputation/pybullet_test/Evolutionary-Robotics/causal_surgery_interpolation.py": {
+      "tier1_issues": [
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'GridSpec' appears unused",
+          "line": 61
+        }
+      ],
+      "tier2_issues": [],
+      "total": 1
+    },
+    "/Users/gardenofcomputation/pybullet_test/Evolutionary-Robotics/character_seed_experiment.py": {
+      "tier1_issues": [
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'WEIGHT_NAMES' appears unused",
+          "line": 34
+        }
+      ],
+      "tier2_issues": [],
+      "total": 1
+    },
+    "/Users/gardenofcomputation/pybullet_test/Evolutionary-Robotics/cliff_taxonomy.py": {
+      "tier1_issues": [
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'FancyBboxPatch' appears unused",
+          "line": 59
+        }
+      ],
+      "tier2_issues": [],
+      "total": 1
+    },
+    "/Users/gardenofcomputation/pybullet_test/Evolutionary-Robotics/cliff_taxonomy_deep.py": {
+      "tier1_issues": [
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'Normalize' appears unused",
+          "line": 65
+        }
+      ],
+      "tier2_issues": [],
+      "total": 1
+    },
+    "/Users/gardenofcomputation/pybullet_test/Evolutionary-Robotics/compute_beer_analytics.py": {
+      "tier1_issues": [
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'os' appears unused",
+          "line": 34
+        }
+      ],
+      "tier2_issues": [],
+      "total": 1
+    },
+    "/Users/gardenofcomputation/pybullet_test/Evolutionary-Robotics/curate_mathematicians.py": {
+      "tier1_issues": [
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'sys' appears unused",
+          "line": 14
+        }
+      ],
+      "tier2_issues": [],
+      "total": 1
+    },
+    "/Users/gardenofcomputation/pybullet_test/Evolutionary-Robotics/curate_stith_thompson.py": {
+      "tier1_issues": [
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'sys' appears unused",
+          "line": 16
+        }
+      ],
+      "tier2_issues": [],
+      "total": 1
+    },
+    "/Users/gardenofcomputation/pybullet_test/Evolutionary-Robotics/curate_tv_tropes.py": {
+      "tier1_issues": [
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'sys' appears unused",
+          "line": 13
+        }
+      ],
+      "tier2_issues": [],
+      "total": 1
+    },
+    "/Users/gardenofcomputation/pybullet_test/Evolutionary-Robotics/fisher_metric.py": {
+      "tier1_issues": [
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'time' appears unused",
+          "line": 15
+        }
+      ],
+      "tier2_issues": [],
+      "total": 1
+    },
+    "/Users/gardenofcomputation/pybullet_test/Evolutionary-Robotics/gait_interpolation.py": {
+      "tier1_issues": [
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'matplotlib.patheffects' appears unused",
+          "line": 64
+        }
+      ],
+      "tier2_issues": [],
+      "total": 1
+    },
+    "/Users/gardenofcomputation/pybullet_test/Evolutionary-Robotics/generate_telemetry.py": {
+      "tier1_issues": [
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'np' appears unused",
+          "line": 42
+        },
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'os' appears unused",
+          "line": 34
+        }
+      ],
+      "tier2_issues": [],
+      "total": 2
+    },
+    "/Users/gardenofcomputation/pybullet_test/Evolutionary-Robotics/hilbert_formalization.py": {
+      "tier1_issues": [
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'defaultdict' appears unused",
+          "line": 27
+        }
+      ],
+      "tier2_issues": [],
+      "total": 1
+    },
+    "/Users/gardenofcomputation/pybullet_test/Evolutionary-Robotics/motion_seed_experiment.py": {
+      "tier1_issues": [
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'write_brain' appears unused",
+          "line": 31
+        },
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'WEIGHT_NAMES' appears unused",
+          "line": 31
+        }
+      ],
+      "tier2_issues": [],
+      "total": 2
+    },
+    "/Users/gardenofcomputation/pybullet_test/Evolutionary-Robotics/motion_seed_experiment_v2.py": {
+      "tier1_issues": [
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'WEIGHT_NAMES' appears unused",
+          "line": 31
+        }
+      ],
+      "tier2_issues": [],
+      "total": 1
+    },
+    "/Users/gardenofcomputation/pybullet_test/Evolutionary-Robotics/motion_seed_rerun_failures.py": {
+      "tier1_issues": [
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'parse_weights' appears unused",
+          "line": 14
+        },
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'REASONING_MODELS' appears unused",
+          "line": 16
+        },
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'OLLAMA_URL' appears unused",
+          "line": 14
+        },
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'WEIGHT_NAMES' appears unused",
+          "line": 14
+        }
+      ],
+      "tier2_issues": [],
+      "total": 4
+    },
+    "/Users/gardenofcomputation/pybullet_test/Evolutionary-Robotics/oeis_retry_deepseek.py": {
+      "tier1_issues": [
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'np' appears unused",
+          "line": 18
+        }
+      ],
+      "tier2_issues": [],
+      "total": 1
+    },
+    "/Users/gardenofcomputation/pybullet_test/Evolutionary-Robotics/oeis_seed_experiment.py": {
+      "tier1_issues": [
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'WEIGHT_NAMES' appears unused",
+          "line": 32
+        }
+      ],
+      "tier2_issues": [],
+      "total": 1
+    },
+    "/Users/gardenofcomputation/pybullet_test/Evolutionary-Robotics/optimize_gait.py": {
+      "tier1_issues": [
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'os' appears unused",
+          "line": 47
+        }
+      ],
+      "tier2_issues": [],
+      "total": 1
+    },
+    "/Users/gardenofcomputation/pybullet_test/Evolutionary-Robotics/politics_leaderboards.py": {
+      "tier1_issues": [
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'FancyBboxPatch' appears unused",
+          "line": 22
+        }
+      ],
+      "tier2_issues": [],
+      "total": 1
+    },
+    "/Users/gardenofcomputation/pybullet_test/Evolutionary-Robotics/random_search_analytics.py": {
+      "tier1_issues": [
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'np' appears unused",
+          "line": 39
+        }
+      ],
+      "tier2_issues": [],
+      "total": 1
+    },
+    "/Users/gardenofcomputation/pybullet_test/Evolutionary-Robotics/record_character_video.py": {
+      "tier1_issues": [
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'os' appears unused",
+          "line": 20
+        }
+      ],
+      "tier2_issues": [],
+      "total": 1
+    },
+    "/Users/gardenofcomputation/pybullet_test/Evolutionary-Robotics/record_concept_videos.py": {
+      "tier1_issues": [
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'os' appears unused",
+          "line": 18
+        }
+      ],
+      "tier2_issues": [],
+      "total": 1
+    },
+    "/Users/gardenofcomputation/pybullet_test/Evolutionary-Robotics/record_videos.py": {
+      "tier1_issues": [
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'struct' appears unused",
+          "line": 38
+        }
+      ],
+      "tier2_issues": [],
+      "total": 1
+    },
+    "/Users/gardenofcomputation/pybullet_test/Evolutionary-Robotics/render_report_pdf.py": {
+      "tier1_issues": [
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'json' appears unused",
+          "line": 11
+        }
+      ],
+      "tier2_issues": [],
+      "total": 1
+    },
+    "/Users/gardenofcomputation/pybullet_test/Evolutionary-Robotics/resonance_mapping.py": {
+      "tier1_issues": [
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'matplotlib.patheffects' appears unused",
+          "line": 71
+        },
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'Normalize' appears unused",
+          "line": 72
+        }
+      ],
+      "tier2_issues": [],
+      "total": 2
+    },
+    "/Users/gardenofcomputation/pybullet_test/Evolutionary-Robotics/simulate_openloop_legal.py": {
+      "tier1_issues": [
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'os' appears unused",
+          "line": 42
+        }
+      ],
+      "tier2_issues": [],
+      "total": 1
+    },
+    "/Users/gardenofcomputation/pybullet_test/Evolutionary-Robotics/simulate_video.py": {
+      "tier1_issues": [
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'os' appears unused",
+          "line": 38
+        }
+      ],
+      "tier2_issues": [],
+      "total": 1
+    },
+    "/Users/gardenofcomputation/pybullet_test/Evolutionary-Robotics/simulate_video_maxdist.py": {
+      "tier1_issues": [
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'os' appears unused",
+          "line": 43
+        }
+      ],
+      "tier2_issues": [],
+      "total": 1
+    },
+    "/Users/gardenofcomputation/pybullet_test/Evolutionary-Robotics/simulate_video_move.py": {
+      "tier1_issues": [
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'os' appears unused",
+          "line": 46
+        }
+      ],
+      "tier2_issues": [],
+      "total": 1
+    },
+    "/Users/gardenofcomputation/pybullet_test/Evolutionary-Robotics/structured_random_celebrities_multimodel.py": {
+      "tier1_issues": [
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'generate_weights' appears unused",
+          "line": 55
+        },
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'run_trial_inmemory' appears unused",
+          "line": 55
+        },
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'GROUPS' appears unused",
+          "line": 61
+        },
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'json' appears unused",
+          "line": 42
+        },
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'write_brain' appears unused",
+          "line": 55
+        }
+      ],
+      "tier2_issues": [],
+      "total": 5
+    },
+    "/Users/gardenofcomputation/pybullet_test/Evolutionary-Robotics/sweep_openloop_legal.py": {
+      "tier1_issues": [
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'os' appears unused",
+          "line": 44
+        }
+      ],
+      "tier2_issues": [],
+      "total": 1
+    },
+    "/Users/gardenofcomputation/pybullet_test/Evolutionary-Robotics/timestep_atlas.py": {
+      "tier1_issues": [
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'math' appears unused",
+          "line": 56
+        }
+      ],
+      "tier2_issues": [],
+      "total": 1
+    },
+    "/Users/gardenofcomputation/pybullet_test/Evolutionary-Robotics/walker_competition.py": {
+      "tier1_issues": [
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'mcolors' appears unused",
+          "line": 58
+        },
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'FancyBboxPatch' appears unused",
+          "line": 57
+        }
+      ],
+      "tier2_issues": [],
+      "total": 2
+    },
+    "/Users/gardenofcomputation/pybullet_test/Evolutionary-Robotics/yoneda_crosswired.py": {
+      "tier1_issues": [
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'time' appears unused",
+          "line": 21
+        },
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'np' appears unused",
+          "line": 25
+        }
+      ],
+      "tier2_issues": [],
+      "total": 2
+    },
+    "/Users/gardenofcomputation/pybullet_test/Evolutionary-Robotics/tools/replay_a_mode.py": {
+      "tier1_issues": [
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'Path' appears unused",
+          "line": 8
+        },
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'os' appears unused",
+          "line": 7
+        }
+      ],
+      "tier2_issues": [],
+      "total": 2
+    },
+    "/Users/gardenofcomputation/pybullet_test/Evolutionary-Robotics/tools/replay_trace.py": {
+      "tier1_issues": [
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'annotations' appears unused",
+          "line": 7
+        }
+      ],
+      "tier2_issues": [],
+      "total": 1
+    },
+    "/Users/gardenofcomputation/pybullet_test/Evolutionary-Robotics/tools/zoo/collect_summaries.py": {
+      "tier1_issues": [
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'annotations' appears unused",
+          "line": 10
+        },
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'os' appears unused",
+          "line": 17
+        }
+      ],
+      "tier2_issues": [],
+      "total": 2
+    },
+    "/Users/gardenofcomputation/pybullet_test/Evolutionary-Robotics/tools/zoo/regen_scores.py": {
+      "tier1_issues": [
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'annotations' appears unused",
+          "line": 11
+        },
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'os' appears unused",
+          "line": 18
+        }
+      ],
+      "tier2_issues": [],
+      "total": 2
+    },
+    "/Users/gardenofcomputation/pybullet_test/Evolutionary-Robotics/tools/zoo/run_zoo.py": {
+      "tier1_issues": [
+        {
+          "severity": "info",
+          "type": "unused_import",
+          "message": "Import 'annotations' appears unused",
+          "line": 17
+        }
+      ],
+      "tier2_issues": [],
+      "total": 1
+    }
+  }
+}

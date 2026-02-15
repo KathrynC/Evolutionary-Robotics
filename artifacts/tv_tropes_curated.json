@@ -1,0 +1,1904 @@
+{
+  "date": "2026-02-15 08:14:04",
+  "model": "qwen3-coder:30b",
+  "n_tropes": 185,
+  "categories": [
+    {
+      "id": "movement_physical",
+      "name": "Movement and Physical Action Tropes",
+      "count": 25
+    },
+    {
+      "id": "character_archetypes",
+      "name": "Character Archetype Tropes",
+      "count": 30
+    },
+    {
+      "id": "death_sacrifice",
+      "name": "Death, Sacrifice, and Ending Tropes",
+      "count": 24
+    },
+    {
+      "id": "plot_mechanics",
+      "name": "Plot Mechanic Tropes",
+      "count": 23
+    },
+    {
+      "id": "tone_energy",
+      "name": "Tone and Energy Tropes",
+      "count": 18
+    },
+    {
+      "id": "conflict_tension",
+      "name": "Conflict and Tension Tropes",
+      "count": 18
+    },
+    {
+      "id": "comedy_absurdity",
+      "name": "Comedy and Absurdity Tropes",
+      "count": 17
+    },
+    {
+      "id": "meta_structural",
+      "name": "Meta and Structural Tropes",
+      "count": 15
+    },
+    {
+      "id": "transformation_power",
+      "name": "Transformation and Power Tropes",
+      "count": 15
+    }
+  ],
+  "tropes": [
+    {
+      "name": "TheSlowWalk",
+      "display_name": "The Slow Walk",
+      "laconic": "A character walks slowly and deliberately, often to convey confidence, contemplation, or menace.",
+      "movement_association": "high",
+      "energy_level": "low",
+      "valence": "neutral",
+      "category": "movement_physical",
+      "category_name": "Movement and Physical Action Tropes"
+    },
+    {
+      "name": "UnflinchingWalk",
+      "display_name": "Unflinching Walk",
+      "laconic": "A character walks with unwavering confidence and composure, never showing fear or hesitation.",
+      "movement_association": "high",
+      "energy_level": "moderate",
+      "valence": "positive",
+      "category": "movement_physical",
+      "category_name": "Movement and Physical Action Tropes"
+    },
+    {
+      "name": "LeParkour",
+      "display_name": "Le Parkour",
+      "laconic": "Characters perform acrobatic movements and leaps to navigate obstacles with fluid grace.",
+      "movement_association": "high",
+      "energy_level": "explosive",
+      "valence": "positive",
+      "category": "movement_physical",
+      "category_name": "Movement and Physical Action Tropes"
+    },
+    {
+      "name": "DeathByFalling",
+      "display_name": "Death by Falling",
+      "laconic": "A character dies from falling from a great height, often with dramatic impact.",
+      "movement_association": "high",
+      "energy_level": "explosive",
+      "valence": "negative",
+      "category": "movement_physical",
+      "category_name": "Movement and Physical Action Tropes"
+    },
+    {
+      "name": "TakingTheBullet",
+      "display_name": "Taking the Bullet",
+      "laconic": "A character sacrifices themselves to protect another by absorbing a bullet or attack.",
+      "movement_association": "high",
+      "energy_level": "explosive",
+      "valence": "positive",
+      "category": "movement_physical",
+      "category_name": "Movement and Physical Action Tropes"
+    },
+    {
+      "name": "WalkAndTalk",
+      "display_name": "Walk and Talk",
+      "laconic": "Characters have conversations while walking, often used to advance plot or develop relationships.",
+      "movement_association": "high",
+      "energy_level": "low",
+      "valence": "neutral",
+      "category": "movement_physical",
+      "category_name": "Movement and Physical Action Tropes"
+    },
+    {
+      "name": "DramaticChaseOpening",
+      "display_name": "Dramatic Chase Opening",
+      "laconic": "A story begins with a high-speed chase sequence to immediately establish tension and action.",
+      "movement_association": "high",
+      "energy_level": "explosive",
+      "valence": "mixed",
+      "category": "movement_physical",
+      "category_name": "Movement and Physical Action Tropes"
+    },
+    {
+      "name": "RoofHopping",
+      "display_name": "Roof Hopping",
+      "laconic": "Characters leap from rooftop to rooftop to escape pursuers or navigate urban environments.",
+      "movement_association": "high",
+      "energy_level": "explosive",
+      "valence": "neutral",
+      "category": "movement_physical",
+      "category_name": "Movement and Physical Action Tropes"
+    },
+    {
+      "name": "Stumbling",
+      "display_name": "Stumbling",
+      "laconic": "A character trips, stumbles, or loses balance, often due to exhaustion, injury, or surprise.",
+      "movement_association": "high",
+      "energy_level": "low",
+      "valence": "negative",
+      "category": "movement_physical",
+      "category_name": "Movement and Physical Action Tropes"
+    },
+    {
+      "name": "PowerWalk",
+      "display_name": "Power Walk",
+      "laconic": "A character walks with purposeful, confident strides to convey authority or determination.",
+      "movement_association": "high",
+      "energy_level": "moderate",
+      "valence": "positive",
+      "category": "movement_physical",
+      "category_name": "Movement and Physical Action Tropes"
+    },
+    {
+      "name": "TheSeductionWalk",
+      "display_name": "The Seduction Walk",
+      "laconic": "A character walks in a way that is deliberately seductive or provocative to attract attention.",
+      "movement_association": "high",
+      "energy_level": "moderate",
+      "valence": "mixed",
+      "category": "movement_physical",
+      "category_name": "Movement and Physical Action Tropes"
+    },
+    {
+      "name": "TheFalling",
+      "display_name": "The Falling",
+      "laconic": "A character falls dramatically, often with comedic or tragic consequences.",
+      "movement_association": "high",
+      "energy_level": "explosive",
+      "valence": "mixed",
+      "category": "movement_physical",
+      "category_name": "Movement and Physical Action Tropes"
+    },
+    {
+      "name": "TheDramaticRun",
+      "display_name": "The Dramatic Run",
+      "laconic": "A character runs with urgency and intensity, often to escape danger or reach a goal.",
+      "movement_association": "high",
+      "energy_level": "explosive",
+      "valence": "negative",
+      "category": "movement_physical",
+      "category_name": "Movement and Physical Action Tropes"
+    },
+    {
+      "name": "TheHeroicLeap",
+      "display_name": "The Heroic Leap",
+      "laconic": "A character leaps into danger or a difficult situation to save someone or achieve a goal.",
+      "movement_association": "high",
+      "energy_level": "explosive",
+      "valence": "positive",
+      "category": "movement_physical",
+      "category_name": "Movement and Physical Action Tropes"
+    },
+    {
+      "name": "ThePanicRun",
+      "display_name": "The Panic Run",
+      "laconic": "A character runs frantically in fear, often with no clear direction or purpose.",
+      "movement_association": "high",
+      "energy_level": "explosive",
+      "valence": "negative",
+      "category": "movement_physical",
+      "category_name": "Movement and Physical Action Tropes"
+    },
+    {
+      "name": "TheClimbing",
+      "display_name": "The Climbing",
+      "laconic": "A character climbs obstacles or structures with determination and skill.",
+      "movement_association": "high",
+      "energy_level": "moderate",
+      "valence": "neutral",
+      "category": "movement_physical",
+      "category_name": "Movement and Physical Action Tropes"
+    },
+    {
+      "name": "TheJump",
+      "display_name": "The Jump",
+      "laconic": "A character jumps unexpectedly or dramatically, often to escape danger or achieve a goal.",
+      "movement_association": "high",
+      "energy_level": "explosive",
+      "valence": "mixed",
+      "category": "movement_physical",
+      "category_name": "Movement and Physical Action Tropes"
+    },
+    {
+      "name": "TheSprint",
+      "display_name": "The Sprint",
+      "laconic": "A character runs at maximum speed, often to escape danger or reach a destination quickly.",
+      "movement_association": "high",
+      "energy_level": "explosive",
+      "valence": "negative",
+      "category": "movement_physical",
+      "category_name": "Movement and Physical Action Tropes"
+    },
+    {
+      "name": "TheDance",
+      "display_name": "The Dance",
+      "laconic": "Characters perform choreographed movements or dances, often to express emotion or tell a story.",
+      "movement_association": "high",
+      "energy_level": "moderate",
+      "valence": "positive",
+      "category": "movement_physical",
+      "category_name": "Movement and Physical Action Tropes"
+    },
+    {
+      "name": "TheWaltz",
+      "display_name": "The Waltz",
+      "laconic": "Characters perform a formal, elegant dance, often used to convey romance or social status.",
+      "movement_association": "high",
+      "energy_level": "low",
+      "valence": "positive",
+      "category": "movement_physical",
+      "category_name": "Movement and Physical Action Tropes"
+    },
+    {
+      "name": "TheFight",
+      "display_name": "The Fight",
+      "laconic": "Characters engage in combat or physical confrontation, often with dramatic choreography.",
+      "movement_association": "high",
+      "energy_level": "explosive",
+      "valence": "mixed",
+      "category": "movement_physical",
+      "category_name": "Movement and Physical Action Tropes"
+    },
+    {
+      "name": "TheStagger",
+      "display_name": "The Stagger",
+      "laconic": "A character moves unsteadily or with difficulty, often due to injury or exhaustion.",
+      "movement_association": "high",
+      "energy_level": "low",
+      "valence": "negative",
+      "category": "movement_physical",
+      "category_name": "Movement and Physical Action Tropes"
+    },
+    {
+      "name": "TheDanceOfDeath",
+      "display_name": "The Dance of Death",
+      "laconic": "Characters perform movements that suggest impending doom or fatal consequences.",
+      "movement_association": "high",
+      "energy_level": "moderate",
+      "valence": "negative",
+      "category": "movement_physical",
+      "category_name": "Movement and Physical Action Tropes"
+    },
+    {
+      "name": "TheProwl",
+      "display_name": "The Prowl",
+      "laconic": "A character moves stealthily and cautiously, often to observe or approach a target.",
+      "movement_association": "high",
+      "energy_level": "low",
+      "valence": "mixed",
+      "category": "movement_physical",
+      "category_name": "Movement and Physical Action Tropes"
+    },
+    {
+      "name": "TheLeapOfFaith",
+      "display_name": "The Leap of Faith",
+      "laconic": "A character makes a bold, risky movement or action based on trust or belief.",
+      "movement_association": "high",
+      "energy_level": "explosive",
+      "valence": "positive",
+      "category": "movement_physical",
+      "category_name": "Movement and Physical Action Tropes"
+    },
+    {
+      "name": "TheHero",
+      "display_name": "The Hero",
+      "laconic": "A courageous protagonist who fights for justice and saves others from danger.",
+      "movement_association": "high",
+      "energy_level": "high",
+      "valence": "positive",
+      "category": "character_archetypes",
+      "category_name": "Character Archetype Tropes"
+    },
+    {
+      "name": "TheMentor",
+      "display_name": "The Mentor",
+      "laconic": "An experienced wise figure who guides and trains the hero on their journey.",
+      "movement_association": "medium",
+      "energy_level": "moderate",
+      "valence": "positive",
+      "category": "character_archetypes",
+      "category_name": "Character Archetype Tropes"
+    },
+    {
+      "name": "TheDragon",
+      "display_name": "The Dragon",
+      "laconic": "A powerful, often evil creature or villain that serves as the main antagonist.",
+      "movement_association": "high",
+      "energy_level": "high",
+      "valence": "negative",
+      "category": "character_archetypes",
+      "category_name": "Character Archetype Tropes"
+    },
+    {
+      "name": "BigBad",
+      "display_name": "Big Bad",
+      "laconic": "The primary antagonist who is the main source of conflict for the hero.",
+      "movement_association": "medium",
+      "energy_level": "high",
+      "valence": "negative",
+      "category": "character_archetypes",
+      "category_name": "Character Archetype Tropes"
+    },
+    {
+      "name": "DamselInDistress",
+      "display_name": "Damsel in Distress",
+      "laconic": "A female character who is kidnapped or endangered and needs to be rescued.",
+      "movement_association": "low",
+      "energy_level": "low",
+      "valence": "neutral",
+      "category": "character_archetypes",
+      "category_name": "Character Archetype Tropes"
+    },
+    {
+      "name": "ByronicHero",
+      "display_name": "Byronic Hero",
+      "laconic": "A brooding, dark, and often morally ambiguous male protagonist with a troubled past.",
+      "movement_association": "medium",
+      "energy_level": "moderate",
+      "valence": "mixed",
+      "category": "character_archetypes",
+      "category_name": "Character Archetype Tropes"
+    },
+    {
+      "name": "ActionGirl",
+      "display_name": "Action Girl",
+      "laconic": "A female character who is skilled in combat and excels in physical action scenes.",
+      "movement_association": "high",
+      "energy_level": "high",
+      "valence": "positive",
+      "category": "character_archetypes",
+      "category_name": "Character Archetype Tropes"
+    },
+    {
+      "name": "GentleGiant",
+      "display_name": "Gentle Giant",
+      "laconic": "A large, strong character who is kind-hearted and protective of others.",
+      "movement_association": "medium",
+      "energy_level": "moderate",
+      "valence": "positive",
+      "category": "character_archetypes",
+      "category_name": "Character Archetype Tropes"
+    },
+    {
+      "name": "DarkLord",
+      "display_name": "Dark Lord",
+      "laconic": "A malevolent ruler who commands an empire or kingdom through fear and tyranny.",
+      "movement_association": "medium",
+      "energy_level": "high",
+      "valence": "negative",
+      "category": "character_archetypes",
+      "category_name": "Character Archetype Tropes"
+    },
+    {
+      "name": "PluckyComicRelief",
+      "display_name": "Plucky Comic Relief",
+      "laconic": "A cheerful, brave character who provides humor while facing dangerous situations.",
+      "movement_association": "high",
+      "energy_level": "high",
+      "valence": "positive",
+      "category": "character_archetypes",
+      "category_name": "Character Archetype Tropes"
+    },
+    {
+      "name": "TheStoic",
+      "display_name": "The Stoic",
+      "laconic": "A character who remains calm and composed, rarely showing emotion or reaction.",
+      "movement_association": "low",
+      "energy_level": "low",
+      "valence": "neutral",
+      "category": "character_archetypes",
+      "category_name": "Character Archetype Tropes"
+    },
+    {
+      "name": "Berserker",
+      "display_name": "Berserker",
+      "laconic": "A warrior who fights with uncontrollable rage and violence in battle.",
+      "movement_association": "high",
+      "energy_level": "explosive",
+      "valence": "negative",
+      "category": "character_archetypes",
+      "category_name": "Character Archetype Tropes"
+    },
+    {
+      "name": "TheLancer",
+      "display_name": "The Lancer",
+      "laconic": "A loyal, brave companion who fights alongside the hero with unwavering devotion.",
+      "movement_association": "high",
+      "energy_level": "high",
+      "valence": "positive",
+      "category": "character_archetypes",
+      "category_name": "Character Archetype Tropes"
+    },
+    {
+      "name": "FemmeFatale",
+      "display_name": "Femme Fatale",
+      "laconic": "A seductive and dangerous woman who uses her charm to manipulate and destroy men.",
+      "movement_association": "medium",
+      "energy_level": "high",
+      "valence": "negative",
+      "category": "character_archetypes",
+      "category_name": "Character Archetype Tropes"
+    },
+    {
+      "name": "MadScientist",
+      "display_name": "Mad Scientist",
+      "laconic": "A brilliant but unhinged scientist whose experiments are dangerous and often evil.",
+      "movement_association": "medium",
+      "energy_level": "high",
+      "valence": "negative",
+      "category": "character_archetypes",
+      "category_name": "Character Archetype Tropes"
+    },
+    {
+      "name": "AntiHero",
+      "display_name": "Anti-Hero",
+      "laconic": "A protagonist who lacks traditional heroic qualities and often acts morally ambiguously.",
+      "movement_association": "medium",
+      "energy_level": "moderate",
+      "valence": "mixed",
+      "category": "character_archetypes",
+      "category_name": "Character Archetype Tropes"
+    },
+    {
+      "name": "LovableRogue",
+      "display_name": "Lovable Rogue",
+      "laconic": "A charming thief or trickster who is inherently good despite their criminal nature.",
+      "movement_association": "high",
+      "energy_level": "high",
+      "valence": "positive",
+      "category": "character_archetypes",
+      "category_name": "Character Archetype Tropes"
+    },
+    {
+      "name": "WiseOldMentor",
+      "display_name": "Wise Old Mentor",
+      "laconic": "An elderly, experienced guide who provides wisdom and training to the hero.",
+      "movement_association": "medium",
+      "energy_level": "moderate",
+      "valence": "positive",
+      "category": "character_archetypes",
+      "category_name": "Character Archetype Tropes"
+    },
+    {
+      "name": "TheVillain",
+      "display_name": "The Villain",
+      "laconic": "A character who opposes the hero and creates conflict through malicious actions.",
+      "movement_association": "medium",
+      "energy_level": "high",
+      "valence": "negative",
+      "category": "character_archetypes",
+      "category_name": "Character Archetype Tropes"
+    },
+    {
+      "name": "TheProtagonist",
+      "display_name": "The Protagonist",
+      "laconic": "The main character around whom the story revolves and who drives the plot forward.",
+      "movement_association": "high",
+      "energy_level": "high",
+      "valence": "positive",
+      "category": "character_archetypes",
+      "category_name": "Character Archetype Tropes"
+    },
+    {
+      "name": "TheSidekick",
+      "display_name": "The Sidekick",
+      "laconic": "A loyal companion who supports the hero and often provides comic relief or assistance.",
+      "movement_association": "high",
+      "energy_level": "high",
+      "valence": "positive",
+      "category": "character_archetypes",
+      "category_name": "Character Archetype Tropes"
+    },
+    {
+      "name": "TheTrickster",
+      "display_name": "The Trickster",
+      "laconic": "A mischievous character who uses deception and cleverness to achieve their goals.",
+      "movement_association": "high",
+      "energy_level": "high",
+      "valence": "mixed",
+      "category": "character_archetypes",
+      "category_name": "Character Archetype Tropes"
+    },
+    {
+      "name": "TheSage",
+      "display_name": "The Sage",
+      "laconic": "An ancient, wise figure who provides knowledge and guidance to the hero.",
+      "movement_association": "low",
+      "energy_level": "low",
+      "valence": "positive",
+      "category": "character_archetypes",
+      "category_name": "Character Archetype Tropes"
+    },
+    {
+      "name": "TheWarrior",
+      "display_name": "The Warrior",
+      "laconic": "A skilled fighter who is brave, strong, and dedicated to protecting others.",
+      "movement_association": "high",
+      "energy_level": "high",
+      "valence": "positive",
+      "category": "character_archetypes",
+      "category_name": "Character Archetype Tropes"
+    },
+    {
+      "name": "TheSpy",
+      "display_name": "The Spy",
+      "laconic": "A character who gathers intelligence through deception and covert operations.",
+      "movement_association": "high",
+      "energy_level": "high",
+      "valence": "mixed",
+      "category": "character_archetypes",
+      "category_name": "Character Archetype Tropes"
+    },
+    {
+      "name": "TheOutlaw",
+      "display_name": "The Outlaw",
+      "laconic": "A character who operates outside the law and often fights for justice in their own way.",
+      "movement_association": "high",
+      "energy_level": "high",
+      "valence": "mixed",
+      "category": "character_archetypes",
+      "category_name": "Character Archetype Tropes"
+    },
+    {
+      "name": "TheInnocent",
+      "display_name": "The Innocent",
+      "laconic": "A pure-hearted character who is often naive and untouched by evil.",
+      "movement_association": "low",
+      "energy_level": "low",
+      "valence": "positive",
+      "category": "character_archetypes",
+      "category_name": "Character Archetype Tropes"
+    },
+    {
+      "name": "TheRebel",
+      "display_name": "The Rebel",
+      "laconic": "A character who challenges authority and fights against oppressive systems.",
+      "movement_association": "high",
+      "energy_level": "high",
+      "valence": "positive",
+      "category": "character_archetypes",
+      "category_name": "Character Archetype Tropes"
+    },
+    {
+      "name": "TheScapegoat",
+      "display_name": "The Scapegoat",
+      "laconic": "A character who is blamed for others' mistakes or crimes and suffers for their actions.",
+      "movement_association": "medium",
+      "energy_level": "moderate",
+      "valence": "negative",
+      "category": "character_archetypes",
+      "category_name": "Character Archetype Tropes"
+    },
+    {
+      "name": "TheChosenOne",
+      "display_name": "The Chosen One",
+      "laconic": "A character who is destined for greatness and must fulfill a prophesied role.",
+      "movement_association": "high",
+      "energy_level": "high",
+      "valence": "positive",
+      "category": "character_archetypes",
+      "category_name": "Character Archetype Tropes"
+    },
+    {
+      "name": "HeroicSacrifice",
+      "display_name": "Heroic Sacrifice",
+      "laconic": "A character gives their life to save others or achieve a greater good.",
+      "movement_association": "medium",
+      "energy_level": "high",
+      "valence": "mixed",
+      "category": "death_sacrifice",
+      "category_name": "Death, Sacrifice, and Ending Tropes"
+    },
+    {
+      "name": "AnyoneCanDie",
+      "display_name": "Anyone Can Die",
+      "laconic": "No character is immune to death, regardless of importance or likability.",
+      "movement_association": "low",
+      "energy_level": "moderate",
+      "valence": "negative",
+      "category": "death_sacrifice",
+      "category_name": "Death, Sacrifice, and Ending Tropes"
+    },
+    {
+      "name": "KillTheCutie",
+      "display_name": "Kill The Cutie",
+      "laconic": "A beloved, innocent character is killed to create emotional impact.",
+      "movement_association": "low",
+      "energy_level": "high",
+      "valence": "negative",
+      "category": "death_sacrifice",
+      "category_name": "Death, Sacrifice, and Ending Tropes"
+    },
+    {
+      "name": "RedemptionEqualsDeath",
+      "display_name": "Redemption Equals Death",
+      "laconic": "A character's final act of redemption results in their death.",
+      "movement_association": "medium",
+      "energy_level": "high",
+      "valence": "mixed",
+      "category": "death_sacrifice",
+      "category_name": "Death, Sacrifice, and Ending Tropes"
+    },
+    {
+      "name": "KilledOffForReal",
+      "display_name": "Killed Off for Real",
+      "laconic": "A character is permanently killed and does not return to the story.",
+      "movement_association": "low",
+      "energy_level": "high",
+      "valence": "negative",
+      "category": "death_sacrifice",
+      "category_name": "Death, Sacrifice, and Ending Tropes"
+    },
+    {
+      "name": "DisneyDeath",
+      "display_name": "Disney Death",
+      "laconic": "A character dies in a way that is both tragic and beautiful, often in a noble cause.",
+      "movement_association": "medium",
+      "energy_level": "high",
+      "valence": "mixed",
+      "category": "death_sacrifice",
+      "category_name": "Death, Sacrifice, and Ending Tropes"
+    },
+    {
+      "name": "HappyEnding",
+      "display_name": "Happy Ending",
+      "laconic": "The story concludes with a positive resolution and satisfying outcome.",
+      "movement_association": "low",
+      "energy_level": "low",
+      "valence": "positive",
+      "category": "death_sacrifice",
+      "category_name": "Death, Sacrifice, and Ending Tropes"
+    },
+    {
+      "name": "DownerEnding",
+      "display_name": "Downer Ending",
+      "laconic": "The story ends with a tragic or pessimistic conclusion.",
+      "movement_association": "low",
+      "energy_level": "low",
+      "valence": "negative",
+      "category": "death_sacrifice",
+      "category_name": "Death, Sacrifice, and Ending Tropes"
+    },
+    {
+      "name": "BittersweetEnding",
+      "display_name": "Bittersweet Ending",
+      "laconic": "The story ends with both positive and negative outcomes, creating mixed emotions.",
+      "movement_association": "low",
+      "energy_level": "moderate",
+      "valence": "mixed",
+      "category": "death_sacrifice",
+      "category_name": "Death, Sacrifice, and Ending Tropes"
+    },
+    {
+      "name": "DeadManWalking",
+      "display_name": "Dead Man Walking",
+      "laconic": "A character is walking toward their death, often with a sense of inevitability.",
+      "movement_association": "high",
+      "energy_level": "moderate",
+      "valence": "negative",
+      "category": "death_sacrifice",
+      "category_name": "Death, Sacrifice, and Ending Tropes"
+    },
+    {
+      "name": "TheDogDies",
+      "display_name": "The Dog Dies",
+      "laconic": "A loyal pet character dies, often to create emotional impact or foreshadow tragedy.",
+      "movement_association": "low",
+      "energy_level": "high",
+      "valence": "negative",
+      "category": "death_sacrifice",
+      "category_name": "Death, Sacrifice, and Ending Tropes"
+    },
+    {
+      "name": "SuddenSequelDeath",
+      "display_name": "Sudden Sequel Death",
+      "laconic": "A character who was alive in the previous story dies unexpectedly in a sequel.",
+      "movement_association": "low",
+      "energy_level": "high",
+      "valence": "negative",
+      "category": "death_sacrifice",
+      "category_name": "Death, Sacrifice, and Ending Tropes"
+    },
+    {
+      "name": "DeathIsDramatic",
+      "display_name": "Death Is Dramatic",
+      "laconic": "Characters die in highly theatrical, emotionally charged, and often over-the-top ways.",
+      "movement_association": "medium",
+      "energy_level": "explosive",
+      "valence": "mixed",
+      "category": "death_sacrifice",
+      "category_name": "Death, Sacrifice, and Ending Tropes"
+    },
+    {
+      "name": "FinalBossDeath",
+      "display_name": "Final Boss Death",
+      "laconic": "The main antagonist dies in a climactic, often heroic manner during the final confrontation.",
+      "movement_association": "medium",
+      "energy_level": "explosive",
+      "valence": "mixed",
+      "category": "death_sacrifice",
+      "category_name": "Death, Sacrifice, and Ending Tropes"
+    },
+    {
+      "name": "SacrificialLamb",
+      "display_name": "Sacrificial Lamb",
+      "laconic": "A character is sacrificed for the greater good, often without their knowledge or consent.",
+      "movement_association": "medium",
+      "energy_level": "high",
+      "valence": "mixed",
+      "category": "death_sacrifice",
+      "category_name": "Death, Sacrifice, and Ending Tropes"
+    },
+    {
+      "name": "MartyrDeath",
+      "display_name": "Martyr Death",
+      "laconic": "A character dies while standing up for their beliefs or principles.",
+      "movement_association": "medium",
+      "energy_level": "high",
+      "valence": "mixed",
+      "category": "death_sacrifice",
+      "category_name": "Death, Sacrifice, and Ending Tropes"
+    },
+    {
+      "name": "UnfortunateTrombone",
+      "display_name": "Unfortunate Trombone",
+      "laconic": "A character's death is accompanied by a dramatic musical cue, often a trombone solo.",
+      "movement_association": "low",
+      "energy_level": "high",
+      "valence": "negative",
+      "category": "death_sacrifice",
+      "category_name": "Death, Sacrifice, and Ending Tropes"
+    },
+    {
+      "name": "DeathByTVTropes",
+      "display_name": "Death By TV Tropes",
+      "laconic": "A character dies due to their own tropes or clichés, often in a self-aware way.",
+      "movement_association": "low",
+      "energy_level": "high",
+      "valence": "mixed",
+      "category": "death_sacrifice",
+      "category_name": "Death, Sacrifice, and Ending Tropes"
+    },
+    {
+      "name": "TheReveal",
+      "display_name": "The Reveal",
+      "laconic": "A character's death is revealed to be part of a larger, often shocking plot twist.",
+      "movement_association": "low",
+      "energy_level": "explosive",
+      "valence": "mixed",
+      "category": "death_sacrifice",
+      "category_name": "Death, Sacrifice, and Ending Tropes"
+    },
+    {
+      "name": "DeathOfAHero",
+      "display_name": "Death Of A Hero",
+      "laconic": "A beloved hero dies, often in a way that makes their sacrifice meaningful.",
+      "movement_association": "medium",
+      "energy_level": "high",
+      "valence": "mixed",
+      "category": "death_sacrifice",
+      "category_name": "Death, Sacrifice, and Ending Tropes"
+    },
+    {
+      "name": "SoulmatesDieTogether",
+      "display_name": "Soulmates Die Together",
+      "laconic": "Two characters who are deeply connected die simultaneously, often in a tragic way.",
+      "movement_association": "medium",
+      "energy_level": "high",
+      "valence": "negative",
+      "category": "death_sacrifice",
+      "category_name": "Death, Sacrifice, and Ending Tropes"
+    },
+    {
+      "name": "DeathOfTheHero",
+      "display_name": "Death Of The Hero",
+      "laconic": "The main protagonist dies, often in a way that changes the story's meaning.",
+      "movement_association": "medium",
+      "energy_level": "high",
+      "valence": "negative",
+      "category": "death_sacrifice",
+      "category_name": "Death, Sacrifice, and Ending Tropes"
+    },
+    {
+      "name": "TheEnd",
+      "display_name": "The End",
+      "laconic": "The story concludes with a definitive ending, often with a final message or resolution.",
+      "movement_association": "low",
+      "energy_level": "still",
+      "valence": "neutral",
+      "category": "death_sacrifice",
+      "category_name": "Death, Sacrifice, and Ending Tropes"
+    },
+    {
+      "name": "FinalGoodbye",
+      "display_name": "Final Goodbye",
+      "laconic": "A character says their final goodbye before dying, often with emotional weight.",
+      "movement_association": "low",
+      "energy_level": "moderate",
+      "valence": "negative",
+      "category": "death_sacrifice",
+      "category_name": "Death, Sacrifice, and Ending Tropes"
+    },
+    {
+      "name": "ChekhovsGun",
+      "display_name": "Chekhov's Gun",
+      "laconic": "A plot element that must be used later in the story, or it shouldn't exist.",
+      "movement_association": "low",
+      "energy_level": "still",
+      "valence": "neutral",
+      "category": "plot_mechanics",
+      "category_name": "Plot Mechanic Tropes"
+    },
+    {
+      "name": "DeusExMachina",
+      "display_name": "Deus Ex Machina",
+      "laconic": "An unexpected solution to a problem that comes from an outside source.",
+      "movement_association": "low",
+      "energy_level": "explosive",
+      "valence": "negative",
+      "category": "plot_mechanics",
+      "category_name": "Plot Mechanic Tropes"
+    },
+    {
+      "name": "RedHerring",
+      "display_name": "Red Herring",
+      "laconic": "A misleading clue that distracts from the real solution.",
+      "movement_association": "low",
+      "energy_level": "low",
+      "valence": "negative",
+      "category": "plot_mechanics",
+      "category_name": "Plot Mechanic Tropes"
+    },
+    {
+      "name": "PlotTwist",
+      "display_name": "Plot Twist",
+      "laconic": "A sudden change in the story that alters the audience's understanding.",
+      "movement_association": "medium",
+      "energy_level": "explosive",
+      "valence": "mixed",
+      "category": "plot_mechanics",
+      "category_name": "Plot Mechanic Tropes"
+    },
+    {
+      "name": "MacGuffin",
+      "display_name": "MacGuffin",
+      "laconic": "An object or goal that drives the plot but has little intrinsic importance.",
+      "movement_association": "high",
+      "energy_level": "moderate",
+      "valence": "neutral",
+      "category": "plot_mechanics",
+      "category_name": "Plot Mechanic Tropes"
+    },
+    {
+      "name": "Cliffhanger",
+      "display_name": "Cliffhanger",
+      "laconic": "A suspenseful ending that leaves the audience eager for the next episode.",
+      "movement_association": "low",
+      "energy_level": "high",
+      "valence": "mixed",
+      "category": "plot_mechanics",
+      "category_name": "Plot Mechanic Tropes"
+    },
+    {
+      "name": "DarkestHour",
+      "display_name": "Darkest Hour",
+      "laconic": "A moment of complete despair or hopelessness in the story.",
+      "movement_association": "low",
+      "energy_level": "low",
+      "valence": "negative",
+      "category": "plot_mechanics",
+      "category_name": "Plot Mechanic Tropes"
+    },
+    {
+      "name": "Foreshadowing",
+      "display_name": "Foreshadowing",
+      "laconic": "Hints or clues that suggest future events in the story.",
+      "movement_association": "low",
+      "energy_level": "low",
+      "valence": "neutral",
+      "category": "plot_mechanics",
+      "category_name": "Plot Mechanic Tropes"
+    },
+    {
+      "name": "Flashback",
+      "display_name": "Flashback",
+      "laconic": "A scene that shows events that happened in the past.",
+      "movement_association": "low",
+      "energy_level": "still",
+      "valence": "neutral",
+      "category": "plot_mechanics",
+      "category_name": "Plot Mechanic Tropes"
+    },
+    {
+      "name": "Montage",
+      "display_name": "Montage",
+      "laconic": "A sequence of brief scenes that show the passage of time or rapid action.",
+      "movement_association": "high",
+      "energy_level": "high",
+      "valence": "mixed",
+      "category": "plot_mechanics",
+      "category_name": "Plot Mechanic Tropes"
+    },
+    {
+      "name": "InMediasRes",
+      "display_name": "In Medias Res",
+      "laconic": "Starting a story in the middle of the action rather than at the beginning.",
+      "movement_association": "medium",
+      "energy_level": "high",
+      "valence": "neutral",
+      "category": "plot_mechanics",
+      "category_name": "Plot Mechanic Tropes"
+    },
+    {
+      "name": "BottleEpisode",
+      "display_name": "Bottle Episode",
+      "laconic": "An episode set in a limited location with few characters.",
+      "movement_association": "low",
+      "energy_level": "low",
+      "valence": "neutral",
+      "category": "plot_mechanics",
+      "category_name": "Plot Mechanic Tropes"
+    },
+    {
+      "name": "TheStinger",
+      "display_name": "The Stinger",
+      "laconic": "A brief, often surprising scene that ends an episode or season.",
+      "movement_association": "low",
+      "energy_level": "explosive",
+      "valence": "mixed",
+      "category": "plot_mechanics",
+      "category_name": "Plot Mechanic Tropes"
+    },
+    {
+      "name": "WhamEpisode",
+      "display_name": "Wham Episode",
+      "laconic": "An episode that delivers a major shock or revelation.",
+      "movement_association": "low",
+      "energy_level": "explosive",
+      "valence": "mixed",
+      "category": "plot_mechanics",
+      "category_name": "Plot Mechanic Tropes"
+    },
+    {
+      "name": "TheBigReveal",
+      "display_name": "The Big Reveal",
+      "laconic": "A major revelation that changes the entire story's meaning.",
+      "movement_association": "low",
+      "energy_level": "explosive",
+      "valence": "mixed",
+      "category": "plot_mechanics",
+      "category_name": "Plot Mechanic Tropes"
+    },
+    {
+      "name": "TheUnreveal",
+      "display_name": "The Unreveal",
+      "laconic": "A plot element that is deliberately kept hidden from the audience.",
+      "movement_association": "low",
+      "energy_level": "low",
+      "valence": "neutral",
+      "category": "plot_mechanics",
+      "category_name": "Plot Mechanic Tropes"
+    },
+    {
+      "name": "TheClimax",
+      "display_name": "The Climax",
+      "laconic": "The most intense or exciting moment in the story.",
+      "movement_association": "high",
+      "energy_level": "explosive",
+      "valence": "mixed",
+      "category": "plot_mechanics",
+      "category_name": "Plot Mechanic Tropes"
+    },
+    {
+      "name": "TheSetup",
+      "display_name": "The Setup",
+      "laconic": "The initial events that establish the story's conflict or situation.",
+      "movement_association": "medium",
+      "energy_level": "moderate",
+      "valence": "neutral",
+      "category": "plot_mechanics",
+      "category_name": "Plot Mechanic Tropes"
+    },
+    {
+      "name": "TheResolution",
+      "display_name": "The Resolution",
+      "laconic": "The conclusion of the story's conflict or problem.",
+      "movement_association": "medium",
+      "energy_level": "moderate",
+      "valence": "mixed",
+      "category": "plot_mechanics",
+      "category_name": "Plot Mechanic Tropes"
+    },
+    {
+      "name": "TheRedemption",
+      "display_name": "The Redemption",
+      "laconic": "A character's journey from wrongdoing to forgiveness or atonement.",
+      "movement_association": "medium",
+      "energy_level": "high",
+      "valence": "positive",
+      "category": "plot_mechanics",
+      "category_name": "Plot Mechanic Tropes"
+    },
+    {
+      "name": "TheSacrifice",
+      "display_name": "The Sacrifice",
+      "laconic": "A character gives up something valuable for the benefit of others.",
+      "movement_association": "medium",
+      "energy_level": "high",
+      "valence": "mixed",
+      "category": "plot_mechanics",
+      "category_name": "Plot Mechanic Tropes"
+    },
+    {
+      "name": "TheBetrayal",
+      "display_name": "The Betrayal",
+      "laconic": "A character's actions that go against the expectations of others.",
+      "movement_association": "medium",
+      "energy_level": "explosive",
+      "valence": "negative",
+      "category": "plot_mechanics",
+      "category_name": "Plot Mechanic Tropes"
+    },
+    {
+      "name": "TheResurrection",
+      "display_name": "The Resurrection",
+      "laconic": "A character's return from death or apparent defeat.",
+      "movement_association": "high",
+      "energy_level": "explosive",
+      "valence": "positive",
+      "category": "plot_mechanics",
+      "category_name": "Plot Mechanic Tropes"
+    },
+    {
+      "name": "MoodWhiplash",
+      "display_name": "Mood Whiplash",
+      "laconic": "A sudden and jarring shift in tone or emotional register that catches the audience off guard.",
+      "movement_association": "low",
+      "energy_level": "high",
+      "valence": "mixed",
+      "category": "tone_energy",
+      "category_name": "Tone and Energy Tropes"
+    },
+    {
+      "name": "CerebusSyndrome",
+      "display_name": "Cerebus Syndrome",
+      "laconic": "A character's behavior becomes increasingly absurd or ridiculous as the story progresses, often to comedic effect.",
+      "movement_association": "medium",
+      "energy_level": "moderate",
+      "valence": "positive",
+      "category": "tone_energy",
+      "category_name": "Tone and Energy Tropes"
+    },
+    {
+      "name": "BreatherEpisode",
+      "display_name": "Breather Episode",
+      "laconic": "An episode that provides relief from intense action or drama by focusing on lighter, more mundane content.",
+      "movement_association": "low",
+      "energy_level": "low",
+      "valence": "positive",
+      "category": "tone_energy",
+      "category_name": "Tone and Energy Tropes"
+    },
+    {
+      "name": "RuleOfCool",
+      "display_name": "Rule of Cool",
+      "laconic": "The principle that cool-looking elements are prioritized over logical or practical considerations in storytelling.",
+      "movement_association": "medium",
+      "energy_level": "high",
+      "valence": "positive",
+      "category": "tone_energy",
+      "category_name": "Tone and Energy Tropes"
+    },
+    {
+      "name": "RuleOfFunny",
+      "display_name": "Rule of Funny",
+      "laconic": "The principle that comedic elements are prioritized over logical or dramatic considerations in storytelling.",
+      "movement_association": "medium",
+      "energy_level": "moderate",
+      "valence": "positive",
+      "category": "tone_energy",
+      "category_name": "Tone and Energy Tropes"
+    },
+    {
+      "name": "NightmareFuel",
+      "display_name": "Nightmare Fuel",
+      "laconic": "Content designed to create intense fear or unease in the audience through disturbing imagery or concepts.",
+      "movement_association": "low",
+      "energy_level": "high",
+      "valence": "negative",
+      "category": "tone_energy",
+      "category_name": "Tone and Energy Tropes"
+    },
+    {
+      "name": "HeartwarmingMoments",
+      "display_name": "Heartwarming Moments",
+      "laconic": "Emotionally uplifting scenes that evoke feelings of joy, hope, or deep connection between characters.",
+      "movement_association": "low",
+      "energy_level": "low",
+      "valence": "positive",
+      "category": "tone_energy",
+      "category_name": "Tone and Energy Tropes"
+    },
+    {
+      "name": "TearJerker",
+      "display_name": "Tear Jerker",
+      "laconic": "A scene or moment designed to evoke strong emotional responses, particularly sadness or tears.",
+      "movement_association": "low",
+      "energy_level": "moderate",
+      "valence": "negative",
+      "category": "tone_energy",
+      "category_name": "Tone and Energy Tropes"
+    },
+    {
+      "name": "Narm",
+      "display_name": "Narm",
+      "laconic": "A moment that is so obviously designed to be emotionally manipulative that it becomes unintentionally funny.",
+      "movement_association": "low",
+      "energy_level": "moderate",
+      "valence": "mixed",
+      "category": "tone_energy",
+      "category_name": "Tone and Energy Tropes"
+    },
+    {
+      "name": "Bathos",
+      "display_name": "Bathos",
+      "laconic": "A sudden shift from serious or dramatic to trivial or ridiculous, often creating unintentional humor.",
+      "movement_association": "low",
+      "energy_level": "low",
+      "valence": "mixed",
+      "category": "tone_energy",
+      "category_name": "Tone and Energy Tropes"
+    },
+    {
+      "name": "DarkerAndEdgier",
+      "display_name": "Darker and Edgier",
+      "laconic": "A shift in tone toward more mature, violent, or morally complex content than the original series.",
+      "movement_association": "low",
+      "energy_level": "high",
+      "valence": "negative",
+      "category": "tone_energy",
+      "category_name": "Tone and Energy Tropes"
+    },
+    {
+      "name": "LighterAndSofter",
+      "display_name": "Lighter and Softer",
+      "laconic": "A shift in tone toward more whimsical, gentle, or family-friendly content than the original series.",
+      "movement_association": "low",
+      "energy_level": "low",
+      "valence": "positive",
+      "category": "tone_energy",
+      "category_name": "Tone and Energy Tropes"
+    },
+    {
+      "name": "CringeComedy",
+      "display_name": "Cringe Comedy",
+      "laconic": "Comedy that relies on awkward, embarrassing, or socially uncomfortable situations for humor.",
+      "movement_association": "medium",
+      "energy_level": "moderate",
+      "valence": "mixed",
+      "category": "tone_energy",
+      "category_name": "Tone and Energy Tropes"
+    },
+    {
+      "name": "TheBigGuy",
+      "display_name": "The Big Guy",
+      "laconic": "A character who is physically imposing and often serves as a source of protection or intimidation.",
+      "movement_association": "medium",
+      "energy_level": "moderate",
+      "valence": "mixed",
+      "category": "tone_energy",
+      "category_name": "Tone and Energy Tropes"
+    },
+    {
+      "name": "TheLoveInterest",
+      "display_name": "The Love Interest",
+      "laconic": "A character who serves as the romantic object of the hero's affection and often drives emotional development.",
+      "movement_association": "medium",
+      "energy_level": "moderate",
+      "valence": "positive",
+      "category": "tone_energy",
+      "category_name": "Tone and Energy Tropes"
+    },
+    {
+      "name": "TheDamselInDistress",
+      "display_name": "The Damsel in Distress",
+      "laconic": "A character who is in need of rescue and often serves as a catalyst for the hero's actions.",
+      "movement_association": "medium",
+      "energy_level": "moderate",
+      "valence": "mixed",
+      "category": "tone_energy",
+      "category_name": "Tone and Energy Tropes"
+    },
+    {
+      "name": "TheAntagonist",
+      "display_name": "The Antagonist",
+      "laconic": "The character who opposes the protagonist and creates conflict and obstacles in the story.",
+      "movement_association": "medium",
+      "energy_level": "high",
+      "valence": "negative",
+      "category": "tone_energy",
+      "category_name": "Tone and Energy Tropes"
+    },
+    {
+      "name": "TheComicRelief",
+      "display_name": "The Comic Relief",
+      "laconic": "A character whose primary function is to provide humor and lightness in otherwise serious situations.",
+      "movement_association": "medium",
+      "energy_level": "moderate",
+      "valence": "positive",
+      "category": "tone_energy",
+      "category_name": "Tone and Energy Tropes"
+    },
+    {
+      "name": "TheRival",
+      "display_name": "The Rival",
+      "laconic": "A character who serves as an antagonist or competitor to the protagonist, often with a personal connection or shared history.",
+      "movement_association": "medium",
+      "energy_level": "moderate",
+      "valence": "negative",
+      "category": "conflict_tension",
+      "category_name": "Conflict and Tension Tropes"
+    },
+    {
+      "name": "EscalatingWar",
+      "display_name": "Escalating War",
+      "laconic": "A conflict that grows progressively more intense and widespread, often involving multiple parties and increasing stakes.",
+      "movement_association": "high",
+      "energy_level": "explosive",
+      "valence": "negative",
+      "category": "conflict_tension",
+      "category_name": "Conflict and Tension Tropes"
+    },
+    {
+      "name": "MexicanStandoff",
+      "display_name": "Mexican Standoff",
+      "laconic": "A situation where two or more opposing parties are evenly matched and unable to gain an advantage, often leading to a stalemate.",
+      "movement_association": "low",
+      "energy_level": "high",
+      "valence": "negative",
+      "category": "conflict_tension",
+      "category_name": "Conflict and Tension Tropes"
+    },
+    {
+      "name": "BattleRoyale",
+      "display_name": "Battle Royale",
+      "laconic": "A competition where a large group of people fight to the death, typically with only one survivor.",
+      "movement_association": "high",
+      "energy_level": "explosive",
+      "valence": "negative",
+      "category": "conflict_tension",
+      "category_name": "Conflict and Tension Tropes"
+    },
+    {
+      "name": "CurbStompBattle",
+      "display_name": "Curb-Stomp Battle",
+      "laconic": "A fight where one side completely dominates the other, often with the victor showing no mercy or restraint.",
+      "movement_association": "high",
+      "energy_level": "explosive",
+      "valence": "negative",
+      "category": "conflict_tension",
+      "category_name": "Conflict and Tension Tropes"
+    },
+    {
+      "name": "DavidVsGoliath",
+      "display_name": "David vs. Goliath",
+      "laconic": "A conflict between two opposing forces where one is significantly weaker or less powerful than the other.",
+      "movement_association": "medium",
+      "energy_level": "high",
+      "valence": "mixed",
+      "category": "conflict_tension",
+      "category_name": "Conflict and Tension Tropes"
+    },
+    {
+      "name": "EnemyMine",
+      "display_name": "Enemy Mine",
+      "laconic": "A situation where former enemies are forced to work together against a common threat or adversary.",
+      "movement_association": "medium",
+      "energy_level": "moderate",
+      "valence": "mixed",
+      "category": "conflict_tension",
+      "category_name": "Conflict and Tension Tropes"
+    },
+    {
+      "name": "LetsFightLikeGentlemen",
+      "display_name": "Let's Fight Like Gentlemen",
+      "laconic": "A character who insists on fighting in a fair and honorable manner, often in contrast to their opponent's ruthless tactics.",
+      "movement_association": "medium",
+      "energy_level": "high",
+      "valence": "mixed",
+      "category": "conflict_tension",
+      "category_name": "Conflict and Tension Tropes"
+    },
+    {
+      "name": "VillainTeamUp",
+      "display_name": "Villain Team-Up",
+      "laconic": "A situation where two or more villains temporarily join forces to achieve a common goal, despite their usual rivalry.",
+      "movement_association": "medium",
+      "energy_level": "moderate",
+      "valence": "negative",
+      "category": "conflict_tension",
+      "category_name": "Conflict and Tension Tropes"
+    },
+    {
+      "name": "MirrorMatch",
+      "display_name": "Mirror Match",
+      "laconic": "A competition or conflict between two opponents who are nearly identical in skill, appearance, or background.",
+      "movement_association": "medium",
+      "energy_level": "high",
+      "valence": "mixed",
+      "category": "conflict_tension",
+      "category_name": "Conflict and Tension Tropes"
+    },
+    {
+      "name": "FinalBoss",
+      "display_name": "Final Boss",
+      "laconic": "The ultimate antagonist or challenge that the protagonist must face in order to complete their quest or achieve their goal.",
+      "movement_association": "high",
+      "energy_level": "explosive",
+      "valence": "negative",
+      "category": "conflict_tension",
+      "category_name": "Conflict and Tension Tropes"
+    },
+    {
+      "name": "UnstoppableRage",
+      "display_name": "Unstoppable Rage",
+      "laconic": "A character who becomes consumed by fury and loses all control, often causing destruction and chaos in their path.",
+      "movement_association": "high",
+      "energy_level": "explosive",
+      "valence": "negative",
+      "category": "conflict_tension",
+      "category_name": "Conflict and Tension Tropes"
+    },
+    {
+      "name": "TheUnderdog",
+      "display_name": "The Underdog",
+      "laconic": "A character who is significantly weaker or less powerful than their opponent, often inspiring sympathy or admiration.",
+      "movement_association": "medium",
+      "energy_level": "high",
+      "valence": "mixed",
+      "category": "conflict_tension",
+      "category_name": "Conflict and Tension Tropes"
+    },
+    {
+      "name": "TheTyrant",
+      "display_name": "The Tyrant",
+      "laconic": "A character who rules with absolute power and often cruel or oppressive methods, typically opposing the protagonist.",
+      "movement_association": "low",
+      "energy_level": "high",
+      "valence": "negative",
+      "category": "conflict_tension",
+      "category_name": "Conflict and Tension Tropes"
+    },
+    {
+      "name": "TheChampion",
+      "display_name": "The Champion",
+      "laconic": "A character who represents the opposing side in a conflict, often serving as a formidable rival or antagonist.",
+      "movement_association": "medium",
+      "energy_level": "high",
+      "valence": "negative",
+      "category": "conflict_tension",
+      "category_name": "Conflict and Tension Tropes"
+    },
+    {
+      "name": "TheCompanion",
+      "display_name": "The Companion",
+      "laconic": "A character who travels with and supports the protagonist on their journey, often providing friendship or loyalty.",
+      "movement_association": "high",
+      "energy_level": "moderate",
+      "valence": "positive",
+      "category": "conflict_tension",
+      "category_name": "Conflict and Tension Tropes"
+    },
+    {
+      "name": "TheFoe",
+      "display_name": "The Foe",
+      "laconic": "A character who opposes the protagonist and creates conflict or obstacles in their path.",
+      "movement_association": "medium",
+      "energy_level": "high",
+      "valence": "negative",
+      "category": "conflict_tension",
+      "category_name": "Conflict and Tension Tropes"
+    },
+    {
+      "name": "TheOpponent",
+      "display_name": "The Opponent",
+      "laconic": "A character who stands against the protagonist in a conflict or competition, often representing opposing values or goals.",
+      "movement_association": "medium",
+      "energy_level": "high",
+      "valence": "negative",
+      "category": "conflict_tension",
+      "category_name": "Conflict and Tension Tropes"
+    },
+    {
+      "name": "Slapstick",
+      "display_name": "Slapstick",
+      "laconic": "Physical comedy involving exaggerated, often painful mishaps and pratfalls.",
+      "movement_association": "high",
+      "energy_level": "high",
+      "valence": "positive",
+      "category": "comedy_absurdity",
+      "category_name": "Comedy and Absurdity Tropes"
+    },
+    {
+      "name": "RunningGag",
+      "display_name": "Running Gag",
+      "laconic": "A joke or comedic element that recurs throughout a series or episode.",
+      "movement_association": "low",
+      "energy_level": "moderate",
+      "valence": "positive",
+      "category": "comedy_absurdity",
+      "category_name": "Comedy and Absurdity Tropes"
+    },
+    {
+      "name": "BrickJoke",
+      "display_name": "Brick Joke",
+      "laconic": "A seemingly insignificant joke or reference that becomes important later.",
+      "movement_association": "low",
+      "energy_level": "low",
+      "valence": "mixed",
+      "category": "comedy_absurdity",
+      "category_name": "Comedy and Absurdity Tropes"
+    },
+    {
+      "name": "DeadpanSnarker",
+      "display_name": "Deadpan Snarker",
+      "laconic": "A character who delivers cutting remarks with a completely straight face.",
+      "movement_association": "low",
+      "energy_level": "moderate",
+      "valence": "mixed",
+      "category": "comedy_absurdity",
+      "category_name": "Comedy and Absurdity Tropes"
+    },
+    {
+      "name": "ButtMonkey",
+      "display_name": "Butt-Monkey",
+      "laconic": "A character who consistently gets the short end of the stick and suffers mishaps.",
+      "movement_association": "medium",
+      "energy_level": "moderate",
+      "valence": "negative",
+      "category": "comedy_absurdity",
+      "category_name": "Comedy and Absurdity Tropes"
+    },
+    {
+      "name": "EpicFail",
+      "display_name": "Epic Fail",
+      "laconic": "A spectacularly disastrous attempt that becomes hilariously embarrassing.",
+      "movement_association": "medium",
+      "energy_level": "high",
+      "valence": "positive",
+      "category": "comedy_absurdity",
+      "category_name": "Comedy and Absurdity Tropes"
+    },
+    {
+      "name": "RefugeInAudacity",
+      "display_name": "Refuge in Audacity",
+      "laconic": "Using outrageous behavior to deflect criticism or make a point.",
+      "movement_association": "low",
+      "energy_level": "moderate",
+      "valence": "mixed",
+      "category": "comedy_absurdity",
+      "category_name": "Comedy and Absurdity Tropes"
+    },
+    {
+      "name": "InsaneTrollLogic",
+      "display_name": "Insane Troll Logic",
+      "laconic": "A completely illogical argument that somehow makes sense in its own absurd way.",
+      "movement_association": "low",
+      "energy_level": "moderate",
+      "valence": "mixed",
+      "category": "comedy_absurdity",
+      "category_name": "Comedy and Absurdity Tropes"
+    },
+    {
+      "name": "StraightMan",
+      "display_name": "Straight Man",
+      "laconic": "A character who provides a straight, serious reaction to absurd situations.",
+      "movement_association": "low",
+      "energy_level": "low",
+      "valence": "neutral",
+      "category": "comedy_absurdity",
+      "category_name": "Comedy and Absurdity Tropes"
+    },
+    {
+      "name": "FourthWallBreak",
+      "display_name": "Fourth Wall Break",
+      "laconic": "Characters directly addressing the audience or acknowledging their fictional nature.",
+      "movement_association": "low",
+      "energy_level": "moderate",
+      "valence": "mixed",
+      "category": "comedy_absurdity",
+      "category_name": "Comedy and Absurdity Tropes"
+    },
+    {
+      "name": "ComicallySerious",
+      "display_name": "Comically Serious",
+      "laconic": "A character who treats a ridiculous situation with complete seriousness.",
+      "movement_association": "low",
+      "energy_level": "moderate",
+      "valence": "positive",
+      "category": "comedy_absurdity",
+      "category_name": "Comedy and Absurdity Tropes"
+    },
+    {
+      "name": "IncrediblyLamePun",
+      "display_name": "Incredibly Lame Pun",
+      "laconic": "A pun so bad it becomes comically effective through its own absurdity.",
+      "movement_association": "low",
+      "energy_level": "low",
+      "valence": "positive",
+      "category": "comedy_absurdity",
+      "category_name": "Comedy and Absurdity Tropes"
+    },
+    {
+      "name": "BlatantLies",
+      "display_name": "Blatant Lies",
+      "laconic": "Characters making obvious, outrageous falsehoods for comedic effect.",
+      "movement_association": "low",
+      "energy_level": "moderate",
+      "valence": "positive",
+      "category": "comedy_absurdity",
+      "category_name": "Comedy and Absurdity Tropes"
+    },
+    {
+      "name": "CrowningMomentOfAwesome",
+      "display_name": "Crowning Moment of Awesome",
+      "laconic": "A perfectly executed, absurdly cool moment that becomes a comedic highlight.",
+      "movement_association": "medium",
+      "energy_level": "high",
+      "valence": "positive",
+      "category": "comedy_absurdity",
+      "category_name": "Comedy and Absurdity Tropes"
+    },
+    {
+      "name": "IdiotBall",
+      "display_name": "Idiot Ball",
+      "laconic": "A character's stupidity that leads to absurd, often hilarious consequences.",
+      "movement_association": "medium",
+      "energy_level": "moderate",
+      "valence": "negative",
+      "category": "comedy_absurdity",
+      "category_name": "Comedy and Absurdity Tropes"
+    },
+    {
+      "name": "UnfortunateImplications",
+      "display_name": "Unfortunate Implications",
+      "laconic": "A statement that sounds innocent but has absurdly inappropriate meanings.",
+      "movement_association": "low",
+      "energy_level": "moderate",
+      "valence": "mixed",
+      "category": "comedy_absurdity",
+      "category_name": "Comedy and Absurdity Tropes"
+    },
+    {
+      "name": "BerserkButton",
+      "display_name": "Berserk Button",
+      "laconic": "A character's specific trigger that causes them to react with exaggerated rage.",
+      "movement_association": "medium",
+      "energy_level": "high",
+      "valence": "negative",
+      "category": "comedy_absurdity",
+      "category_name": "Comedy and Absurdity Tropes"
+    },
+    {
+      "name": "BreakingTheFourthWall",
+      "display_name": "Breaking the Fourth Wall",
+      "laconic": "Characters directly acknowledge their fictional nature and speak to the audience or show awareness of their medium.",
+      "movement_association": "low",
+      "energy_level": "moderate",
+      "valence": "mixed",
+      "category": "meta_structural",
+      "category_name": "Meta and Structural Tropes"
+    },
+    {
+      "name": "LampshadeHanging",
+      "display_name": "Lampshade Hanging",
+      "laconic": "Characters make humorous or pointed comments about plot holes, inconsistencies, or implausible elements in the story.",
+      "movement_association": "low",
+      "energy_level": "low",
+      "valence": "positive",
+      "category": "meta_structural",
+      "category_name": "Meta and Structural Tropes"
+    },
+    {
+      "name": "GenreSavvy",
+      "display_name": "Genre Savvy",
+      "laconic": "Characters demonstrate sophisticated knowledge of genre conventions and tropes, often using this awareness to their advantage.",
+      "movement_association": "low",
+      "energy_level": "moderate",
+      "valence": "mixed",
+      "category": "meta_structural",
+      "category_name": "Meta and Structural Tropes"
+    },
+    {
+      "name": "MediumAwareness",
+      "display_name": "Medium Awareness",
+      "laconic": "Characters show explicit recognition of the medium they exist in, such as acknowledging they're in a movie or TV show.",
+      "movement_association": "low",
+      "energy_level": "moderate",
+      "valence": "mixed",
+      "category": "meta_structural",
+      "category_name": "Meta and Structural Tropes"
+    },
+    {
+      "name": "ThisIsReality",
+      "display_name": "This Is Reality",
+      "laconic": "Characters explicitly state or emphasize that their current situation is real, often in contrast to fantasy or dream sequences.",
+      "movement_association": "low",
+      "energy_level": "low",
+      "valence": "neutral",
+      "category": "meta_structural",
+      "category_name": "Meta and Structural Tropes"
+    },
+    {
+      "name": "TropesAreTools",
+      "display_name": "Tropes Are Tools",
+      "laconic": "Characters discuss or acknowledge that storytelling tropes are deliberate tools used by creators to achieve specific effects.",
+      "movement_association": "low",
+      "energy_level": "low",
+      "valence": "neutral",
+      "category": "meta_structural",
+      "category_name": "Meta and Structural Tropes"
+    },
+    {
+      "name": "Deconstruction",
+      "display_name": "Deconstruction",
+      "laconic": "The narrative critically examines and dismantles established genre conventions, tropes, or assumptions.",
+      "movement_association": "low",
+      "energy_level": "moderate",
+      "valence": "negative",
+      "category": "meta_structural",
+      "category_name": "Meta and Structural Tropes"
+    },
+    {
+      "name": "Reconstruction",
+      "display_name": "Reconstruction",
+      "laconic": "The narrative rebuilds or reimagines genre conventions, tropes, or assumptions in new or subversive ways.",
+      "movement_association": "low",
+      "energy_level": "moderate",
+      "valence": "positive",
+      "category": "meta_structural",
+      "category_name": "Meta and Structural Tropes"
+    },
+    {
+      "name": "LeaningOnTheFourthWall",
+      "display_name": "Leaning on the Fourth Wall",
+      "laconic": "Characters use the boundary between fiction and reality as a narrative device, often for comedic or dramatic effect.",
+      "movement_association": "low",
+      "energy_level": "moderate",
+      "valence": "mixed",
+      "category": "meta_structural",
+      "category_name": "Meta and Structural Tropes"
+    },
+    {
+      "name": "DeadHorseTrope",
+      "display_name": "Dead Horse Trope",
+      "laconic": "A previously overused or exhausted trope that has lost its impact and is now considered clichéd or tired.",
+      "movement_association": "low",
+      "energy_level": "low",
+      "valence": "negative",
+      "category": "meta_structural",
+      "category_name": "Meta and Structural Tropes"
+    },
+    {
+      "name": "MetaNarrative",
+      "display_name": "Meta Narrative",
+      "laconic": "A story that comments on or self-consciously references its own narrative structure and storytelling methods.",
+      "movement_association": "low",
+      "energy_level": "moderate",
+      "valence": "mixed",
+      "category": "meta_structural",
+      "category_name": "Meta and Structural Tropes"
+    },
+    {
+      "name": "NarrativeVoice",
+      "display_name": "Narrative Voice",
+      "laconic": "The story's narrator or voice explicitly comments on the narrative, character development, or storytelling process.",
+      "movement_association": "low",
+      "energy_level": "low",
+      "valence": "neutral",
+      "category": "meta_structural",
+      "category_name": "Meta and Structural Tropes"
+    },
+    {
+      "name": "SelfAwareness",
+      "display_name": "Self Awareness",
+      "laconic": "Characters demonstrate explicit knowledge of their own fictional status and the nature of their existence.",
+      "movement_association": "low",
+      "energy_level": "moderate",
+      "valence": "mixed",
+      "category": "meta_structural",
+      "category_name": "Meta and Structural Tropes"
+    },
+    {
+      "name": "NarrativeDissonance",
+      "display_name": "Narrative Dissonance",
+      "laconic": "The story deliberately creates tension between what the audience expects and what actually happens, often through genre subversion.",
+      "movement_association": "low",
+      "energy_level": "high",
+      "valence": "mixed",
+      "category": "meta_structural",
+      "category_name": "Meta and Structural Tropes"
+    },
+    {
+      "name": "StorytellingAsASkill",
+      "display_name": "Storytelling As A Skill",
+      "laconic": "Characters discuss, practice, or demonstrate the craft of storytelling, often showing awareness of narrative techniques.",
+      "movement_association": "low",
+      "energy_level": "moderate",
+      "valence": "positive",
+      "category": "meta_structural",
+      "category_name": "Meta and Structural Tropes"
+    },
+    {
+      "name": "PowerUp",
+      "display_name": "Power Up",
+      "laconic": "A character gains increased physical or mental abilities through training, technology, or mystical means.",
+      "movement_association": "high",
+      "energy_level": "high",
+      "valence": "positive",
+      "category": "transformation_power",
+      "category_name": "Transformation and Power Tropes"
+    },
+    {
+      "name": "SuperpoweredEvilSide",
+      "display_name": "Superpowered Evil Side",
+      "laconic": "A character's darker personality manifests as a separate, more powerful entity with enhanced abilities.",
+      "movement_association": "medium",
+      "energy_level": "high",
+      "valence": "negative",
+      "category": "transformation_power",
+      "category_name": "Transformation and Power Tropes"
+    },
+    {
+      "name": "DrunkWithPower",
+      "display_name": "Drunk With Power",
+      "laconic": "A character becomes corrupted by their newfound abilities and begins abusing them.",
+      "movement_association": "low",
+      "energy_level": "moderate",
+      "valence": "negative",
+      "category": "transformation_power",
+      "category_name": "Transformation and Power Tropes"
+    },
+    {
+      "name": "BroughtDownToNormal",
+      "display_name": "Brought Down to Normal",
+      "laconic": "A character's supernatural abilities are stripped away, returning them to ordinary human status.",
+      "movement_association": "low",
+      "energy_level": "moderate",
+      "valence": "mixed",
+      "category": "transformation_power",
+      "category_name": "Transformation and Power Tropes"
+    },
+    {
+      "name": "OneWingedAngel",
+      "display_name": "One-Winged Angel",
+      "laconic": "A character's appearance and personality dramatically shift to become more angelic or divine.",
+      "movement_association": "medium",
+      "energy_level": "high",
+      "valence": "positive",
+      "category": "transformation_power",
+      "category_name": "Transformation and Power Tropes"
+    },
+    {
+      "name": "Shapeshifting",
+      "display_name": "Shapeshifting",
+      "laconic": "A character can change their physical form at will, often taking on the appearance of others.",
+      "movement_association": "high",
+      "energy_level": "moderate",
+      "valence": "mixed",
+      "category": "transformation_power",
+      "category_name": "Transformation and Power Tropes"
+    },
+    {
+      "name": "EvolutionPowerUp",
+      "display_name": "Evolution Power-Up",
+      "laconic": "A character undergoes a physical or mental transformation that grants them new abilities.",
+      "movement_association": "high",
+      "energy_level": "high",
+      "valence": "positive",
+      "category": "transformation_power",
+      "category_name": "Transformation and Power Tropes"
+    },
+    {
+      "name": "LimitBreak",
+      "display_name": "Limit Break",
+      "laconic": "A character reaches their maximum potential and gains extraordinary abilities in a moment of crisis.",
+      "movement_association": "high",
+      "energy_level": "explosive",
+      "valence": "positive",
+      "category": "transformation_power",
+      "category_name": "Transformation and Power Tropes"
+    },
+    {
+      "name": "DeadlyUpgrade",
+      "display_name": "Deadly Upgrade",
+      "laconic": "A character's weapon or ability becomes significantly more lethal, often with devastating consequences.",
+      "movement_association": "medium",
+      "energy_level": "high",
+      "valence": "negative",
+      "category": "transformation_power",
+      "category_name": "Transformation and Power Tropes"
+    },
+    {
+      "name": "WithGreatPower",
+      "display_name": "With Great Power",
+      "laconic": "A character gains tremendous abilities and must grapple with the responsibility that comes with them.",
+      "movement_association": "medium",
+      "energy_level": "moderate",
+      "valence": "mixed",
+      "category": "transformation_power",
+      "category_name": "Transformation and Power Tropes"
+    },
+    {
+      "name": "Transformation",
+      "display_name": "Transformation",
+      "laconic": "A character undergoes a significant physical or psychological change that affects their abilities.",
+      "movement_association": "high",
+      "energy_level": "moderate",
+      "valence": "mixed",
+      "category": "transformation_power",
+      "category_name": "Transformation and Power Tropes"
+    },
+    {
+      "name": "PowerShift",
+      "display_name": "Power Shift",
+      "laconic": "A character's abilities or status changes dramatically, often due to external circumstances or internal conflict.",
+      "movement_association": "medium",
+      "energy_level": "moderate",
+      "valence": "mixed",
+      "category": "transformation_power",
+      "category_name": "Transformation and Power Tropes"
+    },
+    {
+      "name": "AscendedMeme",
+      "display_name": "Ascended Meme",
+      "laconic": "A character's abilities or status are elevated beyond normal limits, often through comedic or absurd means.",
+      "movement_association": "medium",
+      "energy_level": "high",
+      "valence": "mixed",
+      "category": "transformation_power",
+      "category_name": "Transformation and Power Tropes"
+    },
+    {
+      "name": "MysticalPower",
+      "display_name": "Mystical Power",
+      "laconic": "A character gains supernatural abilities through mystical means, often involving ancient knowledge or artifacts.",
+      "movement_association": "medium",
+      "energy_level": "high",
+      "valence": "mixed",
+      "category": "transformation_power",
+      "category_name": "Transformation and Power Tropes"
+    },
+    {
+      "name": "TechnologicalUpgrade",
+      "display_name": "Technological Upgrade",
+      "laconic": "A character's abilities or equipment are enhanced through technological advancement or modification.",
+      "movement_association": "medium",
+      "energy_level": "moderate",
+      "valence": "mixed",
+      "category": "transformation_power",
+      "category_name": "Transformation and Power Tropes"
+    }
+  ]
+}

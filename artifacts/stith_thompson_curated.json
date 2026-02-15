@@ -1,0 +1,2039 @@
+{
+  "date": "2026-02-15 08:19:38",
+  "model": "qwen3-coder:30b",
+  "n_motifs": 192,
+  "categories": [
+    {
+      "id": "A",
+      "name": "Mythological Motifs",
+      "count": 10
+    },
+    {
+      "id": "B",
+      "name": "Animals",
+      "count": 10
+    },
+    {
+      "id": "C",
+      "name": "Tabu",
+      "count": 10
+    },
+    {
+      "id": "D",
+      "name": "Magic",
+      "count": 15
+    },
+    {
+      "id": "E",
+      "name": "The Dead",
+      "count": 10
+    },
+    {
+      "id": "F",
+      "name": "Marvels",
+      "count": 10
+    },
+    {
+      "id": "G",
+      "name": "Ogres",
+      "count": 8
+    },
+    {
+      "id": "H",
+      "name": "Tests",
+      "count": 10
+    },
+    {
+      "id": "J",
+      "name": "The Wise and the Foolish",
+      "count": 10
+    },
+    {
+      "id": "K",
+      "name": "Deceptions",
+      "count": 10
+    },
+    {
+      "id": "L",
+      "name": "Reversal of Fortune",
+      "count": 8
+    },
+    {
+      "id": "M",
+      "name": "Ordaining the Future",
+      "count": 8
+    },
+    {
+      "id": "N",
+      "name": "Chance and Fate",
+      "count": 8
+    },
+    {
+      "id": "P",
+      "name": "Society",
+      "count": 8
+    },
+    {
+      "id": "Q",
+      "name": "Rewards and Punishments",
+      "count": 10
+    },
+    {
+      "id": "R",
+      "name": "Captives and Fugitives",
+      "count": 8
+    },
+    {
+      "id": "S",
+      "name": "Unnatural Cruelty",
+      "count": 8
+    },
+    {
+      "id": "T",
+      "name": "Sex",
+      "count": 8
+    },
+    {
+      "id": "U",
+      "name": "The Nature of Life",
+      "count": 5
+    },
+    {
+      "id": "V",
+      "name": "Religion",
+      "count": 5
+    },
+    {
+      "id": "W",
+      "name": "Traits of Character",
+      "count": 8
+    },
+    {
+      "id": "Z",
+      "name": "Miscellaneous",
+      "count": 5
+    }
+  ],
+  "motifs": [
+    {
+      "motif_id": "A100",
+      "description": "God as creator",
+      "movement_quality": "stillness",
+      "energy": "high",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "A",
+      "category_name": "Mythological Motifs"
+    },
+    {
+      "motif_id": "A1010",
+      "description": "Deluge",
+      "movement_quality": "flowing",
+      "energy": "explosive",
+      "involves_death": true,
+      "involves_transformation": false,
+      "category": "A",
+      "category_name": "Mythological Motifs"
+    },
+    {
+      "motif_id": "A700",
+      "description": "Creation of sky",
+      "movement_quality": "ascending",
+      "energy": "moderate",
+      "involves_death": false,
+      "involves_transformation": true,
+      "category": "A",
+      "category_name": "Mythological Motifs"
+    },
+    {
+      "motif_id": "A1415",
+      "description": "Theft of fire",
+      "movement_quality": "running",
+      "energy": "high",
+      "involves_death": false,
+      "involves_transformation": true,
+      "category": "A",
+      "category_name": "Mythological Motifs"
+    },
+    {
+      "motif_id": "A15",
+      "description": "Human creator",
+      "movement_quality": "stillness",
+      "energy": "low",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "A",
+      "category_name": "Mythological Motifs"
+    },
+    {
+      "motif_id": "A1000",
+      "description": "Creation of man",
+      "movement_quality": "ascending",
+      "energy": "moderate",
+      "involves_death": false,
+      "involves_transformation": true,
+      "category": "A",
+      "category_name": "Mythological Motifs"
+    },
+    {
+      "motif_id": "A1001",
+      "description": "Creation of woman",
+      "movement_quality": "stillness",
+      "energy": "low",
+      "involves_death": false,
+      "involves_transformation": true,
+      "category": "A",
+      "category_name": "Mythological Motifs"
+    },
+    {
+      "motif_id": "A1002",
+      "description": "Creation of animals",
+      "movement_quality": "creeping",
+      "energy": "low",
+      "involves_death": false,
+      "involves_transformation": true,
+      "category": "A",
+      "category_name": "Mythological Motifs"
+    },
+    {
+      "motif_id": "A1003",
+      "description": "Creation of plants",
+      "movement_quality": "growing",
+      "energy": "low",
+      "involves_death": false,
+      "involves_transformation": true,
+      "category": "A",
+      "category_name": "Mythological Motifs"
+    },
+    {
+      "motif_id": "A1004",
+      "description": "Creation of stars",
+      "movement_quality": "falling",
+      "energy": "low",
+      "involves_death": false,
+      "involves_transformation": true,
+      "category": "A",
+      "category_name": "Mythological Motifs"
+    },
+    {
+      "motif_id": "B11",
+      "description": "Dragon",
+      "movement_quality": "flight",
+      "energy": "high",
+      "involves_death": true,
+      "involves_transformation": false,
+      "category": "B",
+      "category_name": "Animals"
+    },
+    {
+      "motif_id": "B211.1",
+      "description": "Speaking horse",
+      "movement_quality": "running",
+      "energy": "moderate",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "B",
+      "category_name": "Animals"
+    },
+    {
+      "motif_id": "B300",
+      "description": "Helpful animal",
+      "movement_quality": "running",
+      "energy": "moderate",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "B",
+      "category_name": "Animals"
+    },
+    {
+      "motif_id": "B600",
+      "description": "Animal marriage",
+      "movement_quality": "none",
+      "energy": "low",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "B",
+      "category_name": "Animals"
+    },
+    {
+      "motif_id": "B100",
+      "description": "Treasure animal",
+      "movement_quality": "creeping",
+      "energy": "low",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "B",
+      "category_name": "Animals"
+    },
+    {
+      "motif_id": "B500",
+      "description": "Magic animal",
+      "movement_quality": "stillness",
+      "energy": "moderate",
+      "involves_death": false,
+      "involves_transformation": true,
+      "category": "B",
+      "category_name": "Animals"
+    },
+    {
+      "motif_id": "B200",
+      "description": "Talking animal",
+      "movement_quality": "none",
+      "energy": "low",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "B",
+      "category_name": "Animals"
+    },
+    {
+      "motif_id": "B400",
+      "description": "Animal helper",
+      "movement_quality": "running",
+      "energy": "moderate",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "B",
+      "category_name": "Animals"
+    },
+    {
+      "motif_id": "B700",
+      "description": "Animal bridegroom",
+      "movement_quality": "running",
+      "energy": "moderate",
+      "involves_death": false,
+      "involves_transformation": true,
+      "category": "B",
+      "category_name": "Animals"
+    },
+    {
+      "motif_id": "B800",
+      "description": "Animal companion",
+      "movement_quality": "running",
+      "energy": "moderate",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "B",
+      "category_name": "Animals"
+    },
+    {
+      "motif_id": "C300",
+      "description": "Looking tabu",
+      "movement_quality": "stillness",
+      "energy": "low",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "C",
+      "category_name": "Tabu"
+    },
+    {
+      "motif_id": "C200",
+      "description": "Eating tabu",
+      "movement_quality": "none",
+      "energy": "moderate",
+      "involves_death": true,
+      "involves_transformation": false,
+      "category": "C",
+      "category_name": "Tabu"
+    },
+    {
+      "motif_id": "C400",
+      "description": "Speaking tabu",
+      "movement_quality": "none",
+      "energy": "high",
+      "involves_death": true,
+      "involves_transformation": false,
+      "category": "C",
+      "category_name": "Tabu"
+    },
+    {
+      "motif_id": "C900",
+      "description": "Punishment for breaking tabu",
+      "movement_quality": "struggle",
+      "energy": "explosive",
+      "involves_death": true,
+      "involves_transformation": false,
+      "category": "C",
+      "category_name": "Tabu"
+    },
+    {
+      "motif_id": "C610",
+      "description": "Forbidden chamber",
+      "movement_quality": "stillness",
+      "energy": "low",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "C",
+      "category_name": "Tabu"
+    },
+    {
+      "motif_id": "C30",
+      "description": "Tabu: offending supernatural",
+      "movement_quality": "struggle",
+      "energy": "high",
+      "involves_death": true,
+      "involves_transformation": false,
+      "category": "C",
+      "category_name": "Tabu"
+    },
+    {
+      "motif_id": "C500",
+      "description": "Touching tabu",
+      "movement_quality": "none",
+      "energy": "moderate",
+      "involves_death": true,
+      "involves_transformation": false,
+      "category": "C",
+      "category_name": "Tabu"
+    },
+    {
+      "motif_id": "C700",
+      "description": "Breaking tabu",
+      "movement_quality": "running",
+      "energy": "high",
+      "involves_death": true,
+      "involves_transformation": false,
+      "category": "C",
+      "category_name": "Tabu"
+    },
+    {
+      "motif_id": "C800",
+      "description": "Tabu concerning the dead",
+      "movement_quality": "stillness",
+      "energy": "low",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "C",
+      "category_name": "Tabu"
+    },
+    {
+      "motif_id": "C1000",
+      "description": "Tabu concerning the living",
+      "movement_quality": "none",
+      "energy": "moderate",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "C",
+      "category_name": "Tabu"
+    },
+    {
+      "motif_id": "D10",
+      "description": "Transformation to animal",
+      "movement_quality": "changing",
+      "energy": "high",
+      "involves_death": false,
+      "involves_transformation": true,
+      "category": "D",
+      "category_name": "Magic"
+    },
+    {
+      "motif_id": "D100",
+      "description": "Transformation to object",
+      "movement_quality": "stillness",
+      "energy": "low",
+      "involves_death": false,
+      "involves_transformation": true,
+      "category": "D",
+      "category_name": "Magic"
+    },
+    {
+      "motif_id": "D700",
+      "description": "Disenchantment",
+      "movement_quality": "struggle",
+      "energy": "moderate",
+      "involves_death": false,
+      "involves_transformation": true,
+      "category": "D",
+      "category_name": "Magic"
+    },
+    {
+      "motif_id": "D800",
+      "description": "Magic object",
+      "movement_quality": "none",
+      "energy": "moderate",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "D",
+      "category_name": "Magic"
+    },
+    {
+      "motif_id": "D1000",
+      "description": "Magic power",
+      "movement_quality": "none",
+      "energy": "high",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "D",
+      "category_name": "Magic"
+    },
+    {
+      "motif_id": "D1400",
+      "description": "Magic object overcomes",
+      "movement_quality": "fighting",
+      "energy": "explosive",
+      "involves_death": true,
+      "involves_transformation": false,
+      "category": "D",
+      "category_name": "Magic"
+    },
+    {
+      "motif_id": "D1421.1.3",
+      "description": "Magic horn which provides drink",
+      "movement_quality": "flowing",
+      "energy": "moderate",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "D",
+      "category_name": "Magic"
+    },
+    {
+      "motif_id": "D1421.1.1",
+      "description": "Magic horn which provides food",
+      "movement_quality": "flowing",
+      "energy": "moderate",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "D",
+      "category_name": "Magic"
+    },
+    {
+      "motif_id": "D1421.2",
+      "description": "Magic horn which provides wine",
+      "movement_quality": "flowing",
+      "energy": "moderate",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "D",
+      "category_name": "Magic"
+    },
+    {
+      "motif_id": "D1421.3",
+      "description": "Magic horn which provides water",
+      "movement_quality": "flowing",
+      "energy": "low",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "D",
+      "category_name": "Magic"
+    },
+    {
+      "motif_id": "D1421.4",
+      "description": "Magic horn which provides milk",
+      "movement_quality": "flowing",
+      "energy": "low",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "D",
+      "category_name": "Magic"
+    },
+    {
+      "motif_id": "D1421.5",
+      "description": "Magic horn which provides meat",
+      "movement_quality": "flowing",
+      "energy": "moderate",
+      "involves_death": true,
+      "involves_transformation": false,
+      "category": "D",
+      "category_name": "Magic"
+    },
+    {
+      "motif_id": "D1421.6",
+      "description": "Magic horn which provides fish",
+      "movement_quality": "flowing",
+      "energy": "moderate",
+      "involves_death": true,
+      "involves_transformation": false,
+      "category": "D",
+      "category_name": "Magic"
+    },
+    {
+      "motif_id": "D1421.7",
+      "description": "Magic horn which provides honey",
+      "movement_quality": "flowing",
+      "energy": "low",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "D",
+      "category_name": "Magic"
+    },
+    {
+      "motif_id": "D1421.8",
+      "description": "Magic horn which provides beer",
+      "movement_quality": "flowing",
+      "energy": "moderate",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "D",
+      "category_name": "Magic"
+    },
+    {
+      "motif_id": "E1",
+      "description": "Person resuscitated",
+      "movement_quality": "stillness",
+      "energy": "moderate",
+      "involves_death": true,
+      "involves_transformation": true,
+      "category": "E",
+      "category_name": "The Dead"
+    },
+    {
+      "motif_id": "E200",
+      "description": "Ghost",
+      "movement_quality": "none",
+      "energy": "low",
+      "involves_death": true,
+      "involves_transformation": true,
+      "category": "E",
+      "category_name": "The Dead"
+    },
+    {
+      "motif_id": "E400",
+      "description": "Ghost appearances",
+      "movement_quality": "stillness",
+      "energy": "low",
+      "involves_death": true,
+      "involves_transformation": true,
+      "category": "E",
+      "category_name": "The Dead"
+    },
+    {
+      "motif_id": "E500",
+      "description": "Phantom hosts",
+      "movement_quality": "running",
+      "energy": "high",
+      "involves_death": true,
+      "involves_transformation": true,
+      "category": "E",
+      "category_name": "The Dead"
+    },
+    {
+      "motif_id": "E700",
+      "description": "Soul",
+      "movement_quality": "none",
+      "energy": "still",
+      "involves_death": true,
+      "involves_transformation": true,
+      "category": "E",
+      "category_name": "The Dead"
+    },
+    {
+      "motif_id": "E750",
+      "description": "Perils of the soul",
+      "movement_quality": "struggle",
+      "energy": "explosive",
+      "involves_death": true,
+      "involves_transformation": true,
+      "category": "E",
+      "category_name": "The Dead"
+    },
+    {
+      "motif_id": "E1000",
+      "description": "Revenant",
+      "movement_quality": "running",
+      "energy": "high",
+      "involves_death": true,
+      "involves_transformation": true,
+      "category": "E",
+      "category_name": "The Dead"
+    },
+    {
+      "motif_id": "E1100",
+      "description": "Undead",
+      "movement_quality": "creeping",
+      "energy": "low",
+      "involves_death": true,
+      "involves_transformation": true,
+      "category": "E",
+      "category_name": "The Dead"
+    },
+    {
+      "motif_id": "E1200",
+      "description": "Soul's journey to underworld",
+      "movement_quality": "falling",
+      "energy": "moderate",
+      "involves_death": true,
+      "involves_transformation": true,
+      "category": "E",
+      "category_name": "The Dead"
+    },
+    {
+      "motif_id": "E1300",
+      "description": "Resurrection of the dead",
+      "movement_quality": "rising",
+      "energy": "explosive",
+      "involves_death": true,
+      "involves_transformation": true,
+      "category": "E",
+      "category_name": "The Dead"
+    },
+    {
+      "motif_id": "F200",
+      "description": "Fairies",
+      "movement_quality": "flight",
+      "energy": "high",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "F",
+      "category_name": "Marvels"
+    },
+    {
+      "motif_id": "F400",
+      "description": "Spirits",
+      "movement_quality": "stillness",
+      "energy": "low",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "F",
+      "category_name": "Marvels"
+    },
+    {
+      "motif_id": "F500",
+      "description": "Remarkable persons",
+      "movement_quality": "running",
+      "energy": "moderate",
+      "involves_death": false,
+      "involves_transformation": true,
+      "category": "F",
+      "category_name": "Marvels"
+    },
+    {
+      "motif_id": "F700",
+      "description": "Extraordinary places",
+      "movement_quality": "none",
+      "energy": "still",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "F",
+      "category_name": "Marvels"
+    },
+    {
+      "motif_id": "F900",
+      "description": "Extraordinary events",
+      "movement_quality": "explosive",
+      "energy": "explosive",
+      "involves_death": true,
+      "involves_transformation": false,
+      "category": "F",
+      "category_name": "Marvels"
+    },
+    {
+      "motif_id": "F0",
+      "description": "Otherworld journeys",
+      "movement_quality": "flight",
+      "energy": "high",
+      "involves_death": false,
+      "involves_transformation": true,
+      "category": "F",
+      "category_name": "Marvels"
+    },
+    {
+      "motif_id": "F100",
+      "description": "Magical creatures",
+      "movement_quality": "creeping",
+      "energy": "moderate",
+      "involves_death": true,
+      "involves_transformation": true,
+      "category": "F",
+      "category_name": "Marvels"
+    },
+    {
+      "motif_id": "F300",
+      "description": "Enchanted beings",
+      "movement_quality": "struggle",
+      "energy": "high",
+      "involves_death": false,
+      "involves_transformation": true,
+      "category": "F",
+      "category_name": "Marvels"
+    },
+    {
+      "motif_id": "F600",
+      "description": "Wonderful places",
+      "movement_quality": "none",
+      "energy": "still",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "F",
+      "category_name": "Marvels"
+    },
+    {
+      "motif_id": "F800",
+      "description": "Marvelous events",
+      "movement_quality": "falling",
+      "energy": "moderate",
+      "involves_death": true,
+      "involves_transformation": true,
+      "category": "F",
+      "category_name": "Marvels"
+    },
+    {
+      "motif_id": "G500",
+      "description": "Ogre defeated",
+      "movement_quality": "struggle",
+      "energy": "high",
+      "involves_death": true,
+      "involves_transformation": false,
+      "category": "G",
+      "category_name": "Ogres"
+    },
+    {
+      "motif_id": "G100",
+      "description": "Ogre's lair",
+      "movement_quality": "stillness",
+      "energy": "low",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "G",
+      "category_name": "Ogres"
+    },
+    {
+      "motif_id": "G300",
+      "description": "Ogre's cave",
+      "movement_quality": "stillness",
+      "energy": "moderate",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "G",
+      "category_name": "Ogres"
+    },
+    {
+      "motif_id": "G200",
+      "description": "Ogre's wife",
+      "movement_quality": "none",
+      "energy": "moderate",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "G",
+      "category_name": "Ogres"
+    },
+    {
+      "motif_id": "G400",
+      "description": "Person falls into ogre's power",
+      "movement_quality": "falling",
+      "energy": "moderate",
+      "involves_death": true,
+      "involves_transformation": false,
+      "category": "G",
+      "category_name": "Ogres"
+    },
+    {
+      "motif_id": "G600",
+      "description": "Ogre's meal",
+      "movement_quality": "none",
+      "energy": "low",
+      "involves_death": true,
+      "involves_transformation": false,
+      "category": "G",
+      "category_name": "Ogres"
+    },
+    {
+      "motif_id": "G700",
+      "description": "Ogre's children",
+      "movement_quality": "none",
+      "energy": "low",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "G",
+      "category_name": "Ogres"
+    },
+    {
+      "motif_id": "G800",
+      "description": "Ogre's treasure",
+      "movement_quality": "none",
+      "energy": "moderate",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "G",
+      "category_name": "Ogres"
+    },
+    {
+      "motif_id": "H300",
+      "description": "Tests of prowess",
+      "movement_quality": "struggle",
+      "energy": "high",
+      "involves_death": true,
+      "involves_transformation": false,
+      "category": "H",
+      "category_name": "Tests"
+    },
+    {
+      "motif_id": "H500",
+      "description": "Tests of cleverness",
+      "movement_quality": "none",
+      "energy": "moderate",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "H",
+      "category_name": "Tests"
+    },
+    {
+      "motif_id": "H1200",
+      "description": "Quest",
+      "movement_quality": "running",
+      "energy": "high",
+      "involves_death": true,
+      "involves_transformation": true,
+      "category": "H",
+      "category_name": "Tests"
+    },
+    {
+      "motif_id": "H900",
+      "description": "Tasks",
+      "movement_quality": "none",
+      "energy": "low",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "H",
+      "category_name": "Tests"
+    },
+    {
+      "motif_id": "H1300",
+      "description": "Quest for the best",
+      "movement_quality": "running",
+      "energy": "high",
+      "involves_death": true,
+      "involves_transformation": true,
+      "category": "H",
+      "category_name": "Tests"
+    },
+    {
+      "motif_id": "H0",
+      "description": "Identity tests",
+      "movement_quality": "stillness",
+      "energy": "moderate",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "H",
+      "category_name": "Tests"
+    },
+    {
+      "motif_id": "H1500",
+      "description": "Tests of strength",
+      "movement_quality": "struggle",
+      "energy": "explosive",
+      "involves_death": true,
+      "involves_transformation": false,
+      "category": "H",
+      "category_name": "Tests"
+    },
+    {
+      "motif_id": "H2000",
+      "description": "Tests of courage",
+      "movement_quality": "running",
+      "energy": "high",
+      "involves_death": true,
+      "involves_transformation": false,
+      "category": "H",
+      "category_name": "Tests"
+    },
+    {
+      "motif_id": "H2500",
+      "description": "Tests of loyalty",
+      "movement_quality": "none",
+      "energy": "low",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "H",
+      "category_name": "Tests"
+    },
+    {
+      "motif_id": "H3000",
+      "description": "Tests of wisdom",
+      "movement_quality": "none",
+      "energy": "moderate",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "H",
+      "category_name": "Tests"
+    },
+    {
+      "motif_id": "J1100",
+      "description": "Cleverness",
+      "movement_quality": "none",
+      "energy": "moderate",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "J",
+      "category_name": "The Wise and the Foolish"
+    },
+    {
+      "motif_id": "J800",
+      "description": "Fools",
+      "movement_quality": "none",
+      "energy": "low",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "J",
+      "category_name": "The Wise and the Foolish"
+    },
+    {
+      "motif_id": "J200",
+      "description": "Choices",
+      "movement_quality": "none",
+      "energy": "moderate",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "J",
+      "category_name": "The Wise and the Foolish"
+    },
+    {
+      "motif_id": "J1700",
+      "description": "Fools",
+      "movement_quality": "none",
+      "energy": "low",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "J",
+      "category_name": "The Wise and the Foolish"
+    },
+    {
+      "motif_id": "J2000",
+      "description": "Absurd actions",
+      "movement_quality": "none",
+      "energy": "low",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "J",
+      "category_name": "The Wise and the Foolish"
+    },
+    {
+      "motif_id": "J100",
+      "description": "Wisdom",
+      "movement_quality": "none",
+      "energy": "moderate",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "J",
+      "category_name": "The Wise and the Foolish"
+    },
+    {
+      "motif_id": "J1200",
+      "description": "Cleverness",
+      "movement_quality": "none",
+      "energy": "moderate",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "J",
+      "category_name": "The Wise and the Foolish"
+    },
+    {
+      "motif_id": "J1800",
+      "description": "Fools",
+      "movement_quality": "none",
+      "energy": "low",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "J",
+      "category_name": "The Wise and the Foolish"
+    },
+    {
+      "motif_id": "J2100",
+      "description": "Absurd actions",
+      "movement_quality": "none",
+      "energy": "low",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "J",
+      "category_name": "The Wise and the Foolish"
+    },
+    {
+      "motif_id": "J1300",
+      "description": "Cleverness",
+      "movement_quality": "none",
+      "energy": "moderate",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "J",
+      "category_name": "The Wise and the Foolish"
+    },
+    {
+      "motif_id": "K500",
+      "description": "Escape by deception",
+      "movement_quality": "running",
+      "energy": "high",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "K",
+      "category_name": "Deceptions"
+    },
+    {
+      "motif_id": "K800",
+      "description": "Killing by deception",
+      "movement_quality": "struggle",
+      "energy": "explosive",
+      "involves_death": true,
+      "involves_transformation": false,
+      "category": "K",
+      "category_name": "Deceptions"
+    },
+    {
+      "motif_id": "K300",
+      "description": "Thefts and cheats",
+      "movement_quality": "creeping",
+      "energy": "moderate",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "K",
+      "category_name": "Deceptions"
+    },
+    {
+      "motif_id": "K1800",
+      "description": "Deception by disguise",
+      "movement_quality": "stillness",
+      "energy": "low",
+      "involves_death": false,
+      "involves_transformation": true,
+      "category": "K",
+      "category_name": "Deceptions"
+    },
+    {
+      "motif_id": "K0",
+      "description": "Contests won by deception",
+      "movement_quality": "struggle",
+      "energy": "high",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "K",
+      "category_name": "Deceptions"
+    },
+    {
+      "motif_id": "K1000",
+      "description": "Trickster in disguise",
+      "movement_quality": "running",
+      "energy": "high",
+      "involves_death": false,
+      "involves_transformation": true,
+      "category": "K",
+      "category_name": "Deceptions"
+    },
+    {
+      "motif_id": "K1200",
+      "description": "Deception by false appearance",
+      "movement_quality": "stillness",
+      "energy": "low",
+      "involves_death": false,
+      "involves_transformation": true,
+      "category": "K",
+      "category_name": "Deceptions"
+    },
+    {
+      "motif_id": "K600",
+      "description": "Capture by deception",
+      "movement_quality": "struggle",
+      "energy": "moderate",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "K",
+      "category_name": "Deceptions"
+    },
+    {
+      "motif_id": "K1500",
+      "description": "Deception by false information",
+      "movement_quality": "none",
+      "energy": "low",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "K",
+      "category_name": "Deceptions"
+    },
+    {
+      "motif_id": "K900",
+      "description": "Murder by deception",
+      "movement_quality": "struggle",
+      "energy": "explosive",
+      "involves_death": true,
+      "involves_transformation": false,
+      "category": "K",
+      "category_name": "Deceptions"
+    },
+    {
+      "motif_id": "L100",
+      "description": "Unpromising hero",
+      "movement_quality": "none",
+      "energy": "moderate",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "L",
+      "category_name": "Reversal of Fortune"
+    },
+    {
+      "motif_id": "L200",
+      "description": "Modesty rewarded",
+      "movement_quality": "none",
+      "energy": "low",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "L",
+      "category_name": "Reversal of Fortune"
+    },
+    {
+      "motif_id": "L400",
+      "description": "Pride brought low",
+      "movement_quality": "falling",
+      "energy": "high",
+      "involves_death": true,
+      "involves_transformation": false,
+      "category": "L",
+      "category_name": "Reversal of Fortune"
+    },
+    {
+      "motif_id": "L0",
+      "description": "Victorious youngest child",
+      "movement_quality": "running",
+      "energy": "explosive",
+      "involves_death": true,
+      "involves_transformation": false,
+      "category": "L",
+      "category_name": "Reversal of Fortune"
+    },
+    {
+      "motif_id": "L300",
+      "description": "Cruel stepmother",
+      "movement_quality": "none",
+      "energy": "moderate",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "L",
+      "category_name": "Reversal of Fortune"
+    },
+    {
+      "motif_id": "L500",
+      "description": "Foolishness punished",
+      "movement_quality": "struggle",
+      "energy": "high",
+      "involves_death": true,
+      "involves_transformation": false,
+      "category": "L",
+      "category_name": "Reversal of Fortune"
+    },
+    {
+      "motif_id": "L600",
+      "description": "Wicked uncle",
+      "movement_quality": "none",
+      "energy": "moderate",
+      "involves_death": true,
+      "involves_transformation": false,
+      "category": "L",
+      "category_name": "Reversal of Fortune"
+    },
+    {
+      "motif_id": "L700",
+      "description": "Good fortune to humble person",
+      "movement_quality": "rising",
+      "energy": "high",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "L",
+      "category_name": "Reversal of Fortune"
+    },
+    {
+      "motif_id": "M300",
+      "description": "Prophecies",
+      "movement_quality": "stillness",
+      "energy": "moderate",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "M",
+      "category_name": "Ordaining the Future"
+    },
+    {
+      "motif_id": "M400",
+      "description": "Curses",
+      "movement_quality": "none",
+      "energy": "high",
+      "involves_death": true,
+      "involves_transformation": false,
+      "category": "M",
+      "category_name": "Ordaining the Future"
+    },
+    {
+      "motif_id": "M200",
+      "description": "Bargains with devil",
+      "movement_quality": "struggle",
+      "energy": "explosive",
+      "involves_death": true,
+      "involves_transformation": true,
+      "category": "M",
+      "category_name": "Ordaining the Future"
+    },
+    {
+      "motif_id": "M0",
+      "description": "Bargains and promises",
+      "movement_quality": "none",
+      "energy": "moderate",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "M",
+      "category_name": "Ordaining the Future"
+    },
+    {
+      "motif_id": "M500",
+      "description": "Fate",
+      "movement_quality": "none",
+      "energy": "low",
+      "involves_death": true,
+      "involves_transformation": false,
+      "category": "M",
+      "category_name": "Ordaining the Future"
+    },
+    {
+      "motif_id": "M100",
+      "description": "Vows",
+      "movement_quality": "stillness",
+      "energy": "moderate",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "M",
+      "category_name": "Ordaining the Future"
+    },
+    {
+      "motif_id": "M600",
+      "description": "Premonitions",
+      "movement_quality": "none",
+      "energy": "low",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "M",
+      "category_name": "Ordaining the Future"
+    },
+    {
+      "motif_id": "M700",
+      "description": "Omens",
+      "movement_quality": "none",
+      "energy": "low",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "M",
+      "category_name": "Ordaining the Future"
+    },
+    {
+      "motif_id": "N100",
+      "description": "Nature of luck",
+      "movement_quality": "none",
+      "energy": "moderate",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "N",
+      "category_name": "Chance and Fate"
+    },
+    {
+      "motif_id": "N300",
+      "description": "Unlucky accidents",
+      "movement_quality": "falling",
+      "energy": "high",
+      "involves_death": true,
+      "involves_transformation": false,
+      "category": "N",
+      "category_name": "Chance and Fate"
+    },
+    {
+      "motif_id": "N500",
+      "description": "Treasure found by chance",
+      "movement_quality": "running",
+      "energy": "moderate",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "N",
+      "category_name": "Chance and Fate"
+    },
+    {
+      "motif_id": "N200",
+      "description": "Gambling",
+      "movement_quality": "struggle",
+      "energy": "high",
+      "involves_death": true,
+      "involves_transformation": false,
+      "category": "N",
+      "category_name": "Chance and Fate"
+    },
+    {
+      "motif_id": "N400",
+      "description": "Wagers",
+      "movement_quality": "running",
+      "energy": "moderate",
+      "involves_death": true,
+      "involves_transformation": false,
+      "category": "N",
+      "category_name": "Chance and Fate"
+    },
+    {
+      "motif_id": "N600",
+      "description": "Fortune-telling",
+      "movement_quality": "stillness",
+      "energy": "low",
+      "involves_death": false,
+      "involves_transformation": true,
+      "category": "N",
+      "category_name": "Chance and Fate"
+    },
+    {
+      "motif_id": "N700",
+      "description": "Prophecy",
+      "movement_quality": "none",
+      "energy": "moderate",
+      "involves_death": true,
+      "involves_transformation": true,
+      "category": "N",
+      "category_name": "Chance and Fate"
+    },
+    {
+      "motif_id": "N800",
+      "description": "Fate",
+      "movement_quality": "none",
+      "energy": "still",
+      "involves_death": true,
+      "involves_transformation": true,
+      "category": "N",
+      "category_name": "Chance and Fate"
+    },
+    {
+      "motif_id": "P100",
+      "description": "The king's son",
+      "movement_quality": "running",
+      "energy": "moderate",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "P",
+      "category_name": "Society"
+    },
+    {
+      "motif_id": "P350",
+      "description": "The peasant's son",
+      "movement_quality": "walking",
+      "energy": "low",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "P",
+      "category_name": "Society"
+    },
+    {
+      "motif_id": "P250",
+      "description": "The family",
+      "movement_quality": "stillness",
+      "energy": "low",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "P",
+      "category_name": "Society"
+    },
+    {
+      "motif_id": "P450",
+      "description": "The blacksmith",
+      "movement_quality": "struggle",
+      "energy": "high",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "P",
+      "category_name": "Society"
+    },
+    {
+      "motif_id": "P550",
+      "description": "The judge",
+      "movement_quality": "standing",
+      "energy": "still",
+      "involves_death": true,
+      "involves_transformation": false,
+      "category": "P",
+      "category_name": "Society"
+    },
+    {
+      "motif_id": "P150",
+      "description": "The queen",
+      "movement_quality": "walking",
+      "energy": "moderate",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "P",
+      "category_name": "Society"
+    },
+    {
+      "motif_id": "P600",
+      "description": "The soldier",
+      "movement_quality": "fighting",
+      "energy": "explosive",
+      "involves_death": true,
+      "involves_transformation": false,
+      "category": "P",
+      "category_name": "Society"
+    },
+    {
+      "motif_id": "P200",
+      "description": "The family",
+      "movement_quality": "stillness",
+      "energy": "low",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "P",
+      "category_name": "Society"
+    },
+    {
+      "motif_id": "Q200",
+      "description": "Deeds punished",
+      "movement_quality": "struggle",
+      "energy": "high",
+      "involves_death": true,
+      "involves_transformation": false,
+      "category": "Q",
+      "category_name": "Rewards and Punishments"
+    },
+    {
+      "motif_id": "Q400",
+      "description": "Kinds of punishment",
+      "movement_quality": "none",
+      "energy": "moderate",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "Q",
+      "category_name": "Rewards and Punishments"
+    },
+    {
+      "motif_id": "Q500",
+      "description": "Tedious punishment",
+      "movement_quality": "stillness",
+      "energy": "low",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "Q",
+      "category_name": "Rewards and Punishments"
+    },
+    {
+      "motif_id": "Q550",
+      "description": "Mysterious punishments",
+      "movement_quality": "creeping",
+      "energy": "moderate",
+      "involves_death": true,
+      "involves_transformation": false,
+      "category": "Q",
+      "category_name": "Rewards and Punishments"
+    },
+    {
+      "motif_id": "Q0",
+      "description": "Deeds rewarded",
+      "movement_quality": "flight",
+      "energy": "explosive",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "Q",
+      "category_name": "Rewards and Punishments"
+    },
+    {
+      "motif_id": "Q100",
+      "description": "Reward for faithful service",
+      "movement_quality": "running",
+      "energy": "high",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "Q",
+      "category_name": "Rewards and Punishments"
+    },
+    {
+      "motif_id": "Q250",
+      "description": "Punishment by supernatural means",
+      "movement_quality": "falling",
+      "energy": "high",
+      "involves_death": true,
+      "involves_transformation": true,
+      "category": "Q",
+      "category_name": "Rewards and Punishments"
+    },
+    {
+      "motif_id": "Q300",
+      "description": "Punishment by fire",
+      "movement_quality": "struggle",
+      "energy": "explosive",
+      "involves_death": true,
+      "involves_transformation": false,
+      "category": "Q",
+      "category_name": "Rewards and Punishments"
+    },
+    {
+      "motif_id": "Q350",
+      "description": "Punishment by water",
+      "movement_quality": "falling",
+      "energy": "moderate",
+      "involves_death": true,
+      "involves_transformation": false,
+      "category": "Q",
+      "category_name": "Rewards and Punishments"
+    },
+    {
+      "motif_id": "Q600",
+      "description": "Divine justice",
+      "movement_quality": "none",
+      "energy": "still",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "Q",
+      "category_name": "Rewards and Punishments"
+    },
+    {
+      "motif_id": "R100",
+      "description": "Rescue of captive",
+      "movement_quality": "running",
+      "energy": "high",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "R",
+      "category_name": "Captives and Fugitives"
+    },
+    {
+      "motif_id": "R200",
+      "description": "Escape from captivity",
+      "movement_quality": "flight",
+      "energy": "explosive",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "R",
+      "category_name": "Captives and Fugitives"
+    },
+    {
+      "motif_id": "R300",
+      "description": "Refuge of fugitive",
+      "movement_quality": "flight",
+      "energy": "high",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "R",
+      "category_name": "Captives and Fugitives"
+    },
+    {
+      "motif_id": "R0",
+      "description": "Abduction",
+      "movement_quality": "struggle",
+      "energy": "moderate",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "R",
+      "category_name": "Captives and Fugitives"
+    },
+    {
+      "motif_id": "R100.1",
+      "description": "Rescue by supernatural aid",
+      "movement_quality": "falling",
+      "energy": "high",
+      "involves_death": false,
+      "involves_transformation": true,
+      "category": "R",
+      "category_name": "Captives and Fugitives"
+    },
+    {
+      "motif_id": "R200.1",
+      "description": "Escape by supernatural aid",
+      "movement_quality": "running",
+      "energy": "explosive",
+      "involves_death": false,
+      "involves_transformation": true,
+      "category": "R",
+      "category_name": "Captives and Fugitives"
+    },
+    {
+      "motif_id": "R300.1",
+      "description": "Refuge in church",
+      "movement_quality": "stillness",
+      "energy": "low",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "R",
+      "category_name": "Captives and Fugitives"
+    },
+    {
+      "motif_id": "R100.2",
+      "description": "Rescue by magic means",
+      "movement_quality": "creeping",
+      "energy": "moderate",
+      "involves_death": true,
+      "involves_transformation": true,
+      "category": "R",
+      "category_name": "Captives and Fugitives"
+    },
+    {
+      "motif_id": "S100",
+      "description": "Cruel persecutors",
+      "movement_quality": "struggle",
+      "energy": "high",
+      "involves_death": true,
+      "involves_transformation": false,
+      "category": "S",
+      "category_name": "Unnatural Cruelty"
+    },
+    {
+      "motif_id": "S200",
+      "description": "Cruel sacrifices",
+      "movement_quality": "stillness",
+      "energy": "moderate",
+      "involves_death": true,
+      "involves_transformation": false,
+      "category": "S",
+      "category_name": "Unnatural Cruelty"
+    },
+    {
+      "motif_id": "S300",
+      "description": "Abandoned children",
+      "movement_quality": "running",
+      "energy": "moderate",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "S",
+      "category_name": "Unnatural Cruelty"
+    },
+    {
+      "motif_id": "S0",
+      "description": "Cruel relatives",
+      "movement_quality": "creeping",
+      "energy": "low",
+      "involves_death": true,
+      "involves_transformation": false,
+      "category": "S",
+      "category_name": "Unnatural Cruelty"
+    },
+    {
+      "motif_id": "S400",
+      "description": "Cruel stepmothers",
+      "movement_quality": "struggle",
+      "energy": "high",
+      "involves_death": true,
+      "involves_transformation": false,
+      "category": "S",
+      "category_name": "Unnatural Cruelty"
+    },
+    {
+      "motif_id": "S500",
+      "description": "Cruel stepfathers",
+      "movement_quality": "falling",
+      "energy": "moderate",
+      "involves_death": true,
+      "involves_transformation": false,
+      "category": "S",
+      "category_name": "Unnatural Cruelty"
+    },
+    {
+      "motif_id": "S600",
+      "description": "Cruel mothers",
+      "movement_quality": "flight",
+      "energy": "explosive",
+      "involves_death": true,
+      "involves_transformation": false,
+      "category": "S",
+      "category_name": "Unnatural Cruelty"
+    },
+    {
+      "motif_id": "S700",
+      "description": "Cruel fathers",
+      "movement_quality": "running",
+      "energy": "high",
+      "involves_death": true,
+      "involves_transformation": false,
+      "category": "S",
+      "category_name": "Unnatural Cruelty"
+    },
+    {
+      "motif_id": "T100",
+      "description": "Marriage",
+      "movement_quality": "none",
+      "energy": "moderate",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "T",
+      "category_name": "Sex"
+    },
+    {
+      "motif_id": "T300",
+      "description": "Chastity",
+      "movement_quality": "stillness",
+      "energy": "low",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "T",
+      "category_name": "Sex"
+    },
+    {
+      "motif_id": "T500",
+      "description": "Conception and birth",
+      "movement_quality": "struggle",
+      "energy": "high",
+      "involves_death": false,
+      "involves_transformation": true,
+      "category": "T",
+      "category_name": "Sex"
+    },
+    {
+      "motif_id": "T200",
+      "description": "Married life",
+      "movement_quality": "none",
+      "energy": "moderate",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "T",
+      "category_name": "Sex"
+    },
+    {
+      "motif_id": "T1000",
+      "description": "Love magic",
+      "movement_quality": "creeping",
+      "energy": "moderate",
+      "involves_death": false,
+      "involves_transformation": true,
+      "category": "T",
+      "category_name": "Sex"
+    },
+    {
+      "motif_id": "T1200",
+      "description": "Love potion",
+      "movement_quality": "none",
+      "energy": "low",
+      "involves_death": false,
+      "involves_transformation": true,
+      "category": "T",
+      "category_name": "Sex"
+    },
+    {
+      "motif_id": "T1300",
+      "description": "Love curse",
+      "movement_quality": "struggle",
+      "energy": "high",
+      "involves_death": true,
+      "involves_transformation": true,
+      "category": "T",
+      "category_name": "Sex"
+    },
+    {
+      "motif_id": "T1400",
+      "description": "Forbidden love",
+      "movement_quality": "running",
+      "energy": "explosive",
+      "involves_death": true,
+      "involves_transformation": false,
+      "category": "T",
+      "category_name": "Sex"
+    },
+    {
+      "motif_id": "U100.1",
+      "description": "The nature of life and death",
+      "movement_quality": "stillness",
+      "energy": "moderate",
+      "involves_death": true,
+      "involves_transformation": true,
+      "category": "U",
+      "category_name": "The Nature of Life"
+    },
+    {
+      "motif_id": "U120",
+      "description": "Life and death in the same person",
+      "movement_quality": "struggle",
+      "energy": "high",
+      "involves_death": true,
+      "involves_transformation": true,
+      "category": "U",
+      "category_name": "The Nature of Life"
+    },
+    {
+      "motif_id": "U150.1",
+      "description": "The soul's journey after death",
+      "movement_quality": "flight",
+      "energy": "moderate",
+      "involves_death": true,
+      "involves_transformation": true,
+      "category": "U",
+      "category_name": "The Nature of Life"
+    },
+    {
+      "motif_id": "U170",
+      "description": "Resurrection of the dead",
+      "movement_quality": "rising",
+      "energy": "explosive",
+      "involves_death": true,
+      "involves_transformation": true,
+      "category": "U",
+      "category_name": "The Nature of Life"
+    },
+    {
+      "motif_id": "U180",
+      "description": "Immortality of the soul",
+      "movement_quality": "none",
+      "energy": "low",
+      "involves_death": false,
+      "involves_transformation": true,
+      "category": "U",
+      "category_name": "The Nature of Life"
+    },
+    {
+      "motif_id": "V200.1",
+      "description": "Saint's bodily relics",
+      "movement_quality": "stillness",
+      "energy": "low",
+      "involves_death": true,
+      "involves_transformation": false,
+      "category": "V",
+      "category_name": "Religion"
+    },
+    {
+      "motif_id": "V300.5",
+      "description": "Religious order founded by miracle",
+      "movement_quality": "running",
+      "energy": "high",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "V",
+      "category_name": "Religion"
+    },
+    {
+      "motif_id": "V400.2",
+      "description": "Sacred vessel",
+      "movement_quality": "none",
+      "energy": "still",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "V",
+      "category_name": "Religion"
+    },
+    {
+      "motif_id": "V0.3",
+      "description": "Pilgrimage to holy place",
+      "movement_quality": "running",
+      "energy": "moderate",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "V",
+      "category_name": "Religion"
+    },
+    {
+      "motif_id": "V200.8",
+      "description": "Saint's miraculous intervention",
+      "movement_quality": "flight",
+      "energy": "explosive",
+      "involves_death": false,
+      "involves_transformation": true,
+      "category": "V",
+      "category_name": "Religion"
+    },
+    {
+      "motif_id": "W105",
+      "description": "Cruelty to animals",
+      "movement_quality": "struggle",
+      "energy": "high",
+      "involves_death": true,
+      "involves_transformation": false,
+      "category": "W",
+      "category_name": "Traits of Character"
+    },
+    {
+      "motif_id": "W250",
+      "description": "Cleverness in dealing with enemies",
+      "movement_quality": "running",
+      "energy": "moderate",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "W",
+      "category_name": "Traits of Character"
+    },
+    {
+      "motif_id": "W300",
+      "description": "Generosity to strangers",
+      "movement_quality": "stillness",
+      "energy": "low",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "W",
+      "category_name": "Traits of Character"
+    },
+    {
+      "motif_id": "W400",
+      "description": "Patience under suffering",
+      "movement_quality": "stillness",
+      "energy": "low",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "W",
+      "category_name": "Traits of Character"
+    },
+    {
+      "motif_id": "W500",
+      "description": "Greed for treasure",
+      "movement_quality": "running",
+      "energy": "high",
+      "involves_death": true,
+      "involves_transformation": false,
+      "category": "W",
+      "category_name": "Traits of Character"
+    },
+    {
+      "motif_id": "W600",
+      "description": "Cruelty to children",
+      "movement_quality": "struggle",
+      "energy": "high",
+      "involves_death": true,
+      "involves_transformation": false,
+      "category": "W",
+      "category_name": "Traits of Character"
+    },
+    {
+      "motif_id": "W700",
+      "description": "Bravery in battle",
+      "movement_quality": "fighting",
+      "energy": "explosive",
+      "involves_death": true,
+      "involves_transformation": false,
+      "category": "W",
+      "category_name": "Traits of Character"
+    },
+    {
+      "motif_id": "W800",
+      "description": "Wit and trickery",
+      "movement_quality": "creeping",
+      "energy": "moderate",
+      "involves_death": false,
+      "involves_transformation": true,
+      "category": "W",
+      "category_name": "Traits of Character"
+    },
+    {
+      "motif_id": "Z125",
+      "description": "Magic horn which provides drink",
+      "movement_quality": "none",
+      "energy": "moderate",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "Z",
+      "category_name": "Miscellaneous"
+    },
+    {
+      "motif_id": "Z300",
+      "description": "Unique exceptions",
+      "movement_quality": "none",
+      "energy": "low",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "Z",
+      "category_name": "Miscellaneous"
+    },
+    {
+      "motif_id": "Z250",
+      "description": "Hero's journey with supernatural aid",
+      "movement_quality": "running",
+      "energy": "high",
+      "involves_death": true,
+      "involves_transformation": true,
+      "category": "Z",
+      "category_name": "Miscellaneous"
+    },
+    {
+      "motif_id": "Z150",
+      "description": "Transformation to animal",
+      "movement_quality": "running",
+      "energy": "moderate",
+      "involves_death": false,
+      "involves_transformation": true,
+      "category": "Z",
+      "category_name": "Miscellaneous"
+    },
+    {
+      "motif_id": "Z400",
+      "description": "Humorous incidents",
+      "movement_quality": "none",
+      "energy": "moderate",
+      "involves_death": false,
+      "involves_transformation": false,
+      "category": "Z",
+      "category_name": "Miscellaneous"
+    }
+  ]
+}

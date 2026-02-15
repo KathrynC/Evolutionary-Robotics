@@ -1,0 +1,2074 @@
+{
+  "date": "2026-02-15 08:54:29",
+  "verify_model": "llama3.1:latest",
+  "curation_model": "qwen3-coder:30b",
+  "n_verified": 177,
+  "n_issues": 71,
+  "issues": [
+    {
+      "motif_id": "A15",
+      "flags": [
+        "invalid ID format",
+        "LIKELY HALLUCINATED"
+      ],
+      "notes": "Thompson's numbering scheme requires a three-digit number, not just two digits"
+    },
+    {
+      "motif_id": "B11",
+      "flags": [
+        "invalid ID format",
+        "LIKELY HALLUCINATED"
+      ],
+      "notes": "Thompson's numbering scheme requires a three-digit number, not just two digits"
+    },
+    {
+      "motif_id": "B300",
+      "flags": [
+        "invalid ID format",
+        "LIKELY HALLUCINATED"
+      ],
+      "notes": "Thompson's numbering scheme requires a three-digit number, not just two digits"
+    },
+    {
+      "motif_id": "B600",
+      "flags": [
+        "invalid ID format",
+        "LIKELY HALLUCINATED"
+      ],
+      "notes": "Thompson's numbering scheme requires a three-digit number, not just two digits"
+    },
+    {
+      "motif_id": "B100",
+      "flags": [
+        "invalid ID format",
+        "LIKELY HALLUCINATED"
+      ],
+      "notes": "Thompson's numbering scheme requires a three-digit number, not just two digits"
+    },
+    {
+      "motif_id": "C610",
+      "flags": [
+        "invalid ID format",
+        "LIKELY HALLUCINATED"
+      ],
+      "notes": "Thompson's numbering scheme typically uses three digits, not two"
+    },
+    {
+      "motif_id": "C30",
+      "flags": [
+        "invalid ID format",
+        "LIKELY HALLUCINATED"
+      ],
+      "notes": "Thompson's numbering scheme typically uses three digits, not two"
+    },
+    {
+      "motif_id": "C1000",
+      "flags": [
+        "invalid ID format",
+        "LIKELY HALLUCINATED"
+      ],
+      "notes": "Thompson's numbering scheme typically uses three digits, not four"
+    },
+    {
+      "motif_id": "D10",
+      "flags": [
+        "category mismatch"
+      ],
+      "notes": ""
+    },
+    {
+      "motif_id": "D100",
+      "flags": [
+        "category mismatch"
+      ],
+      "notes": ""
+    },
+    {
+      "motif_id": "D700",
+      "flags": [
+        "category mismatch"
+      ],
+      "notes": ""
+    },
+    {
+      "motif_id": "D800",
+      "flags": [
+        "category mismatch"
+      ],
+      "notes": ""
+    },
+    {
+      "motif_id": "D1000",
+      "flags": [
+        "category mismatch"
+      ],
+      "notes": ""
+    },
+    {
+      "motif_id": "D1400",
+      "flags": [
+        "category mismatch"
+      ],
+      "notes": ""
+    },
+    {
+      "motif_id": "F200",
+      "flags": [
+        "category mismatch"
+      ],
+      "notes": "Category F is 'Supernatural Beings', not 'Fairies'"
+    },
+    {
+      "motif_id": "F400",
+      "flags": [
+        "category mismatch"
+      ],
+      "notes": "Category F is 'Supernatural Beings', not 'Spirits'"
+    },
+    {
+      "motif_id": "F500",
+      "flags": [
+        "category mismatch"
+      ],
+      "notes": "Category F is 'Supernatural Beings', not 'Remarkable Persons'"
+    },
+    {
+      "motif_id": "F700",
+      "flags": [
+        "category mismatch"
+      ],
+      "notes": "Category F is 'Supernatural Beings', not 'Extraordinary Places'"
+    },
+    {
+      "motif_id": "F900",
+      "flags": [
+        "category mismatch"
+      ],
+      "notes": "Category F is 'Supernatural Beings', not 'Extraordinary Events'"
+    },
+    {
+      "motif_id": "F0",
+      "flags": [
+        "category mismatch"
+      ],
+      "notes": ""
+    },
+    {
+      "motif_id": "F100",
+      "flags": [
+        "category mismatch"
+      ],
+      "notes": ""
+    },
+    {
+      "motif_id": "F300",
+      "flags": [
+        "category mismatch"
+      ],
+      "notes": ""
+    },
+    {
+      "motif_id": "F600",
+      "flags": [
+        "category mismatch"
+      ],
+      "notes": ""
+    },
+    {
+      "motif_id": "F800",
+      "flags": [
+        "category mismatch"
+      ],
+      "notes": ""
+    },
+    {
+      "motif_id": "G100",
+      "flags": [
+        "invalid ID format",
+        "category mismatch"
+      ],
+      "notes": "Typically, G motifs are numbered in the 500s or 600s"
+    },
+    {
+      "motif_id": "G300",
+      "flags": [
+        "invalid ID format",
+        "category mismatch"
+      ],
+      "notes": "Typically, G motifs are numbered in the 500s or 600s"
+    },
+    {
+      "motif_id": "G200",
+      "flags": [
+        "invalid ID format",
+        "category mismatch"
+      ],
+      "notes": "Typically, G motifs are numbered in the 500s or 600s"
+    },
+    {
+      "motif_id": "G400",
+      "flags": [
+        "invalid ID format",
+        "category mismatch"
+      ],
+      "notes": "Typically, G motifs are numbered in the 500s or 600s"
+    },
+    {
+      "motif_id": "G600",
+      "flags": [
+        "invalid ID format",
+        "category mismatch"
+      ],
+      "notes": "Typically, G motifs are numbered in the 500s or 600s"
+    },
+    {
+      "motif_id": "G700",
+      "flags": [
+        "invalid ID format",
+        "category mismatch"
+      ],
+      "notes": "Typically, G motifs are numbered in the 500s or 600s"
+    },
+    {
+      "motif_id": "G800",
+      "flags": [
+        "invalid ID format",
+        "category mismatch"
+      ],
+      "notes": "Typically, G motifs are numbered in the 500s or 600s"
+    },
+    {
+      "motif_id": "H300",
+      "flags": [
+        "category mismatch"
+      ],
+      "notes": ""
+    },
+    {
+      "motif_id": "H500",
+      "flags": [
+        "category mismatch"
+      ],
+      "notes": ""
+    },
+    {
+      "motif_id": "H0",
+      "flags": [
+        "invalid ID format",
+        "category mismatch",
+        "LIKELY HALLUCINATED",
+        "description implausible"
+      ],
+      "notes": "Thompson motifs use a numerical ID, not a zero"
+    },
+    {
+      "motif_id": "J800",
+      "flags": [
+        "invalid ID format",
+        "category mismatch"
+      ],
+      "notes": "Thompson motifs use a numerical ID, not an 800"
+    },
+    {
+      "motif_id": "J1700",
+      "flags": [
+        "invalid ID format",
+        "category mismatch"
+      ],
+      "notes": "Thompson motifs use a numerical ID, not an 1700"
+    },
+    {
+      "motif_id": "J2000",
+      "flags": [
+        "invalid ID format",
+        "category mismatch"
+      ],
+      "notes": "Thompson motifs use a numerical ID, not a 2000"
+    },
+    {
+      "motif_id": "J1200",
+      "flags": [
+        "invalid ID format",
+        "category mismatch"
+      ],
+      "notes": "Thompson motifs use a numerical ID, not a 1200"
+    },
+    {
+      "motif_id": "J1800",
+      "flags": [
+        "category mismatch"
+      ],
+      "notes": ""
+    },
+    {
+      "motif_id": "J2100",
+      "flags": [
+        "category mismatch"
+      ],
+      "notes": ""
+    },
+    {
+      "motif_id": "J1300",
+      "flags": [
+        "category mismatch"
+      ],
+      "notes": ""
+    },
+    {
+      "motif_id": "K0",
+      "flags": [
+        "invalid ID format",
+        "LIKELY HALLUCINATED"
+      ],
+      "notes": "Thompson's scheme requires a number, not zero"
+    },
+    {
+      "motif_id": "L100",
+      "flags": [
+        "category mismatch"
+      ],
+      "notes": ""
+    },
+    {
+      "motif_id": "L200",
+      "flags": [
+        "category mismatch"
+      ],
+      "notes": ""
+    },
+    {
+      "motif_id": "L400",
+      "flags": [
+        "category mismatch"
+      ],
+      "notes": ""
+    },
+    {
+      "motif_id": "L0",
+      "flags": [
+        "category mismatch"
+      ],
+      "notes": ""
+    },
+    {
+      "motif_id": "L300",
+      "flags": [
+        "category mismatch"
+      ],
+      "notes": ""
+    },
+    {
+      "motif_id": "L500",
+      "flags": [
+        "category mismatch"
+      ],
+      "notes": ""
+    },
+    {
+      "motif_id": "L600",
+      "flags": [
+        "category mismatch"
+      ],
+      "notes": ""
+    },
+    {
+      "motif_id": "L700",
+      "flags": [
+        "category mismatch"
+      ],
+      "notes": ""
+    },
+    {
+      "motif_id": "M0",
+      "flags": [
+        "invalid ID format",
+        "LIKELY HALLUCINATED"
+      ],
+      "notes": "Thompson's numbering scheme requires a number, not zero"
+    },
+    {
+      "motif_id": "N100",
+      "flags": [
+        "category mismatch"
+      ],
+      "notes": ""
+    },
+    {
+      "motif_id": "Q0",
+      "flags": [
+        "invalid ID format"
+      ],
+      "notes": "Thompson's scheme uses numbers, not zeros"
+    },
+    {
+      "motif_id": "R0",
+      "flags": [
+        "invalid ID format"
+      ],
+      "notes": "Thompson's scheme uses numbers, not zeros"
+    },
+    {
+      "motif_id": "S0",
+      "flags": [
+        "invalid ID format",
+        "category mismatch",
+        "LIKELY HALLUCINATED"
+      ],
+      "notes": "Thompson's scheme requires a category letter, e.g. S100"
+    },
+    {
+      "motif_id": "T1000",
+      "flags": [
+        "category mismatch"
+      ],
+      "notes": ""
+    },
+    {
+      "motif_id": "T1200",
+      "flags": [
+        "category mismatch"
+      ],
+      "notes": ""
+    },
+    {
+      "motif_id": "T1300",
+      "flags": [
+        "category mismatch"
+      ],
+      "notes": ""
+    },
+    {
+      "motif_id": "T1400",
+      "flags": [
+        "category mismatch"
+      ],
+      "notes": ""
+    },
+    {
+      "motif_id": "U120",
+      "flags": [
+        "invalid ID format",
+        "LIKELY HALLUCINATED"
+      ],
+      "notes": "Thompson's numbering scheme requires a decimal point for sub-motifs"
+    },
+    {
+      "motif_id": "U170",
+      "flags": [
+        "invalid ID format",
+        "LIKELY HALLUCINATED"
+      ],
+      "notes": "Thompson's numbering scheme requires a decimal point for sub-motifs"
+    },
+    {
+      "motif_id": "U180",
+      "flags": [
+        "invalid ID format",
+        "LIKELY HALLUCINATED"
+      ],
+      "notes": "Thompson's numbering scheme requires a decimal point for sub-motifs"
+    },
+    {
+      "motif_id": "V0.3",
+      "flags": [
+        "invalid ID format",
+        "category mismatch",
+        "LIKELY HALLUCINATED"
+      ],
+      "notes": "Thompson's numbering scheme requires a letter for the category"
+    },
+    {
+      "motif_id": "W105",
+      "flags": [
+        "invalid ID format",
+        "category mismatch"
+      ],
+      "notes": "Thompson's numbering scheme requires a decimal point for sub-motifs"
+    },
+    {
+      "motif_id": "W250",
+      "flags": [
+        "category mismatch"
+      ],
+      "notes": ""
+    },
+    {
+      "motif_id": "W300",
+      "flags": [
+        "category mismatch"
+      ],
+      "notes": ""
+    },
+    {
+      "motif_id": "W400",
+      "flags": [
+        "category mismatch"
+      ],
+      "notes": ""
+    },
+    {
+      "motif_id": "W500",
+      "flags": [
+        "category mismatch"
+      ],
+      "notes": ""
+    },
+    {
+      "motif_id": "W600",
+      "flags": [
+        "category mismatch"
+      ],
+      "notes": ""
+    },
+    {
+      "motif_id": "W700",
+      "flags": [
+        "category mismatch"
+      ],
+      "notes": ""
+    },
+    {
+      "motif_id": "W800",
+      "flags": [
+        "category mismatch"
+      ],
+      "notes": ""
+    }
+  ],
+  "verifications": [
+    {
+      "motif_id": "A100",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "A1010",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "A700",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "A1415",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "A15",
+      "id_format_valid": false,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": false,
+      "confidence": "low",
+      "notes": "Thompson's numbering scheme requires a three-digit number, not just two digits"
+    },
+    {
+      "motif_id": "A1000",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "A1001",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "A1002",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "A1003",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "A1004",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "B11",
+      "id_format_valid": false,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": false,
+      "confidence": "low",
+      "notes": "Thompson's numbering scheme requires a three-digit number, not just two digits"
+    },
+    {
+      "motif_id": "B211.1",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "B300",
+      "id_format_valid": false,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": false,
+      "confidence": "low",
+      "notes": "Thompson's numbering scheme requires a three-digit number, not just two digits"
+    },
+    {
+      "motif_id": "B600",
+      "id_format_valid": false,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": false,
+      "confidence": "low",
+      "notes": "Thompson's numbering scheme requires a three-digit number, not just two digits"
+    },
+    {
+      "motif_id": "B100",
+      "id_format_valid": false,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": false,
+      "confidence": "low",
+      "notes": "Thompson's numbering scheme requires a three-digit number, not just two digits"
+    },
+    {
+      "motif_id": "B500",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high"
+    },
+    {
+      "motif_id": "B200",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high"
+    },
+    {
+      "motif_id": "B400",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high"
+    },
+    {
+      "motif_id": "B700",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high"
+    },
+    {
+      "motif_id": "B800",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high"
+    },
+    {
+      "motif_id": "C300",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high"
+    },
+    {
+      "motif_id": "C200",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high"
+    },
+    {
+      "motif_id": "C400",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high"
+    },
+    {
+      "motif_id": "C900",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high"
+    },
+    {
+      "motif_id": "C610",
+      "id_format_valid": false,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": false,
+      "confidence": "low",
+      "notes": "Thompson's numbering scheme typically uses three digits, not two"
+    },
+    {
+      "motif_id": "C30",
+      "id_format_valid": false,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": false,
+      "confidence": "low",
+      "notes": "Thompson's numbering scheme typically uses three digits, not two"
+    },
+    {
+      "motif_id": "C500",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high"
+    },
+    {
+      "motif_id": "C700",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high"
+    },
+    {
+      "motif_id": "C800",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high"
+    },
+    {
+      "motif_id": "C1000",
+      "id_format_valid": false,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": false,
+      "confidence": "low",
+      "notes": "Thompson's numbering scheme typically uses three digits, not four"
+    },
+    {
+      "motif_id": "D10",
+      "id_format_valid": true,
+      "category_matches": false,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "D100",
+      "id_format_valid": true,
+      "category_matches": false,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "D700",
+      "id_format_valid": true,
+      "category_matches": false,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "D800",
+      "id_format_valid": true,
+      "category_matches": false,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "D1000",
+      "id_format_valid": true,
+      "category_matches": false,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "D1400",
+      "id_format_valid": true,
+      "category_matches": false,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "D1421.1.3",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "D1421.1.1",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "D1421.2",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "D1421.3",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "D1421.4",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "D1421.5",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "D1421.6",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "D1421.7",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "D1421.8",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "E1",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high"
+    },
+    {
+      "motif_id": "E200",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high"
+    },
+    {
+      "motif_id": "E400",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high"
+    },
+    {
+      "motif_id": "E500",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high"
+    },
+    {
+      "motif_id": "E700",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high"
+    },
+    {
+      "motif_id": "E750",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high"
+    },
+    {
+      "motif_id": "E1000",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high"
+    },
+    {
+      "motif_id": "E1100",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high"
+    },
+    {
+      "motif_id": "E1200",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high"
+    },
+    {
+      "motif_id": "E1300",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high"
+    },
+    {
+      "motif_id": "F200",
+      "id_format_valid": true,
+      "category_matches": false,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "medium",
+      "notes": "Category F is 'Supernatural Beings', not 'Fairies'"
+    },
+    {
+      "motif_id": "F400",
+      "id_format_valid": true,
+      "category_matches": false,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "medium",
+      "notes": "Category F is 'Supernatural Beings', not 'Spirits'"
+    },
+    {
+      "motif_id": "F500",
+      "id_format_valid": true,
+      "category_matches": false,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "medium",
+      "notes": "Category F is 'Supernatural Beings', not 'Remarkable Persons'"
+    },
+    {
+      "motif_id": "F700",
+      "id_format_valid": true,
+      "category_matches": false,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "medium",
+      "notes": "Category F is 'Supernatural Beings', not 'Extraordinary Places'"
+    },
+    {
+      "motif_id": "F900",
+      "id_format_valid": true,
+      "category_matches": false,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "medium",
+      "notes": "Category F is 'Supernatural Beings', not 'Extraordinary Events'"
+    },
+    {
+      "motif_id": "F0",
+      "id_format_valid": true,
+      "category_matches": false,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "F100",
+      "id_format_valid": true,
+      "category_matches": false,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "F300",
+      "id_format_valid": true,
+      "category_matches": false,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "F600",
+      "id_format_valid": true,
+      "category_matches": false,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "F800",
+      "id_format_valid": true,
+      "category_matches": false,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "G500",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "G100",
+      "id_format_valid": false,
+      "category_matches": false,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "medium",
+      "notes": "Typically, G motifs are numbered in the 500s or 600s"
+    },
+    {
+      "motif_id": "G300",
+      "id_format_valid": false,
+      "category_matches": false,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "medium",
+      "notes": "Typically, G motifs are numbered in the 500s or 600s"
+    },
+    {
+      "motif_id": "G200",
+      "id_format_valid": false,
+      "category_matches": false,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "medium",
+      "notes": "Typically, G motifs are numbered in the 500s or 600s"
+    },
+    {
+      "motif_id": "G400",
+      "id_format_valid": false,
+      "category_matches": false,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "medium",
+      "notes": "Typically, G motifs are numbered in the 500s or 600s"
+    },
+    {
+      "motif_id": "G600",
+      "id_format_valid": false,
+      "category_matches": false,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "medium",
+      "notes": "Typically, G motifs are numbered in the 500s or 600s"
+    },
+    {
+      "motif_id": "G700",
+      "id_format_valid": false,
+      "category_matches": false,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "medium",
+      "notes": "Typically, G motifs are numbered in the 500s or 600s"
+    },
+    {
+      "motif_id": "G800",
+      "id_format_valid": false,
+      "category_matches": false,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "medium",
+      "notes": "Typically, G motifs are numbered in the 500s or 600s"
+    },
+    {
+      "motif_id": "H300",
+      "id_format_valid": true,
+      "category_matches": false,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "H500",
+      "id_format_valid": true,
+      "category_matches": false,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "H1200",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high"
+    },
+    {
+      "motif_id": "H900",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high"
+    },
+    {
+      "motif_id": "H1300",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high"
+    },
+    {
+      "motif_id": "H0",
+      "id_format_valid": false,
+      "category_matches": false,
+      "description_plausible": false,
+      "likely_real": false,
+      "confidence": "low",
+      "notes": "Thompson motifs use a numerical ID, not a zero"
+    },
+    {
+      "motif_id": "H1500",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high"
+    },
+    {
+      "motif_id": "H2000",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high"
+    },
+    {
+      "motif_id": "H2500",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high"
+    },
+    {
+      "motif_id": "H3000",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high"
+    },
+    {
+      "motif_id": "J1100",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high"
+    },
+    {
+      "motif_id": "J800",
+      "id_format_valid": false,
+      "category_matches": false,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "medium",
+      "notes": "Thompson motifs use a numerical ID, not an 800"
+    },
+    {
+      "motif_id": "J200",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high"
+    },
+    {
+      "motif_id": "J1700",
+      "id_format_valid": false,
+      "category_matches": false,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "medium",
+      "notes": "Thompson motifs use a numerical ID, not an 1700"
+    },
+    {
+      "motif_id": "J2000",
+      "id_format_valid": false,
+      "category_matches": false,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "medium",
+      "notes": "Thompson motifs use a numerical ID, not a 2000"
+    },
+    {
+      "motif_id": "J100",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high"
+    },
+    {
+      "motif_id": "J1200",
+      "id_format_valid": false,
+      "category_matches": false,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "medium",
+      "notes": "Thompson motifs use a numerical ID, not a 1200"
+    },
+    {
+      "motif_id": "J1800",
+      "id_format_valid": true,
+      "category_matches": false,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "J2100",
+      "id_format_valid": true,
+      "category_matches": false,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "J1300",
+      "id_format_valid": true,
+      "category_matches": false,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "K500",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "K800",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "K300",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "K1800",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "K0",
+      "id_format_valid": false,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": false,
+      "confidence": "low",
+      "notes": "Thompson's scheme requires a number, not zero"
+    },
+    {
+      "motif_id": "K1000",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "K1200",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "K600",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "K1500",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "K900",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "L100",
+      "id_format_valid": true,
+      "category_matches": false,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "L200",
+      "id_format_valid": true,
+      "category_matches": false,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "L400",
+      "id_format_valid": true,
+      "category_matches": false,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "L0",
+      "id_format_valid": true,
+      "category_matches": false,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "L300",
+      "id_format_valid": true,
+      "category_matches": false,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "L500",
+      "id_format_valid": true,
+      "category_matches": false,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "L600",
+      "id_format_valid": true,
+      "category_matches": false,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "L700",
+      "id_format_valid": true,
+      "category_matches": false,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "M300",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "M400",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "M200",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "M0",
+      "id_format_valid": false,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": false,
+      "confidence": "low",
+      "notes": "Thompson's numbering scheme requires a number, not zero"
+    },
+    {
+      "motif_id": "M500",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "M100",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "M600",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "M700",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "N100",
+      "id_format_valid": true,
+      "category_matches": false,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "Q200",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high"
+    },
+    {
+      "motif_id": "Q400",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high"
+    },
+    {
+      "motif_id": "Q500",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high"
+    },
+    {
+      "motif_id": "Q550",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high"
+    },
+    {
+      "motif_id": "Q0",
+      "id_format_valid": false,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "medium",
+      "notes": "Thompson's scheme uses numbers, not zeros"
+    },
+    {
+      "motif_id": "Q100",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high"
+    },
+    {
+      "motif_id": "Q250",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high"
+    },
+    {
+      "motif_id": "Q300",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high"
+    },
+    {
+      "motif_id": "Q350",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high"
+    },
+    {
+      "motif_id": "Q600",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high"
+    },
+    {
+      "motif_id": "R100",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high"
+    },
+    {
+      "motif_id": "R200",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high"
+    },
+    {
+      "motif_id": "R300",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high"
+    },
+    {
+      "motif_id": "R0",
+      "id_format_valid": false,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "medium",
+      "notes": "Thompson's scheme uses numbers, not zeros"
+    },
+    {
+      "motif_id": "R100.1",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high"
+    },
+    {
+      "motif_id": "R200.1",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high"
+    },
+    {
+      "motif_id": "R300.1",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high"
+    },
+    {
+      "motif_id": "R100.2",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high"
+    },
+    {
+      "motif_id": "S0",
+      "id_format_valid": false,
+      "category_matches": false,
+      "description_plausible": true,
+      "likely_real": false,
+      "confidence": "low",
+      "notes": "Thompson's scheme requires a category letter, e.g. S100"
+    },
+    {
+      "motif_id": "S100",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high"
+    },
+    {
+      "motif_id": "S200",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high"
+    },
+    {
+      "motif_id": "S300",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high"
+    },
+    {
+      "motif_id": "S400",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high"
+    },
+    {
+      "motif_id": "S500",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high"
+    },
+    {
+      "motif_id": "S600",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high"
+    },
+    {
+      "motif_id": "S700",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high"
+    },
+    {
+      "motif_id": "T100",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high"
+    },
+    {
+      "motif_id": "T200",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high"
+    },
+    {
+      "motif_id": "T300",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high"
+    },
+    {
+      "motif_id": "T500",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high"
+    },
+    {
+      "motif_id": "T1000",
+      "id_format_valid": true,
+      "category_matches": false,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "T1200",
+      "id_format_valid": true,
+      "category_matches": false,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "T1300",
+      "id_format_valid": true,
+      "category_matches": false,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "T1400",
+      "id_format_valid": true,
+      "category_matches": false,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "U100.1",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "U120",
+      "id_format_valid": false,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": false,
+      "confidence": "low",
+      "notes": "Thompson's numbering scheme requires a decimal point for sub-motifs"
+    },
+    {
+      "motif_id": "U150.1",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "U170",
+      "id_format_valid": false,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": false,
+      "confidence": "low",
+      "notes": "Thompson's numbering scheme requires a decimal point for sub-motifs"
+    },
+    {
+      "motif_id": "U180",
+      "id_format_valid": false,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": false,
+      "confidence": "low",
+      "notes": "Thompson's numbering scheme requires a decimal point for sub-motifs"
+    },
+    {
+      "motif_id": "V200.1",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "V300.5",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "V400.2",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "V0.3",
+      "id_format_valid": false,
+      "category_matches": false,
+      "description_plausible": true,
+      "likely_real": false,
+      "confidence": "low",
+      "notes": "Thompson's numbering scheme requires a letter for the category"
+    },
+    {
+      "motif_id": "V200.8",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "W105",
+      "id_format_valid": false,
+      "category_matches": false,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "medium",
+      "notes": "Thompson's numbering scheme requires a decimal point for sub-motifs"
+    },
+    {
+      "motif_id": "W250",
+      "id_format_valid": true,
+      "category_matches": false,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "W300",
+      "id_format_valid": true,
+      "category_matches": false,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "W400",
+      "id_format_valid": true,
+      "category_matches": false,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "W500",
+      "id_format_valid": true,
+      "category_matches": false,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "W600",
+      "id_format_valid": true,
+      "category_matches": false,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "W700",
+      "id_format_valid": true,
+      "category_matches": false,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "W800",
+      "id_format_valid": true,
+      "category_matches": false,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "Z125",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "Z300",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "Z250",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "Z150",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "motif_id": "Z400",
+      "id_format_valid": true,
+      "category_matches": true,
+      "description_plausible": true,
+      "likely_real": true,
+      "confidence": "high",
+      "notes": ""
+    }
+  ]
+}

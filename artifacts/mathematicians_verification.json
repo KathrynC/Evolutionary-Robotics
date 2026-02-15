@@ -1,0 +1,665 @@
+{
+  "date": "2026-02-15 08:38:23",
+  "verify_model": "llama3.1:latest",
+  "curation_model": "qwen3-coder:30b",
+  "n_verified": 34,
+  "n_issues": 26,
+  "issues": [
+    {
+      "name": "Leonhard Euler",
+      "flags": [
+        "birth year: claimed vs actual 1707"
+      ],
+      "notes": "Birth year is incorrect, Euler was born in 1707"
+    },
+    {
+      "name": "Pierre-Simon Laplace",
+      "flags": [
+        "birth year: claimed vs actual 1749"
+      ],
+      "notes": "Birth year is incorrect, Laplace was born in 1749"
+    },
+    {
+      "name": "Joseph-Louis Lagrange",
+      "flags": [
+        "birth year: claimed vs actual 1736"
+      ],
+      "notes": ""
+    },
+    {
+      "name": "\u00c9variste Galois",
+      "flags": [
+        "birth year: claimed vs actual 1811",
+        "cause of death: actual=dueling accident"
+      ],
+      "notes": "Cause of death is incorrect, Galois died from injuries sustained in a duel"
+    },
+    {
+      "name": "Srinivasa Ramanujan",
+      "flags": [
+        "birth year: claimed vs actual 1887"
+      ],
+      "notes": ""
+    },
+    {
+      "name": "Emmy Noether",
+      "flags": [
+        "birth year: claimed vs actual 1882"
+      ],
+      "notes": ""
+    },
+    {
+      "name": "Sophie Germain",
+      "flags": [
+        "birth year: claimed vs actual 1776"
+      ],
+      "notes": ""
+    },
+    {
+      "name": "Mary Somerville",
+      "flags": [
+        "birth year: claimed vs actual 1780"
+      ],
+      "notes": ""
+    },
+    {
+      "name": "Karl Friedrich Gauss",
+      "flags": [
+        "birth year: claimed vs actual 1777"
+      ],
+      "notes": ""
+    },
+    {
+      "name": "William Rowan Hamilton",
+      "flags": [
+        "birth year: claimed vs actual 1805"
+      ],
+      "notes": "Birth year is actually 1805, not 1800"
+    },
+    {
+      "name": "Georges Lema\u00eetre",
+      "flags": [
+        "birth year: claimed vs actual 1894"
+      ],
+      "notes": "Cause of death is not explicitly stated as natural"
+    },
+    {
+      "name": "Felix Klein",
+      "flags": [
+        "birth year: claimed vs actual 1849"
+      ],
+      "notes": ""
+    },
+    {
+      "name": "Leopold Kronecker",
+      "flags": [
+        "birth year: claimed vs actual 1823"
+      ],
+      "notes": ""
+    },
+    {
+      "name": "Karl Weierstrass",
+      "flags": [
+        "birth year: claimed vs actual 1815"
+      ],
+      "notes": ""
+    },
+    {
+      "name": "Emile Borel",
+      "flags": [
+        "birth year: claimed vs actual 1871"
+      ],
+      "notes": ""
+    },
+    {
+      "name": "Andrey Kolmogorov",
+      "flags": [
+        "birth year: claimed vs actual 1903"
+      ],
+      "notes": ""
+    },
+    {
+      "name": "John von Neumann",
+      "flags": [
+        "birth year: claimed vs actual 1903",
+        "cause of death: actual=cancer"
+      ],
+      "notes": "Cause of death is actually cancer, not disease"
+    },
+    {
+      "name": "Alan Turing",
+      "flags": [
+        "birth year: claimed vs actual 1912",
+        "cause of death: actual=cyanide poisoning, suspected suicide"
+      ],
+      "notes": "Cause of death is actually cyanide poisoning, and suspected to be a suicide"
+    },
+    {
+      "name": "Emil Artin",
+      "flags": [
+        "birth year: claimed vs actual 1898",
+        "cause of death: actual=heart attack (disease)"
+      ],
+      "notes": ""
+    },
+    {
+      "name": "Leroy Hood",
+      "flags": [
+        "birth year: claimed vs actual None",
+        "known_for inaccurate"
+      ],
+      "notes": ""
+    },
+    {
+      "name": "John Nash",
+      "flags": [
+        "cause of death: actual=car accident (stroke)"
+      ],
+      "notes": ""
+    },
+    {
+      "name": "Serge Lang",
+      "flags": [
+        "birth year: claimed vs actual 1927"
+      ],
+      "notes": ""
+    },
+    {
+      "name": "Katherine Johnson",
+      "flags": [
+        "death year: claimed vs actual 2020"
+      ],
+      "notes": null
+    },
+    {
+      "name": "Terry Tao",
+      "flags": [
+        "birth year: claimed vs actual 1975"
+      ],
+      "notes": "Tao is still alive, so death year cannot be verified"
+    },
+    {
+      "name": "Alexandre Grothendieck",
+      "flags": [
+        "death year: claimed vs actual None"
+      ],
+      "notes": "Grothendieck's death year is disputed, and some sources claim he may still be alive"
+    },
+    {
+      "name": "Nicolas Bourbaki",
+      "flags": [
+        "birth year: claimed vs actual None",
+        "NOT A REAL PERSON"
+      ],
+      "notes": "Bourbaki is a collective pseudonym, not an individual mathematician"
+    }
+  ],
+  "verifications": [
+    {
+      "name": "Johann Bernoulli",
+      "birth_year_correct": true,
+      "death_year_correct": true,
+      "birth_year_actual": 1667,
+      "death_year_actual": 1748,
+      "cause_of_death_correct": true,
+      "cause_of_death_actual": "natural",
+      "primary_field_correct": true,
+      "known_for_correct": true,
+      "is_real_person": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "Leonhard Euler",
+      "birth_year_correct": false,
+      "death_year_correct": true,
+      "birth_year_actual": 1707,
+      "death_year_actual": 1783,
+      "cause_of_death_correct": true,
+      "cause_of_death_actual": "natural",
+      "primary_field_correct": true,
+      "known_for_correct": true,
+      "is_real_person": true,
+      "confidence": "high",
+      "notes": "Birth year is incorrect, Euler was born in 1707"
+    },
+    {
+      "name": "Pierre-Simon Laplace",
+      "birth_year_correct": false,
+      "death_year_correct": true,
+      "birth_year_actual": 1749,
+      "death_year_actual": 1827,
+      "cause_of_death_correct": true,
+      "cause_of_death_actual": "natural",
+      "primary_field_correct": true,
+      "known_for_correct": true,
+      "is_real_person": true,
+      "confidence": "high",
+      "notes": "Birth year is incorrect, Laplace was born in 1749"
+    },
+    {
+      "name": "Joseph-Louis Lagrange",
+      "birth_year_correct": false,
+      "death_year_correct": true,
+      "birth_year_actual": 1736,
+      "death_year_actual": 1813,
+      "cause_of_death_correct": true,
+      "cause_of_death_actual": "natural",
+      "primary_field_correct": true,
+      "known_for_correct": true,
+      "is_real_person": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "\u00c9variste Galois",
+      "birth_year_correct": false,
+      "death_year_correct": true,
+      "birth_year_actual": 1811,
+      "death_year_actual": 1832,
+      "cause_of_death_correct": false,
+      "cause_of_death_actual": "dueling accident",
+      "primary_field_correct": true,
+      "known_for_correct": true,
+      "is_real_person": true,
+      "confidence": "high",
+      "notes": "Cause of death is incorrect, Galois died from injuries sustained in a duel"
+    },
+    {
+      "name": "Srinivasa Ramanujan",
+      "birth_year_correct": false,
+      "death_year_correct": true,
+      "birth_year_actual": 1887,
+      "death_year_actual": 1920,
+      "cause_of_death_correct": true,
+      "cause_of_death_actual": "tuberculosis",
+      "primary_field_correct": true,
+      "known_for_correct": true,
+      "is_real_person": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "Emmy Noether",
+      "birth_year_correct": false,
+      "death_year_correct": true,
+      "birth_year_actual": 1882,
+      "death_year_actual": 1935,
+      "cause_of_death_correct": true,
+      "cause_of_death_actual": "natural",
+      "primary_field_correct": true,
+      "known_for_correct": true,
+      "is_real_person": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "Sophie Germain",
+      "birth_year_correct": false,
+      "death_year_correct": true,
+      "birth_year_actual": 1776,
+      "death_year_actual": 1831,
+      "cause_of_death_correct": true,
+      "cause_of_death_actual": "natural",
+      "primary_field_correct": true,
+      "known_for_correct": true,
+      "is_real_person": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "Mary Somerville",
+      "birth_year_correct": false,
+      "death_year_correct": true,
+      "birth_year_actual": 1780,
+      "death_year_actual": 1872,
+      "cause_of_death_correct": true,
+      "cause_of_death_actual": "natural",
+      "primary_field_correct": true,
+      "known_for_correct": true,
+      "is_real_person": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "Karl Friedrich Gauss",
+      "birth_year_correct": false,
+      "death_year_correct": true,
+      "birth_year_actual": 1777,
+      "death_year_actual": 1855,
+      "cause_of_death_correct": true,
+      "cause_of_death_actual": "natural",
+      "primary_field_correct": true,
+      "known_for_correct": true,
+      "is_real_person": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "Thomas Bayes",
+      "birth_year_correct": true,
+      "death_year_correct": true,
+      "birth_year_actual": 1701,
+      "death_year_actual": 1761,
+      "cause_of_death_correct": true,
+      "cause_of_death_actual": null,
+      "primary_field_correct": true,
+      "known_for_correct": true,
+      "is_real_person": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "William Rowan Hamilton",
+      "birth_year_correct": false,
+      "death_year_correct": true,
+      "birth_year_actual": 1805,
+      "death_year_actual": 1865,
+      "cause_of_death_correct": true,
+      "cause_of_death_actual": null,
+      "primary_field_correct": true,
+      "known_for_correct": true,
+      "is_real_person": true,
+      "confidence": "high",
+      "notes": "Birth year is actually 1805, not 1800"
+    },
+    {
+      "name": "Georges Lema\u00eetre",
+      "birth_year_correct": false,
+      "death_year_correct": true,
+      "birth_year_actual": 1894,
+      "death_year_actual": 1970,
+      "cause_of_death_correct": null,
+      "cause_of_death_actual": "natural causes, but exact cause unknown",
+      "primary_field_correct": true,
+      "known_for_correct": true,
+      "is_real_person": true,
+      "confidence": "medium",
+      "notes": "Cause of death is not explicitly stated as natural"
+    },
+    {
+      "name": "Felix Klein",
+      "birth_year_correct": false,
+      "death_year_correct": true,
+      "birth_year_actual": 1849,
+      "death_year_actual": 1925,
+      "cause_of_death_correct": null,
+      "cause_of_death_actual": "natural causes, but exact cause unknown",
+      "primary_field_correct": true,
+      "known_for_correct": true,
+      "is_real_person": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "Leopold Kronecker",
+      "birth_year_correct": false,
+      "death_year_correct": true,
+      "birth_year_actual": 1823,
+      "death_year_actual": 1891,
+      "cause_of_death_correct": null,
+      "cause_of_death_actual": "natural causes, but exact cause unknown",
+      "primary_field_correct": true,
+      "known_for_correct": true,
+      "is_real_person": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "Karl Weierstrass",
+      "birth_year_correct": false,
+      "death_year_correct": true,
+      "birth_year_actual": 1815,
+      "death_year_actual": 1897,
+      "cause_of_death_correct": null,
+      "cause_of_death_actual": "natural causes, but exact cause unknown",
+      "primary_field_correct": true,
+      "known_for_correct": true,
+      "is_real_person": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "Emile Borel",
+      "birth_year_correct": false,
+      "death_year_correct": true,
+      "birth_year_actual": 1871,
+      "death_year_actual": 1956,
+      "cause_of_death_correct": null,
+      "cause_of_death_actual": "natural causes, but exact cause unknown",
+      "primary_field_correct": true,
+      "known_for_correct": true,
+      "is_real_person": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "Andrey Kolmogorov",
+      "birth_year_correct": false,
+      "death_year_correct": true,
+      "birth_year_actual": 1903,
+      "death_year_actual": 1987,
+      "cause_of_death_correct": null,
+      "cause_of_death_actual": "natural causes, but exact cause unknown",
+      "primary_field_correct": true,
+      "known_for_correct": true,
+      "is_real_person": true,
+      "confidence": "high",
+      "notes": ""
+    },
+    {
+      "name": "John von Neumann",
+      "birth_year_correct": false,
+      "death_year_correct": true,
+      "birth_year_actual": 1903,
+      "death_year_actual": 1957,
+      "cause_of_death_correct": false,
+      "cause_of_death_actual": "cancer",
+      "primary_field_correct": true,
+      "known_for_correct": true,
+      "is_real_person": true,
+      "confidence": "high",
+      "notes": "Cause of death is actually cancer, not disease"
+    },
+    {
+      "name": "Alan Turing",
+      "birth_year_correct": false,
+      "death_year_correct": true,
+      "birth_year_actual": 1912,
+      "death_year_actual": 1954,
+      "cause_of_death_correct": false,
+      "cause_of_death_actual": "cyanide poisoning, suspected suicide",
+      "primary_field_correct": true,
+      "known_for_correct": true,
+      "is_real_person": true,
+      "confidence": "high",
+      "notes": "Cause of death is actually cyanide poisoning, and suspected to be a suicide"
+    },
+    {
+      "name": "Kurt G\u00f6del",
+      "birth_year_correct": true,
+      "death_year_correct": true,
+      "birth_year_actual": 1906,
+      "death_year_actual": 1978,
+      "cause_of_death_correct": true,
+      "cause_of_death_actual": "natural causes",
+      "primary_field_correct": true,
+      "known_for_correct": true,
+      "is_real_person": true,
+      "confidence": "high"
+    },
+    {
+      "name": "Emil Artin",
+      "birth_year_correct": false,
+      "death_year_correct": true,
+      "birth_year_actual": 1898,
+      "death_year_actual": 1962,
+      "cause_of_death_correct": false,
+      "cause_of_death_actual": "heart attack (disease)",
+      "primary_field_correct": true,
+      "known_for_correct": true,
+      "is_real_person": true,
+      "confidence": "high"
+    },
+    {
+      "name": "Leroy Hood",
+      "birth_year_correct": false,
+      "death_year_correct": null,
+      "birth_year_actual": null,
+      "death_year_actual": null,
+      "cause_of_death_correct": null,
+      "cause_of_death_actual": null,
+      "primary_field_correct": true,
+      "known_for_correct": false,
+      "is_real_person": true,
+      "confidence": "low"
+    },
+    {
+      "name": "Benoit Mandelbrot",
+      "birth_year_correct": true,
+      "death_year_correct": true,
+      "birth_year_actual": 1924,
+      "death_year_actual": 2010,
+      "cause_of_death_correct": true,
+      "cause_of_death_actual": "natural causes",
+      "primary_field_correct": false,
+      "known_for_correct": true,
+      "is_real_person": true,
+      "confidence": "high"
+    },
+    {
+      "name": "Paul Erd\u0151s",
+      "birth_year_correct": true,
+      "death_year_correct": true,
+      "birth_year_actual": 1913,
+      "death_year_actual": 1996,
+      "cause_of_death_correct": true,
+      "cause_of_death_actual": "natural causes (peritonitis)",
+      "primary_field_correct": true,
+      "known_for_correct": true,
+      "is_real_person": true,
+      "confidence": "high"
+    },
+    {
+      "name": "John Nash",
+      "birth_year_correct": true,
+      "death_year_correct": true,
+      "birth_year_actual": 1928,
+      "death_year_actual": 2015,
+      "cause_of_death_correct": false,
+      "cause_of_death_actual": "car accident (stroke)",
+      "primary_field_correct": true,
+      "known_for_correct": true,
+      "is_real_person": true,
+      "confidence": "high"
+    },
+    {
+      "name": "Alexander Grothendieck",
+      "birth_year_correct": true,
+      "death_year_correct": null,
+      "birth_year_actual": 1928,
+      "death_year_actual": null,
+      "cause_of_death_correct": null,
+      "cause_of_death_actual": null,
+      "primary_field_correct": true,
+      "known_for_correct": true,
+      "is_real_person": true,
+      "confidence": "high"
+    },
+    {
+      "name": "Serge Lang",
+      "birth_year_correct": false,
+      "death_year_correct": true,
+      "birth_year_actual": 1927,
+      "death_year_actual": 2005,
+      "cause_of_death_correct": true,
+      "cause_of_death_actual": "natural causes (pancreatic cancer)",
+      "primary_field_correct": true,
+      "known_for_correct": true,
+      "is_real_person": true,
+      "confidence": "high"
+    },
+    {
+      "name": "Hermann Weyl",
+      "birth_year_correct": true,
+      "death_year_correct": true,
+      "birth_year_actual": 1885,
+      "death_year_actual": 1955,
+      "cause_of_death_correct": true,
+      "cause_of_death_actual": "natural causes (stroke)",
+      "primary_field_correct": false,
+      "known_for_correct": true,
+      "is_real_person": true,
+      "confidence": "high"
+    },
+    {
+      "name": "Norbert Wiener",
+      "birth_year_correct": true,
+      "death_year_correct": true,
+      "birth_year_actual": 1894,
+      "death_year_actual": 1964,
+      "cause_of_death_correct": true,
+      "cause_of_death_actual": "natural causes (stroke)",
+      "primary_field_correct": false,
+      "known_for_correct": true,
+      "is_real_person": true,
+      "confidence": "high"
+    },
+    {
+      "name": "Katherine Johnson",
+      "birth_year_correct": true,
+      "death_year_correct": false,
+      "birth_year_actual": null,
+      "death_year_actual": 2020,
+      "cause_of_death_correct": true,
+      "cause_of_death_actual": "natural causes",
+      "primary_field_correct": true,
+      "known_for_correct": true,
+      "is_real_person": true,
+      "confidence": "high",
+      "notes": null
+    },
+    {
+      "name": "Terry Tao",
+      "birth_year_correct": false,
+      "death_year_correct": true,
+      "birth_year_actual": 1975,
+      "death_year_actual": null,
+      "cause_of_death_correct": null,
+      "cause_of_death_actual": null,
+      "primary_field_correct": true,
+      "known_for_correct": true,
+      "is_real_person": true,
+      "confidence": "high",
+      "notes": "Tao is still alive, so death year cannot be verified"
+    },
+    {
+      "name": "Alexandre Grothendieck",
+      "birth_year_correct": true,
+      "death_year_correct": false,
+      "birth_year_actual": 1928,
+      "death_year_actual": null,
+      "cause_of_death_correct": null,
+      "cause_of_death_actual": null,
+      "primary_field_correct": true,
+      "known_for_correct": true,
+      "is_real_person": true,
+      "confidence": "medium",
+      "notes": "Grothendieck's death year is disputed, and some sources claim he may still be alive"
+    },
+    {
+      "name": "Nicolas Bourbaki",
+      "birth_year_correct": false,
+      "death_year_correct": null,
+      "birth_year_actual": null,
+      "death_year_actual": null,
+      "cause_of_death_correct": null,
+      "cause_of_death_actual": null,
+      "primary_field_correct": true,
+      "known_for_correct": true,
+      "is_real_person": false,
+      "confidence": "high",
+      "notes": "Bourbaki is a collective pseudonym, not an individual mathematician"
+    }
+  ]
+}
