@@ -4,7 +4,7 @@
 
 A research project in evolutionary robotics that began as a catalog of 116 discovered gaits for a 3-link PyBullet robot and evolved into a systematic investigation of **language-model-mediated robot control**: can LLMs translate human motion concepts into neural network weights that produce recognizable locomotion?
 
-The answer is yes — and the investigation revealed that the bottleneck to higher-fidelity communication between humans and robots is not the weights but the **nervous system architecture** itself.
+The answer is yes — and the investigation has progressed through four layers: from gait catalogs to weight-space landscapes to LLM-mediated control to a **Transactional Interpretation of Quantum Mechanics (TIQM)**-inspired framework where LLMs choose both the robot's brain AND its physics, and a second LLM evaluates whether the resulting behavior resonates with semantic intent.
 
 ## The Robot
 
@@ -40,6 +40,18 @@ Research campaigns that mapped the 6D weight space, revealing it to be riddled w
 ### Layer 3: LLM-Mediated Robot Control (706+ LLM trials, 58 motion concepts, 365 dictionary entries)
 
 Systematic investigation of using LLMs to translate semantic concepts into neural network weights. This produced the **Motion Gait Dictionary** — a multilingual catalog of 58 motion concepts across 5 languages and 5 LLMs — and led to the central insight about sensory death and nervous system evolution. See [Motion Gait Dictionary](#motion-gait-dictionary) and [The Central Insight](#the-central-insight-sensory-death-and-the-case-for-proprioception) below.
+
+### Layer 4: TIQM Framework & Alternate Physics (8,000+ character trials, 500+ probe seeds)
+
+Inspired by Cramer's Transactional Interpretation of Quantum Mechanics: the LLM emits an "offer wave" (6 weights + 6 physics parameters), PyBullet propagates it through simulated physics, and a second LLM (the "absorber") evaluates semantic resonance. The gait is the standing wave that forms when semantic intent and physical realization agree.
+
+Key discoveries:
+- **Death encoding**: LLMs encode whether fictional characters die through a 6-number channel. Dying characters get heavier gravity, higher restitution (bouncier falls). Survivors get Earth gravity (9.81 m/s²). Horatio — the faithful friend who survives Hamlet — walks the furthest.
+- **Physics-level narrative encoding**: qwen3-coder chose gravity=20.0, friction=0.1, max_force=50N for ALL Romeo & Juliet characters — a crushing, low-friction tragic world.
+- **12D collapse elimination**: Expanding the output channel from 6D (weights only) to 12D (weights + physics) eliminates weight collapse entirely.
+- **Embodiment-readiness**: LLMs already contain embodied knowledge from absorbing all human writing about bodies and movement. The engineering problem is building adequate output devices, not teaching LLMs about bodies.
+
+See [TIQM Framework](#tiqm-framework--alternate-physics), [Character & Death Experiments](#character--death-experiments), and [Semantic Probe Taxonomy](#semantic-probe-taxonomy) below.
 
 ---
 
@@ -264,6 +276,129 @@ See [artifacts/archetypometrics_findings.md](artifacts/archetypometrics_findings
 
 ---
 
+## Character & Death Experiments
+
+### Multi-Model Character Experiment (8,000+ trials)
+
+The largest experiment to date: 8,000+ fictional characters from hundreds of literary works, seeded through 4 local LLMs (qwen3-coder:30b, deepseek-r1:8b, llama3.1:latest, gpt-oss:20b). Each character becomes a set of 6 synapse weights and a PyBullet simulation.
+
+**Weight collapse**: 66% of trials (1,293/1,943 in early checkpoints) collapse into shared weight vectors. The top cluster contained 111 identical weight vectors assigned to characters as diverse as Applejack (My Little Pony), Saul Goodman (Breaking Bad), and Claire Standish (The Breakfast Club). Predominantly qwen3-coder:30b and gpt-oss:20b.
+
+### Death Encoding
+
+Characters who die in their stories are encoded differently from characters who survive — through a 6-number channel that knows nothing about plot:
+
+| Character | Dies? | DX | Speed | Notes |
+|---|---|---|---|---|
+| Horatio (Hamlet) | No | +8.70 | 1.44 | Walks the furthest — the faithful witness |
+| Hermione (Harry Potter) | No | -1.39 | 1.01 | Steady, purposeful movement |
+| Dumbledore (Harry Potter) | Yes | +3.54 | 1.00 | Fastest of the dying — goes out actively |
+| Hamlet (Hamlet) | Yes | +0.49 | 0.68 | Slow, deliberate — "the rest is silence" |
+| Gatsby (Great Gatsby) | Yes | -1.22 | 0.47 | Drifts backward |
+| Boromir (Lord of the Rings) | Yes | 0.00 | 0.00 | Completely still — already fallen |
+
+See [artifacts/tiqm_death_test_phase2.json](artifacts/tiqm_death_test_phase2.json), [artifacts/the_seance_observation.md](artifacts/the_seance_observation.md).
+
+---
+
+## TIQM Framework & Alternate Physics
+
+Mapping John G. Cramer's Transactional Interpretation of Quantum Mechanics to the LLM-robot pipeline:
+
+| TIQM Concept | Pipeline Element |
+|---|---|
+| Emitter | LLM generating weights + physics params |
+| Offer wave | The 12D vector (6 weights + 6 physics) |
+| Transaction medium | PyBullet simulation |
+| Absorber | Second LLM (VLM) evaluating the gait |
+| Confirmation wave | VLM's semantic resonance score |
+| Standing wave | The resulting gait — when intent and physics agree |
+
+### Alternate Physics as Expressive Channel
+
+The LLM chooses not just the robot's brain (6 synapse weights) but also its world (6 physics parameters):
+
+| Parameter | Range | What it means |
+|---|---|---|
+| Gravity | 0.0 – 20.0 m/s² | Weight of existence |
+| Friction | 0.1 – 2.5 | World's grip on the body |
+| Restitution | 0.0 – 0.8 | Bounciness — does the world forgive falls? |
+| Damping | 0.0 – 2.0 | How fast energy dissipates |
+| Max force | 50 – 200 N | Motor strength |
+| Mass ratio | 1.0 – 3.0 | Limb heaviness relative to torso |
+
+### Experimental Protocols
+
+- **Phase 1**: Single extended offer — LLM chooses 12 parameters at once
+- **Phase 2**: Offer + confirmation — second LLM rates semantic resonance of the resulting behavior
+- **Iterative TIQM**: Multiple rounds of offer/confirmation until resonance converges
+- **Multi-offer**: Multiple competing transactions, highest resonance wins
+
+### Key Files
+
+| File | Description |
+|---|---|
+| `tiqm_experiment.py` | Full TIQM implementation: all 4 protocols |
+| `artifacts/tiqm_framework.md` | Theoretical framework and design rationale |
+| `artifacts/tiqm_romeo_juliet_phase2.json` | 10 R&J characters: physics-level tragic world |
+| `artifacts/tiqm_death_test_phase2.json` | 12 die/survive characters: death encoding in 12D |
+| `artifacts/the_seance_observation.md` | The spookiness of embodiment-readiness |
+
+---
+
+## Semantic Probe Taxonomy
+
+Beyond motion words and fictional characters, we developed a curated taxonomy of semantic probes — diverse seed types that stress-test the LLM→behavior channel in different ways. Each dataset is curated by one LLM and cross-verified by a different LLM to avoid self-confirmation bias.
+
+| Probe Type | Seeds | Source | Curator | Status |
+|---|---|---|---|---|
+| Motion words | 58 | Multilingual motion vocabulary | Manual | Complete (365 trials) |
+| Fictional characters | 8,000+ | 341 literary works | Manual + LLM | Running |
+| Celebrities | 132 | Tokenization lexicons | Manual | Complete (4 gaits) |
+| OEIS sequences | 396 | Integer sequence encyclopedia | qwen3-coder:30b | Running |
+| Mathematicians | 104 | History of mathematics | qwen3-coder:30b | Curated + verified |
+| TV Tropes | 185 | Narrative trope taxonomy | qwen3-coder:30b | Curated + verified |
+| Stith Thompson motifs | 192 | Folklore motif index | qwen3-coder:30b | Curated + verified |
+
+### Curation & Verification Pipeline
+
+Each curated dataset goes through a three-stage pipeline:
+
+1. **Curation** (qwen3-coder:30b): LLM generates structured entries with metadata (descriptions, categories, energy levels, movement associations)
+2. **Verification** (llama3.1:latest): Different LLM cross-checks facts, flags hallucinations, corrects errors
+3. **Decollapse** (optional): When weight vectors collapse, a third LLM generates enriched descriptions to re-prompt the original model
+
+| Script | Description |
+|---|---|
+| `curate_mathematicians.py` | 104 mathematicians with birth/death years, fields, movement metaphors |
+| `curate_tv_tropes.py` | 185 tropes across 9 categories with energy/valence annotations |
+| `curate_stith_thompson.py` | 192 folklore motifs across 22 categories |
+| `verify_curated_data.py` | Cross-model verification of all curated datasets |
+| `decollapse_weights.py` | Re-prompts collapsed weight clusters with enriched context |
+
+---
+
+## Agent Infrastructure
+
+### Experiment Runners
+
+| Script | Description |
+|---|---|
+| `character_seed_experiment.py` | 8,000+ character trials across 4 models |
+| `oeis_seed_experiment.py` | OEIS integer sequence trials |
+| `motion_seed_experiment_v2.py` | Motion Gait Dictionary trials |
+| `tiqm_experiment.py` | TIQM alternate-physics trials |
+
+### Analysis & Quality
+
+| Script | Description |
+|---|---|
+| `pest_control.py` | Static analysis: finds inconsistencies across all experiment data |
+| `verify_curated_data.py` | Cross-model fact-checking of curated datasets |
+| `decollapse_weights.py` | Enrichment-based retry of collapsed weight vectors |
+
+---
+
 ## Categorical Structure & Formal Validation
 
 Scripts that empirically validate the categorical structure of the Sem→Wt→Beh pipeline:
@@ -288,6 +423,8 @@ A draft paper is available at [artifacts/paper_draft.md](artifacts/paper_draft.m
 > **"Reality Is What Doesn't Go Away When You Change the Physics Engine: Structural Transfer from Language Models Through Physical Substrates"**
 >
 > 706 LLM-mediated trials across 7 semantic conditions, plus ~25,000 supporting simulations. Key finding: LLM-seeded evolution reaches 85.09m displacement — 76% better than random-seeded evolution — because the LLM's conservatism places weights in smooth, evolvable regions of parameter space.
+
+The project has since expanded to 8,000+ character trials, TIQM alternate-physics experiments, and a curated probe taxonomy of 500+ seeds across 7 categories. A second paper focusing on death encoding and the TIQM framework is in development.
 
 ---
 
@@ -347,6 +484,9 @@ Self-contained simulation campaigns (hundreds to thousands of headless sims each
 | `timestep_atlas.py` | ~800 | DT sensitivity across 7 timestep values |
 | `structured_random_*.py` | 495+ | LLM-mediated weight generation (5 conditions) |
 | `motion_seed_experiment_v2.py` | 365 | Motion Gait Dictionary data generation |
+| `character_seed_experiment.py` | 8,000+ | Multi-model fictional character trials |
+| `oeis_seed_experiment.py` | 396 | OEIS integer sequence trials |
+| `tiqm_experiment.py` | 50+ | TIQM alternate physics + confirmation waves |
 | `categorical_structure.py` | — | Functor/sheaf/info geometry validation |
 | `fisher_metric.py` | — | LLM output variance (300 Ollama calls) |
 | `perturbation_probing.py` | ~259 | Cliffiness at LLM weight vectors |
@@ -377,6 +517,9 @@ Self-contained simulation campaigns (hundreds to thousands of headless sims each
 - [artifacts/gamified_progressive_search_review.md](artifacts/gamified_progressive_search_review.md) — Review of QD/MAP-Elites gamified search proposal
 - [artifacts/persona_effectiveness_theory.md](artifacts/persona_effectiveness_theory.md) — Theory of persona-to-weight structural transfer
 - [artifacts/cliff_taxonomy_commentary.md](artifacts/cliff_taxonomy_commentary.md) — Philosophical implications of behavioral cliffs
+- [artifacts/tiqm_framework.md](artifacts/tiqm_framework.md) — TIQM theoretical framework: offer waves, confirmation, alternate physics
+- [artifacts/the_seance_observation.md](artifacts/the_seance_observation.md) — The seance: why character experiments are spooky, and embodiment-readiness
+- [artifacts/technical_report_vacc_proposal.md](artifacts/technical_report_vacc_proposal.md) — Technical report and VACC scaling proposal
 
 ## Key References
 
@@ -386,3 +529,4 @@ Self-contained simulation campaigns (hundreds to thousands of headless sims each
 - **Cully et al. 2015** — Behavioral repertoires via MAP-Elites; closest precedent to the zoo concept.
 - **McGeer 1990** — Passive dynamic walking and limit cycles.
 - **Ijspeert 2008** — CPG review; our hidden-layer champion is effectively a CPG.
+- **Cramer 1986** — "The Transactional Interpretation of Quantum Mechanics." Reviews of Modern Physics 58(3). The offer/confirmation wave framework adapted for LLM→physics→VLM transactions.
