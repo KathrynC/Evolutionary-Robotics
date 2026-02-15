@@ -54,8 +54,11 @@ Usage:
     python3 structured_random_celebrities.py
 """
 
+import hashlib
 import sys
 from pathlib import Path
+
+import numpy as np
 
 PROJECT = Path(__file__).resolve().parent
 sys.path.insert(0, str(PROJECT))
@@ -63,7 +66,7 @@ sys.path.insert(0, str(PROJECT))
 import structured_random_common as src
 src.NUM_TRIALS = 200  # Override default 100 to allow all ~130 seeds
 
-from structured_random_common import run_structured_search
+from structured_random_common import run_structured_search, WEIGHT_NAMES
 
 OUT_JSON = PROJECT / "artifacts" / "structured_random_celebrities.json"
 
@@ -264,18 +267,39 @@ for group_name, names in GROUPS.items():
         SEEDS.append(f"{name} [{group_name}]")
 
 
+PERTURB_RADIUS = 0.05  # per-weight perturbation magnitude (±0.05)
+
+
+def perturb_weights(weights, seed):
+    """Apply a small deterministic perturbation to break weight-vector collapse.
+
+    Same approach as archetypometrics: LLM picks the archetype, perturbation
+    individuates within it. Deterministic via SHA-256 hash of seed string.
+    """
+    h = int(hashlib.sha256(seed.encode()).hexdigest(), 16) % (2**32)
+    rng = np.random.default_rng(h)
+    perturbed = {}
+    for wn in WEIGHT_NAMES:
+        delta = rng.uniform(-PERTURB_RADIUS, PERTURB_RADIUS)
+        perturbed[wn] = max(-1.0, min(1.0, weights[wn] + delta))
+    return perturbed
+
+
 def make_prompt(seed):
     """Build the LLM prompt for a celebrity/public figure seed."""
     name = seed.split(" [")[0]
+    domain = seed.split(" [")[1].rstrip("]") if " [" in seed else ""
     return (
-        f"Generate 6 synapse weights for a 3-link walking robot inspired by "
-        f"the public figure: {name}. The weights are w03, w04, w13, w14, "
-        f"w23, w24, each in [-1, 1]. Translate the public persona, cultural "
-        f"energy, and characteristic style of this figure into weight "
-        f"magnitudes, signs, and symmetry patterns. "
-        f'Return ONLY a JSON object like '
-        f'{{"w03": 0.5, "w04": -0.3, "w13": 0.1, "w14": -0.7, "w23": 0.4, "w24": -0.2}} '
-        f"with no other text."
+        f"Generate 6 synapse weights for a 3-link walking robot that embodies "
+        f"the public figure {name}. "
+        f"The 6 weights are: w03, w04, w13, w14, w23, w24. "
+        f"Each is a float in [-1, 1] with exactly 3 decimal places. "
+        f"Think about what makes {name} DISTINCT: their energy, aggression, "
+        f"grace, authority, and movement style. Politicians and athletes should "
+        f"differ. Entertainers and intellectuals should differ. Brash and calm should differ. "
+        f"Return ONLY a JSON object: "
+        f'{{"w03": <float>, "w04": <float>, "w13": <float>, '
+        f'"w14": <float>, "w23": <float>, "w24": <float>}}'
     )
 
 
@@ -284,7 +308,8 @@ def main():
     print(f"\nCelebrity / Public Figure experiment: {total} seeds across {len(GROUPS)} domains")
     for gname, names in GROUPS.items():
         print(f"  {gname:20s}: {len(names):3d}")
-    run_structured_search("celebrities", SEEDS, make_prompt, OUT_JSON)
+    run_structured_search("celebrities", SEEDS, make_prompt, OUT_JSON,
+                          temperature=1.5, weight_transform=perturb_weights)
 
 
 if __name__ == "__main__":

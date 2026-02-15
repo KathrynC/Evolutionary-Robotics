@@ -1,0 +1,1228 @@
+{
+  "n_total": 2000,
+  "n_stories": 341,
+  "n_unique_weights": 15,
+  "faithfulness": 0.0075,
+  "genre_metrics": {
+    "other": {
+      "n": 933,
+      "dead_frac": 0.006430868167202572,
+      "median_dx": 1.5485268151295735,
+      "max_dx": 29.16702982825942,
+      "mean_speed": 0.3064337864710247,
+      "mean_phase_lock": 0.9100594578390745,
+      "n_unique_wt": 13,
+      "faithfulness": 0.013933547695605574
+    },
+    "drama": {
+      "n": 203,
+      "dead_frac": 0.0,
+      "median_dx": 1.175219123969025,
+      "max_dx": 5.635555464743059,
+      "mean_speed": 0.2442565361354414,
+      "mean_phase_lock": 0.9078873402186745,
+      "n_unique_wt": 4,
+      "faithfulness": 0.019704433497536946
+    },
+    "comedy": {
+      "n": 168,
+      "dead_frac": 0.0,
+      "median_dx": 1.189496038338916,
+      "max_dx": 5.635555464743059,
+      "mean_speed": 0.24870345954874976,
+      "mean_phase_lock": 0.9132072608913123,
+      "n_unique_wt": 4,
+      "faithfulness": 0.023809523809523808
+    },
+    "scifi": {
+      "n": 163,
+      "dead_frac": 0.0,
+      "median_dx": 1.189496038338916,
+      "max_dx": 5.635555464743059,
+      "mean_speed": 0.2554344251715078,
+      "mean_phase_lock": 0.9156436441282206,
+      "n_unique_wt": 4,
+      "faithfulness": 0.024539877300613498
+    },
+    "fantasy": {
+      "n": 152,
+      "dead_frac": 0.006578947368421052,
+      "median_dx": 1.5485268151295735,
+      "max_dx": 25.12344760125848,
+      "mean_speed": 0.29987882897063384,
+      "mean_phase_lock": 0.9158354914308507,
+      "n_unique_wt": 7,
+      "faithfulness": 0.046052631578947366
+    },
+    "crime_drama": {
+      "n": 113,
+      "dead_frac": 0.017699115044247787,
+      "median_dx": 1.5485268151295735,
+      "max_dx": 7.2076197437088165,
+      "mean_speed": 0.3421678459718088,
+      "mean_phase_lock": 0.9092903595161705,
+      "n_unique_wt": 7,
+      "faithfulness": 0.061946902654867256
+    },
+    "horror": {
+      "n": 89,
+      "dead_frac": 0.0,
+      "median_dx": 1.189496038338916,
+      "max_dx": 29.16702982825942,
+      "mean_speed": 0.29150884151655443,
+      "mean_phase_lock": 0.9102817433619474,
+      "n_unique_wt": 5,
+      "faithfulness": 0.056179775280898875
+    },
+    "anime": {
+      "n": 55,
+      "dead_frac": 0.0,
+      "median_dx": 1.5485268151295735,
+      "max_dx": 7.793975135688289,
+      "mean_speed": 0.32469159537992803,
+      "mean_phase_lock": 0.9267514389296523,
+      "n_unique_wt": 5,
+      "faithfulness": 0.09090909090909091
+    },
+    "disney_pixar": {
+      "n": 52,
+      "dead_frac": 0.0,
+      "median_dx": 1.5485268151295735,
+      "max_dx": 5.635555464743059,
+      "mean_speed": 0.2512607317112834,
+      "mean_phase_lock": 0.9222409828752091,
+      "n_unique_wt": 4,
+      "faithfulness": 0.07692307692307693
+    },
+    "superhero": {
+      "n": 45,
+      "dead_frac": 0.0,
+      "median_dx": 1.5485268151295735,
+      "max_dx": 1.5485268151295735,
+      "mean_speed": 0.2865604304849354,
+      "mean_phase_lock": 0.9376760299545814,
+      "n_unique_wt": 2,
+      "faithfulness": 0.044444444444444446
+    },
+    "classic_lit": {
+      "n": 27,
+      "dead_frac": 0.0,
+      "median_dx": 1.175219123969025,
+      "max_dx": 5.635555464743059,
+      "mean_speed": 0.2405475883653716,
+      "mean_phase_lock": 0.9062746066101239,
+      "n_unique_wt": 4,
+      "faithfulness": 0.14814814814814814
+    }
+  },
+  "cluster_sizes": [
+    780,
+    709,
+    248,
+    231,
+    10,
+    5,
+    3,
+    3,
+    3,
+    2,
+    2,
+    1,
+    1,
+    1,
+    1
+  ],
+  "top_clusters": [
+    {
+      "weights": {
+        "w03": 0.8,
+        "w04": -0.6,
+        "w13": 0.2,
+        "w14": -0.9,
+        "w23": 0.5,
+        "w24": -0.4
+      },
+      "count": 780,
+      "dx": 1.5485268151295735,
+      "n_stories": 233,
+      "genre_dist": {
+        "anime": 33,
+        "other": 366,
+        "fantasy": 73,
+        "horror": 32,
+        "crime_drama": 30,
+        "classic_lit": 7,
+        "scifi": 64,
+        "comedy": 58,
+        "drama": 54,
+        "disney_pixar": 30,
+        "superhero": 33
+      },
+      "sample_members": [
+        "Applejack (My Little Pony: Friendship Is Magic)",
+        "Pinkie Pie (My Little Pony: Friendship Is Magic)",
+        "Spike (My Little Pony: Friendship Is Magic)",
+        "Princess Celestia (My Little Pony: Friendship Is Magic)",
+        "Leroy Jethro Gibbs (NCIS)",
+        "Anthony DiNozzo (NCIS)",
+        "Donald Mallard (NCIS)",
+        "Timothy McGee (NCIS)",
+        "Wynonna Earp (Wynonna Earp)",
+        "Waverly Earp (Wynonna Earp)"
+      ]
+    },
+    {
+      "weights": {
+        "w03": 0.6,
+        "w04": -0.4,
+        "w13": 0.2,
+        "w14": -0.8,
+        "w23": 0.5,
+        "w24": -0.3
+      },
+      "count": 709,
+      "dx": 1.175219123969025,
+      "n_stories": 218,
+      "genre_dist": {
+        "anime": 9,
+        "other": 327,
+        "horror": 34,
+        "crime_drama": 24,
+        "classic_lit": 15,
+        "scifi": 63,
+        "comedy": 73,
+        "drama": 106,
+        "disney_pixar": 16,
+        "fantasy": 42
+      },
+      "sample_members": [
+        "Twilight Sparkle (My Little Pony: Friendship Is Magic)",
+        "Rarity (My Little Pony: Friendship Is Magic)",
+        "Abby Sciuto (NCIS)",
+        "Jimmy Palmer (NCIS)",
+        "Lori Grimes (The Walking Dead)",
+        "Dale Horvath (The Walking Dead)",
+        "Peter Burke (White Collar)",
+        "Elizabeth Burke (White Collar)",
+        "Clinton Jones (White Collar)",
+        "Diana Barrigan (White Collar)"
+      ]
+    },
+    {
+      "weights": {
+        "w03": 0.8,
+        "w04": -0.6,
+        "w13": -0.2,
+        "w14": 0.9,
+        "w23": 0.5,
+        "w24": -0.4
+      },
+      "count": 248,
+      "dx": -1.189496038338916,
+      "n_stories": 123,
+      "genre_dist": {
+        "fantasy": 22,
+        "crime_drama": 13,
+        "other": 119,
+        "classic_lit": 1,
+        "scifi": 19,
+        "horror": 11,
+        "drama": 16,
+        "anime": 9,
+        "comedy": 23,
+        "disney_pixar": 3,
+        "superhero": 12
+      },
+      "sample_members": [
+        "Doc Holliday (Wynonna Earp)",
+        "Saul Goodman (Breaking Bad)",
+        "John Bender (The Breakfast Club)",
+        "The Wicked Witch of the West (The Wizard of Oz)",
+        "Dennis Nedry (Jurassic Park)",
+        "Jason Bourne (The Bourne Identity)",
+        "Marie Kreutz (The Bourne Identity)",
+        "Wanda Maximoff (WandaVision)",
+        "Vision (WandaVision)",
+        "Agatha Harkness (WandaVision)"
+      ]
+    },
+    {
+      "weights": {
+        "w03": 0.6,
+        "w04": -0.4,
+        "w13": -0.2,
+        "w14": 0.8,
+        "w23": 0.3,
+        "w24": -0.5
+      },
+      "count": 231,
+      "dx": -5.635555464743059,
+      "n_stories": 103,
+      "genre_dist": {
+        "horror": 11,
+        "crime_drama": 42,
+        "scifi": 17,
+        "other": 98,
+        "classic_lit": 4,
+        "drama": 27,
+        "anime": 3,
+        "fantasy": 12,
+        "comedy": 14,
+        "disney_pixar": 3
+      },
+      "sample_members": [
+        "Neal Caffrey (White Collar)",
+        "Mozzie (White Collar)",
+        "Jesse Pinkman (Breaking Bad)",
+        "Dr. Ian Malcolm (Jurassic Park)",
+        "Dr. Alana Bloom (Hannibal)",
+        "Jack Crawford (Hannibal)",
+        "Beverly Katz (Hannibal)",
+        "Bobbie Draper (The Expanse)",
+        "Thomas Leroy (Black Swan)",
+        "Edward Fairfax Rochester (Jane Eyre)"
+      ]
+    },
+    {
+      "weights": {
+        "w03": -0.8,
+        "w04": 0.6,
+        "w13": 0.9,
+        "w14": -0.4,
+        "w23": -0.5,
+        "w24": 0.7
+      },
+      "count": 10,
+      "dx": 7.793975135688289,
+      "n_stories": 8,
+      "genre_dist": {
+        "other": 8,
+        "fantasy": 1,
+        "anime": 1
+      },
+      "sample_members": [
+        "Dr. Gregory House (House, M.D.)",
+        "Severus Snape (Harry Potter)",
+        "Mr. Robot (Mr. Robot)",
+        "Dominique DiPierro (Mr. Robot)",
+        "William Somerset (Se7en)",
+        "Donald Thompson (A Nightmare on Elm Street)",
+        "Marge Thompson (A Nightmare on Elm Street)",
+        "Scar (Fullmetal Alchemist: Brotherhood)",
+        "O'Brien (Nineteen Eighty-Four)",
+        "Macbeth (Macbeth)"
+      ]
+    },
+    {
+      "weights": {
+        "w03": -0.8,
+        "w04": 0.6,
+        "w13": 0.2,
+        "w14": -0.9,
+        "w23": -0.4,
+        "w24": 0.7
+      },
+      "count": 5,
+      "dx": 0.6299885436263143,
+      "n_stories": 4,
+      "genre_dist": {
+        "crime_drama": 1,
+        "other": 4
+      },
+      "sample_members": [
+        "James Doakes (Dexter)",
+        "Elliot Alderson (Mr. Robot)",
+        "Winston Smith (Nineteen Eighty-Four)",
+        "Paul Spector (The Fall)",
+        "Jim Burns (The Fall)"
+      ]
+    },
+    {
+      "weights": {
+        "w03": -0.6,
+        "w04": 0.8,
+        "w13": 0.9,
+        "w14": -0.4,
+        "w23": -0.2,
+        "w24": 0.5
+      },
+      "count": 3,
+      "dx": -25.12344760125848,
+      "n_stories": 3,
+      "genre_dist": {
+        "fantasy": 1,
+        "other": 2
+      },
+      "sample_members": [
+        "Moaning Myrtle (Harry Potter)",
+        "Violet Baudelaire (A Series of Unfortunate Events)",
+        "Stella Gibson (The Fall)"
+      ]
+    },
+    {
+      "weights": {
+        "w03": -0.8,
+        "w04": 0.6,
+        "w13": 0.2,
+        "w14": -0.9,
+        "w23": 0.5,
+        "w24": -0.4
+      },
+      "count": 3,
+      "dx": 29.16702982825942,
+      "n_stories": 3,
+      "genre_dist": {
+        "horror": 1,
+        "other": 2
+      },
+      "sample_members": [
+        "Lila Crane (Psycho)",
+        "David Mills (Se7en)",
+        "Rust Cohle (True Detective)"
+      ]
+    },
+    {
+      "weights": {
+        "w03": -0.8,
+        "w04": 0.6,
+        "w13": 0.9,
+        "w14": -0.4,
+        "w23": -0.3,
+        "w24": 0.7
+      },
+      "count": 3,
+      "dx": 20.969822834748182,
+      "n_stories": 3,
+      "genre_dist": {
+        "other": 3
+      },
+      "sample_members": [
+        "Nurse Ratched (One Flew Over the Cuckoo's Nest)",
+        "Tracy Mills (Se7en)",
+        "Glen Lantz (A Nightmare on Elm Street)"
+      ]
+    },
+    {
+      "weights": {
+        "w03": 0.6,
+        "w04": -0.8,
+        "w13": -0.2,
+        "w14": 0.9,
+        "w23": 0.5,
+        "w24": -0.4
+      },
+      "count": 2,
+      "dx": 0.7298059318364116,
+      "n_stories": 2,
+      "genre_dist": {
+        "crime_drama": 1,
+        "fantasy": 1
+      },
+      "sample_members": [
+        "Marla Singer (Fight Club)",
+        "Gollum (Lord of the Rings)"
+      ]
+    },
+    {
+      "weights": {
+        "w03": 0.6,
+        "w04": -0.8,
+        "w13": 0.2,
+        "w14": -0.9,
+        "w23": 0.5,
+        "w24": -0.4
+      },
+      "count": 2,
+      "dx": 7.2076197437088165,
+      "n_stories": 1,
+      "genre_dist": {
+        "crime_drama": 2
+      },
+      "sample_members": [
+        "Ellis Carver (The Wire)",
+        "Norman Wilson (The Wire)"
+      ]
+    },
+    {
+      "weights": {
+        "w03": -0.8,
+        "w04": 0.6,
+        "w13": -0.2,
+        "w14": 0.9,
+        "w23": -0.5,
+        "w24": 0.3
+      },
+      "count": 1,
+      "dx": -5.468668601399776,
+      "n_stories": 1,
+      "genre_dist": {
+        "other": 1
+      },
+      "sample_members": [
+        "Tony Johnson (After Life)"
+      ]
+    },
+    {
+      "weights": {
+        "w03": 0.2,
+        "w04": -0.6,
+        "w13": 0.8,
+        "w14": -0.1,
+        "w23": 0.3,
+        "w24": -0.5
+      },
+      "count": 1,
+      "dx": -6.460106508780136,
+      "n_stories": 1,
+      "genre_dist": {
+        "other": 1
+      },
+      "sample_members": [
+        "Lenny (After Life)"
+      ]
+    },
+    {
+      "weights": {
+        "w03": 0.2,
+        "w04": -0.8,
+        "w13": 0.6,
+        "w14": -0.4,
+        "w23": 0.3,
+        "w24": -0.9
+      },
+      "count": 1,
+      "dx": -0.6119345779725883,
+      "n_stories": 1,
+      "genre_dist": {
+        "other": 1
+      },
+      "sample_members": [
+        "Lisa Johnson (After Life)"
+      ]
+    },
+    {
+      "weights": {
+        "w03": 0.6,
+        "w04": -0.4,
+        "w13": -0.2,
+        "w14": 0.8,
+        "w23": 0.5,
+        "w24": -0.3
+      },
+      "count": 1,
+      "dx": 0.2975701298791353,
+      "n_stories": 1,
+      "genre_dist": {
+        "other": 1
+      },
+      "sample_members": [
+        "Faustus Blackwood (Chilling Adventures of Sabrina)"
+      ]
+    }
+  ],
+  "celebrity_archetype_overlap": {
+    "Default": 709,
+    "Assertive": 780,
+    "Transgressor": 231,
+    "Contrarian": 248
+  },
+  "story_faithfulness": {
+    "The Walking Dead": {
+      "n": 10,
+      "unique": 2,
+      "faithfulness": 0.2
+    },
+    "Breaking Bad": {
+      "n": 10,
+      "unique": 4,
+      "faithfulness": 0.4
+    },
+    "This Is Us": {
+      "n": 10,
+      "unique": 1,
+      "faithfulness": 0.1
+    },
+    "The West Wing": {
+      "n": 10,
+      "unique": 2,
+      "faithfulness": 0.2
+    },
+    "Hannibal": {
+      "n": 10,
+      "unique": 4,
+      "faithfulness": 0.4
+    },
+    "Friday Night Lights": {
+      "n": 10,
+      "unique": 2,
+      "faithfulness": 0.2
+    },
+    "Money Heist": {
+      "n": 10,
+      "unique": 1,
+      "faithfulness": 0.1
+    },
+    "Riverdale": {
+      "n": 15,
+      "unique": 4,
+      "faithfulness": 0.26666666666666666
+    },
+    "Scandal": {
+      "n": 10,
+      "unique": 3,
+      "faithfulness": 0.3
+    },
+    "Dexter": {
+      "n": 10,
+      "unique": 3,
+      "faithfulness": 0.3
+    },
+    "LOST": {
+      "n": 15,
+      "unique": 2,
+      "faithfulness": 0.13333333333333333
+    },
+    "The 100": {
+      "n": 10,
+      "unique": 2,
+      "faithfulness": 0.2
+    },
+    "Twilight": {
+      "n": 10,
+      "unique": 3,
+      "faithfulness": 0.3
+    },
+    "Grey's Anatomy": {
+      "n": 10,
+      "unique": 2,
+      "faithfulness": 0.2
+    },
+    "That 70's Show": {
+      "n": 10,
+      "unique": 3,
+      "faithfulness": 0.3
+    },
+    "Harry Potter": {
+      "n": 30,
+      "unique": 6,
+      "faithfulness": 0.2
+    },
+    "Stranger Things": {
+      "n": 15,
+      "unique": 3,
+      "faithfulness": 0.2
+    },
+    "Parks and Recreation": {
+      "n": 10,
+      "unique": 2,
+      "faithfulness": 0.2
+    },
+    "Pride and Prejudice": {
+      "n": 10,
+      "unique": 3,
+      "faithfulness": 0.3
+    },
+    "Star Trek: Deep Space Nine": {
+      "n": 15,
+      "unique": 3,
+      "faithfulness": 0.2
+    },
+    "Prison Break": {
+      "n": 10,
+      "unique": 2,
+      "faithfulness": 0.2
+    },
+    "Gossip Girl": {
+      "n": 10,
+      "unique": 3,
+      "faithfulness": 0.3
+    },
+    "Community": {
+      "n": 10,
+      "unique": 3,
+      "faithfulness": 0.3
+    },
+    "Ozark": {
+      "n": 10,
+      "unique": 3,
+      "faithfulness": 0.3
+    },
+    "The Simpsons": {
+      "n": 15,
+      "unique": 4,
+      "faithfulness": 0.26666666666666666
+    },
+    "Shameless": {
+      "n": 10,
+      "unique": 3,
+      "faithfulness": 0.3
+    },
+    "Mean Girls": {
+      "n": 10,
+      "unique": 3,
+      "faithfulness": 0.3
+    },
+    "Modern Family": {
+      "n": 10,
+      "unique": 1,
+      "faithfulness": 0.1
+    },
+    "Mad Men": {
+      "n": 15,
+      "unique": 2,
+      "faithfulness": 0.13333333333333333
+    },
+    "Glee": {
+      "n": 15,
+      "unique": 3,
+      "faithfulness": 0.2
+    },
+    "Star Trek: The Next Generation": {
+      "n": 10,
+      "unique": 2,
+      "faithfulness": 0.2
+    },
+    "Firefly + Serenity": {
+      "n": 10,
+      "unique": 3,
+      "faithfulness": 0.3
+    },
+    "Succession": {
+      "n": 10,
+      "unique": 3,
+      "faithfulness": 0.3
+    },
+    "Degrassi: The Next Generation": {
+      "n": 10,
+      "unique": 2,
+      "faithfulness": 0.2
+    },
+    "Battlestar Galactica": {
+      "n": 15,
+      "unique": 3,
+      "faithfulness": 0.2
+    },
+    "Once Upon a Time": {
+      "n": 10,
+      "unique": 3,
+      "faithfulness": 0.3
+    },
+    "How To Get Away With Murder": {
+      "n": 10,
+      "unique": 2,
+      "faithfulness": 0.2
+    },
+    "Star Trek: Voyager": {
+      "n": 10,
+      "unique": 3,
+      "faithfulness": 0.3
+    },
+    "Gotham": {
+      "n": 10,
+      "unique": 3,
+      "faithfulness": 0.3
+    },
+    "The Witcher": {
+      "n": 10,
+      "unique": 4,
+      "faithfulness": 0.4
+    },
+    "Gilmore Girls": {
+      "n": 15,
+      "unique": 2,
+      "faithfulness": 0.13333333333333333
+    },
+    "The Sopranos": {
+      "n": 10,
+      "unique": 3,
+      "faithfulness": 0.3
+    },
+    "X-Men": {
+      "n": 10,
+      "unique": 2,
+      "faithfulness": 0.2
+    },
+    "The Big Bang Theory": {
+      "n": 10,
+      "unique": 3,
+      "faithfulness": 0.3
+    },
+    "Silicon Valley": {
+      "n": 10,
+      "unique": 3,
+      "faithfulness": 0.3
+    },
+    "Avatar: The Last Airbender": {
+      "n": 10,
+      "unique": 3,
+      "faithfulness": 0.3
+    },
+    "Mamma Mia!": {
+      "n": 10,
+      "unique": 1,
+      "faithfulness": 0.1
+    },
+    "Pretty Little Liars": {
+      "n": 10,
+      "unique": 2,
+      "faithfulness": 0.2
+    },
+    "Sex Education": {
+      "n": 10,
+      "unique": 1,
+      "faithfulness": 0.1
+    },
+    "Death Note": {
+      "n": 10,
+      "unique": 2,
+      "faithfulness": 0.2
+    },
+    "The Dark Knight": {
+      "n": 10,
+      "unique": 3,
+      "faithfulness": 0.3
+    },
+    "Desperate Housewives": {
+      "n": 10,
+      "unique": 3,
+      "faithfulness": 0.3
+    },
+    "Chilling Adventures of Sabrina": {
+      "n": 10,
+      "unique": 3,
+      "faithfulness": 0.3
+    },
+    "Downton Abbey": {
+      "n": 15,
+      "unique": 1,
+      "faithfulness": 0.06666666666666667
+    },
+    "Futurama": {
+      "n": 10,
+      "unique": 4,
+      "faithfulness": 0.4
+    },
+    "Westworld": {
+      "n": 15,
+      "unique": 4,
+      "faithfulness": 0.26666666666666666
+    },
+    "Orange is the New Black": {
+      "n": 10,
+      "unique": 4,
+      "faithfulness": 0.4
+    },
+    "The Wire": {
+      "n": 30,
+      "unique": 5,
+      "faithfulness": 0.16666666666666666
+    },
+    "Twin Peaks": {
+      "n": 15,
+      "unique": 3,
+      "faithfulness": 0.2
+    },
+    "The Office": {
+      "n": 15,
+      "unique": 2,
+      "faithfulness": 0.13333333333333333
+    },
+    "Ted Lasso": {
+      "n": 10,
+      "unique": 2,
+      "faithfulness": 0.2
+    },
+    "The Boys": {
+      "n": 15,
+      "unique": 2,
+      "faithfulness": 0.13333333333333333
+    },
+    "Arrested Development": {
+      "n": 10,
+      "unique": 2,
+      "faithfulness": 0.2
+    },
+    "Anna Karenina": {
+      "n": 10,
+      "unique": 2,
+      "faithfulness": 0.2
+    },
+    "Vikings": {
+      "n": 10,
+      "unique": 1,
+      "faithfulness": 0.1
+    },
+    "Attack on Titan": {
+      "n": 10,
+      "unique": 2,
+      "faithfulness": 0.2
+    },
+    "Yellowstone": {
+      "n": 10,
+      "unique": 3,
+      "faithfulness": 0.3
+    },
+    "Game of Thrones": {
+      "n": 30,
+      "unique": 4,
+      "faithfulness": 0.13333333333333333
+    },
+    "Arrow": {
+      "n": 10,
+      "unique": 3,
+      "faithfulness": 0.3
+    },
+    "Sense8": {
+      "n": 10,
+      "unique": 2,
+      "faithfulness": 0.2
+    },
+    "Arcane": {
+      "n": 10,
+      "unique": 2,
+      "faithfulness": 0.2
+    },
+    "Lord of the Rings": {
+      "n": 10,
+      "unique": 3,
+      "faithfulness": 0.3
+    },
+    "Marvel Cinematic Universe": {
+      "n": 15,
+      "unique": 2,
+      "faithfulness": 0.13333333333333333
+    }
+  },
+  "top_20_gaits": [
+    {
+      "character": "Lila Crane",
+      "story": "Psycho",
+      "genre": "horror",
+      "dx": 29.16702982825942,
+      "weights": {
+        "w03": -0.8,
+        "w04": 0.6,
+        "w13": 0.2,
+        "w14": -0.9,
+        "w23": 0.5,
+        "w24": -0.4
+      },
+      "speed": 3.110549071899315,
+      "phase_lock": 0.49888457798332236
+    },
+    {
+      "character": "David Mills",
+      "story": "Se7en",
+      "genre": "other",
+      "dx": 29.16702982825942,
+      "weights": {
+        "w03": -0.8,
+        "w04": 0.6,
+        "w13": 0.2,
+        "w14": -0.9,
+        "w23": 0.5,
+        "w24": -0.4
+      },
+      "speed": 3.110549071899315,
+      "phase_lock": 0.49888457798332236
+    },
+    {
+      "character": "Rust Cohle",
+      "story": "True Detective",
+      "genre": "other",
+      "dx": 29.16702982825942,
+      "weights": {
+        "w03": -0.8,
+        "w04": 0.6,
+        "w13": 0.2,
+        "w14": -0.9,
+        "w23": 0.5,
+        "w24": -0.4
+      },
+      "speed": 3.110549071899315,
+      "phase_lock": 0.49888457798332236
+    },
+    {
+      "character": "Moaning Myrtle",
+      "story": "Harry Potter",
+      "genre": "fantasy",
+      "dx": -25.12344760125848,
+      "weights": {
+        "w03": -0.6,
+        "w04": 0.8,
+        "w13": 0.9,
+        "w14": -0.4,
+        "w23": -0.2,
+        "w24": 0.5
+      },
+      "speed": 2.1855732462602466,
+      "phase_lock": 0.5060552933574913
+    },
+    {
+      "character": "Violet Baudelaire",
+      "story": "A Series of Unfortunate Events",
+      "genre": "other",
+      "dx": -25.12344760125848,
+      "weights": {
+        "w03": -0.6,
+        "w04": 0.8,
+        "w13": 0.9,
+        "w14": -0.4,
+        "w23": -0.2,
+        "w24": 0.5
+      },
+      "speed": 2.1855732462602466,
+      "phase_lock": 0.5060552933574913
+    },
+    {
+      "character": "Stella Gibson",
+      "story": "The Fall",
+      "genre": "other",
+      "dx": -25.12344760125848,
+      "weights": {
+        "w03": -0.6,
+        "w04": 0.8,
+        "w13": 0.9,
+        "w14": -0.4,
+        "w23": -0.2,
+        "w24": 0.5
+      },
+      "speed": 2.1855732462602466,
+      "phase_lock": 0.5060552933574913
+    },
+    {
+      "character": "Nurse Ratched",
+      "story": "One Flew Over the Cuckoo's Nest",
+      "genre": "other",
+      "dx": 20.969822834748182,
+      "weights": {
+        "w03": -0.8,
+        "w04": 0.6,
+        "w13": 0.9,
+        "w14": -0.4,
+        "w23": -0.3,
+        "w24": 0.7
+      },
+      "speed": 2.4335323345541315,
+      "phase_lock": 0.854413828944066
+    },
+    {
+      "character": "Tracy Mills",
+      "story": "Se7en",
+      "genre": "other",
+      "dx": 20.969822834748182,
+      "weights": {
+        "w03": -0.8,
+        "w04": 0.6,
+        "w13": 0.9,
+        "w14": -0.4,
+        "w23": -0.3,
+        "w24": 0.7
+      },
+      "speed": 2.4335323345541315,
+      "phase_lock": 0.854413828944066
+    },
+    {
+      "character": "Glen Lantz",
+      "story": "A Nightmare on Elm Street",
+      "genre": "other",
+      "dx": 20.969822834748182,
+      "weights": {
+        "w03": -0.8,
+        "w04": 0.6,
+        "w13": 0.9,
+        "w14": -0.4,
+        "w23": -0.3,
+        "w24": 0.7
+      },
+      "speed": 2.4335323345541315,
+      "phase_lock": 0.854413828944066
+    },
+    {
+      "character": "Dr. Gregory House",
+      "story": "House, M.D.",
+      "genre": "other",
+      "dx": 7.793975135688289,
+      "weights": {
+        "w03": -0.8,
+        "w04": 0.6,
+        "w13": 0.9,
+        "w14": -0.4,
+        "w23": -0.5,
+        "w24": 0.7
+      },
+      "speed": 3.148508934717415,
+      "phase_lock": 0.8351540981963512
+    },
+    {
+      "character": "Severus Snape",
+      "story": "Harry Potter",
+      "genre": "fantasy",
+      "dx": 7.793975135688289,
+      "weights": {
+        "w03": -0.8,
+        "w04": 0.6,
+        "w13": 0.9,
+        "w14": -0.4,
+        "w23": -0.5,
+        "w24": 0.7
+      },
+      "speed": 3.148508934717415,
+      "phase_lock": 0.8351540981963512
+    },
+    {
+      "character": "Mr. Robot",
+      "story": "Mr. Robot",
+      "genre": "other",
+      "dx": 7.793975135688289,
+      "weights": {
+        "w03": -0.8,
+        "w04": 0.6,
+        "w13": 0.9,
+        "w14": -0.4,
+        "w23": -0.5,
+        "w24": 0.7
+      },
+      "speed": 3.148508934717415,
+      "phase_lock": 0.8351540981963512
+    },
+    {
+      "character": "Dominique DiPierro",
+      "story": "Mr. Robot",
+      "genre": "other",
+      "dx": 7.793975135688289,
+      "weights": {
+        "w03": -0.8,
+        "w04": 0.6,
+        "w13": 0.9,
+        "w14": -0.4,
+        "w23": -0.5,
+        "w24": 0.7
+      },
+      "speed": 3.148508934717415,
+      "phase_lock": 0.8351540981963512
+    },
+    {
+      "character": "William Somerset",
+      "story": "Se7en",
+      "genre": "other",
+      "dx": 7.793975135688289,
+      "weights": {
+        "w03": -0.8,
+        "w04": 0.6,
+        "w13": 0.9,
+        "w14": -0.4,
+        "w23": -0.5,
+        "w24": 0.7
+      },
+      "speed": 3.148508934717415,
+      "phase_lock": 0.8351540981963512
+    },
+    {
+      "character": "Donald Thompson",
+      "story": "A Nightmare on Elm Street",
+      "genre": "other",
+      "dx": 7.793975135688289,
+      "weights": {
+        "w03": -0.8,
+        "w04": 0.6,
+        "w13": 0.9,
+        "w14": -0.4,
+        "w23": -0.5,
+        "w24": 0.7
+      },
+      "speed": 3.148508934717415,
+      "phase_lock": 0.8351540981963512
+    },
+    {
+      "character": "Marge Thompson",
+      "story": "A Nightmare on Elm Street",
+      "genre": "other",
+      "dx": 7.793975135688289,
+      "weights": {
+        "w03": -0.8,
+        "w04": 0.6,
+        "w13": 0.9,
+        "w14": -0.4,
+        "w23": -0.5,
+        "w24": 0.7
+      },
+      "speed": 3.148508934717415,
+      "phase_lock": 0.8351540981963512
+    },
+    {
+      "character": "Scar",
+      "story": "Fullmetal Alchemist: Brotherhood",
+      "genre": "anime",
+      "dx": 7.793975135688289,
+      "weights": {
+        "w03": -0.8,
+        "w04": 0.6,
+        "w13": 0.9,
+        "w14": -0.4,
+        "w23": -0.5,
+        "w24": 0.7
+      },
+      "speed": 3.148508934717415,
+      "phase_lock": 0.8351540981963512
+    },
+    {
+      "character": "O'Brien",
+      "story": "Nineteen Eighty-Four",
+      "genre": "other",
+      "dx": 7.793975135688289,
+      "weights": {
+        "w03": -0.8,
+        "w04": 0.6,
+        "w13": 0.9,
+        "w14": -0.4,
+        "w23": -0.5,
+        "w24": 0.7
+      },
+      "speed": 3.148508934717415,
+      "phase_lock": 0.8351540981963512
+    },
+    {
+      "character": "Macbeth",
+      "story": "Macbeth",
+      "genre": "other",
+      "dx": 7.793975135688289,
+      "weights": {
+        "w03": -0.8,
+        "w04": 0.6,
+        "w13": 0.9,
+        "w14": -0.4,
+        "w23": -0.5,
+        "w24": 0.7
+      },
+      "speed": 3.148508934717415,
+      "phase_lock": 0.8351540981963512
+    },
+    {
+      "character": "Ellis Carver",
+      "story": "The Wire",
+      "genre": "crime_drama",
+      "dx": 7.2076197437088165,
+      "weights": {
+        "w03": 0.6,
+        "w04": -0.8,
+        "w13": 0.2,
+        "w14": -0.9,
+        "w23": 0.5,
+        "w24": -0.4
+      },
+      "speed": 1.0564728880292722,
+      "phase_lock": 0.9526467579116101
+    }
+  ],
+  "effective_dimensionality": {
+    "archetypometrics": 2.2556331488723402,
+    "celebrities": 2.236179578593507,
+    "politics": 2.285289643094089,
+    "verbs": 2.0215833409002624,
+    "theorems": 3.117859429180179,
+    "bible": 2.669177981027668,
+    "places": 1.603437337554982,
+    "baseline": 5.831653856636634
+  }
+}

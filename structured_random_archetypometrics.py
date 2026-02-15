@@ -42,8 +42,11 @@ Usage:
 """
 
 import csv
+import hashlib
 import sys
 from pathlib import Path
+
+import numpy as np
 
 PROJECT = Path(__file__).resolve().parent
 sys.path.insert(0, str(PROJECT))
@@ -51,7 +54,7 @@ sys.path.insert(0, str(PROJECT))
 import structured_random_common as src
 src.NUM_TRIALS = 2100  # Override default 100 to allow all ~2000 seeds
 
-from structured_random_common import run_structured_search
+from structured_random_common import run_structured_search, WEIGHT_NAMES
 
 OUT_JSON = PROJECT / "artifacts" / "structured_random_archetypometrics.json"
 CHAR_TSV = PROJECT / "artifacts" / "archetypometrics_characters.tsv"
@@ -84,6 +87,30 @@ def build_seeds(chars):
     return seeds
 
 
+PERTURB_RADIUS = 0.05  # per-weight perturbation magnitude (±0.05)
+
+
+def perturb_weights(weights, seed):
+    """Apply a small deterministic perturbation to break weight-vector collapse.
+
+    The LLM chooses the archetype (sign structure, general region of weight space).
+    This function adds a seed-specific nudge so that characters who receive the same
+    LLM output still get distinct weight vectors — and, on the cliff-riddled landscape
+    (median cliffiness 2.88m at r=0.05), distinct gaits.
+
+    The perturbation is deterministic: same seed always produces the same nudge.
+    Values are clamped to [-1, 1] after perturbation.
+    """
+    # Derive a deterministic RNG seed from the character string
+    h = int(hashlib.sha256(seed.encode()).hexdigest(), 16) % (2**32)
+    rng = np.random.default_rng(h)
+    perturbed = {}
+    for wn in WEIGHT_NAMES:
+        delta = rng.uniform(-PERTURB_RADIUS, PERTURB_RADIUS)
+        perturbed[wn] = max(-1.0, min(1.0, weights[wn] + delta))
+    return perturbed
+
+
 def make_prompt(seed):
     """Build the LLM prompt for a fictional character seed."""
     # Parse "Character Name [Story]"
@@ -98,14 +125,16 @@ def make_prompt(seed):
     story_clause = f" from {story}" if story else ""
 
     return (
-        f"Generate 6 synapse weights for a 3-link walking robot inspired by "
-        f"the fictional character: {name}{story_clause}. The weights are w03, w04, w13, w14, "
-        f"w23, w24, each in [-1, 1]. Translate the character's personality, "
-        f"energy, movement style, and archetypal role into weight "
-        f"magnitudes, signs, and symmetry patterns. "
-        f'Return ONLY a JSON object like '
-        f'{{"w03": 0.5, "w04": -0.3, "w13": 0.1, "w14": -0.7, "w23": 0.4, "w24": -0.2}} '
-        f"with no other text."
+        f"Generate 6 synapse weights for a 3-link walking robot that embodies "
+        f"the fictional character {name}{story_clause}. "
+        f"The 6 weights are: w03, w04, w13, w14, w23, w24. "
+        f"Each is a float in [-1, 1] with exactly 3 decimal places. "
+        f"Think about what makes {name} DISTINCT: their energy, aggression, "
+        f"grace, moral alignment, and movement style. Villains and heroes should "
+        f"differ. Tricksters and warriors should differ. Calm and explosive should differ. "
+        f"Return ONLY a JSON object: "
+        f'{{\"w03\": <float>, \"w04\": <float>, \"w13\": <float>, '
+        f'\"w14\": <float>, \"w23\": <float>, \"w24\": <float>}}'
     )
 
 
@@ -128,7 +157,8 @@ def main():
     if len(stories) > 20:
         print(f"  ... and {len(stories) - 20} more stories")
 
-    run_structured_search("archetypometrics", seeds, make_prompt, OUT_JSON)
+    run_structured_search("archetypometrics", seeds, make_prompt, OUT_JSON,
+                          temperature=1.5, weight_transform=perturb_weights)
 
 
 if __name__ == "__main__":

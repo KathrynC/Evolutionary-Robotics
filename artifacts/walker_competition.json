@@ -1,0 +1,215 @@
+{
+  "meta": {
+    "eval_budget": 1000,
+    "n_walkers": 5,
+    "total_time_s": 426.9239957090467,
+    "winner": "Novelty Seeker"
+  },
+  "walkers": {
+    "Hill Climber": {
+      "n_evals": 1000,
+      "scores": {
+        "best_dx": 19.002556231174374,
+        "best_efficiency": 0.012749567444896536,
+        "best_speed": 1.8522357492108277,
+        "pareto_size": 4,
+        "diversity": 0.22383248984653928,
+        "unique_regimes": 10
+      },
+      "ranks": {
+        "best_dx": 5,
+        "best_efficiency": 2,
+        "best_speed": 5,
+        "pareto_size": 4,
+        "diversity": 5,
+        "unique_regimes": 1,
+        "total": 22,
+        "overall": 4
+      },
+      "best_trial": {
+        "weights": {
+          "w03": 0.9756024101779632,
+          "w04": 0.8316845812438227,
+          "w13": 0.2680649596538034,
+          "w14": -0.07758949798944681,
+          "w23": 0.7730580992571697,
+          "w24": 0.8498563508774061
+        },
+        "metrics": {
+          "dx": -19.002556231174374,
+          "abs_dx": 19.002556231174374,
+          "speed": 1.510602979979071,
+          "efficiency": 0.005872661317447177,
+          "work_proxy": 3344.124593443435,
+          "phase_lock": 0.6973998751295397,
+          "entropy": 1.2323497421301584,
+          "roll_dom": 0.6617000417361936
+        }
+      }
+    },
+    "Ridge Walker": {
+      "n_evals": 1000,
+      "scores": {
+        "best_dx": 25.225139670544102,
+        "best_efficiency": 0.008372016673812767,
+        "best_speed": 1.8890320857647094,
+        "pareto_size": 2,
+        "diversity": 0.6719604349963287,
+        "unique_regimes": 10
+      },
+      "ranks": {
+        "best_dx": 4,
+        "best_efficiency": 5,
+        "best_speed": 4,
+        "pareto_size": 5,
+        "diversity": 3,
+        "unique_regimes": 2,
+        "total": 23,
+        "overall": 5
+      },
+      "best_trial": {
+        "weights": {
+          "w03": 0.7339203609151022,
+          "w04": 0.7520879445207356,
+          "w13": 0.2584853695096294,
+          "w14": 0.30049273208320526,
+          "w23": 0.9676974933061817,
+          "w24": 1.337760948085525
+        },
+        "metrics": {
+          "dx": -25.225139670544102,
+          "abs_dx": 25.225139670544102,
+          "speed": 1.825026767876587,
+          "efficiency": 0.008046623180554019,
+          "work_proxy": 3231.4243410514855,
+          "phase_lock": 0.9683786837529851,
+          "entropy": 1.2764247671934705,
+          "roll_dom": 0.7271782958736543
+        }
+      }
+    },
+    "Cliff Mapper": {
+      "n_evals": 1000,
+      "scores": {
+        "best_dx": 49.877651082596564,
+        "best_efficiency": 0.009522913549365101,
+        "best_speed": 3.2290999423114624,
+        "pareto_size": 5,
+        "diversity": 0.7212075207941853,
+        "unique_regimes": 10
+      },
+      "ranks": {
+        "best_dx": 3,
+        "best_efficiency": 4,
+        "best_speed": 3,
+        "pareto_size": 2,
+        "diversity": 1,
+        "unique_regimes": 3,
+        "total": 16,
+        "overall": 2
+      },
+      "best_trial": {
+        "weights": {
+          "w03": -0.9072005499155551,
+          "w04": 0.9716758354296403,
+          "w13": -0.7472405110774923,
+          "w14": 0.40301289497263776,
+          "w23": -0.7867367836494221,
+          "w24": -0.838728797551188
+        },
+        "metrics": {
+          "dx": -49.877651082596564,
+          "abs_dx": 49.877651082596564,
+          "speed": 3.1173619440623717,
+          "efficiency": 0.007519775322843437,
+          "work_proxy": 6672.325592427883,
+          "phase_lock": 0.5959471726632734,
+          "entropy": 1.1593852134103317,
+          "roll_dom": 0.9104724166540525
+        }
+      }
+    },
+    "Novelty Seeker": {
+      "n_evals": 1000,
+      "scores": {
+        "best_dx": 60.19439441056053,
+        "best_efficiency": 0.021291682075944052,
+        "best_speed": 4.615965981109205,
+        "pareto_size": 5,
+        "diversity": 0.6973830816322382,
+        "unique_regimes": 10
+      },
+      "ranks": {
+        "best_dx": 1,
+        "best_efficiency": 1,
+        "best_speed": 1,
+        "pareto_size": 3,
+        "diversity": 2,
+        "unique_regimes": 4,
+        "total": 12,
+        "overall": 1
+      },
+      "best_trial": {
+        "weights": {
+          "w03": -1.3083167156740476,
+          "w04": -0.34279812804233867,
+          "w13": 0.8331363773051514,
+          "w14": -0.37582983217830773,
+          "w23": -0.0369713954829298,
+          "w24": 0.4375020967145814
+        },
+        "metrics": {
+          "dx": 60.19439441056053,
+          "abs_dx": 60.19439441056053,
+          "speed": 4.615965981109205,
+          "efficiency": 0.008395497331622781,
+          "work_proxy": 8730.835297198077,
+          "phase_lock": 0.7960356856164057,
+          "entropy": 0.9546843728527583,
+          "roll_dom": 0.7725604778701561
+        }
+      }
+    },
+    "Ensemble Explorer": {
+      "n_evals": 1000,
+      "scores": {
+        "best_dx": 51.75261302421459,
+        "best_efficiency": 0.010056179193489119,
+        "best_speed": 3.7295772200029433,
+        "pareto_size": 7,
+        "diversity": 0.6626014726495626,
+        "unique_regimes": 10
+      },
+      "ranks": {
+        "best_dx": 2,
+        "best_efficiency": 3,
+        "best_speed": 2,
+        "pareto_size": 1,
+        "diversity": 4,
+        "unique_regimes": 5,
+        "total": 17,
+        "overall": 3
+      },
+      "best_trial": {
+        "weights": {
+          "w03": -0.883343487941364,
+          "w04": 0.567538755080551,
+          "w13": 0.08386753896794512,
+          "w14": 0.860107632850805,
+          "w23": 0.6499128944128013,
+          "w24": -0.8544049067676521
+        },
+        "metrics": {
+          "dx": -51.75261302421459,
+          "abs_dx": 51.75261302421459,
+          "speed": 3.563352917843728,
+          "efficiency": 0.0055134844378216,
+          "work_proxy": 9457.836830217555,
+          "phase_lock": 0.39975787662897205,
+          "entropy": 1.2152853949992548,
+          "roll_dom": 0.6664856345654521
+        }
+      }
+    }
+  }
+}

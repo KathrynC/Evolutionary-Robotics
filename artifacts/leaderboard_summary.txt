@@ -1,0 +1,22 @@
+ARCHETYPOMETRICS EXPERIMENT — SUMMARY STATISTICS
+============================================================
+Total characters:          2000
+Total stories:             341
+Unique weight vectors:     2000
+Unique DX values:          1994
+
+Mean |DX|:                 7.66 m
+Median |DX|:               3.75 m
+Std |DX|:                  8.80 m
+Max displacement:          31.35 m (rightward)
+Min displacement:          -37.58 m (leftward)
+
+Champions (|DX| > 20m):      270 (13.5%)
+Good walkers (|DX| > 10m):   511 (25.6%)
+Movers (|DX| > 1m):         1691 (84.5%)
+Dead gaits (|DX| < 1m):      309 (15.4%)
+
+--- Progression across 3 runs ---
+Run 1 (temp=0.8, example anchoring):  15 unique weight vectors
+Run 2 (temp=1.5, no anchoring):       274 unique weight vectors
+Run 3 (temp=1.5 + perturbation):      2000 unique weight vectors

@@ -1,0 +1,30 @@
+MOST INERT LEADERBOARD — Bottom 25 by |DX|
+Characters whose robots barely moved
+====================================================================================================
+Rank  Character                                                   DX (m)      Speed    Yaw (°)
+----------------------------------------------------------------------------------------------------
+1     Heloise [Portrait of a Lady on Fire]                        0.0017     0.5739      304.4
+2     David Rosen [Scandal]                                      -0.0031     0.4900     -115.3
+3     Paul Smecker [The Boondock Saints]                         -0.0060     0.7752     -102.5
+4     Kes [Star Trek: Voyager]                                    0.0088     0.4838       30.2
+5     Bill Anderson [Mamma Mia!]                                 -0.0116     0.4352       -8.9
+6     Captain Jim Brass [CSI: Crime Scene Investigation]         -0.0137     0.3350      161.7
+7     Jonas Kahnwald [Dark]                                       0.0138     1.5873     -175.4
+8     Ellis Wyatt [Atlas Shrugged]                               -0.0143     0.6943       31.5
+9     Jessica Pearson [Suits]                                     0.0170     0.1082      -15.1
+10    Agatha Harkness [WandaVision]                              -0.0217     0.9280     -119.7
+11    Alex Kamal [The Expanse]                                   -0.0266     0.7330      -59.4
+12    Tokio [Money Heist]                                        -0.0283     0.4069      138.8
+13    Patrick Verona [10 Things I Hate About You]                 0.0348     0.6217       52.5
+14    Edward Cullen [Twilight]                                   -0.0349     0.4672     -201.2
+15    Carla Espinosa [Scrubs]                                     0.0363     0.5342     -166.2
+16    Bunk Moreland [The Wire]                                   -0.0389     0.4002     -196.1
+17    Violet Baudelaire [A Series of Unfortunate Events]         -0.0394     0.2839      -23.8
+18    Riley Blue [Sense8]                                        -0.0462     0.2713      -83.9
+19    Lee Sizemore [Westworld]                                   -0.0481     0.6753      219.9
+20    Friar Tuck [Robin Hood]                                     0.0639     0.4499      -15.2
+21    William Adama [Battlestar Galactica]                        0.0687     0.1484      -61.5
+22    Molly Weasley [Harry Potter]                               -0.0690     0.4053     -126.4
+23    Berta [Two and a Half Men]                                  0.0707     0.7745     -131.6
+24    Robby Keene [Cobra Kai]                                     0.0728     0.7950       33.2
+25    Freddy Krueger [A Nightmare on Elm Street]                 -0.0787     1.2047     -685.4

@@ -1,0 +1,30 @@
+CONTACT ENTROPY LEADERBOARD — Top 25 by Shannon entropy
+Most complex contact-state patterns (richer ground interaction)
+==========================================================================================
+Rank  Character                                                  Entropy     DX (m)
+------------------------------------------------------------------------------------------
+1     Butch Coolidge [Pulp Fiction]                               2.5355       6.01
+2     Cosmo Brown [Singin' in the Rain]                           2.5152      -8.80
+3     Alexis Rose [Schitt's Creek]                                2.4844       6.39
+4     Molly Davidson [Booksmart]                                  2.4793       0.34
+5     Tim Riggins [Friday Night Lights]                           2.4783       4.08
+6     Fiona Gallagher [Shameless]                                 2.4612      -3.04
+7     Harald Finehair [Vikings]                                   2.4594      -7.27
+8     Indiana Jones [Raiders of the Lost Ark]                     2.4488       0.63
+9     Paulie 'Walnuts' Gualtieri [The Sopranos]                   2.4475       1.95
+10    Will Byers [Stranger Things]                                2.4444       4.51
+11    Hiram Lodge [Riverdale]                                     2.4371     -13.05
+12    Jamie Tartt [Ted Lasso]                                     2.4280     -14.79
+13    Bjorn Lothbrok [Vikings]                                    2.4126       1.90
+14    Tuxedo Mask [Sailor Moon]                                   2.4033       3.56
+15    Murtagh Fraser [Outlander]                                  2.3937       6.75
+16    Jake Peralta [Brooklyn Nine-Nine]                           2.3799      -1.32
+17    Columbus [Zombieland]                                       2.3785      -2.09
+18    Padme Amidala [Star Wars: Revenge of the Sith]              2.3681       1.04
+19    Obi-Wan Kenobi [Star Wars: A New Hope]                      2.3659      -3.27
+20    Seeley Booth [Bones]                                        2.3635       5.27
+21    Doc [Snow White and the Seven Dwarfs]                       2.3367      -1.06
+22    Ruby Tiffany Sparks [Ruby Sparks]                           2.3349       1.86
+23    Danny Vinyard [American History X]                          2.3294      -0.99
+24    Roland Pryzbylewski [The Wire]                              2.2929      10.54
+25    Carla Espinosa [Scrubs]                                     2.2845       0.04

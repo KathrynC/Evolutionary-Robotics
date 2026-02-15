@@ -1,0 +1,3603 @@
+{
+  "probes": [
+    {
+      "base_dx": 1.175219123969025,
+      "cliffiness": 4.76699778286318,
+      "gradient_magnitude": 192.95531339026016,
+      "gradient_vector": [
+        -55.67476512624344,
+        -11.462692203616697,
+        120.76470000309389,
+        -36.98666628912297,
+        -96.58156698242247,
+        -93.38391108920165
+      ],
+      "delta_dxs": [
+        -1.6515915645702495,
+        2.1073065345773907,
+        -0.2386748666216124,
+        -2.7496599165572517,
+        1.2685275072892583,
+        -4.76699778286318
+      ],
+      "directions": [
+        [
+          -0.44284104687008413,
+          -0.6606239640882522,
+          -0.5322394574151004,
+          -0.27203645854313396,
+          0.01842332578770464,
+          0.09922545812462127
+        ],
+        [
+          -0.12773461021425894,
+          0.6577758564417742,
+          0.030522689633999532,
+          -0.5139885297599396,
+          -0.4635257764963659,
+          0.26653855865871473
+        ],
+        [
+          0.6656853001003781,
+          -0.6597795348845964,
+          0.05958293995593232,
+          -0.027255143886125197,
+          0.13373530243880885,
+          -0.31523950554664026
+        ],
+        [
+          -0.5640693718438792,
+          0.016329448321676692,
+          -0.14243799220515044,
+          0.33165374531092373,
+          0.7281017012698765,
+          -0.1454105122433562
+        ],
+        [
+          0.16183082015815708,
+          0.6899382757174445,
+          -0.34684661009663587,
+          -0.23566238737690956,
+          -0.4596985889160958,
+          -0.33261665162137594
+        ],
+        [
+          -0.18272014111720514,
+          -0.07610376718321235,
+          0.017029436899028964,
+          0.08532337284478952,
+          0.968163688897173,
+          0.12613706226538254
+        ]
+      ],
+      "weights": {
+        "w03": 0.6,
+        "w04": -0.4,
+        "w13": 0.2,
+        "w14": -0.8,
+        "w23": 0.5,
+        "w24": -0.3
+      },
+      "conditions": [
+        "verbs",
+        "theorems",
+        "bible",
+        "places"
+      ],
+      "seeds": [
+        "cascade (English, to fall in a series of stages)",
+        "tiptoe (English, to walk quietly on the toes)",
+        "pairar (Portuguese, to hover)",
+        "skatit'sya (Russian, to slide down)",
+        "zou (Mandarin, to walk)",
+        "crawl (English, to move on hands and knees)",
+        "dissolve (English, to become incorporated into a liquid)",
+        "pa (Mandarin, to crawl or climb)",
+        "kriechen (German, to crawl)",
+        "geotda (Korean, to walk)",
+        "schlurfen (German, to shuffle or scuff)",
+        "oyogu (Japanese, to swim)",
+        "kucheza (Swahili, to dance or play)",
+        "yuvarlanmak (Turkish, to roll)",
+        "deslizarse (Spanish, to slide or glide)",
+        "polzti (Russian, to crawl)",
+        "yamshi (Arabic, to walk)",
+        "flotter (French, to float)",
+        "glide (English, to move smoothly and effortlessly)",
+        "bailar (Spanish, to dance)",
+        "arrastrarse (Spanish, to drag oneself)",
+        "hua (Mandarin, to slide or ski)",
+        "kutambaa (Swahili, to crawl)",
+        "odoru (Japanese, to dance)",
+        "aruku (Japanese, to walk)",
+        "resonate (English, to vibrate in response to a frequency)",
+        "volare (Latin, to fly)",
+        "peripatein (Greek, to walk about)",
+        "kutembea (Swahili, to walk)",
+        "serpere (Latin, to creep or crawl)",
+        "shuffle (English, to walk dragging the feet)",
+        "nachna (Hindi, to dance)",
+        "yazhaf (Arabic, to crawl)",
+        "glisser (French, to slide or slip)",
+        "ramper (French, to crawl or creep)",
+        "chalna (Hindi, to walk)",
+        "ziplamak (Turkish, to jump or bounce)",
+        "bloom (English, to produce flowers)",
+        "ambulare (Latin, to walk)",
+        "Sharkovskii's Theorem",
+        "Markov's Inequality",
+        "Perron-Frobenius Theorem",
+        "Dominated Convergence Theorem",
+        "Baire Category Theorem",
+        "Jordan Normal Form Theorem",
+        "Monotone Convergence Theorem",
+        "Arzela-Ascoli Theorem",
+        "Bertrand's Postulate",
+        "Turan's Theorem",
+        "Cayley's Formula for labeled trees",
+        "Bayes' Theorem",
+        "Matthew 6:28 \u2014 Consider the lilies of the field, how they grow; they toil not, neither do they spin.",
+        "Psalm 1:3 \u2014 He shall be like a tree planted by the rivers of water.",
+        "Isaiah 30:21 \u2014 This is the way, walk ye in it, when ye turn to the right hand, and when ye turn to the left.",
+        "Daniel 3:25 \u2014 Lo, I see four men loose, walking in the midst of the fire, and they have no hurt.",
+        "Psalm 46:10 \u2014 Be still, and know that I am God.",
+        "Isaiah 52:7 \u2014 How beautiful upon the mountains are the feet of him that bringeth good tidings.",
+        "Proverbs 6:6 \u2014 Go to the ant, thou sluggard; consider her ways, and be wise.",
+        "Exodus 3:2 \u2014 And the angel of the LORD appeared unto him in a flame of fire out of the midst of a bush.",
+        "Matthew 14:25 \u2014 And in the fourth watch of the night Jesus went unto them, walking on the sea.",
+        "Revelation 10:1 \u2014 And I saw another mighty angel come down from heaven, clothed with a cloud; and a rainbow was upon his head.",
+        "Job 38:31 \u2014 Canst thou bind the sweet influences of Pleiades, or loose the bands of Orion?",
+        "Micah 6:8 \u2014 What doth the LORD require of thee, but to do justly, and to love mercy, and to walk humbly.",
+        "Judges 5:20 \u2014 The stars in their courses fought against Sisera.",
+        "Exodus 15:20 \u2014 And Miriam took a timbrel in her hand; and all the women went out after her with dances.",
+        "Exodus 33:22 \u2014 I will put thee in a clift of the rock, and will cover thee with my hand while I pass by.",
+        "Isaiah 2:4 \u2014 They shall beat their swords into plowshares, and their spears into pruninghooks.",
+        "Proverbs 30:29 \u2014 There be three things which go well, yea, four are comely in going.",
+        "Numbers 22:28 \u2014 And the LORD opened the mouth of the ass, and she said unto Balaam, What have I done unto thee?",
+        "Ezekiel 47:5 \u2014 Afterward he measured a thousand; and it was a river that I could not pass over.",
+        "Ezekiel 10:13 \u2014 As for the wheels, it was cried unto them in my hearing, O wheel.",
+        "Proverbs 30:19 \u2014 The way of an eagle in the air; the way of a serpent upon a rock.",
+        "Genesis 3:19 \u2014 In the sweat of thy face shalt thou eat bread, till thou return unto the ground.",
+        "Genesis 11:9 \u2014 Therefore is the name of it called Babel; because the LORD did there confound the language.",
+        "Psalm 114:4 \u2014 The mountains skipped like rams, and the little hills like lambs.",
+        "Jonah 1:17 \u2014 Now the LORD had prepared a great fish to swallow up Jonah.",
+        "Psalm 18:33 \u2014 He maketh my feet like hinds' feet, and setteth me upon my high places.",
+        "Isaiah 55:12 \u2014 The mountains and the hills shall break forth before you into singing, and all the trees of the field shall clap their hands.",
+        "Revelation 4:6 \u2014 Before the throne there was a sea of glass like unto crystal.",
+        "Deuteronomy 32:11 \u2014 As an eagle stirreth up her nest, fluttereth over her young, spreadeth abroad her wings.",
+        "Habakkuk 2:2 \u2014 Write the vision, and make it plain upon tables, that he may run that readeth it.",
+        "Hebrews 11:1 \u2014 Now faith is the substance of things hoped for, the evidence of things not seen.",
+        "Romans 8:28 \u2014 All things work together for good to them that love God.",
+        "Psalm 137:1 \u2014 By the rivers of Babylon, there we sat down, yea, we wept.",
+        "Ezekiel 37:4 \u2014 Prophesy upon these bones, and say unto them, O ye dry bones, hear the word of the LORD.",
+        "Genesis 1:9 \u2014 Let the waters under the heaven be gathered together unto one place, and let the dry land appear.",
+        "Song of Solomon 2:11 \u2014 For, lo, the winter is past, the rain is over and gone.",
+        "Habakkuk 3:19 \u2014 The LORD God is my strength, and he will make my feet like hinds' feet.",
+        "Zechariah 4:6 \u2014 Not by might, nor by power, but by my spirit, saith the LORD of hosts.",
+        "2 Samuel 22:34 \u2014 He maketh my feet like hinds' feet: and setteth me upon my high places.",
+        "Ecclesiastes 12:6 \u2014 Or ever the silver cord be loosed, or the golden bowl be broken.",
+        "Ecclesiastes 3:1 \u2014 To every thing there is a season, and a time to every purpose under the heaven.",
+        "Psalm 104:26 \u2014 There go the ships: there is that leviathan, whom thou hast made to play therein.",
+        "Isaiah 40:22 \u2014 It is he that sitteth upon the circle of the earth.",
+        "1 Samuel 17:49 \u2014 And David put his hand in his bag, and took thence a stone, and slang it.",
+        "Svalbard",
+        "Bialowieza Forest, Poland",
+        "Chichen Itza, Mexico",
+        "Eisriesenwelt Ice Cave, Austria",
+        "Varanasi, India",
+        "Black Forest, Germany",
+        "Cartagena, Colombia",
+        "Luang Prabang, Laos",
+        "Daintree Rainforest, Australia",
+        "Lalibela, Ethiopia",
+        "Madagascar",
+        "Hanoi, Vietnam",
+        "Mongolian Steppe",
+        "Fez, Morocco",
+        "Jeita Grotto, Lebanon",
+        "Zanzibar City, Tanzania",
+        "Great Plains, USA",
+        "Sahara Desert",
+        "Pampas, Argentina",
+        "Pompeii, Italy",
+        "Kyoto, Japan",
+        "Yellowstone Caldera",
+        "Strait of Magellan",
+        "Kazakh Steppe",
+        "Atacama Desert, Chile",
+        "Popocatepetl, Mexico",
+        "Yakushima Forest, Japan",
+        "Gobi Desert, Mongolia",
+        "Manaus, Brazil",
+        "Bagan, Myanmar",
+        "Reykjavik, Iceland",
+        "Reunion Island",
+        "Congo River",
+        "Amazon Rainforest",
+        "Tromsoe, Norway",
+        "Sargasso Sea",
+        "Dead Sea, Israel-Jordan",
+        "Mekong Delta, Vietnam",
+        "Singapore",
+        "Angkor Wat, Cambodia",
+        "Namib Desert, Namibia",
+        "Bergen, Norway",
+        "Oaxaca, Mexico",
+        "Tasmania, Australia",
+        "Faroe Islands",
+        "White Sands, New Mexico",
+        "Dubrovnik, Croatia",
+        "Easter Island, Chile",
+        "Great Wall of China",
+        "Socotra, Yemen",
+        "Irkutsk, Russia",
+        "Galapagos Islands",
+        "Kilimanjaro, Tanzania",
+        "Stonehenge, England",
+        "Timbuktu, Mali",
+        "Matterhorn, Swiss Alps",
+        "Lake Titicaca, Peru-Bolivia",
+        "Cusco, Peru",
+        "Cappadocia, Turkey",
+        "Mount Olympus, Greece",
+        "Aleppo, Syria",
+        "Denali, Alaska",
+        "Machu Picchu, Peru",
+        "Mount Fuji, Japan",
+        "Table Mountain, South Africa",
+        "Mumbai, India",
+        "Petra, Jordan",
+        "Giant's Causeway, Northern Ireland",
+        "Iguazu Falls, Argentina-Brazil",
+        "Lhasa, Tibet",
+        "Iceland",
+        "Ganges River Delta",
+        "Samarkand, Uzbekistan",
+        "Serengeti, Tanzania",
+        "Borneo",
+        "Great Barrier Reef, Australia",
+        "Lake Baikal, Russia",
+        "Marrakech, Morocco",
+        "Kathmandu, Nepal",
+        "Svalbard, Norway",
+        "K2, Karakoram",
+        "Victoria Falls, Zimbabwe",
+        "Bruges, Belgium",
+        "Havana, Cuba",
+        "Grand Canyon, Arizona",
+        "Amazon River, Brazil",
+        "Venice, Italy"
+      ],
+      "known_dx": 1.175219123969025,
+      "dx_match": true
+    },
+    {
+      "base_dx": -3.7112841135358297,
+      "cliffiness": 7.120860551115933,
+      "gradient_magnitude": 382.233864785131,
+      "gradient_vector": [
+        228.60046396380528,
+        215.22685308016113,
+        -129.8172946247369,
+        -118.10258194331858,
+        -35.073512531357196,
+        -124.46307022836226
+      ],
+      "delta_dxs": [
+        -7.120860551115933,
+        1.6813262892497258,
+        0.005848038564784108,
+        1.752690661915266,
+        2.7277790974358056,
+        3.999189566732448
+      ],
+      "directions": [
+        [
+          0.3442937135342211,
+          -0.2834794104480311,
+          0.4577732656594391,
+          0.6398113658401706,
+          -0.3131250270537181,
+          0.29006729132166686
+        ],
+        [
+          0.41533625065804003,
+          0.04818699676493594,
+          0.5024467031746241,
+          0.489243854454713,
+          -0.5112907570535015,
+          -0.26822254814053553
+        ],
+        [
+          -0.13628776666857378,
+          -0.3700754047504184,
+          -0.48665215894979824,
+          0.24626460808520845,
+          0.26274957596820187,
+          -0.691343560596304
+        ],
+        [
+          0.5524360877318483,
+          0.33170863786256904,
+          0.5018043965970873,
+          0.4305008723912887,
+          -0.029697998189790336,
+          0.3830967552310775
+        ],
+        [
+          0.42033563929719664,
+          -0.4623435531401206,
+          -0.10744824982098088,
+          0.36078526953202433,
+          -0.049183976912241384,
+          -0.6822215098636176
+        ],
+        [
+          0.6327090051894688,
+          -0.05402516062265412,
+          0.07515219486155603,
+          0.46855894883690613,
+          -0.6051069840815857,
+          0.07355809717414478
+        ]
+      ],
+      "weights": {
+        "w03": 0.8,
+        "w04": -0.6,
+        "w13": -0.5,
+        "w14": 0.9,
+        "w23": 0.3,
+        "w24": -0.8
+      },
+      "conditions": [
+        "verbs"
+      ],
+      "seeds": [
+        "lurch (English, to move with sudden unsteady movements)"
+      ],
+      "known_dx": -3.7112841135358297,
+      "dx_match": true
+    },
+    {
+      "base_dx": -5.635555464743059,
+      "cliffiness": 7.831770120903312,
+      "gradient_magnitude": 3171.821171579866,
+      "gradient_vector": [
+        776.3724544654496,
+        2815.1227373001598,
+        261.790030087589,
+        -709.0589253751148,
+        -743.1723923727793,
+        -639.6683094172862
+      ],
+      "delta_dxs": [
+        1.8832027301908765,
+        3.07158002662886,
+        7.831770120903312,
+        3.066070273730018,
+        2.1212169592039216,
+        6.484790199545502
+      ],
+      "directions": [
+        [
+          0.7773068329124889,
+          -0.1263170057396491,
+          -0.480135136562954,
+          -0.26666234640601966,
+          0.1994109901574473,
+          0.19604795897907634
+        ],
+        [
+          -0.35478300657751355,
+          0.4678722405783357,
+          -0.3089027312798529,
+          0.4422111504887937,
+          0.5086132530374986,
+          0.3249085172257962
+        ],
+        [
+          0.3652410007781102,
+          -0.07886412155288837,
+          0.11966926390215846,
+          -0.767625713387624,
+          0.45558958008983336,
+          0.2219180651031411
+        ],
+        [
+          -0.14834852510135813,
+          0.2666326163168943,
+          -0.6274348566338628,
+          -0.12819932757789734,
+          0.07014783655212048,
+          0.7013340695650935
+        ],
+        [
+          -0.3357854282755844,
+          -0.12024572572848985,
+          -0.38453183748935915,
+          -0.832378761628582,
+          -0.17595056960241912,
+          -0.033337243514132565
+        ],
+        [
+          -0.08939809120759741,
+          -0.24695428085916657,
+          0.0896215115854381,
+          -0.41014420499593335,
+          -0.8634156698057257,
+          0.09635694763272175
+        ]
+      ],
+      "weights": {
+        "w03": 0.6,
+        "w04": -0.4,
+        "w13": -0.2,
+        "w14": 0.8,
+        "w23": 0.3,
+        "w24": -0.5
+      },
+      "conditions": [
+        "verbs",
+        "theorems",
+        "bible",
+        "places"
+      ],
+      "seeds": [
+        "yadur (Arabic, to rotate or spin)",
+        "stagger (English, to walk unsteadily as if about to fall)",
+        "wobble (English, to move unsteadily from side to side)",
+        "sendelemek (Turkish, to stagger)",
+        "schwanken (German, to sway or waver)",
+        "zhuan (Mandarin, to rotate or turn)",
+        "waddle (English, to walk with short steps swaying side to side)",
+        "escorregar (Portuguese, to slip)",
+        "chanceler (French, to stagger or totter)",
+        "shatat'sya (Russian, to stagger)",
+        "surunmek (Turkish, to crawl or drag)",
+        "suberu (Japanese, to slide or slip)",
+        "yureru (Japanese, to sway or shake)",
+        "heundeullida (Korean, to sway or shake)",
+        "tambalearse (Spanish, to sway or stagger)",
+        "kachat'sya (Russian, to swing or rock)",
+        "taumeln (German, to stagger or reel)",
+        "Sturm-Liouville Theory",
+        "Hall's Marriage Theorem",
+        "Desargues' Theorem",
+        "Lyapunov Stability Theorem",
+        "Shannon's Source Coding Theorem",
+        "Dirichlet's Theorem on primes in arithmetic progressions",
+        "Courant-Fischer Minimax Theorem",
+        "Zorn's Lemma",
+        "Picard-Lindelof Existence and Uniqueness Theorem",
+        "Nash Embedding Theorem",
+        "Brouwer Fixed Point Theorem",
+        "Dilworth's Theorem",
+        "Takens' Embedding Theorem",
+        "Birkhoff Ergodic Theorem",
+        "Poincare-Bendixson Theorem",
+        "Singular Value Decomposition existence",
+        "Poincare-Hopf Theorem",
+        "Implicit Function Theorem",
+        "Artin-Wedderburn Theorem",
+        "Banach Fixed Point Theorem",
+        "Quadratic Reciprocity",
+        "Kuratowski's Theorem",
+        "Mordell Conjecture (Faltings' Theorem)",
+        "Shannon's Channel Coding Theorem",
+        "Hartman-Grobman Theorem",
+        "Center Manifold Theorem",
+        "Nullstellensatz",
+        "Ezekiel 1:16 \u2014 Their appearance and their work was as it were a wheel in the middle of a wheel.",
+        "Luke 10:30 \u2014 A certain man went down from Jerusalem to Jericho, and fell among thieves.",
+        "Ecclesiastes 9:11 \u2014 The race is not to the swift, nor the battle to the strong.",
+        "John 3:8 \u2014 The wind bloweth where it listeth, and thou hearest the sound thereof, but canst not tell whence it cometh.",
+        "Ulaanbaatar, Mongolia",
+        "Danakil Depression, Ethiopia"
+      ],
+      "known_dx": -5.635555464743059,
+      "dx_match": true
+    },
+    {
+      "base_dx": 1.5485268151295735,
+      "cliffiness": 4.455139695055944,
+      "gradient_magnitude": 289.0206495392174,
+      "gradient_vector": [
+        173.346989756743,
+        70.0317582285364,
+        -10.224765843338538,
+        76.8995891176255,
+        202.46505439917172,
+        39.61210605226991
+      ],
+      "delta_dxs": [
+        -3.7145725318750547,
+        1.7201430377156317,
+        -0.9096032694231039,
+        -4.455139695055944,
+        -1.5617470393478725,
+        0.018794414894704126
+      ],
+      "directions": [
+        [
+          -0.22140988427737307,
+          -0.016237906087740204,
+          0.8095738792122441,
+          0.0018822005693586838,
+          -0.02537835412335404,
+          -0.5428227372820812
+        ],
+        [
+          -0.0624483730893762,
+          0.34812389774117214,
+          0.8017016123985629,
+          -0.35219984178973407,
+          0.30247540161680664,
+          -0.12902860170352318
+        ],
+        [
+          -0.2574968863469927,
+          -0.5423214309329757,
+          -0.39518847106467464,
+          0.30791715296464767,
+          0.059889837556836814,
+          0.620491035936491
+        ],
+        [
+          -0.7470547122584761,
+          -0.174391189204061,
+          0.4606984204316203,
+          0.42899702010550905,
+          0.12268212615999773,
+          -0.012829189127334523
+        ],
+        [
+          -0.08064425263436073,
+          -0.6950322400854724,
+          -0.5236632693587804,
+          -0.353680782250875,
+          0.2938566215905468,
+          -0.15735838171857408
+        ],
+        [
+          0.0469530102737314,
+          0.40850026062257666,
+          -0.7820498189410013,
+          -0.25960815631885054,
+          -0.1874000474605978,
+          0.34176872293462135
+        ]
+      ],
+      "weights": {
+        "w03": 0.8,
+        "w04": -0.6,
+        "w13": 0.2,
+        "w14": -0.9,
+        "w23": 0.5,
+        "w24": -0.4
+      },
+      "conditions": [
+        "verbs",
+        "bible",
+        "places"
+      ],
+      "seeds": [
+        "kukimbia (Swahili, to run)",
+        "trechein (Greek, to run)",
+        "correr (Spanish, to run)",
+        "hashiru (Japanese, to run)",
+        "daudna (Hindi, to run)",
+        "sautiller (French, to hop or skip)",
+        "prygat (Russian, to jump)",
+        "saltar (Spanish, to jump)",
+        "pao (Mandarin, to run)",
+        "tiao (Mandarin, to jump or leap)",
+        "coalesce (English, to come together and form one mass)",
+        "currere (Latin, to run)",
+        "kudna (Hindi, to jump)",
+        "begat (Russian, to run)",
+        "stride (English, to walk with long decisive steps)",
+        "ttwida (Korean, to run)",
+        "bondir (French, to leap or bound)",
+        "tobu (Japanese, to fly or jump)",
+        "yaqfiz (Arabic, to jump)",
+        "kuruka (Swahili, to fly or jump)",
+        "1 Corinthians 15:52 \u2014 In a moment, in the twinkling of an eye, at the last trump.",
+        "Exodus 14:21 \u2014 And the LORD caused the sea to go back by a strong east wind all that night.",
+        "Psalm 29:3 \u2014 The voice of the LORD is upon the waters.",
+        "Psalm 139:14 \u2014 I am fearfully and wonderfully made: marvellous are thy works.",
+        "Isaiah 40:31 \u2014 But they that wait upon the LORD shall renew their strength; they shall mount up with wings as eagles.",
+        "Acts 9:3 \u2014 Suddenly there shined round about him a light from heaven.",
+        "Isaiah 40:4 \u2014 Every valley shall be exalted, and every mountain and hill shall be made low.",
+        "Psalm 90:4 \u2014 For a thousand years in thy sight are but as yesterday when it is past.",
+        "Lamentations 3:22 \u2014 It is of the LORD's mercies that we are not consumed, because his compassions fail not.",
+        "Song of Solomon 8:6 \u2014 Love is strong as death; jealousy is cruel as the grave.",
+        "John 1:1 \u2014 In the beginning was the Word, and the Word was with God, and the Word was God.",
+        "Isaiah 43:2 \u2014 When thou walkest through the fire, thou shalt not be burned.",
+        "Psalm 23:4 \u2014 Yea, though I walk through the valley of the shadow of death, I will fear no evil.",
+        "Amos 5:24 \u2014 But let judgment run down as waters, and righteousness as a mighty stream.",
+        "Psalm 93:4 \u2014 The LORD on high is mightier than the noise of many waters.",
+        "Genesis 1:3 \u2014 And God said, Let there be light: and there was light.",
+        "Luke 15:4 \u2014 What man of you, having an hundred sheep, if he lose one of them, doth not leave the ninety and nine.",
+        "Nahum 1:3 \u2014 The LORD hath his way in the whirlwind and in the storm.",
+        "James 1:17 \u2014 Every good gift and every perfect gift is from above, and cometh down from the Father of lights.",
+        "Job 38:4 \u2014 Where wast thou when I laid the foundations of the earth?",
+        "Psalm 147:4 \u2014 He telleth the number of the stars; he calleth them all by their names.",
+        "Psalm 19:1 \u2014 The heavens declare the glory of God; and the firmament sheweth his handywork.",
+        "Isaiah 35:6 \u2014 Then shall the lame man leap as an hart, and the tongue of the dumb sing.",
+        "Genesis 28:12 \u2014 And he dreamed, and behold a ladder set up on the earth, and the top of it reached to heaven.",
+        "Revelation 1:15 \u2014 And his feet like unto fine brass, as if they burned in a furnace.",
+        "Isaiah 6:3 \u2014 Holy, holy, holy, is the LORD of hosts: the whole earth is full of his glory.",
+        "Joshua 6:20 \u2014 So the people shouted when the priests blew with the trumpets, and the wall fell down flat.",
+        "Jeremiah 23:29 \u2014 Is not my word like as a fire? and like a hammer that breaketh the rock in pieces?",
+        "Matthew 7:24 \u2014 A wise man, which built his house upon a rock.",
+        "Acts 2:2 \u2014 And suddenly there came a sound from heaven as of a rushing mighty wind.",
+        "Revelation 8:1 \u2014 And when he had opened the seventh seal, there was silence in heaven about the space of half an hour.",
+        "Job 41:1 \u2014 Canst thou draw out leviathan with an hook?",
+        "2 Kings 2:11 \u2014 And Elijah went up by a whirlwind into heaven.",
+        "Ruth 1:16 \u2014 Whither thou goest, I will go; and where thou lodgest, I will lodge.",
+        "Job 39:19 \u2014 Hast thou given the horse strength? hast thou clothed his neck with thunder?",
+        "Psalm 18:29 \u2014 For by thee I have run through a troop; and by my God have I leaped over a wall.",
+        "Proverbs 25:11 \u2014 A word fitly spoken is like apples of gold in pictures of silver.",
+        "Mark 4:39 \u2014 And he arose, and rebuked the wind, and said unto the sea, Peace, be still.",
+        "Revelation 21:1 \u2014 And I saw a new heaven and a new earth: for the first heaven and the first earth were passed away.",
+        "Matthew 8:26 \u2014 Then he arose, and rebuked the winds and the sea; and there was a great calm.",
+        "Oymyakon, Siberia",
+        "McMurdo Station, Antarctica",
+        "Death Valley, California",
+        "Niagara Falls",
+        "Dasht-e Lut, Iran",
+        "North Pole",
+        "Rub al Khali, Arabian Peninsula",
+        "South Pole",
+        "Cerro Torre, Patagonia",
+        "Mount Everest"
+      ],
+      "known_dx": 1.5485268151295735,
+      "dx_match": true
+    },
+    {
+      "base_dx": -4.751850344765853,
+      "cliffiness": 8.705986510278013,
+      "gradient_magnitude": 1660.9891337458448,
+      "gradient_vector": [
+        -707.9466967613648,
+        -260.355937646319,
+        -1020.018732477762,
+        753.7097047849364,
+        -513.1786375636817,
+        563.9524048663125
+      ],
+      "delta_dxs": [
+        4.381159828248507,
+        6.808782843374257,
+        5.3231358657047,
+        6.16101046265637,
+        2.949577853046974,
+        8.705986510278013
+      ],
+      "directions": [
+        [
+          0.6250874509743234,
+          0.23937355255588524,
+          -0.442713248426378,
+          -0.2874011904051435,
+          -0.4866823359329476,
+          0.19108066433712667
+        ],
+        [
+          0.11155291108895599,
+          0.08242434444446865,
+          -0.15114418641031754,
+          0.25686528314319534,
+          0.78825981045538,
+          0.5201771889668527
+        ],
+        [
+          0.1946512395778066,
+          -0.3111441644049527,
+          -0.23173070765847695,
+          -0.46256466118998335,
+          -0.7486669679445612,
+          -0.19269869834163847
+        ],
+        [
+          -0.45926423218283663,
+          0.21438027304031856,
+          0.6122944721323877,
+          0.13889918667976348,
+          -0.08612907741195157,
+          0.5843815028974267
+        ],
+        [
+          -0.23403667570067735,
+          -0.18736401722082383,
+          -0.04700848348805535,
+          0.39606105363694954,
+          0.8599332560571313,
+          -0.10752766563528435
+        ],
+        [
+          -0.3189393000637662,
+          0.17613342290918108,
+          0.5957413202166936,
+          0.6135836870032785,
+          -0.35976198140627863,
+          -0.08020844951557626
+        ]
+      ],
+      "weights": {
+        "w03": 0.6,
+        "w04": -0.5,
+        "w13": -0.4,
+        "w14": 0.3,
+        "w23": 0.2,
+        "w24": -0.1
+      },
+      "conditions": [
+        "verbs"
+      ],
+      "seeds": [
+        "oscillate (English, to move back and forth regularly)"
+      ],
+      "known_dx": -4.751850344765853,
+      "dx_match": true
+    },
+    {
+      "base_dx": -2.2301634604042304,
+      "cliffiness": 13.541908986581088,
+      "gradient_magnitude": 3459.0505409000307,
+      "gradient_vector": [
+        2239.508549148718,
+        1956.1993970069198,
+        4.494441896679335,
+        377.1653029671976,
+        1313.81462897029,
+        -1120.0594970240293
+      ],
+      "delta_dxs": [
+        8.95126750267282,
+        3.6300199377686075,
+        0.5640150401173412,
+        -13.541908986581088,
+        7.527852329010257,
+        3.9921859778436684
+      ],
+      "directions": [
+        [
+          -0.28411064137724473,
+          0.5028993605611848,
+          -0.005278517751424705,
+          0.643972348482985,
+          -0.467707885021312,
+          -0.18136830630490494
+        ],
+        [
+          -0.6505695825721094,
+          0.3551326715002616,
+          0.38744514068652347,
+          -0.1634955449412865,
+          0.44114268406971646,
+          -0.2814047012747951
+        ],
+        [
+          0.13691302265101932,
+          0.28616397102649527,
+          -0.0864279025740488,
+          0.6827661157978733,
+          -0.4232357353507711,
+          0.49658550825808095
+        ],
+        [
+          0.2773925245335306,
+          -0.32890780077006393,
+          -0.5692778575963854,
+          -0.14717380964216917,
+          0.35454492344530375,
+          0.5860320245435041
+        ],
+        [
+          0.0339706932885764,
+          -0.1976455451975138,
+          -0.6981313780901062,
+          0.11884082227262965,
+          0.5948060953270378,
+          0.3232296046318288
+        ],
+        [
+          0.10428422209319234,
+          -0.4558230001046932,
+          0.07611396178942628,
+          -0.328047079003174,
+          -0.04028092414450918,
+          -0.8162839086532591
+        ]
+      ],
+      "weights": {
+        "w03": 0.8,
+        "w04": -0.6,
+        "w13": 0.9,
+        "w14": -0.5,
+        "w23": 0.7,
+        "w24": -0.4
+      },
+      "conditions": [
+        "verbs"
+      ],
+      "seeds": [
+        "yarkud (Arabic, to run)",
+        "leap (English, to jump a long distance)",
+        "sprint (English, to run at full speed)",
+        "dash (English, to move suddenly and quickly)",
+        "rennen (German, to run fast)"
+      ],
+      "known_dx": -2.2301634604042304,
+      "dx_match": true
+    },
+    {
+      "base_dx": -7.588176586823631,
+      "cliffiness": 6.839931438181703,
+      "gradient_magnitude": 264.2128358635279,
+      "gradient_vector": [
+        30.369755464085355,
+        -60.45120190776373,
+        -165.79015208567446,
+        53.975460149270035,
+        5.644487046425139,
+        -186.5480305848127
+      ],
+      "delta_dxs": [
+        6.839931438181703,
+        4.947488575691228,
+        3.394656734756248,
+        1.1951486915219611,
+        -0.37034376601199526,
+        0.9598213633590147
+      ],
+      "directions": [
+        [
+          0.29987053385722423,
+          -0.6153386572285218,
+          -0.6729700025295251,
+          -0.2734132142104695,
+          -0.05243693101311348,
+          0.032294861833113905
+        ],
+        [
+          -0.2200250494908033,
+          0.5643028609066368,
+          -0.4054769701235337,
+          -0.3541903214879153,
+          0.3343937717180258,
+          -0.48111298784077067
+        ],
+        [
+          -0.5485479050935164,
+          0.3265808557239098,
+          -0.5599099075154435,
+          -0.3040355514246709,
+          0.40953813946548573,
+          -0.13704718804574412
+        ],
+        [
+          -0.8637734033368363,
+          -0.16604807096399798,
+          -0.36343455962164767,
+          -0.2074360518270067,
+          -0.22249437059101917,
+          0.0412965633846571
+        ],
+        [
+          -0.3482106287655116,
+          0.2738209670812378,
+          0.5721885446080281,
+          0.49670512048769383,
+          0.1062161744861387,
+          -0.467304882255263
+        ],
+        [
+          0.01791988140385371,
+          -0.8798977342678654,
+          0.4309758984661299,
+          0.04607700883569479,
+          0.06531008449262896,
+          -0.1825654188020875
+        ]
+      ],
+      "weights": {
+        "w03": 0.3,
+        "w04": -0.6,
+        "w13": 0.2,
+        "w14": -0.4,
+        "w23": 0.1,
+        "w24": -0.5
+      },
+      "conditions": [
+        "verbs"
+      ],
+      "seeds": [
+        "yataraddad (Arabic, to hesitate)"
+      ],
+      "known_dx": -7.588176586823631,
+      "dx_match": true
+    },
+    {
+      "base_dx": 10.303540555097154,
+      "cliffiness": 27.664679399571725,
+      "gradient_magnitude": 1638.1996384799133,
+      "gradient_vector": [
+        777.7181403011801,
+        -135.61562684821592,
+        526.7616215050401,
+        32.340237731985056,
+        -1272.2167831732133,
+        404.22977532831345
+      ],
+      "delta_dxs": [
+        -11.889180839670633,
+        -27.664679399571725,
+        -15.562384753052541,
+        -7.181064034714893,
+        -0.6518766891365964,
+        -12.484329848271326
+      ],
+      "directions": [
+        [
+          0.1857512971069942,
+          0.1499437948514575,
+          0.31618346515252915,
+          0.735707779259704,
+          0.5037276883124849,
+          0.21916616969064134
+        ],
+        [
+          -0.017186229453682273,
+          -0.8408178571884553,
+          0.007136752764022825,
+          -0.006865498055173363,
+          0.40168384584161315,
+          -0.3623285584059174
+        ],
+        [
+          -0.07735043374872255,
+          -0.10249219968009374,
+          0.7932040207215773,
+          -0.3051168001308658,
+          0.45493658297151623,
+          -0.23297228304424092
+        ],
+        [
+          -0.04045135891340134,
+          0.9305588240699509,
+          -0.06512474537188513,
+          -0.2999016697963301,
+          -0.0991737120513858,
+          -0.16854166647799051
+        ],
+        [
+          0.28833693429036666,
+          0.5735609590769808,
+          -0.23931871104018596,
+          -0.7158581799315501,
+          0.04808645144992982,
+          0.1259005659432584
+        ],
+        [
+          -0.8947778691636568,
+          0.05163201025990725,
+          0.08770631697094342,
+          0.1758373555966444,
+          -0.3653180616369896,
+          -0.1569657305064743
+        ]
+      ],
+      "weights": {
+        "w03": -0.6,
+        "w04": 0.8,
+        "w13": 0.9,
+        "w14": -0.4,
+        "w23": -0.3,
+        "w24": 0.7
+      },
+      "conditions": [
+        "verbs"
+      ],
+      "seeds": [
+        "stumble (English, to trip and nearly fall)",
+        "stolpern (German, to stumble)",
+        "tropecar (Portuguese, to stumble)",
+        "tropezar (Spanish, to stumble)"
+      ],
+      "known_dx": 10.303540555097154,
+      "dx_match": true
+    },
+    {
+      "base_dx": -25.12344760125848,
+      "cliffiness": 26.855583641415684,
+      "gradient_magnitude": 2056.8859219992232,
+      "gradient_vector": [
+        422.9679555965801,
+        109.0063723489545,
+        -1905.9115538132949,
+        -463.1932262663065,
+        -177.1197922901963,
+        -401.96663892099946
+      ],
+      "delta_dxs": [
+        -10.979940400209355,
+        26.855583641415684,
+        10.952295168668705,
+        18.761023079607654,
+        16.426775679954744,
+        5.57077790344432
+      ],
+      "directions": [
+        [
+          0.2890926735325556,
+          -0.03143448973921548,
+          0.004810063529155767,
+          0.887498824711617,
+          0.20409670041515462,
+          -0.29343574299772124
+        ],
+        [
+          0.6180175882207729,
+          0.5882923917254751,
+          0.025447189568138302,
+          -0.17996569323509576,
+          -0.41626846661965866,
+          -0.2562258300548796
+        ],
+        [
+          0.47521926959318633,
+          0.6709329410341448,
+          -0.03580707433513226,
+          0.06172683315631776,
+          0.5645817469965339,
+          -0.013066632962762155
+        ],
+        [
+          0.2937703260878837,
+          -0.34917330191942425,
+          -0.17587726760284694,
+          0.5221308139436317,
+          0.3130090703645527,
+          -0.6246990655327898
+        ],
+        [
+          -0.31944552456566055,
+          0.6079163987521132,
+          -0.37218076993934424,
+          0.6218853496773717,
+          0.03388526168443791,
+          0.04454306172478974
+        ],
+        [
+          0.20795391055116497,
+          -0.9386680903448846,
+          -0.1262258751524444,
+          0.04449034605811601,
+          -0.012799478307937944,
+          0.23996082630179258
+        ]
+      ],
+      "weights": {
+        "w03": -0.6,
+        "w04": 0.8,
+        "w13": 0.9,
+        "w14": -0.4,
+        "w23": -0.2,
+        "w24": 0.5
+      },
+      "conditions": [
+        "verbs"
+      ],
+      "seeds": [
+        "fracture (English, to break without complete separation)"
+      ],
+      "known_dx": -25.12344760125848,
+      "dx_match": true
+    },
+    {
+      "base_dx": -0.3268076856301485,
+      "cliffiness": 5.420151227720694,
+      "gradient_magnitude": 1159.6934227501865,
+      "gradient_vector": [
+        -134.56474808167152,
+        -676.020578182453,
+        -49.16994493204344,
+        74.37856920058914,
+        269.4972140421714,
+        888.3685821775679
+      ],
+      "delta_dxs": [
+        1.1630872407905035,
+        3.7465044773922704,
+        -1.4067995675006495,
+        4.520590483214924,
+        -1.2166322732563326,
+        -5.420151227720694
+      ],
+      "directions": [
+        [
+          -0.10303111991470247,
+          -0.6524141346558713,
+          -0.18721852527813077,
+          -0.5047650019531803,
+          -0.4053795616400778,
+          -0.33101255690795056
+        ],
+        [
+          -0.22872103088488063,
+          0.31914444544086507,
+          0.6036857428193233,
+          0.22654724797556844,
+          -0.47578036167926435,
+          0.45133848580297986
+        ],
+        [
+          0.7881519246760199,
+          0.0219838346199854,
+          -0.5784425110696735,
+          0.19474982932244356,
+          -0.036172214577712185,
+          0.06709389617335026
+        ],
+        [
+          -0.07318214634325455,
+          -0.010251567213895462,
+          0.20100136710017133,
+          -0.9552050072987507,
+          0.16156301513565663,
+          0.12497405899539658
+        ],
+        [
+          0.6305841083999296,
+          -0.37360042720125647,
+          0.06526565787200699,
+          0.40991573635897866,
+          0.39499682778789585,
+          -0.36670613855485745
+        ],
+        [
+          -0.35450351892815224,
+          -0.3197204227446839,
+          0.2748292737917974,
+          -0.7604026378567308,
+          -0.20111542909300634,
+          -0.27913328202823207
+        ]
+      ],
+      "weights": {
+        "w03": 0.6,
+        "w04": -0.8,
+        "w13": -0.4,
+        "w14": 0.9,
+        "w23": 0.7,
+        "w24": -0.5
+      },
+      "conditions": [
+        "verbs"
+      ],
+      "seeds": [
+        "tourbillonner (French, to whirl or spin)"
+      ],
+      "known_dx": -0.3268076856301485,
+      "dx_match": true
+    },
+    {
+      "base_dx": -0.0807858599988375,
+      "cliffiness": 1.311631752643826,
+      "gradient_magnitude": 38.1678462709466,
+      "gradient_vector": [
+        -17.255274512853752,
+        -28.06622794096334,
+        -0.12426451958352627,
+        15.395933800943027,
+        10.254616161925021,
+        5.396245705330623
+      ],
+      "delta_dxs": [
+        -0.31499740278624777,
+        0.18576935541460754,
+        -1.311631752643826,
+        0.7696827166337192,
+        -0.4424190969934899,
+        0.56568380902523
+      ],
+      "directions": [
+        [
+          0.6609662270305454,
+          0.0026523254401996906,
+          -0.28088211191628226,
+          -0.07363849049456209,
+          0.6799067567704082,
+          -0.12855359161003946
+        ],
+        [
+          -0.722521215096918,
+          0.13351368992779766,
+          -0.07732547423926958,
+          0.1628364278105658,
+          -0.5373000543988123,
+          -0.37276119525956153
+        ],
+        [
+          0.27272223249561967,
+          0.6506813096613422,
+          -0.22650455751048226,
+          -0.5123387116665064,
+          0.43316818583254285,
+          0.028398413642922817
+        ],
+        [
+          0.37887196503406134,
+          -0.5873107739896155,
+          0.11699470452293197,
+          0.4826328460785664,
+          0.0759201093863252,
+          -0.5090540254800182
+        ],
+        [
+          0.16518528820747888,
+          0.04419783802591491,
+          -0.8404836849430921,
+          -0.10444316043347507,
+          -0.44308534187576215,
+          0.23898651232158397
+        ],
+        [
+          0.13765315787568463,
+          -0.18879185293395326,
+          0.050831471144867024,
+          0.8007361845964206,
+          -0.09912005291673817,
+          -0.5402056864950747
+        ]
+      ],
+      "weights": {
+        "w03": 0.3,
+        "w04": -0.2,
+        "w13": 0.1,
+        "w14": -0.5,
+        "w23": 0.2,
+        "w24": -0.4
+      },
+      "conditions": [
+        "verbs"
+      ],
+      "seeds": [
+        "creep (English, to move slowly and carefully)"
+      ],
+      "known_dx": -0.0807858599988375,
+      "dx_match": true
+    },
+    {
+      "base_dx": 14.932210980237217,
+      "cliffiness": 14.836960870246843,
+      "gradient_magnitude": 1670.8732093998044,
+      "gradient_vector": [
+        1089.086567289363,
+        -874.5057424601445,
+        -524.2138671714075,
+        -19.919719495617894,
+        344.16391962717324,
+        668.8061452404429
+      ],
+      "delta_dxs": [
+        -2.8110834490653787,
+        -0.7559627977632015,
+        -13.557916823979884,
+        8.446277761343902,
+        -14.836960870246843,
+        -6.106271912729319
+      ],
+      "directions": [
+        [
+          0.5267910911609487,
+          0.022746585826533834,
+          0.48810348120552294,
+          -0.48948916427195177,
+          -0.31041134674514337,
+          -0.38441368942059745
+        ],
+        [
+          0.12307665103448731,
+          0.19648064729053738,
+          -0.46942622026706,
+          -0.29669888265052047,
+          -0.7958721789474934,
+          0.06666156874474065
+        ],
+        [
+          0.31085771888811337,
+          0.5859641522698059,
+          -0.13491196932226107,
+          0.48440667385028635,
+          0.35952979054953677,
+          -0.42178282970351494
+        ],
+        [
+          -0.2727240197654568,
+          0.1736838629544338,
+          -0.2458618245601622,
+          -0.6256240434621962,
+          0.10699605228380936,
+          0.6573841259521228
+        ],
+        [
+          -0.5492864029804377,
+          0.10820050473810636,
+          -0.5396725092926291,
+          -0.5092463747698618,
+          -0.24174756312866053,
+          0.27849044237484344
+        ],
+        [
+          -0.043585948009367735,
+          0.42863960633768655,
+          -0.6010347284106432,
+          0.5647368084570417,
+          0.3234956464372093,
+          -0.1718968067448285
+        ]
+      ],
+      "weights": {
+        "w03": -0.8,
+        "w04": 0.6,
+        "w13": 0.9,
+        "w14": -0.5,
+        "w23": -0.7,
+        "w24": 0.4
+      },
+      "conditions": [
+        "verbs"
+      ],
+      "seeds": [
+        "skid (English, to slide sideways uncontrollably)"
+      ],
+      "known_dx": 14.932210980237217,
+      "dx_match": true
+    },
+    {
+      "base_dx": 10.964024919870297,
+      "cliffiness": 11.252279509649275,
+      "gradient_magnitude": 2822.9208499171837,
+      "gradient_vector": [
+        -1687.6409606748682,
+        272.4250866353918,
+        1652.0702769727714,
+        -536.5873482078009,
+        -873.9777467388801,
+        1124.91573053848
+      ],
+      "delta_dxs": [
+        -11.252279509649275,
+        -10.99109186742652,
+        -8.882127621579519,
+        -6.062489956465046,
+        -6.564735209079738,
+        -9.40128372295838
+      ],
+      "directions": [
+        [
+          0.1370863129145242,
+          -0.4910622013922863,
+          -0.47673584967397353,
+          -0.4574501569663087,
+          -0.5088856523222485,
+          0.21109934524521037
+        ],
+        [
+          -0.295421190267288,
+          0.7087791378534907,
+          -0.07570964927951802,
+          0.36955384544766245,
+          0.5000145756230393,
+          -0.13432007508206276
+        ],
+        [
+          0.4244323582966653,
+          0.5045933726865566,
+          0.34299454283413106,
+          -0.5541021460265373,
+          0.05153063640578336,
+          -0.37136619439300494
+        ],
+        [
+          0.04178547625394749,
+          -0.0975328360271431,
+          -0.578835935041479,
+          -0.053444027432128706,
+          0.004648768543173258,
+          0.8067294497278847
+        ],
+        [
+          0.3264951960612547,
+          0.9186188603890305,
+          0.17035933069020773,
+          0.11921440942314894,
+          -0.0360964388391109,
+          -0.07073150940203607
+        ],
+        [
+          0.37897465232217337,
+          -0.3017625694221372,
+          0.5858452451060536,
+          0.6445122777778542,
+          0.08030214263514247,
+          -0.016074920263347715
+        ]
+      ],
+      "weights": {
+        "w03": -0.6,
+        "w04": 0.8,
+        "w13": 0.9,
+        "w14": -0.5,
+        "w23": -0.4,
+        "w24": 0.7
+      },
+      "conditions": [
+        "verbs"
+      ],
+      "seeds": [
+        "gureuda (Korean, to drag)",
+        "temblar (Spanish, to tremble)"
+      ],
+      "known_dx": 10.964024919870297,
+      "dx_match": true
+    },
+    {
+      "base_dx": 0.2975701298791353,
+      "cliffiness": 10.003296464862029,
+      "gradient_magnitude": 391.56108018847243,
+      "gradient_vector": [
+        21.302435093258737,
+        144.61196159685966,
+        -87.16662132465146,
+        -280.9821994798417,
+        -197.8087307154022,
+        -79.2234567261866
+      ],
+      "delta_dxs": [
+        4.449977636178763,
+        5.057023970927618,
+        -1.2052347094147022,
+        -10.003296464862029,
+        -0.819698653343198,
+        -1.8453275770866695
+      ],
+      "directions": [
+        [
+          -0.30682080358536346,
+          0.5451484614168459,
+          -0.6624208505251974,
+          -0.1431539600837988,
+          0.37735638656354226,
+          0.08355757011536426
+        ],
+        [
+          0.6503848274767297,
+          0.10494964710205502,
+          0.10335344584128371,
+          0.22679605734665087,
+          -0.7070421746943647,
+          -0.06291362785144139
+        ],
+        [
+          -0.5225051422512867,
+          0.02912253698803429,
+          -0.5030239526612786,
+          0.08663305999093092,
+          -0.0856413049334704,
+          0.6769545309806759
+        ],
+        [
+          0.5188212699166233,
+          0.3203361130547454,
+          0.44562109019045676,
+          0.3653977501792145,
+          0.5091446192300197,
+          0.1920607961184039
+        ],
+        [
+          0.5119427724865593,
+          -0.5039014445004989,
+          0.49080303971022377,
+          -0.4540670197356746,
+          0.15044022986550248,
+          0.11958757028499054
+        ],
+        [
+          -0.15086019102375467,
+          0.5293034755365018,
+          0.6897054559422701,
+          0.3731561776173114,
+          -0.2857147319226971,
+          0.022516142233972126
+        ]
+      ],
+      "weights": {
+        "w03": 0.6,
+        "w04": -0.4,
+        "w13": -0.2,
+        "w14": 0.8,
+        "w23": 0.5,
+        "w24": -0.3
+      },
+      "conditions": [
+        "verbs"
+      ],
+      "seeds": [
+        "humpeln (German, to limp or hobble)"
+      ],
+      "known_dx": 0.2975701298791353,
+      "dx_match": true
+    },
+    {
+      "base_dx": 7.793975135688289,
+      "cliffiness": 20.169156508367067,
+      "gradient_magnitude": 1203.2230296753537,
+      "gradient_vector": [
+        290.7112442793123,
+        291.6149049592128,
+        99.48666319075159,
+        -825.6478585864191,
+        762.8591294813203,
+        -68.17143699653855
+      ],
+      "delta_dxs": [
+        20.169156508367067,
+        0.196820127272475,
+        19.08168505504597,
+        11.592148012425838,
+        19.810804942954775,
+        3.1901094988485195
+      ],
+      "directions": [
+        [
+          0.04952183081151794,
+          -0.7166698222897282,
+          0.15517255789892093,
+          -0.6360785645263407,
+          0.054767217217547855,
+          -0.22860018161792117
+        ],
+        [
+          -0.6651401277694045,
+          -0.14121249418079562,
+          0.42459038416061445,
+          -0.037206177006209304,
+          0.26475396654333383,
+          0.5346884000879716
+        ],
+        [
+          -0.40254567172623507,
+          0.25372844000342565,
+          0.2542840738960128,
+          0.08726429595867027,
+          0.6636106546918504,
+          0.5108075100280345
+        ],
+        [
+          -0.19770428834525564,
+          -0.748175789539779,
+          0.21139079147310286,
+          -0.17572901783016756,
+          0.41224127253792475,
+          -0.3945077706529449
+        ],
+        [
+          -0.5768348103572312,
+          0.23553717899980675,
+          0.18592620891369838,
+          -0.09887518345165103,
+          0.4649420700364237,
+          -0.5926785412983816
+        ],
+        [
+          0.5912498122060544,
+          -0.3672375456165957,
+          0.5098717294698139,
+          -0.3086746974372574,
+          -0.39784140655889905,
+          0.04509113585306171
+        ]
+      ],
+      "weights": {
+        "w03": -0.8,
+        "w04": 0.6,
+        "w13": 0.9,
+        "w14": -0.4,
+        "w23": -0.5,
+        "w24": 0.7
+      },
+      "conditions": [
+        "verbs"
+      ],
+      "seeds": [
+        "shatter (English, to break into many pieces)"
+      ],
+      "known_dx": 7.793975135688289,
+      "dx_match": true
+    },
+    {
+      "base_dx": -1.6740662141756506,
+      "cliffiness": 2.337324924745998,
+      "gradient_magnitude": 308.0892899187966,
+      "gradient_vector": [
+        190.2396308382212,
+        -160.85172954216233,
+        85.5423299346701,
+        64.40610845437732,
+        -22.772800838032403,
+        144.46583350260732
+      ],
+      "delta_dxs": [
+        1.4357495448696234,
+        0.8791198658773033,
+        2.337324924745998,
+        0.5132702329862844,
+        0.8511513309894806,
+        1.2204196099823916
+      ],
+      "directions": [
+        [
+          0.04200447006739993,
+          -0.5953527647778692,
+          -0.018186567944343604,
+          -0.6684014728093458,
+          -0.3544743070342027,
+          -0.26654717314394677
+        ],
+        [
+          0.5431282124484295,
+          -0.20976499973893797,
+          -0.098608102898545,
+          -0.39831838322185414,
+          0.47565569747847936,
+          -0.516121066043265
+        ],
+        [
+          -0.40011578666001746,
+          0.023627524344177687,
+          0.6260840625970387,
+          -0.03724339754856055,
+          0.3380304493067879,
+          0.5759480780428726
+        ],
+        [
+          -0.4722797197808626,
+          -0.2114890847998879,
+          0.3916668514294968,
+          -0.5841413503451904,
+          -0.1581264883253233,
+          0.4610815625161337
+        ],
+        [
+          -0.018547601794221238,
+          -0.06295753756252549,
+          -0.7962979001479913,
+          0.1043367801090833,
+          -0.4034078898184639,
+          0.43356418198500746
+        ],
+        [
+          0.06182340998285605,
+          0.3857732428520813,
+          0.5500378363919646,
+          -0.5300131683375391,
+          -0.35450477195085206,
+          0.37178980307104315
+        ]
+      ],
+      "weights": {
+        "w03": 0.2,
+        "w04": -0.1,
+        "w13": 0.3,
+        "w14": -0.2,
+        "w23": 0.1,
+        "w24": -0.3
+      },
+      "conditions": [
+        "verbs"
+      ],
+      "seeds": [
+        "whisper (English, to speak very softly)"
+      ],
+      "known_dx": -1.6740662141756506,
+      "dx_match": true
+    },
+    {
+      "base_dx": 0.5167713453435598,
+      "cliffiness": 10.506862652386966,
+      "gradient_magnitude": 2547.0935062435074,
+      "gradient_vector": [
+        -771.9934501709309,
+        796.0897400011318,
+        -1298.4604707608098,
+        -1795.8747386973903,
+        142.6700349353514,
+        -571.3424176601078
+      ],
+      "delta_dxs": [
+        -4.952124892679679,
+        -10.506862652386966,
+        -2.6219712343436834,
+        1.9133801479678656,
+        -7.091269688137636,
+        1.3839328232251213
+      ],
+      "directions": [
+        [
+          -0.562260374025538,
+          -0.038086286465881074,
+          -0.3061194377245728,
+          0.5492073625434664,
+          0.5355281665813636,
+          -0.016865709506128514
+        ],
+        [
+          0.6378419068958275,
+          0.24391759332246832,
+          -0.32259792862727094,
+          0.12873851533023425,
+          -0.6425158405384293,
+          0.013866335075513157
+        ],
+        [
+          -0.24009486781229158,
+          0.7498354579069962,
+          0.43269665310836625,
+          0.0685507832522604,
+          -0.40255564981703756,
+          0.16163101750686937
+        ],
+        [
+          -0.09346317243944904,
+          0.24287655971348146,
+          0.42245850360172954,
+          -0.42502735367325334,
+          -0.08562170644042517,
+          0.7522134649749537
+        ],
+        [
+          -0.6286024749856092,
+          0.04242409608163068,
+          0.5821984014024575,
+          -0.07470904491683035,
+          -0.5051621609519509,
+          -0.05773989667480194
+        ],
+        [
+          -0.7649529012676933,
+          0.3572885981390382,
+          0.48484547856116283,
+          0.04996121219319504,
+          -0.005504799162155476,
+          0.22268891499836116
+        ]
+      ],
+      "weights": {
+        "w03": -0.8,
+        "w04": 0.6,
+        "w13": -0.9,
+        "w14": 0.4,
+        "w23": -0.7,
+        "w24": 0.5
+      },
+      "conditions": [
+        "verbs"
+      ],
+      "seeds": [
+        "korobu (Japanese, to fall down or tumble)",
+        "girna (Hindi, to fall)"
+      ],
+      "known_dx": 0.5167713453435598,
+      "dx_match": true
+    },
+    {
+      "base_dx": 3.993466729901775,
+      "cliffiness": 7.7377265286503745,
+      "gradient_magnitude": 408.6565045988113,
+      "gradient_vector": [
+        229.1461490122049,
+        184.08573222048668,
+        163.10943799156294,
+        -66.87218117229413,
+        -73.58754172652367,
+        -210.03076122945757
+      ],
+      "delta_dxs": [
+        -6.799083569327822,
+        -3.40798016093922,
+        -4.898417635279942,
+        -5.564936930693789,
+        -4.756877224124071,
+        -7.7377265286503745
+      ],
+      "directions": [
+        [
+          -0.11239945164210215,
+          -0.31770953912606115,
+          0.18253367725430128,
+          0.9076155731773762,
+          0.16635757391203013,
+          0.04083622919528074
+        ],
+        [
+          0.023685858343338903,
+          0.11857221346415094,
+          -0.8282005720898546,
+          0.2681814963807762,
+          0.29254532376930126,
+          -0.37677492119098266
+        ],
+        [
+          -0.047078506922309915,
+          -0.18316057958318624,
+          -0.19914539499328385,
+          -0.10148215473645518,
+          -0.8534236118696867,
+          0.43121507267143466
+        ],
+        [
+          -0.3940836163654538,
+          0.3959036742802801,
+          0.27477317748081326,
+          -0.23249377463252596,
+          -0.03450954505553066,
+          0.7464675619194566
+        ],
+        [
+          -0.43099965410400903,
+          0.24908883877608104,
+          0.30065761356152104,
+          -0.4885995356163418,
+          -0.13295955636341236,
+          0.6367034616947194
+        ],
+        [
+          -0.07612336883205958,
+          0.2016569197449273,
+          -0.35008155121862383,
+          0.09847668091716309,
+          0.8793395468666109,
+          0.21919610298764675
+        ]
+      ],
+      "weights": {
+        "w03": 0.3,
+        "w04": -0.6,
+        "w13": 0.2,
+        "w14": -0.8,
+        "w23": 0.4,
+        "w24": -0.5
+      },
+      "conditions": [
+        "verbs"
+      ],
+      "seeds": [
+        "schleichen (German, to sneak or creep)"
+      ],
+      "known_dx": 3.993466729901775,
+      "dx_match": true
+    },
+    {
+      "base_dx": -4.1890641034775165,
+      "cliffiness": 3.451464302247877,
+      "gradient_magnitude": 225.05616829327502,
+      "gradient_vector": [
+        -74.54788780489577,
+        -67.87995853176264,
+        -5.085093250826403,
+        11.752983698510073,
+        -199.2029959288285,
+        25.285927987674768
+      ],
+      "delta_dxs": [
+        -0.8934814097222388,
+        -3.451464302247877,
+        -0.47082094381852,
+        -1.6129147102951444,
+        -2.531957282257899,
+        -0.12335890665202509
+      ],
+      "directions": [
+        [
+          0.40664205395910297,
+          -0.8237277780366664,
+          -0.0853571385140644,
+          -0.32674077375965904,
+          0.2039195150323188,
+          0.022050956879751664
+        ],
+        [
+          -0.4430101695381219,
+          -0.359014593199095,
+          -0.2735469886427061,
+          0.4029160852097048,
+          0.6603955611517178,
+          -0.03948275130729345
+        ],
+        [
+          -0.18646863763774005,
+          0.38104216735411317,
+          -0.7701244179877924,
+          0.3790964746492965,
+          -0.0073730254208740536,
+          -0.2884028364964321
+        ],
+        [
+          0.19301664012521502,
+          0.9031166508483568,
+          -0.006017956474080236,
+          0.22464015781688698,
+          -0.23103090912584556,
+          -0.2079668106203151
+        ],
+        [
+          -0.08345381594076993,
+          0.5188120231214793,
+          0.021472568181142623,
+          0.7761966365736649,
+          0.11211374032040886,
+          -0.32917740610243273
+        ],
+        [
+          0.7210263760242801,
+          0.2990067304776757,
+          -0.10380526842076612,
+          0.06652482112018895,
+          -0.2838199620890662,
+          0.5431031980656391
+        ]
+      ],
+      "weights": {
+        "w03": 0.6,
+        "w04": -0.4,
+        "w13": -0.6,
+        "w14": 0.4,
+        "w23": 0.2,
+        "w24": -0.8
+      },
+      "conditions": [
+        "theorems"
+      ],
+      "seeds": [
+        "KAM Theorem"
+      ],
+      "known_dx": -4.1890641034775165,
+      "dx_match": true
+    },
+    {
+      "base_dx": -0.035280033911811275,
+      "cliffiness": 4.945608878119301,
+      "gradient_magnitude": 816.8638007436315,
+      "gradient_vector": [
+        128.17480998867018,
+        -355.6919666383867,
+        255.11180497486885,
+        626.3732601273396,
+        -152.31517597093102,
+        -209.03469819021254
+      ],
+      "delta_dxs": [
+        0.920596818089835,
+        -1.0047975322295188,
+        0.35729889915164986,
+        4.945608878119301,
+        -1.0315195665765637,
+        0.10098518339959622
+      ],
+      "directions": [
+        [
+          -0.38512638663197235,
+          0.49679892398413966,
+          0.6844501997874537,
+          0.04081993512752919,
+          -0.3632469750734197,
+          0.05274265309131588
+        ],
+        [
+          0.27484911095028364,
+          0.6943586986456517,
+          -0.30892348438423967,
+          0.3726561263428007,
+          -0.43430855719331946,
+          0.1392613847004684
+        ],
+        [
+          -0.007478864365408117,
+          -0.38414671636681424,
+          0.6538946399550071,
+          -0.5175638018059968,
+          -0.3728783620584276,
+          0.1337408123919438
+        ],
+        [
+          0.7147106587569415,
+          -0.37758252034396567,
+          -0.1754562765900435,
+          0.09489572307725636,
+          0.38908704707390346,
+          0.3942604229897168
+        ],
+        [
+          0.7667319572245063,
+          0.4653228573943198,
+          0.20519151756898546,
+          -0.0027310144711323076,
+          0.32555841454410994,
+          -0.2179390867978577
+        ],
+        [
+          -0.12445595174331786,
+          0.2034278479565301,
+          0.5535971598801703,
+          0.2085115366551379,
+          0.6697494557846965,
+          0.3802849154014195
+        ]
+      ],
+      "weights": {
+        "w03": 0.5,
+        "w04": -0.5,
+        "w13": 0.5,
+        "w14": -0.5,
+        "w23": 0.5,
+        "w24": -0.5
+      },
+      "conditions": [
+        "theorems"
+      ],
+      "seeds": [
+        "Konig's Theorem",
+        "Wilson's Theorem"
+      ],
+      "known_dx": -0.035280033911811275,
+      "dx_match": true
+    },
+    {
+      "base_dx": 1.8037360015006676,
+      "cliffiness": 1.9984541914564506,
+      "gradient_magnitude": 1503.2162130021318,
+      "gradient_vector": [
+        952.7080853218238,
+        -655.5232905637738,
+        -414.7373838000284,
+        -20.40115952657078,
+        174.22166122659328,
+        848.2446643813701
+      ],
+      "delta_dxs": [
+        1.6181840090309747,
+        1.315879812706983,
+        -0.2463726902103871,
+        -0.0744709241905257,
+        -1.9984541914564506,
+        0.7385024299299736
+      ],
+      "directions": [
+        [
+          0.05702154664116877,
+          0.08840377832948815,
+          -0.08463822304761412,
+          0.9905179016373588,
+          -0.002064275298413282,
+          0.025292522580358905
+        ],
+        [
+          0.052019711825814774,
+          0.1527521375808259,
+          -0.4163531436237122,
+          -0.7183133404930129,
+          -0.5331117264265292,
+          -0.020703281309845317
+        ],
+        [
+          -0.009291535527684072,
+          0.5837543545011263,
+          -0.5606683199049954,
+          -0.5612881215351854,
+          0.08337204578244468,
+          0.15099769080675884
+        ],
+        [
+          0.6848036712716754,
+          0.6133498563311327,
+          0.2879964431723983,
+          0.15990286080036198,
+          0.12205163047074208,
+          -0.17730879526621043
+        ],
+        [
+          0.5979935448346041,
+          0.2424501648633692,
+          0.2642465840985828,
+          -0.55232332842936,
+          -0.28524328260502363,
+          -0.35689016698071685
+        ],
+        [
+          0.48795766216737574,
+          0.09999944907930858,
+          -0.16809263495611812,
+          -0.5448463728765487,
+          0.2556991869583538,
+          -0.6011677402702169
+        ]
+      ],
+      "weights": {
+        "w03": 0.6,
+        "w04": -0.6,
+        "w13": 0.2,
+        "w14": -0.2,
+        "w23": -0.4,
+        "w24": 0.4
+      },
+      "conditions": [
+        "theorems"
+      ],
+      "seeds": [
+        "Van der Waerden's Theorem",
+        "Hales-Jewett Theorem",
+        "Menger's Theorem",
+        "Ramsey's Theorem"
+      ],
+      "known_dx": 1.8037360015006676,
+      "dx_match": true
+    },
+    {
+      "base_dx": -2.7924706600190845,
+      "cliffiness": 6.775080777051736,
+      "gradient_magnitude": 966.5687350282108,
+      "gradient_vector": [
+        -367.8476653334256,
+        -610.8658145917465,
+        210.8281356639259,
+        531.0977135156614,
+        149.52275996237995,
+        -277.3370356986024
+      ],
+      "delta_dxs": [
+        6.775080777051736,
+        4.758511283639066,
+        5.064828634815488,
+        3.1367457452607983,
+        0.6972492836936461,
+        5.858273296990703
+      ],
+      "directions": [
+        [
+          -0.9118432978924588,
+          0.3146100709383901,
+          -0.10695741235784588,
+          -0.0971477303950548,
+          0.042595934778041,
+          -0.21649554294242257
+        ],
+        [
+          0.03008035118385395,
+          -0.05471950593214595,
+          0.15514709602857643,
+          -0.43901988965043964,
+          0.5564878687540751,
+          -0.6852832371785849
+        ],
+        [
+          0.1261103240403003,
+          0.4414511771862002,
+          0.7595979393151134,
+          0.39037270756912856,
+          -0.08900513252035464,
+          -0.2278491836495872
+        ],
+        [
+          0.7100666313125462,
+          -0.13749594040197713,
+          0.5530856750884214,
+          0.1978678883795949,
+          0.3430040059100009,
+          0.11913451288063459
+        ],
+        [
+          0.09373779265547856,
+          0.5517425532743735,
+          0.4636747859774082,
+          0.34453921869458715,
+          -0.2758203168968218,
+          -0.5263221005728512
+        ],
+        [
+          -0.24006007249481587,
+          -0.10526248018068662,
+          0.05050879703018486,
+          -0.12851191798675043,
+          0.8718021187467163,
+          0.3901097101671029
+        ]
+      ],
+      "weights": {
+        "w03": 0.5,
+        "w04": -0.3,
+        "w13": 0.1,
+        "w14": -0.7,
+        "w23": 0.4,
+        "w24": -0.2
+      },
+      "conditions": [
+        "theorems"
+      ],
+      "seeds": [
+        "Vinogradov's Theorem",
+        "Catalan's Conjecture (Mihailescu's Theorem)",
+        "Taylor's Theorem",
+        "Gauss-Bonnet Theorem",
+        "Sylow Theorems",
+        "Mean Value Theorem",
+        "Cantor's Theorem on cardinality",
+        "L'Hopital's Rule",
+        "Cayley-Hamilton Theorem",
+        "Euler characteristic of surfaces",
+        "Heine-Borel Theorem",
+        "Chinese Remainder Theorem",
+        "Fundamental Theorem of Arithmetic",
+        "Burnside's Lemma",
+        "Stone-Weierstrass Theorem",
+        "Prime Number Theorem",
+        "Rank-Nullity Theorem",
+        "Classification of compact surfaces",
+        "Berry-Esseen Theorem",
+        "Euler's Polyhedron Formula",
+        "Central Limit Theorem",
+        "Inverse Function Theorem",
+        "Fundamental Theorem of Algebra",
+        "Uniformization Theorem",
+        "Fundamental Theorem of Calculus",
+        "Fermat's Last Theorem",
+        "Lagrange's Theorem on subgroup order",
+        "Bolzano-Weierstrass Theorem",
+        "Spectral Theorem for symmetric matrices",
+        "De Finetti's Theorem",
+        "Wedderburn's Little Theorem",
+        "Structure Theorem for finitely generated abelian groups",
+        "Sperner's Lemma",
+        "Chebyshev's Inequality"
+      ],
+      "known_dx": -2.7924706600190845,
+      "dx_match": true
+    },
+    {
+      "base_dx": -3.885789206786786,
+      "cliffiness": 4.737828457459343,
+      "gradient_magnitude": 331.91873380772563,
+      "gradient_vector": [
+        29.66132029677933,
+        78.15183774114284,
+        -111.33489955606186,
+        93.94309904862553,
+        220.26077721430022,
+        182.8851182884817
+      ],
+      "delta_dxs": [
+        4.020367576427787,
+        4.737828457459343,
+        3.2357487505078684,
+        0.08666715466147057,
+        2.8921779312426183,
+        1.4673743670849086
+      ],
+      "directions": [
+        [
+          0.5942361159805756,
+          -0.24344332719943598,
+          -0.2722853827462285,
+          0.13685052462397418,
+          -0.33715399465018947,
+          0.6173156186673808
+        ],
+        [
+          -0.4184375977420853,
+          -0.3401212095481051,
+          -0.3390055792407939,
+          -0.19149158887310308,
+          -0.0972113804368749,
+          0.740394270479852
+        ],
+        [
+          -0.334731078823931,
+          -0.7198971502129646,
+          0.06599712536753019,
+          0.4253367909908474,
+          0.428953847042269,
+          0.020851589030282752
+        ],
+        [
+          0.364457887941316,
+          0.06642992034800349,
+          0.30707201267851086,
+          -0.807546430526675,
+          0.2997713164283121,
+          0.16269669025503947
+        ],
+        [
+          -0.15381530560661255,
+          0.6174511788187598,
+          0.18990615100771982,
+          -0.6007549352183729,
+          0.44388459481392223,
+          -0.033023047157252454
+        ],
+        [
+          0.37231914253690634,
+          -0.04975418988748635,
+          -0.8514180982315849,
+          -0.1858473126260758,
+          0.011332206844264277,
+          -0.3151548130215344
+        ]
+      ],
+      "weights": {
+        "w03": 0.5,
+        "w04": -0.5,
+        "w13": 0.3,
+        "w14": -0.3,
+        "w23": 0.1,
+        "w24": -0.1
+      },
+      "conditions": [
+        "theorems"
+      ],
+      "seeds": [
+        "Intermediate Value Theorem",
+        "Ham Sandwich Theorem",
+        "Waring's Problem solution"
+      ],
+      "known_dx": -3.885789206786786,
+      "dx_match": true
+    },
+    {
+      "base_dx": 1.5430233143864083,
+      "cliffiness": 5.075015268554422,
+      "gradient_magnitude": 2238.049393161694,
+      "gradient_vector": [
+        -818.8356218110869,
+        -1116.2185520306693,
+        782.7011697294167,
+        -1041.7755206245351,
+        -530.5746159607845,
+        1054.989419481058
+      ],
+      "delta_dxs": [
+        -2.4525331714113685,
+        -3.684520808975606,
+        -1.666608759043882,
+        -4.423612211554634,
+        -5.075015268554422,
+        -1.5972427955467305
+      ],
+      "directions": [
+        [
+          -0.782446587101658,
+          0.1497057193479988,
+          -0.12227406118876717,
+          0.1743800149968491,
+          0.5634002137150106,
+          0.05085665584218373
+        ],
+        [
+          -0.5318379555239774,
+          0.4299325078710773,
+          -0.17361570759387307,
+          -0.06630554219838598,
+          -0.6439450698463204,
+          -0.2882747576719754
+        ],
+        [
+          -0.07468042709273263,
+          -0.2793308865469112,
+          0.5347430691717449,
+          0.7461353575915999,
+          0.25798090365261406,
+          0.08470431574118428
+        ],
+        [
+          -0.14134200020294665,
+          0.8091868952010822,
+          -0.03335870386877882,
+          -0.1303232127300881,
+          -0.008973243460604203,
+          0.5541313432889021
+        ],
+        [
+          0.20890688979658054,
+          -0.16346507206617045,
+          -0.29390912126553886,
+          -0.46780118660034214,
+          -0.5071650776029588,
+          -0.6059704150551712
+        ],
+        [
+          -0.05811124372538008,
+          0.4775217864430381,
+          -0.1703247220364076,
+          0.09693753279849053,
+          0.29691796648573815,
+          0.8012667170181694
+        ]
+      ],
+      "weights": {
+        "w03": 0.6,
+        "w04": -0.6,
+        "w13": 0.2,
+        "w14": -0.2,
+        "w23": 0.8,
+        "w24": -0.8
+      },
+      "conditions": [
+        "theorems",
+        "bible"
+      ],
+      "seeds": [
+        "Law of Large Numbers",
+        "Godel's Incompleteness Theorem",
+        "Ecclesiastes 1:9 \u2014 There is no new thing under the sun."
+      ],
+      "known_dx": 1.5430233143864083,
+      "dx_match": true
+    },
+    {
+      "base_dx": 0.031072460871725098,
+      "cliffiness": 6.975724933494569,
+      "gradient_magnitude": 549.5981054548115,
+      "gradient_vector": [
+        337.48757383643357,
+        -324.58802505974325,
+        118.4099014402347,
+        10.269209527910016,
+        -261.07796380021233,
+        -22.68842012684534
+      ],
+      "delta_dxs": [
+        -2.6243597908060656,
+        -4.615966431505242,
+        6.975724933494569,
+        -6.285437668598904,
+        1.8990699012503949,
+        -1.3750700096707522
+      ],
+      "directions": [
+        [
+          -0.6606169047110241,
+          -0.2709654739846882,
+          -0.05343170021471757,
+          0.5794470428884032,
+          -0.33474979984256914,
+          0.19872535450638446
+        ],
+        [
+          0.5975139528255514,
+          0.34509692406950515,
+          -0.09644313693143547,
+          0.08505141436081577,
+          0.6272206836624072,
+          0.3375564862606885
+        ],
+        [
+          0.7369875223684089,
+          -0.03912099675962431,
+          -0.4263178993005256,
+          -0.36980282148573296,
+          0.28004144251830926,
+          -0.24164985395246977
+        ],
+        [
+          0.007744346838294704,
+          0.16820495756864384,
+          0.15344005913191025,
+          -0.10640863485087096,
+          0.26694456604363725,
+          0.9303338468979419
+        ],
+        [
+          -0.15868890802891664,
+          0.28207413169107975,
+          -0.20062653356564522,
+          -0.007357894991299929,
+          -0.7449918402893139,
+          -0.547662330284259
+        ],
+        [
+          -0.1480293861565339,
+          0.10549685557357505,
+          0.22884500023671175,
+          0.7354281152209892,
+          -0.1362479271401568,
+          0.5959611311632509
+        ]
+      ],
+      "weights": {
+        "w03": 0.5,
+        "w04": -0.5,
+        "w13": 0.3,
+        "w14": -0.3,
+        "w23": 0.7,
+        "w24": -0.7
+      },
+      "conditions": [
+        "theorems"
+      ],
+      "seeds": [
+        "Noether's Theorem on symmetry and conservation",
+        "Fermat's Little Theorem",
+        "Borsuk-Ulam Theorem"
+      ],
+      "known_dx": 0.031072460871725098,
+      "dx_match": true
+    },
+    {
+      "base_dx": 0.10080691610266386,
+      "cliffiness": 6.0373072657298374,
+      "gradient_magnitude": 456.57965097345595,
+      "gradient_vector": [
+        -138.2445299899376,
+        -146.3248698869731,
+        122.6351929768682,
+        -312.91629430080127,
+        -230.2208733659124,
+        -44.551225961601425
+      ],
+      "delta_dxs": [
+        0.08125976804683795,
+        0.6835590901983178,
+        0.7496272512085782,
+        1.2825155232770522,
+        -0.3830933315458944,
+        -6.0373072657298374
+      ],
+      "directions": [
+        [
+          0.7361830661221321,
+          0.10999376378080582,
+          0.4929619532661908,
+          0.08514551774143679,
+          -0.4061085185242632,
+          0.17535817547779534
+        ],
+        [
+          -0.3217551680227773,
+          0.07981884779416375,
+          0.8508628897421016,
+          0.17775627348431697,
+          0.24126721300393622,
+          0.2762747643442097
+        ],
+        [
+          0.6731929540349137,
+          -0.09298133966769309,
+          0.004731243849855771,
+          0.10141513232105602,
+          -0.43264087244403987,
+          -0.583678146644316
+        ],
+        [
+          0.03431480299618592,
+          -0.5430164811415042,
+          -0.23979733858579608,
+          -0.29173418739652346,
+          0.35413095254925886,
+          0.6602539392247841
+        ],
+        [
+          -0.5006423926976808,
+          -0.37500986380603824,
+          -0.44082796197487395,
+          -0.20413254464404776,
+          0.575413363285588,
+          0.2040217395100593
+        ],
+        [
+          0.21115498882755893,
+          -0.623712742745874,
+          -0.013451438801160943,
+          0.5398309281079093,
+          -0.047817560021507874,
+          0.5220259514962584
+        ]
+      ],
+      "weights": {
+        "w03": 0.6,
+        "w04": -0.6,
+        "w13": -0.6,
+        "w14": 0.6,
+        "w23": 0.6,
+        "w24": -0.6
+      },
+      "conditions": [
+        "theorems"
+      ],
+      "seeds": [
+        "Four Color Theorem",
+        "Jordan Curve Theorem"
+      ],
+      "known_dx": 0.10080691610266386,
+      "dx_match": true
+    },
+    {
+      "base_dx": -9.546181095404728,
+      "cliffiness": 17.092233911956185,
+      "gradient_magnitude": 837.182314721625,
+      "gradient_vector": [
+        -366.71209387389985,
+        28.84123403488498,
+        643.6200254957305,
+        231.8848719539543,
+        -198.38585405430663,
+        241.22680895692278
+      ],
+      "delta_dxs": [
+        7.076173829209942,
+        17.092233911956185,
+        14.270638356052096,
+        14.866296147357517,
+        0.36433207512369137,
+        -0.4790934209323865
+      ],
+      "directions": [
+        [
+          -0.5558003317847386,
+          -0.13884044685268154,
+          -0.31530196510633424,
+          -0.2384699623213516,
+          -0.15551269873389392,
+          0.7009578232024809
+        ],
+        [
+          -0.48903472387319674,
+          -0.5361252357801429,
+          0.4483603662297007,
+          -0.3143014816465412,
+          0.3847040738093548,
+          0.16001595742174118
+        ],
+        [
+          0.1409515632970684,
+          -0.5314553533536556,
+          0.7084100646249096,
+          -0.3660898341918663,
+          0.22431401284609767,
+          0.10725903913534619
+        ],
+        [
+          -0.27137609001382146,
+          -0.23185617147903292,
+          -0.09614307326398144,
+          0.788842317688258,
+          -0.487879993384823,
+          -0.05527343718545869
+        ],
+        [
+          0.03938116299123199,
+          -0.6001761296372258,
+          -0.22625696389648378,
+          -0.1152677989032012,
+          -0.1672386783872014,
+          0.738776070735102
+        ],
+        [
+          -0.1418251095856608,
+          -0.17400655272773766,
+          -0.5125525677564583,
+          0.4717864222207392,
+          -0.669025740324173,
+          0.1293033401615458
+        ]
+      ],
+      "weights": {
+        "w03": 0.707,
+        "w04": -0.707,
+        "w13": 0.707,
+        "w14": 0.707,
+        "w23": -0.707,
+        "w24": 0.707
+      },
+      "conditions": [
+        "theorems"
+      ],
+      "seeds": [
+        "Pythagorean Theorem"
+      ],
+      "known_dx": -9.546181095404728,
+      "dx_match": true
+    },
+    {
+      "base_dx": -3.475502597896239,
+      "cliffiness": 7.197747183739854,
+      "gradient_magnitude": 411.65148960442673,
+      "gradient_vector": [
+        191.5921311259846,
+        -143.6814997459427,
+        97.27376755884183,
+        31.498426889650208,
+        -247.29334725617997,
+        201.23790514245522
+      ],
+      "delta_dxs": [
+        1.8985064822046358,
+        1.877190992824705,
+        7.197747183739854,
+        0.5866127515719768,
+        -1.6964136421388778,
+        -2.712258490636735
+      ],
+      "directions": [
+        [
+          0.14306932081767837,
+          0.2676157569266607,
+          0.6788533415546227,
+          -0.47011447558701963,
+          -0.2946791876470691,
+          -0.37313224593522637
+        ],
+        [
+          -0.11320192396201584,
+          -0.003949881174387463,
+          0.7471092975321908,
+          0.038034773551828396,
+          0.44860968050534467,
+          0.47571013332565887
+        ],
+        [
+          0.7140696702396073,
+          -0.3350159065939934,
+          0.06134534512453227,
+          -0.06592662626986315,
+          -0.2641952761029218,
+          -0.5476861629053906
+        ],
+        [
+          -0.2682945633119613,
+          0.5506472306336699,
+          0.2952725610443328,
+          -0.6031882247945461,
+          -0.34230544157246784,
+          0.23793007276533268
+        ],
+        [
+          0.5720903551278034,
+          0.018416070607273658,
+          -0.13867188143682918,
+          0.059808800025219634,
+          0.754149812483204,
+          0.2842965898194937
+        ],
+        [
+          -0.6837618381399971,
+          -0.3403104727573081,
+          0.6106175613070952,
+          -0.17070269713948333,
+          0.007416510074364524,
+          -0.1208731120891177
+        ]
+      ],
+      "weights": {
+        "w03": 0.5,
+        "w04": -0.3,
+        "w13": -0.5,
+        "w14": 0.3,
+        "w23": 0.1,
+        "w24": -0.7
+      },
+      "conditions": [
+        "theorems"
+      ],
+      "seeds": [
+        "Hairy Ball Theorem"
+      ],
+      "known_dx": -3.475502597896239,
+      "dx_match": true
+    },
+    {
+      "base_dx": 3.796282509169096,
+      "cliffiness": 4.229915948081238,
+      "gradient_magnitude": 115.74319249162046,
+      "gradient_vector": [
+        95.43952496759333,
+        5.726298980584588,
+        -21.640425351845916,
+        -48.40768427076875,
+        29.979944148613036,
+        23.336328440356443
+      ],
+      "delta_dxs": [
+        -4.229915948081238,
+        -0.5191466109563154,
+        -2.116551575526836,
+        -0.22461903567150898,
+        -2.075187509077987,
+        -0.3893003519866487
+      ],
+      "directions": [
+        [
+          -0.7702516770589197,
+          0.10036765648322041,
+          0.5204907525673848,
+          -0.14765933282939547,
+          -0.0007273633834810367,
+          -0.32237285304862684
+        ],
+        [
+          0.12052093422214533,
+          -0.2979884316203441,
+          0.8869393473668484,
+          0.21646840091670275,
+          0.1807382742727841,
+          0.1746175842937912
+        ],
+        [
+          -0.6203769663124913,
+          -0.35446487275219807,
+          -0.4027575717993677,
+          0.20741955685345312,
+          0.40451697827997607,
+          0.3472989400068906
+        ],
+        [
+          -0.44719959894774286,
+          0.38054285911020014,
+          0.2833918669933788,
+          -0.5567829206558716,
+          0.5145657680138125,
+          -0.010175974522963796
+        ],
+        [
+          -0.6051746185720644,
+          0.4085156695825484,
+          -0.24731211382463872,
+          -0.09063392884518806,
+          0.4680608885103524,
+          -0.4223977304463796
+        ],
+        [
+          0.28154813979844995,
+          0.5663995612063639,
+          0.4660209843689433,
+          0.6078463353305719,
+          0.09922299285331998,
+          -0.058517129829615655
+        ]
+      ],
+      "weights": {
+        "w03": 0.6,
+        "w04": -0.6,
+        "w13": 0.3,
+        "w14": -0.3,
+        "w23": -0.4,
+        "w24": 0.4
+      },
+      "conditions": [
+        "theorems"
+      ],
+      "seeds": [
+        "Poincare Recurrence Theorem"
+      ],
+      "known_dx": 3.796282509169096,
+      "dx_match": true
+    },
+    {
+      "base_dx": -3.2035999741585943,
+      "cliffiness": 6.450106357017475,
+      "gradient_magnitude": 321.12400903038866,
+      "gradient_vector": [
+        76.0347683589431,
+        194.89637761872496,
+        4.914646195756654,
+        -147.7505340110048,
+        39.9619206241547,
+        189.48196753177484
+      ],
+      "delta_dxs": [
+        2.3871263605130455,
+        -0.9599080602725527,
+        3.4900923083357416,
+        -0.6117251861935622,
+        0.9534551218893093,
+        6.450106357017475
+      ],
+      "directions": [
+        [
+          0.35121084739601244,
+          0.36339607816900027,
+          0.20525619743189388,
+          0.39016381334991374,
+          0.7322884247229373,
+          -0.11827927218078711
+        ],
+        [
+          0.02758553619816769,
+          0.31903993164550726,
+          -0.019896593421436033,
+          -0.3670494001658132,
+          -0.6430368983996162,
+          -0.5906225282809913
+        ],
+        [
+          -0.2789467160949496,
+          -0.0912527741262634,
+          0.8239861001882531,
+          -0.09995480096338014,
+          0.1888327222828318,
+          0.43504000764330275
+        ],
+        [
+          0.2841706134122088,
+          -0.4369694869366695,
+          -0.042925619510169606,
+          -0.7723792000381859,
+          0.08937130179620739,
+          -0.34914934184747387
+        ],
+        [
+          0.928902280852274,
+          -0.12375204214286804,
+          -0.09281834449162876,
+          -0.06740946583002427,
+          -0.30241355784167867,
+          -0.1311973458908162
+        ],
+        [
+          0.1493433397013787,
+          0.5589302840719503,
+          -0.08445730389203553,
+          -0.28464151374679064,
+          -0.7595756885569017,
+          -0.013581246578284165
+        ]
+      ],
+      "weights": {
+        "w03": 0.6,
+        "w04": -0.6,
+        "w13": 0.6,
+        "w14": -0.6,
+        "w23": 0.6,
+        "w24": -0.6
+      },
+      "conditions": [
+        "theorems"
+      ],
+      "seeds": [
+        "Tychonoff's Theorem"
+      ],
+      "known_dx": -3.2035999741585943,
+      "dx_match": true
+    },
+    {
+      "base_dx": -0.8544850178452873,
+      "cliffiness": 5.537036415465423,
+      "gradient_magnitude": 369.89596023705576,
+      "gradient_vector": [
+        66.78791031852829,
+        319.16841229486687,
+        21.53625875255148,
+        -121.15231345298373,
+        123.8024063360623,
+        -5.019135133195253
+      ],
+      "delta_dxs": [
+        5.107965817003211,
+        1.5734641649758143,
+        2.40128157475114,
+        5.537036415465423,
+        0.8693548423356747,
+        2.2259539722780675
+      ],
+      "directions": [
+        [
+          0.524257207902511,
+          0.26258808576763215,
+          -0.2631110558680368,
+          0.3150358069529618,
+          0.1922367348881855,
+          -0.6713955075454308
+        ],
+        [
+          0.23317632638458963,
+          -0.043008761504621296,
+          -0.8115318189186007,
+          -0.31391026069359473,
+          0.09038460698234081,
+          0.4224761829762959
+        ],
+        [
+          -0.19218581885467612,
+          0.4265305949052448,
+          0.6927314392692957,
+          0.43759345065152333,
+          -0.2941097822484495,
+          0.1525477748821269
+        ],
+        [
+          0.09877141503055345,
+          0.6199666945077875,
+          -0.1550142866010883,
+          0.729471948144375,
+          -0.025251484404241454,
+          -0.22156063646175517
+        ],
+        [
+          0.03908449019916884,
+          0.3654289974703185,
+          -0.4776466235423579,
+          0.26363348090104327,
+          -0.5043347749507134,
+          -0.5594028744793027
+        ],
+        [
+          -0.32595205472477295,
+          0.20680960758024108,
+          0.6260023307984848,
+          -0.4280474681673444,
+          -0.5251835899419747,
+          0.007980471117420883
+        ]
+      ],
+      "weights": {
+        "w03": 0.6,
+        "w04": -0.6,
+        "w13": 0.3,
+        "w14": -0.3,
+        "w23": -0.9,
+        "w24": 0.9
+      },
+      "conditions": [
+        "theorems"
+      ],
+      "seeds": [
+        "Pappus' Theorem"
+      ],
+      "known_dx": -0.8544850178452873,
+      "dx_match": true
+    },
+    {
+      "base_dx": 7.2076197437088165,
+      "cliffiness": 11.395909066036225,
+      "gradient_magnitude": 913.9110373674225,
+      "gradient_vector": [
+        44.89247083640335,
+        -440.2805508821508,
+        62.053117244808405,
+        -401.859795071496,
+        592.5999947272084,
+        350.50598966882245
+      ],
+      "delta_dxs": [
+        -6.157798067440206,
+        -6.897232582386881,
+        -8.8977776902412,
+        -7.647654542678467,
+        -11.395909066036225,
+        -8.644652874598428
+      ],
+      "directions": [
+        [
+          -0.6451255042055248,
+          -0.21410739961330386,
+          0.2802266465943482,
+          0.671416197205851,
+          0.07811005798604757,
+          0.05043055387295299
+        ],
+        [
+          0.8555258426321876,
+          -0.24738521708034236,
+          0.13042743183052674,
+          0.05568059673384471,
+          -0.2479177189957901,
+          -0.35397916286128744
+        ],
+        [
+          -0.2375436773856149,
+          -0.4783061807194824,
+          0.30451797344523773,
+          -0.2051669523273785,
+          -0.44177723002060443,
+          -0.6203260460245753
+        ],
+        [
+          -0.14478828183964357,
+          -0.19174882310312888,
+          0.005336959008852329,
+          0.43157012356051794,
+          0.36834414730543463,
+          -0.7875976617187347
+        ],
+        [
+          0.4548110609442937,
+          0.21131652484244348,
+          -0.8389287741723256,
+          -0.07661936558851785,
+          -0.15207872293955052,
+          -0.12526879852080766
+        ],
+        [
+          -0.10001728410528922,
+          0.44344391013225376,
+          0.7760666096429417,
+          -0.3307051771788589,
+          -0.10238641164299138,
+          -0.26688156051346246
+        ]
+      ],
+      "weights": {
+        "w03": 0.6,
+        "w04": -0.8,
+        "w13": 0.2,
+        "w14": -0.9,
+        "w23": 0.5,
+        "w24": -0.4
+      },
+      "conditions": [
+        "bible"
+      ],
+      "seeds": [
+        "Psalm 77:19 \u2014 Thy way is in the sea, and thy path in the great waters, and thy footsteps are not known.",
+        "Genesis 1:2 \u2014 And the earth was without form, and void; and darkness was upon the face of the deep.",
+        "John 11:35 \u2014 Jesus wept.",
+        "1 Corinthians 13:12 \u2014 For now we see through a glass, darkly; but then face to face.",
+        "Psalm 42:7 \u2014 Deep calleth unto deep at the noise of thy waterspouts.",
+        "Genesis 32:24 \u2014 And Jacob was left alone; and there wrestled a man with him until the breaking of the day.",
+        "Genesis 7:17 \u2014 And the flood was forty days upon the earth; and the waters increased."
+      ],
+      "known_dx": 7.2076197437088165,
+      "dx_match": true
+    },
+    {
+      "base_dx": 29.16702982825942,
+      "cliffiness": 52.91769680571079,
+      "gradient_magnitude": 21022.98281266511,
+      "gradient_vector": [
+        9842.694836997029,
+        -8974.220922577051,
+        -1728.7562148056152,
+        5363.396809579927,
+        -14753.924535029155,
+        -3888.1372079144116
+      ],
+      "delta_dxs": [
+        -16.391547604445627,
+        -17.93628730472666,
+        6.968060520657989,
+        -34.70743665042949,
+        -52.91769680571079,
+        -5.976866994943109
+      ],
+      "directions": [
+        [
+          -0.08700142187997299,
+          0.6997657984342903,
+          -0.12770394952220093,
+          0.13373077544329023,
+          -0.516319882247943,
+          0.4494220066971809
+        ],
+        [
+          -0.3541260955217395,
+          -0.29527258872511314,
+          0.830906094581691,
+          0.09198874695200862,
+          -0.16202175054396173,
+          0.24958143278290898
+        ],
+        [
+          0.2482446965521483,
+          0.39170111046693523,
+          -0.7876584400303953,
+          0.13874415897809,
+          -0.03927843875243225,
+          0.37913883359558354
+        ],
+        [
+          -0.22011652737043058,
+          -0.18160188427664303,
+          -0.5978952468217845,
+          0.6706118159096778,
+          0.3323811492184731,
+          -0.029888255887626603
+        ],
+        [
+          0.24034110560584943,
+          -0.38558113620407686,
+          -0.6225728866523187,
+          0.1425207395423812,
+          0.4912431329032336,
+          0.3799136274745076
+        ],
+        [
+          0.6684969031879644,
+          0.02989827758967062,
+          -0.10345197839092234,
+          0.3066960128529099,
+          0.42292174852812253,
+          0.5182571002063742
+        ]
+      ],
+      "weights": {
+        "w03": -0.8,
+        "w04": 0.6,
+        "w13": 0.2,
+        "w14": -0.9,
+        "w23": 0.5,
+        "w24": -0.4
+      },
+      "conditions": [
+        "bible"
+      ],
+      "seeds": [
+        "Revelation 6:8 \u2014 And I looked, and behold a pale horse: and his name that sat on him was Death."
+      ],
+      "known_dx": 29.16702982825942,
+      "dx_match": true
+    },
+    {
+      "base_dx": -5.426847028599107,
+      "cliffiness": 5.365842959682013,
+      "gradient_magnitude": 424.4612469436552,
+      "gradient_vector": [
+        251.27000282073138,
+        20.786922038753655,
+        19.582046458481155,
+        -54.067674803027465,
+        -327.3846995777569,
+        78.17370524582358
+      ],
+      "delta_dxs": [
+        -0.2832510296691524,
+        1.8691749138118947,
+        3.8877973009568265,
+        5.365842959682013,
+        1.8654979322958218,
+        5.005487012355432
+      ],
+      "directions": [
+        [
+          -0.3750862150731647,
+          -0.4185056062037465,
+          -0.4803056276588662,
+          -0.2610773225204847,
+          -0.3967527015492342,
+          -0.4773843507659882
+        ],
+        [
+          0.7510821920844655,
+          -0.06543449555390014,
+          -0.330891677838777,
+          0.07160518564499956,
+          0.4918990649199686,
+          0.27388423171450677
+        ],
+        [
+          -0.04822068518885207,
+          -0.01122100256981818,
+          0.48737538144964904,
+          0.6015552462703876,
+          -0.20274465630215144,
+          0.5975282271186445
+        ],
+        [
+          -0.27626471432180943,
+          0.5344412033890124,
+          -0.3935961631528257,
+          0.29006646973119904,
+          -0.47903570158090997,
+          0.4117264964035375
+        ],
+        [
+          -0.2738675455292968,
+          -0.8044912335804211,
+          -0.15033512736071847,
+          0.26544063475490237,
+          -0.3802102384878283,
+          0.20042758305530356
+        ],
+        [
+          0.47593615058695077,
+          -0.17314968808869793,
+          -0.5785662302433574,
+          -0.6068951228574089,
+          0.14691795411908584,
+          0.13732628266506386
+        ]
+      ],
+      "weights": {
+        "w03": 0.6,
+        "w04": -0.5,
+        "w13": -0.4,
+        "w14": 0.8,
+        "w23": 0.2,
+        "w24": -0.9
+      },
+      "conditions": [
+        "bible"
+      ],
+      "seeds": [
+        "Ecclesiastes 1:6 \u2014 The wind goeth toward the south, and turneth about unto the north; it whirleth about continually."
+      ],
+      "known_dx": -5.426847028599107,
+      "dx_match": true
+    },
+    {
+      "base_dx": 8.321838410940217,
+      "cliffiness": 10.265406021728609,
+      "gradient_magnitude": 600.6182225311395,
+      "gradient_vector": [
+        -466.12823438687013,
+        204.57560719442014,
+        -43.9399353412717,
+        69.36819672303781,
+        -136.8973019058487,
+        275.92028446885973
+      ],
+      "delta_dxs": [
+        7.898997647878215,
+        7.137257510338987,
+        4.278707017406184,
+        10.265406021728609,
+        0.6083983348994568,
+        -2.1954026501214052
+      ],
+      "directions": [
+        [
+          -0.6823029935443735,
+          -0.06639273137644698,
+          0.19766494230399106,
+          0.3019145980382274,
+          0.5572626183898667,
+          -0.2988129020665054
+        ],
+        [
+          0.1028214570310543,
+          -0.2210714583514635,
+          -0.40218832964754125,
+          0.5570897002205183,
+          -0.5802764508739668,
+          0.3629462938797074
+        ],
+        [
+          0.1309591582038171,
+          0.3504407263384836,
+          -0.7295104995545673,
+          -0.4941906381538708,
+          -0.24079769806112825,
+          0.1601483968545453
+        ],
+        [
+          -0.2343267675051292,
+          0.05823125369491405,
+          -0.5117584470669425,
+          0.6599927360942456,
+          -0.4632083315896461,
+          -0.17219468292637546
+        ],
+        [
+          -0.05377822130256051,
+          0.6507536345454197,
+          -0.24903263517828297,
+          -0.43876336092849083,
+          0.5299140040388813,
+          -0.1956737542079538
+        ],
+        [
+          0.012246197203442966,
+          -0.4322264095245326,
+          -0.42622052498109964,
+          -0.583977478032924,
+          0.33099273546735203,
+          0.4251829487015756
+        ]
+      ],
+      "weights": {
+        "w03": -0.6,
+        "w04": 0.8,
+        "w13": 0.2,
+        "w14": -0.9,
+        "w23": 0.5,
+        "w24": -0.4
+      },
+      "conditions": [
+        "bible"
+      ],
+      "seeds": [
+        "Daniel 5:27 \u2014 TEKEL; Thou art weighed in the balances, and art found wanting."
+      ],
+      "known_dx": 8.321838410940217,
+      "dx_match": true
+    },
+    {
+      "base_dx": 4.3906889875178114,
+      "cliffiness": 9.407913110905351,
+      "gradient_magnitude": 3296.7316069818157,
+      "gradient_vector": [
+        2629.455659825465,
+        6.387935220533515,
+        -1414.968152570881,
+        519.0827131852016,
+        -296.7787630296177,
+        1262.8151272713674
+      ],
+      "delta_dxs": [
+        -1.90086027783435,
+        -9.407913110905351,
+        -6.246477928700336,
+        -8.811197464846549,
+        -3.548442569208945,
+        -7.306434145948308
+      ],
+      "directions": [
+        [
+          -0.06484786845977425,
+          0.11000111579670023,
+          -0.3695729680983426,
+          0.5323643034018153,
+          0.6499715344757194,
+          -0.375813228300262
+        ],
+        [
+          -0.06979434230592,
+          0.5864453942490294,
+          -0.4290773973431994,
+          -0.3480374177667147,
+          -0.39381208802963463,
+          -0.43690403018441837
+        ],
+        [
+          0.003308164897621962,
+          0.35214154969341427,
+          -0.256719074688786,
+          0.5914495053773108,
+          0.40714156106745997,
+          -0.5426821662409318
+        ],
+        [
+          0.09976675991313218,
+          0.3544187968809482,
+          -0.25740319395466194,
+          0.0537624153600835,
+          -0.4555523353853102,
+          -0.7666545364083325
+        ],
+        [
+          -0.23159501075436878,
+          -0.5795029300725013,
+          0.25827645597977766,
+          0.4367148595690452,
+          -0.39180768299425967,
+          0.44676643595491183
+        ],
+        [
+          0.03725636782898729,
+          -0.6696477644416877,
+          -0.12371848743250591,
+          -0.6166086220957168,
+          -0.35946471378653233,
+          -0.15955092353678835
+        ]
+      ],
+      "weights": {
+        "w03": 0.6,
+        "w04": -0.2,
+        "w13": 0.1,
+        "w14": -0.8,
+        "w23": 0.5,
+        "w24": -0.3
+      },
+      "conditions": [
+        "bible"
+      ],
+      "seeds": [
+        "1 Kings 19:12 \u2014 And after the fire a still small voice."
+      ],
+      "known_dx": 4.3906889875178114,
+      "dx_match": true
+    },
+    {
+      "base_dx": -5.468668601399776,
+      "cliffiness": 5.67551324775282,
+      "gradient_magnitude": 321.9771455822132,
+      "gradient_vector": [
+        135.06592672262803,
+        -271.3706508208161,
+        91.85672698548154,
+        29.493124038551834,
+        0.5851038032039159,
+        -49.765475828277616
+      ],
+      "delta_dxs": [
+        -5.221850750875345,
+        2.728337295505128,
+        5.67551324775282,
+        -2.547660397234316,
+        -4.436225964613407,
+        1.4573554148525032
+      ],
+      "directions": [
+        [
+          -0.7075280650247497,
+          0.15022965863855392,
+          0.5272135112948427,
+          0.07078311787267712,
+          -0.23648158201419717,
+          0.3714124553217422
+        ],
+        [
+          -0.23393328170784738,
+          -0.36847754576904945,
+          0.03403006909811052,
+          0.19271447029243668,
+          0.7457708788216544,
+          0.4637115500093518
+        ],
+        [
+          0.22575849280067978,
+          -0.24445642987810232,
+          0.5221126622225336,
+          0.1345391948694813,
+          0.30307073029095677,
+          0.7118425824936958
+        ],
+        [
+          0.24334871331650854,
+          0.3770649098368174,
+          -0.06980565950450016,
+          -0.31762574499750096,
+          -0.4591394055600683,
+          -0.6942877787883235
+        ],
+        [
+          0.03594793208011683,
+          0.5520463138017611,
+          0.39216156242426825,
+          0.586909516103738,
+          -0.4378184563923038,
+          -0.06335725454234925
+        ],
+        [
+          0.06374192523062577,
+          -0.2240599521709921,
+          -0.17757962779922576,
+          -0.23430264382215016,
+          0.8573261655892889,
+          0.3525531129994917
+        ]
+      ],
+      "weights": {
+        "w03": -0.8,
+        "w04": 0.6,
+        "w13": -0.2,
+        "w14": 0.9,
+        "w23": -0.5,
+        "w24": 0.3
+      },
+      "conditions": [
+        "places"
+      ],
+      "seeds": [
+        "Mariana Trench"
+      ],
+      "known_dx": -5.468668601399776,
+      "dx_match": true
+    }
+  ],
+  "meta": {
+    "r_probe": 0.05,
+    "n_directions": 6,
+    "n_unique_weights": 37,
+    "total_sims": 259
+  },
+  "comparison": {
+    "atlas_median_cliffiness": 7.3273168234223185,
+    "llm_median_cliffiness": 6.975724933494569,
+    "llm_mean_cliffiness": 9.915947396417003,
+    "fraction_below_atlas_median": 0.5675675675675675,
+    "mann_whitney_z": 0.04172508380226502
+  }
+}

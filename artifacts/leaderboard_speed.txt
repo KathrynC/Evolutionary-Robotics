@@ -1,0 +1,30 @@
+SPEED LEADERBOARD — Top 25 by mean speed
+Fastest average velocity across the simulation
+==========================================================================================
+Rank  Character                                                    Speed     DX (m)
+------------------------------------------------------------------------------------------
+1     Aaron Burr [Hamilton]                                       3.4683       6.74
+2     Dexter Morgan [Dexter]                                      3.4518      30.87
+3     Ash [Alien]                                                 3.3417      13.85
+4     Hans [Frozen]                                               3.3073      -9.01
+5     Macbeth [Macbeth]                                           3.2581       9.19
+6     Nick Dunne [Gone Girl]                                      2.9244       9.89
+7     Rei Ayanami [Neon Genesis Evangelion]                       2.8539      21.57
+8     Elliot Alderson [Mr. Robot]                                 2.7983       5.30
+9     Marty Hart [True Detective]                                 2.6517      15.04
+10    Tuvok [Star Trek: Voyager]                                  2.6461      10.45
+11    Tracy Mills [Se7en]                                         2.5163       6.13
+12    Shinji Ikari [Neon Genesis Evangelion]                      2.5069      31.35
+13    Hernando Fuentes [Sense8]                                   2.4623     -33.92
+14    Alastor Moody [Harry Potter]                                2.4531      17.97
+15    Bill Tench [Mindhunter]                                     2.4479      12.68
+16    Lau [The Dark Knight]                                       2.4474      20.23
+17    Ygritte [Game of Thrones]                                   2.4063      26.74
+18    Serena Joy Waterford [The Handmaid's Tale]                  2.3954       8.53
+19    Saitama [One Punch Man]                                     2.3823     -36.92
+20    Bruce Wayne [The Dark Knight]                               2.3817      14.68
+21    Donald Thompson [A Nightmare on Elm Street]                 2.3771       5.07
+22    Choi Yeon-gyo [Parasite]                                    2.3196     -32.78
+23    Rey [Star Wars: The Last Jedi]                              2.3089     -31.10
+24    Dr. Claire Browne [The Good Doctor]                         2.3028     -34.01
+25    Juliana Crain [The Man in the High Castle]                  2.2891     -29.58

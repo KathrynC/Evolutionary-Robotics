@@ -1,0 +1,2075 @@
+ARCHETYPOMETRICS CLUSTER ANALYSIS — FULL ROSTER
+====================================================================================================
+2000 fictional characters clustered by 6-dimensional weight vectors (k=7)
+PCA: PC1+PC2 explain 84.5% of weight-space variance
+
+====================================================================================================
+CLUSTER 0: RIGHT WALKERS — 162 characters (8.1%)
+Center: [+--++-] +0.717 -0.455 -0.238 +0.762 +0.591 -0.141
+DX: mean=+2.8m, |DX| mean=5.1m, std=5.6m
+Dead (<1m): 19 (12%), Champions (>20m): 0 (0%)
+Top stories: The Wire(5), Dexter(4), The Social Network(4), Ozark(4), Futurama(4), Westworld(4), Archer(4), White Collar(3)
+----------------------------------------------------------------------------------------------------
+Rank  Character                                Story                              DX (m)
+----------------------------------------------------------------------------------------------------
+1     Mark Zuckerberg                          The Social Network                 -16.47
+2     Haymitch Abernathy                       The Hunger Games                    15.66
+3     Parker                                   Alien                               14.04
+4     Peter Burke                              White Collar                        13.76
+5     Jessie                                   Pokémon                             13.24
+6     Ed                                       Cowboy Bebop                        12.95
+7     FP Jones                                 Riverdale                           12.28
+8     Donald Cragen                            Law & Order: SVU                   -11.68
+9     Rachel Zane                              Suits                               11.50
+10    Howard Hamlin                            Better Call Saul                    11.35
+11    Oliver Queen                             Arrow                               11.29
+12    Nancy Wheeler                            Stranger Things                     11.02
+13    Sean Parker                              The Social Network                 -10.81
+14    Veronica Fisher                          Shameless                           10.72
+15    Matt Hooper                              Jaws                                10.67
+16    Elliot Reid                              Scrubs                              10.66
+17    Zoe Washburne                            Firefly + Serenity                  10.43
+18    Gus Fring                                Breaking Bad                        10.38
+19    Pamela Poovey                            Archer                              10.31
+20    Maxwell Klinger                          M*A*S*H                              9.96
+21    Dr. Jennifer Melfi                       The Sopranos                         9.91
+22    Sebastian                                Twelfth Night                        9.61
+23    Sid Phillips                             Toy Story                            9.44
+24    Sakura Haruno                            Naruto                              -9.34
+25    Lionel Luthor                            Smallville                           9.02
+26    Quark                                    Star Trek: Deep Space Nine           8.77
+27    Radar O'Reilly                           M*A*S*H                              8.55
+28    Maurice Levy                             The Wire                             8.54
+29    Teddy Flood                              Westworld                            8.50
+30    Karen Vick                               Psych                               -8.42
+31    Caleb Smith                              Ex Machina                           8.39
+32    Walter Skinner                           The X-Files                          8.32
+33    Professor Oak                            Pokémon                              8.24
+34    Evan                                     Superbad                             8.19
+35    Li Shang                                 Mulan                               -8.10
+36    Erin Naird                               Space Force                          8.06
+37    Ava                                      Ex Machina                           7.87
+38    Harry Morgan                             Dexter                               7.86
+39    Kathy Selden                             Singin' in the Rain                  7.74
+40    James Doakes                             Dexter                               7.60
+41    Cheryl Tunt                              Archer                               7.49
+42    Dr. Lisa Cuddy                           House, M.D.                          7.48
+43    Cedric Daniels                           The Wire                             7.31
+44    Rene Ramirez                             Arrow                                7.26
+45    Tom Hagen                                The Godfather                       -7.23
+46    Rusty Ryan                               Ocean's 11                           7.19
+47    Jerry Seinfeld                           Seinfeld                             7.09
+48    Claire Dearing                           Jurassic World                       7.02
+49    Luke Dunphy                              Modern Family                        7.00
+50    Dr. Ian Malcolm                          Jurassic Park                        6.77
+51    Barbara Kean                             Gotham                               6.63
+52    Shirley Bennett                          Community                            6.59
+53    Louis Litt                               Suits                                6.57
+54    Rita Bennett                             Dexter                               6.53
+55    Nairobi                                  Money Heist                          6.31
+56    Hermione Lodge                           Riverdale                            6.22
+57    Riff                                     West Side Story                      6.14
+58    Norman Wilson                            The Wire                             6.08
+59    Rex                                      Toy Story                            5.85
+60    Squidward Tentacles                      SpongeBob SquarePants                5.80
+61    Dean Winchester                          Supernatural                         5.70
+62    Raymond Holt                             Brooklyn Nine-Nine                   5.54
+63    Dr. Hannibal Lecter                      Hannibal                            -5.50
+64    Rita Skeeter                             Harry Potter                         5.41
+65    Claire                                   Fleabag                              5.22
+66    Andy Bernard                             The Office                           5.14
+67    Maeve Millay                             Westworld                            5.11
+68    Peter Gregory                            Silicon Valley                       5.10
+69    Officer Slater                           Superbad                             5.04
+70    Bernard Lowe                             Westworld                            5.01
+71    Diane Lockhart                           The Good Wife                        4.96
+72    Konstantin                               Killing Eve                          4.91
+73    Marshall Eriksen                         How I Met Your Mother                4.81
+74    Prof. Farnsworth                         Futurama                             4.77
+75    Clinton Jones                            White Collar                         4.67
+76    Janice Soprano                           The Sopranos                        -4.62
+77    Audrey Horne                             Twin Peaks                           4.57
+78    Arturo Roman                             Money Heist                          4.57
+79    Alan Shore                               Boston Legal                        -4.53
+80    Misty                                    Pokémon                              4.52
+81    Dom Cobb                                 Inception                            4.41
+82    Monica Dutton                            Yellowstone                         -4.27
+83    Wendy Byrde                              Ozark                                4.23
+84    Cassian Andor                            Rogue One                           -4.07
+85    Jordan Baker                             The Great Gatsby                     3.84
+86    Cyril Figgis                             Archer                              -3.70
+87    Maria LaGuerta                           Dexter                               3.67
+88    Mark Watney                              The Martian                         -3.63
+89    Abbi Abrams                              Broad City                          -3.57
+90    Joshamee Gibbs                           Pirates of the Caribbean             3.50
+91    Lane Pryce                               Mad Men                              3.49
+92    Betty Draper                             Mad Men                             -3.43
+93    Roman Roy                                Succession                          -3.40
+94    Denver                                   Money Heist                          3.31
+95    Viktor                                   Arcane                              -3.07
+96    Gary Walsh                               Veep                                -3.07
+97    Calvin's dad                             Calvin and Hobbes                    3.05
+98    Jaskier                                  The Witcher                         -3.04
+99    Ernesto de la Cruz                       Coco                                 3.02
+100   Tyler Winklevoss                         The Social Network                  -3.01
+101   Dana Scully                              The X-Files                          3.01
+102   Ervin Burrell                            The Wire                            -2.99
+103   Lana Kane                                Archer                              -2.93
+104   Fry                                      Futurama                             2.90
+105   Herc Hauk                                The Wire                            -2.89
+106   Tina Belcher                             Bob's Burgers                       -2.88
+107   Aaron Samuels                            Mean Girls                          -2.83
+108   Ashley Stubbs                            Westworld                           -2.81
+109   Waylon Smithers                          The Simpsons                         2.79
+110   Michael Bluth                            Arrested Development                -2.72
+111   Lisa                                     The Room                             2.71
+112   Ruth Langmore                            Ozark                               -2.66
+113   Ted Mosby                                How I Met Your Mother               -2.60
+114   Roger Sterling                           Mad Men                             -2.58
+115   Chuck McGill                             Better Call Saul                    -2.55
+116   George Weasley                           Harry Potter                        -2.41
+117   Bart Simpson                             The Simpsons                         2.38
+118   Benjamin Linus                           LOST                                 2.34
+119   Ari Gold                                 Entourage                            2.31
+120   Dallas                                   Alien                               -2.31
+121   River Tam                                Firefly + Serenity                   2.31
+122   Jules Vaughn                             Euphoria                             2.17
+123   Robert California                        The Office                          -2.17
+124   Topper                                   Outer Banks                         -2.14
+125   Teresa Lisbon                            The Mentalist                        2.12
+126   Malcolm Reynolds                         Firefly + Serenity                   2.10
+127   C. J. Cregg                              The West Wing                        2.08
+128   Annie Hall                               Annie Hall                           2.03
+129   M                                        Tommorrow Never Dies                -1.98
+130   Jacob Snell                              Ozark                                1.98
+131   Louise Belcher                           Bob's Burgers                       -1.86
+132   Stevie Budd                              Schitt's Creek                       1.83
+133   Claire Standish                          The Breakfast Club                   1.80
+134   Hermes Conrad                            Futurama                            -1.79
+135   Cosmo Kramer                             Seinfeld                             1.74
+136   Quinn Perkins                            Scandal                             -1.68
+137   Alan                                     The Hangover                        -1.48
+138   Carl Hanratty                            Catch Me If You Can                 -1.40
+139   Yoda                                     Star Wars: Revenge of the Sit        1.27
+140   Godmother                                Fleabag                              1.18
+141   Mozzie                                   White Collar                         1.16
+142   Perry Cox                                Scrubs                              -1.11
+143   Timon                                    The Lion King                       -1.10
+144   Dr. Zoidberg                             Futurama                            -0.94
+145   Steve Harrington                         Stranger Things                      0.91
+146   Liz Lemon                                30 Rock                              0.90
+147   Jack Twist                               Brokeback Mountain                   0.77
+148   Barney Stinson                           How I Met Your Mother                0.74
+149   June Osborne                             The Handmaid's Tale                 -0.71
+150   Richard Castle                           Castle                               0.70
+151   George Costanza                          Seinfeld                            -0.70
+152   Logan Roy                                Succession                           0.54
+153   Darlene Snell                            Ozark                               -0.50
+154   Sam Winchester                           Supernatural                        -0.48
+155   Ezra Fitz                                Pretty Little Liars                 -0.47
+156   Han Mi-nyeo                              Squid Game                           0.35
+157   Eduardo Saverin                          The Social Network                  -0.19
+158   Theodore Laurence                        Little Women                         0.16
+159   Odysseus                                 The Odyssey                         -0.14
+160   Jan Levinson                             The Office                           0.13
+161   Alex Kamal                               The Expanse                         -0.03
+162   David Rosen                              Scandal                             -0.00
+
+====================================================================================================
+CLUSTER 1: LEFT WALKERS — 540 characters (27.0%)
+Center: [+-++-+] +0.685 -0.452 +0.274 +0.621 -0.426 +0.866
+DX: mean=-14.4m, |DX| mean=15.8m, std=12.5m
+Dead (<1m): 39 (7%), Champions (>20m): 217 (40%)
+Top stories: Harry Potter(11), Twin Peaks(10), This Is Us(8), LOST(8), Downton Abbey(8), Star Trek: Deep Space Nine(7), Mad Men(7), Glee(7)
+----------------------------------------------------------------------------------------------------
+Rank  Character                                Story                              DX (m)
+----------------------------------------------------------------------------------------------------
+1     Buttercup                                The Princess Bride                 -37.58
+2     Allison Reynolds                         The Breakfast Club                 -36.99
+3     Steve Brady                              Sex and the City                   -35.57
+4     Brian Johnson                            The Breakfast Club                 -35.52
+5     Blaine Anderson                          Glee                               -35.52
+6     Melanie Hamilton                         Gone With the Wind                 -35.16
+7     Amy Farrah Fowler                        The Big Bang Theory                -34.42
+8     Vision                                   WandaVision                        -34.15
+9     Dr. Claire Browne                        The Good Doctor                    -34.01
+10    Hernando Fuentes                         Sense8                             -33.92
+11    Ferris Bueller                           Ferris Bueller's Day Off           -33.63
+12    Hester Prynne                            The Scarlet Letter                 -33.62
+13    Prairie Johnson                          The OA                             -33.62
+14    Inspector Kido                           The Man in the High Castle         -33.57
+15    Nina Locke                               Locke & Key                        -33.50
+16    Horace Slughorn                          Harry Potter                       -33.43
+17    Donkey                                   Shrek                              -33.37
+18    Skyler White                             Breaking Bad                       -33.25
+19    John Bates                               Downton Abbey                      -33.17
+20    Suzuha Amane                             Steins;Gate                        -33.07
+21    Taya Kyle                                American Sniper                    -32.85
+22    Choi Yeon-gyo                            Parasite                           -32.78
+23    Jemma Simmons                            Agents of S.H.I.E.L.D.             -32.77
+24    Stanley Hudson                           The Office                         -32.77
+25    Finn Hudson                              Glee                               -32.53
+26    Kakashi Hatake                           Naruto                             -32.20
+27    Cece Parekh                              New Girl                           -32.14
+28    Jean Milburn                             Sex Education                      -32.08
+29    Josh Lyman                               The West Wing                      -31.99
+30    Samuel 'Longshot' Anders                 Battlestar Galactica               -31.84
+31    Chief Bromden                            One Flew Over the Cuckoo's Ne      -31.78
+32    Snow White                               Snow White and the Seven Dwar      -31.77
+33    Pete Martell                             Twin Peaks                         -31.59
+34    Henry Mills                              Once Upon a Time                   -31.52
+35    Colonel Brandon                          Sense and Sensibility              -31.49
+36    Agt. Wendell Pleakley                    Lilo & Stitch                      -31.48
+37    Kevin Ryan                               Castle                             -31.39
+38    Jessa Johansson                          Girls                              -31.35
+39    John Murphy                              The 100                            -31.29
+40    Hannah Kahnwald                          Dark                               -31.23
+41    Jenny Humphrey                           Gossip Girl                        -31.21
+42    Mel Medarda                              Arcane                             -31.20
+43    Buddy Pine                               The Incredibles                    -31.15
+44    Rey                                      Star Wars: The Last Jedi           -31.10
+45    Claire Randall                           Outlander                          -31.07
+46    Jenna Middleton                          Degrassi: The Next Generation      -30.99
+47    Claire Littleton                         LOST                               -30.97
+48    Jesse Pinkman                            Breaking Bad                       -30.82
+49    Beth Harmon                              The Queen's Gambit                 -30.74
+50    Michael                                  The Good Place                     -30.67
+51    George Michael Bluth                     Arrested Development               -30.66
+52    Angela Montenegro                        Bones                              -30.59
+53    Elsie Hughes                             Westworld                          -30.53
+54    Mary Cooper                              The Big Bang Theory                -30.50
+55    The Scarecrow                            The Wizard of Oz                   -30.37
+56    Miss Patty                               Gilmore Girls                      -30.32
+57    Mia Toretto                              Fast & Furious                     -30.17
+58    Dr. Sean Maguire                         Good Will Hunting                  -30.05
+59    Raj Koothrappali                         The Big Bang Theory                -29.94
+60    Quentin Lance                            Arrow                              -29.79
+61    Charlie Kelmeckis                        The Perks of Being a Wallflow      -29.69
+62    Andy Dufresne                            The Shawshank Redemption           -29.69
+63    Atticus Finch                            To Kill a Mockingbird              -29.67
+64    Juliana Crain                            The Man in the High Castle         -29.58
+65    Shikamaru Nara                           Naruto                             -29.55
+66    Jamie Fraser                             Outlander                          -29.51
+67    Edward Ferrars                           Sense and Sensibility              -29.43
+68    Lane Kim                                 Gilmore Girls                      -29.40
+69    Dorota Kishlovsky                        Gossip Girl                        -29.19
+70    Jack Pearson                             This Is Us                         -29.18
+71    Summer Smith                             Rick and Morty                     -29.07
+72    Cornelius Fudge                          Harry Potter                       -29.02
+73    Anna                                     Frozen                             -28.95
+74    Janet Fraiser                            Stargate SG-1                      -28.72
+75    Marianne                                 Portrait of a Lady on Fire         -28.65
+76    Roy Petty                                Ozark                              -28.59
+77    Marlin                                   Finding Nemo                       -28.57
+78    Mom                                      Futurama                           -28.57
+79    Beth March                               Little Women                       -28.56
+80    Bella Swan                               Twilight                           -28.55
+81    Dustin Henderson                         Stranger Things                    -28.52
+82    Remus Lupin                              Harry Potter                       -28.51
+83    Colin Khoo                               Crazy Rich Asians                  -28.43
+84    Fern                                     Nomadland                          -28.40
+85    Minerva McGonagall                       Harry Potter                       -28.39
+86    Jimmy McGill                             Better Call Saul                   -28.31
+87    Randall Pearson                          This Is Us                         -28.15
+88    Doc                                      Baby Driver                        -28.07
+89    Sophie                                   This Is Us                         -28.03
+90    Samwise Gamgee                           Lord of the Rings                  -27.95
+91    Dr. Marcus Andrews                       The Good Doctor                    -27.82
+92    Dr. Audrey Lim                           The Good Doctor                    -27.81
+93    Nick Miller                              New Girl                           -27.81
+94    Rafael Solano                            Jane the Virgin                    -27.80
+95    Ryan Howard                              The Office                         -27.80
+96    Dan Humphrey                             Gossip Girl                        -27.70
+97    Odafin Tutuola                           Law & Order: SVU                   -27.60
+98    Eddard Stark                             Game of Thrones                    -27.57
+99    Erin Hannon                              The Office                         -27.43
+100   Kevin Pearson                            This Is Us                         -27.38
+101   Will Schuester                           Glee                               -27.35
+102   Samwell Tarly                            Game of Thrones                    -27.32
+103   Nick Carraway                            The Great Gatsby                   -27.30
+104   Robert Langdon                           The Da Vinci Code                  -27.26
+105   Annie Edison                             Community                          -27.18
+106   George S. Hammond                        Stargate SG-1                      -27.05
+107   Granny Lucas                             Once Upon a Time                   -26.96
+108   Spike Spiegel                            Cowboy Bebop                       -26.96
+109   Pop Tate                                 Riverdale                          -26.93
+110   Meredith Palmer                          The Office                         -26.83
+111   Lana Lang                                Smallville                         -26.81
+112   Ygritte                                  Game of Thrones                     26.74
+113   Steve Hadley                             The Cabin in the Woods             -26.64
+114   Leela                                    Futurama                           -26.53
+115   Roy Kent                                 Ted Lasso                          -26.49
+116   Gloria Delgado-Pritchett                 Modern Family                      -26.38
+117   Butters                                  South Park                         -26.32
+118   Héctor                                   Coco                               -26.28
+119   Emilio Barzini                           The Godfather                      -26.17
+120   Wallace Boden                            Chicago Fire                       -26.16
+121   Kevin Keller                             Riverdale                          -26.16
+122   Curt Vaughan                             The Cabin in the Woods             -26.14
+123   Jay Pritchett                            Modern Family                      -25.95
+124   Carlisle Cullen                          Twilight                           -25.92
+125   Allison Hamilton                         The Notebook                       -25.90
+126   Lumiere                                  Beauty and the Beast               -25.84
+127   Jerry Gergich                            Parks and Recreation               -25.84
+128   Will Turner                              Pirates of the Caribbean           -25.73
+129   Garner Ellerbee                          Baywatch                           -25.69
+130   Beadie Russell                           The Wire                           -25.61
+131   Logan Delos                              Westworld                          -25.52
+132   Rom                                      Star Trek: Deep Space Nine         -25.51
+133   Shaun                                    Shaun of the Dead                  -25.42
+134   Mulan                                    Mulan                              -25.40
+135   Westley                                  The Princess Bride                 -25.38
+136   Brooks Hatlen                            The Shawshank Redemption           -25.32
+137   Fleabag                                  Fleabag                            -25.25
+138   Kasidy Yates                             Star Trek: Deep Space Nine         -25.22
+139   Alina Starkov                            Shadow and Bone                    -25.16
+140   Terry Jeffords                           Brooklyn Nine-Nine                 -25.15
+141   Lily Aldrin                              How I Met Your Mother              -25.13
+142   Rosalind Walker                          Chilling Adventures of Sabrin      -25.07
+143   Henry Reagan                             Blue Bloods                        -25.03
+144   Harvey Dent                              The Dark Knight                    -24.97
+145   Clarissa Dalloway                        Mrs Dalloway                       -24.81
+146   Luke Skywalker                           Star Wars: A New Hope               24.55
+147   Lady Sybil Crawley                       Downton Abbey                      -24.55
+148   Sebastian Wilder                         La La Land                         -24.51
+149   Liz                                      Shaun of the Dead                  -24.34
+150   Mike Wheeler                             Stranger Things                    -24.32
+151   Abbey Bartlet                            The West Wing                      -24.26
+152   Grace Florrick                           The Good Wife                      -24.23
+153   Emma Swan                                Once Upon a Time                   -24.15
+154   Misty                                    Yellowjackets                      -24.13
+155   Bonnie Bennett                           The Vampire Diaries                -23.98
+156   George O'Malley                          Grey's Anatomy                     -23.80
+157   Lewis Nixon                              Band of Brothers                   -23.61
+158   Pope                                     Outer Banks                        -23.58
+159   Amy Sosa                                 Superstore                         -23.57
+160   Harry Crane                              Mad Men                            -23.52
+161   David Phillips                           CSI: Crime Scene Investigatio      -23.49
+162   Emily Fields                             Pretty Little Liars                -23.40
+163   Arthur                                   Inception                          -23.30
+164   Maurice                                  Beauty and the Beast               -23.25
+165   Tycho Brahe                              Penny Arcade                       -23.22
+166   Clementine Pennyfeather                  Westworld                          -23.15
+167   SpongeBob SquarePants                    SpongeBob SquarePants              -23.13
+168   Lisa Simpson                             The Simpsons                       -23.12
+169   Olivia Benson                            Law & Order: SVU                   -23.11
+170   Mamá Coco                                Coco                               -22.94
+171   Iroh                                     Avatar: The Last Airbender         -22.93
+172   Temperance Brennan                       Bones                              -22.90
+173   Nani Pelekai                             Lilo & Stitch                      -22.88
+174   Hoban Washburne                          Firefly + Serenity                 -22.70
+175   Dr. Marcus Brody                         Raiders of the Lost Ark            -22.66
+176   Max Mayfield                             Stranger Things                    -22.62
+177   Martha Rodgers                           Castle                             -22.55
+178   Marge Simpson                            The Simpsons                       -22.52
+179   James Gordon                             The Dark Knight                    -22.47
+180   Owen Grady                               Jurassic World                     -22.47
+181   Principal Skinner                        The Simpsons                       -22.45
+182   Cahir                                    The Witcher                        -22.36
+183   Hermione Granger                         Harry Potter                       -22.20
+184   Wesley Crusher                           Star Trek: The Next Generatio      -22.17
+185   Gabriel                                  Emily in Paris                     -22.16
+186   Nino Quincampoix                         Amélie                             -22.12
+187   Elsie Carson                             Downton Abbey                      -22.04
+188   Joe Bradley                              Roman Holiday                      -21.91
+189   Remy                                     Ratatouille                        -21.90
+190   Chuny Marquez                            ER                                 -21.77
+191   Charlie Young                            The West Wing                      -21.77
+192   Jean Valjean                             Les Misérables                     -21.64
+193   Henry Jennings                           The Americans                      -21.62
+194   Princess Elizaveta Tverskaya             Anna Karenina                      -21.44
+195   Artie Abrams                             Glee                               -21.31
+196   Michael Dawson                           LOST                               -21.11
+197   Richard Gilmore                          Gilmore Girls                      -21.09
+198   Janet                                    The Good Place                     -21.06
+199   Felix Gaeta                              Battlestar Galactica               -20.98
+200   Julia                                    Cowboy Bebop                       -20.97
+201   Kozo Fuyutsuki                           Neon Genesis Evangelion            -20.96
+202   Lucy Moran                               Twin Peaks                         -20.95
+203   Elizabeth Keen                           The Blacklist                      -20.92
+204   William Mason                            Downton Abbey                      -20.90
+205   Tissaia                                  The Witcher                        -20.87
+206   Mufasa                                   The Lion King                      -20.84
+207   Tris Prior                               Divergent                          -20.73
+208   El Profesor                              Money Heist                        -20.72
+209   Abed Nadir                               Community                          -20.70
+210   Ellen Ripley                             Alien                              -20.70
+211   Ling                                     Mulan                              -20.69
+212   Ken Cosgrove                             Mad Men                            -20.52
+213   Daisy Buchanan                           The Great Gatsby                   -20.49
+214   Dr. Bedelia Du Maurier                   Hannibal                           -20.38
+215   Jonah Simms                              Superstore                         -20.31
+216   Toby Ziegler                             The West Wing                      -20.07
+217   Cameron Tucker                           Modern Family                      -20.04
+218   Alice Cullen                             Twilight                           -19.98
+219   Betty Cooper                             Riverdale                          -19.92
+220   Drew Torres                              Degrassi: The Next Generation      -19.84
+221   David Nolan                              Once Upon a Time                   -19.82
+222   Meredith Grey                            Grey's Anatomy                     -19.81
+223   Jacob Black                              Twilight                           -19.77
+224   Helsinki                                 Money Heist                        -19.75
+225   Steve Winchell                           The OA                             -19.72
+226   Chani                                    Dune                               -19.69
+227   Rue Bennett                              Euphoria                           -19.66
+228   Tami Taylor                              Friday Night Lights                -19.65
+229   Peggy Carter                             Marvel Cinematic Universe          -19.63
+230   Fringilla                                The Witcher                        -19.59
+231   Chidi Anagonye                           The Good Place                     -19.25
+232   Raquel Murillo                           Money Heist                        -19.20
+233   Jacqueline White                         Unbreakable Kimmy Schmidt          -19.12
+234   Caleb Prior                              Divergent                          -19.08
+235   Sally Albright                           When Harry Met Sally...            -18.90
+236   Elizabeth Bennet                         Pride and Prejudice                -18.86
+237   Francis Mulcahy                          M*A*S*H                            -18.79
+238   Filip 'Chibs' Telford                    Sons of Anarchy                    -18.73
+239   Robert Crawley                           Downton Abbey                      -18.62
+240   Lady Edith Crawley                       Downton Abbey                      -18.55
+241   Rebecca Pearson                          This Is Us                         -18.54
+242   Rogelio De La Vega                       Jane the Virgin                    -18.52
+243   Dory                                     Finding Nemo                       -18.37
+244   Kimball Cho                              The Mentalist                      -18.37
+245   Horatio                                  Hamlet                             -18.35
+246   Jesper Fahey                             Shadow and Bone                    -18.31
+247   Benvolio                                 Romeo and Juliet                   -18.30
+248   Kim Ki-woo                               Parasite                           -18.03
+249   Barney Gumble                            The Simpsons                       -17.95
+250   Ellis Boyd 'Red' Redding                 The Shawshank Redemption           -17.95
+251   Grace Van Pelt                           The Mentalist                      -17.85
+252   Jian-Yang                                Silicon Valley                     -17.84
+253   Mike Delfino                             Desperate Housewives               -17.78
+254   Stringer Bell                            The Wire                           -17.78
+255   Jyn Erso                                 Rogue One                          -17.72
+256   Tom Paris                                Star Trek: Voyager                 -17.46
+257   Dr. John Watson                          Sherlock                           -17.42
+258   Katara                                   Avatar: The Last Airbender         -17.34
+259   Mary Alice Young                         Desperate Housewives               -17.19
+260   Zapp Brannigan                           Futurama                           -17.19
+261   Timothy McGee                            NCIS                               -17.13
+262   Ducky                                    The Land Before Time               -16.98
+263   Petrie                                   The Land Before Time               -16.95
+264   Felicity Smoak                           Arrow                              -16.91
+265   Piper Chapman                            Orange is the New Black            -16.84
+266   Shawn Spencer                            Psych                              -16.82
+267   Josie Packard                            Twin Peaks                         -16.80
+268   Stu                                      The Hangover                       -16.79
+269   Bob Pinciotti                            That 70's Show                     -16.75
+270   Alex Danvers                             Supergirl                          -16.65
+271   Monica Hall                              Silicon Valley                     -16.60
+272   Wyatt Langmore                           Ozark                              -16.60
+273   Benjamin Sisko                           Star Trek: Deep Space Nine         -16.34
+274   Miguel Rivas                             This Is Us                         -16.33
+275   Jim                                      Adventures of Huckleberry Fin      -16.17
+276   Olaf                                     Frozen                             -16.08
+277   Jim Halpert                              The Office                         -15.98
+278   Juliet O'Hara                            Psych                              -15.93
+279   Peggy Olson                              Mad Men                            -15.92
+280   Pierce Hawthorne                         Community                          -15.89
+281   Kathryn Janeway                          Star Trek: Voyager                 -15.79
+282   Kerry Weaver                             ER                                  15.62
+283   Jin-Soo Kwon                             LOST                               -15.57
+284   Kif Kroker                               Futurama                           -15.54
+285   Marie Schrader                           Breaking Bad                       -15.42
+286   Katharina Nielsen                        Dark                               -15.33
+287   Amy March                                Little Women                       -15.00
+288   Grandpa Joe                              Willy Wonka & the Chocolate F      -14.87
+289   Julie Taylor                             Friday Night Lights                -14.83
+290   Byron Hadley                             The Shawshank Redemption           -14.63
+291   Jared Dunn                               Silicon Valley                     -14.49
+292   Ted Lasso                                Ted Lasso                          -14.42
+293   Mrs. Hudson                              Sherlock                            14.33
+294   Sailor Mercury                           Sailor Moon                        -14.32
+295   Bree Van de Kamp                         Desperate Housewives               -14.04
+296   Chandler Bing                            Friends                            -13.96
+297   Effie Trinket                            The Hunger Games                   -13.61
+298   Jack Crawford                            The Silence of the Lambs           -13.61
+299   Tom Hansen                               (500) Days of Summer               -13.61
+300   Leslie Knope                             Parks and Recreation               -13.49
+301   Carl Grimes                              The Walking Dead                   -13.47
+302   Dr. Alan Grant                           Jurassic Park                      -13.47
+303   Jean Grey                                X-Men                              -13.38
+304   Professor X                              X-Men                              -13.36
+305   Elizabeth Burke                          White Collar                       -13.34
+306   Georgiana Darcy                          Pride and Prejudice                -13.28
+307   Viola                                    Twelfth Night                      -13.20
+308   Jamie Reagan                             Blue Bloods                        -13.18
+309   Kevin Malone                             The Office                         -13.08
+310   Morpheus                                 The Matrix                         -12.98
+311   Erin Reagan                              Blue Bloods                        -12.96
+312   April Ludgate                            Parks and Recreation               -12.94
+313   Fernando Sucre                           Prison Break                       -12.94
+314   Kate Austen                              LOST                               -12.91
+315   Chloe Decker                             Lucifer                            -12.89
+316   Mycroft Holmes                           Sherlock                           -12.87
+317   Jake Sisko                               Star Trek: Deep Space Nine         -12.49
+318   Mary Wardwell                            Chilling Adventures of Sabrin      -12.35
+319   Angelica Turing                          Sense8                             -12.27
+320   Lois Lane                                Smallville                         -12.22
+321   David Mills                              Se7en                              -12.19
+322   Céline                                   Before Sunrise                     -12.17
+323   Billy Costigan                           The Departed                       -12.01
+324   Countess Lidia Ivanovna                  Anna Karenina                      -11.88
+325   Ben Wyatt                                Parks and Recreation               -11.81
+326   Winn Adami                               Star Trek: Deep Space Nine         -11.79
+327   Naomi Nagata                             The Expanse                        -11.78
+328   Akecheta                                 Westworld                          -11.68
+329   Davos Seaworth                           Game of Thrones                    -11.62
+330   Kermit                                   Shameless                          -11.51
+331   Sophie Neveu                             The Da Vinci Code                  -11.28
+332   Jason Bourne                             The Bourne Identity                 11.23
+333   Eric Effiong                             Sex Education                      -11.23
+334   Princess Darya Oblonskaya                Anna Karenina                      -11.20
+335   Dr. Abigail Griffin                      The 100                            -11.03
+336   Buffy Summers                            Buffy the Vampire Slayer           -11.01
+337   Karen Wheeler                            Stranger Things                    -10.98
+338   Mr. William Collins                      Pride and Prejudice                -10.77
+339   Prudence Night                           Chilling Adventures of Sabrin      -10.72
+340   Leland Palmer                            Twin Peaks                         -10.59
+341   Blair Waldorf                            Gossip Girl                        -10.32
+342   Helen Seinfeld                           Seinfeld                           -10.31
+343   Kimmy Schmidt                            Unbreakable Kimmy Schmidt           10.13
+344   Dale Cooper                              Twin Peaks                         -10.11
+345   Jackson 'Jax' Teller                     Sons of Anarchy                     -9.98
+346   Samuel Norton                            The Shawshank Redemption            -9.90
+347   Norma Jennings                           Twin Peaks                          -9.64
+348   Dr. Adrian Mallory                       Space Force                         -9.41
+349   Laurel Lance                             Arrow                               -9.40
+350   Gisele Yashar                            Fast & Furious                      -9.33
+351   Cora Crawley                             Downton Abbey                       -9.23
+352   Flynn Rider                              Tangled                             -9.05
+353   Joyce Byers                              Stranger Things                      8.96
+354   Dr. Alana Bloom                          Hannibal                            -8.87
+355   The Oracle                               The Matrix                          -8.81
+356   Penny Hofstadter                         The Big Bang Theory                 -8.77
+357   James Gordon                             Gotham                              -8.69
+358   Desmond Hume                             LOST                                -8.68
+359   Max Rockatansky                          Mad Max: Fury Road                   8.67
+360   Woody                                    Toy Story                           -8.54
+361   Nate Lahey                               How To Get Away With Murder         -8.43
+362   Ringo                                    Pulp Fiction                        -8.23
+363   John Wick                                John Wick                            8.01
+364   Twilight Sparkle                         My Little Pony: Friendship Is       -7.71
+365   Schmidt                                  New Girl                            -7.70
+366   Luke Danes                               Gilmore Girls                       -7.64
+367   Pumbaa                                   The Lion King                       -7.44
+368   Maeby Funke                              Arrested Development                -7.27
+369   Joel Maisel                              The Marvelous Mrs. Maisel           -7.12
+370   Brittany Pierce                          Glee                                 7.11
+371   Beth Pearson                             This Is Us                          -6.95
+372   Eric Forman                              That 70's Show                      -6.86
+373   Lady Catherine de Bourgh                 Pride and Prejudice                  6.85
+374   D'Angelo Barksdale                       The Wire                            -6.85
+375   Ally Maine                               A Star Is Born                      -6.68
+376   Nymphadora Tonks                         Harry Potter                         6.46
+377   Theresa Cullen                           Westworld                           -6.37
+378   Myrtle Wilson                            The Great Gatsby                     6.36
+379   Marianne Dashwood                        Sense and Sensibility                6.24
+380   Filius Flitwick                          Harry Potter                        -6.23
+381   Sokka                                    Avatar: The Last Airbender           6.15
+382   Tony Johnson                             After Life                          -6.13
+383   Mac                                      It's Always Sunny in Philadel       -6.06
+384   Letty Ortiz                              Fast & Furious                       5.91
+385   Captain America                          Marvel Cinematic Universe           -5.84
+386   Calvin's mom                             Calvin and Hobbes                    5.79
+387   Joan Watson                              Elementary                           5.74
+388   A-Train                                  The Boys                             5.58
+389   Flounder                                 The Little Mermaid                  -5.56
+390   Carlton Lassiter                         Psych                                5.49
+391   Dan Espinoza                             Lucifer                             -5.40
+392   Tiffany Maxwell                          Silver Linings Playbook              5.38
+393   Doc Brown                                Back to the Future                  -5.37
+394   Ramona Vega                              Hustlers                             5.30
+395   Turtle                                   Entourage                           -5.26
+396   Michael Scott                            The Office                          -5.25
+397   Jeremy Armitage                          Get Out                             -5.11
+398   Cho Chang                                Harry Potter                        -5.07
+399   Marianne Sheridan                        Normal People                       -4.98
+400   Sal Maroni                               The Dark Knight                     -4.88
+401   Maria                                    West Side Story                      4.75
+402   Jimmy Palmer                             NCIS                                 4.70
+403   Inigo Montoya                            The Princess Bride                   4.68
+404   Pinkie Pie                               My Little Pony: Friendship Is        4.67
+405   Susan Mayer                              Desperate Housewives                 4.64
+406   Benjamin Horne                           Twin Peaks                           4.43
+407   Stan Rizzo                               Mad Men                             -4.40
+408   Prince Hamlet                            Hamlet                               4.40
+409   Dan Taylor                               Forrest Gump                         4.27
+410   Debra Morgan                             Dexter                               4.27
+411   Neo                                      The Matrix                          -4.22
+412   Ilsa Lund                                Casablanca                          -4.19
+413   Odo                                      Star Trek: Deep Space Nine          -4.18
+414   Clarke Griffin                           The 100                              4.17
+415   James Hurley                             Twin Peaks                          -4.07
+416   Littlefoot                               The Land Before Time                -4.06
+417   Gandalf                                  Lord of the Rings                    3.97
+418   Danny Reagan                             Blue Bloods                         -3.95
+419   Aunt Polly                               Peaky Blinders                      -3.89
+420   Linda Montag                             Fahrenheit 451                       3.81
+421   Morty Seinfeld                           Seinfeld                            -3.77
+422   Connor MacManus                          The Boondock Saints                 -3.74
+423   Mindy Chen                               Emily in Paris                      -3.70
+424   Garrett McNeill                          Superstore                          -3.66
+425   Mr. Darcy                                Pride and Prejudice                  3.64
+426   Sailor Jupiter                           Sailor Moon                         -3.60
+427   Neal Caffrey                             White Collar                         3.45
+428   Cassie Howard                            Euphoria                            -3.41
+429   John Michael Dorian                      Scrubs                               3.40
+430   Homer                                    The OA                               3.22
+431   Joel Barish                              Eternal Sunshine of the Spotl        3.19
+432   Dr. Chan Kaifang                         Space Force                         -3.17
+433   Richard Hendricks                        Silicon Valley                      -3.00
+434   Jess Day                                 New Girl                            -3.00
+435   Captain Marvel                           Marvel Cinematic Universe            2.99
+436   Amos Burton                              The Expanse                         -2.95
+437   Natalie                                  Yellowjackets                        2.94
+438   Rose Weissman                            The Marvelous Mrs. Maisel           -2.91
+439   Charles Darnay                           A Tale of Two Cities                 2.89
+440   Christy Lee                              The Social Network                  -2.86
+441   Dean Armitage                            Get Out                             -2.78
+442   Donna Sheridan                           Mamma Mia!                           2.77
+443   Albus Dumbledore                         Harry Potter                         2.73
+444   Dean Forester                            Gilmore Girls                       -2.73
+445   Toby Damon                               This Is Us                           2.72
+446   Don Shirley                              Green Book                           2.71
+447   Emmett Cullen                            Twilight                             2.65
+448   Henry Francis                            Mad Men                              2.63
+449   Keeley Jones                             Ted Lasso                            2.59
+450   Phil                                     The Hangover                        -2.59
+451   Malik McGrath                            ER                                   2.54
+452   Miranda Bailey                           Grey's Anatomy                      -2.53
+453   Rachel Green                             Friends                              2.50
+454   Ursula                                   The Little Mermaid                   2.50
+455   Caleb Rivers                             Pretty Little Liars                 -2.50
+456   Nick Stokes                              CSI: Crime Scene Investigatio        2.49
+457   Billy Keikeya                            Battlestar Galactica                 2.48
+458   Jen Yu                                   Crouching Tiger, Hidden Drago        2.36
+459   Rarity                                   My Little Pony: Friendship Is       -2.31
+460   Freddie Lounds                           Hannibal                            -2.28
+461   Cady Heron                               Mean Girls                           2.27
+462   Nick Young                               Crazy Rich Asians                   -2.20
+463   Penelope                                 The Odyssey                         -2.17
+464   Bert Cooper                              Mad Men                             -2.15
+465   Eleanor Shellstrop                       The Good Place                      -2.14
+466   The Amphibian Man                        The Shape of Water                   2.14
+467   Wolverine                                X-Men                               -2.04
+468   Miles O'Brien                            Star Trek: Deep Space Nine           2.01
+469   David Rose                               Schitt's Creek                       1.96
+470   Shannon Rutherford                       LOST                                 1.96
+471   Molly Hooper                             Sherlock                             1.94
+472   Peeta Mellark                            The Hunger Games                     1.93
+473   Asuka Langly Soryu                       Neon Genesis Evangelion             -1.93
+474   Harry Potter                             Harry Potter                         1.93
+475   Will Gardner                             The Good Wife                        1.92
+476   Jack Dawson                              Titanic                             -1.85
+477   Catherine Martell                        Twin Peaks                           1.83
+478   Glen Lantz                               A Nightmare on Elm Street            1.83
+479   Faustus Blackwood                        Chilling Adventures of Sabrin        1.83
+480   Glenn Sturgis                            Superstore                          -1.82
+481   Nate Jacobs                              Euphoria                            -1.76
+482   Matt Saracen                             Friday Night Lights                  1.73
+483   Hurley Reyes                             LOST                                -1.71
+484   James Norrington                         Pirates of the Caribbean            -1.69
+485   Ender Wiggin                             Ender's Game                        -1.69
+486   Rapunzel                                 Tangled                             -1.68
+487   Yu Shu Lien                              Crouching Tiger, Hidden Drago       -1.66
+488   Adam Sackler                             Girls                               -1.61
+489   Jack Shephard                            LOST                                 1.58
+490   Sara Sidle                               CSI: Crime Scene Investigatio        1.55
+491   Tyrion Lannister                         Game of Thrones                      1.42
+492   Mercedes Jones                           Glee                                -1.33
+493   Moe Szyslak                              The Simpsons                        -1.31
+494   Dr. Spencer Reid                         Criminal Minds                      -1.24
+495   Queen Elizabeth II                       The Crown                            1.23
+496   Don Draper                               Mad Men                             -1.21
+497   Sheriff Truman                           Twin Peaks                           1.20
+498   Sharpay Evans                            High School Musical                 -1.16
+499   The Cowardly Lion                        The Wizard of Oz                    -1.14
+500   Chien-Po                                 Mulan                                1.09
+501   Eric Taylor                              Friday Night Lights                  1.01
+502   Apu Nahasapeemapetilon                   The Simpsons                        -0.99
+503   Catelyn Stark                            Game of Thrones                     -0.97
+504   Friar Laurence                           Romeo and Juliet                    -0.94
+505   Janine Lindo                             The Handmaid's Tale                 -0.93
+506   Leslie Higgins                           Ted Lasso                            0.91
+507   Armin Arlert                             Attack on Titan                     -0.91
+508   Miguel                                   Coco                                -0.85
+509   Linus Caldwell                           Ocean's 11                          -0.81
+510   Kurt Hummel                              Glee                                -0.79
+511   Poe Dameron                              Star Wars: The Last Jedi            -0.75
+512   Lady Mary Crawley                        Downton Abbey                        0.74
+513   Love Quinn                               You                                  0.72
+514   Gabrielle Solis                          Desperate Housewives                -0.67
+515   Xiomara Villanueva                       Jane the Virgin                      0.66
+516   Paris Geller                             Gilmore Girls                       -0.66
+517   Jughead Jones                            Riverdale                           -0.64
+518   Queen Gertrude                           Hamlet                              -0.62
+519   Triss                                    The Witcher                         -0.53
+520   Carlos Solis                             Desperate Housewives                 0.52
+521   Ginny Weasley                            Harry Potter                         0.52
+522   Donna Paulsen                            Suits                                0.47
+523   Charlie Bucket                           Willy Wonka & the Chocolate F        0.47
+524   Alfred Pennyworth                        The Dark Knight                      0.43
+525   Alfred Pennyworth                        Gotham                               0.43
+526   Tahani Al-Jamil                          The Good Place                      -0.42
+527   Stuart Bloom                             The Big Bang Theory                  0.41
+528   Naruto Uzumaki                           Naruto                               0.40
+529   Elinor Dashwood                          Sense and Sensibility                0.39
+530   Sallah                                   Raiders of the Lost Ark             -0.39
+531   Claire Dunphy                            Modern Family                       -0.35
+532   Cary Agos                                The Good Wife                        0.27
+533   Angelica Schuyler                        Hamilton                             0.27
+534   Robert Ford                              Westworld                           -0.23
+535   Otis Milburn                             Sex Education                        0.10
+536   Seven of Nine                            Star Trek: Voyager                   0.10
+537   Violet Baudelaire                        A Series of Unfortunate Event       -0.04
+538   Edward Cullen                            Twilight                            -0.03
+539   Bill Anderson                            Mamma Mia!                          -0.01
+540   Kes                                      Star Trek: Voyager                   0.01
+
+====================================================================================================
+CLUSTER 2: MOSTLY INERT — 285 characters (14.2%)
+Center: [+--++-] +0.732 -0.509 -0.821 +0.714 +0.536 -0.685
+DX: mean=-1.5m, |DX| mean=2.8m, std=3.1m
+Dead (<1m): 74 (26%), Champions (>20m): 0 (0%)
+Top stories: Shameless(6), Death Note(6), The Wire(6), Arrested Development(6), Mean Girls(5), 30 Rock(5), Marvel Cinematic Universe(5), How To Get Away With Murder(4)
+----------------------------------------------------------------------------------------------------
+Rank  Character                                Story                              DX (m)
+----------------------------------------------------------------------------------------------------
+1     Miranda Priestly                         The Devil Wears Prada              -12.40
+2     Lady Jessica                             Dune                               -11.41
+3     Jonah Byrde                              Ozark                              -10.05
+4     Chung-sook                               Parasite                            -9.19
+5     Frank Sobotka                            The Wire                            -8.83
+6     Kylo Ren                                 Star Wars: The Last Jedi            -8.75
+7     Curtis Holt                              Arrow                               -8.32
+8     Rita                                     Mulholland Drive                    -7.25
+9     Jennifer Check                           Jennifer's Body                     -7.16
+10    Darryl Whitefeather                      Crazy Ex-Girlfriend                 -6.85
+11    Kima Greggs                              The Wire                            -6.80
+12    Jenna Maroney                            30 Rock                             -6.80
+13    Harvey Specter                           Suits                               -6.75
+14    Floki                                    Vikings                             -6.72
+15    Dale Harding                             One Flew Over the Cuckoo's Ne       -6.70
+16    Jackie Burkhart                          That 70's Show                       6.70
+17    Hector Barbossa                          Pirates of the Caribbean            -6.69
+18    Junior Soprano                           The Sopranos                        -6.56
+19    Jayne Cobb                               Firefly + Serenity                   6.45
+20    Lord Business                            The Lego Movie                      -6.44
+21    O'Brien                                  Nineteen Eighty-Four                 6.33
+22    Dennis Reynolds                          It's Always Sunny in Philadel       -6.21
+23    Nurse Ratched                            One Flew Over the Cuckoo's Ne       -5.92
+24    John Bender                              The Breakfast Club                  -5.87
+25    Denny Brosh                              Fullmetal Alchemist: Brotherh       -5.83
+26    Dolores Umbridge                         Harry Potter                        -5.76
+27    Tyler Durden                             Fight Club                          -5.69
+28    Hawkeye Pierce                           M*A*S*H                              5.65
+29    Clarence Royce                           The Wire                            -5.63
+30    Harvey Kinkle                            Chilling Adventures of Sabrin       -5.62
+31    Nacho Varga                              Better Call Saul                    -5.41
+32    Juliet Burke                             LOST                                -5.41
+33    Elaine Benes                             Seinfeld                            -5.41
+34    Alex Vause                               Orange is the New Black              5.31
+35    Tuco                                     The Good, the Bad, and the Ug       -5.20
+36    Noah Puckerman                           Glee                                -5.12
+37    Kim Ki-taek                              Parasite                            -5.12
+38    Meg Rayburn                              Bloodline                            5.12
+39    Sam Healy                                Orange is the New Black             -5.06
+40    Light Yagami                             Death Note                          -5.05
+41    Reiner Braun                             Attack on Titan                     -5.01
+42    Nog                                      Star Trek: Deep Space Nine          -4.88
+43    Mystique                                 X-Men                               -4.87
+44    Soichiro Yagami                          Death Note                           4.81
+45    Erlich Bachman                           Silicon Valley                      -4.71
+46    Bonnie Winterbottom                      How To Get Away With Murder         -4.67
+47    Eleven                                   Stranger Things                     -4.65
+48    Moaning Myrtle                           Harry Potter                        -4.64
+49    James Taggart                            Atlas Shrugged                      -4.57
+50    Betty Elms                               Mulholland Drive                     4.56
+51    Gollum                                   Lord of the Rings                   -4.55
+52    Kenny McCormick                          South Park                          -4.54
+53    Buck Vu                                  The OA                              -4.52
+54    Stella Gibson                            The Fall                            -4.50
+55    Sgt. Sean Dignam                         The Departed                         4.49
+56    The Operative                            Firefly + Serenity                   4.45
+57    Dr. Jumba Jookiba                        Lilo & Stitch                       -4.44
+58    Kanzo Mogi                               Death Note                          -4.35
+59    Derek Morgan                             Criminal Minds                      -4.32
+60    Peter Doppler                            Dark                                 4.32
+61    Patrizia Reggiani                        House of Gucci                      -4.27
+62    The Narrator                             Fight Club                          -4.24
+63    Heywood                                  The Shawshank Redemption            -4.23
+64    Jack Donaghy                             30 Rock                             -4.22
+65    Captain Killian 'Hook' Jones             Once Upon a Time                    -4.19
+66    Eve Polastri                             Killing Eve                         -4.18
+67    Maeve Wiley                              Sex Education                       -4.17
+68    Sawyer Ford                              LOST                                -4.15
+69    Penny                                    Dr. Horrible's Sing-Along Blo       -4.14
+70    Sabrina Spellman                         Chilling Adventures of Sabrin       -4.14
+71    Dr. Horrible                             Dr. Horrible's Sing-Along Blo        4.11
+72    Prince John                              Robin Hood                          -4.06
+73    Loki                                     Marvel Cinematic Universe           -4.05
+74    Bob Kelso                                Scrubs                               4.03
+75    Melisandre                               Game of Thrones                     -4.02
+76    Abigail Hobbs                            Hannibal                            -3.96
+77    Frank Abagnale                           Catch Me If You Can                 -3.89
+78    Margo Dunne                              Gone Girl                           -3.87
+79    General Hux                              Star Wars: The Last Jedi            -3.85
+80    Milhouse Van Houten                      The Simpsons                        -3.84
+81    Anastasia Dualla                         Battlestar Galactica                -3.78
+82    Bianca Stratford                         10 Things I Hate About You          -3.77
+83    Jimmy Price                              Hannibal                            -3.76
+84    Charlie Cheswick                         One Flew Over the Cuckoo's Ne        3.73
+85    Draco Malfoy                             Harry Potter                        -3.72
+86    Q                                        Tommorrow Never Dies                -3.72
+87    Lucifer Morningstar                      Lucifer                             -3.72
+88    Jackie                                   Yellowjackets                       -3.72
+89    Alison DiLaurentis                       Pretty Little Liars                 -3.70
+90    Lucius Fox                               The Dark Knight                     -3.69
+91    Eric Cartman                             South Park                          -3.69
+92    Sterling Archer                          Archer                              -3.64
+93    Harvey Bullock                           Gotham                              -3.62
+94    Red John                                 The Mentalist                       -3.60
+95    Genie                                    Aladdin                             -3.59
+96    Angela Moss                              Mr. Robot                            3.58
+97    Ilana Wexler                             Broad City                           3.49
+98    Saul Goodman                             Breaking Bad                        -3.46
+99    Tobias 'Four' Eaton                      Divergent                           -3.45
+100   Harold Cooper                            The Blacklist                       -3.39
+101   Regina George                            Mean Girls                          -3.37
+102   Lucas Davidowicz                         Ctrl+Alt+Del                        -3.34
+103   Guy Montag                               Fahrenheit 451                      -3.32
+104   Omar Little                              The Wire                             3.32
+105   Nelson Muntz                             The Simpsons                        -3.28
+106   George Bluth, Sr.                        Arrested Development                -3.27
+107   Cheryl Blossom                           Riverdale                           -3.25
+108   Jamie Dutton                             Yellowstone                          3.23
+109   Charlie Harper                           Two and a Half Men                   3.23
+110   Lexi Howard                              Euphoria                             3.21
+111   Marty Byrde                              Ozark                               -3.20
+112   Azula                                    Avatar: The Last Airbender          -3.19
+113   Faye Valentine                           Cowboy Bebop                        -3.09
+114   Malory Archer                            Archer                              -3.07
+115   Miriam Maisel                            The Marvelous Mrs. Maisel           -3.05
+116   Connor Walsh                             How To Get Away With Murder          3.04
+117   Connie Springer                          Attack on Titan                      3.04
+118   Cisco Ramon                              The Flash                           -3.01
+119   Mazikeen                                 Lucifer                             -2.99
+120   Mr. Gold                                 Once Upon a Time                     2.97
+121   Leslie Winkle                            The Big Bang Theory                  2.96
+122   L                                        Death Note                           2.96
+123   Taystee Jefferson                        Orange is the New Black             -2.94
+124   Vince Masuka                             Dexter                               2.93
+125   Wyldstyle                                The Lego Movie                       2.87
+126   Steven Hyde                              That 70's Show                      -2.83
+127   Ray Arnold                               Jurassic Park                       -2.83
+128   Connell Waldron                          Normal People                       -2.81
+129   Kaz Brekker                              Shadow and Bone                      2.80
+130   Olivia Pope                              Scandal                              2.80
+131   Doc Holliday                             Wynonna Earp                        -2.78
+132   Randall Boggs                            Monsters, Inc.                      -2.78
+133   Monica Geller                            Friends                             -2.75
+134   Gavin 'Spinner' Mason                    Degrassi: The Next Generation       -2.75
+135   Beth Dutton                              Yellowstone                         -2.74
+136   Baron Harkonnen                          Dune                                -2.72
+137   Marion Crane                             Psycho                              -2.69
+138   Ethan Ryan MacManus                      Ctrl+Alt+Del                        -2.67
+139   Zelena                                   Once Upon a Time                    -2.66
+140   The Joker                                The Dark Knight                     -2.61
+141   Eric O'Bannon                            Bloodline                            2.60
+142   Dr. Rene Belloq                          Raiders of the Lost Ark             -2.38
+143   Tracy Jordan                             30 Rock                              2.28
+144   Gamora                                   Marvel Cinematic Universe           -2.26
+145   Frank Delfino                            How To Get Away With Murder         -2.22
+146   Silco                                    Arcane                              -2.22
+147   Octavia Blake                            The 100                             -2.16
+148   Ada Shelby                               Peaky Blinders                      -2.14
+149   Pete Hornberger                          30 Rock                              2.13
+150   F. Tony Scarapiducci                     Space Force                         -2.11
+151   Mike McLintock                           Veep                                 2.08
+152   Number Six                               Battlestar Galactica                -2.07
+153   Ryuk                                     Death Note                          -2.05
+154   Marsellus Wallace                        Pulp Fiction                        -2.03
+155   Chip Dove                                Jennifer's Body                      1.98
+156   Ellen Parsons                            Damages                             -1.97
+157   Abby Whelan                              Scandal                             -1.93
+158   Charlie Pace                             LOST                                -1.93
+159   Olenna Tyrell                            Game of Thrones                     -1.91
+160   Connor Roy                               Succession                           1.89
+161   Veronica Donovan                         Prison Break                        -1.89
+162   Edie Britt                               Desperate Housewives                 1.86
+163   Frank Costello                           The Departed                        -1.81
+164   Lorelai Gilmore                          Gilmore Girls                        1.80
+165   Amy Wong                                 Futurama                             1.77
+166   Quint                                    Jaws                                -1.77
+167   Angel Batista                            Dexter                               1.75
+168   Queen Maeve                              The Boys                            -1.73
+169   Raymond 'Red' Reddington                 The Blacklist                       -1.72
+170   Dennis Nedry                             Jurassic Park                        1.72
+171   Man in Black                             Westworld                            1.71
+172   Varys                                    Game of Thrones                     -1.70
+173   Linda Belcher                            Bob's Burgers                        1.67
+174   Dukat                                    Star Trek: Deep Space Nine          -1.63
+175   Meadow Soprano                           The Sopranos                        -1.62
+176   Carl Gallagher                           Shameless                           -1.59
+177   Santana Lopez                            Glee                                 1.57
+178   Jack Sparrow                             Pirates of the Caribbean            -1.56
+179   Gene Belcher                             Bob's Burgers                        1.55
+180   Cordelia Chase                           Buffy the Vampire Slayer            -1.52
+181   Kenneth Parcell                          30 Rock                             -1.52
+182   Marla Singer                             Fight Club                          -1.51
+183   Chef Skinner                             Ratatouille                         -1.50
+184   Toby Cavanaugh                           Pretty Little Liars                  1.46
+185   T-Bag Bagwell                            Prison Break                        -1.46
+186   Robert 'Bobby Elvis' Munson              Sons of Anarchy                      1.43
+187   Kara 'Starbuck' Thrace                   Battlestar Galactica                -1.40
+188   Edward Nygma                             Gotham                               1.39
+189   Bruce Wayne                              Gotham                              -1.36
+190   Ian Duncan                               Community                            1.35
+191   Oscar Bluth                              Arrested Development                -1.35
+192   Lucille Bluth                            Arrested Development                -1.32
+193   Aaron Hotchner                           Criminal Minds                      -1.30
+194   Rio                                      Money Heist                         -1.30
+195   Gob Bluth                                Arrested Development                -1.29
+196   Christopher Moltisanti                   The Sopranos                        -1.21
+197   Mona Vanderwaal                          Pretty Little Liars                 -1.21
+198   Patrick Jane                             The Mentalist                       -1.20
+199   Vicious                                  Cowboy Bebop                         1.19
+200   Andrea Sachs                             The Devil Wears Prada               -1.19
+201   Nick Fury                                Marvel Cinematic Universe           -1.18
+202   John Munch                               Law & Order: SVU                     1.17
+203   Carolyn Martens                          Killing Eve                         -1.12
+204   Malcolm Merlyn                           Arrow                               -1.11
+205   Shiv Roy                                 Succession                           1.09
+206   Rhett Butler                             Gone With the Wind                  -1.08
+207   Selina Meyer                             Veep                                -1.07
+208   Scar                                     Fullmetal Alchemist: Brotherh       -1.04
+209   Merle Dixon                              The Walking Dead                    -1.04
+210   Stan Beeman                              The Americans                        1.03
+211   Dominique DiPierro                       Mr. Robot                            1.01
+212   Philip Jennings                          The Americans                       -1.00
+213   Black Widow                              Marvel Cinematic Universe           -0.99
+214   Charlotte Hale                           Westworld                           -0.99
+215   Tobias Funke                             Arrested Development                -0.97
+216   Ben Chang                                Community                           -0.97
+217   Salvatore Romano                         Mad Men                             -0.96
+218   Seth                                     Superbad                             0.94
+219   Debbie Gallagher                         Shameless                           -0.94
+220   Mr. Burns                                The Simpsons                        -0.92
+221   Lip Gallagher                            Shameless                           -0.92
+222   Jonah Ryan                               Veep                                 0.92
+223   Kenny Stowton                            Killing Eve                         -0.91
+224   June George                              Mean Girls                          -0.90
+225   Petra Solano                             Jane the Virgin                      0.85
+226   Frank Gallagher                          Shameless                            0.85
+227   Stan Marsh                               South Park                          -0.84
+228   Iceman                                   X-Men                                0.83
+229   Nancy Thompson                           A Nightmare on Elm Street           -0.80
+230   Felix Lutz                               Westworld                            0.78
+231   Nathan Bateman                           Ex Machina                           0.77
+232   Nick Sobotka                             The Wire                             0.76
+233   Ian Gallagher                            Shameless                           -0.74
+234   Major Arnold Toht                        Raiders of the Lost Ark              0.73
+235   Wayne Rigsby                             The Mentalist                       -0.72
+236   Johnny                                   The Room                             0.70
+237   Bender                                   Futurama                            -0.68
+238   Lorraine Broughton                       Atomic Blonde                        0.66
+239   Carmela Soprano                          The Sopranos                        -0.65
+240   Bruce Banner                             Marvel Cinematic Universe            0.65
+241   Selina Kyle                              Gotham                               0.65
+242   Joe Goldberg                             You                                  0.64
+243   Sheldon Cooper                           The Big Bang Theory                  0.64
+244   Titus Andromedon                         Unbreakable Kimmy Schmidt           -0.63
+245   Petyr Baelish                            Game of Thrones                      0.60
+246   Becca                                    Superbad                             0.59
+247   Mace Windu                               Star Wars: Revenge of the Sit       -0.57
+248   Wes Gibbins                              How To Get Away With Murder         -0.54
+249   Jimmy McNulty                            The Wire                             0.54
+250   Moira Rose                               Schitt's Creek                      -0.52
+251   Anita                                    West Side Story                     -0.50
+252   Veronica Lodge                           Riverdale                           -0.47
+253   George Wickham                           Pride and Prejudice                 -0.44
+254   Ambrose Spellman                         Chilling Adventures of Sabrin       -0.43
+255   Tommy                                    Shameless                           -0.43
+256   Bertram Gilfoyle                         Silicon Valley                      -0.39
+257   Sue Sylvester                            Glee                                 0.38
+258   Hank Schrader                            Breaking Bad                         0.37
+259   Hideki Ide                               Death Note                           0.37
+260   Cameron Frye                             Ferris Bueller's Day Off             0.36
+261   Chris Washington                         Get Out                              0.35
+262   Greg Hirsch                              Succession                          -0.35
+263   Cassie Thomas                            Promising Young Woman                0.33
+264   Tyrell Wellick                           Mr. Robot                           -0.31
+265   Shrek                                    Shrek                                0.30
+266   Michael Scofield                         Prison Break                         0.30
+267   Peter Venkman                            Ghostbusters                        -0.26
+268   Buster Bluth                             Arrested Development                -0.25
+269   Count Olaf                               A Series of Unfortunate Event       -0.24
+270   Cecil B. Heimerdinger                    Arcane                               0.23
+271   Betsy Heron                              Mean Girls                          -0.22
+272   Darrell C. (Shifty) Powers               Band of Brothers                    -0.20
+273   Sheriff of Nottingham                    Robin Hood                          -0.18
+274   Ashley Barrett                           The Boys                             0.17
+275   Tess Ocean                               Ocean's 11                           0.16
+276   Karen Smith                              Mean Girls                          -0.14
+277   Itaru Hashida                            Steins;Gate                          0.12
+278   Beverly Katz                             Hannibal                             0.12
+279   Janis Ian                                Mean Girls                           0.10
+280   the Alien                                Alien                               -0.09
+281   Freddy Krueger                           A Nightmare on Elm Street           -0.08
+282   Robby Keene                              Cobra Kai                            0.07
+283   Patrick Verona                           10 Things I Hate About You           0.03
+284   Agatha Harkness                          WandaVision                         -0.02
+285   Paul Smecker                             The Boondock Saints                 -0.01
+
+====================================================================================================
+CLUSTER 3: MOSTLY INERT — 500 characters (25.0%)
+Center: [+-+-+-] +0.718 -0.457 +0.883 -0.494 +0.594 -0.375
+DX: mean=+1.2m, |DX| mean=2.8m, std=3.4m
+Dead (<1m): 103 (21%), Champions (>20m): 0 (0%)
+Top stories: Game of Thrones(11), Vikings(8), Sense8(8), Mamma Mia!(7), The Wire(7), The Walking Dead(6), Wheel of Time(6), Gilmore Girls(6)
+----------------------------------------------------------------------------------------------------
+Rank  Character                                Story                              DX (m)
+----------------------------------------------------------------------------------------------------
+1     Jamie Tartt                              Ted Lasso                          -14.79
+2     Emma Nelson                              Degrassi: The Next Generation      -10.95
+3     Lily Iglehart                            Sex Education                      -10.80
+4     Roland Pryzbylewski                      The Wire                            10.54
+5     The Deep                                 The Boys                            10.15
+6     Scarlett O'Hara                          Gone With the Wind                  10.11
+7     Samantha Carter                          Stargate SG-1                       10.02
+8     Michaela Pratt                           How To Get Away With Murder         -9.53
+9     C-3PO                                    Star Wars: A New Hope                9.42
+10    Annie Porter                             Speed                                9.33
+11    Frank Reagan                             Blue Bloods                          9.23
+12    Maid Marian                              Robin Hood                           9.01
+13    Benjamin Button                          The Curious Case of Benjamin        -8.98
+14    Cosmo Brown                              Singin' in the Rain                 -8.80
+15    Nala                                     The Lion King                       -8.78
+16    Ed                                       Shaun of the Dead                    8.63
+17    Ragnar Lothbrok                          Vikings                              8.60
+18    Donald G. Malarkey                       Band of Brothers                     8.47
+19    Monty Green                              The 100                             -8.28
+20    Cobra Bubbles                            Lilo & Stitch                        8.25
+21    Esme Cullen                              Twilight                             8.23
+22    Heather Davis                            Crazy Ex-Girlfriend                  8.08
+23    Misato Katsuragi                         Neon Genesis Evangelion             -8.04
+24    Margaret Houlihan                        M*A*S*H                             -7.82
+25    Petra Arkanian                           Ender's Game                        -7.58
+26    Rory Gilmore                             Gilmore Girls                        7.56
+27    Hwang Jun-ho                             Squid Game                           7.56
+28    Terry Benedict                           Ocean's 11                          -7.48
+29    Harald Finehair                          Vikings                             -7.27
+30    Dr. Aaron Glassman                       The Good Doctor                      7.26
+31    Asha Greyjoy                             Game of Thrones                      7.24
+32    Tyler Locke                              Locke & Key                          7.23
+33    Sam Carmichael                           Mamma Mia!                           7.17
+34    Murtagh Fraser                           Outlander                            6.75
+35    Cora Munro                               The Last of the Mohicans             6.39
+36    Alexis Rose                              Schitt's Creek                       6.39
+37    Captain Angela Ali                       Space Force                          6.37
+38    Allison Hargreeves                       The Umbrella Academy                -6.34
+39    Tallahassee                              Zombieland                          -6.28
+40    Preston Burke                            Grey's Anatomy                       6.18
+41    Cyrus Beene                              Scandal                              6.10
+42    Lito Rodriguez                           Sense8                               6.03
+43    Butch Coolidge                           Pulp Fiction                         6.01
+44    Lee 'Apollo' Adama                       Battlestar Galactica                 5.99
+45    Brock                                    Pokémon                              5.95
+46    Elisa Esposito                           The Shape of Water                  -5.95
+47    Paige Jennings                           The Americans                        5.95
+48    Eliza Hamilton                           Hamilton                            -5.94
+49    Flaca Gonzales                           Orange is the New Black              5.92
+50    Bean                                     Ender's Game                         5.89
+51    George Washington                        Hamilton                             5.80
+52    Rubeus Hagrid                            Harry Potter                         5.78
+53    Caroline Forbes                          The Vampire Diaries                  5.77
+54    Obi-Wan Kenobi                           Star Wars: Revenge of the Sit        5.77
+55    Dagny Taggart                            Atlas Shrugged                       5.74
+56    Lillian Kaushtupper                      Unbreakable Kimmy Schmidt           -5.73
+57    General Mark R. Naird                    Space Force                          5.71
+58    Evelyn Harper                            Two and a Half Men                   5.70
+59    Hilda Spellman                           Chilling Adventures of Sabrin       -5.55
+60    Rogue                                    X-Men                               -5.52
+61    Nathaniel 'Hawkeye' Poe                  The Last of the Mohicans             5.44
+62    Buzz Lightyear                           Toy Story                            5.44
+63    Daisy 'Skye' Johnson                     Agents of S.H.I.E.L.D.               5.42
+64    Elizabeth                                Hustlers                             5.40
+65    Jaime Lannister                          Game of Thrones                      5.32
+66    Harry Bright                             Mamma Mia!                           5.31
+67    Emily Cooper                             Emily in Paris                       5.28
+68    Jack Traven                              Speed                               -5.28
+69    Jeremy Chetri                            Wynonna Earp                         5.27
+70    Seeley Booth                             Bones                                5.27
+71    Mrs. Bennet                              Pride and Prejudice                  5.21
+72    Jon Snow                                 Game of Thrones                      5.17
+73    King George III                          Hamilton                             5.11
+74    Amanita Caplan                           Sense8                               5.10
+75    Amy Brookheimer                          Veep                                 5.05
+76    Vanya Hargreeves                         The Umbrella Academy                 5.03
+77    Agatha                                   Chilling Adventures of Sabrin       -5.02
+78    Elizabeth Swann                          Pirates of the Caribbean            -4.97
+79    Cally Henderson                          Battlestar Galactica                -4.96
+80    Erica Sinclair                           Stranger Things                     -4.94
+81    Brad Bellick                             Prison Break                         4.88
+82    Joey Tribbiani                           Friends                              4.85
+83    Kiara                                    Outer Banks                         -4.85
+84    Shoshanna Shapiro                        Girls                                4.83
+85    Harry Burns                              When Harry Met Sally...              4.83
+86    Dinesh Chugtai                           Silicon Valley                       4.81
+87    Caitlin Snow                             The Flash                            4.80
+88    Storm                                    X-Men                                4.79
+89    Paula Proctor                            Crazy Ex-Girlfriend                  4.77
+90    Daryl Dixon                              The Walking Dead                    -4.77
+91    Emily Gilmore                            Gilmore Girls                        4.77
+92    Tasha Yar                                Star Trek: The Next Generatio        4.72
+93    Rufus Humphrey                           Gossip Girl                          4.63
+94    Sky Ramand                               Mamma Mia!                           4.63
+95    Gale Hawthorne                           The Hunger Games                     4.59
+96    Chris Traeger                            Parks and Recreation                -4.56
+97    Princess Fiona                           Shrek                                4.55
+98    Joe West                                 The Flash                            4.54
+99    Will Byers                               Stranger Things                      4.51
+100   Randall McHolland                        Chicago Fire                         4.49
+101   Billy Hargrove                           Stranger Things                      4.46
+102   Billy Bibbit                             One Flew Over the Cuckoo's Ne        4.45
+103   Michael Kelso                            That 70's Show                       4.42
+104   Taylor Doose                             Gilmore Girls                       -4.38
+105   Crazy Eyes                               Orange is the New Black              4.37
+106   Little John                              Robin Hood                           4.34
+107   Connor Deslauriers                       Degrassi: The Next Generation        4.31
+108   Kang Sae-byeok                           Squid Game                           4.29
+109   Simba                                    The Lion King                        4.29
+110   Christian Grey                           Fifty Shades of Grey                 4.24
+111   Roy Mustang                              Fullmetal Alchemist: Brotherh        4.18
+112   Paul Atreides                            Dune                                 4.17
+113   Stefan Salvatore                         The Vampire Diaries                  4.16
+114   Mike Lowrey                              Bad Boys                            -4.15
+115   William Riker                            Star Trek: The Next Generatio        4.12
+116   Bellamy Blake                            The 100                              4.12
+117   Perrin Aybara                            Wheel of Time                       -4.09
+118   Tim Riggins                              Friday Night Lights                  4.08
+119   Kaylee Frye                              Firefly + Serenity                   4.07
+120   Eric Murphy                              Entourage                            4.06
+121   Marcus Miles                             Bad Boys                             4.03
+122   Helen Parr                               The Incredibles                     -4.02
+123   Huck                                     Scandal                              3.99
+124   Black Panther                            Marvel Cinematic Universe           -3.93
+125   Teal'c                                   Stargate SG-1                        3.93
+126   Mr. Krabs                                SpongeBob SquarePants                3.90
+127   Addison Montgomery                       Grey's Anatomy                       3.88
+128   Violet Crawley                           Downton Abbey                        3.87
+129   Mia Wallace                              Pulp Fiction                         3.86
+130   Blondie                                  The Good, the Bad, and the Ug        3.82
+131   John Carter                              ER                                  -3.82
+132   Kira Nerys                               Star Trek: Deep Space Nine           3.80
+133   Legolas                                  Lord of the Rings                    3.77
+134   Jules Winnfield                          Pulp Fiction                        -3.76
+135   C.J. Parker                              Baywatch                             3.75
+136   Valentine Wiggin                         Ender's Game                         3.74
+137   Pippin Took                              Lord of the Rings                    3.68
+138   Charlotte Byrde                          Ozark                                3.65
+139   Ryan Evans                               High School Musical                  3.63
+140   Ty Lee                                   Avatar: The Last Airbender           3.60
+141   Tuxedo Mask                              Sailor Moon                          3.56
+142   Miranda Hobbes                           Sex and the City                     3.55
+143   Mike Wazowski                            Monsters, Inc.                      -3.54
+144   Jennifer Parker                          Back to the Future                   3.53
+145   Manny Delgado                            Modern Family                        3.50
+146   Charlie Strong                           Peaky Blinders                       3.50
+147   Misa Amane                               Death Note                           3.49
+148   Vander                                   Arcane                               3.49
+149   Rick Grimes                              The Walking Dead                    -3.47
+150   Sherlock Holmes                          Elementary                           3.46
+151   Mark Brendanawicz                        Parks and Recreation                 3.42
+152   Ubbe Ragnarsson                          Vikings                              3.37
+153   Tyra Collette                            Friday Night Lights                 -3.36
+154   Kim Ki-jung                              Parasite                            -3.36
+155   Fitzgerald Grant                         Scandal                              3.34
+156   Diana Barrigan                           White Collar                         3.34
+157   Sherlock Holmes                          Sherlock                             3.29
+158   Torvi                                    Vikings                              3.29
+159   Egwene al'Vere                           Wheel of Time                        3.28
+160   Obi-Wan Kenobi                           Star Wars: A New Hope               -3.27
+161   Serena van der Woodsen                   Gossip Girl                         -3.27
+162   Lon Hammond, Jr.                         The Notebook                         3.26
+163   Logan Huntzberger                        Gilmore Girls                        3.26
+164   Cameron James                            10 Things I Hate About You           3.22
+165   Jasmine                                  Aladdin                              3.16
+166   Annalise Keating                         How To Get Away With Murder          3.16
+167   Frenchie                                 The Boys                             3.16
+168   Sasha Braus                              Attack on Titan                      3.13
+169   Lily van der Woodsen                     Gossip Girl                          3.12
+170   Donna Moss                               The West Wing                        3.11
+171   L.J. Burrows                             Prison Break                         3.11
+172   Nomi Marks                               Sense8                              -3.11
+173   Jake Harper                              Two and a Half Men                   3.10
+174   Augustus 'Gus' Waters                    The Fault in Our Stars              -3.06
+175   Holly Gennero-McClane                    Die Hard                             3.04
+176   Fiona Gallagher                          Shameless                           -3.04
+177   Jonathan 'Gabe' Gabriel                  Penny Arcade                         3.04
+178   Troy Barnes                              Community                            3.01
+179   Gabriella Montez                         High School Musical                  3.00
+180   Waverly Earp                             Wynonna Earp                         2.96
+181   Kim Wexler                               Better Call Saul                     2.95
+182   Astrid Leong-Teo                         Crazy Rich Asians                    2.94
+183   Fangs Fogarty                            Riverdale                            2.93
+184   Kristoff                                 Frozen                               2.93
+185   Dara                                     The Witcher                         -2.92
+186   Annie January                            The Boys                             2.91
+187   Hange Zoe                                Attack on Titan                      2.90
+188   Genos                                    One Punch Man                        2.85
+189   Daniel LaRusso                           Cobra Kai                            2.85
+190   Egon Spengler                            Ghostbusters                        -2.80
+191   Judith of Northumbria                    Vikings                             -2.79
+192   Zuko                                     Avatar: The Last Airbender           2.76
+193   Ekko                                     Arcane                               2.75
+194   Kala Dandekar                            Sense8                               2.75
+195   Tom Shayes                               Damages                              2.75
+196   Colossus                                 X-Men                                2.74
+197   Krusty the Clown                         The Simpsons                         2.73
+198   Kimiko Miyashiro                         The Boys                             2.71
+199   Chad Danforth                            High School Musical                  2.71
+200   Arya Stark                               Game of Thrones                      2.70
+201   Will Gorski                              Sense8                               2.70
+202   Spiros Vondopoulos                       The Wire                             2.69
+203   Miguel Diaz                              Cobra Kai                            2.69
+204   Dana Polk                                The Cabin in the Woods               2.67
+205   Amy Santiago                             Brooklyn Nine-Nine                   2.66
+206   Christian                                Moulin Rouge!                        2.65
+207   Anthony DiNozzo                          NCIS                                 2.64
+208   Jo March                                 Little Women                         2.61
+209   Moiraine Damodred                        Wheel of Time                       -2.61
+210   Geralt of Rivia                          The Witcher                         -2.61
+211   Ms. Sharon Norbury                       Mean Girls                           2.60
+212   Nynaeve al'Meara                         Wheel of Time                        2.59
+213   Mellie Grant                             Scandal                              2.58
+214   Asher Millstone                          How To Get Away With Murder         -2.57
+215   James Bond                               Tommorrow Never Dies                 2.56
+216   Rachel Garrison                          Ozark                               -2.54
+217   Walter Stratford                         10 Things I Hate About You           2.53
+218   Cosette                                  Les Misérables                      -2.53
+219   Judith Harper-Melnick                    Two and a Half Men                   2.51
+220   Sam Baldwin                              Sleepless in Seattle                 2.50
+221   Alphonso 'Mack' Mackenzie                Agents of S.H.I.E.L.D.               2.50
+222   Iris West                                The Flash                           -2.50
+223   Rupert Giles                             Buffy the Vampire Slayer            -2.48
+224   Gimli                                    Lord of the Rings                    2.48
+225   Clare Edwards                            Degrassi: The Next Generation        2.47
+226   Sun Bak                                  Sense8                              -2.46
+227   Sarah Cameron                            Outer Banks                          2.45
+228   Brian Zeller                             Hannibal                             2.44
+229   Brienne of Tarth                         Game of Thrones                      2.43
+230   Kate Pearson                             This Is Us                          -2.42
+231   Hunter Aloysius Percy                    The OA                               2.42
+232   Robin Hood                               Robin Hood                          -2.41
+233   Aang                                     Avatar: The Last Airbender          -2.39
+234   Jane Bennet                              Pride and Prejudice                  2.38
+235   Mikaela Banes                            Transformers                        -2.35
+236   Chris Partlow                            The Wire                             2.34
+237   Spike                                    My Little Pony: Friendship Is        2.34
+238   Chris Kyle                               American Sniper                     -2.33
+239   Rip Wheeler                              Yellowstone                         -2.31
+240   Viktor Krum                              Harry Potter                         2.31
+241   Mikasa Ackermann                         Attack on Titan                      2.31
+242   Chiana                                   Farscape                             2.30
+243   Denny                                    The Room                             2.30
+244   Shirley Schmidt                          Boston Legal                         2.25
+245   Valencia Perez                           Crazy Ex-Girlfriend                  2.25
+246   Eleanor Sung-Young                       Crazy Rich Asians                    2.25
+247   Count Alexei Karenin                     Anna Karenina                        2.24
+248   Monica Gaztambide                        Money Heist                          2.24
+249   Amy Antsler                              Booksmart                           -2.24
+250   Angel                                    Buffy the Vampire Slayer             2.23
+251   Divya Narendra                           The Social Network                   2.23
+252   Dominar Rygel XVI                        Farscape                            -2.22
+253   Oliver Hampton                           How To Get Away With Murder         -2.20
+254   Sara Tancredi                            Prison Break                         2.19
+255   Michael Gray                             Peaky Blinders                       2.18
+256   Rachel Berry                             Glee                                -2.17
+257   Samantha LaRusso                         Cobra Kai                           -2.17
+258   Duke Orsino                              Twelfth Night                       -2.17
+259   The Tin Man                              The Wizard of Oz                     2.17
+260   C-Note Franklin                          Prison Break                         2.16
+261   Ciri                                     The Witcher                         -2.13
+262   Han Solo                                 Star Wars: A New Hope                2.12
+263   Damon Salvatore                          The Vampire Diaries                 -2.11
+264   Amenadiel                                Lucifer                              2.10
+265   James Olsen                              Supergirl                            2.10
+266   Pam Beesly                               The Office                          -2.09
+267   Columbus                                 Zombieland                          -2.09
+268   Mammy                                    Gone With the Wind                   2.09
+269   Reggie Mantle                            Riverdale                            2.08
+270   Kinsey Locke                             Locke & Key                         -2.07
+271   Maurizio Gucci                           House of Gucci                       2.03
+272   Eren Jaeger                              Attack on Titan                      2.01
+273   Jackson Belleville                       Gilmore Girls                       -2.00
+274   Sloane Peterson                          Ferris Bueller's Day Off             2.00
+275   Dashiell Parr                            The Incredibles                      1.97
+276   Alli Bhandari                            Degrassi: The Next Generation        1.97
+277   Paulie 'Walnuts' Gualtieri               The Sopranos                         1.95
+278   Berlin                                   Money Heist                          1.94
+279   Thomas J. Whitmore                       Independence Day                     1.92
+280   Shane Walsh                              The Walking Dead                     1.92
+281   Aragorn                                  Lord of the Rings                   -1.91
+282   Bjorn Lothbrok                           Vikings                              1.90
+283   Ka D'Argo                                Farscape                             1.87
+284   Clementine Kruczynski                    Eternal Sunshine of the Spotl        1.87
+285   Ruby Tiffany Sparks                      Ruby Sparks                          1.86
+286   Ray Ploshansky                           Girls                                1.86
+287   Oberyn Martell                           Game of Thrones                      1.84
+288   Brian O'Conner                           Fast & Furious                       1.82
+289   Leroy Jethro Gibbs                       NCIS                                 1.82
+290   Ned Flanders                             The Simpsons                        -1.81
+291   Camille Saroyan                          Bones                                1.81
+292   Ashley Wilkes                            Gone With the Wind                  -1.80
+293   Inej Ghafa                               Shadow and Bone                      1.80
+294   Alexander Hamilton                       Hamilton                            -1.80
+295   Destiny                                  Hustlers                             1.78
+296   Rand al'Thor                             Wheel of Time                        1.78
+297   Beryl Patmore                            Downton Abbey                        1.77
+298   Willy Wonka                              Willy Wonka & the Chocolate F        1.76
+299   Jasper Hale                              Twilight                             1.76
+300   Jason Mendoza                            The Good Place                       1.75
+301   Tony                                     West Side Story                      1.75
+302   Samantha Jones                           Sex and the City                     1.75
+303   Tina Cohen-Chang                         Glee                                -1.74
+304   Lyla Garrity                             Friday Night Lights                  1.74
+305   Red Forman                               That 70's Show                      -1.73
+306   Britta Perry                             Community                           -1.72
+307   B'Elanna Torres                          Star Trek: Voyager                  -1.72
+308   Robin Buckley                            Stranger Things                      1.72
+309   Powder                                   Arcane                               1.72
+310   Bumblebee                                Transformers                         1.71
+311   Kevin Ball                               Shameless                            1.70
+312   Ellis Carver                             The Wire                             1.70
+313   Vi                                       Arcane                               1.70
+314   Richard D. Winters                       Band of Brothers                     1.69
+315   Jane Margolis                            Breaking Bad                         1.68
+316   Denny Crane                              Boston Legal                         1.68
+317   J'onn J'onzz                             Supergirl                            1.67
+318   Frank Vernon                             Succession                          -1.67
+319   John Diggle                              Arrow                                1.66
+320   Princess Ekaterina Shcherbatskaya        Anna Karenina                       -1.65
+321   Romeo Montague                           Romeo and Juliet                     1.65
+322   Jim Hopper                               Stranger Things                     -1.63
+323   Marie Kreutz                             The Bourne Identity                  1.62
+324   Katniss Everdeen                         The Hunger Games                     1.61
+325   Capp                                     Chicago Fire                         1.59
+326   Vanessa Abrams                           Gossip Girl                          1.59
+327   The Doctor                               Star Trek: Voyager                  -1.58
+328   Jules                                    Superbad                             1.58
+329   Princess Celestia                        My Little Pony: Friendship Is       -1.57
+330   Vincent Vega                             Pulp Fiction                        -1.57
+331   Firelord Ozai                            Avatar: The Last Airbender           1.57
+332   Belle                                    Beauty and the Beast                -1.55
+333   Sandy Cheeks                             SpongeBob SquarePants                1.54
+334   Imperator Furiosa                        Mad Max: Fury Road                   1.54
+335   Susie Derkins                            Calvin and Hobbes                    1.53
+336   Klaus Hargreeves                         The Umbrella Academy                 1.51
+337   Melinda Warner                           Law & Order: SVU                    -1.49
+338   Lucilla                                  Gladiator                            1.49
+339   Danny Ocean                              Ocean's 11                          -1.49
+340   Howard Wolowitz                          The Big Bang Theory                  1.47
+341   Bronn                                    Game of Thrones                      1.47
+342   Burton Guster                            Psych                                1.47
+343   Barry Allen                              The Flash                            1.46
+344   Mercutio                                 Romeo and Juliet                     1.45
+345   Lagertha                                 Vikings                              1.43
+346   JJ                                       Outer Banks                         -1.42
+347   Dina Fox                                 Superstore                           1.42
+348   John Abruzzi                             Prison Break                         1.41
+349   Tom Haverford                            Parks and Recreation                 1.40
+350   Patrick Star                             SpongeBob SquarePants               -1.40
+351   Maggie Hart                              True Detective                       1.39
+352   Emmet Brickowski                         The Lego Movie                      -1.38
+353   Matthew Casey                            Chicago Fire                         1.36
+354   Sailor Venus                             Sailor Moon                         -1.34
+355   Sansa Stark                              Game of Thrones                      1.33
+356   Bob Parr                                 The Incredibles                     -1.32
+357   Jake Peralta                             Brooklyn Nine-Nine                  -1.32
+358   Joey Donner                              10 Things I Hate About You           1.32
+359   Sailor Mars                              Sailor Moon                          1.31
+360   Phil Coulson                             Agents of S.H.I.E.L.D.               1.31
+361   Gaston                                   Beauty and the Beast                 1.30
+362   Applejack                                My Little Pony: Friendship Is        1.30
+363   Pennsatucky Doggett                      Orange is the New Black              1.29
+364   Michel Gerard                            Gilmore Girls                        1.28
+365   Rachel Chu                               Crazy Rich Asians                    1.28
+366   Mitch Buchannon                          Baywatch                             1.27
+367   Edward Elric                             Fullmetal Alchemist: Brotherh       -1.21
+368   Rollo Sigurdsson                         Vikings                              1.21
+369   Lindsay Bluth                            Arrested Development                -1.21
+370   Ziggy Sobotka                            The Wire                             1.19
+371   Ash Ketchum                              Pokémon                              1.19
+372   Chrisjen Avasarala                       The Expanse                          1.17
+373   Alba Villanueva                          Jane the Virgin                      1.17
+374   Kayce Dutton                             Yellowstone                          1.16
+375   Satine                                   Moulin Rouge!                        1.15
+376   Charlotte Doppler                        Dark                                 1.14
+377   Caitlyn Kiramman                         Arcane                              -1.14
+378   Saul Tigh                                Battlestar Galactica                 1.14
+379   Elsa                                     Frozen                               1.13
+380   Nux                                      Mad Max: Fury Road                  -1.11
+381   Lydia Bennet                             Pride and Prejudice                 -1.10
+382   Riza Hawkeye                             Fullmetal Alchemist: Brotherh       -1.10
+383   Don Lockwood                             Singin' in the Rain                 -1.10
+384   Carol Peletier                           The Walking Dead                     1.10
+385   Jane Villanueva                          Jane the Virgin                      1.08
+386   Beverly Crusher                          Star Trek: The Next Generatio       -1.08
+387   Juliet Capulet                           Romeo and Juliet                    -1.08
+388   Josh Chan                                Crazy Ex-Girlfriend                 -1.08
+389   Mat Cauthon                              Wheel of Time                       -1.06
+390   Doc                                      Snow White and the Seven Dwar       -1.06
+391   Izzie Stevens                            Grey's Anatomy                      -1.05
+392   Donna Pinciotti                          That 70's Show                      -1.04
+393   Padme Amidala                            Star Wars: Revenge of the Sit        1.04
+394   Dale Horvath                             The Walking Dead                     1.04
+395   Derek Shepherd                           Grey's Anatomy                      -1.03
+396   Rosie Mulligan                           Mamma Mia!                           1.01
+397   Nate Archibald                           Gossip Girl                          1.00
+398   Sailor Moon                              Sailor Moon                          1.00
+399   Aeryn Sun                                Farscape                             0.99
+400   Danny Vinyard                            American History X                  -0.99
+401   Nathan Miller                            The 100                             -0.98
+402   Joey Lucas                               The West Wing                        0.96
+403   Goh Peik Lin                             Crazy Rich Asians                    0.95
+404   Sutter Keely                             The Spectacular Now                  0.93
+405   Sophie Sheridan                          Mamma Mia!                           0.92
+406   Cyndee Pokorny                           Unbreakable Kimmy Schmidt           -0.89
+407   Wynonna Earp                             Wynonna Earp                        -0.88
+408   Cyclops                                  X-Men                                0.88
+409   Wolfgang Bogdanow                        Sense8                               0.87
+410   Dana Barrett                             Ghostbusters                         0.87
+411   Robb Stark                               Game of Thrones                     -0.86
+412   Violet Parr                              The Incredibles                      0.86
+413   Haley Dunphy                             Modern Family                        0.85
+414   Gemma Teller Morrow                      Sons of Anarchy                     -0.84
+415   Touta Matsuda                            Death Note                           0.83
+416   Frank Burns                              M*A*S*H                              0.79
+417   Ali                                      Mamma Mia!                           0.78
+418   Landry Clarke                            Friday Night Lights                 -0.78
+419   Mike Chang                               Glee                                 0.78
+420   Marmee March                             Little Women                         0.76
+421   Daenerys Targaryen                       Game of Thrones                      0.74
+422   Inara Serra                              Firefly + Serenity                   0.74
+423   Zelda Spellman                           Chilling Adventures of Sabrin        0.73
+424   Jay Gatsby                               The Great Gatsby                    -0.73
+425   Count Alexei Vronsky                     Anna Karenina                       -0.73
+426   Laurel Castillo                          How To Get Away With Murder          0.72
+427   Randle McMurphy                          One Flew Over the Cuckoo's Ne        0.70
+428   Jennifer Jareau                          Criminal Minds                       0.70
+429   Alan Harper                              Two and a Half Men                   0.69
+430   Patty Hewes                              Damages                             -0.68
+431   Frodo Baggins                            Lord of the Rings                   -0.68
+432   Jayce Talis                              Arcane                              -0.68
+433   Trinity                                  The Matrix                           0.68
+434   Jimmy 'B-Rabbit' Smith Jr.               8 Mile                              -0.67
+435   Clark Kent                               Smallville                           0.66
+436   Dorothy Gale                             The Wizard of Oz                     0.66
+437   Tom Wambsgans                            Succession                           0.64
+438   Diego Hargreeves                         The Umbrella Academy                 0.63
+439   Mr. Potato Head                          Toy Story                           -0.63
+440   Indiana Jones                            Raiders of the Lost Ark              0.63
+441   Stitch                                   Lilo & Stitch                        0.62
+442   Kelly Severide                           Chicago Fire                         0.61
+443   Linda Martin                             Lucifer                              0.60
+444   Taylor McKessie                          High School Musical                 -0.58
+445   Colby                                    Yellowstone                         -0.55
+446   John Connor                              Terminator 2: Judgement Day         -0.55
+447   Johnny Castle                            Dirty Dancing                        0.53
+448   Cho Sang-woo                             Squid Game                          -0.53
+449   Henry Rearden                            Atlas Shrugged                      -0.52
+450   Dembe Zuma                               The Blacklist                        0.51
+451   Pepper                                   Mamma Mia!                          -0.49
+452   Dominic Toretto                          Fast & Furious                      -0.48
+453   Alexander 'Tig' Trager                   Sons of Anarchy                      0.47
+454   Malvolio                                 Twelfth Night                       -0.47
+455   Emily Charlton                           The Devil Wears Prada               -0.46
+456   Thelonious Jaha                          The 100                              0.45
+457   Andrea                                   The Walking Dead                    -0.45
+458   Bubbles Cousins                          The Wire                             0.44
+459   Steven Hiller                            Independence Day                     0.42
+460   John Rayburn                             Bloodline                            0.40
+461   Lloyd                                    Yellowstone                          0.39
+462   Levi Ackermann                           Attack on Titan                     -0.38
+463   Sarah O'Brien                            Downton Abbey                       -0.37
+464   Dr. Madolyn Madden                       The Departed                         0.36
+465   Bob Belcher                              Bob's Burgers                       -0.36
+466   Jack O'Neill                             Stargate SG-1                        0.36
+467   Molly Davidson                           Booksmart                            0.34
+468   Kat Stratford                            10 Things I Hate About You           0.32
+469   Lucie Manette                            A Tale of Two Cities                 0.30
+470   Oh Il-nam                                Squid Game                           0.29
+471   Kirk Lazarus                             Tropic Thunder                      -0.29
+472   Guinan                                   Star Trek: The Next Generatio        0.29
+473   Troy Bolton                              High School Musical                  0.27
+474   Jean Kirschtein                          Attack on Titan                     -0.27
+475   Princess Ariel                           The Little Mermaid                   0.26
+476   Michael 'Newmie' Newman                  Baywatch                            -0.26
+477   Mia Dolan                                La La Land                           0.24
+478   Smash Williams                           Friday Night Lights                 -0.24
+479   Marcia Roy                               Succession                          -0.23
+480   Calvin                                   Calvin and Hobbes                    0.21
+481   Batman                                   The Lego Movie                      -0.21
+482   Flynn White                              Breaking Bad                         0.20
+483   Jeff Portnoy                             Tropic Thunder                       0.19
+484   Nicky Nichols                            Orange is the New Black             -0.17
+485   Malyen Oretsev                           Shadow and Bone                      0.16
+486   Stannis Baratheon                        Game of Thrones                      0.15
+487   Angel Eyes                               The Good, the Bad, and the Ug       -0.14
+488   Hazel Grace Lancaster                    The Fault in Our Stars               0.13
+489   Joe Cruz                                 Chicago Fire                        -0.12
+490   James P. Sullivan                        Monsters, Inc.                       0.10
+491   Berta                                    Two and a Half Men                   0.07
+492   Molly Weasley                            Harry Potter                        -0.07
+493   William Adama                            Battlestar Galactica                 0.07
+494   Friar Tuck                               Robin Hood                           0.06
+495   Riley Blue                               Sense8                              -0.05
+496   Bunk Moreland                            The Wire                            -0.04
+497   Carla Espinosa                           Scrubs                               0.04
+498   Tokio                                    Money Heist                         -0.03
+499   Jessica Pearson                          Suits                                0.02
+500   Captain Jim Brass                        CSI: Crime Scene Investigatio       -0.01
+
+====================================================================================================
+CLUSTER 4: LEFT WALKERS — 366 characters (18.3%)
+Center: [+-++-+] +0.725 -0.490 +0.236 +0.802 -0.626 +0.242
+DX: mean=-6.3m, |DX| mean=8.1m, std=9.8m
+Dead (<1m): 51 (14%), Champions (>20m): 49 (13%)
+Top stories: Harry Potter(6), The Wire(6), Battlestar Galactica(5), Sex Education(5), Ted Lasso(5), Game of Thrones(5), Mad Men(4), Star Trek: The Next Generation(4)
+----------------------------------------------------------------------------------------------------
+Rank  Character                                Story                              DX (m)
+----------------------------------------------------------------------------------------------------
+1     Saitama                                  One Punch Man                      -36.92
+2     Jack Hodgins                             Bones                              -33.41
+3     Bobby Briggs                             Twin Peaks                         -32.83
+4     Alicia Florrick                          The Good Wife                      -31.65
+5     Anna Bates                               Downton Abbey                      -31.12
+6     Sarah Connor                             Terminator 2: Judgement Day        -29.43
+7     Julian Bashir                            Star Trek: Deep Space Nine         -29.11
+8     Amélie Poulain                           Amélie                             -28.32
+9     Robin Scherbatsky                        How I Met Your Mother              -28.00
+10    Dan Egan                                 Veep                               -27.51
+11    Guinevere Beck                           You                                -27.46
+12    Kara Danvers                             Supergirl                          -27.23
+13    Charles Bingley                          Pride and Prejudice                -26.70
+14    Calvin Weir-Fields                       Ruby Sparks                        -26.32
+15    Taissa                                   Yellowjackets                      -26.10
+16    Rebecca Bunch                            Crazy Ex-Girlfriend                -25.87
+17    Donald Mallard                           NCIS                               -25.53
+18    Phyllis Lapin                            The Office                         -25.19
+19    Hobie Buchannon                          Baywatch                           -25.06
+20    Lisa Johnson                             After Life                         -24.73
+21    Huckleberry Finn                         Adventures of Huckleberry Fin      -24.70
+22    Hughie Campbell                          The Boys                           -24.49
+23    Clay Davis                               The Wire                           -24.45
+24    Lucius Fox                               Gotham                             -23.82
+25    Charlotte York                           Sex and the City                   -23.80
+26    Abe Weissman                             The Marvelous Mrs. Maisel          -23.63
+27    Rebecca Welton                           Ted Lasso                          -23.61
+28    Liberty Van Zandt                        Degrassi: The Next Generation      -23.45
+29    Lynette Scavo                            Desperate Housewives               -23.42
+30    Wanda Maximoff                           WandaVision                        -23.28
+31    Sam Obisanya                             Ted Lasso                          -22.70
+32    Ed Hurley                                Twin Peaks                         -22.65
+33    Baby                                     Baby Driver                        -22.60
+34    Jack Maine                               A Star Is Born                     -22.37
+35    Colin Sullivan                           The Departed                       -22.19
+36    Nicole Haught                            Wynonna Earp                       -22.12
+37    Dr. Neil Melendez                        The Good Doctor                    -22.05
+38    Marty McFly                              Back to the Future                 -22.03
+39    John Crichton                            Farscape                           -21.90
+40    Telemachus                               The Odyssey                        -21.85
+41    Daisy Fuller                             The Curious Case of Benjamin       -21.81
+42    Leo McGarry                              The West Wing                      -21.78
+43    King Claudius                            Hamlet                             -21.34
+44    Dolores Abernathy                        Westworld                          -21.32
+45    Lester Freamon                           The Wire                           -21.18
+46    Jimmy Hurdstrom                          Yellowstone                        -21.17
+47    Tanya Chesham-Leigh                      Mamma Mia!                         -21.12
+48    Clarice Starling                         The Silence of the Lambs           -20.83
+49    Harry Kim                                Star Trek: Voyager                 -20.22
+50    Drew Baylor                              Elizabethtown                      -19.95
+51    Finn                                     Star Wars: The Last Jedi           -18.81
+52    Edna Krabappel                           The Simpsons                       -18.80
+53    Ted Mullens                              Schitt's Creek                     -18.65
+54    Hawkeye                                  Marvel Cinematic Universe          -18.39
+55    Hakoda                                   Avatar: The Last Airbender         -18.23
+56    Istredd                                  The Witcher                        -18.04
+57    Countess Vronskaya                       Anna Karenina                      -17.92
+58    Skylar                                   Good Will Hunting                  -17.90
+59    Louis Tully                              Ghostbusters                       -17.85
+60    Frances 'Baby' Houseman                  Dirty Dancing                      -17.84
+61    Henry Spencer                            Psych                              -17.68
+62    C. Carwood Lipton                        Band of Brothers                   -17.50
+63    Prince Stepan Oblonsky                   Anna Karenina                      -17.42
+64    Rose DeWitt Bukater                      Titanic                            -16.89
+65    Paul Kinsey                              Mad Men                            -16.85
+66    Jake Ballard                             Scandal                            -16.81
+67    Jason Street                             Friday Night Lights                -16.78
+68    Li Mu Bai                                Crouching Tiger, Hidden Drago      -16.51
+69    John B                                   Outer Banks                        -16.49
+70    Castiel                                  Supernatural                       -16.40
+71    Nathan Shelley                           Ted Lasso                          -16.34
+72    Holden McCrea                            The Cabin in the Woods             -16.06
+73    Mitchell Pritchett                       Modern Family                      -15.96
+74    Gaius Baltar                             Battlestar Galactica               -15.89
+75    Joan Holloway                            Mad Men                            -15.85
+76    Sookie St. James                         Gilmore Girls                      -15.59
+77    Polonius                                 Hamlet                             -15.57
+78    Spike                                    The Land Before Time               -15.45
+79    David Levinson                           Independence Day                   -15.14
+80    Patrick Stewart                          The Perks of Being a Wallflow      -15.03
+81    Niko Polastri                            Killing Eve                        -14.95
+82    Ashley Marin                             Pretty Little Liars                -14.93
+83    Richard Webber                           Grey's Anatomy                     -14.92
+84    Sally Rayburn                            Bloodline                          -14.90
+85    Mike Ross                                Suits                              -14.47
+86    The Wizard of Oz                         The Wizard of Oz                   -14.41
+87    Karl 'Helo' Agathon                      Battlestar Galactica               -13.98
+88    Hans Gruber                              Die Hard                           -13.92
+89    Rowan Pope                               Scandal                            -13.89
+90    Michael Lee                              The Wire                           -13.78
+91    Lincoln Rice                             Broad City                         -13.67
+92    Susie Myerson                            The Marvelous Mrs. Maisel          -13.64
+93    Charlie Kelly                            It's Always Sunny in Philadel       13.22
+94    Summer Finn                              (500) Days of Summer               -13.11
+95    Alexander Conklin                        The Bourne Identity                -13.04
+96    Margaery Tyrell                          Game of Thrones                    -13.04
+97    Sylvie Grateau                           Emily in Paris                     -12.84
+98    Sun-Hwa Kwon                             LOST                               -12.81
+99    Alex Dunphy                              Modern Family                      -12.66
+100   Derrial Book                             Firefly + Serenity                 -12.48
+101   Seong Gi-hun                             Squid Game                         -12.44
+102   Paul Varjak                              Breakfast at Tiffany's             -12.41
+103   Leigh Teabing                            The Da Vinci Code                  -12.24
+104   Yao                                      Mulan                              -11.92
+105   Shae                                     Game of Thrones                    -11.81
+106   Carrie Bradshaw                          Sex and the City                   -11.72
+107   Howard Payne                             Speed                              -11.68
+108   Midge Pinciotti                          That 70's Show                     -11.65
+109   Peter Clemenza                           The Godfather                      -11.64
+110   Rachel Menken                            Mad Men                            -11.63
+111   Marnie Michaels                          Girls                              -11.41
+112   Craig Pelton                             Community                          -10.96
+113   Rick Blaine                              Casablanca                         -10.92
+114   Princess Ann                             Roman Holiday                      -10.65
+115   Kumail Nanjiani                          The Big Sick                       -10.51
+116   Walter White                             Breaking Bad                        -9.66
+117   Ryan Cooper                              Promising Young Woman                9.64
+118   Charlie Carson                           Downton Abbey                       -9.63
+119   Jorah Mormont                            Game of Thrones                     -9.60
+120   Kurisu Makise                            Steins;Gate                         -9.17
+121   Javier Esposito                          Castle                              -8.64
+122   Lilah MacManus                           Ctrl+Alt+Del                        -8.51
+123   Galen Tyrol                              Battlestar Galactica                 8.38
+124   Lila Crane                               Psycho                              -8.29
+125   Sharon 'Boomer' Valerii                  Battlestar Galactica                -8.24
+126   Rose Armitage                            Get Out                             -8.23
+127   Dr. James Wilson                         House, M.D.                         -8.07
+128   Nick Blaine                              The Handmaid's Tale                  8.05
+129   Fox Mulder                               The X-Files                         -7.99
+130   Robert Fischer                           Inception                           -7.98
+131   Matt Donovan                             The Vampire Diaries                  7.53
+132   Bobbie Draper                            The Expanse                         -7.47
+133   Cera                                     The Land Before Time                 7.45
+134   Coach Beard                              Ted Lasso                            7.36
+135   Shauna                                   Yellowjackets                        7.24
+136   Ritsuko Akagi                            Neon Genesis Evangelion             -7.16
+137   Kendall Roy                              Succession                          -7.13
+138   Willow Rosenberg                         Buffy the Vampire Slayer             7.06
+139   Will Hunting                             Good Will Hunting                    7.02
+140   Fez                                      That 70's Show                       6.95
+141   Mushu                                    Mulan                               -6.90
+142   Ophelia                                  Hamlet                               6.75
+143   Abby Lockhart                            ER                                  -6.71
+144   Daniel Jackson                           Stargate SG-1                       -6.64
+145   Donna Hayward                            Twin Peaks                           6.58
+146   Tom Scavo                                Desperate Housewives                -6.52
+147   Rick Sanchez                             Rick and Morty                       6.50
+148   Chuck Bass                               Gossip Girl                         -6.49
+149   Kirk Gleason                             Gilmore Girls                       -6.27
+150   Belle French                             Once Upon a Time                    -6.04
+151   Dr. Harry Wells                          The Flash                           -5.99
+152   Jet Black                                Cowboy Bebop                         5.92
+153   Hannah Horvath                           Girls                               -5.75
+154   John Smith                               The Man in the High Castle          -5.73
+155   Lenny                                    After Life                          -5.73
+156   Johnny Rose                              Schitt's Creek                       5.73
+157   Ron Weasley                              Harry Potter                        -5.67
+158   Marcus Bell                              Elementary                          -5.63
+159   Michelle                                 The Room                            -5.44
+160   Dobby                                    Harry Potter                         5.33
+161   Lorna Morello                            Orange is the New Black             -5.22
+162   Kevin Rayburn                            Bloodline                            5.08
+163   Martin Brody                             Jaws                                -5.04
+164   Forrest Gump                             Forrest Gump                         5.04
+165   Thomas Rainwater                         Yellowstone                          4.98
+166   Dr. Allison Cameron                      House, M.D.                         -4.87
+167   Rose Tico                                Star Wars: The Last Jedi            -4.87
+168   Phoebe Buffay                            Friends                             -4.74
+169   Tom Keller                               Riverdale                           -4.62
+170   Kalinda Sharma                           The Good Wife                        4.62
+171   Abigail Baker                            Blue Bloods                         -4.61
+172   Peter                                    The Room                            -4.61
+173   Lucas Sinclair                           Stranger Things                      4.60
+174   Julien                                   Emily in Paris                      -4.55
+175   Ennis Del Mar                            Brokeback Mountain                   4.54
+176   Ann Perkins                              Parks and Recreation                 4.53
+177   Philip, Duke of Edinburgh                The Crown                            4.51
+178   Rod Williams                             Get Out                             -4.47
+179   Geordi La Forge                          Star Trek: The Next Generatio        4.45
+180   Capt. Oliver Queenan                     The Departed                        -4.38
+181   Mayuri Shiina                            Steins;Gate                         -4.38
+182   Hanna Marin                              Pretty Little Liars                  4.30
+183   John Willoughby                          Sense and Sensibility                4.27
+184   Phil Connors                             Groundhog Day                       -4.27
+185   Darlene                                  Mr. Robot                           -4.24
+186   John Hammond                             Jurassic Park                       -4.24
+187   Josiah Bartlet                           The West Wing                        4.22
+188   Rita                                     The Handmaid's Tale                  4.22
+189   Donna Meagle                             Parks and Recreation                 4.21
+190   Villanelle                               Killing Eve                          4.16
+191   Glenn Rhee                               The Walking Dead                    -4.16
+192   Peter Jason Quill                        Marvel Cinematic Universe           -4.13
+193   Dr. Ellie Sattler                        Jurassic Park                        4.12
+194   Chakotay                                 Star Trek: Voyager                  -4.09
+195   India Wilkes                             Gone With the Wind                   4.05
+196   Aram Mojtabai                            The Blacklist                        4.04
+197   Mr. Saito                                Inception                           -3.94
+198   Greg Sanders                             CSI: Crime Scene Investigatio       -3.91
+199   Cristina Yang                            Grey's Anatomy                      -3.88
+200   Alexis Castle                            Castle                               3.72
+201   Rachel Dawes                             The Dark Knight                     -3.63
+202   John Galt                                Atlas Shrugged                      -3.59
+203   Lori Grimes                              The Walking Dead                    -3.57
+204   Archie 'Snake' Simpson                   Degrassi: The Next Generation       -3.54
+205   Peter Wiggin                             Ender's Game                        -3.52
+206   Gavin Belson                             Silicon Valley                      -3.50
+207   Yennefer                                 The Witcher                          3.50
+208   Angela Martin                            The Office                           3.47
+209   Leonard Hofstadter                       The Big Bang Theory                 -3.46
+210   Jadzia Dax                               Star Trek: Deep Space Nine           3.45
+211   Petunia Dursley                          Harry Potter                         3.40
+212   Mal Cobb                                 Inception                           -3.38
+213   Archie Andrews                           Riverdale                            3.36
+214   Abby Sciuto                              NCIS                                -3.36
+215   Wichita                                  Zombieland                           3.33
+216   Emily Gardner                            The Big Sick                        -3.31
+217   Lawrence Yee                             Succession                           3.31
+218   Daisy Mason                              Downton Abbey                        3.31
+219   The Nurse                                Romeo and Juliet                     3.26
+220   Adam Groff                               Sex Education                       -3.23
+221   Toni Topaz                               Riverdale                           -3.14
+222   Fantine                                  Les Misérables                       3.10
+223   Roy Harper                               Arrow                               -3.09
+224   Julia                                    Nineteen Eighty-Four                -3.08
+225   David Rossi                              Criminal Minds                      -2.98
+226   Becca Butcher                            The Boys                            -2.96
+227   Anastasia Steele                         Fifty Shades of Grey                 2.90
+228   Mateo Liwanag                            Superstore                          -2.86
+229   Tony Lip                                 Green Book                          -2.85
+230   Aladdin                                  Aladdin                             -2.82
+231   Julie Mayer                              Desperate Housewives                -2.80
+232   Norman Bates                             Psycho                               2.80
+233   Sam Button                               The Perks of Being a Wallflow        2.79
+234   Hobbes                                   Calvin and Hobbes                    2.71
+235   Francisco d'Anconia                      Atlas Shrugged                      -2.68
+236   Luc                                      Emily in Paris                      -2.66
+237   Eugene G. Roe                            Band of Brothers                     2.63
+238   Bernadette Rostenkowski                  The Big Bang Theory                 -2.61
+239   Dr. Shaun Murphy                         The Good Doctor                     -2.60
+240   Tommy Carcetti                           The Wire                             2.60
+241   Bo Peep                                  Toy Story                           -2.55
+242   Principal Vernon                         The Breakfast Club                   2.52
+243   Vitruvius                                The Lego Movie                      -2.51
+244   Donald Ressler                           The Blacklist                       -2.51
+245   Manny Santos                             Degrassi: The Next Generation        2.51
+246   Debora                                   Baby Driver                          2.47
+247   Aimee Finecky                            The Spectacular Now                  2.44
+248   Michael Groff                            Sex Education                       -2.39
+249   Sam Witwicky                             Transformers                        -2.37
+250   Ben Scott                                Yellowjackets                       -2.37
+251   Han Lue                                  Fast & Furious                       2.32
+252   Don Quijote                              Don Quixote                          2.27
+253   Dr. Sharon Fieldstone                    Ted Lasso                           -2.26
+254   William Rawls                            The Wire                            -2.26
+255   Ross Geller                              Friends                             -2.24
+256   Alvy Singer                              Annie Hall                           2.24
+257   Silvio Dante                             The Sopranos                         2.23
+258   Homer Simpson                            The Simpsons                        -2.20
+259   Maddy Perez                              Euphoria                            -2.19
+260   Winston Bishop                           New Girl                            -2.18
+261   Missy Armitage                           Get Out                              2.16
+262   Anita 'Needy' Lesnicki                   Jennifer's Body                      2.13
+263   Kelly Kapoor                             The Office                          -2.09
+264   Al Robbins                               CSI: Crime Scene Investigatio       -2.09
+265   Luka Kovac                               ER                                  -2.07
+266   Pete Campbell                            Mad Men                              1.97
+267   Ivar Ragnarsson                          Vikings                              1.97
+268   Arthur Shelby                            Peaky Blinders                       1.96
+269   Lilo Pelekai                             Lilo & Stitch                        1.93
+270   Chloe Sullivan                           Smallville                           1.92
+271   Jackson Marchetti                        Sex Education                       -1.87
+272   Luna Lovegood                            Harry Potter                        -1.87
+273   Leo Fitz                                 Agents of S.H.I.E.L.D.              -1.85
+274   Tony Soprano                             The Sopranos                        -1.79
+275   Emma Pillsbury                           Glee                                 1.78
+276   D.I. Greg Lestrade                       Sherlock                            -1.78
+277   Charles Boyle                            Brooklyn Nine-Nine                  -1.75
+278   Rosa Diaz                                Brooklyn Nine-Nine                   1.73
+279   Olivia                                   Twelfth Night                       -1.72
+280   Jonathan Byers                           Stranger Things                      1.72
+281   Stephanie Holden                         Baywatch                            -1.68
+282   Thufir Hawat                             Dune                                -1.67
+283   Mamá Imelda                              Coco                                 1.64
+284   Rita Hanson                              Groundhog Day                       -1.61
+285   Watari                                   Death Note                          -1.58
+286   Aimee Gibbs                              Sex Education                        1.56
+287   Gretchen Wieners                         Mean Girls                           1.53
+288   Andrew Clark                             The Breakfast Club                   1.45
+289   Marius Pontmercy                         Les Misérables                       1.43
+290   Deanna Troi                              Star Trek: The Next Generatio       -1.42
+291   Mary Margaret Blanchard                  Once Upon a Time                     1.40
+292   Frank Reynolds                           It's Always Sunny in Philadel        1.40
+293   Lincoln Burrows                          Prison Break                        -1.37
+294   Sam Evans                                Glee                                -1.34
+295   Duke Leto Atreides                       Dune                                -1.33
+296   Fogell (McLovin)                         Superbad                             1.33
+297   Claire Colburn                           Elizabethtown                        1.29
+298   Sancho Panza                             Don Quixote                          1.29
+299   Ben Hargreeves                           The Umbrella Academy                 1.28
+300   Nemo                                     Finding Nemo                         1.24
+301   Elena Gilbert                            The Vampire Diaries                 -1.24
+302   Holly Golightly                          Breakfast at Tiffany's              -1.23
+303   Data                                     Star Trek: The Next Generatio        1.20
+304   Victor Laszlo                            Casablanca                           1.18
+305   Jack Crawford                            Hannibal                             1.18
+306   William H. 'Shakespeare' Hill            This Is Us                          -1.18
+307   Prince Humperdinck                       The Princess Bride                  -1.15
+308   Alphonse Elric                           Fullmetal Alchemist: Brotherh       -1.12
+309   Elizabeth Jennings                       The Americans                       -1.11
+310   Princess Anna Karenina                   Anna Karenina                        1.11
+311   Spencer Hastings                         Pretty Little Liars                  1.09
+312   Charlie Swan                             Twilight                             1.04
+313   Johnny Lawrence                          Cobra Kai                           -1.04
+314   Neelix                                   Star Trek: Voyager                   1.01
+315   Theon Greyjoy                            Game of Thrones                     -1.00
+316   Joey Quinn                               Dexter                              -0.99
+317   Leslie Thompkins                         Gotham                               0.96
+318   Kate Beckett                             Castle                              -0.95
+319   Jenny Curran                             Forrest Gump                         0.89
+320   Shelly Johnson                           Twin Peaks                           0.89
+321   Merry Brandybuck                         Lord of the Rings                    0.85
+322   Ray Stantz                               Ghostbusters                         0.82
+323   Aria Montgomery                          Pretty Little Liars                  0.76
+324   Phil Dunphy                              Modern Family                       -0.76
+325   Jane Eyre                                Jane Eyre                            0.76
+326   Cutty Wise                               The Wire                            -0.74
+327   Clarisse McClellan                       Fahrenheit 451                      -0.74
+328   Thea Queen                               Arrow                                0.72
+329   Noah Calhoun                             The Notebook                        -0.64
+330   Brandon Stark                            Game of Thrones                     -0.63
+331   Arthur Weasley                           Harry Potter                         0.59
+332   Mary Svevo                               Eternal Sunshine of the Spotl       -0.58
+333   Fleur Delacour                           Harry Potter                         0.57
+334   Marion Ravenwood                         Raiders of the Lost Ark              0.54
+335   Ariadne                                  Inception                           -0.54
+336   Pat Solitano                             Silver Linings Playbook             -0.53
+337   Kyle Broflovski                          South Park                           0.52
+338   Alex Karev                               Grey's Anatomy                       0.50
+339   Tony Stark                               Marvel Cinematic Universe            0.50
+340   Jean-Luc Picard                          Star Trek: The Next Generatio        0.48
+341   Sam Seaborn                              The West Wing                        0.46
+342   Penelope Garcia                          Criminal Minds                       0.45
+343   Winn Schott                              Supergirl                           -0.40
+344   Dr. Strange                              Marvel Cinematic Universe            0.39
+345   Dr. Wendy Carr                           Mindhunter                           0.39
+346   Marty Mikalski                           The Cabin in the Woods              -0.38
+347   Xander Harris                            Buffy the Vampire Slayer             0.38
+348   Meg March                                Little Women                        -0.36
+349   Melinda May                              Agents of S.H.I.E.L.D.              -0.35
+350   Jim Holden                               The Expanse                         -0.35
+351   Annie Reed                               Sleepless in Seattle                 0.35
+352   Thomas Shelby                            Peaky Blinders                       0.34
+353   Jesse                                    Before Sunrise                      -0.31
+354   Jeff Winger                              Community                            0.30
+355   Konstantin Levin                         Anna Karenina                        0.26
+356   Princess Leia                            Star Wars: A New Hope               -0.26
+357   Laura Roslin                             Battlestar Galactica                 0.24
+358   Stormfront                               The Boys                            -0.22
+359   Kitty Forman                             That 70's Show                       0.21
+360   Christopher Turk                         Scrubs                              -0.18
+361   Diana Rayburn                            Bloodline                            0.17
+362   Alfredo Linguini                         Ratatouille                         -0.15
+363   Ola Nyman                                Sex Education                       -0.08
+364   Lee Sizemore                             Westworld                           -0.05
+365   Ellis Wyatt                              Atlas Shrugged                      -0.01
+366   Heloise                                  Portrait of a Lady on Fire           0.00
+
+====================================================================================================
+CLUSTER 5: MOSTLY INERT — 74 characters (3.7%)
+Center: [+-+-+-] +0.775 -0.785 +0.852 -0.693 +0.603 -0.744
+DX: mean=+0.7m, |DX| mean=2.8m, std=3.7m
+Dead (<1m): 19 (26%), Champions (>20m): 0 (0%)
+Top stories: The Boys(4), The Godfather(3), The Boondock Saints(3), The Wire(3), Game of Thrones(3), Riverdale(2), American History X(2), Harry Potter(2)
+----------------------------------------------------------------------------------------------------
+Rank  Character                                Story                              DX (m)
+----------------------------------------------------------------------------------------------------
+1     Hiram Lodge                              Riverdale                          -13.05
+2     Murphy MacManus                          The Boondock Saints                  9.73
+3     Boromir                                  Lord of the Rings                    9.07
+4     John McClane                             Die Hard                            -7.77
+5     Dr. Robert Chase                         House, M.D.                          6.34
+6     Lex Luthor                               Smallville                           6.19
+7     Madelyn Stillwell                        The Boys                             6.06
+8     Lieutenant Schrank                       West Side Story                      5.82
+9     Johnny 'Drama' Chase                     Entourage                           -5.32
+10    Colonel Graff                            Ender's Game                         5.28
+11    Dwight Schrute                           The Office                           5.26
+12    Toph Beifong                             Avatar: The Last Airbender           4.80
+13    Vincent Chase                            Entourage                           -4.64
+14    Megatron                                 Transformers                         4.61
+15    Dee Reynolds                             It's Always Sunny in Philadel        4.51
+16    Maximus                                  Gladiator                           -4.46
+17    Lieutenant Worf                          Star Trek: The Next Generatio        4.41
+18    Magneto                                  X-Men                               -3.97
+19    Joffrey Baratheon                        Game of Thrones                      3.92
+20    Tom Buchanan                             The Great Gatsby                     3.91
+21    Anakin Skywalker                         Star Wars: Revenge of the Sit       -3.57
+22    Bellatrix Lestrange                      Harry Potter                         3.56
+23    Rhonda Pearlman                          The Wire                            -3.49
+24    Mr. Big                                  Sex and the City                     3.47
+25    Papa Joe Yakavetta                       The Boondock Saints                 -3.39
+26    Derek Vinyard                            American History X                  -3.35
+27    Beowulf                                  Beowulf                             -3.32
+28    Palpatine                                Star Wars: Revenge of the Sit       -3.13
+29    Bodie Broadus                            The Wire                             3.13
+30    Sasuke Uchiha                            Naruto                              -3.12
+31    Sonny Corleone                           The Godfather                        2.97
+32    Homelander                               The Boys                             2.96
+33    Cersei Lannister                         Game of Thrones                      2.70
+34    Commodus                                 Gladiator                            2.68
+35    Park Dong-ik                             Parasite                             2.65
+36    Billy Butcher                            The Boys                             2.56
+37    Tugg Speedman                            Tropic Thunder                       2.41
+38    Optimus Prime                            Transformers                         2.14
+39    David Della Rocco                        The Boondock Saints                 -2.13
+40    Dr. Bob Sweeney                          American History X                  -2.09
+41    Mother's Milk                            The Boys                             1.99
+42    Michael Corleone                         The Godfather                       -1.84
+43    Mumen Rider                              One Punch Man                        1.78
+44    Marcus Kane                              The 100                             -1.78
+45    Marge Thompson                           A Nightmare on Elm Street            1.58
+46    Vito Corleone                            The Godfather                        1.57
+47    Avon Barksdale                           The Wire                            -1.43
+48    Vizzini                                  The Princess Bride                   1.36
+49    General Kirigan                          Shadow and Bone                      1.35
+50    Nina Sayers                              Black Swan                          -1.34
+51    Alice Cooper                             Riverdale                            1.17
+52    Jules Louden                             The Cabin in the Woods              -1.13
+53    Basher Tarr                              Ocean's 11                           1.07
+54    Cal Hockley                              Titanic                              1.05
+55    Red Reznikov                             Orange is the New Black              1.05
+56    Nelson Bighetti                          Silicon Valley                      -0.95
+57    T-800                                    Terminator 2: Judgement Day          0.92
+58    Tywin Lannister                          Game of Thrones                     -0.85
+59    The Queen                                Snow White and the Seven Dwar        0.76
+60    Captain Hammer                           Dr. Horrible's Sing-Along Blo        0.76
+61    Rintarou Okabe                           Steins;Gate                         -0.71
+62    Rosalie Hale                             Twilight                             0.68
+63    Sirius Black                             Harry Potter                         0.65
+64    Damian Leigh                             Mean Girls                           0.60
+65    John Dutton                              Yellowstone                          0.57
+66    Dr. Hannibal Lecter                      The Silence of the Lambs            -0.54
+67    Lady Macbeth                             Macbeth                             -0.50
+68    Ron Swanson                              Parks and Recreation                -0.44
+69    Amanda LaRusso                           Cobra Kai                           -0.31
+70    Thor                                     Marvel Cinematic Universe           -0.29
+71    Lieutenant Commander Worf                Star Trek: Deep Space Nine           0.26
+72    A.J. Soprano                             The Sopranos                        -0.24
+73    Thanos                                   Marvel Cinematic Universe           -0.18
+74    Mark                                     The Room                            -0.16
+
+====================================================================================================
+CLUSTER 6: RIGHT WALKERS — 73 characters (3.6%)
+Center: [-++--+] -0.776 +0.634 +0.431 -0.347 -0.428 +0.710
+DX: mean=+6.2m, |DX| mean=8.5m, std=8.6m
+Dead (<1m): 4 (5%), Champions (>20m): 4 (5%)
+Top stories: Harry Potter(3), After Life(3), The Dark Knight(3), Black Swan(2), Neon Genesis Evangelion(2), Dexter(2), House, M.D.(2), LOST(2)
+----------------------------------------------------------------------------------------------------
+Rank  Character                                Story                              DX (m)
+----------------------------------------------------------------------------------------------------
+1     Shinji Ikari                             Neon Genesis Evangelion             31.35
+2     Dexter Morgan                            Dexter                              30.87
+3     Rei Ayanami                              Neon Genesis Evangelion             21.57
+4     Lau                                      The Dark Knight                     20.23
+5     Alastor Moody                            Harry Potter                        17.97
+6     Emma                                     After Life                          16.91
+7     John Locke                               LOST                                16.71
+8     Kath                                     After Life                          16.03
+9     Paul Spector                             The Fall                           -15.76
+10    Shuichi Aizawa                           Death Note                          15.25
+11    Marty Hart                               True Detective                      15.04
+12    Bruce Wayne                              The Dark Knight                     14.68
+13    Ash                                      Alien                               13.85
+14    Mike Ehrmantraut                         Breaking Bad                        12.84
+15    Bill Tench                               Mindhunter                          12.68
+16    Luther Hargreeves                        The Umbrella Academy               -12.39
+17    Amy Elliott Dunne                        Gone Girl                           12.16
+18    Scorpius                                 Farscape                            11.77
+19    Oswald Cobblepot                         Gotham                              11.67
+20    Lily                                     Black Swan                          11.24
+21    Elim Garak                               Star Trek: Deep Space Nine          11.00
+22    Tuvok                                    Star Trek: Voyager                  10.45
+23    Nick Dunne                               Gone Girl                            9.89
+24    Sayid Jarrah                             LOST                                 9.50
+25    Matt Braden                              After Life                           9.44
+26    Thomas Matthews                          Dexter                               9.36
+27    Macbeth                                  Macbeth                              9.19
+28    Morty Smith                              Rick and Morty                       9.16
+29    Hans                                     Frozen                              -9.01
+30    Sydney Carton                            A Tale of Two Cities                 8.75
+31    Serena Joy Waterford                     The Handmaid's Tale                  8.53
+32    Simon Tam                                Firefly + Serenity                   8.43
+33    Cypher                                   The Matrix                           8.30
+34    Will Graham                              Hannibal                            -7.90
+35    Sandor Clegane                           Game of Thrones                      7.90
+36    Winston Smith                            Nineteen Eighty-Four                 7.59
+37    Raven Reyes                              The 100                              7.56
+38    Anthony Garcia                           The Dark Knight                      7.29
+39    Aaron Burr                               Hamilton                             6.74
+40    Martha Nielsen                           Dark                                 6.73
+41    Severus Snape                            Harry Potter                         6.28
+42    Scar                                     The Lion King                       -6.15
+43    Tracy Mills                              Se7en                                6.13
+44    Mike Ehrmantraut                         Better Call Saul                     6.10
+45    Maleficent                               Maleficent                           5.99
+46    Lord Voldemort                           Harry Potter                        -5.44
+47    Cogsworth                                Beauty and the Beast                 5.43
+48    Lena Luthor                              Supergirl                            5.35
+49    Elliot Alderson                          Mr. Robot                            5.30
+50    Coriolanus Snow                          The Hunger Games                    -5.26
+51    Holden Ford                              Mindhunter                           5.19
+52    Donald Thompson                          A Nightmare on Elm Street            5.07
+53    Regina Mills                             Once Upon a Time                     4.74
+54    Edward Fairfax Rochester                 Jane Eyre                            4.55
+55    Rust Cohle                               True Detective                       4.52
+56    Beast                                    Beauty and the Beast                -4.46
+57    Dr. Gregory House                        House, M.D.                          3.81
+58    William Somerset                         Se7en                               -3.34
+59    Darth Vader                              Star Wars: A New Hope               -3.15
+60    Lambert                                  Alien                               -2.79
+61    Thomas Leroy                             Black Swan                          -2.42
+62    Mr. Robot                                Mr. Robot                            2.32
+63    Elliot Stabler                           Law & Order: SVU                    -2.11
+64    Erwin Smith                              Attack on Titan                      1.98
+65    Agent Smith                              The Matrix                          -1.94
+66    Black Noir                               The Boys                             1.54
+67    Jim Burns                                The Fall                            -1.34
+68    Klaus Baudelaire                         A Series of Unfortunate Event       -1.24
+69    Dr. Eric Foreman                         House, M.D.                          1.16
+70    The Wicked Witch of the West             The Wizard of Oz                     0.63
+71    Thomas Barrow                            Downton Abbey                        0.13
+72    Javert                                   Les Misérables                       0.12
+73    Jonas Kahnwald                           Dark                                 0.01
+

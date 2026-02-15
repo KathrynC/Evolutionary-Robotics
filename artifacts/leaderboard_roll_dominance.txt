@@ -1,0 +1,30 @@
+ROLL AXIS DOMINANCE LEADERBOARD — Top 25
+Characters whose gaits are dominated by rolling motion
+==========================================================================================
+Rank  Character                                                 Roll Dom     DX (m)
+------------------------------------------------------------------------------------------
+1     Batman [The Lego Movie]                                     0.9988      -0.21
+2     Emma Nelson [Degrassi: The Next Generation]                 0.9987     -10.95
+3     Randle McMurphy [One Flew Over the Cuckoo's Nest]           0.9982       0.70
+4     Amanita Caplan [Sense8]                                     0.9981       5.10
+5     Dinesh Chugtai [Silicon Valley]                             0.9975       4.81
+6     Marge Simpson [The Simpsons]                                0.9972     -22.52
+7     Jim Halpert [The Office]                                    0.9969     -15.98
+8     Carlisle Cullen [Twilight]                                  0.9962     -25.92
+9     Billy Butcher [The Boys]                                    0.9952       2.56
+10    Dale Horvath [The Walking Dead]                             0.9948       1.04
+11    Boromir [Lord of the Rings]                                 0.9943       9.07
+12    Jack Hodgins [Bones]                                        0.9942     -33.41
+13    Kimiko Miyashiro [The Boys]                                 0.9940       2.71
+14    Monty Green [The 100]                                       0.9939      -8.28
+15    Wanda Maximoff [WandaVision]                                0.9938     -23.28
+16    Brian Zeller [Hannibal]                                     0.9936       2.44
+17    Barney Gumble [The Simpsons]                                0.9933     -17.95
+18    Elizabeth [Hustlers]                                        0.9931       5.40
+19    Stanley Hudson [The Office]                                 0.9925     -32.77
+20    Andy Dufresne [The Shawshank Redemption]                    0.9924     -29.69
+21    Sarah Connor [Terminator 2: Judgement Day]                  0.9922     -29.43
+22    Sailor Mars [Sailor Moon]                                   0.9905       1.31
+23    Suzuha Amane [Steins;Gate]                                  0.9898     -33.07
+24    Blaine Anderson [Glee]                                      0.9897     -35.52
+25    Niko Polastri [Killing Eve]                                 0.9896     -14.95

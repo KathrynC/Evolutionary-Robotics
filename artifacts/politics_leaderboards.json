@@ -1,0 +1,4834 @@
+{
+  "archetypes": {
+    "Assertive": {
+      "count": 25,
+      "weights": {
+        "w03": 0.8,
+        "w04": -0.6,
+        "w13": 0.2,
+        "w14": -0.9,
+        "w23": 0.5,
+        "w24": -0.4
+      },
+      "dx": 1.5485268151295735,
+      "speed": 0.26771548533991624,
+      "efficiency": 0.0008936151485205518,
+      "phase_lock": 0.9419029020743026,
+      "entropy": 0.906401538304038,
+      "members": [
+        {
+          "name": "realDonaldTrump",
+          "group": "family"
+        },
+        {
+          "name": "Kushner",
+          "group": "family"
+        },
+        {
+          "name": "Bannon",
+          "group": "admin"
+        },
+        {
+          "name": "Barr",
+          "group": "admin"
+        },
+        {
+          "name": "Barrett",
+          "group": "admin"
+        },
+        {
+          "name": "Bolton",
+          "group": "admin"
+        },
+        {
+          "name": "Conway",
+          "group": "admin"
+        },
+        {
+          "name": "Flynn",
+          "group": "admin"
+        },
+        {
+          "name": "McConnell",
+          "group": "admin"
+        },
+        {
+          "name": "Pruitt",
+          "group": "admin"
+        },
+        {
+          "name": "Sanders",
+          "group": "admin"
+        },
+        {
+          "name": "Scalia",
+          "group": "admin"
+        },
+        {
+          "name": "Sessions",
+          "group": "admin"
+        },
+        {
+          "name": "Cruz",
+          "group": "adjacent"
+        },
+        {
+          "name": "Epstein",
+          "group": "adjacent"
+        },
+        {
+          "name": "Elon",
+          "group": "adjacent"
+        },
+        {
+          "name": "Farage",
+          "group": "adjacent"
+        },
+        {
+          "name": "Gates",
+          "group": "adjacent"
+        },
+        {
+          "name": "Giuliani",
+          "group": "adjacent"
+        },
+        {
+          "name": "Mercer",
+          "group": "adjacent"
+        },
+        {
+          "name": "Musk",
+          "group": "adjacent"
+        },
+        {
+          "name": "Putin",
+          "group": "adjacent"
+        },
+        {
+          "name": "Bernie",
+          "group": "opposition"
+        },
+        {
+          "name": "Castro",
+          "group": "opposition"
+        },
+        {
+          "name": "Cheney",
+          "group": "opposition"
+        }
+      ]
+    },
+    "Majority": {
+      "count": 50,
+      "weights": {
+        "w03": 0.6,
+        "w04": -0.4,
+        "w13": 0.2,
+        "w14": -0.8,
+        "w23": 0.5,
+        "w24": -0.3
+      },
+      "dx": 1.175219123969025,
+      "speed": 0.16992569594718368,
+      "efficiency": 0.0008058926757078578,
+      "phase_lock": 0.8860539375073351,
+      "entropy": 0.6969836210406221,
+      "members": [
+        {
+          "name": "Ivanka",
+          "group": "family"
+        },
+        {
+          "name": "Jared",
+          "group": "family"
+        },
+        {
+          "name": "Melania",
+          "group": "family"
+        },
+        {
+          "name": "Tiffany",
+          "group": "family"
+        },
+        {
+          "name": "Lara",
+          "group": "family"
+        },
+        {
+          "name": "Hicks",
+          "group": "admin"
+        },
+        {
+          "name": "Haley",
+          "group": "admin"
+        },
+        {
+          "name": "Huckabee",
+          "group": "admin"
+        },
+        {
+          "name": "Kavanaugh",
+          "group": "admin"
+        },
+        {
+          "name": "Kennedy",
+          "group": "admin"
+        },
+        {
+          "name": "Meadows",
+          "group": "admin"
+        },
+        {
+          "name": "Pence",
+          "group": "admin"
+        },
+        {
+          "name": "Pompeo",
+          "group": "admin"
+        },
+        {
+          "name": "Tillerson",
+          "group": "admin"
+        },
+        {
+          "name": "Burnett",
+          "group": "adjacent"
+        },
+        {
+          "name": "Byrne",
+          "group": "adjacent"
+        },
+        {
+          "name": "Cobb",
+          "group": "adjacent"
+        },
+        {
+          "name": "Manafort",
+          "group": "adjacent"
+        },
+        {
+          "name": "Marco",
+          "group": "adjacent"
+        },
+        {
+          "name": "Maxwell",
+          "group": "adjacent"
+        },
+        {
+          "name": "Rubio",
+          "group": "adjacent"
+        },
+        {
+          "name": "Shapiro",
+          "group": "adjacent"
+        },
+        {
+          "name": "Woodward",
+          "group": "opposition"
+        },
+        {
+          "name": "Bernstein",
+          "group": "opposition"
+        },
+        {
+          "name": "Baldwin",
+          "group": "opposition"
+        },
+        {
+          "name": "Baker",
+          "group": "opposition"
+        },
+        {
+          "name": "Biden",
+          "group": "opposition"
+        },
+        {
+          "name": "Booker",
+          "group": "opposition"
+        },
+        {
+          "name": "Brandon",
+          "group": "opposition"
+        },
+        {
+          "name": "Carroll",
+          "group": "opposition"
+        },
+        {
+          "name": "Cassidy",
+          "group": "opposition"
+        },
+        {
+          "name": "Comey",
+          "group": "opposition"
+        },
+        {
+          "name": "Clinton",
+          "group": "opposition"
+        },
+        {
+          "name": "Clintons",
+          "group": "opposition"
+        },
+        {
+          "name": "Daniels",
+          "group": "opposition"
+        },
+        {
+          "name": "Feinstein",
+          "group": "opposition"
+        },
+        {
+          "name": "Garland",
+          "group": "opposition"
+        },
+        {
+          "name": "Hillary",
+          "group": "opposition"
+        },
+        {
+          "name": "Hutchinson",
+          "group": "opposition"
+        },
+        {
+          "name": "McCain",
+          "group": "opposition"
+        },
+        {
+          "name": "Mueller",
+          "group": "opposition"
+        },
+        {
+          "name": "Pelosi",
+          "group": "opposition"
+        },
+        {
+          "name": "Podesta",
+          "group": "opposition"
+        },
+        {
+          "name": "Romney",
+          "group": "opposition"
+        },
+        {
+          "name": "Rosenstein",
+          "group": "opposition"
+        },
+        {
+          "name": "Schiff",
+          "group": "opposition"
+        },
+        {
+          "name": "Schumer",
+          "group": "opposition"
+        },
+        {
+          "name": "Steele",
+          "group": "opposition"
+        },
+        {
+          "name": "Warren",
+          "group": "opposition"
+        },
+        {
+          "name": "Yates",
+          "group": "opposition"
+        }
+      ]
+    },
+    "Contrarian": {
+      "count": 2,
+      "weights": {
+        "w03": 0.8,
+        "w04": -0.6,
+        "w13": -0.2,
+        "w14": 0.9,
+        "w23": 0.5,
+        "w24": -0.4
+      },
+      "dx": -1.189496038338916,
+      "speed": 0.3383840296337378,
+      "efficiency": 0.001215785119383782,
+      "phase_lock": 0.9260521316253473,
+      "entropy": 1.2386216176341813,
+      "members": [
+        {
+          "name": "McCarthy",
+          "group": "admin"
+        },
+        {
+          "name": "Spicer",
+          "group": "admin"
+        }
+      ]
+    },
+    "Whistleblower": {
+      "count": 2,
+      "weights": {
+        "w03": 0.6,
+        "w04": -0.4,
+        "w13": -0.2,
+        "w14": 0.8,
+        "w23": 0.3,
+        "w24": -0.5
+      },
+      "dx": -5.635555464743059,
+      "speed": 0.4333767549110316,
+      "efficiency": 0.003372317017519576,
+      "phase_lock": 0.9148082174294637,
+      "entropy": 1.2165095329134499,
+      "members": [
+        {
+          "name": "Assange",
+          "group": "adjacent"
+        },
+        {
+          "name": "Snowden",
+          "group": "adjacent"
+        }
+      ]
+    }
+  },
+  "leaderboards": {
+    "distance": [
+      {
+        "rank": 1,
+        "name": "Assange",
+        "group": "adjacent",
+        "archetype": "Whistleblower",
+        "value": 5.739747166303923
+      },
+      {
+        "rank": 2,
+        "name": "Snowden",
+        "group": "adjacent",
+        "archetype": "Whistleblower",
+        "value": 5.739747166303923
+      },
+      {
+        "rank": 3,
+        "name": "McCarthy",
+        "group": "admin",
+        "archetype": "Contrarian",
+        "value": 2.9789759428978044
+      },
+      {
+        "rank": 4,
+        "name": "Spicer",
+        "group": "admin",
+        "archetype": "Contrarian",
+        "value": 2.9789759428978044
+      },
+      {
+        "rank": 5,
+        "name": "realDonaldTrump",
+        "group": "family",
+        "archetype": "Assertive",
+        "value": 1.5491918092320198
+      },
+      {
+        "rank": 6,
+        "name": "Kushner",
+        "group": "family",
+        "archetype": "Assertive",
+        "value": 1.5491918092320198
+      },
+      {
+        "rank": 7,
+        "name": "Bannon",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 1.5491918092320198
+      },
+      {
+        "rank": 8,
+        "name": "Barr",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 1.5491918092320198
+      },
+      {
+        "rank": 9,
+        "name": "Barrett",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 1.5491918092320198
+      },
+      {
+        "rank": 10,
+        "name": "Bolton",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 1.5491918092320198
+      },
+      {
+        "rank": 11,
+        "name": "Conway",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 1.5491918092320198
+      },
+      {
+        "rank": 12,
+        "name": "Flynn",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 1.5491918092320198
+      },
+      {
+        "rank": 13,
+        "name": "McConnell",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 1.5491918092320198
+      },
+      {
+        "rank": 14,
+        "name": "Pruitt",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 1.5491918092320198
+      },
+      {
+        "rank": 15,
+        "name": "Sanders",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 1.5491918092320198
+      },
+      {
+        "rank": 16,
+        "name": "Scalia",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 1.5491918092320198
+      },
+      {
+        "rank": 17,
+        "name": "Sessions",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 1.5491918092320198
+      },
+      {
+        "rank": 18,
+        "name": "Cruz",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 1.5491918092320198
+      },
+      {
+        "rank": 19,
+        "name": "Epstein",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 1.5491918092320198
+      },
+      {
+        "rank": 20,
+        "name": "Elon",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 1.5491918092320198
+      },
+      {
+        "rank": 21,
+        "name": "Farage",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 1.5491918092320198
+      },
+      {
+        "rank": 22,
+        "name": "Gates",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 1.5491918092320198
+      },
+      {
+        "rank": 23,
+        "name": "Giuliani",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 1.5491918092320198
+      },
+      {
+        "rank": 24,
+        "name": "Mercer",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 1.5491918092320198
+      },
+      {
+        "rank": 25,
+        "name": "Musk",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 1.5491918092320198
+      },
+      {
+        "rank": 26,
+        "name": "Putin",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 1.5491918092320198
+      },
+      {
+        "rank": 27,
+        "name": "Bernie",
+        "group": "opposition",
+        "archetype": "Assertive",
+        "value": 1.5491918092320198
+      },
+      {
+        "rank": 28,
+        "name": "Castro",
+        "group": "opposition",
+        "archetype": "Assertive",
+        "value": 1.5491918092320198
+      },
+      {
+        "rank": 29,
+        "name": "Cheney",
+        "group": "opposition",
+        "archetype": "Assertive",
+        "value": 1.5491918092320198
+      },
+      {
+        "rank": 30,
+        "name": "Ivanka",
+        "group": "family",
+        "archetype": "Majority",
+        "value": 1.2326784642179787
+      },
+      {
+        "rank": 31,
+        "name": "Jared",
+        "group": "family",
+        "archetype": "Majority",
+        "value": 1.2326784642179787
+      },
+      {
+        "rank": 32,
+        "name": "Melania",
+        "group": "family",
+        "archetype": "Majority",
+        "value": 1.2326784642179787
+      },
+      {
+        "rank": 33,
+        "name": "Tiffany",
+        "group": "family",
+        "archetype": "Majority",
+        "value": 1.2326784642179787
+      },
+      {
+        "rank": 34,
+        "name": "Lara",
+        "group": "family",
+        "archetype": "Majority",
+        "value": 1.2326784642179787
+      },
+      {
+        "rank": 35,
+        "name": "Hicks",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 1.2326784642179787
+      },
+      {
+        "rank": 36,
+        "name": "Haley",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 1.2326784642179787
+      },
+      {
+        "rank": 37,
+        "name": "Huckabee",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 1.2326784642179787
+      },
+      {
+        "rank": 38,
+        "name": "Kavanaugh",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 1.2326784642179787
+      },
+      {
+        "rank": 39,
+        "name": "Kennedy",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 1.2326784642179787
+      },
+      {
+        "rank": 40,
+        "name": "Meadows",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 1.2326784642179787
+      },
+      {
+        "rank": 41,
+        "name": "Pence",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 1.2326784642179787
+      },
+      {
+        "rank": 42,
+        "name": "Pompeo",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 1.2326784642179787
+      },
+      {
+        "rank": 43,
+        "name": "Tillerson",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 1.2326784642179787
+      },
+      {
+        "rank": 44,
+        "name": "Burnett",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 1.2326784642179787
+      },
+      {
+        "rank": 45,
+        "name": "Byrne",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 1.2326784642179787
+      },
+      {
+        "rank": 46,
+        "name": "Cobb",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 1.2326784642179787
+      },
+      {
+        "rank": 47,
+        "name": "Manafort",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 1.2326784642179787
+      },
+      {
+        "rank": 48,
+        "name": "Marco",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 1.2326784642179787
+      },
+      {
+        "rank": 49,
+        "name": "Maxwell",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 1.2326784642179787
+      },
+      {
+        "rank": 50,
+        "name": "Rubio",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 1.2326784642179787
+      },
+      {
+        "rank": 51,
+        "name": "Shapiro",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 1.2326784642179787
+      },
+      {
+        "rank": 52,
+        "name": "Woodward",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 1.2326784642179787
+      },
+      {
+        "rank": 53,
+        "name": "Bernstein",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 1.2326784642179787
+      },
+      {
+        "rank": 54,
+        "name": "Baldwin",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 1.2326784642179787
+      },
+      {
+        "rank": 55,
+        "name": "Baker",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 1.2326784642179787
+      },
+      {
+        "rank": 56,
+        "name": "Biden",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 1.2326784642179787
+      },
+      {
+        "rank": 57,
+        "name": "Booker",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 1.2326784642179787
+      },
+      {
+        "rank": 58,
+        "name": "Brandon",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 1.2326784642179787
+      },
+      {
+        "rank": 59,
+        "name": "Carroll",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 1.2326784642179787
+      },
+      {
+        "rank": 60,
+        "name": "Cassidy",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 1.2326784642179787
+      },
+      {
+        "rank": 61,
+        "name": "Comey",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 1.2326784642179787
+      },
+      {
+        "rank": 62,
+        "name": "Clinton",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 1.2326784642179787
+      },
+      {
+        "rank": 63,
+        "name": "Clintons",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 1.2326784642179787
+      },
+      {
+        "rank": 64,
+        "name": "Daniels",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 1.2326784642179787
+      },
+      {
+        "rank": 65,
+        "name": "Feinstein",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 1.2326784642179787
+      },
+      {
+        "rank": 66,
+        "name": "Garland",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 1.2326784642179787
+      },
+      {
+        "rank": 67,
+        "name": "Hillary",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 1.2326784642179787
+      },
+      {
+        "rank": 68,
+        "name": "Hutchinson",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 1.2326784642179787
+      },
+      {
+        "rank": 69,
+        "name": "McCain",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 1.2326784642179787
+      },
+      {
+        "rank": 70,
+        "name": "Mueller",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 1.2326784642179787
+      },
+      {
+        "rank": 71,
+        "name": "Pelosi",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 1.2326784642179787
+      },
+      {
+        "rank": 72,
+        "name": "Podesta",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 1.2326784642179787
+      },
+      {
+        "rank": 73,
+        "name": "Romney",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 1.2326784642179787
+      },
+      {
+        "rank": 74,
+        "name": "Rosenstein",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 1.2326784642179787
+      },
+      {
+        "rank": 75,
+        "name": "Schiff",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 1.2326784642179787
+      },
+      {
+        "rank": 76,
+        "name": "Schumer",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 1.2326784642179787
+      },
+      {
+        "rank": 77,
+        "name": "Steele",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 1.2326784642179787
+      },
+      {
+        "rank": 78,
+        "name": "Warren",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 1.2326784642179787
+      },
+      {
+        "rank": 79,
+        "name": "Yates",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 1.2326784642179787
+      }
+    ],
+    "speed": [
+      {
+        "rank": 1,
+        "name": "Assange",
+        "group": "adjacent",
+        "archetype": "Whistleblower",
+        "value": 0.4333767549110316
+      },
+      {
+        "rank": 2,
+        "name": "Snowden",
+        "group": "adjacent",
+        "archetype": "Whistleblower",
+        "value": 0.4333767549110316
+      },
+      {
+        "rank": 3,
+        "name": "McCarthy",
+        "group": "admin",
+        "archetype": "Contrarian",
+        "value": 0.3383840296337378
+      },
+      {
+        "rank": 4,
+        "name": "Spicer",
+        "group": "admin",
+        "archetype": "Contrarian",
+        "value": 0.3383840296337378
+      },
+      {
+        "rank": 5,
+        "name": "realDonaldTrump",
+        "group": "family",
+        "archetype": "Assertive",
+        "value": 0.26771548533991624
+      },
+      {
+        "rank": 6,
+        "name": "Kushner",
+        "group": "family",
+        "archetype": "Assertive",
+        "value": 0.26771548533991624
+      },
+      {
+        "rank": 7,
+        "name": "Bannon",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 0.26771548533991624
+      },
+      {
+        "rank": 8,
+        "name": "Barr",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 0.26771548533991624
+      },
+      {
+        "rank": 9,
+        "name": "Barrett",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 0.26771548533991624
+      },
+      {
+        "rank": 10,
+        "name": "Bolton",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 0.26771548533991624
+      },
+      {
+        "rank": 11,
+        "name": "Conway",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 0.26771548533991624
+      },
+      {
+        "rank": 12,
+        "name": "Flynn",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 0.26771548533991624
+      },
+      {
+        "rank": 13,
+        "name": "McConnell",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 0.26771548533991624
+      },
+      {
+        "rank": 14,
+        "name": "Pruitt",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 0.26771548533991624
+      },
+      {
+        "rank": 15,
+        "name": "Sanders",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 0.26771548533991624
+      },
+      {
+        "rank": 16,
+        "name": "Scalia",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 0.26771548533991624
+      },
+      {
+        "rank": 17,
+        "name": "Sessions",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 0.26771548533991624
+      },
+      {
+        "rank": 18,
+        "name": "Cruz",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 0.26771548533991624
+      },
+      {
+        "rank": 19,
+        "name": "Epstein",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 0.26771548533991624
+      },
+      {
+        "rank": 20,
+        "name": "Elon",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 0.26771548533991624
+      },
+      {
+        "rank": 21,
+        "name": "Farage",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 0.26771548533991624
+      },
+      {
+        "rank": 22,
+        "name": "Gates",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 0.26771548533991624
+      },
+      {
+        "rank": 23,
+        "name": "Giuliani",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 0.26771548533991624
+      },
+      {
+        "rank": 24,
+        "name": "Mercer",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 0.26771548533991624
+      },
+      {
+        "rank": 25,
+        "name": "Musk",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 0.26771548533991624
+      },
+      {
+        "rank": 26,
+        "name": "Putin",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 0.26771548533991624
+      },
+      {
+        "rank": 27,
+        "name": "Bernie",
+        "group": "opposition",
+        "archetype": "Assertive",
+        "value": 0.26771548533991624
+      },
+      {
+        "rank": 28,
+        "name": "Castro",
+        "group": "opposition",
+        "archetype": "Assertive",
+        "value": 0.26771548533991624
+      },
+      {
+        "rank": 29,
+        "name": "Cheney",
+        "group": "opposition",
+        "archetype": "Assertive",
+        "value": 0.26771548533991624
+      },
+      {
+        "rank": 30,
+        "name": "Ivanka",
+        "group": "family",
+        "archetype": "Majority",
+        "value": 0.16992569594718368
+      },
+      {
+        "rank": 31,
+        "name": "Jared",
+        "group": "family",
+        "archetype": "Majority",
+        "value": 0.16992569594718368
+      },
+      {
+        "rank": 32,
+        "name": "Melania",
+        "group": "family",
+        "archetype": "Majority",
+        "value": 0.16992569594718368
+      },
+      {
+        "rank": 33,
+        "name": "Tiffany",
+        "group": "family",
+        "archetype": "Majority",
+        "value": 0.16992569594718368
+      },
+      {
+        "rank": 34,
+        "name": "Lara",
+        "group": "family",
+        "archetype": "Majority",
+        "value": 0.16992569594718368
+      },
+      {
+        "rank": 35,
+        "name": "Hicks",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 0.16992569594718368
+      },
+      {
+        "rank": 36,
+        "name": "Haley",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 0.16992569594718368
+      },
+      {
+        "rank": 37,
+        "name": "Huckabee",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 0.16992569594718368
+      },
+      {
+        "rank": 38,
+        "name": "Kavanaugh",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 0.16992569594718368
+      },
+      {
+        "rank": 39,
+        "name": "Kennedy",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 0.16992569594718368
+      },
+      {
+        "rank": 40,
+        "name": "Meadows",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 0.16992569594718368
+      },
+      {
+        "rank": 41,
+        "name": "Pence",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 0.16992569594718368
+      },
+      {
+        "rank": 42,
+        "name": "Pompeo",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 0.16992569594718368
+      },
+      {
+        "rank": 43,
+        "name": "Tillerson",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 0.16992569594718368
+      },
+      {
+        "rank": 44,
+        "name": "Burnett",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 0.16992569594718368
+      },
+      {
+        "rank": 45,
+        "name": "Byrne",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 0.16992569594718368
+      },
+      {
+        "rank": 46,
+        "name": "Cobb",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 0.16992569594718368
+      },
+      {
+        "rank": 47,
+        "name": "Manafort",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 0.16992569594718368
+      },
+      {
+        "rank": 48,
+        "name": "Marco",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 0.16992569594718368
+      },
+      {
+        "rank": 49,
+        "name": "Maxwell",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 0.16992569594718368
+      },
+      {
+        "rank": 50,
+        "name": "Rubio",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 0.16992569594718368
+      },
+      {
+        "rank": 51,
+        "name": "Shapiro",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 0.16992569594718368
+      },
+      {
+        "rank": 52,
+        "name": "Woodward",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.16992569594718368
+      },
+      {
+        "rank": 53,
+        "name": "Bernstein",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.16992569594718368
+      },
+      {
+        "rank": 54,
+        "name": "Baldwin",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.16992569594718368
+      },
+      {
+        "rank": 55,
+        "name": "Baker",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.16992569594718368
+      },
+      {
+        "rank": 56,
+        "name": "Biden",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.16992569594718368
+      },
+      {
+        "rank": 57,
+        "name": "Booker",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.16992569594718368
+      },
+      {
+        "rank": 58,
+        "name": "Brandon",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.16992569594718368
+      },
+      {
+        "rank": 59,
+        "name": "Carroll",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.16992569594718368
+      },
+      {
+        "rank": 60,
+        "name": "Cassidy",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.16992569594718368
+      },
+      {
+        "rank": 61,
+        "name": "Comey",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.16992569594718368
+      },
+      {
+        "rank": 62,
+        "name": "Clinton",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.16992569594718368
+      },
+      {
+        "rank": 63,
+        "name": "Clintons",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.16992569594718368
+      },
+      {
+        "rank": 64,
+        "name": "Daniels",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.16992569594718368
+      },
+      {
+        "rank": 65,
+        "name": "Feinstein",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.16992569594718368
+      },
+      {
+        "rank": 66,
+        "name": "Garland",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.16992569594718368
+      },
+      {
+        "rank": 67,
+        "name": "Hillary",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.16992569594718368
+      },
+      {
+        "rank": 68,
+        "name": "Hutchinson",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.16992569594718368
+      },
+      {
+        "rank": 69,
+        "name": "McCain",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.16992569594718368
+      },
+      {
+        "rank": 70,
+        "name": "Mueller",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.16992569594718368
+      },
+      {
+        "rank": 71,
+        "name": "Pelosi",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.16992569594718368
+      },
+      {
+        "rank": 72,
+        "name": "Podesta",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.16992569594718368
+      },
+      {
+        "rank": 73,
+        "name": "Romney",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.16992569594718368
+      },
+      {
+        "rank": 74,
+        "name": "Rosenstein",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.16992569594718368
+      },
+      {
+        "rank": 75,
+        "name": "Schiff",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.16992569594718368
+      },
+      {
+        "rank": 76,
+        "name": "Schumer",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.16992569594718368
+      },
+      {
+        "rank": 77,
+        "name": "Steele",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.16992569594718368
+      },
+      {
+        "rank": 78,
+        "name": "Warren",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.16992569594718368
+      },
+      {
+        "rank": 79,
+        "name": "Yates",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.16992569594718368
+      }
+    ],
+    "efficiency": [
+      {
+        "rank": 1,
+        "name": "Assange",
+        "group": "adjacent",
+        "archetype": "Whistleblower",
+        "value": 0.003372317017519576
+      },
+      {
+        "rank": 2,
+        "name": "Snowden",
+        "group": "adjacent",
+        "archetype": "Whistleblower",
+        "value": 0.003372317017519576
+      },
+      {
+        "rank": 3,
+        "name": "McCarthy",
+        "group": "admin",
+        "archetype": "Contrarian",
+        "value": 0.001215785119383782
+      },
+      {
+        "rank": 4,
+        "name": "Spicer",
+        "group": "admin",
+        "archetype": "Contrarian",
+        "value": 0.001215785119383782
+      },
+      {
+        "rank": 5,
+        "name": "realDonaldTrump",
+        "group": "family",
+        "archetype": "Assertive",
+        "value": 0.0008936151485205518
+      },
+      {
+        "rank": 6,
+        "name": "Kushner",
+        "group": "family",
+        "archetype": "Assertive",
+        "value": 0.0008936151485205518
+      },
+      {
+        "rank": 7,
+        "name": "Bannon",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 0.0008936151485205518
+      },
+      {
+        "rank": 8,
+        "name": "Barr",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 0.0008936151485205518
+      },
+      {
+        "rank": 9,
+        "name": "Barrett",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 0.0008936151485205518
+      },
+      {
+        "rank": 10,
+        "name": "Bolton",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 0.0008936151485205518
+      },
+      {
+        "rank": 11,
+        "name": "Conway",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 0.0008936151485205518
+      },
+      {
+        "rank": 12,
+        "name": "Flynn",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 0.0008936151485205518
+      },
+      {
+        "rank": 13,
+        "name": "McConnell",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 0.0008936151485205518
+      },
+      {
+        "rank": 14,
+        "name": "Pruitt",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 0.0008936151485205518
+      },
+      {
+        "rank": 15,
+        "name": "Sanders",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 0.0008936151485205518
+      },
+      {
+        "rank": 16,
+        "name": "Scalia",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 0.0008936151485205518
+      },
+      {
+        "rank": 17,
+        "name": "Sessions",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 0.0008936151485205518
+      },
+      {
+        "rank": 18,
+        "name": "Cruz",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 0.0008936151485205518
+      },
+      {
+        "rank": 19,
+        "name": "Epstein",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 0.0008936151485205518
+      },
+      {
+        "rank": 20,
+        "name": "Elon",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 0.0008936151485205518
+      },
+      {
+        "rank": 21,
+        "name": "Farage",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 0.0008936151485205518
+      },
+      {
+        "rank": 22,
+        "name": "Gates",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 0.0008936151485205518
+      },
+      {
+        "rank": 23,
+        "name": "Giuliani",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 0.0008936151485205518
+      },
+      {
+        "rank": 24,
+        "name": "Mercer",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 0.0008936151485205518
+      },
+      {
+        "rank": 25,
+        "name": "Musk",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 0.0008936151485205518
+      },
+      {
+        "rank": 26,
+        "name": "Putin",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 0.0008936151485205518
+      },
+      {
+        "rank": 27,
+        "name": "Bernie",
+        "group": "opposition",
+        "archetype": "Assertive",
+        "value": 0.0008936151485205518
+      },
+      {
+        "rank": 28,
+        "name": "Castro",
+        "group": "opposition",
+        "archetype": "Assertive",
+        "value": 0.0008936151485205518
+      },
+      {
+        "rank": 29,
+        "name": "Cheney",
+        "group": "opposition",
+        "archetype": "Assertive",
+        "value": 0.0008936151485205518
+      },
+      {
+        "rank": 30,
+        "name": "Ivanka",
+        "group": "family",
+        "archetype": "Majority",
+        "value": 0.0008058926757078578
+      },
+      {
+        "rank": 31,
+        "name": "Jared",
+        "group": "family",
+        "archetype": "Majority",
+        "value": 0.0008058926757078578
+      },
+      {
+        "rank": 32,
+        "name": "Melania",
+        "group": "family",
+        "archetype": "Majority",
+        "value": 0.0008058926757078578
+      },
+      {
+        "rank": 33,
+        "name": "Tiffany",
+        "group": "family",
+        "archetype": "Majority",
+        "value": 0.0008058926757078578
+      },
+      {
+        "rank": 34,
+        "name": "Lara",
+        "group": "family",
+        "archetype": "Majority",
+        "value": 0.0008058926757078578
+      },
+      {
+        "rank": 35,
+        "name": "Hicks",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 0.0008058926757078578
+      },
+      {
+        "rank": 36,
+        "name": "Haley",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 0.0008058926757078578
+      },
+      {
+        "rank": 37,
+        "name": "Huckabee",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 0.0008058926757078578
+      },
+      {
+        "rank": 38,
+        "name": "Kavanaugh",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 0.0008058926757078578
+      },
+      {
+        "rank": 39,
+        "name": "Kennedy",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 0.0008058926757078578
+      },
+      {
+        "rank": 40,
+        "name": "Meadows",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 0.0008058926757078578
+      },
+      {
+        "rank": 41,
+        "name": "Pence",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 0.0008058926757078578
+      },
+      {
+        "rank": 42,
+        "name": "Pompeo",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 0.0008058926757078578
+      },
+      {
+        "rank": 43,
+        "name": "Tillerson",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 0.0008058926757078578
+      },
+      {
+        "rank": 44,
+        "name": "Burnett",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 0.0008058926757078578
+      },
+      {
+        "rank": 45,
+        "name": "Byrne",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 0.0008058926757078578
+      },
+      {
+        "rank": 46,
+        "name": "Cobb",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 0.0008058926757078578
+      },
+      {
+        "rank": 47,
+        "name": "Manafort",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 0.0008058926757078578
+      },
+      {
+        "rank": 48,
+        "name": "Marco",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 0.0008058926757078578
+      },
+      {
+        "rank": 49,
+        "name": "Maxwell",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 0.0008058926757078578
+      },
+      {
+        "rank": 50,
+        "name": "Rubio",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 0.0008058926757078578
+      },
+      {
+        "rank": 51,
+        "name": "Shapiro",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 0.0008058926757078578
+      },
+      {
+        "rank": 52,
+        "name": "Woodward",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.0008058926757078578
+      },
+      {
+        "rank": 53,
+        "name": "Bernstein",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.0008058926757078578
+      },
+      {
+        "rank": 54,
+        "name": "Baldwin",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.0008058926757078578
+      },
+      {
+        "rank": 55,
+        "name": "Baker",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.0008058926757078578
+      },
+      {
+        "rank": 56,
+        "name": "Biden",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.0008058926757078578
+      },
+      {
+        "rank": 57,
+        "name": "Booker",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.0008058926757078578
+      },
+      {
+        "rank": 58,
+        "name": "Brandon",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.0008058926757078578
+      },
+      {
+        "rank": 59,
+        "name": "Carroll",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.0008058926757078578
+      },
+      {
+        "rank": 60,
+        "name": "Cassidy",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.0008058926757078578
+      },
+      {
+        "rank": 61,
+        "name": "Comey",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.0008058926757078578
+      },
+      {
+        "rank": 62,
+        "name": "Clinton",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.0008058926757078578
+      },
+      {
+        "rank": 63,
+        "name": "Clintons",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.0008058926757078578
+      },
+      {
+        "rank": 64,
+        "name": "Daniels",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.0008058926757078578
+      },
+      {
+        "rank": 65,
+        "name": "Feinstein",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.0008058926757078578
+      },
+      {
+        "rank": 66,
+        "name": "Garland",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.0008058926757078578
+      },
+      {
+        "rank": 67,
+        "name": "Hillary",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.0008058926757078578
+      },
+      {
+        "rank": 68,
+        "name": "Hutchinson",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.0008058926757078578
+      },
+      {
+        "rank": 69,
+        "name": "McCain",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.0008058926757078578
+      },
+      {
+        "rank": 70,
+        "name": "Mueller",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.0008058926757078578
+      },
+      {
+        "rank": 71,
+        "name": "Pelosi",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.0008058926757078578
+      },
+      {
+        "rank": 72,
+        "name": "Podesta",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.0008058926757078578
+      },
+      {
+        "rank": 73,
+        "name": "Romney",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.0008058926757078578
+      },
+      {
+        "rank": 74,
+        "name": "Rosenstein",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.0008058926757078578
+      },
+      {
+        "rank": 75,
+        "name": "Schiff",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.0008058926757078578
+      },
+      {
+        "rank": 76,
+        "name": "Schumer",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.0008058926757078578
+      },
+      {
+        "rank": 77,
+        "name": "Steele",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.0008058926757078578
+      },
+      {
+        "rank": 78,
+        "name": "Warren",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.0008058926757078578
+      },
+      {
+        "rank": 79,
+        "name": "Yates",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.0008058926757078578
+      }
+    ],
+    "coordination": [
+      {
+        "rank": 1,
+        "name": "realDonaldTrump",
+        "group": "family",
+        "archetype": "Assertive",
+        "value": 0.9419029020743026
+      },
+      {
+        "rank": 2,
+        "name": "Kushner",
+        "group": "family",
+        "archetype": "Assertive",
+        "value": 0.9419029020743026
+      },
+      {
+        "rank": 3,
+        "name": "Bannon",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 0.9419029020743026
+      },
+      {
+        "rank": 4,
+        "name": "Barr",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 0.9419029020743026
+      },
+      {
+        "rank": 5,
+        "name": "Barrett",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 0.9419029020743026
+      },
+      {
+        "rank": 6,
+        "name": "Bolton",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 0.9419029020743026
+      },
+      {
+        "rank": 7,
+        "name": "Conway",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 0.9419029020743026
+      },
+      {
+        "rank": 8,
+        "name": "Flynn",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 0.9419029020743026
+      },
+      {
+        "rank": 9,
+        "name": "McConnell",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 0.9419029020743026
+      },
+      {
+        "rank": 10,
+        "name": "Pruitt",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 0.9419029020743026
+      },
+      {
+        "rank": 11,
+        "name": "Sanders",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 0.9419029020743026
+      },
+      {
+        "rank": 12,
+        "name": "Scalia",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 0.9419029020743026
+      },
+      {
+        "rank": 13,
+        "name": "Sessions",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 0.9419029020743026
+      },
+      {
+        "rank": 14,
+        "name": "Cruz",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 0.9419029020743026
+      },
+      {
+        "rank": 15,
+        "name": "Epstein",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 0.9419029020743026
+      },
+      {
+        "rank": 16,
+        "name": "Elon",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 0.9419029020743026
+      },
+      {
+        "rank": 17,
+        "name": "Farage",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 0.9419029020743026
+      },
+      {
+        "rank": 18,
+        "name": "Gates",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 0.9419029020743026
+      },
+      {
+        "rank": 19,
+        "name": "Giuliani",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 0.9419029020743026
+      },
+      {
+        "rank": 20,
+        "name": "Mercer",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 0.9419029020743026
+      },
+      {
+        "rank": 21,
+        "name": "Musk",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 0.9419029020743026
+      },
+      {
+        "rank": 22,
+        "name": "Putin",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 0.9419029020743026
+      },
+      {
+        "rank": 23,
+        "name": "Bernie",
+        "group": "opposition",
+        "archetype": "Assertive",
+        "value": 0.9419029020743026
+      },
+      {
+        "rank": 24,
+        "name": "Castro",
+        "group": "opposition",
+        "archetype": "Assertive",
+        "value": 0.9419029020743026
+      },
+      {
+        "rank": 25,
+        "name": "Cheney",
+        "group": "opposition",
+        "archetype": "Assertive",
+        "value": 0.9419029020743026
+      },
+      {
+        "rank": 26,
+        "name": "McCarthy",
+        "group": "admin",
+        "archetype": "Contrarian",
+        "value": 0.9260521316253473
+      },
+      {
+        "rank": 27,
+        "name": "Spicer",
+        "group": "admin",
+        "archetype": "Contrarian",
+        "value": 0.9260521316253473
+      },
+      {
+        "rank": 28,
+        "name": "Assange",
+        "group": "adjacent",
+        "archetype": "Whistleblower",
+        "value": 0.9148082174294637
+      },
+      {
+        "rank": 29,
+        "name": "Snowden",
+        "group": "adjacent",
+        "archetype": "Whistleblower",
+        "value": 0.9148082174294637
+      },
+      {
+        "rank": 30,
+        "name": "Ivanka",
+        "group": "family",
+        "archetype": "Majority",
+        "value": 0.8860539375073351
+      },
+      {
+        "rank": 31,
+        "name": "Jared",
+        "group": "family",
+        "archetype": "Majority",
+        "value": 0.8860539375073351
+      },
+      {
+        "rank": 32,
+        "name": "Melania",
+        "group": "family",
+        "archetype": "Majority",
+        "value": 0.8860539375073351
+      },
+      {
+        "rank": 33,
+        "name": "Tiffany",
+        "group": "family",
+        "archetype": "Majority",
+        "value": 0.8860539375073351
+      },
+      {
+        "rank": 34,
+        "name": "Lara",
+        "group": "family",
+        "archetype": "Majority",
+        "value": 0.8860539375073351
+      },
+      {
+        "rank": 35,
+        "name": "Hicks",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 0.8860539375073351
+      },
+      {
+        "rank": 36,
+        "name": "Haley",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 0.8860539375073351
+      },
+      {
+        "rank": 37,
+        "name": "Huckabee",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 0.8860539375073351
+      },
+      {
+        "rank": 38,
+        "name": "Kavanaugh",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 0.8860539375073351
+      },
+      {
+        "rank": 39,
+        "name": "Kennedy",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 0.8860539375073351
+      },
+      {
+        "rank": 40,
+        "name": "Meadows",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 0.8860539375073351
+      },
+      {
+        "rank": 41,
+        "name": "Pence",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 0.8860539375073351
+      },
+      {
+        "rank": 42,
+        "name": "Pompeo",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 0.8860539375073351
+      },
+      {
+        "rank": 43,
+        "name": "Tillerson",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 0.8860539375073351
+      },
+      {
+        "rank": 44,
+        "name": "Burnett",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 0.8860539375073351
+      },
+      {
+        "rank": 45,
+        "name": "Byrne",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 0.8860539375073351
+      },
+      {
+        "rank": 46,
+        "name": "Cobb",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 0.8860539375073351
+      },
+      {
+        "rank": 47,
+        "name": "Manafort",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 0.8860539375073351
+      },
+      {
+        "rank": 48,
+        "name": "Marco",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 0.8860539375073351
+      },
+      {
+        "rank": 49,
+        "name": "Maxwell",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 0.8860539375073351
+      },
+      {
+        "rank": 50,
+        "name": "Rubio",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 0.8860539375073351
+      },
+      {
+        "rank": 51,
+        "name": "Shapiro",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 0.8860539375073351
+      },
+      {
+        "rank": 52,
+        "name": "Woodward",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.8860539375073351
+      },
+      {
+        "rank": 53,
+        "name": "Bernstein",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.8860539375073351
+      },
+      {
+        "rank": 54,
+        "name": "Baldwin",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.8860539375073351
+      },
+      {
+        "rank": 55,
+        "name": "Baker",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.8860539375073351
+      },
+      {
+        "rank": 56,
+        "name": "Biden",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.8860539375073351
+      },
+      {
+        "rank": 57,
+        "name": "Booker",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.8860539375073351
+      },
+      {
+        "rank": 58,
+        "name": "Brandon",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.8860539375073351
+      },
+      {
+        "rank": 59,
+        "name": "Carroll",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.8860539375073351
+      },
+      {
+        "rank": 60,
+        "name": "Cassidy",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.8860539375073351
+      },
+      {
+        "rank": 61,
+        "name": "Comey",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.8860539375073351
+      },
+      {
+        "rank": 62,
+        "name": "Clinton",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.8860539375073351
+      },
+      {
+        "rank": 63,
+        "name": "Clintons",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.8860539375073351
+      },
+      {
+        "rank": 64,
+        "name": "Daniels",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.8860539375073351
+      },
+      {
+        "rank": 65,
+        "name": "Feinstein",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.8860539375073351
+      },
+      {
+        "rank": 66,
+        "name": "Garland",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.8860539375073351
+      },
+      {
+        "rank": 67,
+        "name": "Hillary",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.8860539375073351
+      },
+      {
+        "rank": 68,
+        "name": "Hutchinson",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.8860539375073351
+      },
+      {
+        "rank": 69,
+        "name": "McCain",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.8860539375073351
+      },
+      {
+        "rank": 70,
+        "name": "Mueller",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.8860539375073351
+      },
+      {
+        "rank": 71,
+        "name": "Pelosi",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.8860539375073351
+      },
+      {
+        "rank": 72,
+        "name": "Podesta",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.8860539375073351
+      },
+      {
+        "rank": 73,
+        "name": "Romney",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.8860539375073351
+      },
+      {
+        "rank": 74,
+        "name": "Rosenstein",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.8860539375073351
+      },
+      {
+        "rank": 75,
+        "name": "Schiff",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.8860539375073351
+      },
+      {
+        "rank": 76,
+        "name": "Schumer",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.8860539375073351
+      },
+      {
+        "rank": 77,
+        "name": "Steele",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.8860539375073351
+      },
+      {
+        "rank": 78,
+        "name": "Warren",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.8860539375073351
+      },
+      {
+        "rank": 79,
+        "name": "Yates",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.8860539375073351
+      }
+    ],
+    "complexity": [
+      {
+        "rank": 1,
+        "name": "McCarthy",
+        "group": "admin",
+        "archetype": "Contrarian",
+        "value": 1.2386216176341813
+      },
+      {
+        "rank": 2,
+        "name": "Spicer",
+        "group": "admin",
+        "archetype": "Contrarian",
+        "value": 1.2386216176341813
+      },
+      {
+        "rank": 3,
+        "name": "Assange",
+        "group": "adjacent",
+        "archetype": "Whistleblower",
+        "value": 1.2165095329134499
+      },
+      {
+        "rank": 4,
+        "name": "Snowden",
+        "group": "adjacent",
+        "archetype": "Whistleblower",
+        "value": 1.2165095329134499
+      },
+      {
+        "rank": 5,
+        "name": "realDonaldTrump",
+        "group": "family",
+        "archetype": "Assertive",
+        "value": 0.906401538304038
+      },
+      {
+        "rank": 6,
+        "name": "Kushner",
+        "group": "family",
+        "archetype": "Assertive",
+        "value": 0.906401538304038
+      },
+      {
+        "rank": 7,
+        "name": "Bannon",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 0.906401538304038
+      },
+      {
+        "rank": 8,
+        "name": "Barr",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 0.906401538304038
+      },
+      {
+        "rank": 9,
+        "name": "Barrett",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 0.906401538304038
+      },
+      {
+        "rank": 10,
+        "name": "Bolton",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 0.906401538304038
+      },
+      {
+        "rank": 11,
+        "name": "Conway",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 0.906401538304038
+      },
+      {
+        "rank": 12,
+        "name": "Flynn",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 0.906401538304038
+      },
+      {
+        "rank": 13,
+        "name": "McConnell",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 0.906401538304038
+      },
+      {
+        "rank": 14,
+        "name": "Pruitt",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 0.906401538304038
+      },
+      {
+        "rank": 15,
+        "name": "Sanders",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 0.906401538304038
+      },
+      {
+        "rank": 16,
+        "name": "Scalia",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 0.906401538304038
+      },
+      {
+        "rank": 17,
+        "name": "Sessions",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 0.906401538304038
+      },
+      {
+        "rank": 18,
+        "name": "Cruz",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 0.906401538304038
+      },
+      {
+        "rank": 19,
+        "name": "Epstein",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 0.906401538304038
+      },
+      {
+        "rank": 20,
+        "name": "Elon",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 0.906401538304038
+      },
+      {
+        "rank": 21,
+        "name": "Farage",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 0.906401538304038
+      },
+      {
+        "rank": 22,
+        "name": "Gates",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 0.906401538304038
+      },
+      {
+        "rank": 23,
+        "name": "Giuliani",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 0.906401538304038
+      },
+      {
+        "rank": 24,
+        "name": "Mercer",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 0.906401538304038
+      },
+      {
+        "rank": 25,
+        "name": "Musk",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 0.906401538304038
+      },
+      {
+        "rank": 26,
+        "name": "Putin",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 0.906401538304038
+      },
+      {
+        "rank": 27,
+        "name": "Bernie",
+        "group": "opposition",
+        "archetype": "Assertive",
+        "value": 0.906401538304038
+      },
+      {
+        "rank": 28,
+        "name": "Castro",
+        "group": "opposition",
+        "archetype": "Assertive",
+        "value": 0.906401538304038
+      },
+      {
+        "rank": 29,
+        "name": "Cheney",
+        "group": "opposition",
+        "archetype": "Assertive",
+        "value": 0.906401538304038
+      },
+      {
+        "rank": 30,
+        "name": "Ivanka",
+        "group": "family",
+        "archetype": "Majority",
+        "value": 0.6969836210406221
+      },
+      {
+        "rank": 31,
+        "name": "Jared",
+        "group": "family",
+        "archetype": "Majority",
+        "value": 0.6969836210406221
+      },
+      {
+        "rank": 32,
+        "name": "Melania",
+        "group": "family",
+        "archetype": "Majority",
+        "value": 0.6969836210406221
+      },
+      {
+        "rank": 33,
+        "name": "Tiffany",
+        "group": "family",
+        "archetype": "Majority",
+        "value": 0.6969836210406221
+      },
+      {
+        "rank": 34,
+        "name": "Lara",
+        "group": "family",
+        "archetype": "Majority",
+        "value": 0.6969836210406221
+      },
+      {
+        "rank": 35,
+        "name": "Hicks",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 0.6969836210406221
+      },
+      {
+        "rank": 36,
+        "name": "Haley",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 0.6969836210406221
+      },
+      {
+        "rank": 37,
+        "name": "Huckabee",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 0.6969836210406221
+      },
+      {
+        "rank": 38,
+        "name": "Kavanaugh",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 0.6969836210406221
+      },
+      {
+        "rank": 39,
+        "name": "Kennedy",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 0.6969836210406221
+      },
+      {
+        "rank": 40,
+        "name": "Meadows",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 0.6969836210406221
+      },
+      {
+        "rank": 41,
+        "name": "Pence",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 0.6969836210406221
+      },
+      {
+        "rank": 42,
+        "name": "Pompeo",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 0.6969836210406221
+      },
+      {
+        "rank": 43,
+        "name": "Tillerson",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 0.6969836210406221
+      },
+      {
+        "rank": 44,
+        "name": "Burnett",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 0.6969836210406221
+      },
+      {
+        "rank": 45,
+        "name": "Byrne",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 0.6969836210406221
+      },
+      {
+        "rank": 46,
+        "name": "Cobb",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 0.6969836210406221
+      },
+      {
+        "rank": 47,
+        "name": "Manafort",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 0.6969836210406221
+      },
+      {
+        "rank": 48,
+        "name": "Marco",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 0.6969836210406221
+      },
+      {
+        "rank": 49,
+        "name": "Maxwell",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 0.6969836210406221
+      },
+      {
+        "rank": 50,
+        "name": "Rubio",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 0.6969836210406221
+      },
+      {
+        "rank": 51,
+        "name": "Shapiro",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 0.6969836210406221
+      },
+      {
+        "rank": 52,
+        "name": "Woodward",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.6969836210406221
+      },
+      {
+        "rank": 53,
+        "name": "Bernstein",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.6969836210406221
+      },
+      {
+        "rank": 54,
+        "name": "Baldwin",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.6969836210406221
+      },
+      {
+        "rank": 55,
+        "name": "Baker",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.6969836210406221
+      },
+      {
+        "rank": 56,
+        "name": "Biden",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.6969836210406221
+      },
+      {
+        "rank": 57,
+        "name": "Booker",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.6969836210406221
+      },
+      {
+        "rank": 58,
+        "name": "Brandon",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.6969836210406221
+      },
+      {
+        "rank": 59,
+        "name": "Carroll",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.6969836210406221
+      },
+      {
+        "rank": 60,
+        "name": "Cassidy",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.6969836210406221
+      },
+      {
+        "rank": 61,
+        "name": "Comey",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.6969836210406221
+      },
+      {
+        "rank": 62,
+        "name": "Clinton",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.6969836210406221
+      },
+      {
+        "rank": 63,
+        "name": "Clintons",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.6969836210406221
+      },
+      {
+        "rank": 64,
+        "name": "Daniels",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.6969836210406221
+      },
+      {
+        "rank": 65,
+        "name": "Feinstein",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.6969836210406221
+      },
+      {
+        "rank": 66,
+        "name": "Garland",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.6969836210406221
+      },
+      {
+        "rank": 67,
+        "name": "Hillary",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.6969836210406221
+      },
+      {
+        "rank": 68,
+        "name": "Hutchinson",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.6969836210406221
+      },
+      {
+        "rank": 69,
+        "name": "McCain",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.6969836210406221
+      },
+      {
+        "rank": 70,
+        "name": "Mueller",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.6969836210406221
+      },
+      {
+        "rank": 71,
+        "name": "Pelosi",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.6969836210406221
+      },
+      {
+        "rank": 72,
+        "name": "Podesta",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.6969836210406221
+      },
+      {
+        "rank": 73,
+        "name": "Romney",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.6969836210406221
+      },
+      {
+        "rank": 74,
+        "name": "Rosenstein",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.6969836210406221
+      },
+      {
+        "rank": 75,
+        "name": "Schiff",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.6969836210406221
+      },
+      {
+        "rank": 76,
+        "name": "Schumer",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.6969836210406221
+      },
+      {
+        "rank": 77,
+        "name": "Steele",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.6969836210406221
+      },
+      {
+        "rank": 78,
+        "name": "Warren",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.6969836210406221
+      },
+      {
+        "rank": 79,
+        "name": "Yates",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.6969836210406221
+      }
+    ],
+    "work": [
+      {
+        "rank": 1,
+        "name": "McCarthy",
+        "group": "admin",
+        "archetype": "Contrarian",
+        "value": 2450.2487284987433
+      },
+      {
+        "rank": 2,
+        "name": "Spicer",
+        "group": "admin",
+        "archetype": "Contrarian",
+        "value": 2450.2487284987433
+      },
+      {
+        "rank": 3,
+        "name": "realDonaldTrump",
+        "group": "family",
+        "archetype": "Assertive",
+        "value": 1733.6230387285011
+      },
+      {
+        "rank": 4,
+        "name": "Kushner",
+        "group": "family",
+        "archetype": "Assertive",
+        "value": 1733.6230387285011
+      },
+      {
+        "rank": 5,
+        "name": "Bannon",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 1733.6230387285011
+      },
+      {
+        "rank": 6,
+        "name": "Barr",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 1733.6230387285011
+      },
+      {
+        "rank": 7,
+        "name": "Barrett",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 1733.6230387285011
+      },
+      {
+        "rank": 8,
+        "name": "Bolton",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 1733.6230387285011
+      },
+      {
+        "rank": 9,
+        "name": "Conway",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 1733.6230387285011
+      },
+      {
+        "rank": 10,
+        "name": "Flynn",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 1733.6230387285011
+      },
+      {
+        "rank": 11,
+        "name": "McConnell",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 1733.6230387285011
+      },
+      {
+        "rank": 12,
+        "name": "Pruitt",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 1733.6230387285011
+      },
+      {
+        "rank": 13,
+        "name": "Sanders",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 1733.6230387285011
+      },
+      {
+        "rank": 14,
+        "name": "Scalia",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 1733.6230387285011
+      },
+      {
+        "rank": 15,
+        "name": "Sessions",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 1733.6230387285011
+      },
+      {
+        "rank": 16,
+        "name": "Cruz",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 1733.6230387285011
+      },
+      {
+        "rank": 17,
+        "name": "Epstein",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 1733.6230387285011
+      },
+      {
+        "rank": 18,
+        "name": "Elon",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 1733.6230387285011
+      },
+      {
+        "rank": 19,
+        "name": "Farage",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 1733.6230387285011
+      },
+      {
+        "rank": 20,
+        "name": "Gates",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 1733.6230387285011
+      },
+      {
+        "rank": 21,
+        "name": "Giuliani",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 1733.6230387285011
+      },
+      {
+        "rank": 22,
+        "name": "Mercer",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 1733.6230387285011
+      },
+      {
+        "rank": 23,
+        "name": "Musk",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 1733.6230387285011
+      },
+      {
+        "rank": 24,
+        "name": "Putin",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 1733.6230387285011
+      },
+      {
+        "rank": 25,
+        "name": "Bernie",
+        "group": "opposition",
+        "archetype": "Assertive",
+        "value": 1733.6230387285011
+      },
+      {
+        "rank": 26,
+        "name": "Castro",
+        "group": "opposition",
+        "archetype": "Assertive",
+        "value": 1733.6230387285011
+      },
+      {
+        "rank": 27,
+        "name": "Cheney",
+        "group": "opposition",
+        "archetype": "Assertive",
+        "value": 1733.6230387285011
+      },
+      {
+        "rank": 28,
+        "name": "Assange",
+        "group": "adjacent",
+        "archetype": "Whistleblower",
+        "value": 1702.0188601739617
+      },
+      {
+        "rank": 29,
+        "name": "Snowden",
+        "group": "adjacent",
+        "archetype": "Whistleblower",
+        "value": 1702.0188601739617
+      },
+      {
+        "rank": 30,
+        "name": "Ivanka",
+        "group": "family",
+        "archetype": "Majority",
+        "value": 1529.5814211678403
+      },
+      {
+        "rank": 31,
+        "name": "Jared",
+        "group": "family",
+        "archetype": "Majority",
+        "value": 1529.5814211678403
+      },
+      {
+        "rank": 32,
+        "name": "Melania",
+        "group": "family",
+        "archetype": "Majority",
+        "value": 1529.5814211678403
+      },
+      {
+        "rank": 33,
+        "name": "Tiffany",
+        "group": "family",
+        "archetype": "Majority",
+        "value": 1529.5814211678403
+      },
+      {
+        "rank": 34,
+        "name": "Lara",
+        "group": "family",
+        "archetype": "Majority",
+        "value": 1529.5814211678403
+      },
+      {
+        "rank": 35,
+        "name": "Hicks",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 1529.5814211678403
+      },
+      {
+        "rank": 36,
+        "name": "Haley",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 1529.5814211678403
+      },
+      {
+        "rank": 37,
+        "name": "Huckabee",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 1529.5814211678403
+      },
+      {
+        "rank": 38,
+        "name": "Kavanaugh",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 1529.5814211678403
+      },
+      {
+        "rank": 39,
+        "name": "Kennedy",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 1529.5814211678403
+      },
+      {
+        "rank": 40,
+        "name": "Meadows",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 1529.5814211678403
+      },
+      {
+        "rank": 41,
+        "name": "Pence",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 1529.5814211678403
+      },
+      {
+        "rank": 42,
+        "name": "Pompeo",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 1529.5814211678403
+      },
+      {
+        "rank": 43,
+        "name": "Tillerson",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 1529.5814211678403
+      },
+      {
+        "rank": 44,
+        "name": "Burnett",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 1529.5814211678403
+      },
+      {
+        "rank": 45,
+        "name": "Byrne",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 1529.5814211678403
+      },
+      {
+        "rank": 46,
+        "name": "Cobb",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 1529.5814211678403
+      },
+      {
+        "rank": 47,
+        "name": "Manafort",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 1529.5814211678403
+      },
+      {
+        "rank": 48,
+        "name": "Marco",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 1529.5814211678403
+      },
+      {
+        "rank": 49,
+        "name": "Maxwell",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 1529.5814211678403
+      },
+      {
+        "rank": 50,
+        "name": "Rubio",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 1529.5814211678403
+      },
+      {
+        "rank": 51,
+        "name": "Shapiro",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 1529.5814211678403
+      },
+      {
+        "rank": 52,
+        "name": "Woodward",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 1529.5814211678403
+      },
+      {
+        "rank": 53,
+        "name": "Bernstein",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 1529.5814211678403
+      },
+      {
+        "rank": 54,
+        "name": "Baldwin",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 1529.5814211678403
+      },
+      {
+        "rank": 55,
+        "name": "Baker",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 1529.5814211678403
+      },
+      {
+        "rank": 56,
+        "name": "Biden",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 1529.5814211678403
+      },
+      {
+        "rank": 57,
+        "name": "Booker",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 1529.5814211678403
+      },
+      {
+        "rank": 58,
+        "name": "Brandon",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 1529.5814211678403
+      },
+      {
+        "rank": 59,
+        "name": "Carroll",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 1529.5814211678403
+      },
+      {
+        "rank": 60,
+        "name": "Cassidy",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 1529.5814211678403
+      },
+      {
+        "rank": 61,
+        "name": "Comey",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 1529.5814211678403
+      },
+      {
+        "rank": 62,
+        "name": "Clinton",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 1529.5814211678403
+      },
+      {
+        "rank": 63,
+        "name": "Clintons",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 1529.5814211678403
+      },
+      {
+        "rank": 64,
+        "name": "Daniels",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 1529.5814211678403
+      },
+      {
+        "rank": 65,
+        "name": "Feinstein",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 1529.5814211678403
+      },
+      {
+        "rank": 66,
+        "name": "Garland",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 1529.5814211678403
+      },
+      {
+        "rank": 67,
+        "name": "Hillary",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 1529.5814211678403
+      },
+      {
+        "rank": 68,
+        "name": "Hutchinson",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 1529.5814211678403
+      },
+      {
+        "rank": 69,
+        "name": "McCain",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 1529.5814211678403
+      },
+      {
+        "rank": 70,
+        "name": "Mueller",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 1529.5814211678403
+      },
+      {
+        "rank": 71,
+        "name": "Pelosi",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 1529.5814211678403
+      },
+      {
+        "rank": 72,
+        "name": "Podesta",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 1529.5814211678403
+      },
+      {
+        "rank": 73,
+        "name": "Romney",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 1529.5814211678403
+      },
+      {
+        "rank": 74,
+        "name": "Rosenstein",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 1529.5814211678403
+      },
+      {
+        "rank": 75,
+        "name": "Schiff",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 1529.5814211678403
+      },
+      {
+        "rank": 76,
+        "name": "Schumer",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 1529.5814211678403
+      },
+      {
+        "rank": 77,
+        "name": "Steele",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 1529.5814211678403
+      },
+      {
+        "rank": 78,
+        "name": "Warren",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 1529.5814211678403
+      },
+      {
+        "rank": 79,
+        "name": "Yates",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 1529.5814211678403
+      }
+    ],
+    "spin": [
+      {
+        "rank": 1,
+        "name": "Assange",
+        "group": "adjacent",
+        "archetype": "Whistleblower",
+        "value": 111.25306811911949
+      },
+      {
+        "rank": 2,
+        "name": "Snowden",
+        "group": "adjacent",
+        "archetype": "Whistleblower",
+        "value": 111.25306811911949
+      },
+      {
+        "rank": 3,
+        "name": "Ivanka",
+        "group": "family",
+        "archetype": "Majority",
+        "value": 94.75090632452311
+      },
+      {
+        "rank": 4,
+        "name": "Jared",
+        "group": "family",
+        "archetype": "Majority",
+        "value": 94.75090632452311
+      },
+      {
+        "rank": 5,
+        "name": "Melania",
+        "group": "family",
+        "archetype": "Majority",
+        "value": 94.75090632452311
+      },
+      {
+        "rank": 6,
+        "name": "Tiffany",
+        "group": "family",
+        "archetype": "Majority",
+        "value": 94.75090632452311
+      },
+      {
+        "rank": 7,
+        "name": "Lara",
+        "group": "family",
+        "archetype": "Majority",
+        "value": 94.75090632452311
+      },
+      {
+        "rank": 8,
+        "name": "Hicks",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 94.75090632452311
+      },
+      {
+        "rank": 9,
+        "name": "Haley",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 94.75090632452311
+      },
+      {
+        "rank": 10,
+        "name": "Huckabee",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 94.75090632452311
+      },
+      {
+        "rank": 11,
+        "name": "Kavanaugh",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 94.75090632452311
+      },
+      {
+        "rank": 12,
+        "name": "Kennedy",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 94.75090632452311
+      },
+      {
+        "rank": 13,
+        "name": "Meadows",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 94.75090632452311
+      },
+      {
+        "rank": 14,
+        "name": "Pence",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 94.75090632452311
+      },
+      {
+        "rank": 15,
+        "name": "Pompeo",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 94.75090632452311
+      },
+      {
+        "rank": 16,
+        "name": "Tillerson",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 94.75090632452311
+      },
+      {
+        "rank": 17,
+        "name": "Burnett",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 94.75090632452311
+      },
+      {
+        "rank": 18,
+        "name": "Byrne",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 94.75090632452311
+      },
+      {
+        "rank": 19,
+        "name": "Cobb",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 94.75090632452311
+      },
+      {
+        "rank": 20,
+        "name": "Manafort",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 94.75090632452311
+      },
+      {
+        "rank": 21,
+        "name": "Marco",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 94.75090632452311
+      },
+      {
+        "rank": 22,
+        "name": "Maxwell",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 94.75090632452311
+      },
+      {
+        "rank": 23,
+        "name": "Rubio",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 94.75090632452311
+      },
+      {
+        "rank": 24,
+        "name": "Shapiro",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 94.75090632452311
+      },
+      {
+        "rank": 25,
+        "name": "Woodward",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 94.75090632452311
+      },
+      {
+        "rank": 26,
+        "name": "Bernstein",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 94.75090632452311
+      },
+      {
+        "rank": 27,
+        "name": "Baldwin",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 94.75090632452311
+      },
+      {
+        "rank": 28,
+        "name": "Baker",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 94.75090632452311
+      },
+      {
+        "rank": 29,
+        "name": "Biden",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 94.75090632452311
+      },
+      {
+        "rank": 30,
+        "name": "Booker",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 94.75090632452311
+      },
+      {
+        "rank": 31,
+        "name": "Brandon",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 94.75090632452311
+      },
+      {
+        "rank": 32,
+        "name": "Carroll",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 94.75090632452311
+      },
+      {
+        "rank": 33,
+        "name": "Cassidy",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 94.75090632452311
+      },
+      {
+        "rank": 34,
+        "name": "Comey",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 94.75090632452311
+      },
+      {
+        "rank": 35,
+        "name": "Clinton",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 94.75090632452311
+      },
+      {
+        "rank": 36,
+        "name": "Clintons",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 94.75090632452311
+      },
+      {
+        "rank": 37,
+        "name": "Daniels",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 94.75090632452311
+      },
+      {
+        "rank": 38,
+        "name": "Feinstein",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 94.75090632452311
+      },
+      {
+        "rank": 39,
+        "name": "Garland",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 94.75090632452311
+      },
+      {
+        "rank": 40,
+        "name": "Hillary",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 94.75090632452311
+      },
+      {
+        "rank": 41,
+        "name": "Hutchinson",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 94.75090632452311
+      },
+      {
+        "rank": 42,
+        "name": "McCain",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 94.75090632452311
+      },
+      {
+        "rank": 43,
+        "name": "Mueller",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 94.75090632452311
+      },
+      {
+        "rank": 44,
+        "name": "Pelosi",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 94.75090632452311
+      },
+      {
+        "rank": 45,
+        "name": "Podesta",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 94.75090632452311
+      },
+      {
+        "rank": 46,
+        "name": "Romney",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 94.75090632452311
+      },
+      {
+        "rank": 47,
+        "name": "Rosenstein",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 94.75090632452311
+      },
+      {
+        "rank": 48,
+        "name": "Schiff",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 94.75090632452311
+      },
+      {
+        "rank": 49,
+        "name": "Schumer",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 94.75090632452311
+      },
+      {
+        "rank": 50,
+        "name": "Steele",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 94.75090632452311
+      },
+      {
+        "rank": 51,
+        "name": "Warren",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 94.75090632452311
+      },
+      {
+        "rank": 52,
+        "name": "Yates",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 94.75090632452311
+      },
+      {
+        "rank": 53,
+        "name": "McCarthy",
+        "group": "admin",
+        "archetype": "Contrarian",
+        "value": 46.436866494988784
+      },
+      {
+        "rank": 54,
+        "name": "Spicer",
+        "group": "admin",
+        "archetype": "Contrarian",
+        "value": 46.436866494988784
+      },
+      {
+        "rank": 55,
+        "name": "realDonaldTrump",
+        "group": "family",
+        "archetype": "Assertive",
+        "value": 1.2671170934474771
+      },
+      {
+        "rank": 56,
+        "name": "Kushner",
+        "group": "family",
+        "archetype": "Assertive",
+        "value": 1.2671170934474771
+      },
+      {
+        "rank": 57,
+        "name": "Bannon",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 1.2671170934474771
+      },
+      {
+        "rank": 58,
+        "name": "Barr",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 1.2671170934474771
+      },
+      {
+        "rank": 59,
+        "name": "Barrett",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 1.2671170934474771
+      },
+      {
+        "rank": 60,
+        "name": "Bolton",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 1.2671170934474771
+      },
+      {
+        "rank": 61,
+        "name": "Conway",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 1.2671170934474771
+      },
+      {
+        "rank": 62,
+        "name": "Flynn",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 1.2671170934474771
+      },
+      {
+        "rank": 63,
+        "name": "McConnell",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 1.2671170934474771
+      },
+      {
+        "rank": 64,
+        "name": "Pruitt",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 1.2671170934474771
+      },
+      {
+        "rank": 65,
+        "name": "Sanders",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 1.2671170934474771
+      },
+      {
+        "rank": 66,
+        "name": "Scalia",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 1.2671170934474771
+      },
+      {
+        "rank": 67,
+        "name": "Sessions",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 1.2671170934474771
+      },
+      {
+        "rank": 68,
+        "name": "Cruz",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 1.2671170934474771
+      },
+      {
+        "rank": 69,
+        "name": "Epstein",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 1.2671170934474771
+      },
+      {
+        "rank": 70,
+        "name": "Elon",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 1.2671170934474771
+      },
+      {
+        "rank": 71,
+        "name": "Farage",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 1.2671170934474771
+      },
+      {
+        "rank": 72,
+        "name": "Gates",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 1.2671170934474771
+      },
+      {
+        "rank": 73,
+        "name": "Giuliani",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 1.2671170934474771
+      },
+      {
+        "rank": 74,
+        "name": "Mercer",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 1.2671170934474771
+      },
+      {
+        "rank": 75,
+        "name": "Musk",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 1.2671170934474771
+      },
+      {
+        "rank": 76,
+        "name": "Putin",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 1.2671170934474771
+      },
+      {
+        "rank": 77,
+        "name": "Bernie",
+        "group": "opposition",
+        "archetype": "Assertive",
+        "value": 1.2671170934474771
+      },
+      {
+        "rank": 78,
+        "name": "Castro",
+        "group": "opposition",
+        "archetype": "Assertive",
+        "value": 1.2671170934474771
+      },
+      {
+        "rank": 79,
+        "name": "Cheney",
+        "group": "opposition",
+        "archetype": "Assertive",
+        "value": 1.2671170934474771
+      }
+    ],
+    "lateral": [
+      {
+        "rank": 1,
+        "name": "McCarthy",
+        "group": "admin",
+        "archetype": "Contrarian",
+        "value": 2.731189638809412
+      },
+      {
+        "rank": 2,
+        "name": "Spicer",
+        "group": "admin",
+        "archetype": "Contrarian",
+        "value": 2.731189638809412
+      },
+      {
+        "rank": 3,
+        "name": "Assange",
+        "group": "adjacent",
+        "archetype": "Whistleblower",
+        "value": 1.088674486198035
+      },
+      {
+        "rank": 4,
+        "name": "Snowden",
+        "group": "adjacent",
+        "archetype": "Whistleblower",
+        "value": 1.088674486198035
+      },
+      {
+        "rank": 5,
+        "name": "Ivanka",
+        "group": "family",
+        "archetype": "Majority",
+        "value": 0.3719626416782633
+      },
+      {
+        "rank": 6,
+        "name": "Jared",
+        "group": "family",
+        "archetype": "Majority",
+        "value": 0.3719626416782633
+      },
+      {
+        "rank": 7,
+        "name": "Melania",
+        "group": "family",
+        "archetype": "Majority",
+        "value": 0.3719626416782633
+      },
+      {
+        "rank": 8,
+        "name": "Tiffany",
+        "group": "family",
+        "archetype": "Majority",
+        "value": 0.3719626416782633
+      },
+      {
+        "rank": 9,
+        "name": "Lara",
+        "group": "family",
+        "archetype": "Majority",
+        "value": 0.3719626416782633
+      },
+      {
+        "rank": 10,
+        "name": "Hicks",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 0.3719626416782633
+      },
+      {
+        "rank": 11,
+        "name": "Haley",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 0.3719626416782633
+      },
+      {
+        "rank": 12,
+        "name": "Huckabee",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 0.3719626416782633
+      },
+      {
+        "rank": 13,
+        "name": "Kavanaugh",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 0.3719626416782633
+      },
+      {
+        "rank": 14,
+        "name": "Kennedy",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 0.3719626416782633
+      },
+      {
+        "rank": 15,
+        "name": "Meadows",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 0.3719626416782633
+      },
+      {
+        "rank": 16,
+        "name": "Pence",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 0.3719626416782633
+      },
+      {
+        "rank": 17,
+        "name": "Pompeo",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 0.3719626416782633
+      },
+      {
+        "rank": 18,
+        "name": "Tillerson",
+        "group": "admin",
+        "archetype": "Majority",
+        "value": 0.3719626416782633
+      },
+      {
+        "rank": 19,
+        "name": "Burnett",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 0.3719626416782633
+      },
+      {
+        "rank": 20,
+        "name": "Byrne",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 0.3719626416782633
+      },
+      {
+        "rank": 21,
+        "name": "Cobb",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 0.3719626416782633
+      },
+      {
+        "rank": 22,
+        "name": "Manafort",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 0.3719626416782633
+      },
+      {
+        "rank": 23,
+        "name": "Marco",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 0.3719626416782633
+      },
+      {
+        "rank": 24,
+        "name": "Maxwell",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 0.3719626416782633
+      },
+      {
+        "rank": 25,
+        "name": "Rubio",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 0.3719626416782633
+      },
+      {
+        "rank": 26,
+        "name": "Shapiro",
+        "group": "adjacent",
+        "archetype": "Majority",
+        "value": 0.3719626416782633
+      },
+      {
+        "rank": 27,
+        "name": "Woodward",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.3719626416782633
+      },
+      {
+        "rank": 28,
+        "name": "Bernstein",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.3719626416782633
+      },
+      {
+        "rank": 29,
+        "name": "Baldwin",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.3719626416782633
+      },
+      {
+        "rank": 30,
+        "name": "Baker",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.3719626416782633
+      },
+      {
+        "rank": 31,
+        "name": "Biden",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.3719626416782633
+      },
+      {
+        "rank": 32,
+        "name": "Booker",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.3719626416782633
+      },
+      {
+        "rank": 33,
+        "name": "Brandon",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.3719626416782633
+      },
+      {
+        "rank": 34,
+        "name": "Carroll",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.3719626416782633
+      },
+      {
+        "rank": 35,
+        "name": "Cassidy",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.3719626416782633
+      },
+      {
+        "rank": 36,
+        "name": "Comey",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.3719626416782633
+      },
+      {
+        "rank": 37,
+        "name": "Clinton",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.3719626416782633
+      },
+      {
+        "rank": 38,
+        "name": "Clintons",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.3719626416782633
+      },
+      {
+        "rank": 39,
+        "name": "Daniels",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.3719626416782633
+      },
+      {
+        "rank": 40,
+        "name": "Feinstein",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.3719626416782633
+      },
+      {
+        "rank": 41,
+        "name": "Garland",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.3719626416782633
+      },
+      {
+        "rank": 42,
+        "name": "Hillary",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.3719626416782633
+      },
+      {
+        "rank": 43,
+        "name": "Hutchinson",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.3719626416782633
+      },
+      {
+        "rank": 44,
+        "name": "McCain",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.3719626416782633
+      },
+      {
+        "rank": 45,
+        "name": "Mueller",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.3719626416782633
+      },
+      {
+        "rank": 46,
+        "name": "Pelosi",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.3719626416782633
+      },
+      {
+        "rank": 47,
+        "name": "Podesta",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.3719626416782633
+      },
+      {
+        "rank": 48,
+        "name": "Romney",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.3719626416782633
+      },
+      {
+        "rank": 49,
+        "name": "Rosenstein",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.3719626416782633
+      },
+      {
+        "rank": 50,
+        "name": "Schiff",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.3719626416782633
+      },
+      {
+        "rank": 51,
+        "name": "Schumer",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.3719626416782633
+      },
+      {
+        "rank": 52,
+        "name": "Steele",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.3719626416782633
+      },
+      {
+        "rank": 53,
+        "name": "Warren",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.3719626416782633
+      },
+      {
+        "rank": 54,
+        "name": "Yates",
+        "group": "opposition",
+        "archetype": "Majority",
+        "value": 0.3719626416782633
+      },
+      {
+        "rank": 55,
+        "name": "realDonaldTrump",
+        "group": "family",
+        "archetype": "Assertive",
+        "value": 0.04538683307126148
+      },
+      {
+        "rank": 56,
+        "name": "Kushner",
+        "group": "family",
+        "archetype": "Assertive",
+        "value": 0.04538683307126148
+      },
+      {
+        "rank": 57,
+        "name": "Bannon",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 0.04538683307126148
+      },
+      {
+        "rank": 58,
+        "name": "Barr",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 0.04538683307126148
+      },
+      {
+        "rank": 59,
+        "name": "Barrett",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 0.04538683307126148
+      },
+      {
+        "rank": 60,
+        "name": "Bolton",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 0.04538683307126148
+      },
+      {
+        "rank": 61,
+        "name": "Conway",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 0.04538683307126148
+      },
+      {
+        "rank": 62,
+        "name": "Flynn",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 0.04538683307126148
+      },
+      {
+        "rank": 63,
+        "name": "McConnell",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 0.04538683307126148
+      },
+      {
+        "rank": 64,
+        "name": "Pruitt",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 0.04538683307126148
+      },
+      {
+        "rank": 65,
+        "name": "Sanders",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 0.04538683307126148
+      },
+      {
+        "rank": 66,
+        "name": "Scalia",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 0.04538683307126148
+      },
+      {
+        "rank": 67,
+        "name": "Sessions",
+        "group": "admin",
+        "archetype": "Assertive",
+        "value": 0.04538683307126148
+      },
+      {
+        "rank": 68,
+        "name": "Cruz",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 0.04538683307126148
+      },
+      {
+        "rank": 69,
+        "name": "Epstein",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 0.04538683307126148
+      },
+      {
+        "rank": 70,
+        "name": "Elon",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 0.04538683307126148
+      },
+      {
+        "rank": 71,
+        "name": "Farage",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 0.04538683307126148
+      },
+      {
+        "rank": 72,
+        "name": "Gates",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 0.04538683307126148
+      },
+      {
+        "rank": 73,
+        "name": "Giuliani",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 0.04538683307126148
+      },
+      {
+        "rank": 74,
+        "name": "Mercer",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 0.04538683307126148
+      },
+      {
+        "rank": 75,
+        "name": "Musk",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 0.04538683307126148
+      },
+      {
+        "rank": 76,
+        "name": "Putin",
+        "group": "adjacent",
+        "archetype": "Assertive",
+        "value": 0.04538683307126148
+      },
+      {
+        "rank": 77,
+        "name": "Bernie",
+        "group": "opposition",
+        "archetype": "Assertive",
+        "value": 0.04538683307126148
+      },
+      {
+        "rank": 78,
+        "name": "Castro",
+        "group": "opposition",
+        "archetype": "Assertive",
+        "value": 0.04538683307126148
+      },
+      {
+        "rank": 79,
+        "name": "Cheney",
+        "group": "opposition",
+        "archetype": "Assertive",
+        "value": 0.04538683307126148
+      }
+    ]
+  }
+}

@@ -1,0 +1,30 @@
+SPIN LEADERBOARD — Top 25 by |net yaw|
+Characters whose robots rotated the most
+==========================================================================================
+Rank  Character                                                Yaw (rad)    Yaw (°)     DX (m)
+-----------------------------------------------------------------------------------------------
+1     Freddy Krueger [A Nightmare on Elm Street]                 -11.962     -685.4      -0.08
+2     Alexis Rose [Schitt's Creek]                               -10.938     -626.7       6.39
+3     Bruce Wayne [The Dark Knight]                              -10.398     -595.7      14.68
+4     Ash [Alien]                                                  9.424      539.9      13.85
+5     Doc [Snow White and the Seven Dwarfs]                        8.953      513.0      -1.06
+6     Hans [Frozen]                                               -8.312     -476.3      -9.01
+7     Meg Rayburn [Bloodline]                                     -8.048     -461.1       5.12
+8     Rosie Mulligan [Mamma Mia!]                                  8.006      458.7       1.01
+9     JJ [Outer Banks]                                            -7.870     -450.9      -1.42
+10    Nymphadora Tonks [Harry Potter]                              7.622      436.7       6.46
+11    Randall Boggs [Monsters, Inc.]                              -7.568     -433.6      -2.78
+12    Oh Il-nam [Squid Game]                                      -7.522     -431.0       0.29
+13    Hawkeye Pierce [M*A*S*H]                                    -6.851     -392.6       5.65
+14    Joey Quinn [Dexter]                                          6.706      384.2      -0.99
+15    Dee Reynolds [It's Always Sunny in Philadelphia]             6.566      376.2       4.51
+16    Martha Nielsen [Dark]                                       -6.548     -375.2       6.73
+17    Alex Vause [Orange is the New Black]                        -6.261     -358.7       5.31
+18    Lucas Davidowicz [Ctrl+Alt+Del]                              6.203      355.4      -3.34
+19    Tom Keller [Riverdale]                                       6.175      353.8      -4.62
+20    Malyen Oretsev [Shadow and Bone]                            -6.092     -349.0       0.16
+21    Ty Lee [Avatar: The Last Airbender]                          6.012      344.4       3.60
+22    Storm [X-Men]                                                5.807      332.7       4.79
+23    Prof. Farnsworth [Futurama]                                 -5.703     -326.8       4.77
+24    Spike [The Land Before Time]                                 5.698      326.5     -15.45
+25    Eric Murphy [Entourage]                                     -5.602     -321.0       4.06

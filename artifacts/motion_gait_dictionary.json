@@ -1,0 +1,2638 @@
+{
+  "metadata": {
+    "generated": "2026-02-14",
+    "source": "motion_seed_experiment.json",
+    "description": "Motion instruction to gait dictionary. Maps 12 semantic motion concepts to neural network weight vectors for a 3-link PyBullet robot. Each entry includes the best exemplar weight vector, all matched variants, and behavioral metrics.",
+    "robot": "3-link body (Torso + BackLeg + FrontLeg), 2 hinge joints, 3 touch sensors, 2 motors",
+    "weight_keys": "w03=Torso->BackMotor, w04=Torso->FrontMotor, w13=BackLeg->BackMotor, w14=BackLeg->FrontMotor, w23=FrontLeg->BackMotor, w24=FrontLeg->FrontMotor",
+    "simulation": "4000 steps @ 240 Hz, MAX_FORCE=150N, headless PyBullet DIRECT mode"
+  },
+  "motions": {
+    "forward_walk": {
+      "description": "Straight-line forward locomotion (positive X direction)",
+      "criteria": "DX > 5m, |DY| < |DX|",
+      "n_matches": 2,
+      "best_selected_by": "highest DX",
+      "best": {
+        "seed": "\u5411\u524d\u8d70",
+        "language": "zh",
+        "model": "qwen3-coder:30b",
+        "weights": {
+          "w03": 0.8,
+          "w04": -0.2,
+          "w13": 0.6,
+          "w14": 0.4,
+          "w23": -0.1,
+          "w24": 0.7
+        },
+        "metrics": {
+          "dx": 11.684,
+          "dy": -2.766,
+          "yaw_net_rad": 2.386,
+          "mean_speed": 1.114,
+          "speed_cv": 1.297,
+          "work_proxy": 5528.7,
+          "distance_per_work": 0.002172,
+          "phase_lock_score": 0.977,
+          "contact_entropy_bits": 1.702
+        }
+      },
+      "model_coverage": {
+        "qwen3-coder:30b": [
+          "zh:\u5411\u524d\u8d70"
+        ],
+        "gpt-4.1-mini": [
+          "fi:eteenp\u00e4in k\u00e4vely"
+        ]
+      },
+      "language_coverage": {
+        "zh": 1,
+        "fi": 1
+      },
+      "variants": [
+        {
+          "seed": "eteenp\u00e4in k\u00e4vely",
+          "language": "fi",
+          "model": "gpt-4.1-mini",
+          "weights": {
+            "w03": 0.8,
+            "w04": -0.8,
+            "w13": 0.9,
+            "w14": -0.9,
+            "w23": 0.7,
+            "w24": -0.7
+          },
+          "metrics": {
+            "dx": 6.289,
+            "dy": 0.784,
+            "yaw_net_rad": 0.735,
+            "mean_speed": 0.45,
+            "speed_cv": 0.899,
+            "work_proxy": 3450.3,
+            "distance_per_work": 0.001837,
+            "phase_lock_score": 0.989,
+            "contact_entropy_bits": 1.432
+          }
+        },
+        {
+          "seed": "\u5411\u524d\u8d70",
+          "language": "zh",
+          "model": "qwen3-coder:30b",
+          "weights": {
+            "w03": 0.8,
+            "w04": -0.2,
+            "w13": 0.6,
+            "w14": 0.4,
+            "w23": -0.1,
+            "w24": 0.7
+          },
+          "metrics": {
+            "dx": 11.684,
+            "dy": -2.766,
+            "yaw_net_rad": 2.386,
+            "mean_speed": 1.114,
+            "speed_cv": 1.297,
+            "work_proxy": 5528.7,
+            "distance_per_work": 0.002172,
+            "phase_lock_score": 0.977,
+            "contact_entropy_bits": 1.702
+          }
+        }
+      ]
+    },
+    "backward_walk": {
+      "description": "Straight-line backward locomotion (negative X direction)",
+      "criteria": "DX < -5m, |DY| < |DX|",
+      "n_matches": 3,
+      "best_selected_by": "most negative DX",
+      "best": {
+        "seed": "\u5411\u540e\u8d70",
+        "language": "zh",
+        "model": "qwen3-coder:30b",
+        "weights": {
+          "w03": -0.8,
+          "w04": 0.2,
+          "w13": -0.6,
+          "w14": 0.4,
+          "w23": -0.4,
+          "w24": 0.6
+        },
+        "metrics": {
+          "dx": -35.201,
+          "dy": -1.791,
+          "yaw_net_rad": -0.172,
+          "mean_speed": 2.507,
+          "speed_cv": 0.426,
+          "work_proxy": 11472.4,
+          "distance_per_work": 0.003072,
+          "phase_lock_score": 0.631,
+          "contact_entropy_bits": 1.524
+        }
+      },
+      "model_coverage": {
+        "qwen3-coder:30b": [
+          "zh:\u5411\u540e\u8d70"
+        ],
+        "llama3.1:latest": [
+          "zh:\u5411\u540e\u8d70"
+        ],
+        "gpt-4.1-mini": [
+          "zh:\u5411\u540e\u8d70"
+        ]
+      },
+      "language_coverage": {
+        "zh": 3
+      },
+      "variants": [
+        {
+          "seed": "\u5411\u540e\u8d70",
+          "language": "zh",
+          "model": "gpt-4.1-mini",
+          "weights": {
+            "w03": -0.8,
+            "w04": 0.7,
+            "w13": -0.9,
+            "w14": 0.8,
+            "w23": -0.85,
+            "w24": 0.75
+          },
+          "metrics": {
+            "dx": -6.447,
+            "dy": -6.185,
+            "yaw_net_rad": 1.626,
+            "mean_speed": 0.789,
+            "speed_cv": 0.929,
+            "work_proxy": 3025.8,
+            "distance_per_work": 0.002953,
+            "phase_lock_score": 0.696,
+            "contact_entropy_bits": 1.482
+          }
+        },
+        {
+          "seed": "\u5411\u540e\u8d70",
+          "language": "zh",
+          "model": "llama3.1:latest",
+          "weights": {
+            "w03": -0.7,
+            "w04": 0.8,
+            "w13": -0.3,
+            "w14": -0.9,
+            "w23": 0.2,
+            "w24": 0.5
+          },
+          "metrics": {
+            "dx": -7.184,
+            "dy": 0.101,
+            "yaw_net_rad": -0.063,
+            "mean_speed": 0.789,
+            "speed_cv": 0.627,
+            "work_proxy": 8344.1,
+            "distance_per_work": 0.000861,
+            "phase_lock_score": 0.673,
+            "contact_entropy_bits": 1.087
+          }
+        },
+        {
+          "seed": "\u5411\u540e\u8d70",
+          "language": "zh",
+          "model": "qwen3-coder:30b",
+          "weights": {
+            "w03": -0.8,
+            "w04": 0.2,
+            "w13": -0.6,
+            "w14": 0.4,
+            "w23": -0.4,
+            "w24": 0.6
+          },
+          "metrics": {
+            "dx": -35.201,
+            "dy": -1.791,
+            "yaw_net_rad": -0.172,
+            "mean_speed": 2.507,
+            "speed_cv": 0.426,
+            "work_proxy": 11472.4,
+            "distance_per_work": 0.003072,
+            "phase_lock_score": 0.631,
+            "contact_entropy_bits": 1.524
+          }
+        }
+      ]
+    },
+    "crab_walk": {
+      "description": "Lateral locomotion (dominant Y displacement)",
+      "criteria": "|DY| > 3m and |DY| > |DX|",
+      "n_matches": 5,
+      "best_selected_by": "highest |DY|/|DX| ratio",
+      "best": {
+        "seed": "crab walk",
+        "language": "en",
+        "model": "qwen3-coder:30b",
+        "weights": {
+          "w03": 0.8,
+          "w04": -0.5,
+          "w13": -0.6,
+          "w14": 0.7,
+          "w23": 0.4,
+          "w24": -0.3
+        },
+        "metrics": {
+          "dx": -0.509,
+          "dy": 3.208,
+          "yaw_net_rad": 0.121,
+          "mean_speed": 0.651,
+          "speed_cv": 1.608,
+          "work_proxy": 3444.0,
+          "distance_per_work": 0.000943,
+          "phase_lock_score": 0.927,
+          "contact_entropy_bits": 1.519
+        }
+      },
+      "model_coverage": {
+        "qwen3-coder:30b": [
+          "en:crab walk",
+          "de:Seitw\u00e4rtsgang",
+          "fi:ravun k\u00e4vely"
+        ],
+        "llama3.1:latest": [
+          "en:crab walk"
+        ],
+        "deepseek-r1:8b": [
+          "de:Seitw\u00e4rtsgang"
+        ]
+      },
+      "language_coverage": {
+        "en": 2,
+        "de": 2,
+        "fi": 1
+      },
+      "variants": [
+        {
+          "seed": "Seitw\u00e4rtsgang",
+          "language": "de",
+          "model": "deepseek-r1:8b",
+          "weights": {
+            "w03": -0.5,
+            "w04": 0.4,
+            "w13": -0.6,
+            "w14": 0.7,
+            "w23": -0.8,
+            "w24": 0.2
+          },
+          "metrics": {
+            "dx": -4.048,
+            "dy": 4.324,
+            "yaw_net_rad": 0.257,
+            "mean_speed": 1.711,
+            "speed_cv": 0.575,
+            "work_proxy": 9571.1,
+            "distance_per_work": 0.000619,
+            "phase_lock_score": 0.569,
+            "contact_entropy_bits": 1.483
+          }
+        },
+        {
+          "seed": "crab walk",
+          "language": "en",
+          "model": "llama3.1:latest",
+          "weights": {
+            "w03": -0.7,
+            "w04": 0.9,
+            "w13": -0.3,
+            "w14": 0.8,
+            "w23": -0.4,
+            "w24": 0.5
+          },
+          "metrics": {
+            "dx": -3.735,
+            "dy": -9.747,
+            "yaw_net_rad": 1.516,
+            "mean_speed": 1.027,
+            "speed_cv": 0.797,
+            "work_proxy": 4235.5,
+            "distance_per_work": 0.002464,
+            "phase_lock_score": 0.077,
+            "contact_entropy_bits": 1.467
+          }
+        },
+        {
+          "seed": "Seitw\u00e4rtsgang",
+          "language": "de",
+          "model": "qwen3-coder:30b",
+          "weights": {
+            "w03": 0.8,
+            "w04": -0.6,
+            "w13": 0.2,
+            "w14": 0.9,
+            "w23": -0.7,
+            "w24": 0.5
+          },
+          "metrics": {
+            "dx": -11.155,
+            "dy": 18.152,
+            "yaw_net_rad": -1.698,
+            "mean_speed": 1.739,
+            "speed_cv": 0.619,
+            "work_proxy": 10195.2,
+            "distance_per_work": 0.00209,
+            "phase_lock_score": 0.19,
+            "contact_entropy_bits": 1.438
+          }
+        },
+        {
+          "seed": "crab walk",
+          "language": "en",
+          "model": "qwen3-coder:30b",
+          "weights": {
+            "w03": 0.8,
+            "w04": -0.5,
+            "w13": -0.6,
+            "w14": 0.7,
+            "w23": 0.4,
+            "w24": -0.3
+          },
+          "metrics": {
+            "dx": -0.509,
+            "dy": 3.208,
+            "yaw_net_rad": 0.121,
+            "mean_speed": 0.651,
+            "speed_cv": 1.608,
+            "work_proxy": 3444.0,
+            "distance_per_work": 0.000943,
+            "phase_lock_score": 0.927,
+            "contact_entropy_bits": 1.519
+          }
+        },
+        {
+          "seed": "ravun k\u00e4vely",
+          "language": "fi",
+          "model": "qwen3-coder:30b",
+          "weights": {
+            "w03": 0.8,
+            "w04": -0.6,
+            "w13": 0.2,
+            "w14": 0.9,
+            "w23": -0.7,
+            "w24": 0.5
+          },
+          "metrics": {
+            "dx": -11.155,
+            "dy": 18.152,
+            "yaw_net_rad": -1.698,
+            "mean_speed": 1.739,
+            "speed_cv": 0.619,
+            "work_proxy": 10195.2,
+            "distance_per_work": 0.00209,
+            "phase_lock_score": 0.19,
+            "contact_entropy_bits": 1.438
+          }
+        }
+      ]
+    },
+    "spin": {
+      "description": "In-place rotation with minimal displacement",
+      "criteria": "|yaw| > 3 radians (nearly a full turn)",
+      "n_matches": 3,
+      "best_selected_by": "highest |yaw|",
+      "best": {
+        "seed": "py\u00f6r\u00e4hdys",
+        "language": "fi",
+        "model": "gpt-oss:20b",
+        "weights": {
+          "w03": 0.8,
+          "w04": -0.8,
+          "w13": 0.9,
+          "w14": -0.9,
+          "w23": -0.7,
+          "w24": 0.7
+        },
+        "metrics": {
+          "dx": -1.433,
+          "dy": 3.85,
+          "yaw_net_rad": -17.436,
+          "mean_speed": 1.311,
+          "speed_cv": 1.832,
+          "work_proxy": 4621.8,
+          "distance_per_work": 0.000889,
+          "phase_lock_score": 0.961,
+          "contact_entropy_bits": 1.582
+        }
+      },
+      "model_coverage": {
+        "llama3.1:latest": [
+          "en:spin"
+        ],
+        "qwen3-coder:30b": [
+          "zh:\u65cb\u8f6c"
+        ],
+        "gpt-oss:20b": [
+          "fi:py\u00f6r\u00e4hdys"
+        ]
+      },
+      "language_coverage": {
+        "en": 1,
+        "zh": 1,
+        "fi": 1
+      },
+      "variants": [
+        {
+          "seed": "py\u00f6r\u00e4hdys",
+          "language": "fi",
+          "model": "gpt-oss:20b",
+          "weights": {
+            "w03": 0.8,
+            "w04": -0.8,
+            "w13": 0.9,
+            "w14": -0.9,
+            "w23": -0.7,
+            "w24": 0.7
+          },
+          "metrics": {
+            "dx": -1.433,
+            "dy": 3.85,
+            "yaw_net_rad": -17.436,
+            "mean_speed": 1.311,
+            "speed_cv": 1.832,
+            "work_proxy": 4621.8,
+            "distance_per_work": 0.000889,
+            "phase_lock_score": 0.961,
+            "contact_entropy_bits": 1.582
+          }
+        },
+        {
+          "seed": "spin",
+          "language": "en",
+          "model": "llama3.1:latest",
+          "weights": {
+            "w03": -0.7,
+            "w04": 0.6,
+            "w13": 0.8,
+            "w14": 0.3,
+            "w23": -0.4,
+            "w24": 0.9
+          },
+          "metrics": {
+            "dx": -1.463,
+            "dy": -0.74,
+            "yaw_net_rad": 4.147,
+            "mean_speed": 2.506,
+            "speed_cv": 0.533,
+            "work_proxy": 8207.9,
+            "distance_per_work": 0.0002,
+            "phase_lock_score": 0.565,
+            "contact_entropy_bits": 1.127
+          }
+        },
+        {
+          "seed": "\u65cb\u8f6c",
+          "language": "zh",
+          "model": "qwen3-coder:30b",
+          "weights": {
+            "w03": 0.8,
+            "w04": -0.6,
+            "w13": 0.2,
+            "w14": 0.9,
+            "w23": -0.7,
+            "w24": 0.3
+          },
+          "metrics": {
+            "dx": 5.324,
+            "dy": -1.64,
+            "yaw_net_rad": 4.555,
+            "mean_speed": 0.763,
+            "speed_cv": 1.435,
+            "work_proxy": 7264.5,
+            "distance_per_work": 0.000767,
+            "phase_lock_score": 0.841,
+            "contact_entropy_bits": 1.742
+          }
+        }
+      ]
+    },
+    "walk_and_spin": {
+      "description": "Combined locomotion and rotation",
+      "criteria": "displacement > 3m AND |yaw| > 1.5 rad",
+      "n_matches": 7,
+      "best_selected_by": "highest displacement * |yaw| product",
+      "best": {
+        "seed": "walk and spin",
+        "language": "en",
+        "model": "llama3.1:latest",
+        "weights": {
+          "w03": -0.8,
+          "w04": 0.9,
+          "w13": 0.7,
+          "w14": 0.3,
+          "w23": 0.4,
+          "w24": -0.6
+        },
+        "metrics": {
+          "dx": 5.988,
+          "dy": 19.76,
+          "yaw_net_rad": 7.853,
+          "mean_speed": 3.228,
+          "speed_cv": 0.559,
+          "work_proxy": 13485.4,
+          "distance_per_work": 0.001531,
+          "phase_lock_score": 0.153,
+          "contact_entropy_bits": 1.528
+        }
+      },
+      "model_coverage": {
+        "llama3.1:latest": [
+          "en:walk and spin",
+          "de:Gehen mit Drehung",
+          "fi:k\u00e4vely ja py\u00f6riminen"
+        ],
+        "qwen3-coder:30b": [
+          "de:Gehen mit Drehung",
+          "fi:k\u00e4vely ja py\u00f6riminen"
+        ],
+        "gpt-4.1-mini": [
+          "en:walk and spin",
+          "fi:k\u00e4vely ja py\u00f6riminen"
+        ]
+      },
+      "language_coverage": {
+        "en": 2,
+        "de": 2,
+        "fi": 3
+      },
+      "variants": [
+        {
+          "seed": "walk and spin",
+          "language": "en",
+          "model": "gpt-4.1-mini",
+          "weights": {
+            "w03": 0.8,
+            "w04": -0.8,
+            "w13": 0.6,
+            "w14": -0.6,
+            "w23": -0.7,
+            "w24": 0.7
+          },
+          "metrics": {
+            "dx": 5.211,
+            "dy": -0.466,
+            "yaw_net_rad": -4.136,
+            "mean_speed": 0.588,
+            "speed_cv": 1.712,
+            "work_proxy": 4575.8,
+            "distance_per_work": 0.001143,
+            "phase_lock_score": 0.65,
+            "contact_entropy_bits": 1.235
+          }
+        },
+        {
+          "seed": "k\u00e4vely ja py\u00f6riminen",
+          "language": "fi",
+          "model": "gpt-4.1-mini",
+          "weights": {
+            "w03": 0.8,
+            "w04": -0.6,
+            "w13": 0.7,
+            "w14": -0.7,
+            "w23": 0.9,
+            "w24": -0.9
+          },
+          "metrics": {
+            "dx": -1.245,
+            "dy": 2.613,
+            "yaw_net_rad": -1.718,
+            "mean_speed": 0.379,
+            "speed_cv": 1.992,
+            "work_proxy": 2464.7,
+            "distance_per_work": 0.001174,
+            "phase_lock_score": 0.998,
+            "contact_entropy_bits": 1.616
+          }
+        },
+        {
+          "seed": "Gehen mit Drehung",
+          "language": "de",
+          "model": "llama3.1:latest",
+          "weights": {
+            "w03": -0.7,
+            "w04": 0.3,
+            "w13": 0.5,
+            "w14": -0.2,
+            "w23": 0.9,
+            "w24": -0.1
+          },
+          "metrics": {
+            "dx": -3.44,
+            "dy": 5.593,
+            "yaw_net_rad": -2.041,
+            "mean_speed": 0.843,
+            "speed_cv": 1.051,
+            "work_proxy": 10103.4,
+            "distance_per_work": 0.00065,
+            "phase_lock_score": 0.403,
+            "contact_entropy_bits": 1.49
+          }
+        },
+        {
+          "seed": "walk and spin",
+          "language": "en",
+          "model": "llama3.1:latest",
+          "weights": {
+            "w03": -0.8,
+            "w04": 0.9,
+            "w13": 0.7,
+            "w14": 0.3,
+            "w23": 0.4,
+            "w24": -0.6
+          },
+          "metrics": {
+            "dx": 5.988,
+            "dy": 19.76,
+            "yaw_net_rad": 7.853,
+            "mean_speed": 3.228,
+            "speed_cv": 0.559,
+            "work_proxy": 13485.4,
+            "distance_per_work": 0.001531,
+            "phase_lock_score": 0.153,
+            "contact_entropy_bits": 1.528
+          }
+        },
+        {
+          "seed": "k\u00e4vely ja py\u00f6riminen",
+          "language": "fi",
+          "model": "llama3.1:latest",
+          "weights": {
+            "w03": -0.7,
+            "w04": 0.9,
+            "w13": -0.4,
+            "w14": 0.6,
+            "w23": 0.2,
+            "w24": -0.8
+          },
+          "metrics": {
+            "dx": -3.438,
+            "dy": -9.41,
+            "yaw_net_rad": 2.239,
+            "mean_speed": 1.865,
+            "speed_cv": 0.768,
+            "work_proxy": 5956.0,
+            "distance_per_work": 0.001682,
+            "phase_lock_score": 0.86,
+            "contact_entropy_bits": 1.949
+          }
+        },
+        {
+          "seed": "Gehen mit Drehung",
+          "language": "de",
+          "model": "qwen3-coder:30b",
+          "weights": {
+            "w03": 0.8,
+            "w04": -0.6,
+            "w13": 0.2,
+            "w14": 0.9,
+            "w23": -0.5,
+            "w24": 0.3
+          },
+          "metrics": {
+            "dx": -1.555,
+            "dy": -2.469,
+            "yaw_net_rad": -1.747,
+            "mean_speed": 0.257,
+            "speed_cv": 2.651,
+            "work_proxy": 2479.6,
+            "distance_per_work": 0.001177,
+            "phase_lock_score": 0.928,
+            "contact_entropy_bits": 0.925
+          }
+        },
+        {
+          "seed": "k\u00e4vely ja py\u00f6riminen",
+          "language": "fi",
+          "model": "qwen3-coder:30b",
+          "weights": {
+            "w03": 0.8,
+            "w04": -0.6,
+            "w13": 0.2,
+            "w14": 0.9,
+            "w23": -0.7,
+            "w24": 0.3
+          },
+          "metrics": {
+            "dx": 5.324,
+            "dy": -1.64,
+            "yaw_net_rad": 4.555,
+            "mean_speed": 0.763,
+            "speed_cv": 1.435,
+            "work_proxy": 7264.5,
+            "distance_per_work": 0.000767,
+            "phase_lock_score": 0.841,
+            "contact_entropy_bits": 1.742
+          }
+        }
+      ]
+    },
+    "stumble": {
+      "description": "Irregular, unsteady motion with high variability",
+      "criteria": "speed_cv > 1.0 or contact_entropy > 1.5 bits",
+      "n_matches": 17,
+      "best_selected_by": "highest speed_cv",
+      "best": {
+        "seed": "kompastua",
+        "language": "fi",
+        "model": "gpt-4.1-mini",
+        "weights": {
+          "w03": 0.85,
+          "w04": -0.75,
+          "w13": -0.65,
+          "w14": 0.7,
+          "w23": 0.9,
+          "w24": -0.8
+        },
+        "metrics": {
+          "dx": -0.125,
+          "dy": 0.121,
+          "yaw_net_rad": -0.348,
+          "mean_speed": 0.043,
+          "speed_cv": 3.571,
+          "work_proxy": 847.9,
+          "distance_per_work": 0.000205,
+          "phase_lock_score": 0.748,
+          "contact_entropy_bits": 0.459
+        }
+      },
+      "model_coverage": {
+        "qwen3-coder:30b": [
+          "en:stumble",
+          "de:Stolpern",
+          "zh:\u8e52\u8dda",
+          "fr:tr\u00e9bucher"
+        ],
+        "llama3.1:latest": [
+          "en:stumble",
+          "de:Stolpern",
+          "zh:\u8e52\u8dda",
+          "fi:kompastua"
+        ],
+        "gpt-4.1-mini": [
+          "fi:kompastua",
+          "en:stumble",
+          "zh:\u8e52\u8dda",
+          "fr:tr\u00e9bucher"
+        ],
+        "gpt-oss:20b": [
+          "en:stumble",
+          "de:Stolpern",
+          "zh:\u8e52\u8dda",
+          "fr:tr\u00e9bucher",
+          "fi:kompastua"
+        ]
+      },
+      "language_coverage": {
+        "en": 4,
+        "de": 3,
+        "zh": 4,
+        "fr": 3,
+        "fi": 3
+      },
+      "variants": [
+        {
+          "seed": "stumble",
+          "language": "en",
+          "model": "gpt-4.1-mini",
+          "weights": {
+            "w03": 0.7,
+            "w04": -0.9,
+            "w13": -0.6,
+            "w14": 0.8,
+            "w23": 0.5,
+            "w24": -0.7
+          },
+          "metrics": {
+            "dx": -0.347,
+            "dy": 1.001,
+            "yaw_net_rad": 0.221,
+            "mean_speed": 0.309,
+            "speed_cv": 1.34,
+            "work_proxy": 4546.9,
+            "distance_per_work": 0.000233,
+            "phase_lock_score": 0.774,
+            "contact_entropy_bits": 1.153
+          }
+        },
+        {
+          "seed": "kompastua",
+          "language": "fi",
+          "model": "gpt-4.1-mini",
+          "weights": {
+            "w03": 0.85,
+            "w04": -0.75,
+            "w13": -0.65,
+            "w14": 0.7,
+            "w23": 0.9,
+            "w24": -0.8
+          },
+          "metrics": {
+            "dx": -0.125,
+            "dy": 0.121,
+            "yaw_net_rad": -0.348,
+            "mean_speed": 0.043,
+            "speed_cv": 3.571,
+            "work_proxy": 847.9,
+            "distance_per_work": 0.000205,
+            "phase_lock_score": 0.748,
+            "contact_entropy_bits": 0.459
+          }
+        },
+        {
+          "seed": "tr\u00e9bucher",
+          "language": "fr",
+          "model": "gpt-4.1-mini",
+          "weights": {
+            "w03": 0.7,
+            "w04": -0.5,
+            "w13": -0.8,
+            "w14": 0.6,
+            "w23": 0.9,
+            "w24": -0.7
+          },
+          "metrics": {
+            "dx": 2.919,
+            "dy": -1.757,
+            "yaw_net_rad": -0.6,
+            "mean_speed": 0.525,
+            "speed_cv": 0.69,
+            "work_proxy": 8765.9,
+            "distance_per_work": 0.000389,
+            "phase_lock_score": 0.273,
+            "contact_entropy_bits": 1.935
+          }
+        },
+        {
+          "seed": "\u8e52\u8dda",
+          "language": "zh",
+          "model": "gpt-4.1-mini",
+          "weights": {
+            "w03": 0.7,
+            "w04": -0.6,
+            "w13": -0.5,
+            "w14": 0.6,
+            "w23": 0.8,
+            "w24": -0.7
+          },
+          "metrics": {
+            "dx": -3.183,
+            "dy": 0.379,
+            "yaw_net_rad": -0.675,
+            "mean_speed": 0.344,
+            "speed_cv": 2.647,
+            "work_proxy": 3846.9,
+            "distance_per_work": 0.000833,
+            "phase_lock_score": 0.994,
+            "contact_entropy_bits": 1.654
+          }
+        },
+        {
+          "seed": "Stolpern",
+          "language": "de",
+          "model": "gpt-oss:20b",
+          "weights": {
+            "w03": 0.9,
+            "w04": -0.9,
+            "w13": 0.4,
+            "w14": -0.4,
+            "w23": 0.2,
+            "w24": -0.2
+          },
+          "metrics": {
+            "dx": 1.665,
+            "dy": 3.855,
+            "yaw_net_rad": 0.182,
+            "mean_speed": 0.736,
+            "speed_cv": 1.938,
+            "work_proxy": 5506.4,
+            "distance_per_work": 0.000763,
+            "phase_lock_score": 0.997,
+            "contact_entropy_bits": 1.773
+          }
+        },
+        {
+          "seed": "stumble",
+          "language": "en",
+          "model": "gpt-oss:20b",
+          "weights": {
+            "w03": 0.65,
+            "w04": -0.45,
+            "w13": 0.55,
+            "w14": -0.6,
+            "w23": -0.35,
+            "w24": 0.8
+          },
+          "metrics": {
+            "dx": -1.523,
+            "dy": -0.064,
+            "yaw_net_rad": -0.224,
+            "mean_speed": 0.547,
+            "speed_cv": 1.768,
+            "work_proxy": 4714.6,
+            "distance_per_work": 0.000323,
+            "phase_lock_score": 0.456,
+            "contact_entropy_bits": 1.296
+          }
+        },
+        {
+          "seed": "kompastua",
+          "language": "fi",
+          "model": "gpt-oss:20b",
+          "weights": {
+            "w03": 0.47,
+            "w04": -0.62,
+            "w13": 0.81,
+            "w14": -0.33,
+            "w23": -0.75,
+            "w24": 0.29
+          },
+          "metrics": {
+            "dx": 3.409,
+            "dy": -3.234,
+            "yaw_net_rad": -0.583,
+            "mean_speed": 0.704,
+            "speed_cv": 1.537,
+            "work_proxy": 4845.5,
+            "distance_per_work": 0.00097,
+            "phase_lock_score": 0.25,
+            "contact_entropy_bits": 1.657
+          }
+        },
+        {
+          "seed": "tr\u00e9bucher",
+          "language": "fr",
+          "model": "gpt-oss:20b",
+          "weights": {
+            "w03": 0.8,
+            "w04": -0.9,
+            "w13": -0.7,
+            "w14": 0.5,
+            "w23": 0.6,
+            "w24": -0.4
+          },
+          "metrics": {
+            "dx": -8.693,
+            "dy": 2.886,
+            "yaw_net_rad": -0.241,
+            "mean_speed": 1.011,
+            "speed_cv": 1.552,
+            "work_proxy": 2606.6,
+            "distance_per_work": 0.003514,
+            "phase_lock_score": 0.981,
+            "contact_entropy_bits": 1.714
+          }
+        },
+        {
+          "seed": "\u8e52\u8dda",
+          "language": "zh",
+          "model": "gpt-oss:20b",
+          "weights": {
+            "w03": 0.8,
+            "w04": -0.6,
+            "w13": -0.7,
+            "w14": 0.9,
+            "w23": 0.5,
+            "w24": -0.4
+          },
+          "metrics": {
+            "dx": 0.254,
+            "dy": -2.327,
+            "yaw_net_rad": 2.174,
+            "mean_speed": 0.568,
+            "speed_cv": 2.04,
+            "work_proxy": 3736.2,
+            "distance_per_work": 0.000626,
+            "phase_lock_score": 0.926,
+            "contact_entropy_bits": 1.37
+          }
+        },
+        {
+          "seed": "Stolpern",
+          "language": "de",
+          "model": "llama3.1:latest",
+          "weights": {
+            "w03": 0.9,
+            "w04": -0.5,
+            "w13": 0.3,
+            "w14": 0.7,
+            "w23": -0.8,
+            "w24": 0.2
+          },
+          "metrics": {
+            "dx": 0.616,
+            "dy": -3.093,
+            "yaw_net_rad": -0.279,
+            "mean_speed": 0.628,
+            "speed_cv": 1.082,
+            "work_proxy": 6785.0,
+            "distance_per_work": 0.000465,
+            "phase_lock_score": 0.855,
+            "contact_entropy_bits": 1.88
+          }
+        },
+        {
+          "seed": "stumble",
+          "language": "en",
+          "model": "llama3.1:latest",
+          "weights": {
+            "w03": -0.5,
+            "w04": 0.2,
+            "w13": -0.8,
+            "w14": 0.4,
+            "w23": 0.3,
+            "w24": -0.7
+          },
+          "metrics": {
+            "dx": -3.028,
+            "dy": -1.998,
+            "yaw_net_rad": 4.571,
+            "mean_speed": 1.263,
+            "speed_cv": 1.332,
+            "work_proxy": 5818.8,
+            "distance_per_work": 0.000623,
+            "phase_lock_score": 0.564,
+            "contact_entropy_bits": 2.001
+          }
+        },
+        {
+          "seed": "kompastua",
+          "language": "fi",
+          "model": "llama3.1:latest",
+          "weights": {
+            "w03": -0.8,
+            "w04": 0.3,
+            "w13": 0.7,
+            "w14": -0.2,
+            "w23": -0.4,
+            "w24": 0.9
+          },
+          "metrics": {
+            "dx": 5.72,
+            "dy": 2.346,
+            "yaw_net_rad": -2.032,
+            "mean_speed": 1.017,
+            "speed_cv": 1.598,
+            "work_proxy": 4661.8,
+            "distance_per_work": 0.001326,
+            "phase_lock_score": 0.886,
+            "contact_entropy_bits": 1.745
+          }
+        },
+        {
+          "seed": "\u8e52\u8dda",
+          "language": "zh",
+          "model": "llama3.1:latest",
+          "weights": {
+            "w03": -0.7,
+            "w04": 0.9,
+            "w13": -0.3,
+            "w14": 0.5,
+            "w23": 0.2,
+            "w24": -0.1
+          },
+          "metrics": {
+            "dx": -7.239,
+            "dy": 0.057,
+            "yaw_net_rad": -0.029,
+            "mean_speed": 0.647,
+            "speed_cv": 1.048,
+            "work_proxy": 4748.3,
+            "distance_per_work": 0.001525,
+            "phase_lock_score": 0.427,
+            "contact_entropy_bits": 1.598
+          }
+        },
+        {
+          "seed": "Stolpern",
+          "language": "de",
+          "model": "qwen3-coder:30b",
+          "weights": {
+            "w03": 0.8,
+            "w04": -0.6,
+            "w13": -0.3,
+            "w14": 0.9,
+            "w23": 0.5,
+            "w24": -0.7
+          },
+          "metrics": {
+            "dx": -2.246,
+            "dy": 2.605,
+            "yaw_net_rad": -0.166,
+            "mean_speed": 1.171,
+            "speed_cv": 1.036,
+            "work_proxy": 7292.3,
+            "distance_per_work": 0.000472,
+            "phase_lock_score": 0.065,
+            "contact_entropy_bits": 1.44
+          }
+        },
+        {
+          "seed": "stumble",
+          "language": "en",
+          "model": "qwen3-coder:30b",
+          "weights": {
+            "w03": 0.8,
+            "w04": -0.6,
+            "w13": -0.3,
+            "w14": 0.9,
+            "w23": 0.5,
+            "w24": -0.7
+          },
+          "metrics": {
+            "dx": -2.246,
+            "dy": 2.605,
+            "yaw_net_rad": -0.166,
+            "mean_speed": 1.171,
+            "speed_cv": 1.036,
+            "work_proxy": 7292.3,
+            "distance_per_work": 0.000472,
+            "phase_lock_score": 0.065,
+            "contact_entropy_bits": 1.44
+          }
+        },
+        {
+          "seed": "tr\u00e9bucher",
+          "language": "fr",
+          "model": "qwen3-coder:30b",
+          "weights": {
+            "w03": -0.8,
+            "w04": 0.6,
+            "w13": 0.9,
+            "w14": -0.7,
+            "w23": -0.5,
+            "w24": 0.8
+          },
+          "metrics": {
+            "dx": 18.101,
+            "dy": -16.155,
+            "yaw_net_rad": -3.886,
+            "mean_speed": 2.893,
+            "speed_cv": 0.701,
+            "work_proxy": 9230.5,
+            "distance_per_work": 0.002628,
+            "phase_lock_score": 0.879,
+            "contact_entropy_bits": 1.817
+          }
+        },
+        {
+          "seed": "\u8e52\u8dda",
+          "language": "zh",
+          "model": "qwen3-coder:30b",
+          "weights": {
+            "w03": 0.8,
+            "w04": -0.6,
+            "w13": -0.4,
+            "w14": 0.7,
+            "w23": 0.2,
+            "w24": -0.9
+          },
+          "metrics": {
+            "dx": -6.034,
+            "dy": 4.806,
+            "yaw_net_rad": 1.311,
+            "mean_speed": 0.817,
+            "speed_cv": 1.734,
+            "work_proxy": 4887.0,
+            "distance_per_work": 0.001579,
+            "phase_lock_score": 0.945,
+            "contact_entropy_bits": 1.606
+          }
+        }
+      ]
+    },
+    "limp": {
+      "description": "Asymmetric gait with unequal leg phases",
+      "criteria": "|delta_phi| > 0.5 rad, phase_lock < 0.7",
+      "n_matches": 7,
+      "best_selected_by": "largest phase asymmetry |delta_phi|",
+      "best": {
+        "seed": "\u8ddb\u884c",
+        "language": "zh",
+        "model": "llama3.1:latest",
+        "weights": {
+          "w03": -0.5,
+          "w04": 0.8,
+          "w13": 0.2,
+          "w14": -0.9,
+          "w23": 0.7,
+          "w24": -0.3
+        },
+        "metrics": {
+          "dx": -0.476,
+          "dy": -0.357,
+          "yaw_net_rad": -0.832,
+          "mean_speed": 0.271,
+          "speed_cv": 1.118,
+          "work_proxy": 9730.3,
+          "distance_per_work": 6.1e-05,
+          "phase_lock_score": 0.41,
+          "contact_entropy_bits": 1.477
+        }
+      },
+      "model_coverage": {
+        "llama3.1:latest": [
+          "de:Hinken",
+          "zh:\u8ddb\u884c"
+        ],
+        "gpt-4.1-mini": [
+          "de:Hinken",
+          "zh:\u8ddb\u884c",
+          "fi:ontuminen"
+        ],
+        "deepseek-r1:8b": [
+          "en:limp"
+        ],
+        "gpt-oss:20b": [
+          "fi:ontuminen"
+        ]
+      },
+      "language_coverage": {
+        "de": 2,
+        "zh": 2,
+        "fi": 2,
+        "en": 1
+      },
+      "variants": [
+        {
+          "seed": "limp",
+          "language": "en",
+          "model": "deepseek-r1:8b",
+          "weights": {
+            "w03": -0.2,
+            "w04": 0.8,
+            "w13": 0.6,
+            "w14": -0.1,
+            "w23": -0.4,
+            "w24": 0.5
+          },
+          "metrics": {
+            "dx": 2.265,
+            "dy": 3.519,
+            "yaw_net_rad": -3.635,
+            "mean_speed": 2.425,
+            "speed_cv": 0.49,
+            "work_proxy": 9629.5,
+            "distance_per_work": 0.000435,
+            "phase_lock_score": 0.489,
+            "contact_entropy_bits": 1.681
+          }
+        },
+        {
+          "seed": "Hinken",
+          "language": "de",
+          "model": "gpt-4.1-mini",
+          "weights": {
+            "w03": 0.7,
+            "w04": -0.5,
+            "w13": -0.6,
+            "w14": 0.8,
+            "w23": 0.4,
+            "w24": -0.7
+          },
+          "metrics": {
+            "dx": -1.132,
+            "dy": 0.53,
+            "yaw_net_rad": -0.578,
+            "mean_speed": 0.455,
+            "speed_cv": 1.848,
+            "work_proxy": 4056.8,
+            "distance_per_work": 0.000308,
+            "phase_lock_score": 0.66,
+            "contact_entropy_bits": 1.328
+          }
+        },
+        {
+          "seed": "ontuminen",
+          "language": "fi",
+          "model": "gpt-4.1-mini",
+          "weights": {
+            "w03": 0.7,
+            "w04": -0.5,
+            "w13": -0.6,
+            "w14": 0.8,
+            "w23": 0.4,
+            "w24": -0.7
+          },
+          "metrics": {
+            "dx": -1.132,
+            "dy": 0.53,
+            "yaw_net_rad": -0.578,
+            "mean_speed": 0.455,
+            "speed_cv": 1.848,
+            "work_proxy": 4056.8,
+            "distance_per_work": 0.000308,
+            "phase_lock_score": 0.66,
+            "contact_entropy_bits": 1.328
+          }
+        },
+        {
+          "seed": "\u8ddb\u884c",
+          "language": "zh",
+          "model": "gpt-4.1-mini",
+          "weights": {
+            "w03": 0.7,
+            "w04": -0.3,
+            "w13": -0.6,
+            "w14": 0.5,
+            "w23": 0.4,
+            "w24": -0.8
+          },
+          "metrics": {
+            "dx": -1.283,
+            "dy": 3.576,
+            "yaw_net_rad": 1.917,
+            "mean_speed": 1.406,
+            "speed_cv": 1.031,
+            "work_proxy": 7654.7,
+            "distance_per_work": 0.000496,
+            "phase_lock_score": 0.46,
+            "contact_entropy_bits": 1.589
+          }
+        },
+        {
+          "seed": "ontuminen",
+          "language": "fi",
+          "model": "gpt-oss:20b",
+          "weights": {
+            "w03": 0.2,
+            "w04": -0.2,
+            "w13": 0.3,
+            "w14": -0.3,
+            "w23": 0.1,
+            "w24": -0.1
+          },
+          "metrics": {
+            "dx": -2.864,
+            "dy": 1.453,
+            "yaw_net_rad": -1.042,
+            "mean_speed": 0.274,
+            "speed_cv": 0.647,
+            "work_proxy": 6498.1,
+            "distance_per_work": 0.000494,
+            "phase_lock_score": 0.466,
+            "contact_entropy_bits": 1.766
+          }
+        },
+        {
+          "seed": "Hinken",
+          "language": "de",
+          "model": "llama3.1:latest",
+          "weights": {
+            "w03": -0.5,
+            "w04": 0.8,
+            "w13": 0.2,
+            "w14": -0.7,
+            "w23": 0.3,
+            "w24": -0.9
+          },
+          "metrics": {
+            "dx": -6.673,
+            "dy": 1.263,
+            "yaw_net_rad": -0.138,
+            "mean_speed": 0.409,
+            "speed_cv": 0.818,
+            "work_proxy": 2416.7,
+            "distance_per_work": 0.00281,
+            "phase_lock_score": 0.497,
+            "contact_entropy_bits": 0.743
+          }
+        },
+        {
+          "seed": "\u8ddb\u884c",
+          "language": "zh",
+          "model": "llama3.1:latest",
+          "weights": {
+            "w03": -0.5,
+            "w04": 0.8,
+            "w13": 0.2,
+            "w14": -0.9,
+            "w23": 0.7,
+            "w24": -0.3
+          },
+          "metrics": {
+            "dx": -0.476,
+            "dy": -0.357,
+            "yaw_net_rad": -0.832,
+            "mean_speed": 0.271,
+            "speed_cv": 1.118,
+            "work_proxy": 9730.3,
+            "distance_per_work": 6.1e-05,
+            "phase_lock_score": 0.41,
+            "contact_entropy_bits": 1.477
+          }
+        }
+      ]
+    },
+    "glide": {
+      "description": "Efficient locomotion with smooth speed profile",
+      "criteria": "distance_per_work > 0.002, speed_cv < 0.8",
+      "n_matches": 2,
+      "best_selected_by": "highest distance_per_work efficiency",
+      "best": {
+        "seed": "glide",
+        "language": "en",
+        "model": "deepseek-r1:8b",
+        "weights": {
+          "w03": -0.5,
+          "w04": -0.3,
+          "w13": -0.4,
+          "w14": 0.2,
+          "w23": 0.6,
+          "w24": 0.0
+        },
+        "metrics": {
+          "dx": 11.112,
+          "dy": -2.001,
+          "yaw_net_rad": -0.185,
+          "mean_speed": 0.688,
+          "speed_cv": 0.388,
+          "work_proxy": 3582.0,
+          "distance_per_work": 0.003152,
+          "phase_lock_score": 0.44,
+          "contact_entropy_bits": 1.163
+        }
+      },
+      "model_coverage": {
+        "llama3.1:latest": [
+          "zh:\u6ed1\u884c"
+        ],
+        "deepseek-r1:8b": [
+          "en:glide"
+        ]
+      },
+      "language_coverage": {
+        "zh": 1,
+        "en": 1
+      },
+      "variants": [
+        {
+          "seed": "glide",
+          "language": "en",
+          "model": "deepseek-r1:8b",
+          "weights": {
+            "w03": -0.5,
+            "w04": -0.3,
+            "w13": -0.4,
+            "w14": 0.2,
+            "w23": 0.6,
+            "w24": 0.0
+          },
+          "metrics": {
+            "dx": 11.112,
+            "dy": -2.001,
+            "yaw_net_rad": -0.185,
+            "mean_speed": 0.688,
+            "speed_cv": 0.388,
+            "work_proxy": 3582.0,
+            "distance_per_work": 0.003152,
+            "phase_lock_score": 0.44,
+            "contact_entropy_bits": 1.163
+          }
+        },
+        {
+          "seed": "\u6ed1\u884c",
+          "language": "zh",
+          "model": "llama3.1:latest",
+          "weights": {
+            "w03": 0.5,
+            "w04": -0.2,
+            "w13": 0.8,
+            "w14": 0.6,
+            "w23": -0.4,
+            "w24": 0.9
+          },
+          "metrics": {
+            "dx": -21.814,
+            "dy": 1.597,
+            "yaw_net_rad": -0.022,
+            "mean_speed": 1.393,
+            "speed_cv": 0.484,
+            "work_proxy": 7596.1,
+            "distance_per_work": 0.002879,
+            "phase_lock_score": 0.451,
+            "contact_entropy_bits": 1.125
+          }
+        }
+      ]
+    },
+    "bounce": {
+      "description": "Oscillatory motion with high energy but low displacement",
+      "criteria": "|DX| < 5m but work_proxy > 2000",
+      "n_matches": 9,
+      "best_selected_by": "highest work_proxy",
+      "best": {
+        "seed": "bounce",
+        "language": "en",
+        "model": "gpt-oss:20b",
+        "weights": {
+          "w03": 0.8,
+          "w04": -0.6,
+          "w13": 0.7,
+          "w14": -0.5,
+          "w23": 0.6,
+          "w24": -0.4
+        },
+        "metrics": {
+          "dx": 0.404,
+          "dy": 0.608,
+          "yaw_net_rad": 2.473,
+          "mean_speed": 0.529,
+          "speed_cv": 1.127,
+          "work_proxy": 8320.4,
+          "distance_per_work": 8.8e-05,
+          "phase_lock_score": 0.961,
+          "contact_entropy_bits": 2.236
+        }
+      },
+      "model_coverage": {
+        "qwen3-coder:30b": [
+          "en:bounce",
+          "de:H\u00fcpfen",
+          "zh:\u5f39\u8df3",
+          "fr:rebondir"
+        ],
+        "gpt-4.1-mini": [
+          "de:H\u00fcpfen",
+          "fi:pomppiminen"
+        ],
+        "gpt-oss:20b": [
+          "en:bounce",
+          "de:H\u00fcpfen"
+        ],
+        "deepseek-r1:8b": [
+          "de:H\u00fcpfen"
+        ]
+      },
+      "language_coverage": {
+        "en": 2,
+        "de": 4,
+        "zh": 1,
+        "fr": 1,
+        "fi": 1
+      },
+      "variants": [
+        {
+          "seed": "H\u00fcpfen",
+          "language": "de",
+          "model": "deepseek-r1:8b",
+          "weights": {
+            "w03": -0.5,
+            "w04": -0.2,
+            "w13": -0.5,
+            "w14": -0.3,
+            "w23": -0.7,
+            "w24": 0.8
+          },
+          "metrics": {
+            "dx": 3.218,
+            "dy": 0.816,
+            "yaw_net_rad": -1.433,
+            "mean_speed": 0.579,
+            "speed_cv": 1.777,
+            "work_proxy": 4749.6,
+            "distance_per_work": 0.000699,
+            "phase_lock_score": 0.924,
+            "contact_entropy_bits": 1.622
+          }
+        },
+        {
+          "seed": "H\u00fcpfen",
+          "language": "de",
+          "model": "gpt-4.1-mini",
+          "weights": {
+            "w03": 0.8,
+            "w04": -0.8,
+            "w13": 0.9,
+            "w14": -0.9,
+            "w23": 0.85,
+            "w24": -0.85
+          },
+          "metrics": {
+            "dx": -0.022,
+            "dy": 4.643,
+            "yaw_net_rad": -3.298,
+            "mean_speed": 0.417,
+            "speed_cv": 1.318,
+            "work_proxy": 3537.3,
+            "distance_per_work": 0.001313,
+            "phase_lock_score": 0.992,
+            "contact_entropy_bits": 1.52
+          }
+        },
+        {
+          "seed": "pomppiminen",
+          "language": "fi",
+          "model": "gpt-4.1-mini",
+          "weights": {
+            "w03": 0.8,
+            "w04": -0.8,
+            "w13": 0.9,
+            "w14": -0.9,
+            "w23": 0.85,
+            "w24": -0.85
+          },
+          "metrics": {
+            "dx": -0.022,
+            "dy": 4.643,
+            "yaw_net_rad": -3.298,
+            "mean_speed": 0.417,
+            "speed_cv": 1.318,
+            "work_proxy": 3537.3,
+            "distance_per_work": 0.001313,
+            "phase_lock_score": 0.992,
+            "contact_entropy_bits": 1.52
+          }
+        },
+        {
+          "seed": "H\u00fcpfen",
+          "language": "de",
+          "model": "gpt-oss:20b",
+          "weights": {
+            "w03": 0.8,
+            "w04": -0.8,
+            "w13": -0.8,
+            "w14": 0.8,
+            "w23": 0.5,
+            "w24": -0.5
+          },
+          "metrics": {
+            "dx": -1.391,
+            "dy": -1.458,
+            "yaw_net_rad": 0.774,
+            "mean_speed": 0.176,
+            "speed_cv": 1.595,
+            "work_proxy": 3224.5,
+            "distance_per_work": 0.000625,
+            "phase_lock_score": 0.953,
+            "contact_entropy_bits": 1.099
+          }
+        },
+        {
+          "seed": "bounce",
+          "language": "en",
+          "model": "gpt-oss:20b",
+          "weights": {
+            "w03": 0.8,
+            "w04": -0.6,
+            "w13": 0.7,
+            "w14": -0.5,
+            "w23": 0.6,
+            "w24": -0.4
+          },
+          "metrics": {
+            "dx": 0.404,
+            "dy": 0.608,
+            "yaw_net_rad": 2.473,
+            "mean_speed": 0.529,
+            "speed_cv": 1.127,
+            "work_proxy": 8320.4,
+            "distance_per_work": 8.8e-05,
+            "phase_lock_score": 0.961,
+            "contact_entropy_bits": 2.236
+          }
+        },
+        {
+          "seed": "H\u00fcpfen",
+          "language": "de",
+          "model": "qwen3-coder:30b",
+          "weights": {
+            "w03": 0.8,
+            "w04": -0.6,
+            "w13": -0.4,
+            "w14": 0.9,
+            "w23": 0.7,
+            "w24": -0.5
+          },
+          "metrics": {
+            "dx": 3.524,
+            "dy": -0.09,
+            "yaw_net_rad": 0.497,
+            "mean_speed": 0.822,
+            "speed_cv": 0.537,
+            "work_proxy": 5264.1,
+            "distance_per_work": 0.00067,
+            "phase_lock_score": 0.827,
+            "contact_entropy_bits": 1.15
+          }
+        },
+        {
+          "seed": "bounce",
+          "language": "en",
+          "model": "qwen3-coder:30b",
+          "weights": {
+            "w03": 0.8,
+            "w04": -0.6,
+            "w13": -0.4,
+            "w14": 0.9,
+            "w23": 0.7,
+            "w24": -0.5
+          },
+          "metrics": {
+            "dx": 3.524,
+            "dy": -0.09,
+            "yaw_net_rad": 0.497,
+            "mean_speed": 0.822,
+            "speed_cv": 0.537,
+            "work_proxy": 5264.1,
+            "distance_per_work": 0.00067,
+            "phase_lock_score": 0.827,
+            "contact_entropy_bits": 1.15
+          }
+        },
+        {
+          "seed": "rebondir",
+          "language": "fr",
+          "model": "qwen3-coder:30b",
+          "weights": {
+            "w03": 0.8,
+            "w04": -0.6,
+            "w13": -0.4,
+            "w14": 0.9,
+            "w23": 0.7,
+            "w24": -0.5
+          },
+          "metrics": {
+            "dx": 3.524,
+            "dy": -0.09,
+            "yaw_net_rad": 0.497,
+            "mean_speed": 0.822,
+            "speed_cv": 0.537,
+            "work_proxy": 5264.1,
+            "distance_per_work": 0.00067,
+            "phase_lock_score": 0.827,
+            "contact_entropy_bits": 1.15
+          }
+        },
+        {
+          "seed": "\u5f39\u8df3",
+          "language": "zh",
+          "model": "qwen3-coder:30b",
+          "weights": {
+            "w03": 0.8,
+            "w04": -0.6,
+            "w13": -0.4,
+            "w14": 0.9,
+            "w23": 0.7,
+            "w24": -0.5
+          },
+          "metrics": {
+            "dx": 3.524,
+            "dy": -0.09,
+            "yaw_net_rad": 0.497,
+            "mean_speed": 0.822,
+            "speed_cv": 0.537,
+            "work_proxy": 5264.1,
+            "distance_per_work": 0.00067,
+            "phase_lock_score": 0.827,
+            "contact_entropy_bits": 1.15
+          }
+        }
+      ]
+    },
+    "shuffle": {
+      "description": "Very slow, minimal locomotion",
+      "criteria": "|DX| < 3m and mean_speed < 1.0",
+      "n_matches": 7,
+      "best_selected_by": "lowest mean_speed",
+      "best": {
+        "seed": "tra\u00eener les pieds",
+        "language": "fr",
+        "model": "gpt-4.1-mini",
+        "weights": {
+          "w03": 0.2,
+          "w04": -0.3,
+          "w13": 0.1,
+          "w14": -0.4,
+          "w23": 0.15,
+          "w24": -0.25
+        },
+        "metrics": {
+          "dx": -0.67,
+          "dy": 0.547,
+          "yaw_net_rad": -0.725,
+          "mean_speed": 0.248,
+          "speed_cv": 0.894,
+          "work_proxy": 6360.0,
+          "distance_per_work": 0.000136,
+          "phase_lock_score": 0.647,
+          "contact_entropy_bits": 1.758
+        }
+      },
+      "model_coverage": {
+        "gpt-4.1-mini": [
+          "en:shuffle",
+          "de:Schlurfen",
+          "zh:\u66f3\u6b65",
+          "fr:tra\u00eener les pieds",
+          "fi:laahustaminen"
+        ],
+        "llama3.1:latest": [
+          "zh:\u66f3\u6b65"
+        ],
+        "gpt-oss:20b": [
+          "de:Schlurfen"
+        ]
+      },
+      "language_coverage": {
+        "en": 1,
+        "de": 2,
+        "zh": 2,
+        "fr": 1,
+        "fi": 1
+      },
+      "variants": [
+        {
+          "seed": "Schlurfen",
+          "language": "de",
+          "model": "gpt-4.1-mini",
+          "weights": {
+            "w03": 0.6,
+            "w04": -0.4,
+            "w13": 0.3,
+            "w14": -0.7,
+            "w23": 0.5,
+            "w24": -0.5
+          },
+          "metrics": {
+            "dx": 0.651,
+            "dy": 0.223,
+            "yaw_net_rad": -0.661,
+            "mean_speed": 0.343,
+            "speed_cv": 1.69,
+            "work_proxy": 3635.5,
+            "distance_per_work": 0.000189,
+            "phase_lock_score": 0.839,
+            "contact_entropy_bits": 1.083
+          }
+        },
+        {
+          "seed": "shuffle",
+          "language": "en",
+          "model": "gpt-4.1-mini",
+          "weights": {
+            "w03": 0.6,
+            "w04": -0.6,
+            "w13": -0.4,
+            "w14": 0.4,
+            "w23": 0.3,
+            "w24": -0.3
+          },
+          "metrics": {
+            "dx": -2.256,
+            "dy": 3.57,
+            "yaw_net_rad": -2.836,
+            "mean_speed": 0.478,
+            "speed_cv": 2.511,
+            "work_proxy": 2183.7,
+            "distance_per_work": 0.001934,
+            "phase_lock_score": 0.997,
+            "contact_entropy_bits": 1.238
+          }
+        },
+        {
+          "seed": "laahustaminen",
+          "language": "fi",
+          "model": "gpt-4.1-mini",
+          "weights": {
+            "w03": 0.2,
+            "w04": -0.2,
+            "w13": 0.3,
+            "w14": -0.3,
+            "w23": 0.1,
+            "w24": -0.1
+          },
+          "metrics": {
+            "dx": -2.864,
+            "dy": 1.453,
+            "yaw_net_rad": -1.042,
+            "mean_speed": 0.274,
+            "speed_cv": 0.647,
+            "work_proxy": 6498.1,
+            "distance_per_work": 0.000494,
+            "phase_lock_score": 0.466,
+            "contact_entropy_bits": 1.766
+          }
+        },
+        {
+          "seed": "tra\u00eener les pieds",
+          "language": "fr",
+          "model": "gpt-4.1-mini",
+          "weights": {
+            "w03": 0.2,
+            "w04": -0.3,
+            "w13": 0.1,
+            "w14": -0.4,
+            "w23": 0.15,
+            "w24": -0.25
+          },
+          "metrics": {
+            "dx": -0.67,
+            "dy": 0.547,
+            "yaw_net_rad": -0.725,
+            "mean_speed": 0.248,
+            "speed_cv": 0.894,
+            "work_proxy": 6360.0,
+            "distance_per_work": 0.000136,
+            "phase_lock_score": 0.647,
+            "contact_entropy_bits": 1.758
+          }
+        },
+        {
+          "seed": "\u66f3\u6b65",
+          "language": "zh",
+          "model": "gpt-4.1-mini",
+          "weights": {
+            "w03": 0.7,
+            "w04": -0.5,
+            "w13": -0.6,
+            "w14": 0.8,
+            "w23": 0.4,
+            "w24": -0.7
+          },
+          "metrics": {
+            "dx": -1.132,
+            "dy": 0.53,
+            "yaw_net_rad": -0.578,
+            "mean_speed": 0.455,
+            "speed_cv": 1.848,
+            "work_proxy": 4056.8,
+            "distance_per_work": 0.000308,
+            "phase_lock_score": 0.66,
+            "contact_entropy_bits": 1.328
+          }
+        },
+        {
+          "seed": "Schlurfen",
+          "language": "de",
+          "model": "gpt-oss:20b",
+          "weights": {
+            "w03": 0.8,
+            "w04": -0.6,
+            "w13": -0.9,
+            "w14": 0.7,
+            "w23": 0.5,
+            "w24": -0.4
+          },
+          "metrics": {
+            "dx": 2.24,
+            "dy": -0.502,
+            "yaw_net_rad": 0.004,
+            "mean_speed": 0.285,
+            "speed_cv": 1.139,
+            "work_proxy": 3202.3,
+            "distance_per_work": 0.000717,
+            "phase_lock_score": 0.929,
+            "contact_entropy_bits": 1.308
+          }
+        },
+        {
+          "seed": "\u66f3\u6b65",
+          "language": "zh",
+          "model": "llama3.1:latest",
+          "weights": {
+            "w03": -0.7,
+            "w04": 0.9,
+            "w13": -0.3,
+            "w14": 0.8,
+            "w23": -0.4,
+            "w24": 0.6
+          },
+          "metrics": {
+            "dx": -0.328,
+            "dy": -3.005,
+            "yaw_net_rad": 1.054,
+            "mean_speed": 0.797,
+            "speed_cv": 0.936,
+            "work_proxy": 3809.1,
+            "distance_per_work": 0.000794,
+            "phase_lock_score": 0.087,
+            "contact_entropy_bits": 1.654
+          }
+        }
+      ]
+    },
+    "lurch": {
+      "description": "Sudden, unsteady bursts of motion",
+      "criteria": "speed_cv > 1.2 with |DX| > 2m",
+      "n_matches": 9,
+      "best_selected_by": "highest speed_cv * |DX|",
+      "best": {
+        "seed": "lurch",
+        "language": "en",
+        "model": "qwen3-coder:30b",
+        "weights": {
+          "w03": 0.8,
+          "w04": -0.6,
+          "w13": -0.9,
+          "w14": 0.7,
+          "w23": 0.5,
+          "w24": -0.8
+        },
+        "metrics": {
+          "dx": -4.764,
+          "dy": 1.017,
+          "yaw_net_rad": -1.918,
+          "mean_speed": 0.351,
+          "speed_cv": 2.984,
+          "work_proxy": 1735.0,
+          "distance_per_work": 0.002808,
+          "phase_lock_score": 0.984,
+          "contact_entropy_bits": 1.021
+        }
+      },
+      "model_coverage": {
+        "qwen3-coder:30b": [
+          "en:lurch"
+        ],
+        "llama3.1:latest": [
+          "de:Schlingern"
+        ],
+        "gpt-4.1-mini": [
+          "zh:\u7a81\u7136\u524d\u51b2",
+          "fr:embard\u00e9e",
+          "fi:heitt\u00e4ytyminen"
+        ],
+        "gpt-oss:20b": [
+          "en:lurch",
+          "de:Schlingern",
+          "fr:embard\u00e9e",
+          "fi:heitt\u00e4ytyminen"
+        ]
+      },
+      "language_coverage": {
+        "en": 2,
+        "de": 2,
+        "zh": 1,
+        "fr": 2,
+        "fi": 2
+      },
+      "variants": [
+        {
+          "seed": "heitt\u00e4ytyminen",
+          "language": "fi",
+          "model": "gpt-4.1-mini",
+          "weights": {
+            "w03": 0.85,
+            "w04": -0.75,
+            "w13": -0.9,
+            "w14": 0.8,
+            "w23": 0.95,
+            "w24": -0.85
+          },
+          "metrics": {
+            "dx": -3.343,
+            "dy": -2.259,
+            "yaw_net_rad": -3.604,
+            "mean_speed": 1.486,
+            "speed_cv": 1.207,
+            "work_proxy": 9527.6,
+            "distance_per_work": 0.000423,
+            "phase_lock_score": 0.895,
+            "contact_entropy_bits": 2.279
+          }
+        },
+        {
+          "seed": "embard\u00e9e",
+          "language": "fr",
+          "model": "gpt-4.1-mini",
+          "weights": {
+            "w03": 0.8,
+            "w04": -0.7,
+            "w13": 0.6,
+            "w14": -0.6,
+            "w23": 0.9,
+            "w24": -0.8
+          },
+          "metrics": {
+            "dx": -3.377,
+            "dy": -5.301,
+            "yaw_net_rad": -2.366,
+            "mean_speed": 0.504,
+            "speed_cv": 2.147,
+            "work_proxy": 2410.2,
+            "distance_per_work": 0.002608,
+            "phase_lock_score": 0.999,
+            "contact_entropy_bits": 1.393
+          }
+        },
+        {
+          "seed": "\u7a81\u7136\u524d\u51b2",
+          "language": "zh",
+          "model": "gpt-4.1-mini",
+          "weights": {
+            "w03": 0.9,
+            "w04": -0.8,
+            "w13": 0.85,
+            "w14": -0.9,
+            "w23": 0.95,
+            "w24": -0.85
+          },
+          "metrics": {
+            "dx": 7.631,
+            "dy": -4.028,
+            "yaw_net_rad": -2.311,
+            "mean_speed": 0.94,
+            "speed_cv": 1.68,
+            "work_proxy": 4909.0,
+            "distance_per_work": 0.001758,
+            "phase_lock_score": 0.948,
+            "contact_entropy_bits": 1.699
+          }
+        },
+        {
+          "seed": "Schlingern",
+          "language": "de",
+          "model": "gpt-oss:20b",
+          "weights": {
+            "w03": 0.7,
+            "w04": -0.7,
+            "w13": -0.7,
+            "w14": 0.7,
+            "w23": 0.7,
+            "w24": -0.7
+          },
+          "metrics": {
+            "dx": -2.134,
+            "dy": -2.064,
+            "yaw_net_rad": 4.452,
+            "mean_speed": 0.675,
+            "speed_cv": 2.101,
+            "work_proxy": 2888.8,
+            "distance_per_work": 0.001028,
+            "phase_lock_score": 0.993,
+            "contact_entropy_bits": 1.155
+          }
+        },
+        {
+          "seed": "lurch",
+          "language": "en",
+          "model": "gpt-oss:20b",
+          "weights": {
+            "w03": 0.8,
+            "w04": 0.0,
+            "w13": -0.8,
+            "w14": 0.8,
+            "w23": 0.0,
+            "w24": -0.8
+          },
+          "metrics": {
+            "dx": 2.044,
+            "dy": -0.12,
+            "yaw_net_rad": 0.389,
+            "mean_speed": 0.764,
+            "speed_cv": 1.37,
+            "work_proxy": 4570.6,
+            "distance_per_work": 0.000448,
+            "phase_lock_score": 0.859,
+            "contact_entropy_bits": 1.171
+          }
+        },
+        {
+          "seed": "heitt\u00e4ytyminen",
+          "language": "fi",
+          "model": "gpt-oss:20b",
+          "weights": {
+            "w03": 0.85,
+            "w04": 0.6,
+            "w13": -0.75,
+            "w14": -0.55,
+            "w23": 0.9,
+            "w24": -0.7
+          },
+          "metrics": {
+            "dx": -2.8,
+            "dy": 0.065,
+            "yaw_net_rad": -5.981,
+            "mean_speed": 0.818,
+            "speed_cv": 1.784,
+            "work_proxy": 6933.4,
+            "distance_per_work": 0.000404,
+            "phase_lock_score": 0.833,
+            "contact_entropy_bits": 1.608
+          }
+        },
+        {
+          "seed": "embard\u00e9e",
+          "language": "fr",
+          "model": "gpt-oss:20b",
+          "weights": {
+            "w03": 0.8,
+            "w04": -0.8,
+            "w13": 0.5,
+            "w14": -0.5,
+            "w23": -0.3,
+            "w24": 0.3
+          },
+          "metrics": {
+            "dx": -3.414,
+            "dy": 2.759,
+            "yaw_net_rad": -3.272,
+            "mean_speed": 0.856,
+            "speed_cv": 1.312,
+            "work_proxy": 3475.3,
+            "distance_per_work": 0.001263,
+            "phase_lock_score": 0.995,
+            "contact_entropy_bits": 1.711
+          }
+        },
+        {
+          "seed": "Schlingern",
+          "language": "de",
+          "model": "llama3.1:latest",
+          "weights": {
+            "w03": 0.7,
+            "w04": -0.9,
+            "w13": -0.2,
+            "w14": 0.8,
+            "w23": 0.4,
+            "w24": -0.6
+          },
+          "metrics": {
+            "dx": -2.562,
+            "dy": 0.497,
+            "yaw_net_rad": 0.032,
+            "mean_speed": 0.34,
+            "speed_cv": 1.697,
+            "work_proxy": 6023.5,
+            "distance_per_work": 0.000433,
+            "phase_lock_score": 0.759,
+            "contact_entropy_bits": 1.167
+          }
+        },
+        {
+          "seed": "lurch",
+          "language": "en",
+          "model": "qwen3-coder:30b",
+          "weights": {
+            "w03": 0.8,
+            "w04": -0.6,
+            "w13": -0.9,
+            "w14": 0.7,
+            "w23": 0.5,
+            "w24": -0.8
+          },
+          "metrics": {
+            "dx": -4.764,
+            "dy": 1.017,
+            "yaw_net_rad": -1.918,
+            "mean_speed": 0.351,
+            "speed_cv": 2.984,
+            "work_proxy": 1735.0,
+            "distance_per_work": 0.002808,
+            "phase_lock_score": 0.984,
+            "contact_entropy_bits": 1.021
+          }
+        }
+      ]
+    },
+    "stand_still": {
+      "description": "No motion \u2014 robot remains stationary",
+      "criteria": "|DX| < 1m and |DY| < 1m",
+      "n_matches": 12,
+      "best_selected_by": "smallest total displacement",
+      "best": {
+        "seed": "stand still",
+        "language": "en",
+        "model": "gpt-4.1-mini",
+        "weights": {
+          "w03": 0.0,
+          "w04": 0.0,
+          "w13": 0.0,
+          "w14": 0.0,
+          "w23": 0.0,
+          "w24": 0.0
+        },
+        "metrics": {
+          "dx": 0.0,
+          "dy": 0.0,
+          "yaw_net_rad": -0.0,
+          "mean_speed": 0.0,
+          "speed_cv": 0.661,
+          "work_proxy": 0.0,
+          "distance_per_work": 35.473775,
+          "phase_lock_score": 0.965,
+          "contact_entropy_bits": -0.0
+        }
+      },
+      "model_coverage": {
+        "gpt-4.1-mini": [
+          "en:stand still",
+          "de:Stillstand",
+          "zh:\u9759\u6b62",
+          "fr:immobile",
+          "fi:paikallaan seisominen"
+        ],
+        "qwen3-coder:30b": [
+          "de:Stillstand",
+          "fr:immobile"
+        ],
+        "gpt-oss:20b": [
+          "zh:\u9759\u6b62",
+          "en:stand still",
+          "de:Stillstand",
+          "fr:immobile",
+          "fi:paikallaan seisominen"
+        ]
+      },
+      "language_coverage": {
+        "en": 2,
+        "de": 3,
+        "zh": 2,
+        "fr": 3,
+        "fi": 2
+      },
+      "variants": [
+        {
+          "seed": "Stillstand",
+          "language": "de",
+          "model": "gpt-4.1-mini",
+          "weights": {
+            "w03": 0.0,
+            "w04": 0.0,
+            "w13": 0.0,
+            "w14": 0.0,
+            "w23": 0.0,
+            "w24": 0.0
+          },
+          "metrics": {
+            "dx": 0.0,
+            "dy": 0.0,
+            "yaw_net_rad": -0.0,
+            "mean_speed": 0.0,
+            "speed_cv": 0.661,
+            "work_proxy": 0.0,
+            "distance_per_work": 35.473775,
+            "phase_lock_score": 0.965,
+            "contact_entropy_bits": -0.0
+          }
+        },
+        {
+          "seed": "stand still",
+          "language": "en",
+          "model": "gpt-4.1-mini",
+          "weights": {
+            "w03": 0.0,
+            "w04": 0.0,
+            "w13": 0.0,
+            "w14": 0.0,
+            "w23": 0.0,
+            "w24": 0.0
+          },
+          "metrics": {
+            "dx": 0.0,
+            "dy": 0.0,
+            "yaw_net_rad": -0.0,
+            "mean_speed": 0.0,
+            "speed_cv": 0.661,
+            "work_proxy": 0.0,
+            "distance_per_work": 35.473775,
+            "phase_lock_score": 0.965,
+            "contact_entropy_bits": -0.0
+          }
+        },
+        {
+          "seed": "paikallaan seisominen",
+          "language": "fi",
+          "model": "gpt-4.1-mini",
+          "weights": {
+            "w03": 0.0,
+            "w04": 0.0,
+            "w13": 0.0,
+            "w14": 0.0,
+            "w23": 0.0,
+            "w24": 0.0
+          },
+          "metrics": {
+            "dx": 0.0,
+            "dy": 0.0,
+            "yaw_net_rad": -0.0,
+            "mean_speed": 0.0,
+            "speed_cv": 0.661,
+            "work_proxy": 0.0,
+            "distance_per_work": 35.473775,
+            "phase_lock_score": 0.965,
+            "contact_entropy_bits": -0.0
+          }
+        },
+        {
+          "seed": "immobile",
+          "language": "fr",
+          "model": "gpt-4.1-mini",
+          "weights": {
+            "w03": 0.0,
+            "w04": 0.0,
+            "w13": 0.0,
+            "w14": 0.0,
+            "w23": 0.0,
+            "w24": 0.0
+          },
+          "metrics": {
+            "dx": 0.0,
+            "dy": 0.0,
+            "yaw_net_rad": -0.0,
+            "mean_speed": 0.0,
+            "speed_cv": 0.661,
+            "work_proxy": 0.0,
+            "distance_per_work": 35.473775,
+            "phase_lock_score": 0.965,
+            "contact_entropy_bits": -0.0
+          }
+        },
+        {
+          "seed": "\u9759\u6b62",
+          "language": "zh",
+          "model": "gpt-4.1-mini",
+          "weights": {
+            "w03": 0.0,
+            "w04": 0.0,
+            "w13": 0.0,
+            "w14": 0.0,
+            "w23": 0.0,
+            "w24": 0.0
+          },
+          "metrics": {
+            "dx": 0.0,
+            "dy": 0.0,
+            "yaw_net_rad": -0.0,
+            "mean_speed": 0.0,
+            "speed_cv": 0.661,
+            "work_proxy": 0.0,
+            "distance_per_work": 35.473775,
+            "phase_lock_score": 0.965,
+            "contact_entropy_bits": -0.0
+          }
+        },
+        {
+          "seed": "Stillstand",
+          "language": "de",
+          "model": "gpt-oss:20b",
+          "weights": {
+            "w03": 0.0,
+            "w04": 0.0,
+            "w13": 0.0,
+            "w14": 0.0,
+            "w23": 0.0,
+            "w24": 0.0
+          },
+          "metrics": {
+            "dx": 0.0,
+            "dy": 0.0,
+            "yaw_net_rad": -0.0,
+            "mean_speed": 0.0,
+            "speed_cv": 0.661,
+            "work_proxy": 0.0,
+            "distance_per_work": 35.473775,
+            "phase_lock_score": 0.965,
+            "contact_entropy_bits": -0.0
+          }
+        },
+        {
+          "seed": "stand still",
+          "language": "en",
+          "model": "gpt-oss:20b",
+          "weights": {
+            "w03": 0.0,
+            "w04": 0.0,
+            "w13": 0.0,
+            "w14": 0.0,
+            "w23": 0.0,
+            "w24": 0.0
+          },
+          "metrics": {
+            "dx": 0.0,
+            "dy": 0.0,
+            "yaw_net_rad": -0.0,
+            "mean_speed": 0.0,
+            "speed_cv": 0.661,
+            "work_proxy": 0.0,
+            "distance_per_work": 35.473775,
+            "phase_lock_score": 0.965,
+            "contact_entropy_bits": -0.0
+          }
+        },
+        {
+          "seed": "paikallaan seisominen",
+          "language": "fi",
+          "model": "gpt-oss:20b",
+          "weights": {
+            "w03": 0.0,
+            "w04": 0.0,
+            "w13": 0.0,
+            "w14": 0.0,
+            "w23": 0.0,
+            "w24": 0.0
+          },
+          "metrics": {
+            "dx": 0.0,
+            "dy": 0.0,
+            "yaw_net_rad": -0.0,
+            "mean_speed": 0.0,
+            "speed_cv": 0.661,
+            "work_proxy": 0.0,
+            "distance_per_work": 35.473775,
+            "phase_lock_score": 0.965,
+            "contact_entropy_bits": -0.0
+          }
+        },
+        {
+          "seed": "immobile",
+          "language": "fr",
+          "model": "gpt-oss:20b",
+          "weights": {
+            "w03": 0.0,
+            "w04": 0.0,
+            "w13": 0.0,
+            "w14": 0.0,
+            "w23": 0.0,
+            "w24": 0.0
+          },
+          "metrics": {
+            "dx": 0.0,
+            "dy": 0.0,
+            "yaw_net_rad": -0.0,
+            "mean_speed": 0.0,
+            "speed_cv": 0.661,
+            "work_proxy": 0.0,
+            "distance_per_work": 35.473775,
+            "phase_lock_score": 0.965,
+            "contact_entropy_bits": -0.0
+          }
+        },
+        {
+          "seed": "\u9759\u6b62",
+          "language": "zh",
+          "model": "gpt-oss:20b",
+          "weights": {
+            "w03": 0.0,
+            "w04": 0.0,
+            "w13": 0.0,
+            "w14": 0.0,
+            "w23": 0.0,
+            "w24": 0.0
+          },
+          "metrics": {
+            "dx": 0.0,
+            "dy": 0.0,
+            "yaw_net_rad": -0.0,
+            "mean_speed": 0.0,
+            "speed_cv": 0.661,
+            "work_proxy": 0.0,
+            "distance_per_work": 35.473775,
+            "phase_lock_score": 0.965,
+            "contact_entropy_bits": -0.0
+          }
+        },
+        {
+          "seed": "Stillstand",
+          "language": "de",
+          "model": "qwen3-coder:30b",
+          "weights": {
+            "w03": 0.1,
+            "w04": -0.2,
+            "w13": 0.0,
+            "w14": 0.1,
+            "w23": -0.1,
+            "w24": 0.0
+          },
+          "metrics": {
+            "dx": 0.878,
+            "dy": 0.078,
+            "yaw_net_rad": 0.389,
+            "mean_speed": 0.448,
+            "speed_cv": 0.693,
+            "work_proxy": 2235.5,
+            "distance_per_work": 0.000394,
+            "phase_lock_score": 0.322,
+            "contact_entropy_bits": 1.556
+          }
+        },
+        {
+          "seed": "immobile",
+          "language": "fr",
+          "model": "qwen3-coder:30b",
+          "weights": {
+            "w03": 0.1,
+            "w04": -0.2,
+            "w13": 0.05,
+            "w14": -0.1,
+            "w23": 0.02,
+            "w24": -0.08
+          },
+          "metrics": {
+            "dx": -0.94,
+            "dy": 0.031,
+            "yaw_net_rad": -0.183,
+            "mean_speed": 0.145,
+            "speed_cv": 0.86,
+            "work_proxy": 4546.9,
+            "distance_per_work": 0.000207,
+            "phase_lock_score": 0.541,
+            "contact_entropy_bits": 1.839
+          }
+        }
+      ]
+    }
+  }
+}

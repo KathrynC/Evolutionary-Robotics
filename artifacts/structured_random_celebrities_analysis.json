@@ -1,0 +1,629 @@
+{
+  "n_total": 132,
+  "n_unique_weights": 4,
+  "faithfulness": 0.030303030303030304,
+  "domain_metrics": {
+    "trump_family": {
+      "n": 8,
+      "dead_frac": 0.0,
+      "median_dx": 1.5485268151295735,
+      "max_dx": 1.5485268151295735,
+      "mean_speed": 0.23104431431764155,
+      "mean_phase_lock": 0.9209595403616897,
+      "mean_efficiency": 0.0008607192212157916
+    },
+    "trump_admin": {
+      "n": 14,
+      "dead_frac": 0.0,
+      "median_dx": 1.175219123969025,
+      "max_dx": 5.635555464743059,
+      "mean_speed": 0.22677907488449942,
+      "mean_phase_lock": 0.9018002658853411,
+      "mean_efficiency": 0.0010602965453356404
+    },
+    "us_politics": {
+      "n": 16,
+      "dead_frac": 0.0,
+      "median_dx": 1.175219123969025,
+      "max_dx": 5.635555464743059,
+      "mean_speed": 0.20744867884324342,
+      "mean_phase_lock": 0.8928508542672197,
+      "mean_efficiency": 0.0010175307525305808
+    },
+    "international": {
+      "n": 13,
+      "dead_frac": 0.0,
+      "median_dx": 1.175219123969025,
+      "max_dx": 5.635555464743059,
+      "mean_speed": 0.22028032798832042,
+      "mean_phase_lock": 0.9054501019834886,
+      "mean_efficiency": 0.0010303014628665114
+    },
+    "controversial": {
+      "n": 8,
+      "dead_frac": 0.0,
+      "median_dx": 3.5920411399363164,
+      "max_dx": 5.635555464743059,
+      "mean_speed": 0.3349322408140185,
+      "mean_phase_lock": 0.9124119723040218,
+      "mean_efficiency": 0.0021513067111747944
+    },
+    "kardashian": {
+      "n": 12,
+      "dead_frac": 0.0,
+      "median_dx": 1.175219123969025,
+      "max_dx": 5.635555464743059,
+      "mean_speed": 0.22447654732508185,
+      "mean_phase_lock": 0.9070664490231682,
+      "mean_efficiency": 0.0010490021951297323
+    },
+    "tech": {
+      "n": 9,
+      "dead_frac": 0.0,
+      "median_dx": 1.175219123969025,
+      "max_dx": 1.5485268151295735,
+      "mean_speed": 0.20252229241142788,
+      "mean_phase_lock": 0.9046702590296576,
+      "mean_efficiency": 0.0008351334999787559
+    },
+    "musician": {
+      "n": 15,
+      "dead_frac": 0.0,
+      "median_dx": 1.5485268151295735,
+      "max_dx": 5.635555464743059,
+      "mean_speed": 0.2639128483856988,
+      "mean_phase_lock": 0.9278700788213227,
+      "mean_efficiency": 0.0010627954432821634
+    },
+    "entertainment": {
+      "n": 12,
+      "dead_frac": 0.0,
+      "median_dx": 1.175219123969025,
+      "max_dx": 1.5485268151295735,
+      "mean_speed": 0.20252229241142783,
+      "mean_phase_lock": 0.9046702590296575,
+      "mean_efficiency": 0.0008351334999787559
+    },
+    "sports": {
+      "n": 8,
+      "dead_frac": 0.0,
+      "median_dx": 1.5485268151295735,
+      "max_dx": 1.5485268151295735,
+      "mean_speed": 0.26771548533991624,
+      "mean_phase_lock": 0.9419029020743026,
+      "mean_efficiency": 0.0008936151485205518
+    },
+    "cultural": {
+      "n": 7,
+      "dead_frac": 0.0,
+      "median_dx": 1.175219123969025,
+      "max_dx": 1.175219123969025,
+      "mean_speed": 0.1699256959471837,
+      "mean_phase_lock": 0.8860539375073352,
+      "mean_efficiency": 0.0008058926757078577
+    },
+    "historical": {
+      "n": 10,
+      "dead_frac": 0.0,
+      "median_dx": 1.175219123969025,
+      "max_dx": 1.5485268151295735,
+      "mean_speed": 0.19926263276500347,
+      "mean_phase_lock": 0.9028086268774252,
+      "mean_efficiency": 0.0008322094175516661
+    }
+  },
+  "domain_faithfulness": {
+    "trump_family": 0.25,
+    "trump_admin": 0.2857142857142857,
+    "us_politics": 0.1875,
+    "international": 0.23076923076923078,
+    "controversial": 0.5,
+    "kardashian": 0.25,
+    "tech": 0.2222222222222222,
+    "musician": 0.26666666666666666,
+    "entertainment": 0.16666666666666666,
+    "sports": 0.125,
+    "cultural": 0.14285714285714285,
+    "historical": 0.2
+  },
+  "cluster_sizes": [
+    73,
+    44,
+    9,
+    6
+  ],
+  "top_clusters": [
+    {
+      "weights": {
+        "w03": 0.6,
+        "w04": -0.4,
+        "w13": 0.2,
+        "w14": -0.8,
+        "w23": 0.5,
+        "w24": -0.3
+      },
+      "count": 73,
+      "members": [
+        "Jared Kushner",
+        "Eric Trump",
+        "Tiffany Trump",
+        "Michael Flynn",
+        "Mike Pence",
+        "Jeff Sessions",
+        "Hope Hicks",
+        "William Barr",
+        "Mike Pompeo",
+        "Rex Tillerson",
+        "Kevin McCarthy",
+        "Mitch McConnell",
+        "Joe Biden",
+        "Barack Obama",
+        "Hillary Clinton",
+        "Nancy Pelosi",
+        "Chuck Schumer",
+        "Bernie Sanders",
+        "Elizabeth Warren",
+        "Mitt Romney",
+        "Liz Cheney",
+        "Adam Schiff",
+        "Robert Mueller",
+        "James Comey",
+        "Marco Rubio",
+        "Vladimir Putin",
+        "Angela Merkel",
+        "Emmanuel Macron",
+        "Boris Johnson",
+        "Justin Trudeau",
+        "Xi Jinping",
+        "Benjamin Netanyahu",
+        "Ferdinand Marcos",
+        "George Soros",
+        "Paul Manafort",
+        "Kylie Jenner",
+        "Kendall Jenner",
+        "Khloe Kardashian",
+        "Kourtney Kardashian",
+        "Rob Kardashian",
+        "Caitlyn Jenner",
+        "Scott Disick",
+        "Mark Zuckerberg",
+        "Bill Gates",
+        "Peter Thiel",
+        "Sam Altman",
+        "Tim Cook",
+        "Jack Dorsey",
+        "Adele",
+        "Ed Sheeran",
+        "Ariana Grande",
+        "Oprah Winfrey",
+        "Leonardo DiCaprio",
+        "Johnny Depp",
+        "Angelina Jolie",
+        "Tom Hanks",
+        "Keanu Reeves",
+        "Brad Pitt",
+        "Meryl Streep",
+        "Neil Gaiman",
+        "Amanda Palmer",
+        "Stephen King",
+        "JK Rowling",
+        "Noam Chomsky",
+        "Jordan Peterson",
+        "Joe Rogan",
+        "Albert Einstein",
+        "William Shakespeare",
+        "Mahatma Gandhi",
+        "Nelson Mandela",
+        "Abraham Lincoln",
+        "Cleopatra",
+        "Charles Darwin"
+      ],
+      "domains": {
+        "trump_family": 3,
+        "trump_admin": 9,
+        "us_politics": 13,
+        "international": 8,
+        "controversial": 2,
+        "kardashian": 7,
+        "tech": 6,
+        "musician": 3,
+        "entertainment": 8,
+        "cultural": 7,
+        "historical": 7
+      },
+      "dx": 1.175219123969025
+    },
+    {
+      "weights": {
+        "w03": 0.8,
+        "w04": -0.6,
+        "w13": 0.2,
+        "w14": -0.9,
+        "w23": 0.5,
+        "w24": -0.4
+      },
+      "count": 44,
+      "members": [
+        "Donald Trump",
+        "Ivanka Trump",
+        "Melania Trump",
+        "Donald Trump Jr",
+        "Barron Trump",
+        "Rudy Giuliani",
+        "Sean Spicer",
+        "Kim Jong Un",
+        "Volodymyr Zelensky",
+        "Nigel Farage",
+        "Narendra Modi",
+        "Sean Hannity",
+        "Kim Kardashian",
+        "Kris Jenner",
+        "Travis Scott",
+        "Blac Chyna",
+        "Elon Musk",
+        "Jeff Bezos",
+        "Steve Jobs",
+        "Rihanna",
+        "Beyonce",
+        "Kanye West",
+        "Taylor Swift",
+        "Drake",
+        "Madonna",
+        "Lady Gaga",
+        "Jay-Z",
+        "Justin Bieber",
+        "BTS",
+        "Dwayne Johnson",
+        "Arnold Schwarzenegger",
+        "Will Smith",
+        "Tom Cruise",
+        "LeBron James",
+        "Cristiano Ronaldo",
+        "Lionel Messi",
+        "Serena Williams",
+        "Tiger Woods",
+        "Tom Brady",
+        "Michael Jordan",
+        "Usain Bolt",
+        "Napoleon Bonaparte",
+        "Martin Luther King",
+        "Winston Churchill"
+      ],
+      "domains": {
+        "trump_family": 5,
+        "trump_admin": 2,
+        "international": 4,
+        "controversial": 1,
+        "kardashian": 4,
+        "tech": 3,
+        "musician": 10,
+        "entertainment": 4,
+        "sports": 8,
+        "historical": 3
+      },
+      "dx": 1.5485268151295735
+    },
+    {
+      "weights": {
+        "w03": 0.6,
+        "w04": -0.4,
+        "w13": -0.2,
+        "w14": 0.8,
+        "w23": 0.3,
+        "w24": -0.5
+      },
+      "count": 9,
+      "members": [
+        "Michael Cohen",
+        "John McCain",
+        "Viktor Yanukovych",
+        "Julian Assange",
+        "Edward Snowden",
+        "Jeffrey Epstein",
+        "Ghislaine Maxwell",
+        "OJ Simpson",
+        "Billie Eilish"
+      ],
+      "domains": {
+        "trump_admin": 1,
+        "us_politics": 1,
+        "international": 1,
+        "controversial": 4,
+        "kardashian": 1,
+        "musician": 1
+      },
+      "dx": -5.635555464743059
+    },
+    {
+      "weights": {
+        "w03": 0.8,
+        "w04": -0.6,
+        "w13": -0.2,
+        "w14": 0.9,
+        "w23": 0.5,
+        "w24": -0.4
+      },
+      "count": 6,
+      "members": [
+        "Steve Bannon",
+        "Kellyanne Conway",
+        "Ted Cruz",
+        "AOC",
+        "Roger Stone",
+        "Eminem"
+      ],
+      "domains": {
+        "trump_admin": 2,
+        "us_politics": 2,
+        "controversial": 1,
+        "musician": 1
+      },
+      "dx": -1.189496038338916
+    }
+  ],
+  "top_15_gaits": [
+    {
+      "name": "Michael Cohen",
+      "domain": "trump_admin",
+      "dx": -5.635555464743059,
+      "weights": {
+        "w03": 0.6,
+        "w04": -0.4,
+        "w13": -0.2,
+        "w14": 0.8,
+        "w23": 0.3,
+        "w24": -0.5
+      },
+      "speed": 0.4333767549110316,
+      "phase_lock": 0.9148082174294637
+    },
+    {
+      "name": "John McCain",
+      "domain": "us_politics",
+      "dx": -5.635555464743059,
+      "weights": {
+        "w03": 0.6,
+        "w04": -0.4,
+        "w13": -0.2,
+        "w14": 0.8,
+        "w23": 0.3,
+        "w24": -0.5
+      },
+      "speed": 0.4333767549110316,
+      "phase_lock": 0.9148082174294637
+    },
+    {
+      "name": "Viktor Yanukovych",
+      "domain": "international",
+      "dx": -5.635555464743059,
+      "weights": {
+        "w03": 0.6,
+        "w04": -0.4,
+        "w13": -0.2,
+        "w14": 0.8,
+        "w23": 0.3,
+        "w24": -0.5
+      },
+      "speed": 0.4333767549110316,
+      "phase_lock": 0.9148082174294637
+    },
+    {
+      "name": "Julian Assange",
+      "domain": "controversial",
+      "dx": -5.635555464743059,
+      "weights": {
+        "w03": 0.6,
+        "w04": -0.4,
+        "w13": -0.2,
+        "w14": 0.8,
+        "w23": 0.3,
+        "w24": -0.5
+      },
+      "speed": 0.4333767549110316,
+      "phase_lock": 0.9148082174294637
+    },
+    {
+      "name": "Edward Snowden",
+      "domain": "controversial",
+      "dx": -5.635555464743059,
+      "weights": {
+        "w03": 0.6,
+        "w04": -0.4,
+        "w13": -0.2,
+        "w14": 0.8,
+        "w23": 0.3,
+        "w24": -0.5
+      },
+      "speed": 0.4333767549110316,
+      "phase_lock": 0.9148082174294637
+    },
+    {
+      "name": "Jeffrey Epstein",
+      "domain": "controversial",
+      "dx": -5.635555464743059,
+      "weights": {
+        "w03": 0.6,
+        "w04": -0.4,
+        "w13": -0.2,
+        "w14": 0.8,
+        "w23": 0.3,
+        "w24": -0.5
+      },
+      "speed": 0.4333767549110316,
+      "phase_lock": 0.9148082174294637
+    },
+    {
+      "name": "Ghislaine Maxwell",
+      "domain": "controversial",
+      "dx": -5.635555464743059,
+      "weights": {
+        "w03": 0.6,
+        "w04": -0.4,
+        "w13": -0.2,
+        "w14": 0.8,
+        "w23": 0.3,
+        "w24": -0.5
+      },
+      "speed": 0.4333767549110316,
+      "phase_lock": 0.9148082174294637
+    },
+    {
+      "name": "OJ Simpson",
+      "domain": "kardashian",
+      "dx": -5.635555464743059,
+      "weights": {
+        "w03": 0.6,
+        "w04": -0.4,
+        "w13": -0.2,
+        "w14": 0.8,
+        "w23": 0.3,
+        "w24": -0.5
+      },
+      "speed": 0.4333767549110316,
+      "phase_lock": 0.9148082174294637
+    },
+    {
+      "name": "Billie Eilish",
+      "domain": "musician",
+      "dx": -5.635555464743059,
+      "weights": {
+        "w03": 0.6,
+        "w04": -0.4,
+        "w13": -0.2,
+        "w14": 0.8,
+        "w23": 0.3,
+        "w24": -0.5
+      },
+      "speed": 0.4333767549110316,
+      "phase_lock": 0.9148082174294637
+    },
+    {
+      "name": "Donald Trump",
+      "domain": "trump_family",
+      "dx": 1.5485268151295735,
+      "weights": {
+        "w03": 0.8,
+        "w04": -0.6,
+        "w13": 0.2,
+        "w14": -0.9,
+        "w23": 0.5,
+        "w24": -0.4
+      },
+      "speed": 0.26771548533991624,
+      "phase_lock": 0.9419029020743026
+    },
+    {
+      "name": "Ivanka Trump",
+      "domain": "trump_family",
+      "dx": 1.5485268151295735,
+      "weights": {
+        "w03": 0.8,
+        "w04": -0.6,
+        "w13": 0.2,
+        "w14": -0.9,
+        "w23": 0.5,
+        "w24": -0.4
+      },
+      "speed": 0.26771548533991624,
+      "phase_lock": 0.9419029020743026
+    },
+    {
+      "name": "Melania Trump",
+      "domain": "trump_family",
+      "dx": 1.5485268151295735,
+      "weights": {
+        "w03": 0.8,
+        "w04": -0.6,
+        "w13": 0.2,
+        "w14": -0.9,
+        "w23": 0.5,
+        "w24": -0.4
+      },
+      "speed": 0.26771548533991624,
+      "phase_lock": 0.9419029020743026
+    },
+    {
+      "name": "Donald Trump Jr",
+      "domain": "trump_family",
+      "dx": 1.5485268151295735,
+      "weights": {
+        "w03": 0.8,
+        "w04": -0.6,
+        "w13": 0.2,
+        "w14": -0.9,
+        "w23": 0.5,
+        "w24": -0.4
+      },
+      "speed": 0.26771548533991624,
+      "phase_lock": 0.9419029020743026
+    },
+    {
+      "name": "Barron Trump",
+      "domain": "trump_family",
+      "dx": 1.5485268151295735,
+      "weights": {
+        "w03": 0.8,
+        "w04": -0.6,
+        "w13": 0.2,
+        "w14": -0.9,
+        "w23": 0.5,
+        "w24": -0.4
+      },
+      "speed": 0.26771548533991624,
+      "phase_lock": 0.9419029020743026
+    },
+    {
+      "name": "Rudy Giuliani",
+      "domain": "trump_admin",
+      "dx": 1.5485268151295735,
+      "weights": {
+        "w03": 0.8,
+        "w04": -0.6,
+        "w13": 0.2,
+        "w14": -0.9,
+        "w23": 0.5,
+        "w24": -0.4
+      },
+      "speed": 0.26771548533991624,
+      "phase_lock": 0.9419029020743026
+    }
+  ],
+  "effective_dimensionality": {
+    "celebrities": 2.236179578593507,
+    "verbs": 2.0215833409002624,
+    "theorems": 3.117859429180179,
+    "bible": 2.669177981027668,
+    "places": 1.603437337554982,
+    "baseline": 5.831653856636634,
+    "politics": 2.285289643094089
+  },
+  "super_categories": {
+    "politics": {
+      "n": 59,
+      "domains": [
+        "trump_family",
+        "trump_admin",
+        "us_politics",
+        "international",
+        "controversial"
+      ]
+    },
+    "pop_culture": {
+      "n": 47,
+      "domains": [
+        "kardashian",
+        "musician",
+        "entertainment",
+        "sports"
+      ]
+    },
+    "intellectual": {
+      "n": 26,
+      "domains": [
+        "tech",
+        "cultural",
+        "historical"
+      ]
+    }
+  }
+}

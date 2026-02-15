@@ -200,7 +200,7 @@ def parse_weights(response):
     return weights
 
 
-def generate_weights(prompt, retries=2):
+def generate_weights(prompt, retries=2, temperature=0.8):
     """Generate weights via Ollama with retry logic.
 
     On parse failure (malformed JSON, missing keys), retries up to `retries`
@@ -210,13 +210,14 @@ def generate_weights(prompt, retries=2):
     Args:
         prompt: The structured prompt for weight generation.
         retries: Number of retry attempts on parse failure.
+        temperature: Sampling temperature for the LLM (higher = more diverse).
 
     Returns:
         Tuple of (weights_dict, raw_response) or (None, raw_response) on failure.
     """
     for attempt in range(retries + 1):
         try:
-            resp = ask_ollama(prompt)
+            resp = ask_ollama(prompt, temperature=temperature)
             weights = parse_weights(resp)
             if weights is not None:
                 return weights, resp
@@ -423,7 +424,8 @@ def run_trial_inmemory(weights):
 # compute analytics, and collect results. It also handles brain.nndf backup/
 # restore, progress reporting, and summary statistics.
 
-def run_structured_search(condition_name, seeds, prompt_fn, out_json):
+def run_structured_search(condition_name, seeds, prompt_fn, out_json, temperature=0.8,
+                          weight_transform=None):
     """Run a structured random search for a given experimental condition.
 
     This is the main entry point that each condition script calls. It iterates
@@ -448,6 +450,11 @@ def run_structured_search(condition_name, seeds, prompt_fn, out_json):
         seeds: List of seed values (verbs, theorems, verses, places).
         prompt_fn: Callable(seed) -> prompt string for Ollama.
         out_json: Path to output JSON file.
+        temperature: Sampling temperature for the LLM (default 0.8; use 1.5
+            for large-scale experiments that need per-seed uniqueness).
+        weight_transform: Optional callable(weights_dict, seed) -> weights_dict.
+            Applied after LLM generation, before simulation. Use for per-seed
+            perturbation to break weight-vector collapse.
 
     Returns:
         List of result dicts.
@@ -463,19 +470,22 @@ def run_structured_search(condition_name, seeds, prompt_fn, out_json):
     print(f"\n{'='*70}")
     print(f"STRUCTURED RANDOM SEARCH: {condition_name.upper()}")
     print(f"{'='*70}")
-    print(f"Running {n} trials via Ollama ({OLLAMA_MODEL})...\n")
+    print(f"Running {n} trials via Ollama ({OLLAMA_MODEL}, temp={temperature})...\n")
 
     t_total = time.perf_counter()
 
     for trial in range(n):
         seed = seeds[trial]
         prompt = prompt_fn(seed)
-        weights, raw = generate_weights(prompt)
+        weights, raw = generate_weights(prompt, temperature=temperature)
 
         if weights is None:
             failures += 1
             print(f"  [{trial+1:3d}/{n}] FAIL: could not parse weights for: {seed}")
             continue
+
+        if weight_transform is not None:
+            weights = weight_transform(weights, seed)
 
         analytics = run_trial_inmemory(weights)
         o = analytics["outcome"]

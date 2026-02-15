@@ -10,8 +10,40 @@ Synapse Gait Zoo: a catalog of 116 discovered gaits for a 3-link PyBullet robot,
 
 ```bash
 conda activate er
-# Environment defined in environment.yml (Python 3.11, pybullet 3.25, numpy, matplotlib, fastapi, uvicorn)
+# Environment defined in environment.yml (Python 3.11, pybullet 3.25, numpy 1.26.4, matplotlib, fastapi, uvicorn)
+
+# LLM-mediated experiments (structured_random_*.py, fisher_metric.py, yoneda_crosswired.py) require:
+# Ollama running locally (default http://localhost:11434) with a model like qwen3-coder:30b
 ```
+
+### Local LLMs via Ollama
+
+Ollama is running on this machine and available for Claude Code to outsource work to. Use the REST API at `http://localhost:11434`. Available models:
+
+| Model | Size | Notes |
+|---|---|---|
+| `qwen3-coder:30b` | 18 GB | Primary model used by structured_random_*.py experiments |
+| `deepseek-r1:8b` | 5.2 GB | Reasoning model, good for chain-of-thought tasks |
+| `gpt-oss:20b` | 13 GB | General-purpose |
+| `llama3.1:latest` | 4.9 GB | Lightweight general-purpose |
+
+Quick usage from shell:
+```bash
+curl -s http://localhost:11434/api/generate -d '{"model":"qwen3-coder:30b","prompt":"your prompt here","stream":false}' | python3 -c "import sys,json; print(json.load(sys.stdin)['response'])"
+```
+
+From Python (pattern used throughout the codebase, see `structured_random_common.py:ask_ollama()`):
+```python
+import urllib.request, json
+resp = urllib.request.urlopen(urllib.request.Request(
+    "http://localhost:11434/api/generate",
+    data=json.dumps({"model": "qwen3-coder:30b", "prompt": "...", "stream": False}).encode(),
+    headers={"Content-Type": "application/json"}
+))
+result = json.loads(resp.read())["response"]
+```
+
+These local LLMs can be used for brainstorming, code generation drafts, data analysis narration, weight generation experiments, or any task where offloading to a local model is faster or more appropriate than doing it inline.
 
 ## Key Commands
 

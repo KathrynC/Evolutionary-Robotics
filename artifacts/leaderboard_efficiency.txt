@@ -1,0 +1,30 @@
+EFFICIENCY LEADERBOARD — Top 25 by distance-per-work
+Most displacement per unit of motor effort
+====================================================================================================
+Rank  Character                                                 Efficiency     DX (m)         Work
+----------------------------------------------------------------------------------------------------
+1     Juliet Burke [LOST]                                         0.004946      -5.41       1222.5
+2     Dexter Morgan [Dexter]                                      0.004938      30.87      10418.9
+3     Jenna Maroney [30 Rock]                                     0.004706      -6.80       1508.5
+4     Sandor Clegane [Game of Thrones]                            0.004682       7.90       1761.5
+5     Michaela Pratt [How To Get Away With Murder]                0.004482      -9.53       2234.9
+6     Kath [After Life]                                           0.004355      16.03       3903.7
+7     Blaine Anderson [Glee]                                      0.004312     -35.52       8254.6
+8     Buttercup [The Princess Bride]                              0.004271     -37.58       8812.3
+9     Troy Barnes [Community]                                     0.004230       3.01        712.9
+10    Steve Brady [Sex and the City]                              0.004183     -35.57       8504.2
+11    Nina Locke [Locke & Key]                                    0.004173     -33.50       8299.3
+12    Samwell Tarly [Game of Thrones]                             0.004150     -27.32       7768.5
+13    Brian Johnson [The Breakfast Club]                          0.004148     -35.52       8570.4
+14    Prairie Johnson [The OA]                                    0.004141     -33.62       8189.2
+15    Vision [WandaVision]                                        0.004122     -34.15       8286.4
+16    Stanley Hudson [The Office]                                 0.004121     -32.77       7998.2
+17    Claire Littleton [LOST]                                     0.004111     -30.97       7748.1
+18    Allison Reynolds [The Breakfast Club]                       0.004085     -36.99       9056.5
+19    Derek Shepherd [Grey's Anatomy]                             0.004083      -1.03        756.0
+20    Horace Slughorn [Harry Potter]                              0.004078     -33.43       8198.6
+21    Melanie Hamilton [Gone With the Wind]                       0.004065     -35.16       8657.5
+22    Cypher [The Matrix]                                         0.004059       8.30       2576.3
+23    Amy Farrah Fowler [The Big Bang Theory]                     0.004058     -34.42       8689.3
+24    John Bates [Downton Abbey]                                  0.004051     -33.17       8511.9
+25    Jemma Simmons [Agents of S.H.I.E.L.D.]                      0.004035     -32.77       8139.0

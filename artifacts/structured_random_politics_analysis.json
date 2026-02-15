@@ -1,0 +1,342 @@
+{
+  "n_total": 79,
+  "n_unique_weights": 4,
+  "faithfulness": 0.05063291139240506,
+  "group_metrics": {
+    "family": {
+      "n": 7,
+      "dead_frac": 0.0,
+      "median_dx": 1.175219123969025,
+      "max_dx": 1.5485268151295735,
+      "mean_speed": 0.19786563577367874,
+      "mean_phase_lock": 0.9020107845264687,
+      "mean_efficiency": 0.0008309562393686274
+    },
+    "admin": {
+      "n": 22,
+      "dead_frac": 0.0,
+      "median_dx": 1.3690114267342448,
+      "max_dx": 1.5485268151295735,
+      "mean_speed": 0.23413498461505491,
+      "mean_phase_lock": 0.9176146192560928,
+      "mean_efficiency": 0.0008870168615392887
+    },
+    "adjacent": {
+      "n": 19,
+      "dead_frac": 0.0,
+      "median_dx": 1.5485268151295735,
+      "max_dx": 5.635555464743059,
+      "mean_speed": 0.243978865550462,
+      "mean_phase_lock": 0.9155354765045437,
+      "mean_efficiency": 0.0011175953567045779
+    },
+    "opposition": {
+      "n": 31,
+      "dead_frac": 0.0,
+      "median_dx": 1.175219123969025,
+      "max_dx": 1.5485268151295735,
+      "mean_speed": 0.17938922395293197,
+      "mean_phase_lock": 0.8914586760138156,
+      "mean_efficiency": 0.0008143819472703764
+    }
+  },
+  "cluster_sizes": [
+    50,
+    25,
+    2,
+    2
+  ],
+  "top_clusters": [
+    {
+      "weights": {
+        "w03": 0.6,
+        "w04": -0.4,
+        "w13": 0.2,
+        "w14": -0.8,
+        "w23": 0.5,
+        "w24": -0.3
+      },
+      "count": 50,
+      "members": [
+        "Ivanka",
+        "Jared",
+        "Melania",
+        "Tiffany",
+        "Lara",
+        "Hicks",
+        "Haley",
+        "Huckabee",
+        "Kavanaugh",
+        "Kennedy",
+        "Meadows",
+        "Pence",
+        "Pompeo",
+        "Tillerson",
+        "Burnett",
+        "Byrne",
+        "Cobb",
+        "Manafort",
+        "Marco",
+        "Maxwell",
+        "Rubio",
+        "Shapiro",
+        "Woodward",
+        "Bernstein",
+        "Baldwin",
+        "Baker",
+        "Biden",
+        "Booker",
+        "Brandon",
+        "Carroll",
+        "Cassidy",
+        "Comey",
+        "Clinton",
+        "Clintons",
+        "Daniels",
+        "Feinstein",
+        "Garland",
+        "Hillary",
+        "Hutchinson",
+        "McCain",
+        "Mueller",
+        "Pelosi",
+        "Podesta",
+        "Romney",
+        "Rosenstein",
+        "Schiff",
+        "Schumer",
+        "Steele",
+        "Warren",
+        "Yates"
+      ],
+      "dx": 1.175219123969025
+    },
+    {
+      "weights": {
+        "w03": 0.8,
+        "w04": -0.6,
+        "w13": 0.2,
+        "w14": -0.9,
+        "w23": 0.5,
+        "w24": -0.4
+      },
+      "count": 25,
+      "members": [
+        "realDonaldTrump",
+        "Kushner",
+        "Bannon",
+        "Barr",
+        "Barrett",
+        "Bolton",
+        "Conway",
+        "Flynn",
+        "McConnell",
+        "Pruitt",
+        "Sanders",
+        "Scalia",
+        "Sessions",
+        "Cruz",
+        "Epstein",
+        "Elon",
+        "Farage",
+        "Gates",
+        "Giuliani",
+        "Mercer",
+        "Musk",
+        "Putin",
+        "Bernie",
+        "Castro",
+        "Cheney"
+      ],
+      "dx": 1.5485268151295735
+    },
+    {
+      "weights": {
+        "w03": 0.8,
+        "w04": -0.6,
+        "w13": -0.2,
+        "w14": 0.9,
+        "w23": 0.5,
+        "w24": -0.4
+      },
+      "count": 2,
+      "members": [
+        "McCarthy",
+        "Spicer"
+      ],
+      "dx": -1.189496038338916
+    },
+    {
+      "weights": {
+        "w03": 0.6,
+        "w04": -0.4,
+        "w13": -0.2,
+        "w14": 0.8,
+        "w23": 0.3,
+        "w24": -0.5
+      },
+      "count": 2,
+      "members": [
+        "Assange",
+        "Snowden"
+      ],
+      "dx": -5.635555464743059
+    }
+  ],
+  "top_10_gaits": [
+    {
+      "name": "Assange",
+      "group": "adjacent",
+      "dx": -5.635555464743059,
+      "weights": {
+        "w03": 0.6,
+        "w04": -0.4,
+        "w13": -0.2,
+        "w14": 0.8,
+        "w23": 0.3,
+        "w24": -0.5
+      },
+      "speed": 0.4333767549110316,
+      "phase_lock": 0.9148082174294637
+    },
+    {
+      "name": "Snowden",
+      "group": "adjacent",
+      "dx": -5.635555464743059,
+      "weights": {
+        "w03": 0.6,
+        "w04": -0.4,
+        "w13": -0.2,
+        "w14": 0.8,
+        "w23": 0.3,
+        "w24": -0.5
+      },
+      "speed": 0.4333767549110316,
+      "phase_lock": 0.9148082174294637
+    },
+    {
+      "name": "realDonaldTrump",
+      "group": "family",
+      "dx": 1.5485268151295735,
+      "weights": {
+        "w03": 0.8,
+        "w04": -0.6,
+        "w13": 0.2,
+        "w14": -0.9,
+        "w23": 0.5,
+        "w24": -0.4
+      },
+      "speed": 0.26771548533991624,
+      "phase_lock": 0.9419029020743026
+    },
+    {
+      "name": "Kushner",
+      "group": "family",
+      "dx": 1.5485268151295735,
+      "weights": {
+        "w03": 0.8,
+        "w04": -0.6,
+        "w13": 0.2,
+        "w14": -0.9,
+        "w23": 0.5,
+        "w24": -0.4
+      },
+      "speed": 0.26771548533991624,
+      "phase_lock": 0.9419029020743026
+    },
+    {
+      "name": "Bannon",
+      "group": "admin",
+      "dx": 1.5485268151295735,
+      "weights": {
+        "w03": 0.8,
+        "w04": -0.6,
+        "w13": 0.2,
+        "w14": -0.9,
+        "w23": 0.5,
+        "w24": -0.4
+      },
+      "speed": 0.26771548533991624,
+      "phase_lock": 0.9419029020743026
+    },
+    {
+      "name": "Barr",
+      "group": "admin",
+      "dx": 1.5485268151295735,
+      "weights": {
+        "w03": 0.8,
+        "w04": -0.6,
+        "w13": 0.2,
+        "w14": -0.9,
+        "w23": 0.5,
+        "w24": -0.4
+      },
+      "speed": 0.26771548533991624,
+      "phase_lock": 0.9419029020743026
+    },
+    {
+      "name": "Barrett",
+      "group": "admin",
+      "dx": 1.5485268151295735,
+      "weights": {
+        "w03": 0.8,
+        "w04": -0.6,
+        "w13": 0.2,
+        "w14": -0.9,
+        "w23": 0.5,
+        "w24": -0.4
+      },
+      "speed": 0.26771548533991624,
+      "phase_lock": 0.9419029020743026
+    },
+    {
+      "name": "Bolton",
+      "group": "admin",
+      "dx": 1.5485268151295735,
+      "weights": {
+        "w03": 0.8,
+        "w04": -0.6,
+        "w13": 0.2,
+        "w14": -0.9,
+        "w23": 0.5,
+        "w24": -0.4
+      },
+      "speed": 0.26771548533991624,
+      "phase_lock": 0.9419029020743026
+    },
+    {
+      "name": "Conway",
+      "group": "admin",
+      "dx": 1.5485268151295735,
+      "weights": {
+        "w03": 0.8,
+        "w04": -0.6,
+        "w13": 0.2,
+        "w14": -0.9,
+        "w23": 0.5,
+        "w24": -0.4
+      },
+      "speed": 0.26771548533991624,
+      "phase_lock": 0.9419029020743026
+    },
+    {
+      "name": "Flynn",
+      "group": "admin",
+      "dx": 1.5485268151295735,
+      "weights": {
+        "w03": 0.8,
+        "w04": -0.6,
+        "w13": 0.2,
+        "w14": -0.9,
+        "w23": 0.5,
+        "w24": -0.4
+      },
+      "speed": 0.26771548533991624,
+      "phase_lock": 0.9419029020743026
+    }
+  ],
+  "pca_variance_explained": [
+    52.02268470934853,
+    40.090549272200334
+  ]
+}

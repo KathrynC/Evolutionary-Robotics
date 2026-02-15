@@ -1,0 +1,30 @@
+WORK PROXY LEADERBOARD — Top 25 by motor effort
+Characters whose robots expended the most energy
+====================================================================================================
+Rank  Character                                                 Work Proxy     DX (m)   Efficiency
+----------------------------------------------------------------------------------------------------
+1     Aaron Burr [Hamilton]                                        14897.9       6.74     0.000695
+2     Charles Darnay [A Tale of Two Cities]                        14454.8       2.89     0.000243
+3     Jack Shephard [LOST]                                         14161.9       1.58     0.000206
+4     Severus Snape [Harry Potter]                                 13767.5       6.28     0.000513
+5     Alfred Pennyworth [Gotham]                                   13733.3       0.43     0.000163
+6     Shinji Ikari [Neon Genesis Evangelion]                       13503.7      31.35     0.002322
+7     Norman Bates [Psycho]                                        13392.3       2.80     0.000226
+8     Albus Dumbledore [Harry Potter]                              13309.5       2.73     0.000310
+9     The Cowardly Lion [The Wizard of Oz]                         13126.3      -1.14     0.000314
+10    Elliot Alderson [Mr. Robot]                                  12966.7       5.30     0.000584
+11    Tuvok [Star Trek: Voyager]                                   12843.5      10.45     0.000903
+12    Mike Ross [Suits]                                            12769.8     -14.47     0.001371
+13    Bellatrix Lestrange [Harry Potter]                           12555.1       3.56     0.000529
+14    Rosa Diaz [Brooklyn Nine-Nine]                               12273.1       1.73     0.000181
+15    Dr. James Wilson [House, M.D.]                               12093.5      -8.07     0.000717
+16    Maxwell Klinger [M*A*S*H]                                    12086.8       9.96     0.000986
+17    Marianne Dashwood [Sense and Sensibility]                    12083.5       6.24     0.000536
+18    Kevin Rayburn [Bloodline]                                    12001.2       5.08     0.000831
+19    Amos Burton [The Expanse]                                    11934.9      -2.95     0.001126
+20    Molly Hooper [Sherlock]                                      11840.5       1.94     0.000345
+21    Frodo Baggins [Lord of the Rings]                            11837.8      -0.68     0.000166
+22    Kyle Broflovski [South Park]                                 11828.5       0.52     0.000261
+23    Nick Blaine [The Handmaid's Tale]                            11794.5       8.05     0.000946
+24    Jerry Seinfeld [Seinfeld]                                    11756.5       7.09     0.000780
+25    Rick Sanchez [Rick and Morty]                                11656.6       6.50     0.000558

@@ -1,0 +1,30 @@
+DISPLACEMENT LEADERBOARD — Top 25 by |DX|
+Characters whose robots traveled the farthest
+==========================================================================================
+Rank  Character                                                   DX (m)   |DX| (m)
+------------------------------------------------------------------------------------------
+1     Buttercup [The Princess Bride]                              -37.58      37.58
+2     Allison Reynolds [The Breakfast Club]                       -36.99      36.99
+3     Saitama [One Punch Man]                                     -36.92      36.92
+4     Steve Brady [Sex and the City]                              -35.57      35.57
+5     Brian Johnson [The Breakfast Club]                          -35.52      35.52
+6     Blaine Anderson [Glee]                                      -35.52      35.52
+7     Melanie Hamilton [Gone With the Wind]                       -35.16      35.16
+8     Amy Farrah Fowler [The Big Bang Theory]                     -34.42      34.42
+9     Vision [WandaVision]                                        -34.15      34.15
+10    Dr. Claire Browne [The Good Doctor]                         -34.01      34.01
+11    Hernando Fuentes [Sense8]                                   -33.92      33.92
+12    Ferris Bueller [Ferris Bueller's Day Off]                   -33.63      33.63
+13    Hester Prynne [The Scarlet Letter]                          -33.62      33.62
+14    Prairie Johnson [The OA]                                    -33.62      33.62
+15    Inspector Kido [The Man in the High Castle]                 -33.57      33.57
+16    Nina Locke [Locke & Key]                                    -33.50      33.50
+17    Horace Slughorn [Harry Potter]                              -33.43      33.43
+18    Jack Hodgins [Bones]                                        -33.41      33.41
+19    Donkey [Shrek]                                              -33.37      33.37
+20    Skyler White [Breaking Bad]                                 -33.25      33.25
+21    John Bates [Downton Abbey]                                  -33.17      33.17
+22    Suzuha Amane [Steins;Gate]                                  -33.07      33.07
+23    Taya Kyle [American Sniper]                                 -32.85      32.85
+24    Bobby Briggs [Twin Peaks]                                   -32.83      32.83
+25    Choi Yeon-gyo [Parasite]                                    -32.78      32.78

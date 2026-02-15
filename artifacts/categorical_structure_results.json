@@ -1,0 +1,1279 @@
+{
+  "functor_F": {
+    "clustering": {
+      "verbs": {
+        "n_trials": 100,
+        "n_unique": 18,
+        "faithfulness": 0.18,
+        "cluster_sizes": [
+          39,
+          20,
+          17,
+          5,
+          4,
+          2,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "largest_cluster": 39
+      },
+      "theorems": {
+        "n_trials": 95,
+        "n_unique": 15,
+        "faithfulness": 0.15789473684210525,
+        "cluster_sizes": [
+          34,
+          27,
+          12,
+          4,
+          3,
+          3,
+          2,
+          2,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "largest_cluster": 34
+      },
+      "bible": {
+        "n_trials": 100,
+        "n_unique": 9,
+        "faithfulness": 0.09,
+        "cluster_sizes": [
+          44,
+          40,
+          7,
+          4,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "largest_cluster": 44
+      },
+      "places": {
+        "n_trials": 100,
+        "n_unique": 4,
+        "faithfulness": 0.04,
+        "cluster_sizes": [
+          87,
+          10,
+          2,
+          1
+        ],
+        "largest_cluster": 87
+      },
+      "baseline": {
+        "n_trials": 100,
+        "n_unique": 100,
+        "faithfulness": 1.0,
+        "cluster_sizes": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "largest_cluster": 1
+      }
+    },
+    "synonym_convergence": {
+      "stumble": {
+        "n_members": 4,
+        "matched_seeds": [
+          "stumble (English, to trip and nearly fall)",
+          "stolpern (German, to stumble)",
+          "tropecar (Portuguese, to stumble)",
+          "tropezar (Spanish, to stumble)"
+        ],
+        "mean_within_dist": 0.0,
+        "max_within_dist": 0.0,
+        "bootstrap_mean": 1.1516380137664106,
+        "bootstrap_std": 0.5594254473346016,
+        "p_value": 0.025,
+        "all_identical": true
+      },
+      "walk": {
+        "n_members": 8,
+        "matched_seeds": [
+          "zou (Mandarin, to walk)",
+          "geotda (Korean, to walk)",
+          "yamshi (Arabic, to walk)",
+          "aruku (Japanese, to walk)",
+          "peripatein (Greek, to walk about)",
+          "kutembea (Swahili, to walk)",
+          "chalna (Hindi, to walk)",
+          "ambulare (Latin, to walk)"
+        ],
+        "mean_within_dist": 0.0,
+        "max_within_dist": 0.0,
+        "bootstrap_mean": 1.1495375297968964,
+        "bootstrap_std": 0.35898151810486756,
+        "p_value": 0.0,
+        "all_identical": true
+      },
+      "crawl": {
+        "n_members": 8,
+        "matched_seeds": [
+          "crawl (English, to move on hands and knees)",
+          "pa (Mandarin, to crawl or climb)",
+          "kriechen (German, to crawl)",
+          "polzti (Russian, to crawl)",
+          "kutambaa (Swahili, to crawl)",
+          "serpere (Latin, to creep or crawl)",
+          "yazhaf (Arabic, to crawl)",
+          "ramper (French, to crawl or creep)"
+        ],
+        "mean_within_dist": 0.0,
+        "max_within_dist": 0.0,
+        "bootstrap_mean": 1.1495375297968964,
+        "bootstrap_std": 0.35898151810486756,
+        "p_value": 0.0,
+        "all_identical": true
+      },
+      "jump": {
+        "n_members": 7,
+        "matched_seeds": [
+          "prygat (Russian, to jump)",
+          "saltar (Spanish, to jump)",
+          "tiao (Mandarin, to jump or leap)",
+          "kudna (Hindi, to jump)",
+          "tobu (Japanese, to fly or jump)",
+          "yaqfiz (Arabic, to jump)",
+          "kuruka (Swahili, to fly or jump)"
+        ],
+        "mean_within_dist": 0.0,
+        "max_within_dist": 0.0,
+        "bootstrap_mean": 1.146675903920062,
+        "bootstrap_std": 0.3886930379502104,
+        "p_value": 0.001,
+        "all_identical": true
+      },
+      "stagger": {
+        "n_members": 11,
+        "matched_seeds": [
+          "stagger (English, to walk unsteadily as if about to fall)",
+          "wobble (English, to move unsteadily from side to side)",
+          "sendelemek (Turkish, to stagger)",
+          "schwanken (German, to sway or waver)",
+          "waddle (English, to walk with short steps swaying side to side)",
+          "chanceler (French, to stagger or totter)",
+          "shatat'sya (Russian, to stagger)",
+          "yureru (Japanese, to sway or shake)",
+          "heundeullida (Korean, to sway or shake)",
+          "tambalearse (Spanish, to sway or stagger)",
+          "taumeln (German, to stagger or reel)"
+        ],
+        "mean_within_dist": 0.0,
+        "max_within_dist": 0.0,
+        "bootstrap_mean": 1.1490009340824627,
+        "bootstrap_std": 0.29762463057312766,
+        "p_value": 0.0,
+        "all_identical": true
+      },
+      "sprint": {
+        "n_members": 3,
+        "matched_seeds": [
+          "leap (English, to jump a long distance)",
+          "sprint (English, to run at full speed)",
+          "rennen (German, to run fast)"
+        ],
+        "mean_within_dist": 0.0,
+        "max_within_dist": 0.0,
+        "bootstrap_mean": 1.1484688601388653,
+        "bootstrap_std": 0.6802536978555038,
+        "p_value": 0.062,
+        "all_identical": true
+      }
+    },
+    "morphism_preservation": {
+      "verbs": {
+        "within_weight_dist_mean": 1.1435822879281012,
+        "cross_weight_dist_mean": 1.846166995026794,
+        "weight_U": 14451674.0,
+        "weight_z": -41.46861573288999,
+        "weight_sig": "***",
+        "within_beh_dist_mean": 5.471859527269164,
+        "cross_beh_dist_mean": 10.858458617013401,
+        "beh_U": 13033215.0,
+        "beh_z": -47.18037230418705,
+        "beh_sig": "***"
+      },
+      "theorems": {
+        "within_weight_dist_mean": 0.9497226869489064,
+        "cross_weight_dist_mean": 1.7174125122490327,
+        "weight_U": 8662557.0,
+        "weight_z": -56.46691145591057,
+        "weight_sig": "***",
+        "within_beh_dist_mean": 4.382106716775975,
+        "cross_beh_dist_mean": 10.715850050721796,
+        "beh_U": 9528507.0,
+        "beh_z": -52.56951230261795,
+        "beh_sig": "***"
+      },
+      "bible": {
+        "within_weight_dist_mean": 0.41779522027053645,
+        "cross_weight_dist_mean": 1.8476976404027416,
+        "weight_U": 3070781.0,
+        "weight_z": -87.29644042149836,
+        "weight_sig": "***",
+        "within_beh_dist_mean": 3.7080492922365433,
+        "cross_beh_dist_mean": 10.697512658758273,
+        "beh_U": 7647324.0,
+        "beh_z": -68.86792077160113,
+        "beh_sig": "***"
+      },
+      "places": {
+        "within_weight_dist_mean": 0.17617485564420188,
+        "cross_weight_dist_mean": 1.7805509709232388,
+        "weight_U": 1865955.0,
+        "weight_z": -92.14795380522645,
+        "weight_sig": "***",
+        "within_beh_dist_mean": 0.7853390432849037,
+        "cross_beh_dist_mean": 10.10139017841654,
+        "beh_U": 1501184.0,
+        "beh_z": -93.61678946157505,
+        "beh_sig": "***"
+      }
+    },
+    "collapse_analysis": {
+      "verbs": {
+        "n_collapsed_groups": 7,
+        "max_group_size": 39,
+        "groups": [
+          {
+            "weights": [
+              0.6,
+              -0.4,
+              0.2,
+              -0.8,
+              0.5,
+              -0.3
+            ],
+            "n_seeds": 39,
+            "seeds": [
+              "cascade (English, to fall in a series of stages)",
+              "tiptoe (English, to walk quietly on the toes)",
+              "pairar (Portuguese, to hover)",
+              "skatit'sya (Russian, to slide down)",
+              "zou (Mandarin, to walk)",
+              "crawl (English, to move on hands and knees)",
+              "dissolve (English, to become incorporated into a liquid)",
+              "pa (Mandarin, to crawl or climb)",
+              "kriechen (German, to crawl)",
+              "geotda (Korean, to walk)"
+            ]
+          },
+          {
+            "weights": [
+              0.8,
+              -0.6,
+              0.2,
+              -0.9,
+              0.5,
+              -0.4
+            ],
+            "n_seeds": 20,
+            "seeds": [
+              "kukimbia (Swahili, to run)",
+              "trechein (Greek, to run)",
+              "correr (Spanish, to run)",
+              "hashiru (Japanese, to run)",
+              "daudna (Hindi, to run)",
+              "sautiller (French, to hop or skip)",
+              "prygat (Russian, to jump)",
+              "saltar (Spanish, to jump)",
+              "pao (Mandarin, to run)",
+              "tiao (Mandarin, to jump or leap)"
+            ]
+          },
+          {
+            "weights": [
+              0.6,
+              -0.4,
+              -0.2,
+              0.8,
+              0.3,
+              -0.5
+            ],
+            "n_seeds": 17,
+            "seeds": [
+              "yadur (Arabic, to rotate or spin)",
+              "stagger (English, to walk unsteadily as if about to fall)",
+              "wobble (English, to move unsteadily from side to side)",
+              "sendelemek (Turkish, to stagger)",
+              "schwanken (German, to sway or waver)",
+              "zhuan (Mandarin, to rotate or turn)",
+              "waddle (English, to walk with short steps swaying side to side)",
+              "escorregar (Portuguese, to slip)",
+              "chanceler (French, to stagger or totter)",
+              "shatat'sya (Russian, to stagger)"
+            ]
+          },
+          {
+            "weights": [
+              0.8,
+              -0.6,
+              0.9,
+              -0.5,
+              0.7,
+              -0.4
+            ],
+            "n_seeds": 5,
+            "seeds": [
+              "yarkud (Arabic, to run)",
+              "leap (English, to jump a long distance)",
+              "sprint (English, to run at full speed)",
+              "dash (English, to move suddenly and quickly)",
+              "rennen (German, to run fast)"
+            ]
+          },
+          {
+            "weights": [
+              -0.6,
+              0.8,
+              0.9,
+              -0.4,
+              -0.3,
+              0.7
+            ],
+            "n_seeds": 4,
+            "seeds": [
+              "stumble (English, to trip and nearly fall)",
+              "stolpern (German, to stumble)",
+              "tropecar (Portuguese, to stumble)",
+              "tropezar (Spanish, to stumble)"
+            ]
+          }
+        ]
+      },
+      "theorems": {
+        "n_collapsed_groups": 9,
+        "max_group_size": 34,
+        "groups": [
+          {
+            "weights": [
+              0.5,
+              -0.3,
+              0.1,
+              -0.7,
+              0.4,
+              -0.2
+            ],
+            "n_seeds": 34,
+            "seeds": [
+              "Vinogradov's Theorem",
+              "Catalan's Conjecture (Mihailescu's Theorem)",
+              "Taylor's Theorem",
+              "Gauss-Bonnet Theorem",
+              "Sylow Theorems",
+              "Mean Value Theorem",
+              "Cantor's Theorem on cardinality",
+              "L'Hopital's Rule",
+              "Cayley-Hamilton Theorem",
+              "Euler characteristic of surfaces"
+            ]
+          },
+          {
+            "weights": [
+              0.6,
+              -0.4,
+              -0.2,
+              0.8,
+              0.3,
+              -0.5
+            ],
+            "n_seeds": 27,
+            "seeds": [
+              "Sturm-Liouville Theory",
+              "Hall's Marriage Theorem",
+              "Desargues' Theorem",
+              "Lyapunov Stability Theorem",
+              "Shannon's Source Coding Theorem",
+              "Dirichlet's Theorem on primes in arithmetic progressions",
+              "Courant-Fischer Minimax Theorem",
+              "Zorn's Lemma",
+              "Picard-Lindelof Existence and Uniqueness Theorem",
+              "Nash Embedding Theorem"
+            ]
+          },
+          {
+            "weights": [
+              0.6,
+              -0.4,
+              0.2,
+              -0.8,
+              0.5,
+              -0.3
+            ],
+            "n_seeds": 12,
+            "seeds": [
+              "Sharkovskii's Theorem",
+              "Markov's Inequality",
+              "Perron-Frobenius Theorem",
+              "Dominated Convergence Theorem",
+              "Baire Category Theorem",
+              "Jordan Normal Form Theorem",
+              "Monotone Convergence Theorem",
+              "Arzela-Ascoli Theorem",
+              "Bertrand's Postulate",
+              "Turan's Theorem"
+            ]
+          },
+          {
+            "weights": [
+              0.6,
+              -0.6,
+              0.2,
+              -0.2,
+              -0.4,
+              0.4
+            ],
+            "n_seeds": 4,
+            "seeds": [
+              "Van der Waerden's Theorem",
+              "Hales-Jewett Theorem",
+              "Menger's Theorem",
+              "Ramsey's Theorem"
+            ]
+          },
+          {
+            "weights": [
+              0.5,
+              -0.5,
+              0.3,
+              -0.3,
+              0.1,
+              -0.1
+            ],
+            "n_seeds": 3,
+            "seeds": [
+              "Intermediate Value Theorem",
+              "Ham Sandwich Theorem",
+              "Waring's Problem solution"
+            ]
+          }
+        ]
+      },
+      "bible": {
+        "n_collapsed_groups": 4,
+        "max_group_size": 44,
+        "groups": [
+          {
+            "weights": [
+              0.6,
+              -0.4,
+              0.2,
+              -0.8,
+              0.5,
+              -0.3
+            ],
+            "n_seeds": 44,
+            "seeds": [
+              "Matthew 6:28 \u2014 Consider the lilies of the field, how they grow; they toil not, neither do they spin.",
+              "Psalm 1:3 \u2014 He shall be like a tree planted by the rivers of water.",
+              "Isaiah 30:21 \u2014 This is the way, walk ye in it, when ye turn to the right hand, and when ye turn to the left.",
+              "Daniel 3:25 \u2014 Lo, I see four men loose, walking in the midst of the fire, and they have no hurt.",
+              "Psalm 46:10 \u2014 Be still, and know that I am God.",
+              "Isaiah 52:7 \u2014 How beautiful upon the mountains are the feet of him that bringeth good tidings.",
+              "Proverbs 6:6 \u2014 Go to the ant, thou sluggard; consider her ways, and be wise.",
+              "Exodus 3:2 \u2014 And the angel of the LORD appeared unto him in a flame of fire out of the midst of a bush.",
+              "Matthew 14:25 \u2014 And in the fourth watch of the night Jesus went unto them, walking on the sea.",
+              "Revelation 10:1 \u2014 And I saw another mighty angel come down from heaven, clothed with a cloud; and a rainbow was upon his head."
+            ]
+          },
+          {
+            "weights": [
+              0.8,
+              -0.6,
+              0.2,
+              -0.9,
+              0.5,
+              -0.4
+            ],
+            "n_seeds": 40,
+            "seeds": [
+              "1 Corinthians 15:52 \u2014 In a moment, in the twinkling of an eye, at the last trump.",
+              "Exodus 14:21 \u2014 And the LORD caused the sea to go back by a strong east wind all that night.",
+              "Psalm 29:3 \u2014 The voice of the LORD is upon the waters.",
+              "Psalm 139:14 \u2014 I am fearfully and wonderfully made: marvellous are thy works.",
+              "Isaiah 40:31 \u2014 But they that wait upon the LORD shall renew their strength; they shall mount up with wings as eagles.",
+              "Acts 9:3 \u2014 Suddenly there shined round about him a light from heaven.",
+              "Isaiah 40:4 \u2014 Every valley shall be exalted, and every mountain and hill shall be made low.",
+              "Psalm 90:4 \u2014 For a thousand years in thy sight are but as yesterday when it is past.",
+              "Lamentations 3:22 \u2014 It is of the LORD's mercies that we are not consumed, because his compassions fail not.",
+              "Song of Solomon 8:6 \u2014 Love is strong as death; jealousy is cruel as the grave."
+            ]
+          },
+          {
+            "weights": [
+              0.6,
+              -0.8,
+              0.2,
+              -0.9,
+              0.5,
+              -0.4
+            ],
+            "n_seeds": 7,
+            "seeds": [
+              "Psalm 77:19 \u2014 Thy way is in the sea, and thy path in the great waters, and thy footsteps are not known.",
+              "Genesis 1:2 \u2014 And the earth was without form, and void; and darkness was upon the face of the deep.",
+              "John 11:35 \u2014 Jesus wept.",
+              "1 Corinthians 13:12 \u2014 For now we see through a glass, darkly; but then face to face.",
+              "Psalm 42:7 \u2014 Deep calleth unto deep at the noise of thy waterspouts.",
+              "Genesis 32:24 \u2014 And Jacob was left alone; and there wrestled a man with him until the breaking of the day.",
+              "Genesis 7:17 \u2014 And the flood was forty days upon the earth; and the waters increased."
+            ]
+          },
+          {
+            "weights": [
+              0.6,
+              -0.4,
+              -0.2,
+              0.8,
+              0.3,
+              -0.5
+            ],
+            "n_seeds": 4,
+            "seeds": [
+              "Ezekiel 1:16 \u2014 Their appearance and their work was as it were a wheel in the middle of a wheel.",
+              "Luke 10:30 \u2014 A certain man went down from Jerusalem to Jericho, and fell among thieves.",
+              "Ecclesiastes 9:11 \u2014 The race is not to the swift, nor the battle to the strong.",
+              "John 3:8 \u2014 The wind bloweth where it listeth, and thou hearest the sound thereof, but canst not tell whence it cometh."
+            ]
+          }
+        ]
+      },
+      "places": {
+        "n_collapsed_groups": 3,
+        "max_group_size": 87,
+        "groups": [
+          {
+            "weights": [
+              0.6,
+              -0.4,
+              0.2,
+              -0.8,
+              0.5,
+              -0.3
+            ],
+            "n_seeds": 87,
+            "seeds": [
+              "Svalbard",
+              "Bialowieza Forest, Poland",
+              "Chichen Itza, Mexico",
+              "Eisriesenwelt Ice Cave, Austria",
+              "Varanasi, India",
+              "Black Forest, Germany",
+              "Cartagena, Colombia",
+              "Luang Prabang, Laos",
+              "Daintree Rainforest, Australia",
+              "Lalibela, Ethiopia"
+            ]
+          },
+          {
+            "weights": [
+              0.8,
+              -0.6,
+              0.2,
+              -0.9,
+              0.5,
+              -0.4
+            ],
+            "n_seeds": 10,
+            "seeds": [
+              "Oymyakon, Siberia",
+              "McMurdo Station, Antarctica",
+              "Death Valley, California",
+              "Niagara Falls",
+              "Dasht-e Lut, Iran",
+              "North Pole",
+              "Rub al Khali, Arabian Peninsula",
+              "South Pole",
+              "Cerro Torre, Patagonia",
+              "Mount Everest"
+            ]
+          },
+          {
+            "weights": [
+              0.6,
+              -0.4,
+              -0.2,
+              0.8,
+              0.3,
+              -0.5
+            ],
+            "n_seeds": 2,
+            "seeds": [
+              "Ulaanbaatar, Mongolia",
+              "Danakil Depression, Ethiopia"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "map_G": {
+    "atlas_continuity": {
+      "n_atlas": 500,
+      "median_cliffiness": 7.3273168234223185,
+      "mean_cliffiness": 9.511942521437174,
+      "std_cliffiness": 7.50206174157213,
+      "max_cliffiness": 47.60993457583254,
+      "min_cliffiness": 0.6038334690787197,
+      "n_smooth": 250,
+      "n_rough": 250,
+      "smooth_threshold": 7.3273168234223185
+    },
+    "regularizer": {
+      "verbs": {
+        "mean_interp_cliffiness": 7.1986656088051,
+        "median_interp_cliffiness": 6.698061604571386,
+        "std_interp_cliffiness": 2.941498310605162,
+        "min_nearest_atlas_dist": 0.38091376274304634,
+        "mean_nearest_atlas_dist": 0.5316748193093669,
+        "vs_baseline_U": 2925.0,
+        "vs_baseline_z": -5.0700319407866665,
+        "vs_baseline_sig": "***"
+      },
+      "theorems": {
+        "mean_interp_cliffiness": 5.9216488811139305,
+        "median_interp_cliffiness": 5.112460435457982,
+        "std_interp_cliffiness": 1.8693078901384357,
+        "min_nearest_atlas_dist": 0.34515494411089237,
+        "mean_nearest_atlas_dist": 0.5781570232447616,
+        "vs_baseline_U": 2044.0,
+        "vs_baseline_z": -6.869554556640446,
+        "vs_baseline_sig": "***"
+      },
+      "bible": {
+        "mean_interp_cliffiness": 6.597009832192848,
+        "median_interp_cliffiness": 6.594491006229505,
+        "std_interp_cliffiness": 0.7790032018917417,
+        "min_nearest_atlas_dist": 0.38091376274304634,
+        "mean_nearest_atlas_dist": 0.47976003090690805,
+        "vs_baseline_U": 2516.0,
+        "vs_baseline_z": -6.0693779956212435,
+        "vs_baseline_sig": "***"
+      },
+      "places": {
+        "mean_interp_cliffiness": 6.651080711756155,
+        "median_interp_cliffiness": 6.698061604571386,
+        "std_interp_cliffiness": 0.28484880608021107,
+        "min_nearest_atlas_dist": 0.38091376274304634,
+        "mean_nearest_atlas_dist": 0.5182203236785575,
+        "vs_baseline_U": 2560.0,
+        "vs_baseline_z": -5.961868884587695,
+        "vs_baseline_sig": "***"
+      },
+      "baseline": {
+        "mean_interp_cliffiness": 9.732645854179344,
+        "median_interp_cliffiness": 9.020103001685204,
+        "std_interp_cliffiness": 4.310792962416637,
+        "min_nearest_atlas_dist": 0.26149072835344933,
+        "mean_nearest_atlas_dist": 0.5329151115299886
+      }
+    },
+    "local_continuity": {
+      "verbs": {
+        "mean_nearest_local_var": 2.8099092058129593,
+        "median_nearest_local_var": 1.6897613638636162,
+        "mean_nearest_dist": 0.5316748193093669
+      },
+      "theorems": {
+        "mean_nearest_local_var": 2.8648863071168402,
+        "median_nearest_local_var": 2.2005423015425505,
+        "mean_nearest_dist": 0.5781570232447616
+      },
+      "bible": {
+        "mean_nearest_local_var": 1.8090905261413073,
+        "median_nearest_local_var": 1.6897613638636162,
+        "mean_nearest_dist": 0.47976003090690805
+      },
+      "places": {
+        "mean_nearest_local_var": 1.7497412949905908,
+        "median_nearest_local_var": 1.6897613638636162,
+        "mean_nearest_dist": 0.5182203236785575
+      },
+      "baseline": {
+        "mean_nearest_local_var": 4.2319190307266705,
+        "median_nearest_local_var": 3.4468981391991633,
+        "mean_nearest_dist": 0.5329151115299886
+      }
+    }
+  },
+  "composition_GF": {
+    "mantel_tests": {
+      "sem_vs_wt": {
+        "r": 0.1340930129420502,
+        "p": 0.000999000999000999
+      },
+      "wt_vs_beh": {
+        "r": 0.7326320859227471,
+        "p": 0.000999000999000999
+      },
+      "sem_vs_beh": {
+        "r": 0.14035034043281402,
+        "p": 0.000999000999000999
+      }
+    },
+    "distance_summaries": {
+      "wt_dist_mean": 1.1568486117399825,
+      "beh_dist_mean": 3.320407622773015
+    },
+    "triptych": {
+      "revelation": {
+        "seed": "Revelation 6:8 \u2014 And I looked, and behold a pale horse: and his name that sat on him was Death.",
+        "weights": {
+          "w03": -0.8,
+          "w04": 0.6,
+          "w13": 0.2,
+          "w14": -0.9,
+          "w23": 0.5,
+          "w24": -0.4
+        },
+        "dx": 29.16702982825942,
+        "speed": 3.110549071899315,
+        "efficiency": 0.0026608090691582517,
+        "phase_lock": 0.49888457798332236,
+        "verified_dx_29m": true
+      },
+      "ecclesiastes": {
+        "seed": "Ecclesiastes 1:6 \u2014 The wind goeth toward the south, and turneth about unto the north; it whirleth about continually.",
+        "weights": {
+          "w03": 0.6,
+          "w04": -0.5,
+          "w13": -0.4,
+          "w14": 0.8,
+          "w23": 0.2,
+          "w24": -0.9
+        },
+        "dx": -5.426847028599107,
+        "efficiency": 0.004953484000845047,
+        "phase_lock": 0.9954058131078084,
+        "verified_eff_00495": true
+      },
+      "noether": {
+        "seed": "Noether's Theorem on symmetry and conservation",
+        "weights": {
+          "w03": 0.5,
+          "w04": -0.5,
+          "w13": 0.3,
+          "w14": -0.3,
+          "w23": 0.7,
+          "w24": -0.7
+        },
+        "dx": 0.031072460871725098,
+        "speed": 0.612276429314675,
+        "phase_lock": 0.5429430221325175,
+        "verified_dx_003m": true
+      }
+    },
+    "synonym_behavioral_equivalence": {
+      "stumble": {
+        "n_matched": 4,
+        "weights_identical": true,
+        "behavior_identical": true,
+        "max_weight_diff": 0.0,
+        "max_behavior_diff": 0.0
+      },
+      "walk": {
+        "n_matched": 8,
+        "weights_identical": true,
+        "behavior_identical": true,
+        "max_weight_diff": 0.0,
+        "max_behavior_diff": 0.0
+      },
+      "crawl": {
+        "n_matched": 8,
+        "weights_identical": true,
+        "behavior_identical": true,
+        "max_weight_diff": 0.0,
+        "max_behavior_diff": 0.0
+      },
+      "jump": {
+        "n_matched": 7,
+        "weights_identical": true,
+        "behavior_identical": true,
+        "max_weight_diff": 0.0,
+        "max_behavior_diff": 0.0
+      },
+      "stagger": {
+        "n_matched": 11,
+        "weights_identical": true,
+        "behavior_identical": true,
+        "max_weight_diff": 0.0,
+        "max_behavior_diff": 0.0
+      },
+      "sprint": {
+        "n_matched": 3,
+        "weights_identical": true,
+        "behavior_identical": true,
+        "max_weight_diff": 0.0,
+        "max_behavior_diff": 0.0
+      }
+    }
+  },
+  "sheaf_structure": {
+    "patch_identification": {
+      "n_smooth_points": 250,
+      "n_patches": 220,
+      "patch_sizes": [
+        5,
+        4,
+        3,
+        3,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2
+      ],
+      "radius": 0.5,
+      "median_cliffiness_threshold": 7.3273168234223185
+    },
+    "llm_patch_selection": {
+      "verbs": {
+        "n_patches_used": 11,
+        "patches_used": [
+          35,
+          39,
+          54,
+          63,
+          93,
+          94,
+          103,
+          122,
+          124,
+          161,
+          182
+        ],
+        "mean_dist_to_smooth": 0.566508642566705
+      },
+      "theorems": {
+        "n_patches_used": 10,
+        "patches_used": [
+          19,
+          35,
+          39,
+          45,
+          54,
+          83,
+          103,
+          117,
+          150,
+          197
+        ],
+        "mean_dist_to_smooth": 0.6003600629190666
+      },
+      "bible": {
+        "n_patches_used": 5,
+        "patches_used": [
+          6,
+          39,
+          103,
+          122,
+          197
+        ],
+        "mean_dist_to_smooth": 0.48307523704503
+      },
+      "places": {
+        "n_patches_used": 3,
+        "patches_used": [
+          39,
+          103,
+          120
+        ],
+        "mean_dist_to_smooth": 0.5190265591943926
+      },
+      "baseline": {
+        "n_patches_used": 77,
+        "patches_used": [
+          0,
+          7,
+          8,
+          10,
+          11,
+          21,
+          27,
+          32,
+          34,
+          43,
+          44,
+          45,
+          50,
+          54,
+          56,
+          57,
+          58,
+          59,
+          60,
+          63,
+          64,
+          69,
+          70,
+          72,
+          73,
+          76,
+          80,
+          83,
+          84,
+          87,
+          88,
+          91,
+          94,
+          96,
+          97,
+          98,
+          100,
+          103,
+          104,
+          109,
+          111,
+          115,
+          117,
+          118,
+          124,
+          133,
+          136,
+          137,
+          139,
+          140,
+          141,
+          142,
+          143,
+          145,
+          148,
+          156,
+          164,
+          165,
+          173,
+          177,
+          178,
+          179,
+          182,
+          184,
+          186,
+          187,
+          192,
+          197,
+          198,
+          202,
+          203,
+          205,
+          207,
+          208,
+          214,
+          215,
+          217
+        ],
+        "mean_dist_to_smooth": 0.6477880443506155
+      }
+    }
+  },
+  "information_geometry": {
+    "distributions": {
+      "verbs": {
+        "mean": [
+          0.4990000000000005,
+          -0.3319999999999997,
+          0.1849999999999999,
+          -0.4019999999999997,
+          0.35800000000000004,
+          -0.2680000000000001
+        ],
+        "cov_trace": 1.105816161616161,
+        "cov_det": 1.8488867129349415e-09,
+        "cov_rank": 6
+      },
+      "theorems": {
+        "mean": [
+          0.5558631578947373,
+          -0.3979684210526315,
+          0.04217894736842106,
+          -0.1515052631578947,
+          0.32834736842105255,
+          -0.30097894736842096
+        ],
+        "cov_trace": 0.687893397088466,
+        "cov_det": 4.000269567388868e-11,
+        "cov_rank": 6
+      },
+      "bible": {
+        "mean": [
+          0.6540000000000002,
+          -0.4869999999999999,
+          0.1769999999999997,
+          -0.7629999999999995,
+          0.49199999999999994,
+          -0.36799999999999966
+        ],
+        "cov_trace": 0.2505343434343435,
+        "cov_det": 6.212349546939508e-14,
+        "cov_rank": 6
+      },
+      "places": {
+        "mean": [
+          0.6060000000000008,
+          -0.4099999999999994,
+          0.18799999999999964,
+          -0.7609999999999988,
+          0.48599999999999993,
+          -0.3080000000000004
+        ],
+        "cov_trace": 0.13902929292929328,
+        "cov_det": 3.944417070150168e-30,
+        "cov_rank": 3
+      },
+      "baseline": {
+        "mean": [
+          0.09406483601428352,
+          -0.0005784515644707433,
+          0.020286085295934696,
+          0.00870334475336259,
+          0.021730511770045292,
+          -0.13916633339666357
+        ],
+        "cov_trace": 1.999724000158657,
+        "cov_det": 0.0012449855155709467,
+        "cov_rank": 6
+      },
+      "mahalanobis": {
+        "verbs_vs_theorems": 0.5788350867533294,
+        "verbs_vs_bible": 0.9322169609713618,
+        "verbs_vs_places": 1.104499789176512,
+        "verbs_vs_baseline": 1.2054494502673712,
+        "theorems_vs_bible": 1.6256615870893747,
+        "theorems_vs_places": 1.3483996597276633,
+        "theorems_vs_baseline": 1.627387403193728,
+        "bible_vs_places": 0.951812141521056,
+        "bible_vs_baseline": 2.564074740687344,
+        "places_vs_baseline": 2.4318681566973095
+      }
+    },
+    "dimensionality": {
+      "verbs": {
+        "eigenvalues": [
+          0.5376385367894537,
+          0.48563591421700864,
+          0.0668353606689494,
+          0.008737615519958932,
+          0.003606960780062876,
+          0.0033617736407269986
+        ],
+        "var_explained_pct": [
+          48.61916071145949,
+          43.916514432855394,
+          6.0439847950195364,
+          0.790150824635157,
+          0.3261808703167504,
+          0.30400836571367656
+        ],
+        "participation_ratio": 2.3095563325977495,
+        "effective_dims": 2.3095563325977495
+      },
+      "theorems": {
+        "eigenvalues": [
+          0.5030947854164435,
+          0.14774162879658045,
+          0.026970607925245856,
+          0.005574667751656144,
+          0.003484405035113136,
+          0.0010273021634264424
+        ],
+        "var_explained_pct": [
+          73.1355741377677,
+          21.477401792472847,
+          3.9207540062748034,
+          0.8103970433865383,
+          0.506532705483293,
+          0.14934031461481345
+        ],
+        "participation_ratio": 1.7163260064942905,
+        "effective_dims": 1.7163260064942905
+      },
+      "bible": {
+        "eigenvalues": [
+          0.15171102756614513,
+          0.08508235019168935,
+          0.00795286561990175,
+          0.003700545311581546,
+          0.0020060333237653127,
+          8.152142126050212e-05
+        ],
+        "var_explained_pct": [
+          60.55498239741465,
+          33.960354107694016,
+          3.174361451162052,
+          1.477061093043849,
+          0.8007019302289886,
+          0.03253902045643737
+        ],
+        "participation_ratio": 2.0690602630487893,
+        "effective_dims": 2.0690602630487893
+      },
+      "places": {
+        "eigenvalues": [
+          0.11223917691792379,
+          0.025406922504408246,
+          0.0013831935069611352,
+          8.621308980636633e-31,
+          4.6572941628213e-32,
+          8.730772988415186e-33
+        ],
+        "var_explained_pct": [
+          80.73059608740571,
+          18.274510334544804,
+          0.9948935780494784,
+          6.201073744236918e-28,
+          3.349865387857423e-29,
+          6.279808236423556e-30
+        ],
+        "participation_ratio": 1.4593476772348948,
+        "effective_dims": 1.4593476772348948
+      },
+      "baseline": {
+        "eigenvalues": [
+          0.4302028549577921,
+          0.3728951164493681,
+          0.35068777047998306,
+          0.3186354771073651,
+          0.27135118191192853,
+          0.2559515992522197
+        ],
+        "var_explained_pct": [
+          21.513111555577673,
+          18.647329152412176,
+          17.53680860219509,
+          15.933972742342684,
+          13.569431676091288,
+          12.799346271381085
+        ],
+        "participation_ratio": 5.814221423881486,
+        "effective_dims": 5.814221423881486
+      }
+    }
+  }
+}

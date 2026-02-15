@@ -1,0 +1,41 @@
+CLUSTER INTERPRETATION GUIDE
+================================================================================
+
+The 7 clusters partition 2000 fictional characters by their LLM-assigned
+weight vectors. Each cluster has a distinct behavioral signature:
+
+CLUSTER 1 [+-++-+] — n=540 (27.0%)
+  Aggressive left walkers — champions of locomotion
+  Mean DX: -14.4m, Mean |DX|: 15.8m, Champions: 217
+  Notable: Buttercup, Allison Reynolds, Steve Brady, Brian Johnson, Blaine Anderson
+
+CLUSTER 3 [+-+-+-] — n=500 (25.0%)
+  Mostly inert — frozen or oscillating in place
+  Mean DX: +1.2m, Mean |DX|: 2.8m, Champions: 0
+  Notable: Jamie Tartt, Emma Nelson, Lily Iglehart, Roland Pryzbylewski, The Deep
+
+CLUSTER 4 [+-++-+] — n=366 (18.3%)
+  Moderate left walkers — steady movers
+  Mean DX: -6.3m, Mean |DX|: 8.1m, Champions: 49
+  Notable: Saitama, Jack Hodgins, Bobby Briggs, Alicia Florrick, Anna Bates
+
+CLUSTER 2 [+--++-] — n=285 (14.2%)
+  Mostly inert — frozen or oscillating in place
+  Mean DX: -1.5m, Mean |DX|: 2.8m, Champions: 0
+  Notable: Miranda Priestly, Lady Jessica, Jonah Byrde, Chung-sook, Frank Sobotka
+
+CLUSTER 0 [+--++-] — n=162 (8.1%)
+  Mixed — some walk, some don't
+  Mean DX: +2.8m, Mean |DX|: 5.1m, Champions: 0
+  Notable: Mark Zuckerberg, Haymitch Abernathy, Parker, Peter Burke, Jessie
+
+CLUSTER 5 [+-+-+-] — n=74 (3.7%)
+  Mostly inert — frozen or oscillating in place
+  Mean DX: +0.7m, Mean |DX|: 2.8m, Champions: 0
+  Notable: Hiram Lodge, Murphy MacManus, Boromir, John McClane, Dr. Robert Chase
+
+CLUSTER 6 [-++--+] — n=73 (3.6%)
+  Right walkers — contrarian movers
+  Mean DX: +6.2m, Mean |DX|: 8.5m, Champions: 4
+  Notable: Shinji Ikari, Dexter Morgan, Rei Ayanami, Lau, Alastor Moody
+
