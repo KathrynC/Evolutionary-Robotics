@@ -1,6 +1,10 @@
-# Synapse Gait Zoo
+# Synapse Gait Zoo & Motion Gait Dictionary
 
-A catalog of 116 discovered gaits for a 3-link PyBullet robot, organized by structural motif, behavioral tag, and attractor dynamics. Each gait is a fixed-weight neural network (no learning at runtime) that produces a distinct locomotion style from the same 3-link body.
+**Kathryn Cramer** — University of Vermont
+
+A research project in evolutionary robotics that began as a catalog of 116 discovered gaits for a 3-link PyBullet robot and evolved into a systematic investigation of **language-model-mediated robot control**: can LLMs translate human motion concepts into neural network weights that produce recognizable locomotion?
+
+The answer is yes — and the investigation revealed that the bottleneck to higher-fidelity communication between humans and robots is not the weights but the **nervous system architecture** itself.
 
 ## The Robot
 
@@ -12,6 +16,7 @@ A catalog of 116 discovered gaits for a 3-link PyBullet robot, organized by stru
 - 3 touch sensors (one per link), 2 motors (one per joint)
 - Neural network maps sensor values to motor commands through weighted synapses
 - Simulated in PyBullet (DIRECT mode, deterministic — zero variance across trials)
+- 4000 timesteps at 240 Hz (16.67 simulated seconds per run)
 
 ## Setup
 
@@ -20,37 +25,120 @@ conda env create -f environment.yml   # Python 3.11, pybullet 3.25, numpy 1.26.4
 conda activate er
 ```
 
-## Running a Gait
+## Project Structure
 
-Write a brain file and simulate:
+The project has three layers, each building on the last:
 
-```python
-import json, pybullet as p, pybullet_data
+### Layer 1: The Gait Zoo (116 gaits)
 
-zoo = json.load(open("synapse_gait_zoo.json"))
-gait = zoo["categories"]["persona_gaits"]["gaits"]["18_curie"]
+A catalog of 116 discovered gaits organized by structural motif, behavioral tag, and attractor dynamics. Each gait is a fixed-weight neural network (no learning at runtime) that produces a distinct locomotion style. See [The Zoo](#the-zoo) below.
 
-# Write brain.nndf from gait weights, then:
-p.connect(p.DIRECT)
-p.setAdditionalSearchPath(pybullet_data.getDataPath())
-# ... load plane.urdf, body.urdf, run simulation loop
-```
+### Layer 2: The Weight-Space Landscape (~25,000 simulations)
 
-See `record_videos.py` for a complete example that writes brain files and runs simulations with video capture.
+Research campaigns that mapped the 6D weight space, revealing it to be riddled with behavioral cliffs — non-differentiable, fractal, isotropically chaotic. See [The Weight-Space Landscape](#the-weight-space-landscape-behavioral-cliffs-and-fractal-sensitivity) below.
 
-## Recording Videos
+### Layer 3: LLM-Mediated Robot Control (706+ LLM trials, 58 motion concepts, 365 dictionary entries)
 
-```bash
-python record_videos.py
-```
+Systematic investigation of using LLMs to translate semantic concepts into neural network weights. This produced the **Motion Gait Dictionary** — a multilingual catalog of 58 motion concepts across 5 languages and 5 LLMs — and led to the central insight about sensory death and nervous system evolution. See [Motion Gait Dictionary](#motion-gait-dictionary) and [The Central Insight](#the-central-insight-sensory-death-and-the-case-for-proprioception) below.
 
-Renders all configured gaits to `videos/` using offscreen PyBullet rendering piped to ffmpeg. 89 videos currently recorded.
+---
+
+## Motion Gait Dictionary
+
+**58 motion concepts, 365 entries, 5 LLMs, 5 languages.**
+
+Each entry is a motion word (e.g., "crawl", "Hüpfen", "蹒跚") translated by an LLM into 6 synapse weights, simulated for 4000 steps, and evaluated with Beer-framework analytics. The dictionary maps the semantic-to-behavioral channel: how faithfully can a robot execute a human motion concept?
+
+### The Five LLMs
+
+| Model | Source |
+|---|---|
+| gpt-4.1-mini | OpenAI API |
+| qwen3-coder:30b | Ollama (local) |
+| deepseek-r1:8b | Ollama (local) |
+| llama3.1:latest | Ollama (local) |
+| gpt-oss:20b | Ollama (local) |
+
+### The Five Languages
+
+English, German, Finnish, French, Chinese (Mandarin)
+
+### The 58 Concepts
+
+amble, backward_walk, bounce, charge, circle, crab_walk, crawl, creep, dash, drag, drift, fall, forward_walk, freeze, gallop, glide, headstand, hop, limp, lunge, lurch, march, patrol, pivot, plod, prance, prowl, retreat, roam, rock, roll, rush, saunter, scurry, shuffle, skid, skip, slide, spin, sprint, stagger, stand_still, stomp, stride, stumble, sway, tiptoe, trot, turn_left, turn_right, twirl, twist, waddle, walk_and_spin, wander, weave, wobble, zigzag
+
+### Compilation Video
+
+All 58 concepts were recorded as individual simulation videos and compiled into a 3.5-hour presentation:
+
+| Property | Value |
+|---|---|
+| Duration | 211.7 minutes |
+| Concepts | 58 (alphabetical) |
+| Total entries | 365 |
+| Format | 1280x720 @ 30 fps, H.264 |
+
+Opening title card, per-concept section dividers with descriptions, lower-third captions showing word/language/model for each clip, and closing credits citing all LLMs and key references.
+
+### Key Files
+
+| File | Description |
+|---|---|
+| `artifacts/motion_gait_dictionary_v2.json` | Complete dictionary: 58 concepts, 365 entries with weights and Beer analytics |
+| `artifacts/motion_gait_dictionary_v2.pdf` | Formatted PDF of the dictionary |
+| `build_motion_dictionary.py` | Assembles dictionary from motion seed experiment data |
+| `motion_seed_experiment_v2.py` | LLM weight generation experiment (365 trials) |
+| `record_concept_videos.py` | Per-concept video renderer (PyBullet + PIL + ffmpeg) |
+| `compile_concept_video.py` | Compilation assembler with title/section/credits cards |
+| `render_dictionary_pdf.py` | PDF renderer with CJK font support |
+
+### Further Reading
+
+- [artifacts/motion_seed_experiment_v2_report.md](artifacts/motion_seed_experiment_v2_report.md) — Full experiment report
+- [artifacts/motion_gait_dictionary_compilation_notes.md](artifacts/motion_gait_dictionary_compilation_notes.md) — Video production notes and key insights
+
+---
+
+## The Central Insight: Sensory Death and the Case for Proprioception
+
+The most important observation from watching hundreds of simulated gaits across all 58 concepts:
+
+### The Problem
+
+Many gaits "die" mid-simulation. The robot lands in a configuration where no body link contacts the ground. With only 3 touch sensors (all exteroceptive), the neural network receives all-zero input, motor outputs flatline, and the robot freezes permanently. This is **sensory death**: loss of environmental contact produces total sensory blackout.
+
+Evidence: "freeze" has 22 dictionary entries — the most of any concept. A large fraction of weight configurations produce gaits that eventually land wrong and lose all sensory feedback.
+
+### The Survivors
+
+The most interesting surviving gaits are the **hoppers** — where the "torso" link is repurposed as a limb and a leg becomes a de facto "head." These work because the torso-as-limb keeps cycling through ground contact, keeping touch sensors alive. They've accidentally solved the sensory death problem by finding a geometry that maintains feedback throughout the gait cycle.
+
+### The Fix
+
+The robot needs sensors that can't go dark. Proprioceptive sensors — joint angles, angular velocity, accelerometers — always produce non-zero signal regardless of ground contact. Biological organisms have both exteroception (touch) and interoception (proprioception). Proprioception is the sense that never goes dark.
+
+### The Reframe: Communication, Not Optimization
+
+The Motion Gait Dictionary establishes a **call and response** between humans and robots:
+
+1. Human provides a semantic concept ("crawl", "hop", "retreat")
+2. LLM translates it into neural network weights
+3. Robot executes the weights as behavior
+4. Human evaluates whether behavior matches intent
+
+This is a **communication channel**. Its fidelity is bottlenecked not by the weights (365 examples show LLMs can generate diverse weights) and not by the vocabulary (58 concepts across 5 languages) — it's bottlenecked by the **nervous system's expressive bandwidth**. Three touch sensors and two motors can't faithfully distinguish "saunter" from "amble."
+
+**The next evolutionary pressure should be on the nervous system topology itself** — not to make the robot faster, but to increase the fidelity of the semantic-to-behavior channel. We're not optimizing for locomotion. We're optimizing for communication.
+
+See [artifacts/motion_gait_dictionary_compilation_notes.md](artifacts/motion_gait_dictionary_compilation_notes.md) for the full argument.
+
+---
 
 ## The Zoo
 
 **116 gaits across 11 categories, 13 structural motifs, 22 behavioral tags, 112 unique motif-tag profiles.**
 
-All gaits and their weights are stored in `synapse_gait_zoo.json` (v1) and `synapse_gait_zoo_v2.json` (v2, with Beer-framework analytics per gait). Full taxonomy (motifs, behavioral tags, per-gait features) is in `artifacts/gait_taxonomy.json`. Full-resolution telemetry (4000 records/gait at 240 Hz) is in `artifacts/telemetry/`. Videos are in `videos/`.
+All gaits and their weights are stored in `synapse_gait_zoo.json` (v1) and `synapse_gait_zoo_v2.json` (v2, with Beer-framework analytics). Full taxonomy in `artifacts/gait_taxonomy.json`. Full-resolution telemetry (4000 records/gait at 240 Hz) in `artifacts/telemetry/`.
 
 ### Categories
 
@@ -76,9 +164,9 @@ All gaits and their weights are stored in `synapse_gait_zoo.json` (v1) and `syna
 
 **Hidden layer**: Arbitrary topology with hidden neurons between sensors and motors. The CPG champion uses 2 hidden neurons in a half-center oscillator pattern.
 
-## Leaderboards
+### Leaderboards
 
-### Displacement (|DX|)
+#### Displacement (|DX|)
 
 | # | Gait | DX | Category |
 |---|---|---|---|
@@ -87,335 +175,214 @@ All gaits and their weights are stored in `synapse_gait_zoo.json` (v1) and `syna
 | 3 | 22_curie_amplified | +37.14 | cross_wired_cpg |
 | 4 | 5_pelton | +34.70 | persona_gaits |
 | 5 | 100_kcramer_anthology | +32.32 | persona_gaits |
-| 6 | 32_carry_trade | +32.22 | market_mathematics |
-| 7 | 69_grunbaum_deflation | -30.48 | persona_gaits |
-| 8 | 50_noether_cyclone | -30.16 | pareto_walk_spin |
-| 9 | 23_hodgkin_huxley | -29.79 | cross_wired_cpg |
-| 10 | 36_take_five | -27.72 | time_signatures |
 
-### Total Distance (displacement)
+#### Crab Walking (|DY|)
 
-| # | Gait | Distance | DX | DY | Category |
-|---|---|---|---|---|---|
-| 1 | 43_hidden_cpg_champion | 50.19 | +50.11 | -2.88 | hidden_neurons |
-| 2 | 21_noether_cpg | 43.81 | -43.23 | -7.12 | cross_wired_cpg |
-| 3 | 56_evolved_crab_v2 | 41.19 | -6.71 | -40.64 | crab_walkers |
-| 4 | 57_evolved_sidewinder | 39.52 | -3.99 | -39.32 | crab_walkers |
-| 5 | 58_evolved_crab_positive_v2 | 38.10 | -1.17 | +38.08 | crab_walkers |
-| 6 | 52_curie_crab | 37.76 | +24.44 | -28.79 | crab_walkers |
-| 7 | 22_curie_amplified | 37.17 | +37.14 | -1.60 | cross_wired_cpg |
-| 8 | 5_pelton | 35.27 | +34.70 | +6.32 | persona_gaits |
-| 9 | 100_kcramer_anthology | 33.12 | +32.32 | -7.25 | persona_gaits |
-| 10 | 50_noether_cyclone | 33.05 | -30.16 | -13.51 | pareto_walk_spin |
-
-### Spin (|YAW|)
-
-| # | Gait | YAW | Turns | Category |
+| # | Gait | DY | Crab Ratio | Origin |
 |---|---|---|---|---|
-| 1 | 44_spinner_champion | +838 | 2.33 | spinners |
-| 2 | 45_spinner_stable | -749 | 2.08 | spinners |
-| 3 | 46_spinner_crosswired | -320 | 0.89 | spinners |
-| 4 | 1_original | +299 | 0.83 | homework |
-| 5 | 2_flipped | +215 | 0.60 | homework |
+| 1 | 56_evolved_crab_v2 | -40.64 | 6.06 | evolved |
+| 2 | 57_evolved_sidewinder | -39.32 | 9.85 | evolved |
+| 3 | 58_evolved_crab_positive_v2 | +38.08 | 32.55 | evolved |
 
-### Crab Walking (|DY|)
+#### Spin (|YAW|)
 
-| # | Gait | DY | DX | Heading | Crab Ratio | Origin |
-|---|---|---|---|---|---|---|
-| 1 | 56_evolved_crab_v2 | -40.64 | -6.71 | -99 | 6.06 | evolved |
-| 2 | 57_evolved_sidewinder | -39.32 | -3.99 | -96 | 9.85 | evolved |
-| 3 | 58_evolved_crab_positive_v2 | +38.08 | -1.17 | +92 | 32.55 | evolved |
-| 4 | 52_curie_crab | -28.79 | +24.44 | -50 | 1.18 | hand-designed |
-| 5 | 53_rucker_landcrab | +27.05 | +11.46 | +67 | 2.36 | hand-designed |
+| # | Gait | YAW | Turns |
+|---|---|---|---|
+| 1 | 44_spinner_champion | +838 | 2.33 |
+| 2 | 45_spinner_stable | -749 | 2.08 |
 
-Crab ratio = |DY|/|DX|. Values > 1.0 mean the robot walks more sideways than forward. The top 3 are evolved solutions that require full float64 weight precision — rounding to 6 decimal places shifts them to different attractors.
+---
 
 ## The Weight-Space Landscape: Behavioral Cliffs and Fractal Sensitivity
 
-Three research campaigns (~12,000 headless simulations total) mapped the structure of the 6-dimensional weight space. The central finding: the fitness landscape is **riddled with behavioral cliffs** — regions where a tiny weight change causes the robot to shift to a completely different locomotion regime.
+Three research campaigns (~12,000 headless simulations) mapped the 6D weight space. The central finding: the fitness landscape is **riddled with behavioral cliffs** — regions where a tiny weight change (r=0.05) causes the robot to shift to a completely different locomotion regime.
 
-### Cliff Prevalence
-
-At a perturbation radius of r=0.05 (a 5% nudge to one weight):
-
-| Threshold | % of random points with a cliff nearby |
-|---|---|
-| >5m displacement shift | **80%** |
-| >10m shift | **42%** |
-| >20m shift | **12%** |
-
-Median cliffiness: **2.88m**. Maximum observed: **43.4m** — the robot's entire behavioral character changes from a 0.05 weight perturbation. Cliffs are not rare anomalies; they are the topology of this landscape.
-
-### Per-Weight Sensitivity
-
-Not all synapses matter equally. Mean |dDX/dw| across 500 random base points:
-
-| Weight | Sensitivity | Role |
-|---|---|---|
-| w04 (torso→front motor) | **356** | Most sensitive — small changes here reshape the gait |
-| w23 (front sensor→back motor) | 178 | Cross-body coupling, high leverage |
-| w13 (back sensor→back motor) | 134 | Local feedback |
-| w03 (torso→back motor) | 102 | |
-| w14 (back sensor→front motor) | 96 | |
-| w24 (front sensor→front motor) | **7.6** | Least sensitive — barely matters |
-
-The torso sensor's output to the front leg (w04) dominates behavioral sensitivity by 50x over the least important synapse (w24).
+- **80%** of random points have a cliff (>5m displacement shift) at r=0.05
+- The landscape is **formally non-differentiable**: derivatives diverge as ~1/r with no smoothness floor
+- The fractal structure comes from **contact dynamics**: binary foot strikes turn smooth weight changes into fractal behavioral changes
+- **Gradient descent is impossible** at any scale; evolutionary algorithms work because they don't assume local smoothness
 
 ### Cliff Taxonomy
 
-Adaptive probing of the 50 cliffiest points classifies five cliff types:
+Five empirical cliff types: Canyon (38%), Step (30%), Precipice (26%), Slope (6%), Fractal.
 
-- **Canyon (38%)** — sharp two-sided drop that recovers on the far side
-- **Step (30%)** — sharp one-sided drop, no recovery (regime change)
-- **Precipice (26%)** — sharp one-sided, partial recovery
-- **Slope (6%)** — gentle gradient, no abrupt discontinuity
-- **Fractal** — jagged multi-scale roughness
+See [FINDINGS.md](FINDINGS.md) for the full analysis, [artifacts/cliff_taxonomy_commentary.md](artifacts/cliff_taxonomy_commentary.md) for philosophical implications.
 
-### The Fractal Verdict
+---
 
-Deep-resolution probing of the 10 most chaotic Step-type cliffs down to r=0.00003 reveals the landscape is **formally non-differentiable**:
+## Resonance Mapping
 
-| Scale (r) | Mean |dDX/dr| |
-|---|---|
-| 0.01 | 9,140 |
-| 0.001 | 94,027 |
-| 0.0001 | 892,470 |
-| 0.00003 | **3,020,839** |
+~2,150 simulations bypassing the NN, driving joints with pure sine waves to map the body's mechanical transfer function.
 
-The derivative diverges as ~1/r with no smoothness floor. The fractal dimension is near zero (log-log slope = 0.011), confirming scale-invariant structure. Directional fan analysis shows the chaos is **isotropic** — equally rough in all directions, not a navigable ridge. This is **Wolfram Class III (Chaotic)**: gradient descent is impossible at any scale.
+- Body has broad resonance across 1–4 Hz, not a single frequency
+- **Amplitude is the chaos gateway**: below 0.8 rad smooth, above 0.8 rad fractal
+- **Neural networks far exceed the open-loop ceiling**: best sine wave = 32.7m; best NN = 60.2m (Novelty Champion). The NN senses contact events in real time and adjusts timing — closed-loop feedback is worth +27.5m over open-loop.
 
-The non-differentiability comes from **contact dynamics**: the binary event of foot strikes turns smooth weight changes into fractal behavioral changes. The neural network is smooth. The physics ODEs are smooth. But ground contact is a discrete event whose timing shifts by fractions of a timestep with each weight perturbation, and those timing shifts cascade through the trajectory.
+See [artifacts/resonance_mapping_summary.md](artifacts/resonance_mapping_summary.md).
 
-### Sensitivity Classes
-
-Three empirically-observed classes among zoo gaits:
-
-| Class | Example | DX Sensitivity | Character |
-|---|---|---|---|
-| Antifragile | 19_haraway | ~32 | Robust; small weight changes → small behavior changes |
-| Knife-edge | 32_carry_trade | ~1,340 | High performance but high fragility |
-| Yaw powder keg | 1_original | **17,149** (yaw) | Tiny weight change → massive rotation change |
-
-The CPG Champion (gait 43, DX=+50.11) clusters with knife-edge gaits — record displacement at the cost of extreme sensitivity. It shares a hidden-layer topology with gait 44 (Spinner Champion), differing only in one synapse magnitude ratio. One walks 50m; the other spins in place. The boundary between these behaviors is a bifurcation, not a gradient.
-
-### Implications for Optimization
-
-- **Gradient descent is impossible**: the landscape is non-differentiable. Backpropagation through the simulator would fail because the derivative diverges.
-- **Evolutionary algorithms work**: they sample, compare, and select without assuming a local slope exists.
-- **Small mutations are dangerous**: 42% of random points have a >10m cliff at r=0.05. Evolution cannot fine-tune within a regime for long before hitting a boundary.
-- **The body is a chaos amplifier**: smooth weight inputs → smooth NN outputs → fractal behavioral outputs, because ground contact discretizes the dynamics.
-
-See [FINDINGS.md](FINDINGS.md) for the full analysis, and `artifacts/cliff_taxonomy_commentary.md` for the philosophical implications.
-
-## Resonance Mapping: The Body's Mechanical Transfer Function
-
-What happens if we bypass the neural network entirely and drive the joints with pure sine waves? The resonance mapping campaign (~2,150 sims) sweeps frequency, phase, and amplitude to map the body's intrinsic mechanical response — independent of any controller.
-
-### The Body Has Broad Mechanical Resonance
-
-50 frequencies (0.1–5 Hz) × 12 phase offsets, both joints at the same frequency:
-
-| Frequency | Max |DX| | Best Phase Offset |
-|---|---|---|
-| **3.3 Hz** | **22.7m** | 164° |
-| 4.0 Hz | 22.6m | 131° |
-| 1.3 Hz | 19.8m | 82° |
-| 2.0 Hz | 19.4m | 66° |
-| 1.9 Hz | 19.3m | 66° |
-
-The body is not a tuning fork — it has **multiple resonant modes** across a broad 1–4 Hz band. Anti-phase relationships (high phase offsets, 60°–164°) dominate high-displacement configurations: the legs must work against each other to walk.
-
-### Amplitude Reveals the Chaos Gateway
-
-Amplitude sweeps at the 6 best frequencies show two distinct regimes:
-
-- **Below 0.8 rad**: smooth, predictable, displacement scales linearly with amplitude. Peak: **32.7m** at 3.3 Hz, 0.85 rad amplitude.
-- **Above 0.8 rad**: fractal chaos returns. Displacement becomes wildly unpredictable, std dev 7–13m.
-
-The threshold is not gradual — it's a bifurcation. The cause: larger joint swings produce harder foot strikes, and contact force magnitude is the chaos gateway. **Frequency and phase are smooth parameters; amplitude is fractal.** This connects directly to the cliff findings: contact dynamics turn smooth inputs into fractal behavioral outputs.
-
-### The Polyrhythmic Landscape
-
-A 30×30 grid of independent back/front leg frequencies reveals that the two legs need not oscillate at the same frequency:
-
-| f_back | f_front | |DX| | Ratio |
-|---|---|---|---|
-| 0.94 Hz | 4.83 Hz | 20.4m | 5.1:1 |
-| 1.11 Hz | 4.66 Hz | 20.0m | 4.2:1 |
-| 4.49 Hz | 0.78 Hz | 19.4m | 0.17:1 |
-| 1.62 Hz | 1.62 Hz | 18.8m | 1:1 |
-
-Extreme ratios (one slow leg, one fast leg) can outperform matched frequencies. Musically significant ratios (2:1, 3:2) are **not** special — the body responds to physics, not harmony. The polyrhythmic grid is ~25 m/Hz in cliffiness — smooth gradients with visible structure, **120,000× smoother than the weight space** (~3,000,000 m/unit).
-
-### Neural Networks Far Exceed the Open-Loop Ceiling
-
-The most striking finding: **evolved neural networks vastly exceed what any open-loop sine wave can achieve.**
-
-| Controller | |DX| |
-|---|---|
-| Best open-loop (3.3 Hz, 0.85 rad, optimized phase) | **32.7m** |
-| Curie Amplified (NN) | 37.1m |
-| Noether CPG (NN) | 43.2m |
-| Hidden CPG Champion (NN) | 50.1m |
-| Novelty Champion (NN) | **60.2m** |
-
-The Novelty Champion nearly **doubles** the open-loop ceiling. If the NN merely selected good oscillation parameters, evolved gaits would cluster near 32.7m. Instead, the top gaits transcend it by 1.5–2×. The neural network is not driving predetermined oscillations — it is **sensing contact events in real time and adjusting timing** to extract maximum mechanical advantage. Closed-loop feedback control is worth +27.5m of displacement over the best possible open-loop drive.
-
-See `artifacts/resonance_mapping_summary.md` for the full analysis.
+---
 
 ## Structured Random Search: The LLM as Weight-Space Sampler
 
-Can an LLM serve as a structured sampler of neural network weight space? Instead of drawing 6 synapse weights uniformly at random from [-1, 1]^6, we give a local LLM (Ollama, qwen3-coder:30b) a semantic "seed" — a verb, a mathematical theorem, a Bible verse, or a place name — and ask it to translate the seed's character into 6 specific synapse weights. We then run a full headless simulation and compute Beer-framework analytics.
+Five conditions, 100 trials each (495 total), testing whether LLMs produce structured weight distributions:
 
-Five conditions, 100 trials each (495 total):
+| Condition | Dead% | Median |DX| | Max |DX| | Phase Lock |
+|---|---|---|---|---|
+| **baseline** | 8% | **6.64m** | 27.79m | 0.613 |
+| **verbs** | 5% | 1.55m | 25.12m | 0.850 |
+| **theorems** | 8% | 2.79m | 9.55m | **0.904** |
+| **bible** | **0%** | 1.55m | **29.17m** | 0.908 |
+| **places** | **0%** | 1.18m | 5.64m | 0.884 |
 
-| Condition | Dead% | Median |DX| | Max |DX| | Phase Lock | Description |
-|---|---|---|---|---|---|
-| **baseline** | 8% | **6.64m** | 27.79m | 0.613 | Uniform random U[-1,1]^6, no LLM |
-| **verbs** | 5% | 1.55m | 25.12m | 0.850 | 150 verbs across 15+ languages |
-| **theorems** | 8% | 2.79m | 9.55m | **0.904** | 108 mathematical theorems |
-| **bible** | **0%** | 1.55m | **29.17m** | 0.908 | 100+ KJV Bible verses |
-| **places** | **0%** | 1.18m | 5.64m | 0.884 | 114 global place names |
-
-All structured conditions are significantly lower than baseline on median displacement (Mann-Whitney U, all p < 0.001). But the LLM virtually eliminates dead gaits (Bible and places: zero deaths) and produces dramatically higher phase lock (0.85-0.91 vs 0.61). The LLM is a *conservative* sampler: it avoids both death and greatness, clustering in a tight behavioral subspace with high coordination but modest displacement.
+The LLM is a *conservative* sampler: it avoids both death and greatness, clustering in a tight behavioral subspace with high coordination but modest displacement.
 
 ### The Triptych
 
-Three gaits from the experiment reveal what happens when meaning transfers across substrates. All three share anti-phase sign structure — every sensor drives the two motors in opposite directions — but the magnitudes differ, and magnitude is everything.
+Three gaits from the Bible condition where meaning transfers across substrates:
 
-**The Pale Horse** — Revelation 6:8: *"And I looked, and behold a pale horse: and his name that sat on him was Death."*
+- **The Pale Horse** (Revelation 6:8) — DX = +29.17m, overall champion. *Death rides fast.*
+- **The Whirling Wind** (Ecclesiastes 1:6) — Efficiency = 0.00495, most efficient gait. *The eternal wind cycles with minimal waste.*
+- **The Conservation Law** (Noether's Theorem) — DX = 0.031m, nearly dead. Every weight pair exactly equal and opposite: perfect cancellation. *A conservation law conserves.*
 
-Weights: w03=-0.8, w04=+0.6, w13=+0.2, w14=-0.9, w23=+0.5, w24=-0.4. **DX = +29.17m** — the overall champion of the entire 495-gait pool. Asymmetric anti-phase: unequal magnitudes mean one leg always overpowers the other. Speed 3.11, work proxy 15,877. The horse does not trot. It charges.
+See [artifacts/structured_random_triptych.md](artifacts/structured_random_triptych.md).
 
-[Watch the Pale Horse](https://youtu.be/3EGbo0WgTNk)
+---
 
-**The Whirling Wind** — Ecclesiastes 1:6: *"The wind goeth toward the south, and turneth about unto the north; it whirleth about continually."*
+## Celebrity & Archetypometrics Experiments
 
-Weights: w03=+0.6, w04=-0.5, w13=-0.4, w14=+0.8, w23=+0.2, w24=-0.9. **Efficiency = 0.00495** — the most efficient gait in the entire pool. DX = -5.43m, work proxy only 1,096. Phase lock 0.995. The wind cycles with almost zero wasted energy.
+### Celebrities (132 names → 4 gaits)
 
-[Watch the Whirling Wind](https://youtu.be/3ZVG3UYp6vw)
+132 celebrity names from tokenization lexicons — politicians, Kardashians, tech billionaires, musicians, actors, athletes, authors, historical figures — collapse into exactly 4 robot gaits. The 4-archetype structure cuts across every domain boundary: Donald Trump, LeBron James, and Beyonce share one gait; Julian Assange, OJ Simpson, and Billie Eilish share a backward-walking gait. The LLM encodes **narrative role** (assertive, default, contrarian, transgressor), not domain knowledge.
 
-**The Conservation Law** — Noether's Theorem on symmetry and conservation.
+See [artifacts/structured_random_celebrities_analysis.json](artifacts/structured_random_celebrities_analysis.json) and [artifacts/multimodel_celebrity_findings.md](artifacts/multimodel_celebrity_findings.md).
 
-Weights: w03=+0.5, w04=-0.5, w13=+0.3, w14=-0.3, w23=+0.7, w24=-0.7. **DX = 0.031m** — the deadest gait in the pool. Every weight pair is exactly equal and opposite: perfect anti-symmetry. Work proxy 9,865 — it burns as much energy as a mid-range walker, but every Newton is cancelled by its mirror. The theorem about conservation laws conserves position.
+### Archetypometrics (2000 fictional characters from 341 stories)
 
-[Watch Noether's Theorem](https://youtu.be/2CBeT-d3Igw)
+2000 fictional characters seeded through the LLM pipeline. Characters cluster by narrative archetype, not by source work. The weight-space is structured by storytelling convention.
 
-The same anti-phase sign pattern produces 29 meters, 5 meters, or 3 centimeters depending on whether the magnitudes are *unequal* (asymmetric power → locomotion), *carefully distributed* (efficient oscillation), or *exactly equal* (perfect cancellation → stasis). The meaning of each text is legible in the robot's behavior: Death rides fast, the eternal wind cycles with minimal waste, and a conservation law conserves. See [artifacts/structured_random_triptych.md](artifacts/structured_random_triptych.md) for the full analysis.
+See [artifacts/archetypometrics_findings.md](artifacts/archetypometrics_findings.md).
 
-## Files
+---
 
-### Data and Artifacts
+## Categorical Structure & Formal Validation
+
+Scripts that empirically validate the categorical structure of the Sem→Wt→Beh pipeline:
+
+| Script | What it tests |
+|---|---|
+| `categorical_structure.py` | Functor F (Sem→Wt), map G (Wt→Beh), composition G∘F, sheaf structure, information geometry |
+| `fisher_metric.py` | LLM output variance: 22/30 seeds fully deterministic, 8/30 show binary mode switching |
+| `perturbation_probing.py` | Directly measured cliffiness at 37 LLM weight vectors |
+| `yoneda_crosswired.py` | 10-synapse topology increases faithfulness for run/jump verbs (5x improvement) but not walk/crawl |
+| `hilbert_formalization.py` | L² Gram matrix of 121 gait trajectories, RKHS kernel regression, spectral analysis |
+| `llm_seeded_evolution.py` | LLM weights as launchpad for evolution: reaches 85.09m vs 48.41m from random seeds (+76%) |
+
+See [artifacts/unified_framework_synthesis.md](artifacts/unified_framework_synthesis.md) for the unified categorical framework connecting this project to two other projects (Spot a Cat, AI Seances).
+
+---
+
+## Paper
+
+A draft paper is available at [artifacts/paper_draft.md](artifacts/paper_draft.md) (PDF: [artifacts/paper_draft.pdf](artifacts/paper_draft.pdf)):
+
+> **"Reality Is What Doesn't Go Away When You Change the Physics Engine: Structural Transfer from Language Models Through Physical Substrates"**
+>
+> 706 LLM-mediated trials across 7 semantic conditions, plus ~25,000 supporting simulations. Key finding: LLM-seeded evolution reaches 85.09m displacement — 76% better than random-seeded evolution — because the LLM's conservatism places weights in smooth, evolvable regions of parameter space.
+
+---
+
+## Running a Gait
+
+```bash
+# Generate robot body and brain files
+python3 generate.py          # produces body.urdf, brain.nndf, world.sdf
+
+# Run a simulation (GUI)
+python3 simulate.py
+
+# Run headless
+HEADLESS=1 python3 simulate.py
+
+# Run with telemetry
+HEADLESS=1 TELEMETRY=1 TELEMETRY_VARIANT_ID=my_gait python3 simulate.py
+
+# Generate all 116 telemetry files
+python3 generate_telemetry.py
+
+# Record concept videos
+python3 record_concept_videos.py
+
+# Compile the full compilation video
+python3 compile_concept_video.py
+```
+
+## Core Simulation Files
 
 | File | Description |
 |---|---|
-| `synapse_gait_zoo.json` | v1 catalog: 116 gaits, weights, measurements, telemetry summaries across 11 categories |
-| `synapse_gait_zoo_v2.json` | v2 catalog: same gaits with Beer-framework `analytics` object (4 pillars) replacing `telemetry` |
-| `artifacts/gait_taxonomy.json` | Taxonomy v2.0: 13 motifs, 22 behavioral tags, per-gait feature vectors |
-| `artifacts/telemetry/` | Full-resolution telemetry for all 116 gaits (4000 JSONL records + summary.json each) |
-| `artifacts/discovery_dig_full116.txt` | Deep analysis output: 13 digs across the full zoo |
-| `artifacts/plots/` | Trajectory maps, phase portraits, stability, speed, torque visualizations |
-| `videos/` | MP4 videos of gaits |
+| `simulation.py` | Main simulation runner: PyBullet lifecycle, Sense→Think→Act loop |
+| `robot.py` | ROBOT class: loads body.urdf + brain.nndf, manages sensors/motors |
+| `motor.py` | MOTOR class: joint control |
+| `sensor.py` | SENSOR class: touch sensor reading per link |
+| `world.py` | WORLD class: loads ground plane |
+| `generate.py` | Generates body.urdf, brain.nndf, world.sdf |
+| `constants.py` | Central physics config: SIM_STEPS=4000, DT=1/240, MAX_FORCE=150 |
+| `pyrosim/` | External submodule: URDF/SDF generation, NN loading, PyBullet helpers |
 
-### Core Simulation
+## Research Campaign Scripts
 
-| File | Description |
-|---|---|
-| `simulation.py` | Main simulation runner: PyBullet lifecycle, Sense→Think→Act loop, GAIT_MODE direct-drive bypass, telemetry hooks |
-| `robot.py` | ROBOT class: loads body.urdf + brain.nndf, manages sensors/motors, executes NN control |
-| `motor.py` | MOTOR class: joint control with sine-trajectory support for GAIT_MODE variants |
-| `sensor.py` | SENSOR class: touch sensor reading and value recording per link |
-| `world.py` | WORLD class: loads ground plane and optional SDF world elements |
-| `generate.py` | Generates body.urdf, brain.nndf, and world.sdf from pyrosim primitives |
-| `constants.py` | Central physics config: SIM_STEPS=4000, DT=1/240, MAX_FORCE=150, gravity, friction |
-| `body.urdf` | Robot body definition (3 rigid links, 2 hinge joints) |
-| `brain.nndf` | Current neural network weights (shared file, overwritten by many scripts) |
-| `pyrosim/` | External submodule: URDF/SDF generation, NN loading/updating, PyBullet joint/sensor helpers |
+Self-contained simulation campaigns (hundreds to thousands of headless sims each). Each defines its own harness and writes to `artifacts/`.
 
-### Analytics and Telemetry
-
-| File | Description |
-|---|---|
-| `compute_beer_analytics.py` | Reads all 116 telemetry JSONL files and produces v2 zoo with 4-pillar Beer-framework metrics (numpy-only, no scipy/sklearn). Implements FFT-based Hilbert transform, 3-bit contact state encoding, Shannon entropy, Markov transition matrices, PCA via eigendecomposition. |
-| `generate_telemetry.py` | Batch runner for full-resolution telemetry (every=1, 4000 records/gait at 240 Hz). Writes brain.nndf per gait, runs headless sim, saves to `artifacts/telemetry/`. |
-| `record_videos.py` | Video recording infrastructure: writes brain files, runs offscreen PyBullet rendering piped to ffmpeg |
-
-### Research Campaign Scripts
-
-Self-contained simulation campaigns (hundreds to thousands of headless sims each) that investigate weight-space landscape and behavioral dynamics. Each defines its own simulation harness and writes outputs to `artifacts/`.
-
-| File | Description |
-|---|---|
-| `causal_surgery.py` | Mid-simulation brain transplants (weight switching at specific timesteps), single-synapse ablation, and rescue experiments (~600 sims). Tests whether gaits are initial-condition-dependent or attractor-dependent. |
-| `causal_surgery_interpolation.py` | Extension of causal surgery: continuous interpolation between weight vectors during simulation, blending gaits in real-time rather than discrete switching. |
-| `gait_interpolation.py` | Linear interpolation in 6D weight space between champion pairs. Maps fitness landscape smoothness, discovers intermediate super-gaits, and tests whether high-performing gaits are connected by high-performing paths. |
-| `behavioral_embryology.py` | Tracks gait emergence during the first 500+ steps: when does locomotion start? When do coordination metrics (phase locking, contact entropy, speed CV) stabilize? |
-| `resonance_mapping.py` | Bypasses NN entirely, drives joints with sinusoidal sweeps across frequency/phase/amplitude to find the body's mechanical transfer function (~2,150 sims). Maps the body's intrinsic dynamics. |
-| `walker_competition.py` | 5 optimization algorithms (Hill Climber, Ridge Walker, Cliff Mapper, Novelty Seeker, Ensemble Explorer) compete with 1,000-evaluation budget each to find high-displacement gaits. |
-| `atlas_cliffiness.py` | Spatial atlas of behavioral cliffs: gradient reconstruction from 500 base points, 2D slice heatmaps, cliff anatomy profiles (~6,400 sims). Maps where in weight space behavior changes discontinuously. |
-| `cliff_taxonomy.py` | Adaptive probing of top 50 cliffiest points: gradient/perpendicular profiles, multi-scale classification of cliff types (walls, ridges, cusps). |
-| `cliff_taxonomy_deep.py` | Deep-dive into cliff structure: expanded perturbation radii, multi-metric cliff profiles, and cross-section visualizations for the sharpest behavioral boundaries. |
-| `random_search_500.py` | Large-scale random sampling of 500 weight vectors in 6D standard-topology space. Maps the statistical distribution of gait fitness, displacement, spin, and tilt across random controllers. |
-| `random_search_cliffs.py` | Pairwise cliff detection between random-search base points. Identifies which random gaits sit near behavioral discontinuities by measuring DX changes between nearby weight vectors. |
-| `random_search_analytics.py` | Post-hoc analysis of random search data: fitness distributions, weight-performance correlations, cliff frequency statistics, and landscape roughness metrics. |
-| `timestep_atlas.py` | Timestep Atlas: sweeps all 116 zoo gaits across 7 DT values in coupled and decoupled modes to separate physics-resolution artifacts from controller-sampling-rate artifacts. Adds DT as a 7th gaitspace dimension. |
-| `structured_random_common.py` | Shared infrastructure for the structured random search experiment: Ollama LLM integration, weight parsing, headless simulation with in-memory telemetry, Beer-framework analytics, condition runner. |
-| `structured_random_verbs.py` | Structured random search condition #1: 150 multilingual verbs → LLM → synapse weights. Tests whether action qualities (stumble, glide, oscillate) map to locomotion. |
-| `structured_random_theorems.py` | Condition #2: 108 mathematical theorems → LLM → weights. Tests structural principle transfer (symmetry, fixed points, convergence). |
-| `structured_random_bible.py` | Condition #3: 100+ KJV Bible verses → LLM → weights. Tests imagery/narrative transfer. Produced the overall displacement champion (Revelation 6:8, +29.17m). |
-| `structured_random_places.py` | Condition #4: 114 global place names → LLM → weights. Tests weakest structural transfer (name only, no action or narrative). |
-| `structured_random_compare.py` | Comparison analysis: loads all 5 conditions, computes summary statistics, Mann-Whitney U tests, and generates 6 diagnostic plots. Use `--run-all` to execute all conditions. |
-
-### Analysis and Visualization
-
-| File | Description |
-|---|---|
-| `analyze_super_gaits.py` | Investigates interpolation-discovered super-gaits (gaits that outperform both parents). Characterizes what makes intermediate weight vectors exceptional. |
-| `analyze_trial3.py` | Detailed analysis of a specific optimization trial: fitness trajectory, weight evolution, behavioral transitions during search. |
-| `analyze_dark_matter.py` | Studies "dead" gaits (|DX| < 1m) from random search: classifies as spinners, rockers, vibrators, circlers, or inert. Maps the taxonomy of failure. |
-| `analyze_novelty_champion.py` | Characterizes the novelty-search champion from walker_competition.py: what behavioral dimensions make it novel, and how does novelty relate to fitness? |
-| `plot_gaitspace.py` | Visualizes the structure of gait space: PCA/t-SNE embeddings of Beer-framework analytics, cluster boundaries, behavioral region maps. |
-| `sweep_openloop_legal.py` | Open-loop parameter sweep across legal (constraint-satisfying) gait configurations. Maps how amplitude, frequency, and phase offset affect displacement. |
-| `analyze.py` | Basic sensor trace plotter for inspecting individual simulation runs. |
-
-### Optimization
-
-| File | Description |
-|---|---|
-| `search.py` | Core evolutionary search engine: parallel evolution with parent/child comparison |
-| `optimize_gait.py` | Random-search gait optimizer (independent of NN pipeline): samples sine-wave parameters directly |
-
-### Interactive
-
-| File | Description |
-|---|---|
-| `twine/server.py` | FastAPI bridge between browser-based SugarCube story and PyBullet simulation. Users commit gait parameters through 36 interpretive personas/lenses. |
-| `twine/experiment.html` | Interactive Twine story (SugarCube format) for guided gait exploration |
-
-### Tools
-
-| File | Description |
-|---|---|
-| `tools/telemetry/logger.py` | Core telemetry logger: per-step JSONL recording (position, orientation, contacts, joint states) |
-| `tools/gait_zoo.py` | Utilities for enumerating/expanding gait variants, rotating bins, swapping motors |
-| `tools/replay_trace.py` | Load and inspect telemetry traces (neuron values, motor outputs) |
-| `tools/zoo/run_zoo.py` | Batch runner for gait variants with summary metric collection |
-| `tools/zoo/collect_summaries.py` | Aggregate telemetry summaries across gait variant runs |
-| `tools/zoo/regen_scores.py` | Regenerate gait scores from collected summaries |
+| Script | Sims | Description |
+|---|---|---|
+| `walker_competition.py` | ~5,000 | 5 optimization algorithms compete |
+| `causal_surgery.py` | ~600 | Mid-simulation brain transplants and ablation |
+| `behavioral_embryology.py` | ~500 | Tracks gait emergence in first 500 steps |
+| `gait_interpolation.py` | ~1,000 | Linear interpolation between champion pairs |
+| `resonance_mapping.py` | ~2,150 | Open-loop sine sweeps (body's transfer function) |
+| `atlas_cliffiness.py` | ~6,400 | Spatial atlas of behavioral cliffs |
+| `cliff_taxonomy.py` | ~500 | Adaptive probing of 50 cliffiest points |
+| `random_search_500.py` | 500 | Random weight sampling |
+| `analyze_dark_matter.py` | — | Classifies "dead" gaits (spinners, rockers, vibrators) |
+| `timestep_atlas.py` | ~800 | DT sensitivity across 7 timestep values |
+| `structured_random_*.py` | 495+ | LLM-mediated weight generation (5 conditions) |
+| `motion_seed_experiment_v2.py` | 365 | Motion Gait Dictionary data generation |
+| `categorical_structure.py` | — | Functor/sheaf/info geometry validation |
+| `fisher_metric.py` | — | LLM output variance (300 Ollama calls) |
+| `perturbation_probing.py` | ~259 | Cliffiness at LLM weight vectors |
+| `hilbert_formalization.py` | — | L² Gram matrix, RKHS regression |
+| `llm_seeded_evolution.py` | ~1,000 | Evolution from LLM seeds vs random |
 
 ## Further Reading
+
+### Top-Level Documents
 
 - [FINDINGS.md](FINDINGS.md) — Scientific analysis and key discoveries
 - [PERSONAS.md](PERSONAS.md) — The 18 persona gait themes
 - [REFERENCES.md](REFERENCES.md) — Annotated bibliography
+- [CONTINUATION_PLAN.md](CONTINUATION_PLAN.md) — Research continuation plan (Parts A-F)
+
+### Key Artifacts
+
+- [artifacts/paper_draft.md](artifacts/paper_draft.md) — Draft paper: structural transfer from LLMs through physical substrates
+- [artifacts/unified_framework_synthesis.md](artifacts/unified_framework_synthesis.md) — Unified categorical framework (3 projects)
+- [artifacts/motion_gait_dictionary_compilation_notes.md](artifacts/motion_gait_dictionary_compilation_notes.md) — Compilation video notes and sensory death insight
+- [artifacts/motion_seed_experiment_v2_report.md](artifacts/motion_seed_experiment_v2_report.md) — Motion seed experiment v2 report
 - [artifacts/structured_random_triptych.md](artifacts/structured_random_triptych.md) — The Triptych: Revelation, Ecclesiastes, Noether
+- [artifacts/archetypometrics_findings.md](artifacts/archetypometrics_findings.md) — 2000 fictional characters analysis
+- [artifacts/multimodel_celebrity_findings.md](artifacts/multimodel_celebrity_findings.md) — Multi-model celebrity experiment
+- [artifacts/resonance_mapping_summary.md](artifacts/resonance_mapping_summary.md) — Body's mechanical transfer function
+- [artifacts/dark_matter_analysis.md](artifacts/dark_matter_analysis.md) — Taxonomy of dead gaits
+- [artifacts/walker_competition_analysis.md](artifacts/walker_competition_analysis.md) — 5 optimization algorithms compared
+- [artifacts/gamified_progressive_search_review.md](artifacts/gamified_progressive_search_review.md) — Review of QD/MAP-Elites gamified search proposal
 - [artifacts/persona_effectiveness_theory.md](artifacts/persona_effectiveness_theory.md) — Theory of persona-to-weight structural transfer
+- [artifacts/cliff_taxonomy_commentary.md](artifacts/cliff_taxonomy_commentary.md) — Philosophical implications of behavioral cliffs
 
 ## Key References
 
-- **Beer 1995** — Small CTRNN dynamics; our 3-sensor 2-motor network is in the same regime Beer analyzed
-- **Beer 2006** — Parameter space bifurcation structure; our bouncer-to-spinner cliff is a physical instance of what Beer predicted
-- **McGeer 1990** — Passive dynamic walking and limit cycles; our top-5 displacement gaits being limit cycles validates this principle
-- **Ijspeert 2008** — CPG review; our hidden-layer champion is effectively a CPG
-- **Cully et al. 2015** — Behavioral repertoires via MAP-Elites; the closest precedent to our zoo concept
-- **Sims 1994** — Evolved virtual creatures; the original menagerie of evolved locomotion
+- **Beer 1996** — "Toward the evolution of dynamical neural networks for minimally cognitive behavior." Proc. Simulation of Adaptive Behavior.
+- **Sims 1994** — "Evolving virtual creatures." Proc. SIGGRAPH '94, pp. 15–22.
+- **Bongard 2013–2024** — Ludobots: An Introduction to Evolutionary Robotics. University of Vermont / Reddit r/ludobots.
+- **Cully et al. 2015** — Behavioral repertoires via MAP-Elites; closest precedent to the zoo concept.
+- **McGeer 1990** — Passive dynamic walking and limit cycles.
+- **Ijspeert 2008** — CPG review; our hidden-layer champion is effectively a CPG.
