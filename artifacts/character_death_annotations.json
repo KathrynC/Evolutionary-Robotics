@@ -1,0 +1,6359 @@
+{
+  "model": "qwen3-coder:30b",
+  "date": "2026-02-15 07:32:12",
+  "elapsed_seconds": 532.5016369819641,
+  "n_stories": 341,
+  "n_characters": 2000,
+  "summary": {
+    "survives": 1520,
+    "dies": 471,
+    "ambiguous": 7,
+    "unknown": 1,
+    "unmatched": 1
+  },
+  "annotations": {
+    "Tom Hansen/(500) Days of Summer": {
+      "status": "survives"
+    },
+    "Summer Finn/(500) Days of Summer": {
+      "status": "survives"
+    },
+    "Kat Stratford/10 Things I Hate About You": {
+      "status": "survives"
+    },
+    "Patrick Verona/10 Things I Hate About You": {
+      "status": "survives"
+    },
+    "Cameron James/10 Things I Hate About You": {
+      "status": "survives"
+    },
+    "Bianca Stratford/10 Things I Hate About You": {
+      "status": "survives"
+    },
+    "Walter Stratford/10 Things I Hate About You": {
+      "status": "survives"
+    },
+    "Joey Donner/10 Things I Hate About You": {
+      "status": "survives"
+    },
+    "Liz Lemon/30 Rock": {
+      "status": "survives"
+    },
+    "Tracy Jordan/30 Rock": {
+      "status": "survives"
+    },
+    "Kenneth Parcell/30 Rock": {
+      "status": "survives"
+    },
+    "Pete Hornberger/30 Rock": {
+      "status": "survives"
+    },
+    "Jack Donaghy/30 Rock": {
+      "status": "survives"
+    },
+    "Jenna Maroney/30 Rock": {
+      "status": "survives"
+    },
+    "Jimmy 'B-Rabbit' Smith Jr./8 Mile": {
+      "status": "survives"
+    },
+    "Nancy Thompson/A Nightmare on Elm Street": {
+      "status": "survives"
+    },
+    "Donald Thompson/A Nightmare on Elm Street": {
+      "status": "dies"
+    },
+    "Freddy Krueger/A Nightmare on Elm Street": {
+      "status": "dies"
+    },
+    "Glen Lantz/A Nightmare on Elm Street": {
+      "status": "dies"
+    },
+    "Marge Thompson/A Nightmare on Elm Street": {
+      "status": "survives"
+    },
+    "Count Olaf/A Series of Unfortunate Events": {
+      "status": "dies"
+    },
+    "Klaus Baudelaire/A Series of Unfortunate Events": {
+      "status": "survives"
+    },
+    "Violet Baudelaire/A Series of Unfortunate Events": {
+      "status": "survives"
+    },
+    "Jack Maine/A Star Is Born": {
+      "status": "dies"
+    },
+    "Ally Maine/A Star Is Born": {
+      "status": "survives"
+    },
+    "Sydney Carton/A Tale of Two Cities": {
+      "status": "dies"
+    },
+    "Lucie Manette/A Tale of Two Cities": {
+      "status": "survives"
+    },
+    "Charles Darnay/A Tale of Two Cities": {
+      "status": "survives"
+    },
+    "Huckleberry Finn/Adventures of Huckleberry Finn": {
+      "status": "survives"
+    },
+    "Jim/Adventures of Huckleberry Finn": {
+      "status": "survives"
+    },
+    "Tony Johnson/After Life": {
+      "status": "survives"
+    },
+    "Matt Braden/After Life": {
+      "status": "dies"
+    },
+    "Lenny/After Life": {
+      "status": "survives"
+    },
+    "Kath/After Life": {
+      "status": "survives"
+    },
+    "Lisa Johnson/After Life": {
+      "status": "survives"
+    },
+    "Emma/After Life": {
+      "status": "survives"
+    },
+    "Phil Coulson/Agents of S.H.I.E.L.D.": {
+      "status": "survives"
+    },
+    "Melinda May/Agents of S.H.I.E.L.D.": {
+      "status": "survives"
+    },
+    "Daisy 'Skye' Johnson/Agents of S.H.I.E.L.D.": {
+      "status": "survives"
+    },
+    "Jemma Simmons/Agents of S.H.I.E.L.D.": {
+      "status": "survives"
+    },
+    "Leo Fitz/Agents of S.H.I.E.L.D.": {
+      "status": "survives"
+    },
+    "Alphonso 'Mack' Mackenzie/Agents of S.H.I.E.L.D.": {
+      "status": "survives"
+    },
+    "Aladdin/Aladdin": {
+      "status": "survives"
+    },
+    "Genie/Aladdin": {
+      "status": "survives"
+    },
+    "Jasmine/Aladdin": {
+      "status": "survives"
+    },
+    "Dallas/Alien": {
+      "status": "dies"
+    },
+    "Ellen Ripley/Alien": {
+      "status": "survives"
+    },
+    "Lambert/Alien": {
+      "status": "dies"
+    },
+    "Ash/Alien": {
+      "status": "dies"
+    },
+    "the Alien/Alien": {
+      "status": "survives"
+    },
+    "Parker/Alien": {
+      "status": "dies"
+    },
+    "Danny Vinyard/American History X": {
+      "status": "survives"
+    },
+    "Derek Vinyard/American History X": {
+      "status": "dies"
+    },
+    "Dr. Bob Sweeney/American History X": {
+      "status": "survives"
+    },
+    "Chris Kyle/American Sniper": {
+      "status": "dies"
+    },
+    "Taya Kyle/American Sniper": {
+      "status": "survives"
+    },
+    "Am\u00e9lie Poulain/Am\u00e9lie": {
+      "status": "survives"
+    },
+    "Nino Quincampoix/Am\u00e9lie": {
+      "status": "survives"
+    },
+    "Princess Anna Karenina/Anna Karenina": {
+      "status": "dies"
+    },
+    "Count Alexei Karenin/Anna Karenina": {
+      "status": "survives"
+    },
+    "Count Alexei Vronsky/Anna Karenina": {
+      "status": "survives"
+    },
+    "Princess Darya Oblonskaya/Anna Karenina": {
+      "status": "survives"
+    },
+    "Prince Stepan Oblonsky/Anna Karenina": {
+      "status": "survives"
+    },
+    "Konstantin Levin/Anna Karenina": {
+      "status": "survives"
+    },
+    "Princess Elizaveta Tverskaya/Anna Karenina": {
+      "status": "survives"
+    },
+    "Princess Ekaterina Shcherbatskaya/Anna Karenina": {
+      "status": "survives"
+    },
+    "Countess Vronskaya/Anna Karenina": {
+      "status": "survives"
+    },
+    "Countess Lidia Ivanovna/Anna Karenina": {
+      "status": "survives"
+    },
+    "Alvy Singer/Annie Hall": {
+      "status": "survives"
+    },
+    "Annie Hall/Annie Hall": {
+      "status": "survives"
+    },
+    "Vi/Arcane": {
+      "status": "survives"
+    },
+    "Powder/Arcane": {
+      "status": "dies"
+    },
+    "Jayce Talis/Arcane": {
+      "status": "survives"
+    },
+    "Caitlyn Kiramman/Arcane": {
+      "status": "survives"
+    },
+    "Viktor/Arcane": {
+      "status": "dies"
+    },
+    "Silco/Arcane": {
+      "status": "dies"
+    },
+    "Mel Medarda/Arcane": {
+      "status": "dies"
+    },
+    "Cecil B. Heimerdinger/Arcane": {
+      "status": "survives"
+    },
+    "Vander/Arcane": {
+      "status": "dies"
+    },
+    "Ekko/Arcane": {
+      "status": "survives"
+    },
+    "Sterling Archer/Archer": {
+      "status": "survives"
+    },
+    "Malory Archer/Archer": {
+      "status": "survives"
+    },
+    "Cyril Figgis/Archer": {
+      "status": "survives"
+    },
+    "Cheryl Tunt/Archer": {
+      "status": "survives"
+    },
+    "Pamela Poovey/Archer": {
+      "status": "survives"
+    },
+    "Lana Kane/Archer": {
+      "status": "survives"
+    },
+    "Michael Bluth/Arrested Development": {
+      "status": "survives"
+    },
+    "Lindsay Bluth/Arrested Development": {
+      "status": "survives"
+    },
+    "Gob Bluth/Arrested Development": {
+      "status": "survives"
+    },
+    "George Michael Bluth/Arrested Development": {
+      "status": "survives"
+    },
+    "Maeby Funke/Arrested Development": {
+      "status": "survives"
+    },
+    "Buster Bluth/Arrested Development": {
+      "status": "survives"
+    },
+    "Tobias Funke/Arrested Development": {
+      "status": "survives"
+    },
+    "George Bluth, Sr./Arrested Development": {
+      "status": "survives"
+    },
+    "Oscar Bluth/Arrested Development": {
+      "status": "survives"
+    },
+    "Lucille Bluth/Arrested Development": {
+      "status": "survives"
+    },
+    "John Diggle/Arrow": {
+      "status": "survives"
+    },
+    "Oliver Queen/Arrow": {
+      "status": "survives"
+    },
+    "Felicity Smoak/Arrow": {
+      "status": "survives"
+    },
+    "Laurel Lance/Arrow": {
+      "status": "dies"
+    },
+    "Quentin Lance/Arrow": {
+      "status": "dies"
+    },
+    "Thea Queen/Arrow": {
+      "status": "survives"
+    },
+    "Roy Harper/Arrow": {
+      "status": "survives"
+    },
+    "Rene Ramirez/Arrow": {
+      "status": "dies"
+    },
+    "Curtis Holt/Arrow": {
+      "status": "dies"
+    },
+    "Malcolm Merlyn/Arrow": {
+      "status": "dies"
+    },
+    "Dagny Taggart/Atlas Shrugged": {
+      "status": "survives"
+    },
+    "Henry Rearden/Atlas Shrugged": {
+      "status": "survives"
+    },
+    "James Taggart/Atlas Shrugged": {
+      "status": "survives"
+    },
+    "John Galt/Atlas Shrugged": {
+      "status": "survives"
+    },
+    "Ellis Wyatt/Atlas Shrugged": {
+      "status": "survives"
+    },
+    "Francisco d'Anconia/Atlas Shrugged": {
+      "status": "survives"
+    },
+    "Lorraine Broughton/Atomic Blonde": {
+      "status": "survives"
+    },
+    "Eren Jaeger/Attack on Titan": {
+      "status": "dies"
+    },
+    "Armin Arlert/Attack on Titan": {
+      "status": "survives"
+    },
+    "Mikasa Ackermann/Attack on Titan": {
+      "status": "survives"
+    },
+    "Jean Kirschtein/Attack on Titan": {
+      "status": "survives"
+    },
+    "Connie Springer/Attack on Titan": {
+      "status": "dies"
+    },
+    "Hange Zoe/Attack on Titan": {
+      "status": "dies"
+    },
+    "Levi Ackermann/Attack on Titan": {
+      "status": "survives"
+    },
+    "Sasha Braus/Attack on Titan": {
+      "status": "dies"
+    },
+    "Erwin Smith/Attack on Titan": {
+      "status": "dies"
+    },
+    "Reiner Braun/Attack on Titan": {
+      "status": "dies"
+    },
+    "Aang/Avatar: The Last Airbender": {
+      "status": "survives"
+    },
+    "Zuko/Avatar: The Last Airbender": {
+      "status": "survives"
+    },
+    "Katara/Avatar: The Last Airbender": {
+      "status": "survives"
+    },
+    "Toph Beifong/Avatar: The Last Airbender": {
+      "status": "survives"
+    },
+    "Sokka/Avatar: The Last Airbender": {
+      "status": "survives"
+    },
+    "Azula/Avatar: The Last Airbender": {
+      "status": "survives"
+    },
+    "Iroh/Avatar: The Last Airbender": {
+      "status": "survives"
+    },
+    "Firelord Ozai/Avatar: The Last Airbender": {
+      "status": "survives"
+    },
+    "Ty Lee/Avatar: The Last Airbender": {
+      "status": "survives"
+    },
+    "Hakoda/Avatar: The Last Airbender": {
+      "status": "survives"
+    },
+    "Baby/Baby Driver": {
+      "status": "survives"
+    },
+    "Doc/Baby Driver": {
+      "status": "dies"
+    },
+    "Debora/Baby Driver": {
+      "status": "survives"
+    },
+    "Marty McFly/Back to the Future": {
+      "status": "survives"
+    },
+    "Doc Brown/Back to the Future": {
+      "status": "survives"
+    },
+    "Jennifer Parker/Back to the Future": {
+      "status": "survives"
+    },
+    "Marcus Miles/Bad Boys": {
+      "status": "survives"
+    },
+    "Mike Lowrey/Bad Boys": {
+      "status": "survives"
+    },
+    "Donald G. Malarkey/Band of Brothers": {
+      "status": "dies"
+    },
+    "Richard D. Winters/Band of Brothers": {
+      "status": "survives"
+    },
+    "Lewis Nixon/Band of Brothers": {
+      "status": "survives"
+    },
+    "Eugene G. Roe/Band of Brothers": {
+      "status": "dies"
+    },
+    "C. Carwood Lipton/Band of Brothers": {
+      "status": "survives"
+    },
+    "Darrell C. (Shifty) Powers/Band of Brothers": {
+      "status": "survives"
+    },
+    "William Adama/Battlestar Galactica": {
+      "status": "survives"
+    },
+    "Laura Roslin/Battlestar Galactica": {
+      "status": "dies"
+    },
+    "Kara 'Starbuck' Thrace/Battlestar Galactica": {
+      "status": "survives"
+    },
+    "Lee 'Apollo' Adama/Battlestar Galactica": {
+      "status": "dies"
+    },
+    "Gaius Baltar/Battlestar Galactica": {
+      "status": "survives"
+    },
+    "Number Six/Battlestar Galactica": {
+      "status": "ambiguous"
+    },
+    "Sharon 'Boomer' Valerii/Battlestar Galactica": {
+      "status": "dies"
+    },
+    "Saul Tigh/Battlestar Galactica": {
+      "status": "survives"
+    },
+    "Galen Tyrol/Battlestar Galactica": {
+      "status": "survives"
+    },
+    "Karl 'Helo' Agathon/Battlestar Galactica": {
+      "status": "survives"
+    },
+    "Felix Gaeta/Battlestar Galactica": {
+      "status": "dies"
+    },
+    "Anastasia Dualla/Battlestar Galactica": {
+      "status": "dies"
+    },
+    "Billy Keikeya/Battlestar Galactica": {
+      "status": "dies"
+    },
+    "Cally Henderson/Battlestar Galactica": {
+      "status": "dies"
+    },
+    "Samuel 'Longshot' Anders/Battlestar Galactica": {
+      "status": "survives"
+    },
+    "Mitch Buchannon/Baywatch": {
+      "status": "survives"
+    },
+    "Hobie Buchannon/Baywatch": {
+      "status": "survives"
+    },
+    "Michael 'Newmie' Newman/Baywatch": {
+      "status": "survives"
+    },
+    "C.J. Parker/Baywatch": {
+      "status": "survives"
+    },
+    "Garner Ellerbee/Baywatch": {
+      "status": "survives"
+    },
+    "Stephanie Holden/Baywatch": {
+      "status": "survives"
+    },
+    "Belle/Beauty and the Beast": {
+      "status": "survives"
+    },
+    "Gaston/Beauty and the Beast": {
+      "status": "dies"
+    },
+    "Maurice/Beauty and the Beast": {
+      "status": "dies"
+    },
+    "Cogsworth/Beauty and the Beast": {
+      "status": "survives"
+    },
+    "Lumiere/Beauty and the Beast": {
+      "status": "survives"
+    },
+    "Beast/Beauty and the Beast": {
+      "status": "survives"
+    },
+    "Jesse/Before Sunrise": {
+      "status": "survives"
+    },
+    "C\u00e9line/Before Sunrise": {
+      "status": "survives"
+    },
+    "Beowulf/Beowulf": {
+      "status": "dies"
+    },
+    "Jimmy McGill/Better Call Saul": {
+      "status": "survives"
+    },
+    "Mike Ehrmantraut/Better Call Saul": {
+      "status": "dies"
+    },
+    "Kim Wexler/Better Call Saul": {
+      "status": "dies"
+    },
+    "Howard Hamlin/Better Call Saul": {
+      "status": "survives"
+    },
+    "Nacho Varga/Better Call Saul": {
+      "status": "dies"
+    },
+    "Chuck McGill/Better Call Saul": {
+      "status": "dies"
+    },
+    "Nina Sayers/Black Swan": {
+      "status": "dies"
+    },
+    "Lily/Black Swan": {
+      "status": "survives"
+    },
+    "Thomas Leroy/Black Swan": {
+      "status": "survives"
+    },
+    "John Rayburn/Bloodline": {
+      "status": "dies"
+    },
+    "Meg Rayburn/Bloodline": {
+      "status": "survives"
+    },
+    "Kevin Rayburn/Bloodline": {
+      "status": "survives"
+    },
+    "Diana Rayburn/Bloodline": {
+      "status": "survives"
+    },
+    "Eric O'Bannon/Bloodline": {
+      "status": "dies"
+    },
+    "Sally Rayburn/Bloodline": {
+      "status": "survives"
+    },
+    "Danny Reagan/Blue Bloods": {
+      "status": "survives"
+    },
+    "Erin Reagan/Blue Bloods": {
+      "status": "survives"
+    },
+    "Jamie Reagan/Blue Bloods": {
+      "status": "survives"
+    },
+    "Henry Reagan/Blue Bloods": {
+      "status": "survives"
+    },
+    "Frank Reagan/Blue Bloods": {
+      "status": "survives"
+    },
+    "Abigail Baker/Blue Bloods": {
+      "status": "survives"
+    },
+    "Bob Belcher/Bob's Burgers": {
+      "status": "survives"
+    },
+    "Linda Belcher/Bob's Burgers": {
+      "status": "survives"
+    },
+    "Tina Belcher/Bob's Burgers": {
+      "status": "survives"
+    },
+    "Gene Belcher/Bob's Burgers": {
+      "status": "survives"
+    },
+    "Louise Belcher/Bob's Burgers": {
+      "status": "survives"
+    },
+    "Temperance Brennan/Bones": {
+      "status": "survives"
+    },
+    "Seeley Booth/Bones": {
+      "status": "survives"
+    },
+    "Angela Montenegro/Bones": {
+      "status": "survives"
+    },
+    "Jack Hodgins/Bones": {
+      "status": "survives"
+    },
+    "Camille Saroyan/Bones": {
+      "status": "survives"
+    },
+    "Molly Davidson/Booksmart": {
+      "status": "survives"
+    },
+    "Amy Antsler/Booksmart": {
+      "status": "survives"
+    },
+    "Alan Shore/Boston Legal": {
+      "status": "survives"
+    },
+    "Denny Crane/Boston Legal": {
+      "status": "survives"
+    },
+    "Shirley Schmidt/Boston Legal": {
+      "status": "survives"
+    },
+    "Holly Golightly/Breakfast at Tiffany's": {
+      "status": "survives"
+    },
+    "Paul Varjak/Breakfast at Tiffany's": {
+      "status": "survives"
+    },
+    "Walter White/Breaking Bad": {
+      "status": "dies"
+    },
+    "Skyler White/Breaking Bad": {
+      "status": "survives"
+    },
+    "Jesse Pinkman/Breaking Bad": {
+      "status": "survives"
+    },
+    "Hank Schrader/Breaking Bad": {
+      "status": "dies"
+    },
+    "Marie Schrader/Breaking Bad": {
+      "status": "survives"
+    },
+    "Flynn White/Breaking Bad": {
+      "status": "survives"
+    },
+    "Saul Goodman/Breaking Bad": {
+      "status": "survives"
+    },
+    "Gus Fring/Breaking Bad": {
+      "status": "dies"
+    },
+    "Mike Ehrmantraut/Breaking Bad": {
+      "status": "dies"
+    },
+    "Jane Margolis/Breaking Bad": {
+      "status": "dies"
+    },
+    "Abbi Abrams/Broad City": {
+      "status": "survives"
+    },
+    "Ilana Wexler/Broad City": {
+      "status": "survives"
+    },
+    "Lincoln Rice/Broad City": {
+      "status": "survives"
+    },
+    "Ennis Del Mar/Brokeback Mountain": {
+      "status": "survives"
+    },
+    "Jack Twist/Brokeback Mountain": {
+      "status": "dies"
+    },
+    "Jake Peralta/Brooklyn Nine-Nine": {
+      "status": "survives"
+    },
+    "Rosa Diaz/Brooklyn Nine-Nine": {
+      "status": "survives"
+    },
+    "Terry Jeffords/Brooklyn Nine-Nine": {
+      "status": "survives"
+    },
+    "Amy Santiago/Brooklyn Nine-Nine": {
+      "status": "survives"
+    },
+    "Charles Boyle/Brooklyn Nine-Nine": {
+      "status": "survives"
+    },
+    "Raymond Holt/Brooklyn Nine-Nine": {
+      "status": "survives"
+    },
+    "Buffy Summers/Buffy the Vampire Slayer": {
+      "status": "survives"
+    },
+    "Xander Harris/Buffy the Vampire Slayer": {
+      "status": "survives"
+    },
+    "Willow Rosenberg/Buffy the Vampire Slayer": {
+      "status": "survives"
+    },
+    "Cordelia Chase/Buffy the Vampire Slayer": {
+      "status": "survives"
+    },
+    "Rupert Giles/Buffy the Vampire Slayer": {
+      "status": "survives"
+    },
+    "Angel/Buffy the Vampire Slayer": {
+      "status": "survives"
+    },
+    "Nick Stokes/CSI: Crime Scene Investigation": {
+      "status": "survives"
+    },
+    "Greg Sanders/CSI: Crime Scene Investigation": {
+      "status": "survives"
+    },
+    "Al Robbins/CSI: Crime Scene Investigation": {
+      "status": "survives"
+    },
+    "Captain Jim Brass/CSI: Crime Scene Investigation": {
+      "status": "survives"
+    },
+    "Sara Sidle/CSI: Crime Scene Investigation": {
+      "status": "survives"
+    },
+    "David Phillips/CSI: Crime Scene Investigation": {
+      "status": "survives"
+    },
+    "Calvin/Calvin and Hobbes": {
+      "status": "survives"
+    },
+    "Hobbes/Calvin and Hobbes": {
+      "status": "survives"
+    },
+    "Calvin's dad/Calvin and Hobbes": {
+      "status": "survives"
+    },
+    "Calvin's mom/Calvin and Hobbes": {
+      "status": "survives"
+    },
+    "Susie Derkins/Calvin and Hobbes": {
+      "status": "survives"
+    },
+    "Rick Blaine/Casablanca": {
+      "status": "survives"
+    },
+    "Ilsa Lund/Casablanca": {
+      "status": "survives"
+    },
+    "Victor Laszlo/Casablanca": {
+      "status": "survives"
+    },
+    "Richard Castle/Castle": {
+      "status": "survives"
+    },
+    "Kate Beckett/Castle": {
+      "status": "survives"
+    },
+    "Martha Rodgers/Castle": {
+      "status": "survives"
+    },
+    "Javier Esposito/Castle": {
+      "status": "survives"
+    },
+    "Kevin Ryan/Castle": {
+      "status": "survives"
+    },
+    "Alexis Castle/Castle": {
+      "status": "survives"
+    },
+    "Frank Abagnale/Catch Me If You Can": {
+      "status": "survives"
+    },
+    "Carl Hanratty/Catch Me If You Can": {
+      "status": "survives"
+    },
+    "Matthew Casey/Chicago Fire": {
+      "status": "survives"
+    },
+    "Kelly Severide/Chicago Fire": {
+      "status": "survives"
+    },
+    "Wallace Boden/Chicago Fire": {
+      "status": "dies"
+    },
+    "Joe Cruz/Chicago Fire": {
+      "status": "survives"
+    },
+    "Randall McHolland/Chicago Fire": {
+      "status": "dies"
+    },
+    "Capp/Chicago Fire": {
+      "status": "survives"
+    },
+    "Sabrina Spellman/Chilling Adventures of Sabrina": {
+      "status": "survives"
+    },
+    "Harvey Kinkle/Chilling Adventures of Sabrina": {
+      "status": "survives"
+    },
+    "Hilda Spellman/Chilling Adventures of Sabrina": {
+      "status": "survives"
+    },
+    "Ambrose Spellman/Chilling Adventures of Sabrina": {
+      "status": "survives"
+    },
+    "Mary Wardwell/Chilling Adventures of Sabrina": {
+      "status": "dies"
+    },
+    "Rosalind Walker/Chilling Adventures of Sabrina": {
+      "status": "dies"
+    },
+    "Prudence Night/Chilling Adventures of Sabrina": {
+      "status": "dies"
+    },
+    "Agatha/Chilling Adventures of Sabrina": {
+      "status": "survives"
+    },
+    "Faustus Blackwood/Chilling Adventures of Sabrina": {
+      "status": "dies"
+    },
+    "Zelda Spellman/Chilling Adventures of Sabrina": {
+      "status": "survives"
+    },
+    "Amanda LaRusso/Cobra Kai": {
+      "status": "survives"
+    },
+    "Samantha LaRusso/Cobra Kai": {
+      "status": "survives"
+    },
+    "Robby Keene/Cobra Kai": {
+      "status": "survives"
+    },
+    "Daniel LaRusso/Cobra Kai": {
+      "status": "survives"
+    },
+    "Miguel Diaz/Cobra Kai": {
+      "status": "survives"
+    },
+    "Johnny Lawrence/Cobra Kai": {
+      "status": "survives"
+    },
+    "Miguel/Coco": {
+      "status": "survives"
+    },
+    "H\u00e9ctor/Coco": {
+      "status": "survives"
+    },
+    "Ernesto de la Cruz/Coco": {
+      "status": "dies"
+    },
+    "Mam\u00e1 Imelda/Coco": {
+      "status": "survives"
+    },
+    "Mam\u00e1 Coco/Coco": {
+      "status": "survives"
+    },
+    "Jeff Winger/Community": {
+      "status": "survives"
+    },
+    "Britta Perry/Community": {
+      "status": "survives"
+    },
+    "Abed Nadir/Community": {
+      "status": "survives"
+    },
+    "Troy Barnes/Community": {
+      "status": "survives"
+    },
+    "Annie Edison/Community": {
+      "status": "survives"
+    },
+    "Shirley Bennett/Community": {
+      "status": "survives"
+    },
+    "Pierce Hawthorne/Community": {
+      "status": "dies"
+    },
+    "Craig Pelton/Community": {
+      "status": "survives"
+    },
+    "Ben Chang/Community": {
+      "status": "survives"
+    },
+    "Ian Duncan/Community": {
+      "status": "survives"
+    },
+    "Spike Spiegel/Cowboy Bebop": {
+      "status": "dies"
+    },
+    "Jet Black/Cowboy Bebop": {
+      "status": "survives"
+    },
+    "Faye Valentine/Cowboy Bebop": {
+      "status": "survives"
+    },
+    "Ed/Cowboy Bebop": {
+      "status": "dies"
+    },
+    "Vicious/Cowboy Bebop": {
+      "status": "dies"
+    },
+    "Julia/Cowboy Bebop": {
+      "status": "survives"
+    },
+    "Rebecca Bunch/Crazy Ex-Girlfriend": {
+      "status": "survives"
+    },
+    "Paula Proctor/Crazy Ex-Girlfriend": {
+      "status": "survives"
+    },
+    "Josh Chan/Crazy Ex-Girlfriend": {
+      "status": "survives"
+    },
+    "Darryl Whitefeather/Crazy Ex-Girlfriend": {
+      "status": "survives"
+    },
+    "Heather Davis/Crazy Ex-Girlfriend": {
+      "status": "survives"
+    },
+    "Valencia Perez/Crazy Ex-Girlfriend": {
+      "status": "survives"
+    },
+    "Rachel Chu/Crazy Rich Asians": {
+      "status": "survives"
+    },
+    "Nick Young/Crazy Rich Asians": {
+      "status": "survives"
+    },
+    "Eleanor Sung-Young/Crazy Rich Asians": {
+      "status": "dies"
+    },
+    "Goh Peik Lin/Crazy Rich Asians": {
+      "status": "survives"
+    },
+    "Astrid Leong-Teo/Crazy Rich Asians": {
+      "status": "survives"
+    },
+    "Colin Khoo/Crazy Rich Asians": {
+      "status": "survives"
+    },
+    "Dr. Spencer Reid/Criminal Minds": {
+      "status": "survives"
+    },
+    "Penelope Garcia/Criminal Minds": {
+      "status": "survives"
+    },
+    "Jennifer Jareau/Criminal Minds": {
+      "status": "survives"
+    },
+    "David Rossi/Criminal Minds": {
+      "status": "survives"
+    },
+    "Aaron Hotchner/Criminal Minds": {
+      "status": "survives"
+    },
+    "Derek Morgan/Criminal Minds": {
+      "status": "survives"
+    },
+    "Li Mu Bai/Crouching Tiger, Hidden Dragon": {
+      "status": "dies"
+    },
+    "Yu Shu Lien/Crouching Tiger, Hidden Dragon": {
+      "status": "survives"
+    },
+    "Jen Yu/Crouching Tiger, Hidden Dragon": {
+      "status": "survives"
+    },
+    "Ethan Ryan MacManus/Ctrl+Alt+Del": {
+      "status": "survives"
+    },
+    "Lucas Davidowicz/Ctrl+Alt+Del": {
+      "status": "dies"
+    },
+    "Lilah MacManus/Ctrl+Alt+Del": {
+      "status": "survives"
+    },
+    "Patty Hewes/Damages": {
+      "status": "survives"
+    },
+    "Ellen Parsons/Damages": {
+      "status": "survives"
+    },
+    "Tom Shayes/Damages": {
+      "status": "survives"
+    },
+    "Jonas Kahnwald/Dark": {
+      "status": "survives"
+    },
+    "Charlotte Doppler/Dark": {
+      "status": "dies"
+    },
+    "Martha Nielsen/Dark": {
+      "status": "dies"
+    },
+    "Hannah Kahnwald/Dark": {
+      "status": "survives"
+    },
+    "Peter Doppler/Dark": {
+      "status": "dies"
+    },
+    "Katharina Nielsen/Dark": {
+      "status": "survives"
+    },
+    "Light Yagami/Death Note": {
+      "status": "dies"
+    },
+    "Touta Matsuda/Death Note": {
+      "status": "dies"
+    },
+    "Shuichi Aizawa/Death Note": {
+      "status": "dies"
+    },
+    "Ryuk/Death Note": {
+      "status": "dies"
+    },
+    "Soichiro Yagami/Death Note": {
+      "status": "survives"
+    },
+    "Hideki Ide/Death Note": {
+      "status": "dies"
+    },
+    "L/Death Note": {
+      "status": "dies"
+    },
+    "Misa Amane/Death Note": {
+      "status": "dies"
+    },
+    "Kanzo Mogi/Death Note": {
+      "status": "dies"
+    },
+    "Watari/Death Note": {
+      "status": "survives"
+    },
+    "Archie 'Snake' Simpson/Degrassi: The Next Generation": {
+      "status": "survives"
+    },
+    "Clare Edwards/Degrassi: The Next Generation": {
+      "status": "survives"
+    },
+    "Alli Bhandari/Degrassi: The Next Generation": {
+      "status": "survives"
+    },
+    "Connor Deslauriers/Degrassi: The Next Generation": {
+      "status": "survives"
+    },
+    "Gavin 'Spinner' Mason/Degrassi: The Next Generation": {
+      "status": "survives"
+    },
+    "Emma Nelson/Degrassi: The Next Generation": {
+      "status": "survives"
+    },
+    "Manny Santos/Degrassi: The Next Generation": {
+      "status": "survives"
+    },
+    "Drew Torres/Degrassi: The Next Generation": {
+      "status": "survives"
+    },
+    "Jenna Middleton/Degrassi: The Next Generation": {
+      "status": "survives"
+    },
+    "Liberty Van Zandt/Degrassi: The Next Generation": {
+      "status": "survives"
+    },
+    "Susan Mayer/Desperate Housewives": {
+      "status": "survives"
+    },
+    "Lynette Scavo/Desperate Housewives": {
+      "status": "survives"
+    },
+    "Bree Van de Kamp/Desperate Housewives": {
+      "status": "survives"
+    },
+    "Gabrielle Solis/Desperate Housewives": {
+      "status": "survives"
+    },
+    "Edie Britt/Desperate Housewives": {
+      "status": "survives"
+    },
+    "Carlos Solis/Desperate Housewives": {
+      "status": "survives"
+    },
+    "Julie Mayer/Desperate Housewives": {
+      "status": "survives"
+    },
+    "Mary Alice Young/Desperate Housewives": {
+      "status": "dies"
+    },
+    "Mike Delfino/Desperate Housewives": {
+      "status": "survives"
+    },
+    "Tom Scavo/Desperate Housewives": {
+      "status": "survives"
+    },
+    "Dexter Morgan/Dexter": {
+      "status": "survives"
+    },
+    "Rita Bennett/Dexter": {
+      "status": "dies"
+    },
+    "Debra Morgan/Dexter": {
+      "status": "survives"
+    },
+    "James Doakes/Dexter": {
+      "status": "dies"
+    },
+    "Maria LaGuerta/Dexter": {
+      "status": "dies"
+    },
+    "Angel Batista/Dexter": {
+      "status": "dies"
+    },
+    "Harry Morgan/Dexter": {
+      "status": "survives"
+    },
+    "Vince Masuka/Dexter": {
+      "status": "survives"
+    },
+    "Thomas Matthews/Dexter": {
+      "status": "dies"
+    },
+    "Joey Quinn/Dexter": {
+      "status": "survives"
+    },
+    "John McClane/Die Hard": {
+      "status": "survives"
+    },
+    "Hans Gruber/Die Hard": {
+      "status": "dies"
+    },
+    "Holly Gennero-McClane/Die Hard": {
+      "status": "survives"
+    },
+    "Frances 'Baby' Houseman/Dirty Dancing": {
+      "status": "survives"
+    },
+    "Johnny Castle/Dirty Dancing": {
+      "status": "survives"
+    },
+    "Tris Prior/Divergent": {
+      "status": "dies"
+    },
+    "Tobias 'Four' Eaton/Divergent": {
+      "status": "survives"
+    },
+    "Caleb Prior/Divergent": {
+      "status": "survives"
+    },
+    "Don Quijote/Don Quixote": {
+      "status": "survives"
+    },
+    "Sancho Panza/Don Quixote": {
+      "status": "survives"
+    },
+    "Robert Crawley/Downton Abbey": {
+      "status": "dies"
+    },
+    "Lady Sybil Crawley/Downton Abbey": {
+      "status": "dies"
+    },
+    "Lady Edith Crawley/Downton Abbey": {
+      "status": "survives"
+    },
+    "Charlie Carson/Downton Abbey": {
+      "status": "dies"
+    },
+    "John Bates/Downton Abbey": {
+      "status": "survives"
+    },
+    "Lady Mary Crawley/Downton Abbey": {
+      "status": "survives"
+    },
+    "Sarah O'Brien/Downton Abbey": {
+      "status": "dies"
+    },
+    "Anna Bates/Downton Abbey": {
+      "status": "survives"
+    },
+    "Elsie Carson/Downton Abbey": {
+      "status": "survives"
+    },
+    "William Mason/Downton Abbey": {
+      "status": "dies"
+    },
+    "Thomas Barrow/Downton Abbey": {
+      "status": "dies"
+    },
+    "Cora Crawley/Downton Abbey": {
+      "status": "dies"
+    },
+    "Daisy Mason/Downton Abbey": {
+      "status": "survives"
+    },
+    "Beryl Patmore/Downton Abbey": {
+      "status": "survives"
+    },
+    "Violet Crawley/Downton Abbey": {
+      "status": "survives"
+    },
+    "Dr. Horrible/Dr. Horrible's Sing-Along Blog": {
+      "status": "dies"
+    },
+    "Captain Hammer/Dr. Horrible's Sing-Along Blog": {
+      "status": "survives"
+    },
+    "Penny/Dr. Horrible's Sing-Along Blog": {
+      "status": "survives"
+    },
+    "Paul Atreides/Dune": {
+      "status": "dies"
+    },
+    "Lady Jessica/Dune": {
+      "status": "survives"
+    },
+    "Duke Leto Atreides/Dune": {
+      "status": "dies"
+    },
+    "Baron Harkonnen/Dune": {
+      "status": "dies"
+    },
+    "Thufir Hawat/Dune": {
+      "status": "dies"
+    },
+    "Chani/Dune": {
+      "status": "survives"
+    },
+    "John Carter/ER": {
+      "status": "survives"
+    },
+    "Kerry Weaver/ER": {
+      "status": "survives"
+    },
+    "Chuny Marquez/ER": {
+      "status": "dies"
+    },
+    "Malik McGrath/ER": {
+      "status": "survives"
+    },
+    "Abby Lockhart/ER": {
+      "status": "survives"
+    },
+    "Luka Kovac/ER": {
+      "status": "survives"
+    },
+    "Sherlock Holmes/Elementary": {
+      "status": "survives"
+    },
+    "Joan Watson/Elementary": {
+      "status": "survives"
+    },
+    "Marcus Bell/Elementary": {
+      "status": "survives"
+    },
+    "Drew Baylor/Elizabethtown": {
+      "status": "survives"
+    },
+    "Claire Colburn/Elizabethtown": {
+      "status": "survives"
+    },
+    "Emily Cooper/Emily in Paris": {
+      "status": "survives"
+    },
+    "Sylvie Grateau/Emily in Paris": {
+      "status": "survives"
+    },
+    "Mindy Chen/Emily in Paris": {
+      "status": "survives"
+    },
+    "Gabriel/Emily in Paris": {
+      "status": "survives"
+    },
+    "Julien/Emily in Paris": {
+      "status": "survives"
+    },
+    "Luc/Emily in Paris": {
+      "status": "survives"
+    },
+    "Ender Wiggin/Ender's Game": {
+      "status": "survives"
+    },
+    "Colonel Graff/Ender's Game": {
+      "status": "survives"
+    },
+    "Petra Arkanian/Ender's Game": {
+      "status": "survives"
+    },
+    "Valentine Wiggin/Ender's Game": {
+      "status": "survives"
+    },
+    "Peter Wiggin/Ender's Game": {
+      "status": "survives"
+    },
+    "Bean/Ender's Game": {
+      "status": "survives"
+    },
+    "Eric Murphy/Entourage": {
+      "status": "survives"
+    },
+    "Vincent Chase/Entourage": {
+      "status": "survives"
+    },
+    "Johnny 'Drama' Chase/Entourage": {
+      "status": "survives"
+    },
+    "Turtle/Entourage": {
+      "status": "survives"
+    },
+    "Ari Gold/Entourage": {
+      "status": "survives"
+    },
+    "Joel Barish/Eternal Sunshine of the Spotless Mind": {
+      "status": "survives"
+    },
+    "Clementine Kruczynski/Eternal Sunshine of the Spotless Mind": {
+      "status": "survives"
+    },
+    "Mary Svevo/Eternal Sunshine of the Spotless Mind": {
+      "status": "survives"
+    },
+    "Rue Bennett/Euphoria": {
+      "status": "dies"
+    },
+    "Jules Vaughn/Euphoria": {
+      "status": "survives"
+    },
+    "Cassie Howard/Euphoria": {
+      "status": "survives"
+    },
+    "Nate Jacobs/Euphoria": {
+      "status": "survives"
+    },
+    "Lexi Howard/Euphoria": {
+      "status": "survives"
+    },
+    "Maddy Perez/Euphoria": {
+      "status": "survives"
+    },
+    "Caleb Smith/Ex Machina": {
+      "status": "survives"
+    },
+    "Nathan Bateman/Ex Machina": {
+      "status": "dies"
+    },
+    "Ava/Ex Machina": {
+      "status": "survives"
+    },
+    "Guy Montag/Fahrenheit 451": {
+      "status": "survives"
+    },
+    "Linda Montag/Fahrenheit 451": {
+      "status": "unknown"
+    },
+    "Clarisse McClellan/Fahrenheit 451": {
+      "status": "dies"
+    },
+    "John Crichton/Farscape": {
+      "status": "survives"
+    },
+    "Aeryn Sun/Farscape": {
+      "status": "survives"
+    },
+    "Ka D'Argo/Farscape": {
+      "status": "survives"
+    },
+    "Dominar Rygel XVI/Farscape": {
+      "status": "survives"
+    },
+    "Chiana/Farscape": {
+      "status": "survives"
+    },
+    "Scorpius/Farscape": {
+      "status": "dies"
+    },
+    "Dominic Toretto/Fast & Furious": {
+      "status": "survives"
+    },
+    "Brian O'Conner/Fast & Furious": {
+      "status": "survives"
+    },
+    "Letty Ortiz/Fast & Furious": {
+      "status": "survives"
+    },
+    "Mia Toretto/Fast & Furious": {
+      "status": "survives"
+    },
+    "Han Lue/Fast & Furious": {
+      "status": "dies"
+    },
+    "Gisele Yashar/Fast & Furious": {
+      "status": "survives"
+    },
+    "Ferris Bueller/Ferris Bueller's Day Off": {
+      "status": "survives"
+    },
+    "Cameron Frye/Ferris Bueller's Day Off": {
+      "status": "survives"
+    },
+    "Sloane Peterson/Ferris Bueller's Day Off": {
+      "status": "survives"
+    },
+    "Anastasia Steele/Fifty Shades of Grey": {
+      "status": "survives"
+    },
+    "Christian Grey/Fifty Shades of Grey": {
+      "status": "survives"
+    },
+    "Tyler Durden/Fight Club": {
+      "status": "dies"
+    },
+    "The Narrator/Fight Club": {
+      "status": "survives"
+    },
+    "Marla Singer/Fight Club": {
+      "status": "survives"
+    },
+    "Nemo/Finding Nemo": {
+      "status": "survives"
+    },
+    "Marlin/Finding Nemo": {
+      "status": "survives"
+    },
+    "Dory/Finding Nemo": {
+      "status": "survives"
+    },
+    "Malcolm Reynolds/Firefly + Serenity": {
+      "status": "dies"
+    },
+    "River Tam/Firefly + Serenity": {
+      "status": "survives"
+    },
+    "Inara Serra/Firefly + Serenity": {
+      "status": "survives"
+    },
+    "Kaylee Frye/Firefly + Serenity": {
+      "status": "survives"
+    },
+    "Zoe Washburne/Firefly + Serenity": {
+      "status": "survives"
+    },
+    "Hoban Washburne/Firefly + Serenity": {
+      "status": "survives"
+    },
+    "Jayne Cobb/Firefly + Serenity": {
+      "status": "dies"
+    },
+    "Derrial Book/Firefly + Serenity": {
+      "status": "dies"
+    },
+    "Simon Tam/Firefly + Serenity": {
+      "status": "survives"
+    },
+    "The Operative/Firefly + Serenity": {
+      "status": "dies"
+    },
+    "Fleabag/Fleabag": {
+      "status": "survives"
+    },
+    "Claire/Fleabag": {
+      "status": "survives"
+    },
+    "Godmother/Fleabag": {
+      "status": "survives"
+    },
+    "Forrest Gump/Forrest Gump": {
+      "status": "survives"
+    },
+    "Jenny Curran/Forrest Gump": {
+      "status": "dies"
+    },
+    "Dan Taylor/Forrest Gump": {
+      "status": "survives"
+    },
+    "Eric Taylor/Friday Night Lights": {
+      "status": "survives"
+    },
+    "Tami Taylor/Friday Night Lights": {
+      "status": "survives"
+    },
+    "Smash Williams/Friday Night Lights": {
+      "status": "survives"
+    },
+    "Matt Saracen/Friday Night Lights": {
+      "status": "survives"
+    },
+    "Lyla Garrity/Friday Night Lights": {
+      "status": "survives"
+    },
+    "Tim Riggins/Friday Night Lights": {
+      "status": "survives"
+    },
+    "Tyra Collette/Friday Night Lights": {
+      "status": "survives"
+    },
+    "Landry Clarke/Friday Night Lights": {
+      "status": "survives"
+    },
+    "Jason Street/Friday Night Lights": {
+      "status": "survives"
+    },
+    "Julie Taylor/Friday Night Lights": {
+      "status": "survives"
+    },
+    "Rachel Green/Friends": {
+      "status": "survives"
+    },
+    "Monica Geller/Friends": {
+      "status": "survives"
+    },
+    "Phoebe Buffay/Friends": {
+      "status": "survives"
+    },
+    "Joey Tribbiani/Friends": {
+      "status": "survives"
+    },
+    "Chandler Bing/Friends": {
+      "status": "survives"
+    },
+    "Ross Geller/Friends": {
+      "status": "survives"
+    },
+    "Anna/Frozen": {
+      "status": "survives"
+    },
+    "Elsa/Frozen": {
+      "status": "survives"
+    },
+    "Kristoff/Frozen": {
+      "status": "survives"
+    },
+    "Olaf/Frozen": {
+      "status": "survives"
+    },
+    "Hans/Frozen": {
+      "status": "dies"
+    },
+    "Edward Elric/Fullmetal Alchemist: Brotherhood": {
+      "status": "survives"
+    },
+    "Alphonse Elric/Fullmetal Alchemist: Brotherhood": {
+      "status": "survives"
+    },
+    "Roy Mustang/Fullmetal Alchemist: Brotherhood": {
+      "status": "survives"
+    },
+    "Riza Hawkeye/Fullmetal Alchemist: Brotherhood": {
+      "status": "survives"
+    },
+    "Scar/Fullmetal Alchemist: Brotherhood": {
+      "status": "survives"
+    },
+    "Denny Brosh/Fullmetal Alchemist: Brotherhood": {
+      "status": "survives"
+    },
+    "Fry/Futurama": {
+      "status": "survives"
+    },
+    "Leela/Futurama": {
+      "status": "survives"
+    },
+    "Bender/Futurama": {
+      "status": "survives"
+    },
+    "Prof. Farnsworth/Futurama": {
+      "status": "survives"
+    },
+    "Amy Wong/Futurama": {
+      "status": "survives"
+    },
+    "Hermes Conrad/Futurama": {
+      "status": "survives"
+    },
+    "Dr. Zoidberg/Futurama": {
+      "status": "survives"
+    },
+    "Zapp Brannigan/Futurama": {
+      "status": "survives"
+    },
+    "Kif Kroker/Futurama": {
+      "status": "survives"
+    },
+    "Mom/Futurama": {
+      "status": "dies"
+    },
+    "Jon Snow/Game of Thrones": {
+      "status": "survives"
+    },
+    "Tyrion Lannister/Game of Thrones": {
+      "status": "survives"
+    },
+    "Daenerys Targaryen/Game of Thrones": {
+      "status": "dies"
+    },
+    "Sansa Stark/Game of Thrones": {
+      "status": "survives"
+    },
+    "Arya Stark/Game of Thrones": {
+      "status": "survives"
+    },
+    "Jaime Lannister/Game of Thrones": {
+      "status": "survives"
+    },
+    "Samwell Tarly/Game of Thrones": {
+      "status": "survives"
+    },
+    "Jorah Mormont/Game of Thrones": {
+      "status": "dies"
+    },
+    "Theon Greyjoy/Game of Thrones": {
+      "status": "dies"
+    },
+    "Petyr Baelish/Game of Thrones": {
+      "status": "dies"
+    },
+    "Davos Seaworth/Game of Thrones": {
+      "status": "survives"
+    },
+    "Eddard Stark/Game of Thrones": {
+      "status": "dies"
+    },
+    "Brandon Stark/Game of Thrones": {
+      "status": "dies"
+    },
+    "Brienne of Tarth/Game of Thrones": {
+      "status": "survives"
+    },
+    "Sandor Clegane/Game of Thrones": {
+      "status": "survives"
+    },
+    "Varys/Game of Thrones": {
+      "status": "dies"
+    },
+    "Catelyn Stark/Game of Thrones": {
+      "status": "dies"
+    },
+    "Tywin Lannister/Game of Thrones": {
+      "status": "dies"
+    },
+    "Margaery Tyrell/Game of Thrones": {
+      "status": "dies"
+    },
+    "Robb Stark/Game of Thrones": {
+      "status": "dies"
+    },
+    "Bronn/Game of Thrones": {
+      "status": "survives"
+    },
+    "Stannis Baratheon/Game of Thrones": {
+      "status": "dies"
+    },
+    "Joffrey Baratheon/Game of Thrones": {
+      "status": "dies"
+    },
+    "Melisandre/Game of Thrones": {
+      "status": "survives"
+    },
+    "Olenna Tyrell/Game of Thrones": {
+      "status": "dies"
+    },
+    "Ygritte/Game of Thrones": {
+      "status": "dies"
+    },
+    "Cersei Lannister/Game of Thrones": {
+      "status": "dies"
+    },
+    "Shae/Game of Thrones": {
+      "status": "dies"
+    },
+    "Oberyn Martell/Game of Thrones": {
+      "status": "dies"
+    },
+    "Asha Greyjoy/Game of Thrones": {
+      "status": "survives"
+    },
+    "Chris Washington/Get Out": {
+      "status": "survives"
+    },
+    "Rose Armitage/Get Out": {
+      "status": "dies"
+    },
+    "Dean Armitage/Get Out": {
+      "status": "dies"
+    },
+    "Jeremy Armitage/Get Out": {
+      "status": "dies"
+    },
+    "Missy Armitage/Get Out": {
+      "status": "dies"
+    },
+    "Rod Williams/Get Out": {
+      "status": "survives"
+    },
+    "Peter Venkman/Ghostbusters": {
+      "status": "survives"
+    },
+    "Ray Stantz/Ghostbusters": {
+      "status": "survives"
+    },
+    "Egon Spengler/Ghostbusters": {
+      "status": "survives"
+    },
+    "Dana Barrett/Ghostbusters": {
+      "status": "survives"
+    },
+    "Louis Tully/Ghostbusters": {
+      "status": "survives"
+    },
+    "Lorelai Gilmore/Gilmore Girls": {
+      "status": "survives"
+    },
+    "Rory Gilmore/Gilmore Girls": {
+      "status": "survives"
+    },
+    "Lane Kim/Gilmore Girls": {
+      "status": "survives"
+    },
+    "Luke Danes/Gilmore Girls": {
+      "status": "survives"
+    },
+    "Michel Gerard/Gilmore Girls": {
+      "status": "survives"
+    },
+    "Emily Gilmore/Gilmore Girls": {
+      "status": "survives"
+    },
+    "Richard Gilmore/Gilmore Girls": {
+      "status": "survives"
+    },
+    "Sookie St. James/Gilmore Girls": {
+      "status": "survives"
+    },
+    "Kirk Gleason/Gilmore Girls": {
+      "status": "survives"
+    },
+    "Paris Geller/Gilmore Girls": {
+      "status": "survives"
+    },
+    "Miss Patty/Gilmore Girls": {
+      "status": "survives"
+    },
+    "Dean Forester/Gilmore Girls": {
+      "status": "survives"
+    },
+    "Logan Huntzberger/Gilmore Girls": {
+      "status": "survives"
+    },
+    "Jackson Belleville/Gilmore Girls": {
+      "status": "survives"
+    },
+    "Taylor Doose/Gilmore Girls": {
+      "status": "survives"
+    },
+    "Hannah Horvath/Girls": {
+      "status": "survives"
+    },
+    "Marnie Michaels/Girls": {
+      "status": "survives"
+    },
+    "Jessa Johansson/Girls": {
+      "status": "survives"
+    },
+    "Shoshanna Shapiro/Girls": {
+      "status": "survives"
+    },
+    "Adam Sackler/Girls": {
+      "status": "survives"
+    },
+    "Ray Ploshansky/Girls": {
+      "status": "survives"
+    },
+    "Maximus/Gladiator": {
+      "status": "dies"
+    },
+    "Commodus/Gladiator": {
+      "status": "dies"
+    },
+    "Lucilla/Gladiator": {
+      "status": "dies"
+    },
+    "Kurt Hummel/Glee": {
+      "status": "survives"
+    },
+    "Sue Sylvester/Glee": {
+      "status": "survives"
+    },
+    "Rachel Berry/Glee": {
+      "status": "survives"
+    },
+    "Will Schuester/Glee": {
+      "status": "survives"
+    },
+    "Artie Abrams/Glee": {
+      "status": "survives"
+    },
+    "Santana Lopez/Glee": {
+      "status": "survives"
+    },
+    "Tina Cohen-Chang/Glee": {
+      "status": "survives"
+    },
+    "Mercedes Jones/Glee": {
+      "status": "survives"
+    },
+    "Noah Puckerman/Glee": {
+      "status": "survives"
+    },
+    "Brittany Pierce/Glee": {
+      "status": "survives"
+    },
+    "Sam Evans/Glee": {
+      "status": "survives"
+    },
+    "Blaine Anderson/Glee": {
+      "status": "survives"
+    },
+    "Mike Chang/Glee": {
+      "status": "survives"
+    },
+    "Finn Hudson/Glee": {
+      "status": "dies"
+    },
+    "Emma Pillsbury/Glee": {
+      "status": "survives"
+    },
+    "Nick Dunne/Gone Girl": {
+      "status": "survives"
+    },
+    "Amy Elliott Dunne/Gone Girl": {
+      "status": "dies"
+    },
+    "Margo Dunne/Gone Girl": {
+      "status": "survives"
+    },
+    "Scarlett O'Hara/Gone With the Wind": {
+      "status": "survives"
+    },
+    "Rhett Butler/Gone With the Wind": {
+      "status": "survives"
+    },
+    "Melanie Hamilton/Gone With the Wind": {
+      "status": "dies"
+    },
+    "Ashley Wilkes/Gone With the Wind": {
+      "status": "survives"
+    },
+    "India Wilkes/Gone With the Wind": {
+      "status": "survives"
+    },
+    "Mammy/Gone With the Wind": {
+      "status": "dies"
+    },
+    "Will Hunting/Good Will Hunting": {
+      "status": "survives"
+    },
+    "Skylar/Good Will Hunting": {
+      "status": "survives"
+    },
+    "Dr. Sean Maguire/Good Will Hunting": {
+      "status": "survives"
+    },
+    "Serena van der Woodsen/Gossip Girl": {
+      "status": "survives"
+    },
+    "Blair Waldorf/Gossip Girl": {
+      "status": "survives"
+    },
+    "Dan Humphrey/Gossip Girl": {
+      "status": "survives"
+    },
+    "Nate Archibald/Gossip Girl": {
+      "status": "survives"
+    },
+    "Chuck Bass/Gossip Girl": {
+      "status": "survives"
+    },
+    "Lily van der Woodsen/Gossip Girl": {
+      "status": "dies"
+    },
+    "Rufus Humphrey/Gossip Girl": {
+      "status": "survives"
+    },
+    "Jenny Humphrey/Gossip Girl": {
+      "status": "survives"
+    },
+    "Vanessa Abrams/Gossip Girl": {
+      "status": "survives"
+    },
+    "Dorota Kishlovsky/Gossip Girl": {
+      "status": "survives"
+    },
+    "James Gordon/Gotham": {
+      "status": "survives"
+    },
+    "Harvey Bullock/Gotham": {
+      "status": "survives"
+    },
+    "Bruce Wayne/Gotham": {
+      "status": "survives"
+    },
+    "Oswald Cobblepot/Gotham": {
+      "status": "survives"
+    },
+    "Selina Kyle/Gotham": {
+      "status": "survives"
+    },
+    "Edward Nygma/Gotham": {
+      "status": "survives"
+    },
+    "Alfred Pennyworth/Gotham": {
+      "status": "survives"
+    },
+    "Barbara Kean/Gotham": {
+      "status": "dies"
+    },
+    "Leslie Thompkins/Gotham": {
+      "status": "survives"
+    },
+    "Lucius Fox/Gotham": {
+      "status": "survives"
+    },
+    "Tony Lip/Green Book": {
+      "status": "survives"
+    },
+    "Don Shirley/Green Book": {
+      "status": "survives"
+    },
+    "Meredith Grey/Grey's Anatomy": {
+      "status": "survives"
+    },
+    "Cristina Yang/Grey's Anatomy": {
+      "status": "survives"
+    },
+    "Izzie Stevens/Grey's Anatomy": {
+      "status": "dies"
+    },
+    "Alex Karev/Grey's Anatomy": {
+      "status": "survives"
+    },
+    "George O'Malley/Grey's Anatomy": {
+      "status": "dies"
+    },
+    "Miranda Bailey/Grey's Anatomy": {
+      "status": "survives"
+    },
+    "Richard Webber/Grey's Anatomy": {
+      "status": "survives"
+    },
+    "Preston Burke/Grey's Anatomy": {
+      "status": "dies"
+    },
+    "Derek Shepherd/Grey's Anatomy": {
+      "status": "dies"
+    },
+    "Addison Montgomery/Grey's Anatomy": {
+      "status": "survives"
+    },
+    "Phil Connors/Groundhog Day": {
+      "status": "survives"
+    },
+    "Rita Hanson/Groundhog Day": {
+      "status": "survives"
+    },
+    "Alexander Hamilton/Hamilton": {
+      "status": "dies"
+    },
+    "Eliza Hamilton/Hamilton": {
+      "status": "survives"
+    },
+    "Aaron Burr/Hamilton": {
+      "status": "survives"
+    },
+    "Angelica Schuyler/Hamilton": {
+      "status": "survives"
+    },
+    "George Washington/Hamilton": {
+      "status": "survives"
+    },
+    "King George III/Hamilton": {
+      "status": "survives"
+    },
+    "Prince Hamlet/Hamlet": {
+      "status": "dies"
+    },
+    "Queen Gertrude/Hamlet": {
+      "status": "dies"
+    },
+    "King Claudius/Hamlet": {
+      "status": "dies"
+    },
+    "Polonius/Hamlet": {
+      "status": "dies"
+    },
+    "Ophelia/Hamlet": {
+      "status": "dies"
+    },
+    "Horatio/Hamlet": {
+      "status": "survives"
+    },
+    "Will Graham/Hannibal": {
+      "status": "survives"
+    },
+    "Dr. Hannibal Lecter/Hannibal": {
+      "status": "survives"
+    },
+    "Dr. Alana Bloom/Hannibal": {
+      "status": "dies"
+    },
+    "Jack Crawford/Hannibal": {
+      "status": "survives"
+    },
+    "Jimmy Price/Hannibal": {
+      "status": "dies"
+    },
+    "Brian Zeller/Hannibal": {
+      "status": "dies"
+    },
+    "Dr. Bedelia Du Maurier/Hannibal": {
+      "status": "survives"
+    },
+    "Beverly Katz/Hannibal": {
+      "status": "dies"
+    },
+    "Abigail Hobbs/Hannibal": {
+      "status": "dies"
+    },
+    "Freddie Lounds/Hannibal": {
+      "status": "survives"
+    },
+    "Ron Weasley/Harry Potter": {
+      "status": "survives"
+    },
+    "Harry Potter/Harry Potter": {
+      "status": "survives"
+    },
+    "Hermione Granger/Harry Potter": {
+      "status": "survives"
+    },
+    "Rubeus Hagrid/Harry Potter": {
+      "status": "survives"
+    },
+    "Albus Dumbledore/Harry Potter": {
+      "status": "dies"
+    },
+    "Minerva McGonagall/Harry Potter": {
+      "status": "survives"
+    },
+    "Severus Snape/Harry Potter": {
+      "status": "dies"
+    },
+    "Ginny Weasley/Harry Potter": {
+      "status": "survives"
+    },
+    "Luna Lovegood/Harry Potter": {
+      "status": "survives"
+    },
+    "Draco Malfoy/Harry Potter": {
+      "status": "survives"
+    },
+    "Molly Weasley/Harry Potter": {
+      "status": "survives"
+    },
+    "Lord Voldemort/Harry Potter": {
+      "status": "dies"
+    },
+    "Cho Chang/Harry Potter": {
+      "status": "survives"
+    },
+    "Fleur Delacour/Harry Potter": {
+      "status": "survives"
+    },
+    "Viktor Krum/Harry Potter": {
+      "status": "survives"
+    },
+    "Filius Flitwick/Harry Potter": {
+      "status": "survives"
+    },
+    "Horace Slughorn/Harry Potter": {
+      "status": "survives"
+    },
+    "George Weasley/Harry Potter": {
+      "status": "survives"
+    },
+    "Alastor Moody/Harry Potter": {
+      "status": "dies"
+    },
+    "Remus Lupin/Harry Potter": {
+      "status": "dies"
+    },
+    "Arthur Weasley/Harry Potter": {
+      "status": "survives"
+    },
+    "Cornelius Fudge/Harry Potter": {
+      "status": "survives"
+    },
+    "Dolores Umbridge/Harry Potter": {
+      "status": "survives"
+    },
+    "Petunia Dursley/Harry Potter": {
+      "status": "dies"
+    },
+    "Moaning Myrtle/Harry Potter": {
+      "status": "survives"
+    },
+    "Rita Skeeter/Harry Potter": {
+      "status": "survives"
+    },
+    "Dobby/Harry Potter": {
+      "status": "dies"
+    },
+    "Bellatrix Lestrange/Harry Potter": {
+      "status": "dies"
+    },
+    "Nymphadora Tonks/Harry Potter": {
+      "status": "dies"
+    },
+    "Sirius Black/Harry Potter": {
+      "status": "dies"
+    },
+    "Troy Bolton/High School Musical": {
+      "status": "survives"
+    },
+    "Gabriella Montez/High School Musical": {
+      "status": "survives"
+    },
+    "Sharpay Evans/High School Musical": {
+      "status": "survives"
+    },
+    "Ryan Evans/High School Musical": {
+      "status": "survives"
+    },
+    "Chad Danforth/High School Musical": {
+      "status": "survives"
+    },
+    "Taylor McKessie/High School Musical": {
+      "status": "survives"
+    },
+    "Patrizia Reggiani/House of Gucci": {
+      "status": "survives"
+    },
+    "Maurizio Gucci/House of Gucci": {
+      "status": "dies"
+    },
+    "Dr. Gregory House/House, M.D.": {
+      "status": "survives"
+    },
+    "Dr. Lisa Cuddy/House, M.D.": {
+      "status": "survives"
+    },
+    "Dr. James Wilson/House, M.D.": {
+      "status": "dies"
+    },
+    "Dr. Eric Foreman/House, M.D.": {
+      "status": "survives"
+    },
+    "Dr. Robert Chase/House, M.D.": {
+      "status": "survives"
+    },
+    "Dr. Allison Cameron/House, M.D.": {
+      "status": "survives"
+    },
+    "Ted Mosby/How I Met Your Mother": {
+      "status": "survives"
+    },
+    "Marshall Eriksen/How I Met Your Mother": {
+      "status": "survives"
+    },
+    "Robin Scherbatsky/How I Met Your Mother": {
+      "status": "survives"
+    },
+    "Barney Stinson/How I Met Your Mother": {
+      "status": "survives"
+    },
+    "Lily Aldrin/How I Met Your Mother": {
+      "status": "survives"
+    },
+    "Annalise Keating/How To Get Away With Murder": {
+      "status": "dies"
+    },
+    "Nate Lahey/How To Get Away With Murder": {
+      "status": "dies"
+    },
+    "Connor Walsh/How To Get Away With Murder": {
+      "status": "dies"
+    },
+    "Michaela Pratt/How To Get Away With Murder": {
+      "status": "dies"
+    },
+    "Asher Millstone/How To Get Away With Murder": {
+      "status": "dies"
+    },
+    "Frank Delfino/How To Get Away With Murder": {
+      "status": "dies"
+    },
+    "Bonnie Winterbottom/How To Get Away With Murder": {
+      "status": "dies"
+    },
+    "Oliver Hampton/How To Get Away With Murder": {
+      "status": "survives"
+    },
+    "Laurel Castillo/How To Get Away With Murder": {
+      "status": "dies"
+    },
+    "Wes Gibbins/How To Get Away With Murder": {
+      "status": "survives"
+    },
+    "Destiny/Hustlers": {
+      "status": "survives"
+    },
+    "Ramona Vega/Hustlers": {
+      "status": "survives"
+    },
+    "Elizabeth/Hustlers": {
+      "status": "survives"
+    },
+    "Dom Cobb/Inception": {
+      "status": "survives"
+    },
+    "Arthur/Inception": {
+      "status": "survives"
+    },
+    "Ariadne/Inception": {
+      "status": "survives"
+    },
+    "Mal Cobb/Inception": {
+      "status": "dies"
+    },
+    "Mr. Saito/Inception": {
+      "status": "survives"
+    },
+    "Robert Fischer/Inception": {
+      "status": "survives"
+    },
+    "Steven Hiller/Independence Day": {
+      "status": "survives"
+    },
+    "Thomas J. Whitmore/Independence Day": {
+      "status": "survives"
+    },
+    "David Levinson/Independence Day": {
+      "status": "survives"
+    },
+    "Charlie Kelly/It's Always Sunny in Philadelphia": {
+      "status": "survives"
+    },
+    "Dennis Reynolds/It's Always Sunny in Philadelphia": {
+      "status": "survives"
+    },
+    "Mac/It's Always Sunny in Philadelphia": {
+      "status": "survives"
+    },
+    "Dee Reynolds/It's Always Sunny in Philadelphia": {
+      "status": "survives"
+    },
+    "Frank Reynolds/It's Always Sunny in Philadelphia": {
+      "status": "survives"
+    },
+    "Jane Eyre/Jane Eyre": {
+      "status": "survives"
+    },
+    "Edward Fairfax Rochester/Jane Eyre": {
+      "status": "survives"
+    },
+    "Jane Villanueva/Jane the Virgin": {
+      "status": "survives"
+    },
+    "Xiomara Villanueva/Jane the Virgin": {
+      "status": "survives"
+    },
+    "Petra Solano/Jane the Virgin": {
+      "status": "survives"
+    },
+    "Alba Villanueva/Jane the Virgin": {
+      "status": "survives"
+    },
+    "Rogelio De La Vega/Jane the Virgin": {
+      "status": "survives"
+    },
+    "Rafael Solano/Jane the Virgin": {
+      "status": "survives"
+    },
+    "Martin Brody/Jaws": {
+      "status": "survives"
+    },
+    "Quint/Jaws": {
+      "status": "dies"
+    },
+    "Matt Hooper/Jaws": {
+      "status": "survives"
+    },
+    "Jennifer Check/Jennifer's Body": {
+      "status": "dies"
+    },
+    "Anita 'Needy' Lesnicki/Jennifer's Body": {
+      "status": "survives"
+    },
+    "Chip Dove/Jennifer's Body": {
+      "status": "dies"
+    },
+    "John Wick/John Wick": {
+      "status": "survives"
+    },
+    "Dr. Alan Grant/Jurassic Park": {
+      "status": "survives"
+    },
+    "Dr. Ellie Sattler/Jurassic Park": {
+      "status": "survives"
+    },
+    "Dr. Ian Malcolm/Jurassic Park": {
+      "status": "survives"
+    },
+    "John Hammond/Jurassic Park": {
+      "status": "dies"
+    },
+    "Ray Arnold/Jurassic Park": {
+      "status": "dies"
+    },
+    "Dennis Nedry/Jurassic Park": {
+      "status": "dies"
+    },
+    "Owen Grady/Jurassic World": {
+      "status": "survives"
+    },
+    "Claire Dearing/Jurassic World": {
+      "status": "survives"
+    },
+    "Villanelle/Killing Eve": {
+      "status": "dies"
+    },
+    "Eve Polastri/Killing Eve": {
+      "status": "survives"
+    },
+    "Carolyn Martens/Killing Eve": {
+      "status": "dies"
+    },
+    "Konstantin/Killing Eve": {
+      "status": "dies"
+    },
+    "Niko Polastri/Killing Eve": {
+      "status": "survives"
+    },
+    "Kenny Stowton/Killing Eve": {
+      "status": "survives"
+    },
+    "Sayid Jarrah/LOST": {
+      "status": "survives"
+    },
+    "Claire Littleton/LOST": {
+      "status": "survives"
+    },
+    "Jack Shephard/LOST": {
+      "status": "survives"
+    },
+    "Hurley Reyes/LOST": {
+      "status": "survives"
+    },
+    "Shannon Rutherford/LOST": {
+      "status": "dies"
+    },
+    "Sawyer Ford/LOST": {
+      "status": "survives"
+    },
+    "Benjamin Linus/LOST": {
+      "status": "dies"
+    },
+    "Jin-Soo Kwon/LOST": {
+      "status": "survives"
+    },
+    "Michael Dawson/LOST": {
+      "status": "dies"
+    },
+    "Desmond Hume/LOST": {
+      "status": "survives"
+    },
+    "Sun-Hwa Kwon/LOST": {
+      "status": "survives"
+    },
+    "Kate Austen/LOST": {
+      "status": "survives"
+    },
+    "Charlie Pace/LOST": {
+      "status": "dies"
+    },
+    "John Locke/LOST": {
+      "status": "dies"
+    },
+    "Juliet Burke/LOST": {
+      "status": "dies"
+    },
+    "Sebastian Wilder/La La Land": {
+      "status": "survives"
+    },
+    "Mia Dolan/La La Land": {
+      "status": "survives"
+    },
+    "Olivia Benson/Law & Order: SVU": {
+      "status": "survives"
+    },
+    "John Munch/Law & Order: SVU": {
+      "status": "survives"
+    },
+    "Donald Cragen/Law & Order: SVU": {
+      "status": "survives"
+    },
+    "Elliot Stabler/Law & Order: SVU": {
+      "status": "survives"
+    },
+    "Odafin Tutuola/Law & Order: SVU": {
+      "status": "survives"
+    },
+    "Melinda Warner/Law & Order: SVU": {
+      "status": "survives"
+    },
+    "Jean Valjean/Les Mis\u00e9rables": {
+      "status": "survives"
+    },
+    "Javert/Les Mis\u00e9rables": {
+      "status": "dies"
+    },
+    "Fantine/Les Mis\u00e9rables": {
+      "status": "dies"
+    },
+    "Cosette/Les Mis\u00e9rables": {
+      "status": "survives"
+    },
+    "Marius Pontmercy/Les Mis\u00e9rables": {
+      "status": "survives"
+    },
+    "Lilo Pelekai/Lilo & Stitch": {
+      "status": "survives"
+    },
+    "Nani Pelekai/Lilo & Stitch": {
+      "status": "survives"
+    },
+    "Dr. Jumba Jookiba/Lilo & Stitch": {
+      "status": "survives"
+    },
+    "Agt. Wendell Pleakley/Lilo & Stitch": {
+      "status": "survives"
+    },
+    "Cobra Bubbles/Lilo & Stitch": {
+      "status": "survives"
+    },
+    "Stitch/Lilo & Stitch": {
+      "status": "survives"
+    },
+    "Jo March/Little Women": {
+      "status": "survives"
+    },
+    "Meg March/Little Women": {
+      "status": "survives"
+    },
+    "Amy March/Little Women": {
+      "status": "survives"
+    },
+    "Beth March/Little Women": {
+      "status": "dies"
+    },
+    "Marmee March/Little Women": {
+      "status": "survives"
+    },
+    "Theodore Laurence/Little Women": {
+      "status": "survives"
+    },
+    "Nina Locke/Locke & Key": {
+      "status": "survives"
+    },
+    "Tyler Locke/Locke & Key": {
+      "status": "survives"
+    },
+    "Kinsey Locke/Locke & Key": {
+      "status": "survives"
+    },
+    "Frodo Baggins/Lord of the Rings": {
+      "status": "survives"
+    },
+    "Aragorn/Lord of the Rings": {
+      "status": "survives"
+    },
+    "Boromir/Lord of the Rings": {
+      "status": "dies"
+    },
+    "Merry Brandybuck/Lord of the Rings": {
+      "status": "survives"
+    },
+    "Samwise Gamgee/Lord of the Rings": {
+      "status": "survives"
+    },
+    "Gandalf/Lord of the Rings": {
+      "status": "survives"
+    },
+    "Gimli/Lord of the Rings": {
+      "status": "survives"
+    },
+    "Legolas/Lord of the Rings": {
+      "status": "survives"
+    },
+    "Pippin Took/Lord of the Rings": {
+      "status": "survives"
+    },
+    "Gollum/Lord of the Rings": {
+      "status": "dies"
+    },
+    "Lucifer Morningstar/Lucifer": {
+      "status": "survives"
+    },
+    "Chloe Decker/Lucifer": {
+      "status": "survives"
+    },
+    "Dan Espinoza/Lucifer": {
+      "status": "survives"
+    },
+    "Amenadiel/Lucifer": {
+      "status": "dies"
+    },
+    "Mazikeen/Lucifer": {
+      "status": "survives"
+    },
+    "Linda Martin/Lucifer": {
+      "status": "survives"
+    },
+    "Hawkeye Pierce/M*A*S*H": {
+      "status": "survives"
+    },
+    "Margaret Houlihan/M*A*S*H": {
+      "status": "survives"
+    },
+    "Maxwell Klinger/M*A*S*H": {
+      "status": "survives"
+    },
+    "Francis Mulcahy/M*A*S*H": {
+      "status": "survives"
+    },
+    "Frank Burns/M*A*S*H": {
+      "status": "survives"
+    },
+    "Radar O'Reilly/M*A*S*H": {
+      "status": "survives"
+    },
+    "Macbeth/Macbeth": {
+      "status": "dies"
+    },
+    "Lady Macbeth/Macbeth": {
+      "status": "dies"
+    },
+    "Max Rockatansky/Mad Max: Fury Road": {
+      "status": "survives"
+    },
+    "Imperator Furiosa/Mad Max: Fury Road": {
+      "status": "survives"
+    },
+    "Nux/Mad Max: Fury Road": {
+      "status": "dies"
+    },
+    "Don Draper/Mad Men": {
+      "status": "survives"
+    },
+    "Peggy Olson/Mad Men": {
+      "status": "survives"
+    },
+    "Pete Campbell/Mad Men": {
+      "status": "survives"
+    },
+    "Betty Draper/Mad Men": {
+      "status": "survives"
+    },
+    "Joan Holloway/Mad Men": {
+      "status": "survives"
+    },
+    "Salvatore Romano/Mad Men": {
+      "status": "dies"
+    },
+    "Paul Kinsey/Mad Men": {
+      "status": "dies"
+    },
+    "Ken Cosgrove/Mad Men": {
+      "status": "survives"
+    },
+    "Harry Crane/Mad Men": {
+      "status": "survives"
+    },
+    "Rachel Menken/Mad Men": {
+      "status": "survives"
+    },
+    "Roger Sterling/Mad Men": {
+      "status": "survives"
+    },
+    "Bert Cooper/Mad Men": {
+      "status": "survives"
+    },
+    "Henry Francis/Mad Men": {
+      "status": "dies"
+    },
+    "Lane Pryce/Mad Men": {
+      "status": "survives"
+    },
+    "Stan Rizzo/Mad Men": {
+      "status": "survives"
+    },
+    "Maleficent/Maleficent": {
+      "status": "survives"
+    },
+    "Donna Sheridan/Mamma Mia!": {
+      "status": "survives"
+    },
+    "Sophie Sheridan/Mamma Mia!": {
+      "status": "survives"
+    },
+    "Tanya Chesham-Leigh/Mamma Mia!": {
+      "status": "survives"
+    },
+    "Rosie Mulligan/Mamma Mia!": {
+      "status": "survives"
+    },
+    "Sam Carmichael/Mamma Mia!": {
+      "status": "survives"
+    },
+    "Harry Bright/Mamma Mia!": {
+      "status": "survives"
+    },
+    "Bill Anderson/Mamma Mia!": {
+      "status": "survives"
+    },
+    "Sky Ramand/Mamma Mia!": {
+      "status": "survives"
+    },
+    "Pepper/Mamma Mia!": {
+      "status": "survives"
+    },
+    "Ali/Mamma Mia!": {
+      "status": "survives"
+    },
+    "Tony Stark/Marvel Cinematic Universe": {
+      "status": "dies"
+    },
+    "Captain America/Marvel Cinematic Universe": {
+      "status": "survives"
+    },
+    "Black Widow/Marvel Cinematic Universe": {
+      "status": "dies"
+    },
+    "Bruce Banner/Marvel Cinematic Universe": {
+      "status": "survives"
+    },
+    "Captain Marvel/Marvel Cinematic Universe": {
+      "status": "survives"
+    },
+    "Thor/Marvel Cinematic Universe": {
+      "status": "survives"
+    },
+    "Nick Fury/Marvel Cinematic Universe": {
+      "status": "dies"
+    },
+    "Dr. Strange/Marvel Cinematic Universe": {
+      "status": "survives"
+    },
+    "Black Panther/Marvel Cinematic Universe": {
+      "status": "dies"
+    },
+    "Gamora/Marvel Cinematic Universe": {
+      "status": "dies"
+    },
+    "Thanos/Marvel Cinematic Universe": {
+      "status": "dies"
+    },
+    "Peggy Carter/Marvel Cinematic Universe": {
+      "status": "survives"
+    },
+    "Loki/Marvel Cinematic Universe": {
+      "status": "survives"
+    },
+    "Hawkeye/Marvel Cinematic Universe": {
+      "status": "survives"
+    },
+    "Peter Jason Quill/Marvel Cinematic Universe": {
+      "status": "survives"
+    },
+    "Cady Heron/Mean Girls": {
+      "status": "survives"
+    },
+    "Regina George/Mean Girls": {
+      "status": "survives"
+    },
+    "Gretchen Wieners/Mean Girls": {
+      "status": "survives"
+    },
+    "Karen Smith/Mean Girls": {
+      "status": "survives"
+    },
+    "Janis Ian/Mean Girls": {
+      "status": "survives"
+    },
+    "Damian Leigh/Mean Girls": {
+      "status": "survives"
+    },
+    "Aaron Samuels/Mean Girls": {
+      "status": "survives"
+    },
+    "Ms. Sharon Norbury/Mean Girls": {
+      "status": "survives"
+    },
+    "June George/Mean Girls": {
+      "status": "survives"
+    },
+    "Betsy Heron/Mean Girls": {
+      "status": "survives"
+    },
+    "Holden Ford/Mindhunter": {
+      "status": "survives"
+    },
+    "Bill Tench/Mindhunter": {
+      "status": "dies"
+    },
+    "Dr. Wendy Carr/Mindhunter": {
+      "status": "survives"
+    },
+    "Jay Pritchett/Modern Family": {
+      "status": "survives"
+    },
+    "Gloria Delgado-Pritchett/Modern Family": {
+      "status": "survives"
+    },
+    "Claire Dunphy/Modern Family": {
+      "status": "survives"
+    },
+    "Phil Dunphy/Modern Family": {
+      "status": "survives"
+    },
+    "Mitchell Pritchett/Modern Family": {
+      "status": "survives"
+    },
+    "Cameron Tucker/Modern Family": {
+      "status": "survives"
+    },
+    "Luke Dunphy/Modern Family": {
+      "status": "survives"
+    },
+    "Manny Delgado/Modern Family": {
+      "status": "survives"
+    },
+    "Haley Dunphy/Modern Family": {
+      "status": "survives"
+    },
+    "Alex Dunphy/Modern Family": {
+      "status": "survives"
+    },
+    "Tokio/Money Heist": {
+      "status": "survives"
+    },
+    "El Profesor/Money Heist": {
+      "status": "survives"
+    },
+    "Raquel Murillo/Money Heist": {
+      "status": "dies"
+    },
+    "Berlin/Money Heist": {
+      "status": "dies"
+    },
+    "Rio/Money Heist": {
+      "status": "survives"
+    },
+    "Denver/Money Heist": {
+      "status": "dies"
+    },
+    "Monica Gaztambide/Money Heist": {
+      "status": "survives"
+    },
+    "Arturo Roman/Money Heist": {
+      "status": "dies"
+    },
+    "Helsinki/Money Heist": {
+      "status": "survives"
+    },
+    "Nairobi/Money Heist": {
+      "status": "survives"
+    },
+    "James P. Sullivan/Monsters, Inc.": {
+      "status": "survives"
+    },
+    "Mike Wazowski/Monsters, Inc.": {
+      "status": "survives"
+    },
+    "Randall Boggs/Monsters, Inc.": {
+      "status": "survives"
+    },
+    "Satine/Moulin Rouge!": {
+      "status": "dies"
+    },
+    "Christian/Moulin Rouge!": {
+      "status": "survives"
+    },
+    "Elliot Alderson/Mr. Robot": {
+      "status": "survives"
+    },
+    "Mr. Robot/Mr. Robot": {
+      "status": "survives"
+    },
+    "Darlene/Mr. Robot": {
+      "status": "survives"
+    },
+    "Tyrell Wellick/Mr. Robot": {
+      "status": "dies"
+    },
+    "Angela Moss/Mr. Robot": {
+      "status": "dies"
+    },
+    "Dominique DiPierro/Mr. Robot": {
+      "status": "survives"
+    },
+    "Clarissa Dalloway/Mrs Dalloway": {
+      "status": "survives"
+    },
+    "Mulan/Mulan": {
+      "status": "survives"
+    },
+    "Mushu/Mulan": {
+      "status": "survives"
+    },
+    "Li Shang/Mulan": {
+      "status": "survives"
+    },
+    "Yao/Mulan": {
+      "status": "survives"
+    },
+    "Chien-Po/Mulan": {
+      "status": "survives"
+    },
+    "Ling/Mulan": {
+      "status": "survives"
+    },
+    "Betty Elms/Mulholland Drive": {
+      "status": "ambiguous"
+    },
+    "Rita/Mulholland Drive": {
+      "status": "ambiguous"
+    },
+    "Applejack/My Little Pony: Friendship Is Magic": {
+      "status": "survives"
+    },
+    "Twilight Sparkle/My Little Pony: Friendship Is Magic": {
+      "status": "survives"
+    },
+    "Rarity/My Little Pony: Friendship Is Magic": {
+      "status": "survives"
+    },
+    "Pinkie Pie/My Little Pony: Friendship Is Magic": {
+      "status": "survives"
+    },
+    "Spike/My Little Pony: Friendship Is Magic": {
+      "status": "survives"
+    },
+    "Princess Celestia/My Little Pony: Friendship Is Magic": {
+      "status": "survives"
+    },
+    "Leroy Jethro Gibbs/NCIS": {
+      "status": "survives"
+    },
+    "Anthony DiNozzo/NCIS": {
+      "status": "survives"
+    },
+    "Abby Sciuto/NCIS": {
+      "status": "survives"
+    },
+    "Donald Mallard/NCIS": {
+      "status": "survives"
+    },
+    "Timothy McGee/NCIS": {
+      "status": "survives"
+    },
+    "Jimmy Palmer/NCIS": {
+      "status": "survives"
+    },
+    "Naruto Uzumaki/Naruto": {
+      "status": "survives"
+    },
+    "Sasuke Uchiha/Naruto": {
+      "status": "survives"
+    },
+    "Sakura Haruno/Naruto": {
+      "status": "survives"
+    },
+    "Kakashi Hatake/Naruto": {
+      "status": "survives"
+    },
+    "Shikamaru Nara/Naruto": {
+      "status": "survives"
+    },
+    "Shinji Ikari/Neon Genesis Evangelion": {
+      "status": "survives"
+    },
+    "Misato Katsuragi/Neon Genesis Evangelion": {
+      "status": "survives"
+    },
+    "Ritsuko Akagi/Neon Genesis Evangelion": {
+      "status": "survives"
+    },
+    "Rei Ayanami/Neon Genesis Evangelion": {
+      "status": "survives"
+    },
+    "Asuka Langly Soryu/Neon Genesis Evangelion": {
+      "status": "survives"
+    },
+    "Kozo Fuyutsuki/Neon Genesis Evangelion": {
+      "status": "survives"
+    },
+    "Jess Day/New Girl": {
+      "status": "survives"
+    },
+    "Nick Miller/New Girl": {
+      "status": "survives"
+    },
+    "Schmidt/New Girl": {
+      "status": "survives"
+    },
+    "Cece Parekh/New Girl": {
+      "status": "survives"
+    },
+    "Winston Bishop/New Girl": {
+      "status": "survives"
+    },
+    "Winston Smith/Nineteen Eighty-Four": {
+      "status": "dies"
+    },
+    "O'Brien/Nineteen Eighty-Four": {
+      "status": "survives"
+    },
+    "Julia/Nineteen Eighty-Four": {
+      "status": "dies"
+    },
+    "Fern/Nomadland": {
+      "status": "survives"
+    },
+    "Marianne Sheridan/Normal People": {
+      "status": "survives"
+    },
+    "Connell Waldron/Normal People": {
+      "status": "survives"
+    },
+    "Danny Ocean/Ocean's 11": {
+      "status": "survives"
+    },
+    "Rusty Ryan/Ocean's 11": {
+      "status": "survives"
+    },
+    "Linus Caldwell/Ocean's 11": {
+      "status": "survives"
+    },
+    "Basher Tarr/Ocean's 11": {
+      "status": "survives"
+    },
+    "Terry Benedict/Ocean's 11": {
+      "status": "survives"
+    },
+    "Tess Ocean/Ocean's 11": {
+      "status": "survives"
+    },
+    "Regina Mills/Once Upon a Time": {
+      "status": "survives"
+    },
+    "Mr. Gold/Once Upon a Time": {
+      "status": "survives"
+    },
+    "Henry Mills/Once Upon a Time": {
+      "status": "survives"
+    },
+    "Emma Swan/Once Upon a Time": {
+      "status": "survives"
+    },
+    "Mary Margaret Blanchard/Once Upon a Time": {
+      "status": "survives"
+    },
+    "David Nolan/Once Upon a Time": {
+      "status": "survives"
+    },
+    "Captain Killian 'Hook' Jones/Once Upon a Time": {
+      "status": "survives"
+    },
+    "Belle French/Once Upon a Time": {
+      "status": "survives"
+    },
+    "Zelena/Once Upon a Time": {
+      "status": "dies"
+    },
+    "Granny Lucas/Once Upon a Time": {
+      "status": "survives"
+    },
+    "Randle McMurphy/One Flew Over the Cuckoo's Nest": {
+      "status": "dies"
+    },
+    "Nurse Ratched/One Flew Over the Cuckoo's Nest": {
+      "status": "survives"
+    },
+    "Chief Bromden/One Flew Over the Cuckoo's Nest": {
+      "status": "survives"
+    },
+    "Dale Harding/One Flew Over the Cuckoo's Nest": {
+      "status": "survives"
+    },
+    "Billy Bibbit/One Flew Over the Cuckoo's Nest": {
+      "status": "dies"
+    },
+    "Charlie Cheswick/One Flew Over the Cuckoo's Nest": {
+      "status": "survives"
+    },
+    "Saitama/One Punch Man": {
+      "status": "survives"
+    },
+    "Genos/One Punch Man": {
+      "status": "survives"
+    },
+    "Mumen Rider/One Punch Man": {
+      "status": "survives"
+    },
+    "Piper Chapman/Orange is the New Black": {
+      "status": "survives"
+    },
+    "Alex Vause/Orange is the New Black": {
+      "status": "dies"
+    },
+    "Sam Healy/Orange is the New Black": {
+      "status": "survives"
+    },
+    "Red Reznikov/Orange is the New Black": {
+      "status": "survives"
+    },
+    "Crazy Eyes/Orange is the New Black": {
+      "status": "survives"
+    },
+    "Taystee Jefferson/Orange is the New Black": {
+      "status": "survives"
+    },
+    "Nicky Nichols/Orange is the New Black": {
+      "status": "dies"
+    },
+    "Pennsatucky Doggett/Orange is the New Black": {
+      "status": "survives"
+    },
+    "Lorna Morello/Orange is the New Black": {
+      "status": "survives"
+    },
+    "Flaca Gonzales/Orange is the New Black": {
+      "status": "survives"
+    },
+    "John B/Outer Banks": {
+      "status": "survives"
+    },
+    "Sarah Cameron/Outer Banks": {
+      "status": "survives"
+    },
+    "Kiara/Outer Banks": {
+      "status": "survives"
+    },
+    "Pope/Outer Banks": {
+      "status": "dies"
+    },
+    "JJ/Outer Banks": {
+      "status": "survives"
+    },
+    "Topper/Outer Banks": {
+      "status": "survives"
+    },
+    "Claire Randall/Outlander": {
+      "status": "survives"
+    },
+    "Jamie Fraser/Outlander": {
+      "status": "survives"
+    },
+    "Murtagh Fraser/Outlander": {
+      "status": "survives"
+    },
+    "Marty Byrde/Ozark": {
+      "status": "dies"
+    },
+    "Wendy Byrde/Ozark": {
+      "status": "dies"
+    },
+    "Charlotte Byrde/Ozark": {
+      "status": "dies"
+    },
+    "Jonah Byrde/Ozark": {
+      "status": "survives"
+    },
+    "Ruth Langmore/Ozark": {
+      "status": "dies"
+    },
+    "Rachel Garrison/Ozark": {
+      "status": "dies"
+    },
+    "Roy Petty/Ozark": {
+      "status": "dies"
+    },
+    "Jacob Snell/Ozark": {
+      "status": "dies"
+    },
+    "Darlene Snell/Ozark": {
+      "status": "dies"
+    },
+    "Wyatt Langmore/Ozark": {
+      "status": "survives"
+    },
+    "Kim Ki-taek/Parasite": {
+      "status": "survives"
+    },
+    "Park Dong-ik/Parasite": {
+      "status": "dies"
+    },
+    "Choi Yeon-gyo/Parasite": {
+      "status": "dies"
+    },
+    "Kim Ki-woo/Parasite": {
+      "status": "survives"
+    },
+    "Kim Ki-jung/Parasite": {
+      "status": "survives"
+    },
+    "Chung-sook/Parasite": {
+      "status": "survives"
+    },
+    "Leslie Knope/Parks and Recreation": {
+      "status": "survives"
+    },
+    "Ann Perkins/Parks and Recreation": {
+      "status": "survives"
+    },
+    "Mark Brendanawicz/Parks and Recreation": {
+      "status": "survives"
+    },
+    "Tom Haverford/Parks and Recreation": {
+      "status": "survives"
+    },
+    "Ron Swanson/Parks and Recreation": {
+      "status": "survives"
+    },
+    "April Ludgate/Parks and Recreation": {
+      "status": "survives"
+    },
+    "Jerry Gergich/Parks and Recreation": {
+      "status": "survives"
+    },
+    "Donna Meagle/Parks and Recreation": {
+      "status": "survives"
+    },
+    "Ben Wyatt/Parks and Recreation": {
+      "status": "survives"
+    },
+    "Chris Traeger/Parks and Recreation": {
+      "status": "survives"
+    },
+    "Thomas Shelby/Peaky Blinders": {
+      "status": "survives"
+    },
+    "Arthur Shelby/Peaky Blinders": {
+      "status": "dies"
+    },
+    "Aunt Polly/Peaky Blinders": {
+      "status": "dies"
+    },
+    "Ada Shelby/Peaky Blinders": {
+      "status": "dies"
+    },
+    "Charlie Strong/Peaky Blinders": {
+      "status": "dies"
+    },
+    "Michael Gray/Peaky Blinders": {
+      "status": "survives"
+    },
+    "Jonathan 'Gabe' Gabriel/Penny Arcade": {
+      "status": "survives"
+    },
+    "Tycho Brahe/Penny Arcade": {
+      "status": "survives"
+    },
+    "Jack Sparrow/Pirates of the Caribbean": {
+      "status": "survives"
+    },
+    "Hector Barbossa/Pirates of the Caribbean": {
+      "status": "survives"
+    },
+    "Joshamee Gibbs/Pirates of the Caribbean": {
+      "status": "survives"
+    },
+    "Will Turner/Pirates of the Caribbean": {
+      "status": "survives"
+    },
+    "Elizabeth Swann/Pirates of the Caribbean": {
+      "status": "survives"
+    },
+    "James Norrington/Pirates of the Caribbean": {
+      "status": "survives"
+    },
+    "Ash Ketchum/Pok\u00e9mon": {
+      "status": "survives"
+    },
+    "Misty/Pok\u00e9mon": {
+      "status": "survives"
+    },
+    "Brock/Pok\u00e9mon": {
+      "status": "survives"
+    },
+    "Professor Oak/Pok\u00e9mon": {
+      "status": "survives"
+    },
+    "Jessie/Pok\u00e9mon": {
+      "status": "survives"
+    },
+    "Marianne/Portrait of a Lady on Fire": {
+      "status": "survives"
+    },
+    "Heloise/Portrait of a Lady on Fire": {
+      "status": "survives"
+    },
+    "Spencer Hastings/Pretty Little Liars": {
+      "status": "survives"
+    },
+    "Hanna Marin/Pretty Little Liars": {
+      "status": "survives"
+    },
+    "Aria Montgomery/Pretty Little Liars": {
+      "status": "survives"
+    },
+    "Emily Fields/Pretty Little Liars": {
+      "status": "survives"
+    },
+    "Alison DiLaurentis/Pretty Little Liars": {
+      "status": "ambiguous"
+    },
+    "Ezra Fitz/Pretty Little Liars": {
+      "status": "dies"
+    },
+    "Ashley Marin/Pretty Little Liars": {
+      "status": "survives"
+    },
+    "Mona Vanderwaal/Pretty Little Liars": {
+      "status": "ambiguous"
+    },
+    "Caleb Rivers/Pretty Little Liars": {
+      "status": "dies"
+    },
+    "Toby Cavanaugh/Pretty Little Liars": {
+      "status": "survives"
+    },
+    "Mr. Darcy/Pride and Prejudice": {
+      "status": "survives"
+    },
+    "Elizabeth Bennet/Pride and Prejudice": {
+      "status": "survives"
+    },
+    "Mr. William Collins/Pride and Prejudice": {
+      "status": "survives"
+    },
+    "George Wickham/Pride and Prejudice": {
+      "status": "survives"
+    },
+    "Charles Bingley/Pride and Prejudice": {
+      "status": "survives"
+    },
+    "Georgiana Darcy/Pride and Prejudice": {
+      "status": "survives"
+    },
+    "Lydia Bennet/Pride and Prejudice": {
+      "status": "survives"
+    },
+    "Jane Bennet/Pride and Prejudice": {
+      "status": "survives"
+    },
+    "Mrs. Bennet/Pride and Prejudice": {
+      "status": "survives"
+    },
+    "Lady Catherine de Bourgh/Pride and Prejudice": {
+      "status": "survives"
+    },
+    "Lincoln Burrows/Prison Break": {
+      "status": "survives"
+    },
+    "Michael Scofield/Prison Break": {
+      "status": "dies"
+    },
+    "Veronica Donovan/Prison Break": {
+      "status": "dies"
+    },
+    "Fernando Sucre/Prison Break": {
+      "status": "survives"
+    },
+    "L.J. Burrows/Prison Break": {
+      "status": "survives"
+    },
+    "Brad Bellick/Prison Break": {
+      "status": "dies"
+    },
+    "T-Bag Bagwell/Prison Break": {
+      "status": "survives"
+    },
+    "Sara Tancredi/Prison Break": {
+      "status": "dies"
+    },
+    "C-Note Franklin/Prison Break": {
+      "status": "survives"
+    },
+    "John Abruzzi/Prison Break": {
+      "status": "dies"
+    },
+    "Cassie Thomas/Promising Young Woman": {
+      "status": "survives"
+    },
+    "Ryan Cooper/Promising Young Woman": {
+      "status": "dies"
+    },
+    "Shawn Spencer/Psych": {
+      "status": "survives"
+    },
+    "Burton Guster/Psych": {
+      "status": "survives"
+    },
+    "Carlton Lassiter/Psych": {
+      "status": "survives"
+    },
+    "Juliet O'Hara/Psych": {
+      "status": "survives"
+    },
+    "Henry Spencer/Psych": {
+      "status": "survives"
+    },
+    "Karen Vick/Psych": {
+      "status": "survives"
+    },
+    "Norman Bates/Psycho": {
+      "status": "survives"
+    },
+    "Marion Crane/Psycho": {
+      "status": "dies"
+    },
+    "Lila Crane/Psycho": {
+      "status": "survives"
+    },
+    "Vincent Vega/Pulp Fiction": {
+      "status": "dies"
+    },
+    "Jules Winnfield/Pulp Fiction": {
+      "status": "survives"
+    },
+    "Mia Wallace/Pulp Fiction": {
+      "status": "survives"
+    },
+    "Ringo/Pulp Fiction": {
+      "status": "survives"
+    },
+    "Marsellus Wallace/Pulp Fiction": {
+      "status": "survives"
+    },
+    "Butch Coolidge/Pulp Fiction": {
+      "status": "survives"
+    },
+    "Indiana Jones/Raiders of the Lost Ark": {
+      "status": "survives"
+    },
+    "Marion Ravenwood/Raiders of the Lost Ark": {
+      "status": "survives"
+    },
+    "Dr. Rene Belloq/Raiders of the Lost Ark": {
+      "status": "dies"
+    },
+    "Major Arnold Toht/Raiders of the Lost Ark": {
+      "status": "dies"
+    },
+    "Sallah/Raiders of the Lost Ark": {
+      "status": "survives"
+    },
+    "Dr. Marcus Brody/Raiders of the Lost Ark": {
+      "status": "survives"
+    },
+    "Remy/Ratatouille": {
+      "status": "survives"
+    },
+    "Alfredo Linguini/Ratatouille": {
+      "status": "survives"
+    },
+    "Chef Skinner/Ratatouille": {
+      "status": "survives"
+    },
+    "Rick Sanchez/Rick and Morty": {
+      "status": "survives"
+    },
+    "Morty Smith/Rick and Morty": {
+      "status": "survives"
+    },
+    "Summer Smith/Rick and Morty": {
+      "status": "survives"
+    },
+    "Archie Andrews/Riverdale": {
+      "status": "survives"
+    },
+    "Betty Cooper/Riverdale": {
+      "status": "survives"
+    },
+    "Veronica Lodge/Riverdale": {
+      "status": "survives"
+    },
+    "Jughead Jones/Riverdale": {
+      "status": "survives"
+    },
+    "Kevin Keller/Riverdale": {
+      "status": "dies"
+    },
+    "Cheryl Blossom/Riverdale": {
+      "status": "survives"
+    },
+    "Alice Cooper/Riverdale": {
+      "status": "survives"
+    },
+    "Hiram Lodge/Riverdale": {
+      "status": "dies"
+    },
+    "Toni Topaz/Riverdale": {
+      "status": "survives"
+    },
+    "Reggie Mantle/Riverdale": {
+      "status": "survives"
+    },
+    "Hermione Lodge/Riverdale": {
+      "status": "survives"
+    },
+    "FP Jones/Riverdale": {
+      "status": "survives"
+    },
+    "Fangs Fogarty/Riverdale": {
+      "status": "survives"
+    },
+    "Tom Keller/Riverdale": {
+      "status": "survives"
+    },
+    "Pop Tate/Riverdale": {
+      "status": "survives"
+    },
+    "Robin Hood/Robin Hood": {
+      "status": "survives"
+    },
+    "Maid Marian/Robin Hood": {
+      "status": "survives"
+    },
+    "Little John/Robin Hood": {
+      "status": "survives"
+    },
+    "Friar Tuck/Robin Hood": {
+      "status": "survives"
+    },
+    "Prince John/Robin Hood": {
+      "status": "dies"
+    },
+    "Sheriff of Nottingham/Robin Hood": {
+      "status": "dies"
+    },
+    "Jyn Erso/Rogue One": {
+      "status": "dies"
+    },
+    "Cassian Andor/Rogue One": {
+      "status": "survives"
+    },
+    "Joe Bradley/Roman Holiday": {
+      "status": "survives"
+    },
+    "Princess Ann/Roman Holiday": {
+      "status": "survives"
+    },
+    "Romeo Montague/Romeo and Juliet": {
+      "status": "dies"
+    },
+    "Juliet Capulet/Romeo and Juliet": {
+      "status": "dies"
+    },
+    "Friar Laurence/Romeo and Juliet": {
+      "status": "survives"
+    },
+    "Mercutio/Romeo and Juliet": {
+      "status": "dies"
+    },
+    "The Nurse/Romeo and Juliet": {
+      "status": "survives"
+    },
+    "Benvolio/Romeo and Juliet": {
+      "status": "survives"
+    },
+    "Calvin Weir-Fields/Ruby Sparks": {
+      "status": "survives"
+    },
+    "Ruby Tiffany Sparks/Ruby Sparks": {
+      "status": "survives"
+    },
+    "Sailor Moon/Sailor Moon": {
+      "status": "survives"
+    },
+    "Tuxedo Mask/Sailor Moon": {
+      "status": "survives"
+    },
+    "Sailor Mercury/Sailor Moon": {
+      "status": "survives"
+    },
+    "Sailor Mars/Sailor Moon": {
+      "status": "survives"
+    },
+    "Sailor Jupiter/Sailor Moon": {
+      "status": "survives"
+    },
+    "Sailor Venus/Sailor Moon": {
+      "status": "survives"
+    },
+    "Olivia Pope/Scandal": {
+      "status": "survives"
+    },
+    "Abby Whelan/Scandal": {
+      "status": "dies"
+    },
+    "Quinn Perkins/Scandal": {
+      "status": "survives"
+    },
+    "Huck/Scandal": {
+      "status": "survives"
+    },
+    "Cyrus Beene/Scandal": {
+      "status": "survives"
+    },
+    "David Rosen/Scandal": {
+      "status": "dies"
+    },
+    "Mellie Grant/Scandal": {
+      "status": "dies"
+    },
+    "Fitzgerald Grant/Scandal": {
+      "status": "dies"
+    },
+    "Jake Ballard/Scandal": {
+      "status": "survives"
+    },
+    "Rowan Pope/Scandal": {
+      "status": "survives"
+    },
+    "Johnny Rose/Schitt's Creek": {
+      "status": "survives"
+    },
+    "Moira Rose/Schitt's Creek": {
+      "status": "survives"
+    },
+    "David Rose/Schitt's Creek": {
+      "status": "survives"
+    },
+    "Alexis Rose/Schitt's Creek": {
+      "status": "survives"
+    },
+    "Stevie Budd/Schitt's Creek": {
+      "status": "survives"
+    },
+    "Ted Mullens/Schitt's Creek": {
+      "status": "survives"
+    },
+    "John Michael Dorian/Scrubs": {
+      "status": "survives"
+    },
+    "Elliot Reid/Scrubs": {
+      "status": "survives"
+    },
+    "Christopher Turk/Scrubs": {
+      "status": "survives"
+    },
+    "Bob Kelso/Scrubs": {
+      "status": "survives"
+    },
+    "Perry Cox/Scrubs": {
+      "status": "survives"
+    },
+    "Carla Espinosa/Scrubs": {
+      "status": "survives"
+    },
+    "David Mills/Se7en": {
+      "status": "survives"
+    },
+    "William Somerset/Se7en": {
+      "status": "survives"
+    },
+    "Tracy Mills/Se7en": {
+      "status": "survives"
+    },
+    "Jerry Seinfeld/Seinfeld": {
+      "status": "survives"
+    },
+    "George Costanza/Seinfeld": {
+      "status": "survives"
+    },
+    "Elaine Benes/Seinfeld": {
+      "status": "survives"
+    },
+    "Cosmo Kramer/Seinfeld": {
+      "status": "survives"
+    },
+    "Morty Seinfeld/Seinfeld": {
+      "status": "survives"
+    },
+    "Helen Seinfeld/Seinfeld": {
+      "status": "survives"
+    },
+    "Elinor Dashwood/Sense and Sensibility": {
+      "status": "survives"
+    },
+    "Marianne Dashwood/Sense and Sensibility": {
+      "status": "survives"
+    },
+    "Colonel Brandon/Sense and Sensibility": {
+      "status": "survives"
+    },
+    "Edward Ferrars/Sense and Sensibility": {
+      "status": "survives"
+    },
+    "John Willoughby/Sense and Sensibility": {
+      "status": "survives"
+    },
+    "Sun Bak/Sense8": {
+      "status": "survives"
+    },
+    "Nomi Marks/Sense8": {
+      "status": "survives"
+    },
+    "Kala Dandekar/Sense8": {
+      "status": "dies"
+    },
+    "Riley Blue/Sense8": {
+      "status": "survives"
+    },
+    "Wolfgang Bogdanow/Sense8": {
+      "status": "dies"
+    },
+    "Lito Rodriguez/Sense8": {
+      "status": "survives"
+    },
+    "Will Gorski/Sense8": {
+      "status": "survives"
+    },
+    "Angelica Turing/Sense8": {
+      "status": "dies"
+    },
+    "Amanita Caplan/Sense8": {
+      "status": "survives"
+    },
+    "Hernando Fuentes/Sense8": {
+      "status": "survives"
+    },
+    "Otis Milburn/Sex Education": {
+      "status": "survives"
+    },
+    "Jean Milburn/Sex Education": {
+      "status": "survives"
+    },
+    "Maeve Wiley/Sex Education": {
+      "status": "survives"
+    },
+    "Eric Effiong/Sex Education": {
+      "status": "survives"
+    },
+    "Adam Groff/Sex Education": {
+      "status": "survives"
+    },
+    "Jackson Marchetti/Sex Education": {
+      "status": "survives"
+    },
+    "Aimee Gibbs/Sex Education": {
+      "status": "survives"
+    },
+    "Michael Groff/Sex Education": {
+      "status": "survives"
+    },
+    "Lily Iglehart/Sex Education": {
+      "status": "survives"
+    },
+    "Ola Nyman/Sex Education": {
+      "status": "survives"
+    },
+    "Carrie Bradshaw/Sex and the City": {
+      "status": "survives"
+    },
+    "Charlotte York/Sex and the City": {
+      "status": "survives"
+    },
+    "Miranda Hobbes/Sex and the City": {
+      "status": "survives"
+    },
+    "Samantha Jones/Sex and the City": {
+      "status": "survives"
+    },
+    "Mr. Big/Sex and the City": {
+      "status": "survives"
+    },
+    "Steve Brady/Sex and the City": {
+      "status": "survives"
+    },
+    "Alina Starkov/Shadow and Bone": {
+      "status": "survives"
+    },
+    "Malyen Oretsev/Shadow and Bone": {
+      "status": "dies"
+    },
+    "Kaz Brekker/Shadow and Bone": {
+      "status": "survives"
+    },
+    "Inej Ghafa/Shadow and Bone": {
+      "status": "survives"
+    },
+    "Jesper Fahey/Shadow and Bone": {
+      "status": "survives"
+    },
+    "General Kirigan/Shadow and Bone": {
+      "status": "dies"
+    },
+    "Frank Gallagher/Shameless": {
+      "status": "dies"
+    },
+    "Carl Gallagher/Shameless": {
+      "status": "survives"
+    },
+    "Lip Gallagher/Shameless": {
+      "status": "survives"
+    },
+    "Veronica Fisher/Shameless": {
+      "status": "survives"
+    },
+    "Kevin Ball/Shameless": {
+      "status": "survives"
+    },
+    "Debbie Gallagher/Shameless": {
+      "status": "survives"
+    },
+    "Ian Gallagher/Shameless": {
+      "status": "survives"
+    },
+    "Fiona Gallagher/Shameless": {
+      "status": "survives"
+    },
+    "Tommy/Shameless": {
+      "status": "survives"
+    },
+    "Kermit/Shameless": {
+      "status": "survives"
+    },
+    "Shaun/Shaun of the Dead": {
+      "status": "survives"
+    },
+    "Ed/Shaun of the Dead": {
+      "status": "dies"
+    },
+    "Liz/Shaun of the Dead": {
+      "status": "survives"
+    },
+    "Sherlock Holmes/Sherlock": {
+      "status": "dies"
+    },
+    "Dr. John Watson/Sherlock": {
+      "status": "survives"
+    },
+    "D.I. Greg Lestrade/Sherlock": {
+      "status": "survives"
+    },
+    "Mrs. Hudson/Sherlock": {
+      "status": "survives"
+    },
+    "Mycroft Holmes/Sherlock": {
+      "status": "survives"
+    },
+    "Molly Hooper/Sherlock": {
+      "status": "survives"
+    },
+    "Shrek/Shrek": {
+      "status": "survives"
+    },
+    "Donkey/Shrek": {
+      "status": "survives"
+    },
+    "Princess Fiona/Shrek": {
+      "status": "survives"
+    },
+    "Richard Hendricks/Silicon Valley": {
+      "status": "survives"
+    },
+    "Erlich Bachman/Silicon Valley": {
+      "status": "survives"
+    },
+    "Nelson Bighetti/Silicon Valley": {
+      "status": "survives"
+    },
+    "Bertram Gilfoyle/Silicon Valley": {
+      "status": "survives"
+    },
+    "Dinesh Chugtai/Silicon Valley": {
+      "status": "survives"
+    },
+    "Peter Gregory/Silicon Valley": {
+      "status": "dies"
+    },
+    "Monica Hall/Silicon Valley": {
+      "status": "survives"
+    },
+    "Jared Dunn/Silicon Valley": {
+      "status": "survives"
+    },
+    "Gavin Belson/Silicon Valley": {
+      "status": "dies"
+    },
+    "Jian-Yang/Silicon Valley": {
+      "status": "survives"
+    },
+    "Pat Solitano/Silver Linings Playbook": {
+      "status": "survives"
+    },
+    "Tiffany Maxwell/Silver Linings Playbook": {
+      "status": "survives"
+    },
+    "Don Lockwood/Singin' in the Rain": {
+      "status": "survives"
+    },
+    "Kathy Selden/Singin' in the Rain": {
+      "status": "survives"
+    },
+    "Cosmo Brown/Singin' in the Rain": {
+      "status": "survives"
+    },
+    "Sam Baldwin/Sleepless in Seattle": {
+      "status": "survives"
+    },
+    "Annie Reed/Sleepless in Seattle": {
+      "status": "survives"
+    },
+    "Clark Kent/Smallville": {
+      "status": "survives"
+    },
+    "Chloe Sullivan/Smallville": {
+      "status": "survives"
+    },
+    "Lana Lang/Smallville": {
+      "status": "survives"
+    },
+    "Lex Luthor/Smallville": {
+      "status": "survives"
+    },
+    "Lionel Luthor/Smallville": {
+      "status": "dies"
+    },
+    "Lois Lane/Smallville": {
+      "status": "survives"
+    },
+    "Snow White/Snow White and the Seven Dwarfs": {
+      "status": "survives"
+    },
+    "The Queen/Snow White and the Seven Dwarfs": {
+      "status": "dies"
+    },
+    "Doc/Snow White and the Seven Dwarfs": {
+      "status": "survives"
+    },
+    "Jackson 'Jax' Teller/Sons of Anarchy": {
+      "status": "dies"
+    },
+    "Gemma Teller Morrow/Sons of Anarchy": {
+      "status": "survives"
+    },
+    "Robert 'Bobby Elvis' Munson/Sons of Anarchy": {
+      "status": "dies"
+    },
+    "Alexander 'Tig' Trager/Sons of Anarchy": {
+      "status": "survives"
+    },
+    "Filip 'Chibs' Telford/Sons of Anarchy": {
+      "status": "survives"
+    },
+    "Stan Marsh/South Park": {
+      "status": "survives"
+    },
+    "Kyle Broflovski/South Park": {
+      "status": "survives"
+    },
+    "Eric Cartman/South Park": {
+      "status": "survives"
+    },
+    "Kenny McCormick/South Park": {
+      "status": "survives"
+    },
+    "Butters/South Park": {
+      "status": "survives"
+    },
+    "General Mark R. Naird/Space Force": {
+      "status": "survives"
+    },
+    "Dr. Adrian Mallory/Space Force": {
+      "status": "survives"
+    },
+    "F. Tony Scarapiducci/Space Force": {
+      "status": "survives"
+    },
+    "Erin Naird/Space Force": {
+      "status": "survives"
+    },
+    "Captain Angela Ali/Space Force": {
+      "status": "survives"
+    },
+    "Dr. Chan Kaifang/Space Force": {
+      "status": "survives"
+    },
+    "Jack Traven/Speed": {
+      "status": "survives"
+    },
+    "Howard Payne/Speed": {
+      "status": "dies"
+    },
+    "Annie Porter/Speed": {
+      "status": "survives"
+    },
+    "SpongeBob SquarePants/SpongeBob SquarePants": {
+      "status": "survives"
+    },
+    "Patrick Star/SpongeBob SquarePants": {
+      "status": "survives"
+    },
+    "Squidward Tentacles/SpongeBob SquarePants": {
+      "status": "survives"
+    },
+    "Mr. Krabs/SpongeBob SquarePants": {
+      "status": "survives"
+    },
+    "Sandy Cheeks/SpongeBob SquarePants": {
+      "status": "survives"
+    },
+    "Seong Gi-hun/Squid Game": {
+      "status": "survives"
+    },
+    "Cho Sang-woo/Squid Game": {
+      "status": "dies"
+    },
+    "Hwang Jun-ho/Squid Game": {
+      "status": "dies"
+    },
+    "Kang Sae-byeok/Squid Game": {
+      "status": "dies"
+    },
+    "Oh Il-nam/Squid Game": {
+      "status": "dies"
+    },
+    "Han Mi-nyeo/Squid Game": {
+      "status": "survives"
+    },
+    "Jadzia Dax/Star Trek: Deep Space Nine": {
+      "status": "dies"
+    },
+    "Odo/Star Trek: Deep Space Nine": {
+      "status": "survives"
+    },
+    "Lieutenant Commander Worf/Star Trek: Deep Space Nine": {
+      "status": "survives"
+    },
+    "Nog/Star Trek: Deep Space Nine": {
+      "status": "survives"
+    },
+    "Quark/Star Trek: Deep Space Nine": {
+      "status": "survives"
+    },
+    "Benjamin Sisko/Star Trek: Deep Space Nine": {
+      "status": "survives"
+    },
+    "Elim Garak/Star Trek: Deep Space Nine": {
+      "status": "survives"
+    },
+    "Kira Nerys/Star Trek: Deep Space Nine": {
+      "status": "survives"
+    },
+    "Julian Bashir/Star Trek: Deep Space Nine": {
+      "status": "survives"
+    },
+    "Dukat/Star Trek: Deep Space Nine": {
+      "status": "dies"
+    },
+    "Rom/Star Trek: Deep Space Nine": {
+      "status": "survives"
+    },
+    "Miles O'Brien/Star Trek: Deep Space Nine": {
+      "status": "survives"
+    },
+    "Jake Sisko/Star Trek: Deep Space Nine": {
+      "status": "survives"
+    },
+    "Winn Adami/Star Trek: Deep Space Nine": {
+      "status": "dies"
+    },
+    "Kasidy Yates/Star Trek: Deep Space Nine": {
+      "status": "survives"
+    },
+    "Jean-Luc Picard/Star Trek: The Next Generation": {
+      "status": "survives"
+    },
+    "William Riker/Star Trek: The Next Generation": {
+      "status": "survives"
+    },
+    "Geordi La Forge/Star Trek: The Next Generation": {
+      "status": "survives"
+    },
+    "Tasha Yar/Star Trek: The Next Generation": {
+      "status": "dies"
+    },
+    "Lieutenant Worf/Star Trek: The Next Generation": {
+      "status": "survives"
+    },
+    "Beverly Crusher/Star Trek: The Next Generation": {
+      "status": "survives"
+    },
+    "Deanna Troi/Star Trek: The Next Generation": {
+      "status": "survives"
+    },
+    "Wesley Crusher/Star Trek: The Next Generation": {
+      "status": "survives"
+    },
+    "Data/Star Trek: The Next Generation": {
+      "status": "survives"
+    },
+    "Guinan/Star Trek: The Next Generation": {
+      "status": "survives"
+    },
+    "Kathryn Janeway/Star Trek: Voyager": {
+      "status": "survives"
+    },
+    "Chakotay/Star Trek: Voyager": {
+      "status": "survives"
+    },
+    "B'Elanna Torres/Star Trek: Voyager": {
+      "status": "survives"
+    },
+    "Tom Paris/Star Trek: Voyager": {
+      "status": "survives"
+    },
+    "Neelix/Star Trek: Voyager": {
+      "status": "survives"
+    },
+    "The Doctor/Star Trek: Voyager": {
+      "status": "survives"
+    },
+    "Tuvok/Star Trek: Voyager": {
+      "status": "survives"
+    },
+    "Harry Kim/Star Trek: Voyager": {
+      "status": "survives"
+    },
+    "Seven of Nine/Star Trek: Voyager": {
+      "status": "survives"
+    },
+    "Kes/Star Trek: Voyager": {
+      "status": "survives"
+    },
+    "Luke Skywalker/Star Wars: A New Hope": {
+      "status": "survives"
+    },
+    "Princess Leia/Star Wars: A New Hope": {
+      "status": "survives"
+    },
+    "Han Solo/Star Wars: A New Hope": {
+      "status": "survives"
+    },
+    "Darth Vader/Star Wars: A New Hope": {
+      "status": "survives"
+    },
+    "Obi-Wan Kenobi/Star Wars: A New Hope": {
+      "status": "dies"
+    },
+    "C-3PO/Star Wars: A New Hope": {
+      "status": "survives"
+    },
+    "Obi-Wan Kenobi/Star Wars: Revenge of the Sith": {
+      "status": "survives"
+    },
+    "Padme Amidala/Star Wars: Revenge of the Sith": {
+      "status": "dies"
+    },
+    "Anakin Skywalker/Star Wars: Revenge of the Sith": {
+      "status": "dies"
+    },
+    "Palpatine/Star Wars: Revenge of the Sith": {
+      "status": "dies"
+    },
+    "Mace Windu/Star Wars: Revenge of the Sith": {
+      "status": "dies"
+    },
+    "Yoda/Star Wars: Revenge of the Sith": {
+      "status": "survives"
+    },
+    "Kylo Ren/Star Wars: The Last Jedi": {
+      "status": "survives"
+    },
+    "Rey/Star Wars: The Last Jedi": {
+      "status": "survives"
+    },
+    "Finn/Star Wars: The Last Jedi": {
+      "status": "survives"
+    },
+    "Poe Dameron/Star Wars: The Last Jedi": {
+      "status": "survives"
+    },
+    "Rose Tico/Star Wars: The Last Jedi": {
+      "status": "survives"
+    },
+    "General Hux/Star Wars: The Last Jedi": {
+      "status": "survives"
+    },
+    "Jack O'Neill/Stargate SG-1": {
+      "status": "survives"
+    },
+    "Daniel Jackson/Stargate SG-1": {
+      "status": "survives"
+    },
+    "Samantha Carter/Stargate SG-1": {
+      "status": "survives"
+    },
+    "Teal'c/Stargate SG-1": {
+      "status": "survives"
+    },
+    "George S. Hammond/Stargate SG-1": {
+      "status": "survives"
+    },
+    "Janet Fraiser/Stargate SG-1": {
+      "status": "survives"
+    },
+    "Rintarou Okabe/Steins;Gate": {
+      "status": "survives"
+    },
+    "Kurisu Makise/Steins;Gate": {
+      "status": "dies"
+    },
+    "Mayuri Shiina/Steins;Gate": {
+      "status": "dies"
+    },
+    "Itaru Hashida/Steins;Gate": {
+      "status": "survives"
+    },
+    "Suzuha Amane/Steins;Gate": {
+      "status": "survives"
+    },
+    "Joyce Byers/Stranger Things": {
+      "status": "survives"
+    },
+    "Jim Hopper/Stranger Things": {
+      "status": "dies"
+    },
+    "Mike Wheeler/Stranger Things": {
+      "status": "survives"
+    },
+    "Eleven/Stranger Things": {
+      "status": "survives"
+    },
+    "Dustin Henderson/Stranger Things": {
+      "status": "survives"
+    },
+    "Lucas Sinclair/Stranger Things": {
+      "status": "survives"
+    },
+    "Nancy Wheeler/Stranger Things": {
+      "status": "survives"
+    },
+    "Jonathan Byers/Stranger Things": {
+      "status": "survives"
+    },
+    "Steve Harrington/Stranger Things": {
+      "status": "survives"
+    },
+    "Karen Wheeler/Stranger Things": {
+      "status": "survives"
+    },
+    "Will Byers/Stranger Things": {
+      "status": "survives"
+    },
+    "Max Mayfield/Stranger Things": {
+      "status": "dies"
+    },
+    "Erica Sinclair/Stranger Things": {
+      "status": "survives"
+    },
+    "Billy Hargrove/Stranger Things": {
+      "status": "dies"
+    },
+    "Robin Buckley/Stranger Things": {
+      "status": "survives"
+    },
+    "Logan Roy/Succession": {
+      "status": "dies"
+    },
+    "Roman Roy/Succession": {
+      "status": "dies"
+    },
+    "Shiv Roy/Succession": {
+      "status": "survives"
+    },
+    "Kendall Roy/Succession": {
+      "status": "dies"
+    },
+    "Marcia Roy/Succession": {
+      "status": "dies"
+    },
+    "Greg Hirsch/Succession": {
+      "status": "dies"
+    },
+    "Frank Vernon/Succession": {
+      "status": "dies"
+    },
+    "Tom Wambsgans/Succession": {
+      "status": "dies"
+    },
+    "Connor Roy/Succession": {
+      "status": "survives"
+    },
+    "Lawrence Yee/Succession": {
+      "status": "survives"
+    },
+    "Harvey Specter/Suits": {
+      "status": "survives"
+    },
+    "Louis Litt/Suits": {
+      "status": "survives"
+    },
+    "Donna Paulsen/Suits": {
+      "status": "survives"
+    },
+    "Mike Ross/Suits": {
+      "status": "survives"
+    },
+    "Rachel Zane/Suits": {
+      "status": "survives"
+    },
+    "Jessica Pearson/Suits": {
+      "status": "survives"
+    },
+    "Seth/Superbad": {
+      "status": "survives"
+    },
+    "Evan/Superbad": {
+      "status": "survives"
+    },
+    "Fogell (McLovin)/Superbad": {
+      "status": "unmatched"
+    },
+    "Jules/Superbad": {
+      "status": "survives"
+    },
+    "Becca/Superbad": {
+      "status": "survives"
+    },
+    "Officer Slater/Superbad": {
+      "status": "survives"
+    },
+    "Kara Danvers/Supergirl": {
+      "status": "survives"
+    },
+    "Alex Danvers/Supergirl": {
+      "status": "survives"
+    },
+    "J'onn J'onzz/Supergirl": {
+      "status": "survives"
+    },
+    "James Olsen/Supergirl": {
+      "status": "survives"
+    },
+    "Lena Luthor/Supergirl": {
+      "status": "survives"
+    },
+    "Winn Schott/Supergirl": {
+      "status": "survives"
+    },
+    "Sam Winchester/Supernatural": {
+      "status": "survives"
+    },
+    "Dean Winchester/Supernatural": {
+      "status": "survives"
+    },
+    "Castiel/Supernatural": {
+      "status": "survives"
+    },
+    "Jonah Simms/Superstore": {
+      "status": "survives"
+    },
+    "Dina Fox/Superstore": {
+      "status": "survives"
+    },
+    "Garrett McNeill/Superstore": {
+      "status": "survives"
+    },
+    "Mateo Liwanag/Superstore": {
+      "status": "survives"
+    },
+    "Glenn Sturgis/Superstore": {
+      "status": "survives"
+    },
+    "Amy Sosa/Superstore": {
+      "status": "survives"
+    },
+    "Rapunzel/Tangled": {
+      "status": "survives"
+    },
+    "Flynn Rider/Tangled": {
+      "status": "survives"
+    },
+    "Ted Lasso/Ted Lasso": {
+      "status": "survives"
+    },
+    "Rebecca Welton/Ted Lasso": {
+      "status": "survives"
+    },
+    "Leslie Higgins/Ted Lasso": {
+      "status": "survives"
+    },
+    "Jamie Tartt/Ted Lasso": {
+      "status": "survives"
+    },
+    "Roy Kent/Ted Lasso": {
+      "status": "survives"
+    },
+    "Coach Beard/Ted Lasso": {
+      "status": "survives"
+    },
+    "Nathan Shelley/Ted Lasso": {
+      "status": "survives"
+    },
+    "Keeley Jones/Ted Lasso": {
+      "status": "survives"
+    },
+    "Dr. Sharon Fieldstone/Ted Lasso": {
+      "status": "survives"
+    },
+    "Sam Obisanya/Ted Lasso": {
+      "status": "survives"
+    },
+    "T-800/Terminator 2: Judgement Day": {
+      "status": "survives"
+    },
+    "Sarah Connor/Terminator 2: Judgement Day": {
+      "status": "survives"
+    },
+    "John Connor/Terminator 2: Judgement Day": {
+      "status": "survives"
+    },
+    "Eric Forman/That 70's Show": {
+      "status": "survives"
+    },
+    "Jackie Burkhart/That 70's Show": {
+      "status": "survives"
+    },
+    "Michael Kelso/That 70's Show": {
+      "status": "survives"
+    },
+    "Steven Hyde/That 70's Show": {
+      "status": "survives"
+    },
+    "Donna Pinciotti/That 70's Show": {
+      "status": "survives"
+    },
+    "Fez/That 70's Show": {
+      "status": "survives"
+    },
+    "Kitty Forman/That 70's Show": {
+      "status": "survives"
+    },
+    "Red Forman/That 70's Show": {
+      "status": "survives"
+    },
+    "Midge Pinciotti/That 70's Show": {
+      "status": "survives"
+    },
+    "Bob Pinciotti/That 70's Show": {
+      "status": "survives"
+    },
+    "Clarke Griffin/The 100": {
+      "status": "survives"
+    },
+    "Bellamy Blake/The 100": {
+      "status": "dies"
+    },
+    "Octavia Blake/The 100": {
+      "status": "dies"
+    },
+    "Raven Reyes/The 100": {
+      "status": "survives"
+    },
+    "Dr. Abigail Griffin/The 100": {
+      "status": "dies"
+    },
+    "John Murphy/The 100": {
+      "status": "dies"
+    },
+    "Marcus Kane/The 100": {
+      "status": "dies"
+    },
+    "Monty Green/The 100": {
+      "status": "dies"
+    },
+    "Nathan Miller/The 100": {
+      "status": "dies"
+    },
+    "Thelonious Jaha/The 100": {
+      "status": "survives"
+    },
+    "Elizabeth Jennings/The Americans": {
+      "status": "survives"
+    },
+    "Philip Jennings/The Americans": {
+      "status": "survives"
+    },
+    "Henry Jennings/The Americans": {
+      "status": "survives"
+    },
+    "Paige Jennings/The Americans": {
+      "status": "survives"
+    },
+    "Stan Beeman/The Americans": {
+      "status": "survives"
+    },
+    "Leonard Hofstadter/The Big Bang Theory": {
+      "status": "survives"
+    },
+    "Sheldon Cooper/The Big Bang Theory": {
+      "status": "survives"
+    },
+    "Penny Hofstadter/The Big Bang Theory": {
+      "status": "survives"
+    },
+    "Howard Wolowitz/The Big Bang Theory": {
+      "status": "survives"
+    },
+    "Raj Koothrappali/The Big Bang Theory": {
+      "status": "survives"
+    },
+    "Leslie Winkle/The Big Bang Theory": {
+      "status": "survives"
+    },
+    "Bernadette Rostenkowski/The Big Bang Theory": {
+      "status": "survives"
+    },
+    "Amy Farrah Fowler/The Big Bang Theory": {
+      "status": "survives"
+    },
+    "Stuart Bloom/The Big Bang Theory": {
+      "status": "survives"
+    },
+    "Mary Cooper/The Big Bang Theory": {
+      "status": "survives"
+    },
+    "Kumail Nanjiani/The Big Sick": {
+      "status": "survives"
+    },
+    "Emily Gardner/The Big Sick": {
+      "status": "survives"
+    },
+    "Raymond 'Red' Reddington/The Blacklist": {
+      "status": "survives"
+    },
+    "Elizabeth Keen/The Blacklist": {
+      "status": "survives"
+    },
+    "Donald Ressler/The Blacklist": {
+      "status": "survives"
+    },
+    "Harold Cooper/The Blacklist": {
+      "status": "dies"
+    },
+    "Dembe Zuma/The Blacklist": {
+      "status": "survives"
+    },
+    "Aram Mojtabai/The Blacklist": {
+      "status": "dies"
+    },
+    "Paul Smecker/The Boondock Saints": {
+      "status": "dies"
+    },
+    "Connor MacManus/The Boondock Saints": {
+      "status": "survives"
+    },
+    "Murphy MacManus/The Boondock Saints": {
+      "status": "survives"
+    },
+    "David Della Rocco/The Boondock Saints": {
+      "status": "dies"
+    },
+    "Papa Joe Yakavetta/The Boondock Saints": {
+      "status": "dies"
+    },
+    "Jason Bourne/The Bourne Identity": {
+      "status": "survives"
+    },
+    "Marie Kreutz/The Bourne Identity": {
+      "status": "dies"
+    },
+    "Alexander Conklin/The Bourne Identity": {
+      "status": "survives"
+    },
+    "Billy Butcher/The Boys": {
+      "status": "survives"
+    },
+    "Hughie Campbell/The Boys": {
+      "status": "survives"
+    },
+    "Homelander/The Boys": {
+      "status": "dies"
+    },
+    "Annie January/The Boys": {
+      "status": "dies"
+    },
+    "Queen Maeve/The Boys": {
+      "status": "survives"
+    },
+    "A-Train/The Boys": {
+      "status": "dies"
+    },
+    "Mother's Milk/The Boys": {
+      "status": "survives"
+    },
+    "The Deep/The Boys": {
+      "status": "dies"
+    },
+    "Frenchie/The Boys": {
+      "status": "survives"
+    },
+    "Kimiko Miyashiro/The Boys": {
+      "status": "survives"
+    },
+    "Black Noir/The Boys": {
+      "status": "dies"
+    },
+    "Ashley Barrett/The Boys": {
+      "status": "dies"
+    },
+    "Madelyn Stillwell/The Boys": {
+      "status": "dies"
+    },
+    "Becca Butcher/The Boys": {
+      "status": "dies"
+    },
+    "Stormfront/The Boys": {
+      "status": "survives"
+    },
+    "John Bender/The Breakfast Club": {
+      "status": "survives"
+    },
+    "Claire Standish/The Breakfast Club": {
+      "status": "survives"
+    },
+    "Andrew Clark/The Breakfast Club": {
+      "status": "survives"
+    },
+    "Brian Johnson/The Breakfast Club": {
+      "status": "survives"
+    },
+    "Allison Reynolds/The Breakfast Club": {
+      "status": "survives"
+    },
+    "Principal Vernon/The Breakfast Club": {
+      "status": "survives"
+    },
+    "Dana Polk/The Cabin in the Woods": {
+      "status": "survives"
+    },
+    "Curt Vaughan/The Cabin in the Woods": {
+      "status": "dies"
+    },
+    "Jules Louden/The Cabin in the Woods": {
+      "status": "survives"
+    },
+    "Marty Mikalski/The Cabin in the Woods": {
+      "status": "dies"
+    },
+    "Holden McCrea/The Cabin in the Woods": {
+      "status": "survives"
+    },
+    "Steve Hadley/The Cabin in the Woods": {
+      "status": "dies"
+    },
+    "Queen Elizabeth II/The Crown": {
+      "status": "survives"
+    },
+    "Philip, Duke of Edinburgh/The Crown": {
+      "status": "dies"
+    },
+    "Benjamin Button/The Curious Case of Benjamin Button": {
+      "status": "survives"
+    },
+    "Daisy Fuller/The Curious Case of Benjamin Button": {
+      "status": "survives"
+    },
+    "Robert Langdon/The Da Vinci Code": {
+      "status": "survives"
+    },
+    "Sophie Neveu/The Da Vinci Code": {
+      "status": "survives"
+    },
+    "Leigh Teabing/The Da Vinci Code": {
+      "status": "dies"
+    },
+    "Bruce Wayne/The Dark Knight": {
+      "status": "survives"
+    },
+    "Alfred Pennyworth/The Dark Knight": {
+      "status": "survives"
+    },
+    "The Joker/The Dark Knight": {
+      "status": "dies"
+    },
+    "James Gordon/The Dark Knight": {
+      "status": "survives"
+    },
+    "Harvey Dent/The Dark Knight": {
+      "status": "dies"
+    },
+    "Rachel Dawes/The Dark Knight": {
+      "status": "dies"
+    },
+    "Lucius Fox/The Dark Knight": {
+      "status": "survives"
+    },
+    "Anthony Garcia/The Dark Knight": {
+      "status": "dies"
+    },
+    "Lau/The Dark Knight": {
+      "status": "dies"
+    },
+    "Sal Maroni/The Dark Knight": {
+      "status": "dies"
+    },
+    "Billy Costigan/The Departed": {
+      "status": "survives"
+    },
+    "Colin Sullivan/The Departed": {
+      "status": "dies"
+    },
+    "Frank Costello/The Departed": {
+      "status": "dies"
+    },
+    "Sgt. Sean Dignam/The Departed": {
+      "status": "dies"
+    },
+    "Capt. Oliver Queenan/The Departed": {
+      "status": "survives"
+    },
+    "Dr. Madolyn Madden/The Departed": {
+      "status": "survives"
+    },
+    "Miranda Priestly/The Devil Wears Prada": {
+      "status": "survives"
+    },
+    "Andrea Sachs/The Devil Wears Prada": {
+      "status": "survives"
+    },
+    "Emily Charlton/The Devil Wears Prada": {
+      "status": "survives"
+    },
+    "Jim Holden/The Expanse": {
+      "status": "survives"
+    },
+    "Naomi Nagata/The Expanse": {
+      "status": "survives"
+    },
+    "Amos Burton/The Expanse": {
+      "status": "survives"
+    },
+    "Chrisjen Avasarala/The Expanse": {
+      "status": "survives"
+    },
+    "Alex Kamal/The Expanse": {
+      "status": "dies"
+    },
+    "Bobbie Draper/The Expanse": {
+      "status": "survives"
+    },
+    "Stella Gibson/The Fall": {
+      "status": "survives"
+    },
+    "Paul Spector/The Fall": {
+      "status": "dies"
+    },
+    "Jim Burns/The Fall": {
+      "status": "survives"
+    },
+    "Hazel Grace Lancaster/The Fault in Our Stars": {
+      "status": "survives"
+    },
+    "Augustus 'Gus' Waters/The Fault in Our Stars": {
+      "status": "dies"
+    },
+    "Barry Allen/The Flash": {
+      "status": "survives"
+    },
+    "Iris West/The Flash": {
+      "status": "survives"
+    },
+    "Caitlin Snow/The Flash": {
+      "status": "survives"
+    },
+    "Cisco Ramon/The Flash": {
+      "status": "survives"
+    },
+    "Dr. Harry Wells/The Flash": {
+      "status": "survives"
+    },
+    "Joe West/The Flash": {
+      "status": "survives"
+    },
+    "Vito Corleone/The Godfather": {
+      "status": "dies"
+    },
+    "Michael Corleone/The Godfather": {
+      "status": "survives"
+    },
+    "Sonny Corleone/The Godfather": {
+      "status": "dies"
+    },
+    "Peter Clemenza/The Godfather": {
+      "status": "dies"
+    },
+    "Tom Hagen/The Godfather": {
+      "status": "dies"
+    },
+    "Emilio Barzini/The Godfather": {
+      "status": "dies"
+    },
+    "Dr. Shaun Murphy/The Good Doctor": {
+      "status": "survives"
+    },
+    "Dr. Claire Browne/The Good Doctor": {
+      "status": "survives"
+    },
+    "Dr. Marcus Andrews/The Good Doctor": {
+      "status": "survives"
+    },
+    "Dr. Aaron Glassman/The Good Doctor": {
+      "status": "survives"
+    },
+    "Dr. Neil Melendez/The Good Doctor": {
+      "status": "survives"
+    },
+    "Dr. Audrey Lim/The Good Doctor": {
+      "status": "survives"
+    },
+    "Eleanor Shellstrop/The Good Place": {
+      "status": "survives"
+    },
+    "Chidi Anagonye/The Good Place": {
+      "status": "survives"
+    },
+    "Tahani Al-Jamil/The Good Place": {
+      "status": "survives"
+    },
+    "Janet/The Good Place": {
+      "status": "survives"
+    },
+    "Jason Mendoza/The Good Place": {
+      "status": "dies"
+    },
+    "Michael/The Good Place": {
+      "status": "survives"
+    },
+    "Alicia Florrick/The Good Wife": {
+      "status": "survives"
+    },
+    "Cary Agos/The Good Wife": {
+      "status": "dies"
+    },
+    "Diane Lockhart/The Good Wife": {
+      "status": "survives"
+    },
+    "Kalinda Sharma/The Good Wife": {
+      "status": "survives"
+    },
+    "Will Gardner/The Good Wife": {
+      "status": "survives"
+    },
+    "Grace Florrick/The Good Wife": {
+      "status": "survives"
+    },
+    "Blondie/The Good, the Bad, and the Ugly": {
+      "status": "survives"
+    },
+    "Angel Eyes/The Good, the Bad, and the Ugly": {
+      "status": "dies"
+    },
+    "Tuco/The Good, the Bad, and the Ugly": {
+      "status": "survives"
+    },
+    "Jay Gatsby/The Great Gatsby": {
+      "status": "dies"
+    },
+    "Nick Carraway/The Great Gatsby": {
+      "status": "survives"
+    },
+    "Daisy Buchanan/The Great Gatsby": {
+      "status": "survives"
+    },
+    "Tom Buchanan/The Great Gatsby": {
+      "status": "survives"
+    },
+    "Myrtle Wilson/The Great Gatsby": {
+      "status": "dies"
+    },
+    "Jordan Baker/The Great Gatsby": {
+      "status": "survives"
+    },
+    "June Osborne/The Handmaid's Tale": {
+      "status": "survives"
+    },
+    "Rita/The Handmaid's Tale": {
+      "status": "dies"
+    },
+    "Janine Lindo/The Handmaid's Tale": {
+      "status": "dies"
+    },
+    "Nick Blaine/The Handmaid's Tale": {
+      "status": "survives"
+    },
+    "Serena Joy Waterford/The Handmaid's Tale": {
+      "status": "dies"
+    },
+    "Phil/The Hangover": {
+      "status": "survives"
+    },
+    "Stu/The Hangover": {
+      "status": "survives"
+    },
+    "Alan/The Hangover": {
+      "status": "survives"
+    },
+    "Katniss Everdeen/The Hunger Games": {
+      "status": "survives"
+    },
+    "Peeta Mellark/The Hunger Games": {
+      "status": "survives"
+    },
+    "Haymitch Abernathy/The Hunger Games": {
+      "status": "survives"
+    },
+    "Effie Trinket/The Hunger Games": {
+      "status": "dies"
+    },
+    "Coriolanus Snow/The Hunger Games": {
+      "status": "dies"
+    },
+    "Gale Hawthorne/The Hunger Games": {
+      "status": "survives"
+    },
+    "Bob Parr/The Incredibles": {
+      "status": "survives"
+    },
+    "Helen Parr/The Incredibles": {
+      "status": "survives"
+    },
+    "Violet Parr/The Incredibles": {
+      "status": "survives"
+    },
+    "Dashiell Parr/The Incredibles": {
+      "status": "survives"
+    },
+    "Buddy Pine/The Incredibles": {
+      "status": "survives"
+    },
+    "Littlefoot/The Land Before Time": {
+      "status": "survives"
+    },
+    "Cera/The Land Before Time": {
+      "status": "survives"
+    },
+    "Ducky/The Land Before Time": {
+      "status": "survives"
+    },
+    "Petrie/The Land Before Time": {
+      "status": "survives"
+    },
+    "Spike/The Land Before Time": {
+      "status": "survives"
+    },
+    "Nathaniel 'Hawkeye' Poe/The Last of the Mohicans": {
+      "status": "survives"
+    },
+    "Cora Munro/The Last of the Mohicans": {
+      "status": "survives"
+    },
+    "Lord Business/The Lego Movie": {
+      "status": "dies"
+    },
+    "Vitruvius/The Lego Movie": {
+      "status": "survives"
+    },
+    "Emmet Brickowski/The Lego Movie": {
+      "status": "survives"
+    },
+    "Wyldstyle/The Lego Movie": {
+      "status": "survives"
+    },
+    "Batman/The Lego Movie": {
+      "status": "survives"
+    },
+    "Simba/The Lion King": {
+      "status": "survives"
+    },
+    "Nala/The Lion King": {
+      "status": "survives"
+    },
+    "Timon/The Lion King": {
+      "status": "survives"
+    },
+    "Pumbaa/The Lion King": {
+      "status": "survives"
+    },
+    "Scar/The Lion King": {
+      "status": "dies"
+    },
+    "Mufasa/The Lion King": {
+      "status": "dies"
+    },
+    "Princess Ariel/The Little Mermaid": {
+      "status": "survives"
+    },
+    "Ursula/The Little Mermaid": {
+      "status": "dies"
+    },
+    "Flounder/The Little Mermaid": {
+      "status": "survives"
+    },
+    "Juliana Crain/The Man in the High Castle": {
+      "status": "survives"
+    },
+    "Inspector Kido/The Man in the High Castle": {
+      "status": "dies"
+    },
+    "John Smith/The Man in the High Castle": {
+      "status": "survives"
+    },
+    "Mark Watney/The Martian": {
+      "status": "survives"
+    },
+    "Miriam Maisel/The Marvelous Mrs. Maisel": {
+      "status": "survives"
+    },
+    "Susie Myerson/The Marvelous Mrs. Maisel": {
+      "status": "survives"
+    },
+    "Joel Maisel/The Marvelous Mrs. Maisel": {
+      "status": "survives"
+    },
+    "Rose Weissman/The Marvelous Mrs. Maisel": {
+      "status": "survives"
+    },
+    "Abe Weissman/The Marvelous Mrs. Maisel": {
+      "status": "survives"
+    },
+    "Neo/The Matrix": {
+      "status": "survives"
+    },
+    "Morpheus/The Matrix": {
+      "status": "dies"
+    },
+    "Trinity/The Matrix": {
+      "status": "survives"
+    },
+    "Agent Smith/The Matrix": {
+      "status": "survives"
+    },
+    "Cypher/The Matrix": {
+      "status": "dies"
+    },
+    "The Oracle/The Matrix": {
+      "status": "survives"
+    },
+    "Patrick Jane/The Mentalist": {
+      "status": "dies"
+    },
+    "Teresa Lisbon/The Mentalist": {
+      "status": "survives"
+    },
+    "Kimball Cho/The Mentalist": {
+      "status": "survives"
+    },
+    "Wayne Rigsby/The Mentalist": {
+      "status": "survives"
+    },
+    "Grace Van Pelt/The Mentalist": {
+      "status": "survives"
+    },
+    "Red John/The Mentalist": {
+      "status": "dies"
+    },
+    "Noah Calhoun/The Notebook": {
+      "status": "survives"
+    },
+    "Allison Hamilton/The Notebook": {
+      "status": "survives"
+    },
+    "Lon Hammond, Jr./The Notebook": {
+      "status": "dies"
+    },
+    "Prairie Johnson/The OA": {
+      "status": "survives"
+    },
+    "Homer/The OA": {
+      "status": "dies"
+    },
+    "Steve Winchell/The OA": {
+      "status": "survives"
+    },
+    "Hunter Aloysius Percy/The OA": {
+      "status": "dies"
+    },
+    "Buck Vu/The OA": {
+      "status": "survives"
+    },
+    "Odysseus/The Odyssey": {
+      "status": "survives"
+    },
+    "Telemachus/The Odyssey": {
+      "status": "survives"
+    },
+    "Penelope/The Odyssey": {
+      "status": "survives"
+    },
+    "Michael Scott/The Office": {
+      "status": "survives"
+    },
+    "Dwight Schrute/The Office": {
+      "status": "survives"
+    },
+    "Jim Halpert/The Office": {
+      "status": "survives"
+    },
+    "Pam Beesly/The Office": {
+      "status": "survives"
+    },
+    "Ryan Howard/The Office": {
+      "status": "survives"
+    },
+    "Andy Bernard/The Office": {
+      "status": "survives"
+    },
+    "Jan Levinson/The Office": {
+      "status": "survives"
+    },
+    "Stanley Hudson/The Office": {
+      "status": "survives"
+    },
+    "Kevin Malone/The Office": {
+      "status": "survives"
+    },
+    "Meredith Palmer/The Office": {
+      "status": "survives"
+    },
+    "Angela Martin/The Office": {
+      "status": "survives"
+    },
+    "Phyllis Lapin/The Office": {
+      "status": "survives"
+    },
+    "Kelly Kapoor/The Office": {
+      "status": "survives"
+    },
+    "Erin Hannon/The Office": {
+      "status": "survives"
+    },
+    "Robert California/The Office": {
+      "status": "survives"
+    },
+    "Charlie Kelmeckis/The Perks of Being a Wallflower": {
+      "status": "survives"
+    },
+    "Sam Button/The Perks of Being a Wallflower": {
+      "status": "survives"
+    },
+    "Patrick Stewart/The Perks of Being a Wallflower": {
+      "status": "survives"
+    },
+    "Westley/The Princess Bride": {
+      "status": "survives"
+    },
+    "Buttercup/The Princess Bride": {
+      "status": "survives"
+    },
+    "Inigo Montoya/The Princess Bride": {
+      "status": "survives"
+    },
+    "Prince Humperdinck/The Princess Bride": {
+      "status": "dies"
+    },
+    "Vizzini/The Princess Bride": {
+      "status": "dies"
+    },
+    "Beth Harmon/The Queen's Gambit": {
+      "status": "survives"
+    },
+    "Johnny/The Room": {
+      "status": "dies"
+    },
+    "Lisa/The Room": {
+      "status": "survives"
+    },
+    "Mark/The Room": {
+      "status": "dies"
+    },
+    "Denny/The Room": {
+      "status": "survives"
+    },
+    "Peter/The Room": {
+      "status": "survives"
+    },
+    "Michelle/The Room": {
+      "status": "survives"
+    },
+    "Hester Prynne/The Scarlet Letter": {
+      "status": "survives"
+    },
+    "Elisa Esposito/The Shape of Water": {
+      "status": "survives"
+    },
+    "The Amphibian Man/The Shape of Water": {
+      "status": "survives"
+    },
+    "Andy Dufresne/The Shawshank Redemption": {
+      "status": "survives"
+    },
+    "Ellis Boyd 'Red' Redding/The Shawshank Redemption": {
+      "status": "survives"
+    },
+    "Samuel Norton/The Shawshank Redemption": {
+      "status": "dies"
+    },
+    "Heywood/The Shawshank Redemption": {
+      "status": "survives"
+    },
+    "Byron Hadley/The Shawshank Redemption": {
+      "status": "dies"
+    },
+    "Brooks Hatlen/The Shawshank Redemption": {
+      "status": "dies"
+    },
+    "Clarice Starling/The Silence of the Lambs": {
+      "status": "survives"
+    },
+    "Dr. Hannibal Lecter/The Silence of the Lambs": {
+      "status": "survives"
+    },
+    "Jack Crawford/The Silence of the Lambs": {
+      "status": "survives"
+    },
+    "Homer Simpson/The Simpsons": {
+      "status": "survives"
+    },
+    "Bart Simpson/The Simpsons": {
+      "status": "survives"
+    },
+    "Marge Simpson/The Simpsons": {
+      "status": "survives"
+    },
+    "Lisa Simpson/The Simpsons": {
+      "status": "survives"
+    },
+    "Apu Nahasapeemapetilon/The Simpsons": {
+      "status": "survives"
+    },
+    "Mr. Burns/The Simpsons": {
+      "status": "survives"
+    },
+    "Ned Flanders/The Simpsons": {
+      "status": "survives"
+    },
+    "Milhouse Van Houten/The Simpsons": {
+      "status": "survives"
+    },
+    "Moe Szyslak/The Simpsons": {
+      "status": "survives"
+    },
+    "Nelson Muntz/The Simpsons": {
+      "status": "survives"
+    },
+    "Krusty the Clown/The Simpsons": {
+      "status": "survives"
+    },
+    "Edna Krabappel/The Simpsons": {
+      "status": "survives"
+    },
+    "Waylon Smithers/The Simpsons": {
+      "status": "survives"
+    },
+    "Barney Gumble/The Simpsons": {
+      "status": "survives"
+    },
+    "Principal Skinner/The Simpsons": {
+      "status": "survives"
+    },
+    "Mark Zuckerberg/The Social Network": {
+      "status": "survives"
+    },
+    "Eduardo Saverin/The Social Network": {
+      "status": "survives"
+    },
+    "Sean Parker/The Social Network": {
+      "status": "survives"
+    },
+    "Tyler Winklevoss/The Social Network": {
+      "status": "survives"
+    },
+    "Divya Narendra/The Social Network": {
+      "status": "survives"
+    },
+    "Christy Lee/The Social Network": {
+      "status": "survives"
+    },
+    "Tony Soprano/The Sopranos": {
+      "status": "dies"
+    },
+    "Dr. Jennifer Melfi/The Sopranos": {
+      "status": "survives"
+    },
+    "Carmela Soprano/The Sopranos": {
+      "status": "survives"
+    },
+    "Christopher Moltisanti/The Sopranos": {
+      "status": "dies"
+    },
+    "Junior Soprano/The Sopranos": {
+      "status": "dies"
+    },
+    "Silvio Dante/The Sopranos": {
+      "status": "dies"
+    },
+    "Paulie 'Walnuts' Gualtieri/The Sopranos": {
+      "status": "dies"
+    },
+    "A.J. Soprano/The Sopranos": {
+      "status": "dies"
+    },
+    "Meadow Soprano/The Sopranos": {
+      "status": "survives"
+    },
+    "Janice Soprano/The Sopranos": {
+      "status": "survives"
+    },
+    "Sutter Keely/The Spectacular Now": {
+      "status": "survives"
+    },
+    "Aimee Finecky/The Spectacular Now": {
+      "status": "survives"
+    },
+    "Vanya Hargreeves/The Umbrella Academy": {
+      "status": "dies"
+    },
+    "Luther Hargreeves/The Umbrella Academy": {
+      "status": "dies"
+    },
+    "Diego Hargreeves/The Umbrella Academy": {
+      "status": "dies"
+    },
+    "Allison Hargreeves/The Umbrella Academy": {
+      "status": "survives"
+    },
+    "Klaus Hargreeves/The Umbrella Academy": {
+      "status": "survives"
+    },
+    "Ben Hargreeves/The Umbrella Academy": {
+      "status": "survives"
+    },
+    "Stefan Salvatore/The Vampire Diaries": {
+      "status": "survives"
+    },
+    "Damon Salvatore/The Vampire Diaries": {
+      "status": "survives"
+    },
+    "Bonnie Bennett/The Vampire Diaries": {
+      "status": "dies"
+    },
+    "Caroline Forbes/The Vampire Diaries": {
+      "status": "survives"
+    },
+    "Matt Donovan/The Vampire Diaries": {
+      "status": "survives"
+    },
+    "Elena Gilbert/The Vampire Diaries": {
+      "status": "survives"
+    },
+    "Rick Grimes/The Walking Dead": {
+      "status": "survives"
+    },
+    "Shane Walsh/The Walking Dead": {
+      "status": "dies"
+    },
+    "Lori Grimes/The Walking Dead": {
+      "status": "dies"
+    },
+    "Andrea/The Walking Dead": {
+      "status": "dies"
+    },
+    "Dale Horvath/The Walking Dead": {
+      "status": "dies"
+    },
+    "Glenn Rhee/The Walking Dead": {
+      "status": "dies"
+    },
+    "Carl Grimes/The Walking Dead": {
+      "status": "survives"
+    },
+    "Daryl Dixon/The Walking Dead": {
+      "status": "survives"
+    },
+    "Carol Peletier/The Walking Dead": {
+      "status": "survives"
+    },
+    "Merle Dixon/The Walking Dead": {
+      "status": "survives"
+    },
+    "Josiah Bartlet/The West Wing": {
+      "status": "survives"
+    },
+    "Leo McGarry/The West Wing": {
+      "status": "survives"
+    },
+    "Josh Lyman/The West Wing": {
+      "status": "survives"
+    },
+    "Toby Ziegler/The West Wing": {
+      "status": "survives"
+    },
+    "Sam Seaborn/The West Wing": {
+      "status": "survives"
+    },
+    "C. J. Cregg/The West Wing": {
+      "status": "survives"
+    },
+    "Charlie Young/The West Wing": {
+      "status": "survives"
+    },
+    "Donna Moss/The West Wing": {
+      "status": "survives"
+    },
+    "Abbey Bartlet/The West Wing": {
+      "status": "survives"
+    },
+    "Joey Lucas/The West Wing": {
+      "status": "survives"
+    },
+    "Cedric Daniels/The Wire": {
+      "status": "survives"
+    },
+    "Jimmy McNulty/The Wire": {
+      "status": "survives"
+    },
+    "Kima Greggs/The Wire": {
+      "status": "survives"
+    },
+    "Lester Freamon/The Wire": {
+      "status": "survives"
+    },
+    "Bunk Moreland/The Wire": {
+      "status": "survives"
+    },
+    "Herc Hauk/The Wire": {
+      "status": "survives"
+    },
+    "Ellis Carver/The Wire": {
+      "status": "dies"
+    },
+    "Bubbles Cousins/The Wire": {
+      "status": "dies"
+    },
+    "William Rawls/The Wire": {
+      "status": "dies"
+    },
+    "Roland Pryzbylewski/The Wire": {
+      "status": "survives"
+    },
+    "Rhonda Pearlman/The Wire": {
+      "status": "dies"
+    },
+    "Omar Little/The Wire": {
+      "status": "dies"
+    },
+    "Ervin Burrell/The Wire": {
+      "status": "dies"
+    },
+    "Bodie Broadus/The Wire": {
+      "status": "dies"
+    },
+    "Stringer Bell/The Wire": {
+      "status": "survives"
+    },
+    "Tommy Carcetti/The Wire": {
+      "status": "survives"
+    },
+    "Avon Barksdale/The Wire": {
+      "status": "dies"
+    },
+    "Chris Partlow/The Wire": {
+      "status": "dies"
+    },
+    "Norman Wilson/The Wire": {
+      "status": "dies"
+    },
+    "Michael Lee/The Wire": {
+      "status": "dies"
+    },
+    "Maurice Levy/The Wire": {
+      "status": "dies"
+    },
+    "Beadie Russell/The Wire": {
+      "status": "dies"
+    },
+    "Cutty Wise/The Wire": {
+      "status": "dies"
+    },
+    "D'Angelo Barksdale/The Wire": {
+      "status": "dies"
+    },
+    "Clay Davis/The Wire": {
+      "status": "dies"
+    },
+    "Clarence Royce/The Wire": {
+      "status": "dies"
+    },
+    "Spiros Vondopoulos/The Wire": {
+      "status": "dies"
+    },
+    "Frank Sobotka/The Wire": {
+      "status": "dies"
+    },
+    "Ziggy Sobotka/The Wire": {
+      "status": "dies"
+    },
+    "Nick Sobotka/The Wire": {
+      "status": "dies"
+    },
+    "Geralt of Rivia/The Witcher": {
+      "status": "dies"
+    },
+    "Ciri/The Witcher": {
+      "status": "survives"
+    },
+    "Yennefer/The Witcher": {
+      "status": "survives"
+    },
+    "Fringilla/The Witcher": {
+      "status": "dies"
+    },
+    "Cahir/The Witcher": {
+      "status": "dies"
+    },
+    "Tissaia/The Witcher": {
+      "status": "survives"
+    },
+    "Dara/The Witcher": {
+      "status": "dies"
+    },
+    "Triss/The Witcher": {
+      "status": "survives"
+    },
+    "Jaskier/The Witcher": {
+      "status": "survives"
+    },
+    "Istredd/The Witcher": {
+      "status": "dies"
+    },
+    "Dorothy Gale/The Wizard of Oz": {
+      "status": "survives"
+    },
+    "The Wizard of Oz/The Wizard of Oz": {
+      "status": "survives"
+    },
+    "The Scarecrow/The Wizard of Oz": {
+      "status": "survives"
+    },
+    "The Tin Man/The Wizard of Oz": {
+      "status": "survives"
+    },
+    "The Cowardly Lion/The Wizard of Oz": {
+      "status": "survives"
+    },
+    "The Wicked Witch of the West/The Wizard of Oz": {
+      "status": "dies"
+    },
+    "Fox Mulder/The X-Files": {
+      "status": "ambiguous"
+    },
+    "Dana Scully/The X-Files": {
+      "status": "survives"
+    },
+    "Walter Skinner/The X-Files": {
+      "status": "survives"
+    },
+    "Jack Pearson/This Is Us": {
+      "status": "dies"
+    },
+    "Rebecca Pearson/This Is Us": {
+      "status": "dies"
+    },
+    "Randall Pearson/This Is Us": {
+      "status": "survives"
+    },
+    "Kate Pearson/This Is Us": {
+      "status": "survives"
+    },
+    "Kevin Pearson/This Is Us": {
+      "status": "survives"
+    },
+    "Beth Pearson/This Is Us": {
+      "status": "survives"
+    },
+    "Toby Damon/This Is Us": {
+      "status": "dies"
+    },
+    "William H. 'Shakespeare' Hill/This Is Us": {
+      "status": "survives"
+    },
+    "Miguel Rivas/This Is Us": {
+      "status": "survives"
+    },
+    "Sophie/This Is Us": {
+      "status": "survives"
+    },
+    "Jack Dawson/Titanic": {
+      "status": "dies"
+    },
+    "Rose DeWitt Bukater/Titanic": {
+      "status": "survives"
+    },
+    "Cal Hockley/Titanic": {
+      "status": "survives"
+    },
+    "Atticus Finch/To Kill a Mockingbird": {
+      "status": "survives"
+    },
+    "James Bond/Tommorrow Never Dies": {
+      "status": "survives"
+    },
+    "M/Tommorrow Never Dies": {
+      "status": "survives"
+    },
+    "Q/Tommorrow Never Dies": {
+      "status": "survives"
+    },
+    "Woody/Toy Story": {
+      "status": "survives"
+    },
+    "Buzz Lightyear/Toy Story": {
+      "status": "survives"
+    },
+    "Mr. Potato Head/Toy Story": {
+      "status": "survives"
+    },
+    "Rex/Toy Story": {
+      "status": "survives"
+    },
+    "Bo Peep/Toy Story": {
+      "status": "survives"
+    },
+    "Sid Phillips/Toy Story": {
+      "status": "survives"
+    },
+    "Sam Witwicky/Transformers": {
+      "status": "survives"
+    },
+    "Mikaela Banes/Transformers": {
+      "status": "survives"
+    },
+    "Bumblebee/Transformers": {
+      "status": "survives"
+    },
+    "Optimus Prime/Transformers": {
+      "status": "dies"
+    },
+    "Megatron/Transformers": {
+      "status": "dies"
+    },
+    "Tugg Speedman/Tropic Thunder": {
+      "status": "survives"
+    },
+    "Jeff Portnoy/Tropic Thunder": {
+      "status": "survives"
+    },
+    "Kirk Lazarus/Tropic Thunder": {
+      "status": "survives"
+    },
+    "Rust Cohle/True Detective": {
+      "status": "survives"
+    },
+    "Marty Hart/True Detective": {
+      "status": "survives"
+    },
+    "Maggie Hart/True Detective": {
+      "status": "survives"
+    },
+    "Viola/Twelfth Night": {
+      "status": "survives"
+    },
+    "Sebastian/Twelfth Night": {
+      "status": "survives"
+    },
+    "Olivia/Twelfth Night": {
+      "status": "survives"
+    },
+    "Duke Orsino/Twelfth Night": {
+      "status": "survives"
+    },
+    "Malvolio/Twelfth Night": {
+      "status": "survives"
+    },
+    "Bella Swan/Twilight": {
+      "status": "survives"
+    },
+    "Edward Cullen/Twilight": {
+      "status": "survives"
+    },
+    "Jacob Black/Twilight": {
+      "status": "survives"
+    },
+    "Charlie Swan/Twilight": {
+      "status": "survives"
+    },
+    "Carlisle Cullen/Twilight": {
+      "status": "survives"
+    },
+    "Esme Cullen/Twilight": {
+      "status": "survives"
+    },
+    "Alice Cullen/Twilight": {
+      "status": "survives"
+    },
+    "Emmett Cullen/Twilight": {
+      "status": "survives"
+    },
+    "Rosalie Hale/Twilight": {
+      "status": "survives"
+    },
+    "Jasper Hale/Twilight": {
+      "status": "survives"
+    },
+    "Dale Cooper/Twin Peaks": {
+      "status": "ambiguous"
+    },
+    "Sheriff Truman/Twin Peaks": {
+      "status": "survives"
+    },
+    "Shelly Johnson/Twin Peaks": {
+      "status": "dies"
+    },
+    "Bobby Briggs/Twin Peaks": {
+      "status": "survives"
+    },
+    "Benjamin Horne/Twin Peaks": {
+      "status": "dies"
+    },
+    "Audrey Horne/Twin Peaks": {
+      "status": "survives"
+    },
+    "Norma Jennings/Twin Peaks": {
+      "status": "survives"
+    },
+    "James Hurley/Twin Peaks": {
+      "status": "dies"
+    },
+    "Ed Hurley/Twin Peaks": {
+      "status": "dies"
+    },
+    "Pete Martell/Twin Peaks": {
+      "status": "dies"
+    },
+    "Leland Palmer/Twin Peaks": {
+      "status": "dies"
+    },
+    "Josie Packard/Twin Peaks": {
+      "status": "dies"
+    },
+    "Catherine Martell/Twin Peaks": {
+      "status": "dies"
+    },
+    "Lucy Moran/Twin Peaks": {
+      "status": "dies"
+    },
+    "Donna Hayward/Twin Peaks": {
+      "status": "survives"
+    },
+    "Charlie Harper/Two and a Half Men": {
+      "status": "survives"
+    },
+    "Alan Harper/Two and a Half Men": {
+      "status": "dies"
+    },
+    "Jake Harper/Two and a Half Men": {
+      "status": "survives"
+    },
+    "Berta/Two and a Half Men": {
+      "status": "survives"
+    },
+    "Evelyn Harper/Two and a Half Men": {
+      "status": "dies"
+    },
+    "Judith Harper-Melnick/Two and a Half Men": {
+      "status": "survives"
+    },
+    "Kimmy Schmidt/Unbreakable Kimmy Schmidt": {
+      "status": "survives"
+    },
+    "Titus Andromedon/Unbreakable Kimmy Schmidt": {
+      "status": "survives"
+    },
+    "Lillian Kaushtupper/Unbreakable Kimmy Schmidt": {
+      "status": "survives"
+    },
+    "Jacqueline White/Unbreakable Kimmy Schmidt": {
+      "status": "survives"
+    },
+    "Cyndee Pokorny/Unbreakable Kimmy Schmidt": {
+      "status": "survives"
+    },
+    "Selina Meyer/Veep": {
+      "status": "survives"
+    },
+    "Amy Brookheimer/Veep": {
+      "status": "survives"
+    },
+    "Gary Walsh/Veep": {
+      "status": "survives"
+    },
+    "Dan Egan/Veep": {
+      "status": "survives"
+    },
+    "Jonah Ryan/Veep": {
+      "status": "survives"
+    },
+    "Mike McLintock/Veep": {
+      "status": "survives"
+    },
+    "Lagertha/Vikings": {
+      "status": "survives"
+    },
+    "Bjorn Lothbrok/Vikings": {
+      "status": "survives"
+    },
+    "Floki/Vikings": {
+      "status": "dies"
+    },
+    "Torvi/Vikings": {
+      "status": "dies"
+    },
+    "Ragnar Lothbrok/Vikings": {
+      "status": "dies"
+    },
+    "Rollo Sigurdsson/Vikings": {
+      "status": "survives"
+    },
+    "Ivar Ragnarsson/Vikings": {
+      "status": "survives"
+    },
+    "Harald Finehair/Vikings": {
+      "status": "survives"
+    },
+    "Ubbe Ragnarsson/Vikings": {
+      "status": "survives"
+    },
+    "Judith of Northumbria/Vikings": {
+      "status": "survives"
+    },
+    "Wanda Maximoff/WandaVision": {
+      "status": "survives"
+    },
+    "Vision/WandaVision": {
+      "status": "dies"
+    },
+    "Agatha Harkness/WandaVision": {
+      "status": "survives"
+    },
+    "Maria/West Side Story": {
+      "status": "dies"
+    },
+    "Tony/West Side Story": {
+      "status": "dies"
+    },
+    "Riff/West Side Story": {
+      "status": "dies"
+    },
+    "Anita/West Side Story": {
+      "status": "survives"
+    },
+    "Lieutenant Schrank/West Side Story": {
+      "status": "survives"
+    },
+    "Dolores Abernathy/Westworld": {
+      "status": "survives"
+    },
+    "Maeve Millay/Westworld": {
+      "status": "survives"
+    },
+    "Bernard Lowe/Westworld": {
+      "status": "dies"
+    },
+    "Teddy Flood/Westworld": {
+      "status": "dies"
+    },
+    "Ashley Stubbs/Westworld": {
+      "status": "dies"
+    },
+    "Lee Sizemore/Westworld": {
+      "status": "dies"
+    },
+    "Elsie Hughes/Westworld": {
+      "status": "dies"
+    },
+    "Man in Black/Westworld": {
+      "status": "dies"
+    },
+    "Robert Ford/Westworld": {
+      "status": "dies"
+    },
+    "Theresa Cullen/Westworld": {
+      "status": "dies"
+    },
+    "Charlotte Hale/Westworld": {
+      "status": "dies"
+    },
+    "Akecheta/Westworld": {
+      "status": "survives"
+    },
+    "Clementine Pennyfeather/Westworld": {
+      "status": "survives"
+    },
+    "Logan Delos/Westworld": {
+      "status": "dies"
+    },
+    "Felix Lutz/Westworld": {
+      "status": "dies"
+    },
+    "Moiraine Damodred/Wheel of Time": {
+      "status": "dies"
+    },
+    "Nynaeve al'Meara/Wheel of Time": {
+      "status": "survives"
+    },
+    "Egwene al'Vere/Wheel of Time": {
+      "status": "survives"
+    },
+    "Rand al'Thor/Wheel of Time": {
+      "status": "survives"
+    },
+    "Perrin Aybara/Wheel of Time": {
+      "status": "survives"
+    },
+    "Mat Cauthon/Wheel of Time": {
+      "status": "survives"
+    },
+    "Sally Albright/When Harry Met Sally...": {
+      "status": "survives"
+    },
+    "Harry Burns/When Harry Met Sally...": {
+      "status": "survives"
+    },
+    "Neal Caffrey/White Collar": {
+      "status": "survives"
+    },
+    "Peter Burke/White Collar": {
+      "status": "survives"
+    },
+    "Mozzie/White Collar": {
+      "status": "survives"
+    },
+    "Elizabeth Burke/White Collar": {
+      "status": "survives"
+    },
+    "Clinton Jones/White Collar": {
+      "status": "dies"
+    },
+    "Diana Barrigan/White Collar": {
+      "status": "survives"
+    },
+    "Willy Wonka/Willy Wonka & the Chocolate Factory": {
+      "status": "survives"
+    },
+    "Grandpa Joe/Willy Wonka & the Chocolate Factory": {
+      "status": "survives"
+    },
+    "Charlie Bucket/Willy Wonka & the Chocolate Factory": {
+      "status": "survives"
+    },
+    "Wynonna Earp/Wynonna Earp": {
+      "status": "survives"
+    },
+    "Doc Holliday/Wynonna Earp": {
+      "status": "survives"
+    },
+    "Waverly Earp/Wynonna Earp": {
+      "status": "survives"
+    },
+    "Nicole Haught/Wynonna Earp": {
+      "status": "survives"
+    },
+    "Jeremy Chetri/Wynonna Earp": {
+      "status": "survives"
+    },
+    "Wolverine/X-Men": {
+      "status": "survives"
+    },
+    "Professor X/X-Men": {
+      "status": "dies"
+    },
+    "Magneto/X-Men": {
+      "status": "survives"
+    },
+    "Mystique/X-Men": {
+      "status": "survives"
+    },
+    "Jean Grey/X-Men": {
+      "status": "dies"
+    },
+    "Cyclops/X-Men": {
+      "status": "survives"
+    },
+    "Storm/X-Men": {
+      "status": "survives"
+    },
+    "Rogue/X-Men": {
+      "status": "survives"
+    },
+    "Iceman/X-Men": {
+      "status": "survives"
+    },
+    "Colossus/X-Men": {
+      "status": "survives"
+    },
+    "Shauna/Yellowjackets": {
+      "status": "survives"
+    },
+    "Taissa/Yellowjackets": {
+      "status": "dies"
+    },
+    "Jackie/Yellowjackets": {
+      "status": "dies"
+    },
+    "Natalie/Yellowjackets": {
+      "status": "survives"
+    },
+    "Misty/Yellowjackets": {
+      "status": "dies"
+    },
+    "Ben Scott/Yellowjackets": {
+      "status": "survives"
+    },
+    "John Dutton/Yellowstone": {
+      "status": "survives"
+    },
+    "Kayce Dutton/Yellowstone": {
+      "status": "survives"
+    },
+    "Beth Dutton/Yellowstone": {
+      "status": "survives"
+    },
+    "Jamie Dutton/Yellowstone": {
+      "status": "dies"
+    },
+    "Rip Wheeler/Yellowstone": {
+      "status": "survives"
+    },
+    "Monica Dutton/Yellowstone": {
+      "status": "survives"
+    },
+    "Jimmy Hurdstrom/Yellowstone": {
+      "status": "dies"
+    },
+    "Thomas Rainwater/Yellowstone": {
+      "status": "dies"
+    },
+    "Lloyd/Yellowstone": {
+      "status": "dies"
+    },
+    "Colby/Yellowstone": {
+      "status": "survives"
+    },
+    "Joe Goldberg/You": {
+      "status": "survives"
+    },
+    "Love Quinn/You": {
+      "status": "dies"
+    },
+    "Guinevere Beck/You": {
+      "status": "survives"
+    },
+    "Tallahassee/Zombieland": {
+      "status": "dies"
+    },
+    "Columbus/Zombieland": {
+      "status": "survives"
+    },
+    "Wichita/Zombieland": {
+      "status": "survives"
+    }
+  },
+  "completed_stories": [
+    "Nineteen Eighty-Four",
+    "Alien",
+    "Bloodline",
+    "Desperate Housewives",
+    "SpongeBob SquarePants",
+    "True Detective",
+    "Beauty and the Beast",
+    "Black Swan",
+    "Atomic Blonde",
+    "Finding Nemo",
+    "Futurama",
+    "The Matrix",
+    "Outlander",
+    "Vikings",
+    "The Crown",
+    "Star Wars: The Last Jedi",
+    "Maleficent",
+    "After Life",
+    "The Blacklist",
+    "The Little Mermaid",
+    "The 100",
+    "Silver Linings Playbook",
+    "Neon Genesis Evangelion",
+    "Friends",
+    "The Wire",
+    "10 Things I Hate About You",
+    "Bad Boys",
+    "The Perks of Being a Wallflower",
+    "Dirty Dancing",
+    "The Queen's Gambit",
+    "Breakfast at Tiffany's",
+    "Crazy Ex-Girlfriend",
+    "The Hunger Games",
+    "Sailor Moon",
+    "The Man in the High Castle",
+    "Little Women",
+    "Battlestar Galactica",
+    "Willy Wonka & the Chocolate Factory",
+    "Gossip Girl",
+    "Farscape",
+    "The Big Bang Theory",
+    "Coco",
+    "Dune",
+    "Euphoria",
+    "Frozen",
+    "Ctrl+Alt+Del",
+    "The Departed",
+    "Shameless",
+    "Snow White and the Seven Dwarfs",
+    "Pulp Fiction",
+    "The Marvelous Mrs. Maisel",
+    "Brooklyn Nine-Nine",
+    "The Flash",
+    "WandaVision",
+    "Brokeback Mountain",
+    "The Da Vinci Code",
+    "The Good, the Bad, and the Ugly",
+    "Roman Holiday",
+    "Terminator 2: Judgement Day",
+    "High School Musical",
+    "The Umbrella Academy",
+    "Ozark",
+    "Macbeth",
+    "Degrassi: The Next Generation",
+    "Damages",
+    "Mrs Dalloway",
+    "Scrubs",
+    "A Series of Unfortunate Events",
+    "Get Out",
+    "Fast & Furious",
+    "Baby Driver",
+    "Raiders of the Lost Ark",
+    "The Office",
+    "Ender's Game",
+    "Independence Day",
+    "Tangled",
+    "Emily in Paris",
+    "Peaky Blinders",
+    "The Expanse",
+    "One Flew Over the Cuckoo's Nest",
+    "Fahrenheit 451",
+    "Marvel Cinematic Universe",
+    "30 Rock",
+    "You",
+    "The Good Wife",
+    "Lucifer",
+    "Pirates of the Caribbean",
+    "Ted Lasso",
+    "The Lego Movie",
+    "Chicago Fire",
+    "Mean Girls",
+    "Adventures of Huckleberry Finn",
+    "The OA",
+    "(500) Days of Summer",
+    "Riverdale",
+    "Succession",
+    "The Boondock Saints",
+    "The Notebook",
+    "Inception",
+    "Crouching Tiger, Hidden Dragon",
+    "Seinfeld",
+    "Star Trek: The Next Generation",
+    "The Dark Knight",
+    "The Shape of Water",
+    "Jane Eyre",
+    "The Godfather",
+    "Fleabag",
+    "The Incredibles",
+    "Fullmetal Alchemist: Brotherhood",
+    "Jennifer's Body",
+    "Parasite",
+    "Buffy the Vampire Slayer",
+    "The Lion King",
+    "Downton Abbey",
+    "Sex and the City",
+    "The Princess Bride",
+    "The Room",
+    "Two and a Half Men",
+    "ER",
+    "Jurassic Park",
+    "Fifty Shades of Grey",
+    "Star Trek: Deep Space Nine",
+    "When Harry Met Sally...",
+    "Hustlers",
+    "CSI: Crime Scene Investigation",
+    "Band of Brothers",
+    "Se7en",
+    "Sense8",
+    "Attack on Titan",
+    "Star Wars: A New Hope",
+    "Girls",
+    "Booksmart",
+    "Money Heist",
+    "Good Will Hunting",
+    "Supernatural",
+    "Bones",
+    "Parks and Recreation",
+    "Shadow and Bone",
+    "The Odyssey",
+    "The Last of the Mohicans",
+    "Mamma Mia!",
+    "Mindhunter",
+    "The Sopranos",
+    "Jurassic World",
+    "Rogue One",
+    "White Collar",
+    "Nomadland",
+    "Game of Thrones",
+    "Better Call Saul",
+    "Aladdin",
+    "The Shawshank Redemption",
+    "Killing Eve",
+    "The Great Gatsby",
+    "Firefly + Serenity",
+    "Dark",
+    "Normal People",
+    "Singin' in the Rain",
+    "The Wizard of Oz",
+    "Mr. Robot",
+    "Sons of Anarchy",
+    "Divergent",
+    "La La Land",
+    "Portrait of a Lady on Fire",
+    "Calvin and Hobbes",
+    "Twilight",
+    "Squid Game",
+    "Silicon Valley",
+    "Entourage",
+    "Blue Bloods",
+    "Unbreakable Kimmy Schmidt",
+    "X-Men",
+    "Sense and Sensibility",
+    "Modern Family",
+    "Space Force",
+    "A Tale of Two Cities",
+    "The Devil Wears Prada",
+    "Zombieland",
+    "Law & Order: SVU",
+    "Schitt's Creek",
+    "House of Gucci",
+    "Bob's Burgers",
+    "Sleepless in Seattle",
+    "Robin Hood",
+    "Catch Me If You Can",
+    "Casablanca",
+    "Pride and Prejudice",
+    "Gone Girl",
+    "Yellowstone",
+    "Am\u00e9lie",
+    "Grey's Anatomy",
+    "Transformers",
+    "Community",
+    "The Breakfast Club",
+    "M*A*S*H",
+    "Mad Max: Fury Road",
+    "Veep",
+    "The West Wing",
+    "Romeo and Juliet",
+    "Tropic Thunder",
+    "My Little Pony: Friendship Is Magic",
+    "Gladiator",
+    "Suits",
+    "Speed",
+    "Hamlet",
+    "Back to the Future",
+    "Lilo & Stitch",
+    "Moulin Rouge!",
+    "The Americans",
+    "Elizabethtown",
+    "How I Met Your Mother",
+    "Twin Peaks",
+    "Gotham",
+    "Stargate SG-1",
+    "A Nightmare on Elm Street",
+    "The Fall",
+    "Mulan",
+    "Monsters, Inc.",
+    "Pretty Little Liars",
+    "Ex Machina",
+    "Superstore",
+    "Stranger Things",
+    "Agents of S.H.I.E.L.D.",
+    "Groundhog Day",
+    "House, M.D.",
+    "This Is Us",
+    "The Social Network",
+    "Star Trek: Voyager",
+    "Glee",
+    "Hamilton",
+    "The Hangover",
+    "Fight Club",
+    "How To Get Away With Murder",
+    "Criminal Minds",
+    "The Good Place",
+    "Crazy Rich Asians",
+    "Before Sunrise",
+    "Yellowjackets",
+    "Anna Karenina",
+    "Titanic",
+    "The Martian",
+    "That 70's Show",
+    "Don Quixote",
+    "8 Mile",
+    "The Spectacular Now",
+    "Promising Young Woman",
+    "Once Upon a Time",
+    "Cobra Kai",
+    "Wynonna Earp",
+    "Mad Men",
+    "Wheel of Time",
+    "A Star Is Born",
+    "The Witcher",
+    "Breaking Bad",
+    "Psycho",
+    "Ghostbusters",
+    "The Vampire Diaries",
+    "NCIS",
+    "The Mentalist",
+    "Star Wars: Revenge of the Sith",
+    "Avatar: The Last Airbender",
+    "John Wick",
+    "Supergirl",
+    "Archer",
+    "Tommorrow Never Dies",
+    "Dr. Horrible's Sing-Along Blog",
+    "Steins;Gate",
+    "Shrek",
+    "Broad City",
+    "Cowboy Bebop",
+    "Gilmore Girls",
+    "Mulholland Drive",
+    "Prison Break",
+    "Naruto",
+    "Rick and Morty",
+    "Atlas Shrugged",
+    "Arrow",
+    "The X-Files",
+    "Shaun of the Dead",
+    "Smallville",
+    "Arrested Development",
+    "Sherlock",
+    "To Kill a Mockingbird",
+    "Death Note",
+    "The Bourne Identity",
+    "Les Mis\u00e9rables",
+    "The Simpsons",
+    "Pok\u00e9mon",
+    "West Side Story",
+    "Toy Story",
+    "Outer Banks",
+    "American Sniper",
+    "Gone With the Wind",
+    "Ferris Bueller's Day Off",
+    "Elementary",
+    "Friday Night Lights",
+    "Die Hard",
+    "Ruby Sparks",
+    "Eternal Sunshine of the Spotless Mind",
+    "The Boys",
+    "One Punch Man",
+    "Boston Legal",
+    "LOST",
+    "Ocean's 11",
+    "Castle",
+    "Lord of the Rings",
+    "The Curious Case of Benjamin Button",
+    "The Walking Dead",
+    "The Silence of the Lambs",
+    "Twelfth Night",
+    "Forrest Gump",
+    "Green Book",
+    "Psych",
+    "It's Always Sunny in Philadelphia",
+    "New Girl",
+    "Annie Hall",
+    "Ratatouille",
+    "Chilling Adventures of Sabrina",
+    "South Park",
+    "American History X",
+    "The Fault in Our Stars",
+    "Beowulf",
+    "Locke & Key",
+    "Superbad",
+    "The Cabin in the Woods",
+    "The Land Before Time",
+    "Penny Arcade",
+    "Westworld",
+    "Jane the Virgin",
+    "Scandal",
+    "Hannibal",
+    "Dexter",
+    "Arcane",
+    "The Big Sick",
+    "Baywatch",
+    "Sex Education",
+    "Orange is the New Black",
+    "The Handmaid's Tale",
+    "The Good Doctor",
+    "The Scarlet Letter",
+    "Jaws",
+    "Harry Potter"
+  ]
+}

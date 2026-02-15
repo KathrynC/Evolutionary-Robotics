@@ -1,0 +1,1650 @@
+{
+  "story": "Romeo and Juliet",
+  "generated_from": "character_seed_experiment_checkpoint.json",
+  "characters": {
+    "Benvolio": {
+      "models": {
+        "deepseek-r1:8b": {
+          "success": false,
+          "error": "parse_failure"
+        },
+        "gpt-oss:20b": {
+          "success": true,
+          "weights": {
+            "w03": 0.4,
+            "w04": -0.4,
+            "w13": 0.4,
+            "w14": 0.1,
+            "w23": 0.1,
+            "w24": 0.4
+          },
+          "outcome": {
+            "dx": 8.703525888558355,
+            "dy": -4.256770833507493,
+            "yaw_net_rad": -0.9557582763399817,
+            "mean_speed": 0.6642392418590816,
+            "speed_cv": 1.5493370053512934,
+            "work_proxy": 2994.283062273996,
+            "distance_per_work": 0.003235742360911702,
+            "path_length": 11.070653124865117,
+            "path_straightness": 0.8751722627275819,
+            "heading_consistency": 0.7908403410360569
+          },
+          "contact": {
+            "duty_torso": 0.64225,
+            "duty_back": 0.71325,
+            "duty_front": 0.66725,
+            "support_count_frac": [
+              0.25425,
+              0.09675,
+              0.021,
+              0.628
+            ],
+            "state_distribution": [
+              0.25425,
+              0.021,
+              0.06575,
+              0.01675,
+              0.01,
+              0.0015,
+              0.00275,
+              0.628
+            ],
+            "dominant_state": 7,
+            "contact_entropy_bits": 1.5017637765316774
+          },
+          "coordination": {
+            "joint_0": {
+              "dominant_freq_hz": 0.06,
+              "dominant_amplitude": 0.7672249658974184
+            },
+            "joint_1": {
+              "dominant_freq_hz": 0.06,
+              "dominant_amplitude": 0.07369495687762843
+            },
+            "delta_phi_rad": -0.16406195733223702,
+            "phase_lock_score": 0.8793431352240533
+          },
+          "rotation_axis": {
+            "axis_dominance": [
+              0.6163805924846268,
+              0.25916289066106357,
+              0.12445651685430957
+            ],
+            "axis_switching_rate_hz": 22.145536384096022,
+            "periodicity": {
+              "roll_freq_hz": 0.06,
+              "pitch_freq_hz": 0.24,
+              "yaw_freq_hz": 0.06
+            }
+          }
+        },
+        "llama3.1:latest": {
+          "success": true,
+          "weights": {
+            "w03": -0.1,
+            "w04": 0.4,
+            "w13": -0.4,
+            "w14": -0.7,
+            "w23": 0.0,
+            "w24": 0.7
+          },
+          "outcome": {
+            "dx": -0.18454249683152432,
+            "dy": -0.11648285085654295,
+            "yaw_net_rad": -0.005244381747481874,
+            "mean_speed": 0.8179093733987701,
+            "speed_cv": 0.6657500272458257,
+            "work_proxy": 8109.037568517382,
+            "distance_per_work": 2.6911907292888623e-05,
+            "path_length": 13.631821983859908,
+            "path_straightness": 0.01600884075047891,
+            "heading_consistency": 0.03422549597353664
+          },
+          "contact": {
+            "duty_torso": 0.0,
+            "duty_back": 0.10425,
+            "duty_front": 0.109,
+            "support_count_frac": [
+              0.79325,
+              0.20025,
+              0.0065,
+              0.0
+            ],
+            "state_distribution": [
+              0.79325,
+              0.1025,
+              0.09775,
+              0.0065,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "dominant_state": 0,
+            "contact_entropy_bits": 0.9770651123139019
+          },
+          "coordination": {
+            "joint_0": {
+              "dominant_freq_hz": 0.96,
+              "dominant_amplitude": 0.0374951217543093
+            },
+            "joint_1": {
+              "dominant_freq_hz": 0.96,
+              "dominant_amplitude": 0.06957140028460124
+            },
+            "delta_phi_rad": 0.037792289664914346,
+            "phase_lock_score": 0.7173544806891838
+          },
+          "rotation_axis": {
+            "axis_dominance": [
+              0.9957710602679395,
+              0.003334633784570781,
+              0.0008943059474897744
+            ],
+            "axis_switching_rate_hz": 6.241560390097524,
+            "periodicity": {
+              "roll_freq_hz": 19.08,
+              "pitch_freq_hz": 19.08,
+              "yaw_freq_hz": 0.48
+            }
+          }
+        },
+        "qwen3-coder:30b": {
+          "success": true,
+          "weights": {
+            "w03": 0.1,
+            "w04": -0.1,
+            "w13": 0.4,
+            "w14": 0.4,
+            "w23": 0.4,
+            "w24": 0.4
+          },
+          "outcome": {
+            "dx": -11.205260640011597,
+            "dy": 0.27136788588458655,
+            "yaw_net_rad": 0.09747257279973727,
+            "mean_speed": 0.717056687899947,
+            "speed_cv": 0.3803820125947185,
+            "work_proxy": 13870.000078485304,
+            "distance_per_work": 0.0008081143529292285,
+            "path_length": 11.950943892212862,
+            "path_straightness": 0.9378795716593479,
+            "heading_consistency": 0.9207170733622444
+          },
+          "contact": {
+            "duty_torso": 0.0,
+            "duty_back": 0.1755,
+            "duty_front": 0.0655,
+            "support_count_frac": [
+              0.775,
+              0.209,
+              0.016,
+              0.0
+            ],
+            "state_distribution": [
+              0.775,
+              0.0495,
+              0.1595,
+              0.016,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "dominant_state": 0,
+            "contact_entropy_bits": 1.0175131324474098
+          },
+          "coordination": {
+            "joint_0": {
+              "dominant_freq_hz": 4.92,
+              "dominant_amplitude": 0.018861480738177207
+            },
+            "joint_1": {
+              "dominant_freq_hz": 4.92,
+              "dominant_amplitude": 0.020858474600166703
+            },
+            "delta_phi_rad": -0.01241585996750883,
+            "phase_lock_score": 0.9848659166313123
+          },
+          "rotation_axis": {
+            "axis_dominance": [
+              0.9935312654078604,
+              0.00575860257175585,
+              0.0007101320203838063
+            ],
+            "axis_switching_rate_hz": 0.7801950487621905,
+            "periodicity": {
+              "roll_freq_hz": 3.0,
+              "pitch_freq_hz": 31.32,
+              "yaw_freq_hz": 0.12
+            }
+          }
+        }
+      },
+      "n_models_attempted": 4,
+      "n_models_successful": 3,
+      "summary": {
+        "max_abs_dx": 11.205260640011597,
+        "min_abs_dx": 0.18454249683152432,
+        "mean_abs_dx": 6.697776341800492,
+        "best_model": "qwen3-coder:30b",
+        "mean_speed": 0.7330684343859328,
+        "mean_torso_duty": 0.21408333333333332,
+        "mean_contact_entropy": 1.1654473404309964,
+        "falls": 1,
+        "n_unique_weight_vectors": 3,
+        "fall_threshold": 0.3,
+        "torso_duties": {
+          "gpt-oss:20b": 0.64225,
+          "llama3.1:latest": 0.0,
+          "qwen3-coder:30b": 0.0
+        }
+      }
+    },
+    "Friar Laurence": {
+      "models": {
+        "deepseek-r1:8b": {
+          "success": true,
+          "weights": {
+            "w03": 0.1,
+            "w04": -0.1,
+            "w13": 0.4,
+            "w14": -0.4,
+            "w23": 0.4,
+            "w24": -0.4
+          },
+          "outcome": {
+            "dx": -0.03467366655427811,
+            "dy": 0.3585374935436515,
+            "yaw_net_rad": -0.06264372672180055,
+            "mean_speed": 0.2586697422018088,
+            "speed_cv": 0.9208349778394528,
+            "work_proxy": 10361.757868583469,
+            "distance_per_work": 3.476342695911767e-05,
+            "path_length": 4.311161463910555,
+            "path_straightness": 0.08355293946838768,
+            "heading_consistency": 0.05447776448163424
+          },
+          "contact": {
+            "duty_torso": 0.0,
+            "duty_back": 0.2785,
+            "duty_front": 0.255,
+            "support_count_frac": [
+              0.56525,
+              0.336,
+              0.09875,
+              0.0
+            ],
+            "state_distribution": [
+              0.56525,
+              0.15625,
+              0.17975,
+              0.09875,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "dominant_state": 0,
+            "contact_entropy_bits": 1.658553538532104
+          },
+          "coordination": {
+            "joint_0": {
+              "dominant_freq_hz": 0.12,
+              "dominant_amplitude": 0.08871541373691898
+            },
+            "joint_1": {
+              "dominant_freq_hz": 0.12,
+              "dominant_amplitude": 0.11410850807106852
+            },
+            "delta_phi_rad": -3.050099804030663,
+            "phase_lock_score": 0.5347837397932179
+          },
+          "rotation_axis": {
+            "axis_dominance": [
+              0.9126174485017663,
+              0.05280523583201082,
+              0.034577315666222797
+            ],
+            "axis_switching_rate_hz": 16.024006001500375,
+            "periodicity": {
+              "roll_freq_hz": 2.16,
+              "pitch_freq_hz": 4.26,
+              "yaw_freq_hz": 1.38
+            }
+          }
+        },
+        "gpt-oss:20b": {
+          "success": true,
+          "weights": {
+            "w03": 0.4,
+            "w04": -0.4,
+            "w13": 0.4,
+            "w14": 0.4,
+            "w23": 0.4,
+            "w24": 0.4
+          },
+          "outcome": {
+            "dx": 12.8546597918002,
+            "dy": -17.550313601969822,
+            "yaw_net_rad": -1.7355193317245612,
+            "mean_speed": 1.7037118928495787,
+            "speed_cv": 0.4849863563373766,
+            "work_proxy": 5669.575997824809,
+            "distance_per_work": 0.003837049350492961,
+            "path_length": 28.39519730804004,
+            "path_straightness": 0.7661310701251736,
+            "heading_consistency": 0.6699711721557146
+          },
+          "contact": {
+            "duty_torso": 0.0,
+            "duty_back": 0.126,
+            "duty_front": 0.0675,
+            "support_count_frac": [
+              0.81425,
+              0.178,
+              0.00775,
+              0.0
+            ],
+            "state_distribution": [
+              0.81425,
+              0.05975,
+              0.11825,
+              0.00775,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "dominant_state": 0,
+            "contact_entropy_bits": 0.9028285477529912
+          },
+          "coordination": {
+            "joint_0": {
+              "dominant_freq_hz": 0.3,
+              "dominant_amplitude": 0.06243582473031361
+            },
+            "joint_1": {
+              "dominant_freq_hz": 0.12,
+              "dominant_amplitude": 0.09411325892065384
+            },
+            "delta_phi_rad": -0.04600020395954595,
+            "phase_lock_score": 0.9732196497153819
+          },
+          "rotation_axis": {
+            "axis_dominance": [
+              0.771563114155132,
+              0.19250714210059816,
+              0.03592974374426974
+            ],
+            "axis_switching_rate_hz": 14.703675918979744,
+            "periodicity": {
+              "roll_freq_hz": 3.96,
+              "pitch_freq_hz": 0.8999999999999999,
+              "yaw_freq_hz": 0.18
+            }
+          }
+        },
+        "llama3.1:latest": {
+          "success": true,
+          "weights": {
+            "w03": -0.1,
+            "w04": 0.4,
+            "w13": 0.7,
+            "w14": 0.0,
+            "w23": -0.4,
+            "w24": 0.0
+          },
+          "outcome": {
+            "dx": -6.132190357155551,
+            "dy": 2.17044737293463,
+            "yaw_net_rad": -0.7724983464456722,
+            "mean_speed": 0.41809530226537256,
+            "speed_cv": 0.6435174689827665,
+            "work_proxy": 2123.5168541922303,
+            "distance_per_work": 0.0030632991439302026,
+            "path_length": 6.968254131636626,
+            "path_straightness": 0.9335146564237894,
+            "heading_consistency": 0.9264787097668419
+          },
+          "contact": {
+            "duty_torso": 0.0,
+            "duty_back": 0.1305,
+            "duty_front": 0.8945,
+            "support_count_frac": [
+              0.07275,
+              0.8295,
+              0.09775,
+              0.0
+            ],
+            "state_distribution": [
+              0.07275,
+              0.79675,
+              0.03275,
+              0.09775,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "dominant_state": 1,
+            "contact_entropy_bits": 1.02569912894336
+          },
+          "coordination": {
+            "joint_0": {
+              "dominant_freq_hz": 0.48,
+              "dominant_amplitude": 0.03993327261743503
+            },
+            "joint_1": {
+              "dominant_freq_hz": 0.48,
+              "dominant_amplitude": 0.0026591614495323295
+            },
+            "delta_phi_rad": 0.09864324541467312,
+            "phase_lock_score": 0.7413776778821439
+          },
+          "rotation_axis": {
+            "axis_dominance": [
+              0.8765517267197868,
+              0.08884195803851713,
+              0.03460631524169615
+            ],
+            "axis_switching_rate_hz": 23.465866466616653,
+            "periodicity": {
+              "roll_freq_hz": 5.46,
+              "pitch_freq_hz": 5.1,
+              "yaw_freq_hz": 0.06
+            }
+          }
+        },
+        "qwen3-coder:30b": {
+          "success": true,
+          "weights": {
+            "w03": 0.1,
+            "w04": -0.1,
+            "w13": 0.4,
+            "w14": 0.4,
+            "w23": 0.4,
+            "w24": 0.4
+          },
+          "outcome": {
+            "dx": -11.205260640011597,
+            "dy": 0.27136788588458655,
+            "yaw_net_rad": 0.09747257279973727,
+            "mean_speed": 0.717056687899947,
+            "speed_cv": 0.3803820125947185,
+            "work_proxy": 13870.000078485304,
+            "distance_per_work": 0.0008081143529292285,
+            "path_length": 11.950943892212862,
+            "path_straightness": 0.9378795716593479,
+            "heading_consistency": 0.9207170733622444
+          },
+          "contact": {
+            "duty_torso": 0.0,
+            "duty_back": 0.1755,
+            "duty_front": 0.0655,
+            "support_count_frac": [
+              0.775,
+              0.209,
+              0.016,
+              0.0
+            ],
+            "state_distribution": [
+              0.775,
+              0.0495,
+              0.1595,
+              0.016,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "dominant_state": 0,
+            "contact_entropy_bits": 1.0175131324474098
+          },
+          "coordination": {
+            "joint_0": {
+              "dominant_freq_hz": 4.92,
+              "dominant_amplitude": 0.018861480738177207
+            },
+            "joint_1": {
+              "dominant_freq_hz": 4.92,
+              "dominant_amplitude": 0.020858474600166703
+            },
+            "delta_phi_rad": -0.01241585996750883,
+            "phase_lock_score": 0.9848659166313123
+          },
+          "rotation_axis": {
+            "axis_dominance": [
+              0.9935312654078604,
+              0.00575860257175585,
+              0.0007101320203838063
+            ],
+            "axis_switching_rate_hz": 0.7801950487621905,
+            "periodicity": {
+              "roll_freq_hz": 3.0,
+              "pitch_freq_hz": 31.32,
+              "yaw_freq_hz": 0.12
+            }
+          }
+        }
+      },
+      "n_models_attempted": 4,
+      "n_models_successful": 4,
+      "summary": {
+        "max_abs_dx": 12.8546597918002,
+        "min_abs_dx": 0.03467366655427811,
+        "mean_abs_dx": 7.556696113880406,
+        "best_model": "gpt-oss:20b",
+        "mean_speed": 0.7743834063041768,
+        "mean_torso_duty": 0.0,
+        "mean_contact_entropy": 1.1511485869189662,
+        "falls": 0,
+        "n_unique_weight_vectors": 4,
+        "fall_threshold": 0.3,
+        "torso_duties": {
+          "deepseek-r1:8b": 0.0,
+          "gpt-oss:20b": 0.0,
+          "llama3.1:latest": 0.0,
+          "qwen3-coder:30b": 0.0
+        }
+      }
+    },
+    "Juliet Capulet": {
+      "models": {
+        "deepseek-r1:8b": {
+          "success": true,
+          "weights": {
+            "w03": 0.4,
+            "w04": -0.4,
+            "w13": 0.7,
+            "w14": 0.7,
+            "w23": 0.7,
+            "w24": -0.4
+          },
+          "outcome": {
+            "dx": 1.7241194902004746,
+            "dy": 4.233674592242838,
+            "yaw_net_rad": -5.91969599569396,
+            "mean_speed": 0.49587361994163554,
+            "speed_cv": 1.7500632059862413,
+            "work_proxy": 2600.8077238087567,
+            "distance_per_work": 0.0017576380661273679,
+            "path_length": 8.264559426241,
+            "path_straightness": 0.5531182513528754,
+            "heading_consistency": 0.4665524674562296
+          },
+          "contact": {
+            "duty_torso": 0.72475,
+            "duty_back": 0.70725,
+            "duty_front": 0.7,
+            "support_count_frac": [
+              0.203,
+              0.12375,
+              0.0115,
+              0.66175
+            ],
+            "state_distribution": [
+              0.203,
+              0.027,
+              0.03775,
+              0.0075,
+              0.059,
+              0.00375,
+              0.00025,
+              0.66175
+            ],
+            "dominant_state": 7,
+            "contact_entropy_bits": 1.5073691070865365
+          },
+          "coordination": {
+            "joint_0": {
+              "dominant_freq_hz": 0.06,
+              "dominant_amplitude": 0.9802259753924387
+            },
+            "joint_1": {
+              "dominant_freq_hz": 0.06,
+              "dominant_amplitude": 0.11789176825635914
+            },
+            "delta_phi_rad": -3.0677569542808087,
+            "phase_lock_score": 0.8208055733163323
+          },
+          "rotation_axis": {
+            "axis_dominance": [
+              0.591640451578901,
+              0.3114640174484403,
+              0.0968955309726586
+            ],
+            "axis_switching_rate_hz": 8.22205551387847,
+            "periodicity": {
+              "roll_freq_hz": 0.36,
+              "pitch_freq_hz": 0.06,
+              "yaw_freq_hz": 0.06
+            }
+          }
+        },
+        "gpt-oss:20b": {
+          "success": true,
+          "weights": {
+            "w03": 0.4,
+            "w04": -0.4,
+            "w13": 0.4,
+            "w14": 0.4,
+            "w23": 0.4,
+            "w24": 0.4
+          },
+          "outcome": {
+            "dx": 12.8546597918002,
+            "dy": -17.550313601969822,
+            "yaw_net_rad": -1.7355193317245612,
+            "mean_speed": 1.7037118928495787,
+            "speed_cv": 0.4849863563373766,
+            "work_proxy": 5669.575997824809,
+            "distance_per_work": 0.003837049350492961,
+            "path_length": 28.39519730804004,
+            "path_straightness": 0.7661310701251736,
+            "heading_consistency": 0.6699711721557146
+          },
+          "contact": {
+            "duty_torso": 0.0,
+            "duty_back": 0.126,
+            "duty_front": 0.0675,
+            "support_count_frac": [
+              0.81425,
+              0.178,
+              0.00775,
+              0.0
+            ],
+            "state_distribution": [
+              0.81425,
+              0.05975,
+              0.11825,
+              0.00775,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "dominant_state": 0,
+            "contact_entropy_bits": 0.9028285477529912
+          },
+          "coordination": {
+            "joint_0": {
+              "dominant_freq_hz": 0.3,
+              "dominant_amplitude": 0.06243582473031361
+            },
+            "joint_1": {
+              "dominant_freq_hz": 0.12,
+              "dominant_amplitude": 0.09411325892065384
+            },
+            "delta_phi_rad": -0.04600020395954595,
+            "phase_lock_score": 0.9732196497153819
+          },
+          "rotation_axis": {
+            "axis_dominance": [
+              0.771563114155132,
+              0.19250714210059816,
+              0.03592974374426974
+            ],
+            "axis_switching_rate_hz": 14.703675918979744,
+            "periodicity": {
+              "roll_freq_hz": 3.96,
+              "pitch_freq_hz": 0.8999999999999999,
+              "yaw_freq_hz": 0.18
+            }
+          }
+        },
+        "llama3.1:latest": {
+          "success": true,
+          "weights": {
+            "w03": 0.4,
+            "w04": -0.1,
+            "w13": -0.7,
+            "w14": 0.7,
+            "w23": 0.1,
+            "w24": -0.4
+          },
+          "outcome": {
+            "dx": -3.8321384294459717,
+            "dy": 4.439722950361878,
+            "yaw_net_rad": -2.0350799356341605,
+            "mean_speed": 0.65954193151163,
+            "speed_cv": 1.7145177814256953,
+            "work_proxy": 2320.836854743139,
+            "distance_per_work": 0.002527039553788296,
+            "path_length": 10.992364619074225,
+            "path_straightness": 0.5335382088444106,
+            "heading_consistency": 0.33325531087545296
+          },
+          "contact": {
+            "duty_torso": 0.62975,
+            "duty_back": 0.0255,
+            "duty_front": 0.06,
+            "support_count_frac": [
+              0.29325,
+              0.69825,
+              0.0085,
+              0.0
+            ],
+            "state_distribution": [
+              0.29325,
+              0.0515,
+              0.0175,
+              0.008,
+              0.62925,
+              0.0005,
+              0.0,
+              0.0
+            ],
+            "dominant_state": 4,
+            "contact_entropy_bits": 1.323248510963208
+          },
+          "coordination": {
+            "joint_0": {
+              "dominant_freq_hz": 0.06,
+              "dominant_amplitude": 0.363177885272195
+            },
+            "joint_1": {
+              "dominant_freq_hz": 0.06,
+              "dominant_amplitude": 0.11758723396245532
+            },
+            "delta_phi_rad": -2.7960421225982284,
+            "phase_lock_score": 0.8877540418330412
+          },
+          "rotation_axis": {
+            "axis_dominance": [
+              0.5982773015025753,
+              0.32053493237546343,
+              0.08118776612196117
+            ],
+            "axis_switching_rate_hz": 6.841710427606901,
+            "periodicity": {
+              "roll_freq_hz": 0.12,
+              "pitch_freq_hz": 0.3,
+              "yaw_freq_hz": 0.06
+            }
+          }
+        },
+        "qwen3-coder:30b": {
+          "success": true,
+          "weights": {
+            "w03": 0.4,
+            "w04": -0.4,
+            "w13": 0.7,
+            "w14": 0.7,
+            "w23": 0.7,
+            "w24": -0.7
+          },
+          "outcome": {
+            "dx": 0.4183865192238193,
+            "dy": -1.3547620864051537,
+            "yaw_net_rad": 1.174614685663137,
+            "mean_speed": 0.3376576165893549,
+            "speed_cv": 2.0529639132436164,
+            "work_proxy": 2574.0436913337758,
+            "distance_per_work": 0.0005508435944879847,
+            "path_length": 5.627626037036317,
+            "path_straightness": 0.25195268306245266,
+            "heading_consistency": 0.22893867249490757
+          },
+          "contact": {
+            "duty_torso": 0.77,
+            "duty_back": 0.783,
+            "duty_front": 0.75575,
+            "support_count_frac": [
+              0.16675,
+              0.08725,
+              0.0165,
+              0.7295
+            ],
+            "state_distribution": [
+              0.16675,
+              0.01,
+              0.05,
+              0.00325,
+              0.02725,
+              0.013,
+              0.00025,
+              0.7295
+            ],
+            "dominant_state": 7,
+            "contact_entropy_bits": 1.2983322783483824
+          },
+          "coordination": {
+            "joint_0": {
+              "dominant_freq_hz": 0.06,
+              "dominant_amplitude": 0.8221109650372669
+            },
+            "joint_1": {
+              "dominant_freq_hz": 0.06,
+              "dominant_amplitude": 0.3584095036323612
+            },
+            "delta_phi_rad": -3.0549501405008392,
+            "phase_lock_score": 0.97257344743176
+          },
+          "rotation_axis": {
+            "axis_dominance": [
+              0.5049936425507398,
+              0.31655846906317914,
+              0.17844788838608117
+            ],
+            "axis_switching_rate_hz": 26.70667666916729,
+            "periodicity": {
+              "roll_freq_hz": 0.96,
+              "pitch_freq_hz": 0.06,
+              "yaw_freq_hz": 0.18
+            }
+          }
+        }
+      },
+      "n_models_attempted": 4,
+      "n_models_successful": 4,
+      "summary": {
+        "max_abs_dx": 12.8546597918002,
+        "min_abs_dx": 0.4183865192238193,
+        "mean_abs_dx": 4.707326057667617,
+        "best_model": "gpt-oss:20b",
+        "mean_speed": 0.7991962652230498,
+        "mean_torso_duty": 0.5311250000000001,
+        "mean_contact_entropy": 1.2579446110377794,
+        "falls": 3,
+        "n_unique_weight_vectors": 4,
+        "fall_threshold": 0.3,
+        "torso_duties": {
+          "deepseek-r1:8b": 0.72475,
+          "gpt-oss:20b": 0.0,
+          "llama3.1:latest": 0.62975,
+          "qwen3-coder:30b": 0.77
+        }
+      }
+    },
+    "Mercutio": {
+      "models": {
+        "deepseek-r1:8b": {
+          "success": true,
+          "weights": {
+            "w03": 0.7,
+            "w04": -0.7,
+            "w13": -0.4,
+            "w14": 0.4,
+            "w23": 0.7,
+            "w24": -0.4
+          },
+          "outcome": {
+            "dx": 3.9829147333641552,
+            "dy": -5.37847776329769,
+            "yaw_net_rad": -0.6718461964269701,
+            "mean_speed": 0.6422562220474839,
+            "speed_cv": 0.7820445222295933,
+            "work_proxy": 9111.379774160197,
+            "distance_per_work": 0.0007345380508693969,
+            "path_length": 10.704269461338482,
+            "path_straightness": 0.6252323116691808,
+            "heading_consistency": 0.4799744549534365
+          },
+          "contact": {
+            "duty_torso": 0.0,
+            "duty_back": 0.2435,
+            "duty_front": 0.2995,
+            "support_count_frac": [
+              0.5175,
+              0.422,
+              0.0605,
+              0.0
+            ],
+            "state_distribution": [
+              0.5175,
+              0.239,
+              0.183,
+              0.0605,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "dominant_state": 0,
+            "contact_entropy_bits": 1.6785355316834847
+          },
+          "coordination": {
+            "joint_0": {
+              "dominant_freq_hz": 0.12,
+              "dominant_amplitude": 0.0756253773106577
+            },
+            "joint_1": {
+              "dominant_freq_hz": 2.88,
+              "dominant_amplitude": 0.028347779070998155
+            },
+            "delta_phi_rad": 3.049997024962244,
+            "phase_lock_score": 0.365479136160014
+          },
+          "rotation_axis": {
+            "axis_dominance": [
+              0.7587079101521691,
+              0.1602284763575648,
+              0.08106361349026613
+            ],
+            "axis_switching_rate_hz": 28.507126781695423,
+            "periodicity": {
+              "roll_freq_hz": 2.94,
+              "pitch_freq_hz": 3.6599999999999997,
+              "yaw_freq_hz": 0.24
+            }
+          }
+        },
+        "gpt-oss:20b": {
+          "success": true,
+          "weights": {
+            "w03": 0.4,
+            "w04": -0.4,
+            "w13": 0.4,
+            "w14": 0.7,
+            "w23": 0.7,
+            "w24": 0.4
+          },
+          "outcome": {
+            "dx": 2.785243332984822,
+            "dy": -1.8852356155047711,
+            "yaw_net_rad": -1.554623836773709,
+            "mean_speed": 0.3759980574288663,
+            "speed_cv": 2.203830225997414,
+            "work_proxy": 2903.510955635423,
+            "distance_per_work": 0.0011583514596043268,
+            "path_length": 6.266633384361517,
+            "path_straightness": 0.5366974493562332,
+            "heading_consistency": 0.40717044427402466
+          },
+          "contact": {
+            "duty_torso": 0.784,
+            "duty_back": 0.8105,
+            "duty_front": 0.79825,
+            "support_count_frac": [
+              0.1735,
+              0.03325,
+              0.02025,
+              0.773
+            ],
+            "state_distribution": [
+              0.1735,
+              0.01175,
+              0.01825,
+              0.0125,
+              0.00325,
+              0.001,
+              0.00675,
+              0.773
+            ],
+            "dominant_state": 7,
+            "contact_entropy_bits": 1.0708401401033332
+          },
+          "coordination": {
+            "joint_0": {
+              "dominant_freq_hz": 0.06,
+              "dominant_amplitude": 0.6910635288062595
+            },
+            "joint_1": {
+              "dominant_freq_hz": 0.06,
+              "dominant_amplitude": 0.41221359816007913
+            },
+            "delta_phi_rad": -0.01590518519556288,
+            "phase_lock_score": 0.9916969277493116
+          },
+          "rotation_axis": {
+            "axis_dominance": [
+              0.6619071821544007,
+              0.24742862273766822,
+              0.0906641951079311
+            ],
+            "axis_switching_rate_hz": 37.50937734433608,
+            "periodicity": {
+              "roll_freq_hz": 0.06,
+              "pitch_freq_hz": 6.3,
+              "yaw_freq_hz": 0.06
+            }
+          }
+        },
+        "llama3.1:latest": {
+          "success": true,
+          "weights": {
+            "w03": -0.7,
+            "w04": 0.4,
+            "w13": 1.0,
+            "w14": 0.7,
+            "w23": -0.4,
+            "w24": -0.1
+          },
+          "outcome": {
+            "dx": 4.234549800292789,
+            "dy": -2.437657154913484,
+            "yaw_net_rad": 0.10554039959337455,
+            "mean_speed": 0.41012207038461673,
+            "speed_cv": 2.1387556300323336,
+            "work_proxy": 1947.9963193827743,
+            "distance_per_work": 0.0025082492022745215,
+            "path_length": 6.835366933624011,
+            "path_straightness": 0.7148204714644384,
+            "heading_consistency": 0.60393169537359
+          },
+          "contact": {
+            "duty_torso": 0.81075,
+            "duty_back": 0.821,
+            "duty_front": 0.84725,
+            "support_count_frac": [
+              0.143,
+              0.04175,
+              0.0085,
+              0.80675
+            ],
+            "state_distribution": [
+              0.143,
+              0.03225,
+              0.0095,
+              0.0045,
+              0.0,
+              0.00375,
+              0.00025,
+              0.80675
+            ],
+            "dominant_state": 7,
+            "contact_entropy_bits": 0.9430796503363006
+          },
+          "coordination": {
+            "joint_0": {
+              "dominant_freq_hz": 0.12,
+              "dominant_amplitude": 0.045314616075665524
+            },
+            "joint_1": {
+              "dominant_freq_hz": 0.06,
+              "dominant_amplitude": 0.5294225254580129
+            },
+            "delta_phi_rad": 2.75900270095803,
+            "phase_lock_score": 0.871681539797044
+          },
+          "rotation_axis": {
+            "axis_dominance": [
+              0.672584719916836,
+              0.24777030091160981,
+              0.07964497917155428
+            ],
+            "axis_switching_rate_hz": 16.62415603900975,
+            "periodicity": {
+              "roll_freq_hz": 0.06,
+              "pitch_freq_hz": 6.12,
+              "yaw_freq_hz": 6.18
+            }
+          }
+        },
+        "qwen3-coder:30b": {
+          "success": true,
+          "weights": {
+            "w03": 0.7,
+            "w04": -0.7,
+            "w13": 0.1,
+            "w14": 1.0,
+            "w23": 0.7,
+            "w24": -0.1
+          },
+          "outcome": {
+            "dx": -2.5331072038322207,
+            "dy": -2.664507961539817,
+            "yaw_net_rad": 2.4221708309325996,
+            "mean_speed": 0.580764370574259,
+            "speed_cv": 1.4640511214174041,
+            "work_proxy": 5475.37556819244,
+            "distance_per_work": 0.0006714504199292478,
+            "path_length": 9.67940527011806,
+            "path_straightness": 0.37982118962235745,
+            "heading_consistency": 0.1962211437470145
+          },
+          "contact": {
+            "duty_torso": 0.10525,
+            "duty_back": 0.1275,
+            "duty_front": 0.02425,
+            "support_count_frac": [
+              0.7575,
+              0.228,
+              0.0145,
+              0.0
+            ],
+            "state_distribution": [
+              0.7575,
+              0.01775,
+              0.113,
+              0.0065,
+              0.09725,
+              0.0,
+              0.008,
+              0.0
+            ],
+            "dominant_state": 0,
+            "contact_entropy_bits": 1.1921257059622012
+          },
+          "coordination": {
+            "joint_0": {
+              "dominant_freq_hz": 0.06,
+              "dominant_amplitude": 0.038601571454392566
+            },
+            "joint_1": {
+              "dominant_freq_hz": 1.3199999999999998,
+              "dominant_amplitude": 0.05595924369966367
+            },
+            "delta_phi_rad": -0.09958474937812721,
+            "phase_lock_score": 0.7231391215807037
+          },
+          "rotation_axis": {
+            "axis_dominance": [
+              0.8674918560801785,
+              0.0977012163706175,
+              0.03480692754920394
+            ],
+            "axis_switching_rate_hz": 27.42685671417854,
+            "periodicity": {
+              "roll_freq_hz": 0.06,
+              "pitch_freq_hz": 0.42,
+              "yaw_freq_hz": 0.06
+            }
+          }
+        }
+      },
+      "n_models_attempted": 4,
+      "n_models_successful": 4,
+      "summary": {
+        "max_abs_dx": 4.234549800292789,
+        "min_abs_dx": 2.5331072038322207,
+        "mean_abs_dx": 3.3839537676184968,
+        "best_model": "llama3.1:latest",
+        "mean_speed": 0.5022851801088065,
+        "mean_torso_duty": 0.425,
+        "mean_contact_entropy": 1.22114525702133,
+        "falls": 2,
+        "n_unique_weight_vectors": 4,
+        "fall_threshold": 0.3,
+        "torso_duties": {
+          "deepseek-r1:8b": 0.0,
+          "gpt-oss:20b": 0.784,
+          "llama3.1:latest": 0.81075,
+          "qwen3-coder:30b": 0.10525
+        }
+      }
+    },
+    "Romeo Montague": {
+      "models": {
+        "deepseek-r1:8b": {
+          "success": false,
+          "error": "parse_failure"
+        },
+        "gpt-oss:20b": {
+          "success": true,
+          "weights": {
+            "w03": 0.7,
+            "w04": -0.7,
+            "w13": 0.7,
+            "w14": 0.4,
+            "w23": 0.4,
+            "w24": 0.7
+          },
+          "outcome": {
+            "dx": 14.200582634682684,
+            "dy": -0.9110045518416754,
+            "yaw_net_rad": -1.0783879506681628,
+            "mean_speed": 1.534237968160768,
+            "speed_cv": 0.8612831136849979,
+            "work_proxy": 9029.106248317114,
+            "distance_per_work": 0.0015759892399807823,
+            "path_length": 25.57063189655984,
+            "path_straightness": 0.5564889577838487,
+            "heading_consistency": 0.5425011149465667
+          },
+          "contact": {
+            "duty_torso": 0.38425,
+            "duty_back": 0.422,
+            "duty_front": 0.41375,
+            "support_count_frac": [
+              0.46625,
+              0.16375,
+              0.05375,
+              0.31625
+            ],
+            "state_distribution": [
+              0.46625,
+              0.065,
+              0.06125,
+              0.02325,
+              0.0375,
+              0.00925,
+              0.02125,
+              0.31625
+            ],
+            "dominant_state": 0,
+            "contact_entropy_bits": 2.0259891203340374
+          },
+          "coordination": {
+            "joint_0": {
+              "dominant_freq_hz": 0.06,
+              "dominant_amplitude": 1.0249140410351054
+            },
+            "joint_1": {
+              "dominant_freq_hz": 0.06,
+              "dominant_amplitude": 0.3308819161881673
+            },
+            "delta_phi_rad": -0.04754728189723323,
+            "phase_lock_score": 0.736934410764728
+          },
+          "rotation_axis": {
+            "axis_dominance": [
+              0.5300201122586704,
+              0.39860929153770175,
+              0.07137059620362783
+            ],
+            "axis_switching_rate_hz": 16.744186046511626,
+            "periodicity": {
+              "roll_freq_hz": 0.42,
+              "pitch_freq_hz": 3.42,
+              "yaw_freq_hz": 0.42
+            }
+          }
+        },
+        "llama3.1:latest": {
+          "success": true,
+          "weights": {
+            "w03": -0.4,
+            "w04": -0.1,
+            "w13": 0.7,
+            "w14": 1.0,
+            "w23": 0.4,
+            "w24": 0.0
+          },
+          "outcome": {
+            "dx": -7.739514889008197,
+            "dy": 1.0343525792581376,
+            "yaw_net_rad": 0.359221658117136,
+            "mean_speed": 0.8585368100851345,
+            "speed_cv": 1.3957592583186353,
+            "work_proxy": 7150.122037613719,
+            "distance_per_work": 0.0010920551155691705,
+            "path_length": 14.308945928632642,
+            "path_straightness": 0.5456954961647608,
+            "heading_consistency": 0.4747029798964001
+          },
+          "contact": {
+            "duty_torso": 0.46775,
+            "duty_back": 0.507,
+            "duty_front": 0.5905,
+            "support_count_frac": [
+              0.36525,
+              0.16,
+              0.019,
+              0.45575
+            ],
+            "state_distribution": [
+              0.36525,
+              0.122,
+              0.0355,
+              0.0095,
+              0.0025,
+              0.00325,
+              0.00625,
+              0.45575
+            ],
+            "dominant_state": 7,
+            "contact_entropy_bits": 1.7467001417307024
+          },
+          "coordination": {
+            "joint_0": {
+              "dominant_freq_hz": 0.06,
+              "dominant_amplitude": 0.6460331053685902
+            },
+            "joint_1": {
+              "dominant_freq_hz": 0.06,
+              "dominant_amplitude": 0.8368012704259311
+            },
+            "delta_phi_rad": -0.06756557767413167,
+            "phase_lock_score": 0.9777202134736115
+          },
+          "rotation_axis": {
+            "axis_dominance": [
+              0.7995752118231298,
+              0.16357065984203387,
+              0.036854128334836346
+            ],
+            "axis_switching_rate_hz": 11.642910727681919,
+            "periodicity": {
+              "roll_freq_hz": 0.06,
+              "pitch_freq_hz": 3.5999999999999996,
+              "yaw_freq_hz": 3.78
+            }
+          }
+        },
+        "qwen3-coder:30b": {
+          "success": true,
+          "weights": {
+            "w03": 0.1,
+            "w04": -0.1,
+            "w13": 0.7,
+            "w14": 0.7,
+            "w23": 0.7,
+            "w24": 0.7
+          },
+          "outcome": {
+            "dx": -2.0798066780247018,
+            "dy": 0.22281590289103073,
+            "yaw_net_rad": 0.04487495128658786,
+            "mean_speed": 0.6040020168927902,
+            "speed_cv": 0.6644231407710549,
+            "work_proxy": 10313.273965883764,
+            "distance_per_work": 0.00020281707821326306,
+            "path_length": 10.066699375426907,
+            "path_straightness": 0.20778489697222652,
+            "heading_consistency": 0.09404289705034544
+          },
+          "contact": {
+            "duty_torso": 0.0,
+            "duty_back": 0.052,
+            "duty_front": 0.1175,
+            "support_count_frac": [
+              0.835,
+              0.1605,
+              0.0045,
+              0.0
+            ],
+            "state_distribution": [
+              0.835,
+              0.113,
+              0.0475,
+              0.0045,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "dominant_state": 0,
+            "contact_entropy_bits": 0.8165682145601794
+          },
+          "coordination": {
+            "joint_0": {
+              "dominant_freq_hz": 2.28,
+              "dominant_amplitude": 0.01980595669327672
+            },
+            "joint_1": {
+              "dominant_freq_hz": 3.42,
+              "dominant_amplitude": 0.026601467609056743
+            },
+            "delta_phi_rad": -0.03834068313886218,
+            "phase_lock_score": 0.9466553885009189
+          },
+          "rotation_axis": {
+            "axis_dominance": [
+              0.9934277491315107,
+              0.005383890261981885,
+              0.0011883606065074557
+            ],
+            "axis_switching_rate_hz": 2.520630157539385,
+            "periodicity": {
+              "roll_freq_hz": 1.08,
+              "pitch_freq_hz": 21.599999999999998,
+              "yaw_freq_hz": 0.54
+            }
+          }
+        }
+      },
+      "n_models_attempted": 4,
+      "n_models_successful": 3,
+      "summary": {
+        "max_abs_dx": 14.200582634682684,
+        "min_abs_dx": 2.0798066780247018,
+        "mean_abs_dx": 8.006634733905194,
+        "best_model": "gpt-oss:20b",
+        "mean_speed": 0.9989255983795643,
+        "mean_torso_duty": 0.284,
+        "mean_contact_entropy": 1.5297524922083063,
+        "falls": 2,
+        "n_unique_weight_vectors": 3,
+        "fall_threshold": 0.3,
+        "torso_duties": {
+          "gpt-oss:20b": 0.38425,
+          "llama3.1:latest": 0.46775,
+          "qwen3-coder:30b": 0.0
+        }
+      }
+    },
+    "The Nurse": {
+      "models": {
+        "deepseek-r1:8b": {
+          "success": false,
+          "error": "parse_failure"
+        },
+        "gpt-oss:20b": {
+          "success": true,
+          "weights": {
+            "w03": 0.1,
+            "w04": -0.1,
+            "w13": 0.4,
+            "w14": 0.4,
+            "w23": 0.4,
+            "w24": 0.4
+          },
+          "outcome": {
+            "dx": -11.205260640011597,
+            "dy": 0.27136788588458655,
+            "yaw_net_rad": 0.09747257279973727,
+            "mean_speed": 0.717056687899947,
+            "speed_cv": 0.3803820125947185,
+            "work_proxy": 13870.000078485304,
+            "distance_per_work": 0.0008081143529292285,
+            "path_length": 11.950943892212862,
+            "path_straightness": 0.9378795716593479,
+            "heading_consistency": 0.9207170733622444
+          },
+          "contact": {
+            "duty_torso": 0.0,
+            "duty_back": 0.1755,
+            "duty_front": 0.0655,
+            "support_count_frac": [
+              0.775,
+              0.209,
+              0.016,
+              0.0
+            ],
+            "state_distribution": [
+              0.775,
+              0.0495,
+              0.1595,
+              0.016,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "dominant_state": 0,
+            "contact_entropy_bits": 1.0175131324474098
+          },
+          "coordination": {
+            "joint_0": {
+              "dominant_freq_hz": 4.92,
+              "dominant_amplitude": 0.018861480738177207
+            },
+            "joint_1": {
+              "dominant_freq_hz": 4.92,
+              "dominant_amplitude": 0.020858474600166703
+            },
+            "delta_phi_rad": -0.01241585996750883,
+            "phase_lock_score": 0.9848659166313123
+          },
+          "rotation_axis": {
+            "axis_dominance": [
+              0.9935312654078604,
+              0.00575860257175585,
+              0.0007101320203838063
+            ],
+            "axis_switching_rate_hz": 0.7801950487621905,
+            "periodicity": {
+              "roll_freq_hz": 3.0,
+              "pitch_freq_hz": 31.32,
+              "yaw_freq_hz": 0.12
+            }
+          }
+        },
+        "llama3.1:latest": {
+          "success": true,
+          "weights": {
+            "w03": -0.4,
+            "w04": 0.1,
+            "w13": 0.7,
+            "w14": 0.7,
+            "w23": -0.4,
+            "w24": 0.0
+          },
+          "outcome": {
+            "dx": 1.964827615401991,
+            "dy": -2.5404199638436444,
+            "yaw_net_rad": -0.41686449396468583,
+            "mean_speed": 0.8537280001937679,
+            "speed_cv": 1.1734142596574875,
+            "work_proxy": 6347.21599621371,
+            "distance_per_work": 0.0005059833255137181,
+            "path_length": 14.228799097109867,
+            "path_straightness": 0.22571022583138536,
+            "heading_consistency": 0.0922396240862147
+          },
+          "contact": {
+            "duty_torso": 0.53325,
+            "duty_back": 0.54575,
+            "duty_front": 0.64725,
+            "support_count_frac": [
+              0.26925,
+              0.21175,
+              0.0425,
+              0.4765
+            ],
+            "state_distribution": [
+              0.26925,
+              0.1425,
+              0.03775,
+              0.01725,
+              0.0315,
+              0.011,
+              0.01425,
+              0.4765
+            ],
+            "dominant_state": 7,
+            "contact_entropy_bits": 2.0154396573469966
+          },
+          "coordination": {
+            "joint_0": {
+              "dominant_freq_hz": 0.12,
+              "dominant_amplitude": 0.11326202720619741
+            },
+            "joint_1": {
+              "dominant_freq_hz": 0.06,
+              "dominant_amplitude": 0.7867998381327428
+            },
+            "delta_phi_rad": -2.767469715481805,
+            "phase_lock_score": 0.3502806856788576
+          },
+          "rotation_axis": {
+            "axis_dominance": [
+              0.542534716903283,
+              0.3882485109648303,
+              0.06921677213188669
+            ],
+            "axis_switching_rate_hz": 18.244561140285068,
+            "periodicity": {
+              "roll_freq_hz": 0.72,
+              "pitch_freq_hz": 1.02,
+              "yaw_freq_hz": 4.08
+            }
+          }
+        },
+        "qwen3-coder:30b": {
+          "success": true,
+          "weights": {
+            "w03": 0.4,
+            "w04": -0.4,
+            "w13": 0.7,
+            "w14": 0.7,
+            "w23": 0.7,
+            "w24": 0.7
+          },
+          "outcome": {
+            "dx": -1.192161099762704,
+            "dy": -0.008191082058595945,
+            "yaw_net_rad": 0.05230250837206234,
+            "mean_speed": 0.7770489824920558,
+            "speed_cv": 0.516428509890562,
+            "work_proxy": 9452.231078108094,
+            "distance_per_work": 0.00012612781354571343,
+            "path_length": 12.950815468748,
+            "path_straightness": 0.09205514833313183,
+            "heading_consistency": 0.05847001547396532
+          },
+          "contact": {
+            "duty_torso": 0.0,
+            "duty_back": 0.04675,
+            "duty_front": 0.1035,
+            "support_count_frac": [
+              0.8545,
+              0.14075,
+              0.00475,
+              0.0
+            ],
+            "state_distribution": [
+              0.8545,
+              0.09875,
+              0.042,
+              0.00475,
+              0.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "dominant_state": 0,
+            "contact_entropy_bits": 0.7524191544716451
+          },
+          "coordination": {
+            "joint_0": {
+              "dominant_freq_hz": 3.1799999999999997,
+              "dominant_amplitude": 0.020981399903061127
+            },
+            "joint_1": {
+              "dominant_freq_hz": 3.1799999999999997,
+              "dominant_amplitude": 0.04651247391965969
+            },
+            "delta_phi_rad": -0.13736843192248022,
+            "phase_lock_score": 0.8161499208612202
+          },
+          "rotation_axis": {
+            "axis_dominance": [
+              0.9742996692467922,
+              0.01971735370043679,
+              0.0059829770527710215
+            ],
+            "axis_switching_rate_hz": 6.06151537884471,
+            "periodicity": {
+              "roll_freq_hz": 0.96,
+              "pitch_freq_hz": 18.72,
+              "yaw_freq_hz": 19.14
+            }
+          }
+        }
+      },
+      "n_models_attempted": 4,
+      "n_models_successful": 3,
+      "summary": {
+        "max_abs_dx": 11.205260640011597,
+        "min_abs_dx": 1.192161099762704,
+        "mean_abs_dx": 4.787416451725431,
+        "best_model": "gpt-oss:20b",
+        "mean_speed": 0.7826112235285901,
+        "mean_torso_duty": 0.17775,
+        "mean_contact_entropy": 1.2617906480886838,
+        "falls": 1,
+        "n_unique_weight_vectors": 3,
+        "fall_threshold": 0.3,
+        "torso_duties": {
+          "gpt-oss:20b": 0.0,
+          "llama3.1:latest": 0.53325,
+          "qwen3-coder:30b": 0.0
+        }
+      }
+    }
+  }
+}
