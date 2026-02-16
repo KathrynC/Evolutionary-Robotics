@@ -3,7 +3,7 @@ numMotorNeurons = 8
 
 numTimeSteps = 1000
 
-motorJointRange = 0.2
+motorJointRange = 0.5
 
 numberOfGenerations = 500
 

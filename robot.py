@@ -54,4 +54,9 @@ class ROBOT:
         basePositionAndOrientation = p.getBasePositionAndOrientation(self.robotId)
         basePosition = basePositionAndOrientation[0]
         xPosition = basePosition[0]
+        zPosition = basePosition[2]
+        # Penalize falling over: if torso drops below 0.5, add penalty
+        # This selects for upright walking rather than falling and scooting
+        if zPosition < 0.5:
+            xPosition += 5
         return xPosition
